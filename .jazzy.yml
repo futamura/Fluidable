@@ -1,0 +1,146 @@
+module: Fluidable
+
+author: Gumob
+author_url: http://gumob.com
+github_url: https://github.com/gumob/Fluidable
+copyright: 'Copyright © 2018 Gumob. All rights reserved.'
+
+min_acl: public
+clean: true
+readme: "README.md"
+output: "docs"
+documentation: "USAGE.md"
+skip_undocumented: true
+hide_documentation_coverage: true
+# theme: fullwidth
+theme: "themes/fullwidth-ex"
+
+source_directory: Sources
+umbrella_header: "Sources/Fluidable.h"
+xcodebuild_arguments:
+  - -project
+  - ../Fluidable.xcodeproj
+  - -scheme
+  - Fluidable
+
+exclude:
+  - Sources/Helper/*.swift
+
+custom_categories:
+
+  - name: Core
+    children:
+    - Fluidable
+    - UIApplicationDelegate
+
+  - name: Delegate
+    children:
+    - FluidDelegate
+    - FluidNavigationControllerDelegate
+    - FluidViewControllerTransitionDelegate
+    - FluidConfigurationDelegate
+    - FluidSourceConfigurationDelegate
+    - FluidDestinationConfigurationDelegate
+    - FluidActionDelegate
+    - FluidSourceActionDelegate
+    - FluidDestinationActionDelegate
+
+  - name: Type Aliases
+    children:
+    - FluidSourceViewControllerDelegate
+    - FluidDestinationNavigationControllerDelegate
+    - FluidDestinationViewControllerDelegate
+    - FluidDestinationNavigationController
+    - FluidDestinationViewController
+
+  - name: Transition - Transition Style
+    children:
+    - FluidPresentationStyle
+    - FluidDrawerPosition
+    - FluidSlideDirection
+  - name: Transition - Background
+    children:
+    - FluidBackgroundStyle
+  - name: Transition - Transition Frame
+    children:
+    - FluidInitialFrameDimension
+    - FluidFinalFrameDimension
+    - FluidInitialFrameStyle
+    - FluidFinalFrameStyle
+    - FluidRoundCornerStyle
+  - name: Transition - Custom Transition
+    children:
+      - FluidTransitionAnimatorCompatible
+      - FluidTransitionAnimatorParameter
+
+  - name: Interaction
+    children:
+    - FluidGestureInfo
+    - FluidGestureDirection
+    - FluidGestureAxis
+
+  - name: Proxy
+    children:
+    - FluidProxy
+    - FluidProxyCompatible
+
+  - name: Error
+    children:
+    - FluidError
+
+  - name: Animator
+    children:
+    - FluidAnimatorCompatible
+    - FluidAnimatorState
+    - FluidAnimatorEasing
+
+  - name: Animator - UIViewPropertyAnimator
+    children:
+    - FluidPropertyAnimator
+    - UIViewAnimatingStateEx
+
+  - name: Animator - Core Animation
+    children:
+    - FluidCoreAnimator
+    - FluidCoreAnimatorTransitionType
+    - FluidCoreAnimatorTransitionSubtype
+    - FluidCoreAnimatorKeyCompatible
+    - FluidCoreAnimatorKey
+    - FluidCoreAnimatorPath
+    - FluidCoreAnimatorError
+
+  - name: Animator - Robert Penner's Easing
+    children:
+    - PennerEasing
+    - PennerEasingType
+
+  - name: Adaptive Layout - Protocols
+    children:
+    - AdaptiveAttribute
+    - AdaptiveElement
+    - AdaptiveInterface
+
+  - name: Adaptive Layout - Attributes
+    children:
+    - SizeCategory
+    - SizeClass
+    - LayoutDirection
+    - Idiom
+    - Scale
+    - DisplayGamut
+    - ForceTouch
+
+  - name: Adaptive Layout - Containers
+    children:
+    - AdaptiveBehavior
+    - AdaptiveConstraintContainer
+    - AdaptiveViewContainer
+
+  - name: Adaptive Layout - Extensions
+    children:
+    - UITraitCollection
+    - UIView+Adaptive
+
+  - name: Guide
+    children:
+    - USAGE
