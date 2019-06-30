@@ -750,7 +750,6 @@
 		A71F673B21C50EA8007CADA0 = {
 			isa = PBXGroup;
 			children = (
-				A7D3A03E22C7425800742D6D /* Shared */,
 				A71F674721C50EA8007CADA0 /* Sources */,
 				A71F67EA21C66248007CADA0 /* Example */,
 				A71F675221C50EA8007CADA0 /* Tests */,
@@ -782,6 +781,7 @@
 				A77766F322432879007F1802 /* Error */,
 				A77766BC22432879007F1802 /* Helper */,
 				A77766B722432879007F1802 /* Layout */,
+				A7D3A03E22C7425800742D6D /* Shared */,
 				A77766FA22432879007F1802 /* View */,
 				DFABE27FD05BE9DD0CE9C6AB /* Fluidable+SafeArea.swift */,
 			);
@@ -1065,34 +1065,10 @@
 		A7D3A03E22C7425800742D6D /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				A7D3A04622C74A7B00742D6D /* Sources */,
-			);
-			path = Shared;
-			sourceTree = "<group>";
-		};
-		A7D3A03F22C7427500742D6D /* Debug */ = {
-			isa = PBXGroup;
-			children = (
 				A77766F622432879007F1802 /* Debug.swift */,
-			);
-			path = Debug;
-			sourceTree = "<group>";
-		};
-		A7D3A04122C742DE00742D6D /* Extension */ = {
-			isa = PBXGroup;
-			children = (
 				DFABE33C5A65A3DA45F939C7 /* NSObject+Ext.swift */,
 			);
-			path = Extension;
-			sourceTree = "<group>";
-		};
-		A7D3A04622C74A7B00742D6D /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				A7D3A03F22C7427500742D6D /* Debug */,
-				A7D3A04122C742DE00742D6D /* Extension */,
-			);
-			path = Sources;
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		A7EAC30E224F3EE6008904B7 /* Control */ = {
