@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
 
     s.name              = "Fluidable"
     s.version           = "0.0.1"
-    s.summary           = "A Swift library allows you to create a flexibly customizable pull-to-refresh view supporting RxSwift."
+    s.summary           = "The Swift library that allows you to create a custom transition conforming to Fluid Interfaces."
     s.homepage          = "https://github.com/gumob/Fluidable"
     s.documentation_url = "https://gumob.github.io/Fluidable"
     s.license           = { :type => "MIT", :file => "LICENSE" }
@@ -15,9 +15,20 @@ Pod::Spec.new do |s|
 
     s.swift_version             = "4.2"
 
-    s.ios.deployment_target     = "9.0"
+    s.ios.deployment_target     = "10.0"
     s.ios.framework             = "Foundation", "UIKit", "CoreGraphics"
 
     s.dependency 'Sica', '~> 0.3'
 
+    s.test_spec 'FluidableTests' do |test_spec|
+        test_spec.source_files = 'Tests/*.swift'
+        test_spec.dependency 'Quick', '~> 2.1.0'
+        test_spec.dependency 'Nimble', '~> 8.0.2'
+    end
+
+    s.test_spec 'FluidableUITests' do |test_spec|
+        test_spec.source_files = 'UITests/*.swift'
+        test_spec.dependency 'Quick', '~> 2.1.0'
+        test_spec.dependency 'Nimble', '~> 8.0.2'
+    end
 end
