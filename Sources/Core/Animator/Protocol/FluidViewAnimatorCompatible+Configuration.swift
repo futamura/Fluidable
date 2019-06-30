@@ -358,9 +358,9 @@ extension FluidViewAnimatorCompatible {
         /* NOTE: 🐅 Configure animator */
         let cornerRadiusAnimator: FluidPropertyAnimator = .init(duration: transitionDuration, easing: transitionEasing, id: "cornerRadiusAnimator (\(String(describing: self.animationType).capitalized))")
         cornerRadiusAnimator.add({ [weak self] in
-                                guard let `self`: Self = self else { return }
-                                self.animationView.layer.cornerRadius = toStyle.cornerRadius
-                            })
+            guard let `self`: Self = self else { return }
+            self.animationView.layer.cornerRadius = toStyle.cornerRadius
+        })
         /* NOTE: Return animators */
         return [cornerRadiusAnimator]
     }
@@ -562,7 +562,7 @@ extension FluidViewAnimatorCompatible {
     func fromCornerMaskLayer(_ isReversed: Bool = false) -> FluidCornerMaskLayer {
         switch self.animationType {
         case .dismiss where self.animationView.layer.mask as? FluidCornerMaskLayer != nil:
-            return self.animationView.layer.mask as! FluidCornerMaskLayer
+            return self.animationView.layer.mask as! FluidCornerMaskLayer /* swiftlint:disable:this force_cast */
         case .present, .dismiss, .rotate:
             let fromFrame: CGRect = self.fromViewFrame(isReversed, self.resizePosition)
             let fromStyle: FluidFrameStyleCompatible = self.fromStyle(isReversed)

@@ -417,5 +417,7 @@ extension FluidDismissDriverCompatible {
     }
 
     /** The function that indicates whether all scroll views allow to perform resize interaction. */
-    func isResizeAllowedByMostTopView() -> Bool { return self.mostTopObservingScroll?.isResizeAllowed() ?? true }
+    func isResizeAllowedByMostTopView() -> Bool {
+        return self.mostTopObservingScroll?.isResizeAllowed() ?? true
+    }
 }

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 public protocol FluidBackgroundCompatible: NSObjectProtocol {
-    var visibility: CGFloat { set get }
+    var visibility: CGFloat { get set }
 }
 
 extension FluidBackgroundCompatible where Self: UIView {
@@ -89,7 +89,7 @@ internal class FluidDimmedBackgroundView: UIView, FluidBackgroundCompatible {
  */
 internal class BlurView: UIVisualEffectView {
     /** Returns the instance of UIBlurEffect. */
-    private let blurEffect: UIBlurEffect = (NSClassFromString("_UICustomBlurEffect") as! UIBlurEffect.Type).init()
+    private let blurEffect: UIBlurEffect = (NSClassFromString("_UICustomBlurEffect") as! UIBlurEffect.Type).init() /* swiftlint:disable:this force_cast */
 
     /** Tint color. The default value is nil. */
     @objc dynamic internal var colorTint: UIColor? {
@@ -99,19 +99,19 @@ internal class BlurView: UIVisualEffectView {
 
     /** Tint color alpha. The default value is 0.0. */
     @objc dynamic open var colorTintAlpha: CGFloat {
-        get { return _value(forKey: "colorTintAlpha") as! CGFloat }
+        get { return _value(forKey: "colorTintAlpha") as! CGFloat } /* swiftlint:disable:this force_cast */
         set { _setValue(newValue, forKey: "colorTintAlpha") }
     }
 
     /** Blur radius. The default value is 0.0. */
     @objc dynamic open var blurRadius: CGFloat {
-        get { return _value(forKey: "blurRadius") as! CGFloat }
+        get { return _value(forKey: "blurRadius") as! CGFloat } /* swiftlint:disable:this force_cast */
         set { _setValue(newValue, forKey: "blurRadius") }
     }
 
     /** Scale factor. The scale factor determines how content in the view is mapped from the logical coordinate space (measured in points) to the device coordinate space (measured in pixels). The default value is 1.0. */
     @objc dynamic open var scale: CGFloat {
-        get { return _value(forKey: "scale") as! CGFloat }
+        get { return _value(forKey: "scale") as! CGFloat } /* swiftlint:disable:this force_cast */
         set { _setValue(newValue, forKey: "scale") }
     }
 

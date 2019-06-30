@@ -102,7 +102,7 @@ class CAProgressLayer: CALayer {
 
 internal class UIProgressLayerView: UIView {
     override class var layerClass: AnyClass { return CAProgressLayer.self }
-    override var layer: CAProgressLayer { return super.layer as! CAProgressLayer }
+    override var layer: CAProgressLayer { return super.layer as! CAProgressLayer } /* swiftlint:disable:this force_cast */
 
     /* FIXME: Custom properties is not animatable when using UIViewPropertyAnimator */
     @objc dynamic var progress: CGFloat {

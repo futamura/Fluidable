@@ -27,7 +27,7 @@ internal protocol FluidParametersAccessible: NSObjectProtocol {
     var interactionType: FluidDriverInteractionType { get }
 
     /** The `FluidParametersCompatible` object. */
-    var parameters: Parameters! { set get }
+    var parameters: Parameters! { get set }
 
     /** The reference to `FluidControllerDelegateCompatible`. */
     var controllerDelegate: ControllerDelegate? { get }

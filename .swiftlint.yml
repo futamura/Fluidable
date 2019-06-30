@@ -5,9 +5,21 @@ disabled_rules:
   - trailing_whitespace
   - todo
   - large_tuple
+  - function_parameter_count
+  - trailing_comma
 
-line_length: 480
-function_body_length: 100
+line_length:
+  warning: 512
+  error : 1024
+  ignores_comments: true
+file_length:
+  warning: 512
+  error : 1024
+  ignores_comments: true
+function_body_length:
+  warning: 256
+  error : 512
+  ignores_comments: true
 shorthand_operator: warning
 cyclomatic_complexity:
   warning: 20

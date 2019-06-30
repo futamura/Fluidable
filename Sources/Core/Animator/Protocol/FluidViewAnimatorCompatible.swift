@@ -25,14 +25,14 @@ internal protocol FluidViewAnimatorCompatible: FluidParametersAccessible {
 
     /** The `CGFloat` value that indicates the current transition progress. */
     var animationProgress: CGFloat { get }
-    var pausedAnimationProgress: CGFloat { set get }
+    var pausedAnimationProgress: CGFloat { get set }
 
     /** Variables for interaction */
-    var interactionProgress: CGFloat { set get }
-    var pausedInteractionProgress: CGFloat { set get }
-    var resizePosition: CGFloat { set get }
-    var pausedGestureInfo: FluidGestureInfo? { set get }
-    var currentGestureInfo: FluidGestureInfo? { set get }
+    var interactionProgress: CGFloat { get set }
+    var pausedInteractionProgress: CGFloat { get set }
+    var resizePosition: CGFloat { get set }
+    var pausedGestureInfo: FluidGestureInfo? { get set }
+    var currentGestureInfo: FluidGestureInfo? { get set }
 
     /** The `FluidAnimatorState` value that indicates the current animation state. */
     var state: FluidAnimatorState { get }
@@ -41,16 +41,16 @@ internal protocol FluidViewAnimatorCompatible: FluidParametersAccessible {
     var isNotRunning: Bool { get }
 
     /** The frame and style variables to reduce computational load */
-    var storedFromFrame: CGRect! { set get }
-    var storedToFrame: CGRect! { set get }
-    var storedFromStyle: FluidFrameStyleCompatible! { set get }
-    var storedToStyle: FluidFrameStyleCompatible! { set get }
+    var storedFromFrame: CGRect! { get set }
+    var storedToFrame: CGRect! { get set }
+    var storedFromStyle: FluidFrameStyleCompatible! { get set }
+    var storedToStyle: FluidFrameStyleCompatible! { get set }
 
     /** Base layout constants for resizing */
-    var baseConstants: FluidLayoutEdgeConstant! { set get }
+    var baseConstants: FluidLayoutEdgeConstant! { get set }
 
     /* The display timer for fluid interaction. */
-    var animationTimer: FluidViewAnimatorTimer? { set get }
+    var animationTimer: FluidViewAnimatorTimer? { get set }
 
     /**
      The function that gets called before the transition starts. You need to configure animators conforming to the `FluidAnimatorCompatible` protocol in this function.

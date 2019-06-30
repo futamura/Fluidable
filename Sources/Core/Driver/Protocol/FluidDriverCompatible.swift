@@ -15,28 +15,28 @@ internal protocol FluidDriverCompatible: FluidParametersAccessible, FluidGesture
     associatedtype ScrollObserver: FluidScrollObservable
 
     /** The `FluidTransitionParameters` object. */
-    var parameters: Parameters! { set get }
+    var parameters: Parameters! { get set }
 
     /** The `FluidTransitionAnimator` object */
-    var viewAnimator: ViewAnimator! { set get }
+    var viewAnimator: ViewAnimator! { get set }
     /** The interruptible animator that conforms to `UIViewImplicitlyAnimating`. */
-    var interruptibleAnimator: UIViewImplicitlyAnimating! { set get }
+    var interruptibleAnimator: UIViewImplicitlyAnimating! { get set }
 
     /** The gesture being observed. */
-    var observingGesture: GestureObserver! { set get }
+    var observingGesture: GestureObserver! { get set }
     /** The scroll views being observed. */
-    var observingScrolls: [ScrollObserver]! { set get }
+    var observingScrolls: [ScrollObserver]! { get set }
     /** The most top scroll view being observed. */
-    var mostTopObservingScroll: ScrollObserver? { set get }
+    var mostTopObservingScroll: ScrollObserver? { get set }
 
     /** The `Bool` value indicating whether the transition is interactive */
-    var isInteracting: Bool { set get }
+    var isInteracting: Bool { get set }
     /** The `Bool` value that indicates whether the interaction was cancelled. */
-    var isInteractionCancelled: Bool { set get }
+    var isInteractionCancelled: Bool { get set }
     /** The `FluidTransitionInteractionType` value indicating interaction type */
     var interactionType: FluidDriverInteractionType { get }
     /** The `FluidTransitionInteractionState` value indicating interaction state */
-    var interactionState: FluidDriverInteractionState { set get }
+    var interactionState: FluidDriverInteractionState { get set }
 
     /* The transition progress */
     var transitionPercentComplete: CGFloat { get }
@@ -44,23 +44,23 @@ internal protocol FluidDriverCompatible: FluidParametersAccessible, FluidGesture
     /** The interruptible animator progress. */
     var currentInterruptibleFractionComplete: CGFloat { get }
     /** The interruptible animator when the animated transition pauses. */
-    var pausedInterruptibleFractionComplete: CGFloat { set get }
+    var pausedInterruptibleFractionComplete: CGFloat { get set }
     /** The progress animator progress. */
     var currentProgressAnimatorProgress: CGFloat { get }
 
     /** The interaction progress clamped in the range of 1 to 0. */
     var clampedInteractionProgress: CGFloat { get }
     /** The current interaction progress value. */
-    var currentInteractionProgress: CGFloat? { set get }
+    var currentInteractionProgress: CGFloat? { get set }
     /** The previous interaction progress value. */
-    var previousInteractionProgress: CGFloat? { set get }
+    var previousInteractionProgress: CGFloat? { get set }
 
     /** The current resizing position clamped in the range of 0 to CGFloat.infinity. */
     var clampedResizePosition: CGFloat { get }
     /** The current resizing position. */
-    var currentResizePosition: CGFloat { set get }
+    var currentResizePosition: CGFloat { get set }
     /** The previous resizing position. */
-    var previousResizePosition: CGFloat? { set get }
+    var previousResizePosition: CGFloat? { get set }
 
     /** The functions that configures parameters. */
     func configureParameters(driverType: FluidDriverType,

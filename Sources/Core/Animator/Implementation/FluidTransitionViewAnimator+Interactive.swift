@@ -53,7 +53,8 @@ extension FluidTransitionViewAnimator {
         case .none: break
         }
     }
-
+    
+    /* swiftlint:disable function_body_length */
     func dismissFrame() {
         guard self.animationTimer != nil else { return }
         /* NOTE: Update background */

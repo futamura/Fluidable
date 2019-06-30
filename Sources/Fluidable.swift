@@ -20,7 +20,7 @@ private struct AssociationKey {
  */
 public protocol Fluidable: NSObjectProtocol {
     /** The `FluidDelegate` object. */
-    var fluidDelegate: FluidDelegate? { set get }
+    var fluidDelegate: FluidDelegate? { get set }
 }
 
 public extension Fluidable where Self: UIViewController {
@@ -35,7 +35,7 @@ public extension Fluidable where Self: UIViewController {
  */
 public protocol FluidResizable: NSObjectProtocol {
     /** The `FluidResizableDelegate` object. */
-    var fluidResizableDelegate: FluidResizableTransitionDelegate? { set get }
+    var fluidResizableDelegate: FluidResizableTransitionDelegate? { get set }
 }
 
 public extension FluidResizable where Self: UIViewController {

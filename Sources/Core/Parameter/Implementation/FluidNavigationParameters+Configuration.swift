@@ -9,6 +9,7 @@
 import Foundation
 
 internal extension FluidNavigationParameters {
+    /* swiftlint:disable:next function_body_length */
     init(driverType: FluidDriverType, animationType: FluidAnimationType,
          context: UIViewControllerContextTransitioning?,
          container: UIView, source: UIViewController?, destination: UIViewController?,
