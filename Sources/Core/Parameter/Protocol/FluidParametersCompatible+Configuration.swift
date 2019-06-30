@@ -30,17 +30,17 @@ extension FluidParametersCompatible {
     }
 
     mutating func configureFrameAnimator(frameAnimators: [FluidAnimatorCompatible]) {
-        let framePropertyAnimator: [FluidPropertyAnimator] = frameAnimators.lazy.filter { $0 is FluidPropertyAnimator }.map { ($0 as! FluidPropertyAnimator ) } /* swiftlint:disable:this force_cast */
-        let frameCoreAnimator: [FluidCoreAnimator] = frameAnimators.lazy.filter { $0 is FluidCoreAnimator }.map { $0 as! FluidCoreAnimator } /* swiftlint:disable:this force_cast */
+        let framePropertyAnimator: [FluidPropertyAnimator] = frameAnimators.lazy.filter { $0 is FluidPropertyAnimator }.map { ($0 as! FluidPropertyAnimator ) }
+        let frameCoreAnimator: [FluidCoreAnimator] = frameAnimators.lazy.filter { $0 is FluidCoreAnimator }.map { $0 as! FluidCoreAnimator }
         self.framePropertyAnimators = framePropertyAnimator
         self.frameCoreAnimators = frameCoreAnimator
     }
 
     mutating func configureExtraAnimators(sourceAnimators: [FluidAnimatorCompatible]?, destinationAnimators: [FluidAnimatorCompatible]?) {
-        let sourcePropertyAnimators: [FluidPropertyAnimator] = (sourceAnimators ?? []).lazy.filter { $0 is FluidPropertyAnimator }.map { $0 as! FluidPropertyAnimator } /* swiftlint:disable:this force_cast */
-        let sourceCoreAnimators: [FluidCoreAnimator] = (sourceAnimators ?? []).lazy.filter { $0 is FluidCoreAnimator }.map { $0 as! FluidCoreAnimator } /* swiftlint:disable:this force_cast */
-        let destinationPropertyAnimators: [FluidPropertyAnimator] = (destinationAnimators ?? []).lazy.filter { $0 is FluidPropertyAnimator }.map { $0 as! FluidPropertyAnimator } /* swiftlint:disable:this force_cast */
-        let destinationCoreAnimators: [FluidCoreAnimator] = (destinationAnimators ?? []).lazy.filter { $0 is FluidCoreAnimator }.map { $0 as! FluidCoreAnimator } /* swiftlint:disable:this force_cast */
+        let sourcePropertyAnimators: [FluidPropertyAnimator] = (sourceAnimators ?? []).lazy.filter { $0 is FluidPropertyAnimator }.map { $0 as! FluidPropertyAnimator }
+        let sourceCoreAnimators: [FluidCoreAnimator] = (sourceAnimators ?? []).lazy.filter { $0 is FluidCoreAnimator }.map { $0 as! FluidCoreAnimator }
+        let destinationPropertyAnimators: [FluidPropertyAnimator] = (destinationAnimators ?? []).lazy.filter { $0 is FluidPropertyAnimator }.map { $0 as! FluidPropertyAnimator }
+        let destinationCoreAnimators: [FluidCoreAnimator] = (destinationAnimators ?? []).lazy.filter { $0 is FluidCoreAnimator }.map { $0 as! FluidCoreAnimator }
         self.extraPropertyAnimators = sourcePropertyAnimators + destinationPropertyAnimators
         self.extraCoreAnimators = sourceCoreAnimators + destinationCoreAnimators
     }

@@ -9,7 +9,6 @@
 import Foundation
 
 internal extension FluidNavigationParameters {
-    /* swiftlint:disable:next function_body_length */
     init(driverType: FluidDriverType, animationType: FluidAnimationType,
          context: UIViewControllerContextTransitioning?,
          container: UIView, source: UIViewController?, destination: UIViewController?,
@@ -277,7 +276,6 @@ internal extension FluidNavigationParameters {
         self.activeEasing = activeEasing
     }
 
-//    mutating func configureViews(animationView: UIView, shadowView: FluidShadowView?, backgroundView: FluidBackgroundCompatible?, layout: FluidLayout) {
     mutating func configureViews(shouldInsertSubview: Bool) {
         Logger()?.log("🥇🛠", [
         ])

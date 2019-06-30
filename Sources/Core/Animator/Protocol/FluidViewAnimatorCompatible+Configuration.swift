@@ -562,7 +562,7 @@ extension FluidViewAnimatorCompatible {
     func fromCornerMaskLayer(_ isReversed: Bool = false) -> FluidCornerMaskLayer {
         switch self.animationType {
         case .dismiss where self.animationView.layer.mask as? FluidCornerMaskLayer != nil:
-            return self.animationView.layer.mask as! FluidCornerMaskLayer /* swiftlint:disable:this force_cast */
+            return self.animationView.layer.mask as! FluidCornerMaskLayer
         case .present, .dismiss, .rotate:
             let fromFrame: CGRect = self.fromViewFrame(isReversed, self.resizePosition)
             let fromStyle: FluidFrameStyleCompatible = self.fromStyle(isReversed)

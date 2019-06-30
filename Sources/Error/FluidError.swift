@@ -70,9 +70,9 @@ public enum FluidError: Swift.Error {
         case .unsupportedDismissalEasing(let easing):
             return "The easing `FluidAnimatorEasing.\(String(describing: easing))` is not available on iOS \(UIDevice.current.systemVersion)."
         case .ignoredPresentationDuration(let easing, let defaultDuration, let userDefinedDuration):
-            return "You set the present duration (\(userDefinedDuration)) at `FluidSourceConfigurationDelegate.dismissalDuration(destination:source:navigation:)` but the easing type is `FluidAnimatorEasing.\(String(describing: easing))`. The default duration (\(defaultDuration)) will be used."
+            return "You set the present duration (\(userDefinedDuration)) at `FluidSourceConfigurationDelegate.dismissalDuration(destination:source:navigation:)` but the easing type is `FluidAnimatorEasing.\(String(describing: easing))`. The default duration (\(defaultDuration)) will be used." /** swiftlint:disable:this line_length */
         case .ignoredDismissalDuration(let easing, let defaultDuration, let userDefinedDuration):
-            return "You set the dismiss duration (\(userDefinedDuration)) at `FluidSourceConfigurationDelegate.dismissalDuration(destination:source:navigation:)` but the easing type is `FluidAnimatorEasing.\(String(describing: easing))`. The default duration (\(defaultDuration)) will be used."
+            return "You set the dismiss duration (\(userDefinedDuration)) at `FluidSourceConfigurationDelegate.dismissalDuration(destination:source:navigation:)` but the easing type is `FluidAnimatorEasing.\(String(describing: easing))`. The default duration (\(defaultDuration)) will be used." /** swiftlint:disable:this line_length */
         case .invalidInitialFrameDimension:
             return "The argument `layouts` of `FluidFrameDimension(origin:size:layouts:)` specified with `FluidSourceConfigurationDelegate.initialDestinationFrameDimension(from:to:with:)` will be ignored."
         case .invalidFinalFrameDimension:

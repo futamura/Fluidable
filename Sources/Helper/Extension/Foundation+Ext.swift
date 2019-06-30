@@ -58,7 +58,7 @@ extension Array where Element: Coordinates {
         var nearestElement: Element?
         var nearestDist: CGFloat = .infinity
         for (index, element): (Int, Element) in self.enumerated() {
-            let distance: CGFloat = (element as! CGPoint).distance(to: point as! CGPoint) /* swiftlint:disable:this force_cast */
+            let distance: CGFloat = (element as! CGPoint).distance(to: point as! CGPoint)
             if distance < nearestDist {
                 nearestDist = distance
                 nearestIndex = index

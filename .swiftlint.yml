@@ -1,22 +1,18 @@
-# at v0.6.0
 disabled_rules:
   - identifier_name
-  - shorthand_operator
   - trailing_whitespace
   - todo
   - large_tuple
   - function_parameter_count
   - trailing_comma
 
-line_length:
-  warning: 512
-  error : 1024
-  ignores_comments: true
 file_length:
   warning: 512
-  error : 1024
-  ignores_comments: true
+  error: 1024
 function_body_length:
+  warning: 256
+  error: 1024
+line_length:
   warning: 256
   error : 512
   ignores_comments: true
@@ -24,6 +20,8 @@ shorthand_operator: warning
 cyclomatic_complexity:
   warning: 20
   error: 40
+force_cast: warning
+force_try: warning
 
 identifier_name:
   excluded:

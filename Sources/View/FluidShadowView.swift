@@ -11,7 +11,7 @@ import UIKit
 
 public class FluidShadowView: UIView {
     override public class var layerClass: AnyClass { return FluidShadowLayer.self }
-    override public var layer: FluidShadowLayer { return super.layer as! FluidShadowLayer } /* swiftlint:disable:this force_cast */
+    override public var layer: FluidShadowLayer { return super.layer as! FluidShadowLayer }
 
     @objc dynamic var shadowCornerRadius: CGFloat {
         get { return self.layer.shadowCornerRadius }
