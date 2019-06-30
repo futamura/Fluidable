@@ -32,10 +32,10 @@ matrix:
 
 before_install:
   - if [ "$POD_LINT" == "YES" ]; then
-    gem install cocoapods --pre --no-rdoc --no-ri --no-document --quiet;
+    gem install cocoapods --pre --no-document --quiet;
     fi
   - if [ "$XCODE_TEST" == "YES" ]; then
-    gem install xcpretty -N --no-ri --no-rdoc --quiet;
+    gem install xcpretty -N --no-document --quiet;
     fi
   - if [ "$CARTHAGE_TEST" = "YES" ] || [ "$XCODE_TEST" = "YES" ]; then
     brew update;
