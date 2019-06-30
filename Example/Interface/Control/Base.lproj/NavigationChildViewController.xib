@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <viewController id="ZQg-kR-9Wg" customClass="NavigationChildViewController" customModule="FluidableExample" customModuleProvider="target">
+            <view key="view" contentMode="scaleToFill" id="KM7-7D-C6c">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZtB-kC-Xoe">
+                        <rect key="frame" x="0.0" y="44" width="414" height="284"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="284" id="0hq-g9-OSk"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8fg-PY-ZGV">
+                        <rect key="frame" x="0.0" y="328" width="414" height="534"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pZa-T0-Wzv">
+                                <rect key="frame" x="184" y="225.5" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="5jf-OB-rGo"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="46" id="hYz-C6-Ssc"/>
+                                </constraints>
+                                <state key="normal" title="Next"/>
+                                <connections>
+                                    <action selector="nextDidTap:" destination="ZQg-kR-9Wg" eventType="touchUpInside" id="h1m-KU-SJq"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="pZa-T0-Wzv" firstAttribute="centerX" secondItem="8fg-PY-ZGV" secondAttribute="centerX" id="HxZ-lE-3ee"/>
+                            <constraint firstItem="pZa-T0-Wzv" firstAttribute="centerY" secondItem="8fg-PY-ZGV" secondAttribute="centerY" multiplier="0.9" id="pMq-Ig-Z4x"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Uqm-wS-xEa"/>
+                    </view>
+                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ngm-zp-3A7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="ngm-zp-3A7" firstAttribute="top" secondItem="KM7-7D-C6c" secondAttribute="top" id="5v8-FA-pcJ"/>
+                    <constraint firstItem="ZtB-kC-Xoe" firstAttribute="trailing" secondItem="m0X-ui-mIl" secondAttribute="trailing" id="Bwk-OF-eiX"/>
+                    <constraint firstItem="8fg-PY-ZGV" firstAttribute="top" secondItem="ZtB-kC-Xoe" secondAttribute="bottom" id="CBS-Zo-u9k"/>
+                    <constraint firstAttribute="bottom" secondItem="ngm-zp-3A7" secondAttribute="bottom" id="QbS-X1-308"/>
+                    <constraint firstItem="ZtB-kC-Xoe" firstAttribute="leading" secondItem="m0X-ui-mIl" secondAttribute="leading" id="Xyn-DX-Vv2"/>
+                    <constraint firstAttribute="trailing" secondItem="ngm-zp-3A7" secondAttribute="trailing" id="Zs1-ry-EX2"/>
+                    <constraint firstItem="ZtB-kC-Xoe" firstAttribute="top" secondItem="m0X-ui-mIl" secondAttribute="top" id="cgE-HX-YAP"/>
+                    <constraint firstItem="m0X-ui-mIl" firstAttribute="trailing" secondItem="8fg-PY-ZGV" secondAttribute="trailing" id="evi-Pz-Od6"/>
+                    <constraint firstItem="m0X-ui-mIl" firstAttribute="leading" secondItem="8fg-PY-ZGV" secondAttribute="leading" id="oXP-aY-xqN"/>
+                    <constraint firstItem="m0X-ui-mIl" firstAttribute="bottom" secondItem="8fg-PY-ZGV" secondAttribute="bottom" id="q3R-aC-P4V"/>
+                    <constraint firstItem="ngm-zp-3A7" firstAttribute="leading" secondItem="KM7-7D-C6c" secondAttribute="leading" id="yhR-Ug-2RT"/>
+                </constraints>
+                <viewLayoutGuide key="safeArea" id="m0X-ui-mIl"/>
+            </view>
+            <connections>
+                <outlet property="dismissImageView" destination="ngm-zp-3A7" id="blS-FQ-ruc"/>
+                <outlet property="imageHeightConstraint" destination="0hq-g9-OSk" id="MQ0-YT-Ptm"/>
+                <outlet property="imageView" destination="ZtB-kC-Xoe" id="8lD-3e-3eY"/>
+            </connections>
+            <point key="canvasLocation" x="176.81159420289856" y="59.598214285714285"/>
+        </viewController>
+    </objects>
+</document>

@@ -1,0 +1,13 @@
+codecov:
+# codecov token removed
+#  branch: master
+
+ignore:
+  - "Shared/Sources/Debug/Debug.swift"
+  - "Tests"
+  - "UITests"
+  - "Example"
+  - "Carthage"
+  - "Pods"
+  - "Module"
+  - "Submodule"

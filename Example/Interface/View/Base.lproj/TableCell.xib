@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TableCell" rowHeight="64" id="JSu-cX-wUm" customClass="TableCell" customModule="FluidableExample" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="384" height="64"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JSu-cX-wUm" id="Ro0-a7-71n">
+                <rect key="frame" x="0.0" y="0.0" width="384" height="63.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OiJ-QX-Eg1">
+                        <rect key="frame" x="20" y="10" width="43.5" height="43.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="OiJ-QX-Eg1" secondAttribute="height" multiplier="1:1" id="doM-52-7vy"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nullam id dolor id nibh ultricies vehicula ut id elit." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e8K-a7-48e">
+                        <rect key="frame" x="73.5" y="10" width="290.5" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="cxr-MF-Zat"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4lh-2j-ndK">
+                        <rect key="frame" x="73.5" y="34" width="294.5" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="Ccb-qf-r4x"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="4lh-2j-ndK" firstAttribute="leading" secondItem="OiJ-QX-Eg1" secondAttribute="trailing" constant="10" id="056-ee-3GN"/>
+                    <constraint firstItem="OiJ-QX-Eg1" firstAttribute="leading" secondItem="Ro0-a7-71n" secondAttribute="leading" constant="20" id="1qF-vZ-o3x"/>
+                    <constraint firstItem="4lh-2j-ndK" firstAttribute="trailing" secondItem="Ro0-a7-71n" secondAttribute="trailingMargin" id="418-By-aZH"/>
+                    <constraint firstItem="4lh-2j-ndK" firstAttribute="bottom" secondItem="Ro0-a7-71n" secondAttribute="bottomMargin" constant="-2" id="JNm-AW-C5m"/>
+                    <constraint firstAttribute="trailing" secondItem="e8K-a7-48e" secondAttribute="trailing" constant="20" id="JXk-L0-383"/>
+                    <constraint firstAttribute="bottom" secondItem="OiJ-QX-Eg1" secondAttribute="bottom" constant="10" id="KEV-fU-Ac5"/>
+                    <constraint firstItem="e8K-a7-48e" firstAttribute="top" secondItem="Ro0-a7-71n" secondAttribute="top" constant="10" id="PAZ-9K-WO9"/>
+                    <constraint firstItem="OiJ-QX-Eg1" firstAttribute="top" secondItem="Ro0-a7-71n" secondAttribute="top" constant="10" id="s8l-ho-yOO"/>
+                    <constraint firstItem="e8K-a7-48e" firstAttribute="leading" secondItem="OiJ-QX-Eg1" secondAttribute="trailing" constant="10" id="sKr-ni-QUI"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="captionLabel" destination="4lh-2j-ndK" id="Nk0-iv-yuq"/>
+                <outlet property="thumbView" destination="OiJ-QX-Eg1" id="dTa-gt-FhT"/>
+                <outlet property="titleLabel" destination="e8K-a7-48e" id="JAu-6g-Bqa"/>
+            </connections>
+            <point key="canvasLocation" x="190.40000000000001" y="219.49025487256372"/>
+        </tableViewCell>
+    </objects>
+</document>

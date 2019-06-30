@@ -1,0 +1,761 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidNavigationControllerDelegate.swift",
+      "line": null,
+      "symbol": "FluidNavigationControllerDelegate",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidNavigationControllerDelegate.swift",
+      "line": 11,
+      "symbol": "FluidNavigationControllerDelegate",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidNavigationDelegate.swift",
+      "line": null,
+      "symbol": "FluidNavigationDestinationActionDelegate",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidNavigationDelegate.swift",
+      "line": null,
+      "symbol": "FluidNavigationSourceActionDelegate",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidNavigationDelegate.swift",
+      "line": 312,
+      "symbol": "FluidNavigationSourceActionDelegate",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidNavigationDelegate.swift",
+      "line": 322,
+      "symbol": "FluidNavigationDestinationActionDelegate",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidTransitionDelegate.swift",
+      "line": null,
+      "symbol": "FluidTransitionDestinationActionDelegate",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidTransitionDelegate.swift",
+      "line": null,
+      "symbol": "FluidTransitionSourceActionDelegate",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidTransitionDelegate.swift",
+      "line": 349,
+      "symbol": "FluidTransitionSourceActionDelegate",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidTransitionDelegate.swift",
+      "line": 359,
+      "symbol": "FluidTransitionDestinationActionDelegate",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidViewControllerTransitioningDelegate.swift",
+      "line": null,
+      "symbol": "FluidViewControllerTransitioningDelegate",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidViewControllerTransitioningDelegate.swift",
+      "line": 12,
+      "symbol": "FluidViewControllerTransitioningDelegate",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Driver/Implementation/FluidNavigationDismissDriver.swift",
+      "line": 86,
+      "symbol": "FluidNavigationDismissDriver.transitionDuration(using:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Driver/Implementation/FluidNavigationDismissDriver.swift",
+      "line": 90,
+      "symbol": "FluidNavigationDismissDriver.animateTransition(using:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Driver/Implementation/FluidNavigationDismissDriver.swift",
+      "line": 96,
+      "symbol": "FluidNavigationDismissDriver.interruptibleAnimator(using:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Driver/Implementation/FluidNavigationDismissDriver.swift",
+      "line": 101,
+      "symbol": "FluidNavigationDismissDriver.animationEnded(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Driver/Implementation/FluidNavigationPresentDriver.swift",
+      "line": 81,
+      "symbol": "FluidNavigationPresentDriver.transitionDuration(using:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Driver/Implementation/FluidNavigationPresentDriver.swift",
+      "line": 86,
+      "symbol": "FluidNavigationPresentDriver.animateTransition(using:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Driver/Implementation/FluidNavigationPresentDriver.swift",
+      "line": 92,
+      "symbol": "FluidNavigationPresentDriver.interruptibleAnimator(using:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Driver/Implementation/FluidNavigationPresentDriver.swift",
+      "line": 97,
+      "symbol": "FluidNavigationPresentDriver.animationEnded(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Driver/Implementation/FluidTransitionDismissDriver.swift",
+      "line": 86,
+      "symbol": "FluidTransitionDismissDriver.transitionDuration(using:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Driver/Implementation/FluidTransitionDismissDriver.swift",
+      "line": 91,
+      "symbol": "FluidTransitionDismissDriver.animateTransition(using:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Driver/Implementation/FluidTransitionDismissDriver.swift",
+      "line": 97,
+      "symbol": "FluidTransitionDismissDriver.interruptibleAnimator(using:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Driver/Implementation/FluidTransitionDismissDriver.swift",
+      "line": 102,
+      "symbol": "FluidTransitionDismissDriver.animationEnded(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Driver/Implementation/FluidTransitionPresentDriver.swift",
+      "line": 81,
+      "symbol": "FluidTransitionPresentDriver.transitionDuration(using:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Driver/Implementation/FluidTransitionPresentDriver.swift",
+      "line": 86,
+      "symbol": "FluidTransitionPresentDriver.animateTransition(using:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Driver/Implementation/FluidTransitionPresentDriver.swift",
+      "line": 92,
+      "symbol": "FluidTransitionPresentDriver.interruptibleAnimator(using:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Driver/Implementation/FluidTransitionPresentDriver.swift",
+      "line": 97,
+      "symbol": "FluidTransitionPresentDriver.animationEnded(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Driver/Protocol/FluidDriverType.swift",
+      "line": 20,
+      "symbol": "FluidDriverType.isPresent",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Driver/Protocol/FluidDriverType.swift",
+      "line": 21,
+      "symbol": "FluidDriverType.isDismiss",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidAnimationType.swift",
+      "line": 21,
+      "symbol": "FluidAnimationType.isPresent",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidAnimationType.swift",
+      "line": 22,
+      "symbol": "FluidAnimationType.isDismiss",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidAnimationType.swift",
+      "line": 23,
+      "symbol": "FluidAnimationType.isRotate",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidBackgroundStyle.swift",
+      "line": 47,
+      "symbol": "FluidBackgroundStyle.index",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidBackgroundStyle.swift",
+      "line": 55,
+      "symbol": "FluidBackgroundStyle.init(index:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidFrameDimension.swift",
+      "line": 11,
+      "symbol": "FluidTransformConvertible",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidFrameDimension.swift",
+      "line": 18,
+      "symbol": "CATransform3D.toCATransform3D()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidFrameDimension.swift",
+      "line": 19,
+      "symbol": "CATransform3D.toCGAffineTransform()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidFrameDimension.swift",
+      "line": 23,
+      "symbol": "CGAffineTransform.toCATransform3D()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidFrameDimension.swift",
+      "line": 24,
+      "symbol": "CGAffineTransform.toCGAffineTransform()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidFrameDimension.swift",
+      "line": 31,
+      "symbol": "FluidFrameDimensionCompatible.frame(for:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidFrameDimension.swift",
+      "line": 32,
+      "symbol": "FluidFrameDimensionCompatible.transform(for:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidFrameStyle.swift",
+      "line": 15,
+      "symbol": "FluidFrameStyleCompatible.alpha",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidFrameStyle.swift",
+      "line": 66,
+      "symbol": "FluidInitialFrameStyle.init(alpha:cornerRadius:shadowColor:shadowOpacity:shadowRadius:shadowOffset:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidFrameStyle.swift",
+      "line": 118,
+      "symbol": "FluidFinalFrameStyle.init(alpha:cornerRadius:cornerStyle:shadowColor:shadowOpacity:shadowRadius:shadowOffset:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidInteractionType.swift",
+      "line": null,
+      "symbol": "FluidDriverInteractionState",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidInteractionType.swift",
+      "line": null,
+      "symbol": "FluidDriverInteractionType",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidInteractionType.swift",
+      "line": null,
+      "symbol": "FluidDriverInteractionType",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidInteractionType.swift",
+      "line": 11,
+      "symbol": "FluidDriverInteractionType",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidInteractionType.swift",
+      "line": 109,
+      "symbol": "FluidDriverInteractionState",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
+      "line": 70,
+      "symbol": "FluidPresentationStyle.isFluid",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
+      "line": 76,
+      "symbol": "FluidPresentationStyle.isScale",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
+      "line": 82,
+      "symbol": "FluidPresentationStyle.isSlide",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
+      "line": 88,
+      "symbol": "FluidPresentationStyle.isVerticalSlide",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
+      "line": 94,
+      "symbol": "FluidPresentationStyle.isTopSlide",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
+      "line": 100,
+      "symbol": "FluidPresentationStyle.isBottomSlide",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
+      "line": 106,
+      "symbol": "FluidPresentationStyle.isDrawer",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
+      "line": 112,
+      "symbol": "FluidPresentationStyle.isVerticalDrawer",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
+      "line": 118,
+      "symbol": "FluidPresentationStyle.isTopDrawer",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
+      "line": 124,
+      "symbol": "FluidPresentationStyle.isBottomDrawer",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
+      "line": 130,
+      "symbol": "FluidPresentationStyle.interactionBehavior",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
+      "line": 150,
+      "symbol": "FluidPresentationStyle.init(index:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
+      "line": 160,
+      "symbol": "FluidPresentationStyle.init(fromNavigation:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
+      "line": 168,
+      "symbol": "FluidPresentationStyle.init(fromTransition:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
+      "line": 272,
+      "symbol": "FluidInteractionBehavior.isScale",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
+      "line": 273,
+      "symbol": "FluidInteractionBehavior.isVertical",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
+      "line": 274,
+      "symbol": "FluidInteractionBehavior.isBidirectional",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
+      "line": 304,
+      "symbol": "FluidSlideDirection.isFromTop",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
+      "line": 305,
+      "symbol": "FluidSlideDirection.isFromBottom",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
+      "line": 306,
+      "symbol": "FluidSlideDirection.isFromLeft",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
+      "line": 307,
+      "symbol": "FluidSlideDirection.isFromRight",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
+      "line": 308,
+      "symbol": "FluidSlideDirection.isFromVertical",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
+      "line": 309,
+      "symbol": "FluidSlideDirection.isFromHorizontal",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
+      "line": 338,
+      "symbol": "FluidDrawerPosition.isTop",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
+      "line": 339,
+      "symbol": "FluidDrawerPosition.isBottom",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
+      "line": 340,
+      "symbol": "FluidDrawerPosition.isLeft",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
+      "line": 341,
+      "symbol": "FluidDrawerPosition.isRight",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
+      "line": 342,
+      "symbol": "FluidDrawerPosition.isVertical",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
+      "line": 343,
+      "symbol": "FluidDrawerPosition.isHorizontal",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidProgressState.swift",
+      "line": null,
+      "symbol": "FluidProgressState",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidProgressState.swift",
+      "line": 11,
+      "symbol": "FluidProgressState",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidTransitionStyle.swift",
+      "line": 40,
+      "symbol": "FluidTransitionStyle.isFluid",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidTransitionStyle.swift",
+      "line": 48,
+      "symbol": "FluidTransitionStyle.isScale",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidTransitionStyle.swift",
+      "line": 56,
+      "symbol": "FluidTransitionStyle.isSlide",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidTransitionStyle.swift",
+      "line": 64,
+      "symbol": "FluidTransitionStyle.isDrawer",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidTransitionStyle.swift",
+      "line": 86,
+      "symbol": "FluidTransitionStyle.init(index:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Gesture/Implementation/FluidNavigationScrollObserver.swift",
+      "line": 98,
+      "symbol": "FluidNavigationScrollObserver.gestureRecognizerShouldBegin(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Gesture/Implementation/FluidNavigationScrollObserver.swift",
+      "line": 99,
+      "symbol": "FluidNavigationScrollObserver.gestureRecognizer(_:shouldReceive:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Gesture/Implementation/FluidNavigationScrollObserver.swift",
+      "line": 100,
+      "symbol": "FluidNavigationScrollObserver.gestureRecognizer(_:shouldRecognizeSimultaneouslyWith:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Gesture/Implementation/FluidNavigationScrollObserver.swift",
+      "line": 108,
+      "symbol": "FluidNavigationScrollObserver.description",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Gesture/Implementation/FluidTransitionScrollObserver.swift",
+      "line": 99,
+      "symbol": "FluidTransitionScrollObserver.gestureRecognizerShouldBegin(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Gesture/Implementation/FluidTransitionScrollObserver.swift",
+      "line": 100,
+      "symbol": "FluidTransitionScrollObserver.gestureRecognizer(_:shouldReceive:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Gesture/Implementation/FluidTransitionScrollObserver.swift",
+      "line": 101,
+      "symbol": "FluidTransitionScrollObserver.gestureRecognizer(_:shouldRecognizeSimultaneouslyWith:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Gesture/Implementation/FluidTransitionScrollObserver.swift",
+      "line": 109,
+      "symbol": "FluidTransitionScrollObserver.description",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Gesture/Protocol/FluidGestureAxis.swift",
+      "line": 27,
+      "symbol": "FluidGestureAxis.invert()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Parameter/Protocol/FluidParametersCompatible.swift",
+      "line": null,
+      "symbol": "FluidParametersCompatible",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Error/FluidError.swift",
+      "line": 48,
+      "symbol": "FluidError.invalidInitialFrameDimension",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Error/FluidError.swift",
+      "line": 49,
+      "symbol": "FluidError.invalidFinalFrameDimension",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Error/FluidError.swift",
+      "line": 51,
+      "symbol": "FluidError.invalidResizeConfiguration",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Fluidable+SafeArea.swift",
+      "line": null,
+      "symbol": "FluidNavigationBarCompatible",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Fluidable+SafeArea.swift",
+      "line": 114,
+      "symbol": "FluidNavigationBarCompatible",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Layout/FluidLayout.swift",
+      "line": 11,
+      "symbol": "FluidLayout",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Layout/FluidLayoutConstant.swift",
+      "line": 28,
+      "symbol": "FluidLayoutEdgeConstraint",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/View/FluidBackgroundView.swift",
+      "line": 12,
+      "symbol": "FluidBackgroundCompatible",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/View/FluidInteractiveView.swift",
+      "line": null,
+      "symbol": "FluidInteractiveView",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/View/FluidInteractiveView.swift",
+      "line": 12,
+      "symbol": "FluidInteractiveView",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/View/FluidShadowLayer.swift",
+      "line": 12,
+      "symbol": "FluidShadowLayer",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/View/FluidShadowView.swift",
+      "line": 12,
+      "symbol": "FluidShadowView",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/kojirof/Documents/pj-github/Fluidable/Sources"
+}
