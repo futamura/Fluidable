@@ -1,4 +1,5 @@
-#codecov:
+codecov:
+# codecov token removed
 #  branch: master
 
 ignore:
