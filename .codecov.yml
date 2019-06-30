@@ -3,7 +3,7 @@ codecov:
 #  branch: master
 
 ignore:
-  - "Sources/Debug.swift"
+  - "Shared/Sources/Debug/Debug.swift"
   - "Tests"
   - "UITests"
   - "Example"
