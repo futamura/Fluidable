@@ -17,6 +17,7 @@ theme: "themes/fullwidth-ex"
 
 source_directory: Sources
 umbrella_header: "Sources/Fluidable.h"
+sdk: iphone
 xcodebuild_arguments:
   - -project
   - ../Fluidable.xcodeproj
