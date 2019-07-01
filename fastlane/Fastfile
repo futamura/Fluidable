@@ -248,7 +248,7 @@ platform :ios do
 
   desc "Push Cocoapods"
   lane :push_cocoapods do |options|
-    pod_lib_lint(verbose: true)
+    pod_lib_lint(verbose: true, allow_warnings: true)
     pod_push(path: default_podspec)
   end
 end
