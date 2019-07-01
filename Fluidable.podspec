@@ -10,7 +10,10 @@ Pod::Spec.new do |s|
 
     s.module_name               = "Fluidable"
     s.source                    = { :git => "https://github.com/gumob/Fluidable.git", :tag => "#{s.version}", :submodules => true }
-    s.source_files              = ["Sources/*.{swift}"]
+    s.source_files              = ["Sources/*.{swift}",
+                                   "Sources/*/*.{swift}",
+                                   "Sources/*/*/*.{swift}",
+                                   "Sources/*/*/*/*.{swift}",]
     s.requires_arc              = true
 
     s.swift_version             = "4.2"
