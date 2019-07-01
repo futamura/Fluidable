@@ -18,15 +18,15 @@ Pod::Spec.new do |s|
     s.ios.deployment_target     = "10.0"
     s.ios.framework             = "Foundation", "UIKit", "CoreGraphics"
 
-    s.test_spec 'FluidableTests' do |test_spec|
-        test_spec.source_files = 'Tests/*.swift'
-        test_spec.dependency 'Quick', '~> v2.1.0'
-        test_spec.dependency 'Nimble', '~> v8.0.2'
-    end
-
-    s.test_spec 'FluidableUITests' do |test_spec|
-        test_spec.source_files = 'UITests/*.swift'
-        test_spec.dependency 'Quick', '~> v2.1.0'
-        test_spec.dependency 'Nimble', '~> v8.0.2'
-    end
+    # s.test_spec 'FluidableTests' do |test_spec|
+    #     test_spec.source_files = 'Tests/*.swift'
+    #     test_spec.dependency 'Quick', '~> 2.1.0'
+    #     test_spec.dependency 'Nimble', '~> 8.0.2'
+    # end
+    #
+    # s.test_spec 'FluidableUITests' do |test_spec|
+    #     test_spec.source_files = 'UITests/*.swift'
+    #     test_spec.dependency 'Quick', '~> 2.1.0'
+    #     test_spec.dependency 'Nimble', '~> 8.0.2'
+    # end
 end
