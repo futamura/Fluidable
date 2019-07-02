@@ -64,6 +64,20 @@ class EnumSpec: QuickSpec {
                     expect(String(describing: noneStyleLeft)).to(beginWith("none"))
                 }
             }
+            describe("FluidDriverType") {
+                let present: FluidDriverType = FluidDriverType.present
+                let dismiss: FluidDriverType = FluidDriverType.dismiss
+                it("Condition") {
+                    expect(present.isPresent).to(equal(true))
+                    expect(present.isDismiss).to(equal(false))
+                    expect(dismiss.isPresent).to(equal(false))
+                    expect(dismiss.isDismiss).to(equal(true))
+                }
+                it("Description") {
+                    expect(String(describing: present)).to(beginWith("present"))
+                    expect(String(describing: dismiss)).to(beginWith("dismiss"))
+                }
+            }
             describe("FluidDriverInteractionType") {
                 let normalDefault: FluidDriverInteractionType = .normal
                 let fluidDefault: FluidDriverInteractionType = .fluid
@@ -498,6 +512,30 @@ class EnumSpec: QuickSpec {
                     expect(String(describing: slideLeft)).to(beginWith("slide"))
                     expect(String(describing: slideTop)).to(beginWith("slide"))
                     expect(String(describing: slideBottom)).to(beginWith("slide"))
+                }
+            }
+            describe("FluidCoreAnimatorTransitionType") {
+                let fade: FluidCoreAnimatorTransitionType = .fade
+                let moveIn: FluidCoreAnimatorTransitionType = .moveIn
+                let push: FluidCoreAnimatorTransitionType = .push
+                let reveal: FluidCoreAnimatorTransitionType = .reveal
+                it("RawValue") {
+                    expect(fade.rawValue).to(equal(CATransitionType.fade))
+                    expect(moveIn.rawValue).to(equal(CATransitionType.moveIn))
+                    expect(push.rawValue).to(equal(CATransitionType.push))
+                    expect(reveal.rawValue).to(equal(CATransitionType.reveal))
+                }
+            }
+            describe("FluidCoreAnimatorTransitionSubtype") {
+                let top: FluidCoreAnimatorTransitionSubtype = .top
+                let right: FluidCoreAnimatorTransitionSubtype = .right
+                let bottom: FluidCoreAnimatorTransitionSubtype = .bottom
+                let left: FluidCoreAnimatorTransitionSubtype = .left
+                it("RawValue") {
+                    expect(top.rawValue).to(equal(CATransitionSubtype.fromTop))
+                    expect(right.rawValue).to(equal(CATransitionSubtype.fromRight))
+                    expect(bottom.rawValue).to(equal(CATransitionSubtype.fromBottom))
+                    expect(left.rawValue).to(equal(CATransitionSubtype.fromLeft))
                 }
             }
             describe("FluidPresentationStyle") {
