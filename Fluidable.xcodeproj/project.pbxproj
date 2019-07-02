@@ -269,6 +269,7 @@
 		DFABE3D588D52DA0D98549E4 /* AlignedCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEC72BC4B8623907A87C8 /* AlignedCollectionLayout.swift */; };
 		DFABE6423A286983D05132BB /* NavigationBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEC6EF0DB83BEFF91B48C /* NavigationBaseViewController.swift */; };
 		DFABE996DD1A19EC135F1B78 /* AlignedCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEC72BC4B8623907A87C8 /* AlignedCollectionLayout.swift */; };
+		DFABED94484BCC69C0DF8C33 /* EasingEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEB712A899C167DEFE0D5 /* EasingEnum.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -508,6 +509,7 @@
 		DFABE98EC8DD362AB89692C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NavigationMultiCollectionViewController.xib; sourceTree = "<group>"; };
 		DFABEA08D9E289F5D59BD2C4 /* RootViewController+Fluidable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RootViewController+Fluidable.swift"; sourceTree = "<group>"; };
 		DFABEB16695950E841D1BF14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NavigationScrollViewController.xib; sourceTree = "<group>"; };
+		DFABEB712A899C167DEFE0D5 /* EasingEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EasingEnum.swift; sourceTree = "<group>"; };
 		DFABEC6EF0DB83BEFF91B48C /* NavigationBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBaseViewController.swift; sourceTree = "<group>"; };
 		DFABEC72BC4B8623907A87C8 /* AlignedCollectionLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlignedCollectionLayout.swift; sourceTree = "<group>"; };
 		DFABED248429BF91062F0299 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NavigationCollectionViewController.xib; sourceTree = "<group>"; };
@@ -599,6 +601,7 @@
 				A71F675521C50EA8007CADA0 /* Info.plist */,
 				A71F675321C50EA8007CADA0 /* EnumSpec.swift */,
 				A712403121CE2CB300883E13 /* HelperSpec.swift */,
+				DFABEB712A899C167DEFE0D5 /* EasingEnum.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -1574,6 +1577,7 @@
 				A7F5CF2622CAF6D100578043 /* NSObject+Ext.swift in Sources */,
 				A7F5CF2522CAF6D100578043 /* Debug.swift in Sources */,
 				A712403221CE2CB300883E13 /* HelperSpec.swift in Sources */,
+				DFABED94484BCC69C0DF8C33 /* EasingEnum.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
