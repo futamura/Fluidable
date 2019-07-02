@@ -19,61 +19,9 @@
 		A712403021CE178B00883E13 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A712402D21CE174F00883E13 /* Nimble.framework */; };
 		A712403221CE2CB300883E13 /* HelperSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = A712403121CE2CB300883E13 /* HelperSpec.swift */; };
 		A712404021CE426600883E13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71F67EB21C66248007CADA0 /* AppDelegate.swift */; };
-		A7167FBB228FAC3300C16D12 /* FluidProxy+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167F6D228FAC3200C16D12 /* FluidProxy+UIViewController.swift */; };
-		A7167FBC228FAC3300C16D12 /* FluidProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167F6E228FAC3200C16D12 /* FluidProxy.swift */; };
-		A7167FBD228FAC3300C16D12 /* FluidDriverType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167F71228FAC3200C16D12 /* FluidDriverType.swift */; };
-		A7167FBE228FAC3300C16D12 /* FluidDriverCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167F72228FAC3200C16D12 /* FluidDriverCompatible.swift */; };
-		A7167FC0228FAC3300C16D12 /* FluidDriverCompatible+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167F74228FAC3200C16D12 /* FluidDriverCompatible+Configuration.swift */; };
-		A7167FCC228FAC3300C16D12 /* FluidViewAnimatorCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167F83228FAC3300C16D12 /* FluidViewAnimatorCompatible.swift */; };
-		A7167FCD228FAC3300C16D12 /* FluidViewAnimatorCompatible+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167F84228FAC3300C16D12 /* FluidViewAnimatorCompatible+Core.swift */; };
-		A7167FCF228FAC3300C16D12 /* FluidViewAnimatorCompatible+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167F86228FAC3300C16D12 /* FluidViewAnimatorCompatible+Helper.swift */; };
-		A7167FD2228FAC3300C16D12 /* FluidViewAnimatorTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167F89228FAC3300C16D12 /* FluidViewAnimatorTimer.swift */; };
-		A7167FD4228FAC3300C16D12 /* FluidViewAnimatorCompatible+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167F8B228FAC3300C16D12 /* FluidViewAnimatorCompatible+Configuration.swift */; };
-		A7167FD6228FAC3300C16D12 /* FluidNavigationViewAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167F8E228FAC3300C16D12 /* FluidNavigationViewAnimator.swift */; };
-		A7167FD7228FAC3300C16D12 /* FluidTransitionViewAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167F8F228FAC3300C16D12 /* FluidTransitionViewAnimator.swift */; };
-		A7167FD8228FAC3300C16D12 /* FluidRoundCornerStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167F91228FAC3300C16D12 /* FluidRoundCornerStyle.swift */; };
-		A7167FD9228FAC3300C16D12 /* FluidTransitionStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167F92228FAC3300C16D12 /* FluidTransitionStyle.swift */; };
-		A7167FDA228FAC3300C16D12 /* FluidFrameStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167F93228FAC3300C16D12 /* FluidFrameStyle.swift */; };
-		A7167FDB228FAC3300C16D12 /* FluidPresentationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167F94228FAC3300C16D12 /* FluidPresentationStyle.swift */; };
-		A7167FDC228FAC3300C16D12 /* FluidBackgroundStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167F95228FAC3300C16D12 /* FluidBackgroundStyle.swift */; };
-		A7167FDD228FAC3300C16D12 /* FluidCoreAnimatorOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167F96228FAC3300C16D12 /* FluidCoreAnimatorOption.swift */; };
-		A7167FDE228FAC3300C16D12 /* FluidProgressState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167F97228FAC3300C16D12 /* FluidProgressState.swift */; };
-		A7167FDF228FAC3300C16D12 /* FluidConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167F98228FAC3300C16D12 /* FluidConst.swift */; };
-		A7167FE0228FAC3300C16D12 /* FluidAnimationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167F99228FAC3300C16D12 /* FluidAnimationType.swift */; };
-		A7167FE1228FAC3300C16D12 /* FluidInteractionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167F9A228FAC3300C16D12 /* FluidInteractionType.swift */; };
-		A7167FE2228FAC3300C16D12 /* FluidNavigationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167F9B228FAC3300C16D12 /* FluidNavigationStyle.swift */; };
-		A7167FE3228FAC3300C16D12 /* FluidFrameDimension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167F9C228FAC3300C16D12 /* FluidFrameDimension.swift */; };
-		A7167FE4228FAC3300C16D12 /* FluidNavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167F9E228FAC3300C16D12 /* FluidNavigationControllerDelegate.swift */; };
-		A7167FE5228FAC3300C16D12 /* FluidNavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167F9F228FAC3300C16D12 /* FluidNavigationDelegate.swift */; };
-		A7167FE6228FAC3300C16D12 /* FluidControllerDelegateCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167FA0228FAC3300C16D12 /* FluidControllerDelegateCompatible.swift */; };
-		A7167FE7228FAC3300C16D12 /* FluidDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167FA1228FAC3300C16D12 /* FluidDelegate.swift */; };
-		A7167FE8228FAC3300C16D12 /* Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167FA2228FAC3300C16D12 /* Typealias.swift */; };
-		A7167FE9228FAC3300C16D12 /* FluidTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167FA3228FAC3300C16D12 /* FluidTransitionDelegate.swift */; };
-		A7167FEA228FAC3300C16D12 /* FluidViewControllerTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167FA4228FAC3300C16D12 /* FluidViewControllerTransitioningDelegate.swift */; };
-		A7167FEB228FAC3300C16D12 /* FluidGestureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167FA7228FAC3300C16D12 /* FluidGestureDelegate.swift */; };
-		A7167FEC228FAC3300C16D12 /* FluidScrollObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167FA8228FAC3300C16D12 /* FluidScrollObservable.swift */; };
-		A7167FED228FAC3300C16D12 /* FluidGestureObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167FA9228FAC3300C16D12 /* FluidGestureObservable.swift */; };
-		A7167FEE228FAC3300C16D12 /* FluidGestureAxis.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167FAA228FAC3300C16D12 /* FluidGestureAxis.swift */; };
-		A7167FEF228FAC3300C16D12 /* FluidGestureInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167FAB228FAC3300C16D12 /* FluidGestureInfo.swift */; };
-		A7167FF0228FAC3300C16D12 /* FluidGestureDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167FAC228FAC3300C16D12 /* FluidGestureDirection.swift */; };
-		A7167FF1228FAC3300C16D12 /* FluidTransitionScrollObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167FAE228FAC3300C16D12 /* FluidTransitionScrollObserver.swift */; };
-		A7167FF2228FAC3300C16D12 /* FluidNavigationGestureObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167FAF228FAC3300C16D12 /* FluidNavigationGestureObserver.swift */; };
-		A7167FF3228FAC3300C16D12 /* FluidNavigationScrollObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167FB0228FAC3300C16D12 /* FluidNavigationScrollObserver.swift */; };
-		A7167FF4228FAC3300C16D12 /* FluidTransitionGestureObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167FB1228FAC3300C16D12 /* FluidTransitionGestureObserver.swift */; };
-		A7167FF5228FAC3300C16D12 /* FluidParametersAccessible.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167FB4228FAC3300C16D12 /* FluidParametersAccessible.swift */; };
-		A7167FF6228FAC3300C16D12 /* FluidParametersCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167FB5228FAC3300C16D12 /* FluidParametersCompatible.swift */; };
-		A7167FF7228FAC3300C16D12 /* FluidTransitionParameters+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167FB7228FAC3300C16D12 /* FluidTransitionParameters+Configuration.swift */; };
-		A7167FF8228FAC3300C16D12 /* FluidNavigationParameters+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167FB8228FAC3300C16D12 /* FluidNavigationParameters+Configuration.swift */; };
-		A7167FF9228FAC3300C16D12 /* FluidNavigationParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167FB9228FAC3300C16D12 /* FluidNavigationParameters.swift */; };
-		A7167FFA228FAC3300C16D12 /* FluidTransitionParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167FBA228FAC3300C16D12 /* FluidTransitionParameters.swift */; };
-		A716800F228FC2D800C16D12 /* FluidNavigationDismissDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167FFC228FC0C700C16D12 /* FluidNavigationDismissDriver.swift */; };
-		A7168014228FC2D800C16D12 /* FluidNavigationPresentDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7168004228FC0C800C16D12 /* FluidNavigationPresentDriver.swift */; };
-		A7168019228FC2D800C16D12 /* FluidTransitionDismissDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167F78228FAC3300C16D12 /* FluidTransitionDismissDriver.swift */; };
-		A716801E228FC2D800C16D12 /* FluidTransitionPresentDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7167F79228FAC3300C16D12 /* FluidTransitionPresentDriver.swift */; };
 		A71F674F21C50EA8007CADA0 /* Fluidable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71F674521C50EA8007CADA0 /* Fluidable.framework */; };
 		A71F675421C50EA8007CADA0 /* EnumSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71F675321C50EA8007CADA0 /* EnumSpec.swift */; };
 		A71F676E21C52693007CADA0 /* Fluidable.h in Headers */ = {isa = PBXBuildFile; fileRef = A71F674821C50EA8007CADA0 /* Fluidable.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A71F678A21C52AC0007CADA0 /* Fluidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71F678321C52ABF007CADA0 /* Fluidable.swift */; };
 		A71F67EC21C66248007CADA0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71F67EB21C66248007CADA0 /* AppDelegate.swift */; };
 		A725FB2121ED674500178F1F /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = A725FB1F21ED670900178F1F /* Buttons.swift */; };
 		A725FB2221ED674700178F1F /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = A725FB1F21ED670900178F1F /* Buttons.swift */; };
@@ -93,66 +41,6 @@
 		A756F8FB21EEABBB00184FBF /* ExampleConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = A756F8F921EEABBB00184FBF /* ExampleConst.swift */; };
 		A756F8FD21EF344C00184FBF /* RootNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A756F8FC21EF344C00184FBF /* RootNavigationController.swift */; };
 		A756F8FE21EF344C00184FBF /* RootNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A756F8FC21EF344C00184FBF /* RootNavigationController.swift */; };
-		A77767352243287A007F1802 /* Fluidable+Swizzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766B622432879007F1802 /* Fluidable+Swizzle.swift */; };
-		A77767362243287A007F1802 /* FluidLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766B822432879007F1802 /* FluidLayout.swift */; };
-		A77767372243287A007F1802 /* FluidLayout+Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766B922432879007F1802 /* FluidLayout+Generator.swift */; };
-		A77767382243287A007F1802 /* FluidLayoutConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766BA22432879007F1802 /* FluidLayoutConstant.swift */; };
-		A777673A2243287A007F1802 /* Foundation+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766BE22432879007F1802 /* Foundation+Ext.swift */; };
-		A777673B2243287A007F1802 /* UIKit+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766BF22432879007F1802 /* UIKit+Ext.swift */; };
-		A777673C2243287A007F1802 /* CoreGraphics+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766C022432879007F1802 /* CoreGraphics+Ext.swift */; };
-		A777673D2243287A007F1802 /* QuartzCore+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766C122432879007F1802 /* QuartzCore+Ext.swift */; };
-		A777673E2243287A007F1802 /* AssociatedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766C322432879007F1802 /* AssociatedObject.swift */; };
-		A777673F2243287A007F1802 /* Swizzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766C422432879007F1802 /* Swizzle.swift */; };
-		A77767402243287A007F1802 /* FluidAnimatorCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766C622432879007F1802 /* FluidAnimatorCompatible.swift */; };
-		A77767412243287A007F1802 /* FluidAnimatorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766C722432879007F1802 /* FluidAnimatorState.swift */; };
-		A77767422243287A007F1802 /* FluidPropertyAnimator+Initializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766C922432879007F1802 /* FluidPropertyAnimator+Initializer.swift */; };
-		A77767432243287A007F1802 /* FluidPropertyAnimator+Observing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766CA22432879007F1802 /* FluidPropertyAnimator+Observing.swift */; };
-		A77767442243287A007F1802 /* UIViewAnimating+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766CB22432879007F1802 /* UIViewAnimating+Extension.swift */; };
-		A77767452243287A007F1802 /* FluidPropertyAnimator+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766CC22432879007F1802 /* FluidPropertyAnimator+Core.swift */; };
-		A77767462243287A007F1802 /* FluidPropertyAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766CD22432879007F1802 /* FluidPropertyAnimator.swift */; };
-		A77767472243287A007F1802 /* FluidInterruptibleAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766CE22432879007F1802 /* FluidInterruptibleAnimator.swift */; };
-		A77767482243287A007F1802 /* FluidPropertyAnimator+Unavailable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766CF22432879007F1802 /* FluidPropertyAnimator+Unavailable.swift */; };
-		A77767492243287A007F1802 /* PennerEasing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766D122432879007F1802 /* PennerEasing.swift */; };
-		A777674A2243287A007F1802 /* PennerEasingFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766D222432879007F1802 /* PennerEasingFunction.swift */; };
-		A777674B2243287A007F1802 /* FluidAnimatorEasing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766D322432879007F1802 /* FluidAnimatorEasing.swift */; };
-		A777674C2243287A007F1802 /* FluidCoreAnimatorError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766D522432879007F1802 /* FluidCoreAnimatorError.swift */; };
-		A777674D2243287A007F1802 /* FluidCoreAnimator+Initializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766D622432879007F1802 /* FluidCoreAnimator+Initializer.swift */; };
-		A777674E2243287A007F1802 /* FluidCoreAnimatorTransitionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766D722432879007F1802 /* FluidCoreAnimatorTransitionType.swift */; };
-		A777674F2243287A007F1802 /* FluidCoreAnimatorKeyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766D822432879007F1802 /* FluidCoreAnimatorKeyPath.swift */; };
-		A77767502243287A007F1802 /* FluidCoreAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766D922432879007F1802 /* FluidCoreAnimator.swift */; };
-		A77767512243287A007F1802 /* FluidCoreAnimatorValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766DA22432879007F1802 /* FluidCoreAnimatorValidator.swift */; };
-		A77767522243287A007F1802 /* FluidCoreAnimatorLayerConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766DB22432879007F1802 /* FluidCoreAnimatorLayerConvertible.swift */; };
-		A77767532243287A007F1802 /* FluidCoreAnimator+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766DC22432879007F1802 /* FluidCoreAnimator+Core.swift */; };
-		A77767542243287A007F1802 /* CAProgressLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766DD22432879007F1802 /* CAProgressLayer.swift */; };
-		A77767552243287A007F1802 /* FluidCoreAnimator+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766DE22432879007F1802 /* FluidCoreAnimator+Helper.swift */; };
-		A77767562243287A007F1802 /* UITraitCollection+Adaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766E122432879007F1802 /* UITraitCollection+Adaptive.swift */; };
-		A77767582243287A007F1802 /* Idiom.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766E422432879007F1802 /* Idiom.swift */; };
-		A77767592243287A007F1802 /* ForceTouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766E522432879007F1802 /* ForceTouch.swift */; };
-		A777675A2243287A007F1802 /* SizeCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766E622432879007F1802 /* SizeCategory.swift */; };
-		A777675B2243287A007F1802 /* LayoutDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766E722432879007F1802 /* LayoutDirection.swift */; };
-		A777675C2243287A007F1802 /* SizeClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766E822432879007F1802 /* SizeClass.swift */; };
-		A777675D2243287A007F1802 /* DisplayGamut.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766E922432879007F1802 /* DisplayGamut.swift */; };
-		A777675E2243287A007F1802 /* Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766EA22432879007F1802 /* Scale.swift */; };
-		A777675F2243287A007F1802 /* AdaptiveBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766EC22432879007F1802 /* AdaptiveBehavior.swift */; };
-		A77767602243287A007F1802 /* AdaptiveConstraintContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766ED22432879007F1802 /* AdaptiveConstraintContainer.swift */; };
-		A77767612243287A007F1802 /* AdaptiveViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766EE22432879007F1802 /* AdaptiveViewContainer.swift */; };
-		A77767622243287A007F1802 /* AdaptiveAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766F022432879007F1802 /* AdaptiveAttribute.swift */; };
-		A77767632243287A007F1802 /* AdaptiveInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766F122432879007F1802 /* AdaptiveInterface.swift */; };
-		A77767642243287A007F1802 /* AdaptiveElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766F222432879007F1802 /* AdaptiveElement.swift */; };
-		A77767652243287A007F1802 /* FluidError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766F422432879007F1802 /* FluidError.swift */; };
-		A77767662243287A007F1802 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766F622432879007F1802 /* Debug.swift */; };
-		A77767692243287A007F1802 /* FluidCornerMaskLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766FB22432879007F1802 /* FluidCornerMaskLayer.swift */; };
-		A777676A2243287A007F1802 /* FluidInteractiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766FC22432879007F1802 /* FluidInteractiveView.swift */; };
-		A777676B2243287A007F1802 /* FluidShadowLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766FD22432879007F1802 /* FluidShadowLayer.swift */; };
-		A777676C2243287A007F1802 /* FluidInterruptibleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766FE22432879007F1802 /* FluidInterruptibleView.swift */; };
-		A777676D2243287A007F1802 /* FluidProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766FF22432879007F1802 /* FluidProgressView.swift */; };
-		A777676E2243287A007F1802 /* FluidBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777670022432879007F1802 /* FluidBackgroundView.swift */; };
-		A777676F2243287A007F1802 /* FluidShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777670122432879007F1802 /* FluidShadowView.swift */; };
-		A77767892243297B007F1802 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766F622432879007F1802 /* Debug.swift */; };
-		A77BC2882298FC7E00CE107C /* FluidNavigationViewAnimator+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77BC2872298FC7E00CE107C /* FluidNavigationViewAnimator+Configuration.swift */; };
-		A77BC28A2298FC9200CE107C /* FluidNavigationViewAnimator+Interactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77BC2892298FC9200CE107C /* FluidNavigationViewAnimator+Interactive.swift */; };
-		A77BC28C2298FCCD00CE107C /* FluidTransitionViewAnimator+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77BC28B2298FCCD00CE107C /* FluidTransitionViewAnimator+Configuration.swift */; };
-		A77BC28E2298FCDB00CE107C /* FluidTransitionViewAnimator+Interactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77BC28D2298FCDB00CE107C /* FluidTransitionViewAnimator+Interactive.swift */; };
 		A791D1B82280369900206A66 /* NavigationRootNavigationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A791D1B62280369900206A66 /* NavigationRootNavigationController.xib */; };
 		A797576B22B38BA100E80EF6 /* NavigationChildViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7498D3B22B0F54E002282DD /* NavigationChildViewController.xib */; };
 		A7B6C3DF21EB7ABF000903B1 /* TableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7B6C3CF21EB7ABE000903B1 /* TableCell.xib */; };
@@ -234,11 +122,6 @@
 		A7D3A03A22C73E5B00742D6D /* TableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7B6C3CF21EB7ABE000903B1 /* TableCell.xib */; };
 		A7D3A03B22C73E6000742D6D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7B6C3D121EB7ABE000903B1 /* LaunchScreen.storyboard */; };
 		A7D3A03C22C73E6000742D6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7B6C3DD21EB7ABF000903B1 /* Main.storyboard */; };
-		A7D3A03D22C7400900742D6D /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766F622432879007F1802 /* Debug.swift */; };
-		A7D3A04022C7429500742D6D /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77766F622432879007F1802 /* Debug.swift */; };
-		A7D3A04322C7438700742D6D /* NSObject+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE33C5A65A3DA45F939C7 /* NSObject+Ext.swift */; };
-		A7D3A04422C7439500742D6D /* NSObject+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE33C5A65A3DA45F939C7 /* NSObject+Ext.swift */; };
-		A7D3A04522C7439600742D6D /* NSObject+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE33C5A65A3DA45F939C7 /* NSObject+Ext.swift */; };
 		A7DF814D21F990D300CE3E1A /* TransitionMultiCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DF814C21F990D300CE3E1A /* TransitionMultiCollectionViewController.swift */; };
 		A7DF814E21F990D300CE3E1A /* TransitionMultiCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DF814C21F990D300CE3E1A /* TransitionMultiCollectionViewController.swift */; };
 		A7DF815021F990E500CE3E1A /* NavigationMultiCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DF814F21F990E500CE3E1A /* NavigationMultiCollectionViewController.swift */; };
@@ -250,25 +133,142 @@
 		A7EAC349224F43DE008904B7 /* TransitionScrollViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7EAC33A224F411B008904B7 /* TransitionScrollViewController.xib */; };
 		A7EAC34A224F43DE008904B7 /* TransitionTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7EAC33D224F411F008904B7 /* TransitionTableViewController.xib */; };
 		A7F0132821D12B650022BF84 /* XCUIApplication+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F0132721D12B650022BF84 /* XCUIApplication+Ext.swift */; };
-		DFABE0EA19C4B0DC603309B8 /* FluidDismissDriverCompatible+Animated.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEDD420F1316627D1A817 /* FluidDismissDriverCompatible+Animated.swift */; };
-		DFABE1D72191FFBEE8DA903D /* FluidPresentDriverCompatible+Interactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE9F933F0DB03B150A392 /* FluidPresentDriverCompatible+Interactive.swift */; };
-		DFABE240DE437855BE8CEEB7 /* FluidNavigationViewAnimator+Animated.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEE70A040ED3E76092979 /* FluidNavigationViewAnimator+Animated.swift */; };
-		DFABE2C9A0376E3FB5A6461B /* FluidPresentDriverCompatible+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE4C967BB63295604E7CB /* FluidPresentDriverCompatible+Delegate.swift */; };
-		DFABE351AC453AE00DB45C22 /* FluidDismissDriverCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE52E28713EC97BF571C4 /* FluidDismissDriverCompatible.swift */; };
+		A7F5CEA722CAF6C100578043 /* FluidLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE0C22CAF6C000578043 /* FluidLayout.swift */; };
+		A7F5CEA822CAF6C100578043 /* FluidLayout+Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE0D22CAF6C000578043 /* FluidLayout+Generator.swift */; };
+		A7F5CEA922CAF6C100578043 /* FluidLayoutConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE0E22CAF6C000578043 /* FluidLayoutConstant.swift */; };
+		A7F5CEAA22CAF6C100578043 /* FluidError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE1022CAF6C000578043 /* FluidError.swift */; };
+		A7F5CEAB22CAF6C100578043 /* FluidCornerMaskLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE1222CAF6C000578043 /* FluidCornerMaskLayer.swift */; };
+		A7F5CEAC22CAF6C100578043 /* FluidInteractiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE1322CAF6C000578043 /* FluidInteractiveView.swift */; };
+		A7F5CEAD22CAF6C100578043 /* FluidShadowLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE1422CAF6C000578043 /* FluidShadowLayer.swift */; };
+		A7F5CEAE22CAF6C100578043 /* FluidInterruptibleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE1522CAF6C000578043 /* FluidInterruptibleView.swift */; };
+		A7F5CEAF22CAF6C100578043 /* FluidProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE1622CAF6C000578043 /* FluidProgressView.swift */; };
+		A7F5CEB022CAF6C100578043 /* FluidBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE1722CAF6C000578043 /* FluidBackgroundView.swift */; };
+		A7F5CEB122CAF6C100578043 /* FluidShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE1822CAF6C000578043 /* FluidShadowView.swift */; };
+		A7F5CEB222CAF6C100578043 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE1A22CAF6C000578043 /* Debug.swift */; };
+		A7F5CEB322CAF6C100578043 /* NSObject+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE1B22CAF6C000578043 /* NSObject+Ext.swift */; };
+		A7F5CEB422CAF6C100578043 /* Foundation+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE1E22CAF6C000578043 /* Foundation+Ext.swift */; };
+		A7F5CEB522CAF6C100578043 /* UIKit+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE1F22CAF6C000578043 /* UIKit+Ext.swift */; };
+		A7F5CEB622CAF6C100578043 /* CoreGraphics+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE2022CAF6C000578043 /* CoreGraphics+Ext.swift */; };
+		A7F5CEB722CAF6C100578043 /* QuartzCore+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE2122CAF6C000578043 /* QuartzCore+Ext.swift */; };
+		A7F5CEB822CAF6C100578043 /* VectorMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE2222CAF6C000578043 /* VectorMath.swift */; };
+		A7F5CEB922CAF6C100578043 /* AssociatedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE2422CAF6C000578043 /* AssociatedObject.swift */; };
+		A7F5CEBA22CAF6C100578043 /* Swizzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE2522CAF6C000578043 /* Swizzle.swift */; };
+		A7F5CEBB22CAF6C100578043 /* UITraitCollection+Adaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE2822CAF6C000578043 /* UITraitCollection+Adaptive.swift */; };
+		A7F5CEBC22CAF6C100578043 /* Idiom.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE2A22CAF6C000578043 /* Idiom.swift */; };
+		A7F5CEBD22CAF6C100578043 /* ForceTouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE2B22CAF6C000578043 /* ForceTouch.swift */; };
+		A7F5CEBE22CAF6C100578043 /* SizeCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE2C22CAF6C000578043 /* SizeCategory.swift */; };
+		A7F5CEBF22CAF6C100578043 /* LayoutDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE2D22CAF6C000578043 /* LayoutDirection.swift */; };
+		A7F5CEC022CAF6C100578043 /* SizeClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE2E22CAF6C000578043 /* SizeClass.swift */; };
+		A7F5CEC122CAF6C100578043 /* DisplayGamut.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE2F22CAF6C000578043 /* DisplayGamut.swift */; };
+		A7F5CEC222CAF6C100578043 /* Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE3022CAF6C000578043 /* Scale.swift */; };
+		A7F5CEC322CAF6C100578043 /* AdaptiveBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE3222CAF6C000578043 /* AdaptiveBehavior.swift */; };
+		A7F5CEC422CAF6C100578043 /* AdaptiveConstraintContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE3322CAF6C000578043 /* AdaptiveConstraintContainer.swift */; };
+		A7F5CEC522CAF6C100578043 /* AdaptiveViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE3422CAF6C000578043 /* AdaptiveViewContainer.swift */; };
+		A7F5CEC622CAF6C100578043 /* AdaptiveAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE3622CAF6C000578043 /* AdaptiveAttribute.swift */; };
+		A7F5CEC722CAF6C100578043 /* AdaptiveInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE3722CAF6C000578043 /* AdaptiveInterface.swift */; };
+		A7F5CEC822CAF6C100578043 /* AdaptiveElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE3822CAF6C000578043 /* AdaptiveElement.swift */; };
+		A7F5CEC922CAF6C100578043 /* FluidAnimatorCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE3A22CAF6C000578043 /* FluidAnimatorCompatible.swift */; };
+		A7F5CECA22CAF6C100578043 /* FluidAnimatorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE3B22CAF6C000578043 /* FluidAnimatorState.swift */; };
+		A7F5CECB22CAF6C100578043 /* FluidPropertyAnimator+Initializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE3D22CAF6C000578043 /* FluidPropertyAnimator+Initializer.swift */; };
+		A7F5CECC22CAF6C100578043 /* FluidPropertyAnimator+Observing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE3E22CAF6C000578043 /* FluidPropertyAnimator+Observing.swift */; };
+		A7F5CECD22CAF6C100578043 /* UIViewAnimating+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE3F22CAF6C000578043 /* UIViewAnimating+Extension.swift */; };
+		A7F5CECE22CAF6C100578043 /* FluidPropertyAnimator+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE4022CAF6C000578043 /* FluidPropertyAnimator+Core.swift */; };
+		A7F5CECF22CAF6C100578043 /* FluidPropertyAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE4122CAF6C000578043 /* FluidPropertyAnimator.swift */; };
+		A7F5CED022CAF6C100578043 /* FluidInterruptibleAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE4222CAF6C000578043 /* FluidInterruptibleAnimator.swift */; };
+		A7F5CED122CAF6C100578043 /* FluidPropertyAnimator+Unavailable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE4322CAF6C000578043 /* FluidPropertyAnimator+Unavailable.swift */; };
+		A7F5CED222CAF6C100578043 /* PennerEasing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE4522CAF6C000578043 /* PennerEasing.swift */; };
+		A7F5CED322CAF6C100578043 /* PennerEasingFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE4622CAF6C000578043 /* PennerEasingFunction.swift */; };
+		A7F5CED422CAF6C100578043 /* FluidAnimatorEasing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE4722CAF6C000578043 /* FluidAnimatorEasing.swift */; };
+		A7F5CED522CAF6C100578043 /* FluidCoreAnimatorError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE4922CAF6C000578043 /* FluidCoreAnimatorError.swift */; };
+		A7F5CED622CAF6C100578043 /* FluidCoreAnimator+Initializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE4A22CAF6C000578043 /* FluidCoreAnimator+Initializer.swift */; };
+		A7F5CED722CAF6C100578043 /* FluidCoreAnimatorTransitionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE4B22CAF6C000578043 /* FluidCoreAnimatorTransitionType.swift */; };
+		A7F5CED822CAF6C100578043 /* FluidCoreAnimatorKeyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE4C22CAF6C000578043 /* FluidCoreAnimatorKeyPath.swift */; };
+		A7F5CED922CAF6C100578043 /* FluidCoreAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE4D22CAF6C000578043 /* FluidCoreAnimator.swift */; };
+		A7F5CEDA22CAF6C100578043 /* FluidCoreAnimatorValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE4E22CAF6C000578043 /* FluidCoreAnimatorValidator.swift */; };
+		A7F5CEDB22CAF6C100578043 /* FluidCoreAnimatorLayerConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE4F22CAF6C000578043 /* FluidCoreAnimatorLayerConvertible.swift */; };
+		A7F5CEDC22CAF6C100578043 /* FluidCoreAnimator+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE5022CAF6C000578043 /* FluidCoreAnimator+Core.swift */; };
+		A7F5CEDD22CAF6C100578043 /* CAProgressLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE5122CAF6C000578043 /* CAProgressLayer.swift */; };
+		A7F5CEDE22CAF6C100578043 /* FluidCoreAnimator+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE5222CAF6C000578043 /* FluidCoreAnimator+Helper.swift */; };
+		A7F5CEDF22CAF6C100578043 /* FluidProxy+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE5522CAF6C000578043 /* FluidProxy+UIViewController.swift */; };
+		A7F5CEE022CAF6C100578043 /* FluidProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE5622CAF6C000578043 /* FluidProxy.swift */; };
+		A7F5CEE122CAF6C100578043 /* FluidDriverType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE5922CAF6C000578043 /* FluidDriverType.swift */; };
+		A7F5CEE222CAF6C100578043 /* FluidDismissDriverCompatible+Animated.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE5A22CAF6C000578043 /* FluidDismissDriverCompatible+Animated.swift */; };
+		A7F5CEE322CAF6C100578043 /* FluidDismissDriverCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE5B22CAF6C000578043 /* FluidDismissDriverCompatible.swift */; };
+		A7F5CEE422CAF6C100578043 /* FluidDriverCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE5C22CAF6C000578043 /* FluidDriverCompatible.swift */; };
+		A7F5CEE522CAF6C100578043 /* FluidDismissDriverCompatible+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE5D22CAF6C000578043 /* FluidDismissDriverCompatible+Delegate.swift */; };
+		A7F5CEE622CAF6C100578043 /* FluidPresentDriverCompatible+Interactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE5E22CAF6C000578043 /* FluidPresentDriverCompatible+Interactive.swift */; };
+		A7F5CEE722CAF6C100578043 /* FluidPresentDriverCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE5F22CAF6C000578043 /* FluidPresentDriverCompatible.swift */; };
+		A7F5CEE822CAF6C100578043 /* FluidDriverCompatible+Interactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE6022CAF6C000578043 /* FluidDriverCompatible+Interactive.swift */; };
+		A7F5CEE922CAF6C100578043 /* FluidPresentDriverCompatible+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE6122CAF6C000578043 /* FluidPresentDriverCompatible+Delegate.swift */; };
+		A7F5CEEA22CAF6C100578043 /* FluidDriverCompatible+Animated.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE6222CAF6C000578043 /* FluidDriverCompatible+Animated.swift */; };
+		A7F5CEEB22CAF6C100578043 /* FluidPresentDriverCompatible+Animated.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE6322CAF6C000578043 /* FluidPresentDriverCompatible+Animated.swift */; };
+		A7F5CEEC22CAF6C100578043 /* FluidDriverCompatible+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE6422CAF6C000578043 /* FluidDriverCompatible+Configuration.swift */; };
+		A7F5CEED22CAF6C100578043 /* FluidDismissDriverCompatible+Interactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE6522CAF6C000578043 /* FluidDismissDriverCompatible+Interactive.swift */; };
+		A7F5CEEE22CAF6C100578043 /* FluidTransitionDismissDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE6722CAF6C000578043 /* FluidTransitionDismissDriver.swift */; };
+		A7F5CEEF22CAF6C100578043 /* FluidTransitionPresentDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE6822CAF6C000578043 /* FluidTransitionPresentDriver.swift */; };
+		A7F5CEF022CAF6C100578043 /* FluidNavigationPresentDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE6922CAF6C000578043 /* FluidNavigationPresentDriver.swift */; };
+		A7F5CEF122CAF6C100578043 /* FluidNavigationDismissDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE6A22CAF6C000578043 /* FluidNavigationDismissDriver.swift */; };
+		A7F5CEF222CAF6C100578043 /* FluidRoundCornerStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE6C22CAF6C000578043 /* FluidRoundCornerStyle.swift */; };
+		A7F5CEF322CAF6C100578043 /* FluidTransitionStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE6D22CAF6C000578043 /* FluidTransitionStyle.swift */; };
+		A7F5CEF422CAF6C100578043 /* FluidFrameStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE6E22CAF6C000578043 /* FluidFrameStyle.swift */; };
+		A7F5CEF522CAF6C100578043 /* FluidPresentationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE6F22CAF6C000578043 /* FluidPresentationStyle.swift */; };
+		A7F5CEF622CAF6C100578043 /* FluidBackgroundStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE7022CAF6C000578043 /* FluidBackgroundStyle.swift */; };
+		A7F5CEF722CAF6C100578043 /* FluidCoreAnimatorOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE7122CAF6C000578043 /* FluidCoreAnimatorOption.swift */; };
+		A7F5CEF822CAF6C100578043 /* FluidProgressState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE7222CAF6C000578043 /* FluidProgressState.swift */; };
+		A7F5CEF922CAF6C100578043 /* FluidConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE7322CAF6C000578043 /* FluidConst.swift */; };
+		A7F5CEFA22CAF6C100578043 /* FluidAnimationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE7422CAF6C000578043 /* FluidAnimationType.swift */; };
+		A7F5CEFB22CAF6C100578043 /* FluidInteractionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE7522CAF6C000578043 /* FluidInteractionType.swift */; };
+		A7F5CEFC22CAF6C100578043 /* FluidNavigationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE7622CAF6C000578043 /* FluidNavigationStyle.swift */; };
+		A7F5CEFD22CAF6C100578043 /* FluidFrameDimension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE7722CAF6C000578043 /* FluidFrameDimension.swift */; };
+		A7F5CEFE22CAF6C100578043 /* FluidNavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE7922CAF6C100578043 /* FluidNavigationControllerDelegate.swift */; };
+		A7F5CEFF22CAF6C100578043 /* FluidNavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE7A22CAF6C100578043 /* FluidNavigationDelegate.swift */; };
+		A7F5CF0022CAF6C100578043 /* FluidControllerDelegateCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE7B22CAF6C100578043 /* FluidControllerDelegateCompatible.swift */; };
+		A7F5CF0122CAF6C100578043 /* FluidDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE7C22CAF6C100578043 /* FluidDelegate.swift */; };
+		A7F5CF0222CAF6C100578043 /* Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE7D22CAF6C100578043 /* Typealias.swift */; };
+		A7F5CF0322CAF6C100578043 /* FluidTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE7E22CAF6C100578043 /* FluidTransitionDelegate.swift */; };
+		A7F5CF0422CAF6C100578043 /* FluidViewControllerTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE7F22CAF6C100578043 /* FluidViewControllerTransitioningDelegate.swift */; };
+		A7F5CF0522CAF6C100578043 /* FluidViewAnimatorCompatible+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE8222CAF6C100578043 /* FluidViewAnimatorCompatible+Configuration.swift */; };
+		A7F5CF0622CAF6C100578043 /* FluidViewAnimatorCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE8322CAF6C100578043 /* FluidViewAnimatorCompatible.swift */; };
+		A7F5CF0722CAF6C100578043 /* FluidViewAnimatorCompatible+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE8422CAF6C100578043 /* FluidViewAnimatorCompatible+Core.swift */; };
+		A7F5CF0822CAF6C100578043 /* FluidViewAnimatorTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE8522CAF6C100578043 /* FluidViewAnimatorTimer.swift */; };
+		A7F5CF0922CAF6C100578043 /* FluidViewAnimatorCompatible+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE8622CAF6C100578043 /* FluidViewAnimatorCompatible+Helper.swift */; };
+		A7F5CF0A22CAF6C100578043 /* FluidTransitionViewAnimator+Animated.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE8822CAF6C100578043 /* FluidTransitionViewAnimator+Animated.swift */; };
+		A7F5CF0B22CAF6C100578043 /* FluidTransitionViewAnimator+Interactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE8922CAF6C100578043 /* FluidTransitionViewAnimator+Interactive.swift */; };
+		A7F5CF0C22CAF6C100578043 /* FluidTransitionViewAnimator+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE8A22CAF6C100578043 /* FluidTransitionViewAnimator+Configuration.swift */; };
+		A7F5CF0D22CAF6C100578043 /* FluidNavigationViewAnimator+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE8B22CAF6C100578043 /* FluidNavigationViewAnimator+Configuration.swift */; };
+		A7F5CF0E22CAF6C100578043 /* FluidTransitionViewAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE8C22CAF6C100578043 /* FluidTransitionViewAnimator.swift */; };
+		A7F5CF0F22CAF6C100578043 /* FluidNavigationViewAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE8D22CAF6C100578043 /* FluidNavigationViewAnimator.swift */; };
+		A7F5CF1022CAF6C100578043 /* FluidNavigationViewAnimator+Animated.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE8E22CAF6C100578043 /* FluidNavigationViewAnimator+Animated.swift */; };
+		A7F5CF1122CAF6C100578043 /* FluidNavigationViewAnimator+Interactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE8F22CAF6C100578043 /* FluidNavigationViewAnimator+Interactive.swift */; };
+		A7F5CF1222CAF6C100578043 /* FluidGestureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE9222CAF6C100578043 /* FluidGestureDelegate.swift */; };
+		A7F5CF1322CAF6C100578043 /* FluidScrollObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE9322CAF6C100578043 /* FluidScrollObservable.swift */; };
+		A7F5CF1422CAF6C100578043 /* FluidGestureObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE9422CAF6C100578043 /* FluidGestureObservable.swift */; };
+		A7F5CF1522CAF6C100578043 /* FluidGestureAxis.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE9522CAF6C100578043 /* FluidGestureAxis.swift */; };
+		A7F5CF1622CAF6C100578043 /* FluidGestureInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE9622CAF6C100578043 /* FluidGestureInfo.swift */; };
+		A7F5CF1722CAF6C100578043 /* FluidGestureDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE9722CAF6C100578043 /* FluidGestureDirection.swift */; };
+		A7F5CF1822CAF6C100578043 /* FluidTransitionScrollObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE9922CAF6C100578043 /* FluidTransitionScrollObserver.swift */; };
+		A7F5CF1922CAF6C100578043 /* FluidNavigationGestureObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE9A22CAF6C100578043 /* FluidNavigationGestureObserver.swift */; };
+		A7F5CF1A22CAF6C100578043 /* FluidNavigationScrollObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE9B22CAF6C100578043 /* FluidNavigationScrollObserver.swift */; };
+		A7F5CF1B22CAF6C100578043 /* FluidTransitionGestureObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE9C22CAF6C100578043 /* FluidTransitionGestureObserver.swift */; };
+		A7F5CF1C22CAF6C100578043 /* FluidParametersAccessible.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE9F22CAF6C100578043 /* FluidParametersAccessible.swift */; };
+		A7F5CF1D22CAF6C100578043 /* FluidParametersCompatible+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CEA022CAF6C100578043 /* FluidParametersCompatible+Configuration.swift */; };
+		A7F5CF1E22CAF6C100578043 /* FluidParametersCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CEA122CAF6C100578043 /* FluidParametersCompatible.swift */; };
+		A7F5CF1F22CAF6C100578043 /* FluidTransitionParameters+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CEA322CAF6C100578043 /* FluidTransitionParameters+Configuration.swift */; };
+		A7F5CF2022CAF6C100578043 /* FluidNavigationParameters+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CEA422CAF6C100578043 /* FluidNavigationParameters+Configuration.swift */; };
+		A7F5CF2122CAF6C100578043 /* FluidNavigationParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CEA522CAF6C100578043 /* FluidNavigationParameters.swift */; };
+		A7F5CF2222CAF6C100578043 /* FluidTransitionParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CEA622CAF6C100578043 /* FluidTransitionParameters.swift */; };
+		A7F5CF2322CAF6D000578043 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE1A22CAF6C000578043 /* Debug.swift */; };
+		A7F5CF2422CAF6D000578043 /* NSObject+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE1B22CAF6C000578043 /* NSObject+Ext.swift */; };
+		A7F5CF2522CAF6D100578043 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE1A22CAF6C000578043 /* Debug.swift */; };
+		A7F5CF2622CAF6D100578043 /* NSObject+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE1B22CAF6C000578043 /* NSObject+Ext.swift */; };
+		A7F5CF2722CAF6D200578043 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE1A22CAF6C000578043 /* Debug.swift */; };
+		A7F5CF2822CAF6D200578043 /* NSObject+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CE1B22CAF6C000578043 /* NSObject+Ext.swift */; };
+		A7F5CF2C22CAF80D00578043 /* Fluidable+Swizzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CF2922CAF80C00578043 /* Fluidable+Swizzle.swift */; };
+		A7F5CF2D22CAF80D00578043 /* Fluidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CF2A22CAF80D00578043 /* Fluidable.swift */; };
+		A7F5CF2E22CAF80D00578043 /* Fluidable+SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CF2B22CAF80D00578043 /* Fluidable+SafeArea.swift */; };
 		DFABE3D588D52DA0D98549E4 /* AlignedCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEC72BC4B8623907A87C8 /* AlignedCollectionLayout.swift */; };
-		DFABE44A513816EFB09E2878 /* FluidPresentDriverCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEA25BBA8BB90CAA5BBC7 /* FluidPresentDriverCompatible.swift */; };
-		DFABE4E24115F1FF27C80FE7 /* FluidDriverCompatible+Interactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE7CD7DADA6741BB2ABB5 /* FluidDriverCompatible+Interactive.swift */; };
-		DFABE5F9DA4D1B4437EFA6F7 /* FluidParametersCompatible+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE0FCB045881056BBF29D /* FluidParametersCompatible+Configuration.swift */; };
 		DFABE6423A286983D05132BB /* NavigationBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEC6EF0DB83BEFF91B48C /* NavigationBaseViewController.swift */; };
-		DFABE8838D076BAA2AE9F639 /* FluidDismissDriverCompatible+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABED9026592F652FC102A4 /* FluidDismissDriverCompatible+Delegate.swift */; };
 		DFABE996DD1A19EC135F1B78 /* AlignedCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEC72BC4B8623907A87C8 /* AlignedCollectionLayout.swift */; };
-		DFABEB88E7A79B3CB3157356 /* NSObject+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE33C5A65A3DA45F939C7 /* NSObject+Ext.swift */; };
-		DFABEBA5047C894A38FF05F2 /* FluidTransitionViewAnimator+Animated.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE341F81CFB96CFC779F9 /* FluidTransitionViewAnimator+Animated.swift */; };
-		DFABEBFF0D9EDA606CA8F4F6 /* Fluidable+SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE27FD05BE9DD0CE9C6AB /* Fluidable+SafeArea.swift */; };
-		DFABECA8989D382F89B9A60E /* FluidDriverCompatible+Animated.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE07A709238A8071CF99A /* FluidDriverCompatible+Animated.swift */; };
-		DFABED542ED3CC9941604F3E /* VectorMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE817320F80E945E533E0 /* VectorMath.swift */; };
-		DFABEE289BB2B44CF0CAE9C4 /* FluidDismissDriverCompatible+Interactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEFB51F8118ADD9ABF35F /* FluidDismissDriverCompatible+Interactive.swift */; };
-		DFABEFD356CF10DEA945002F /* FluidPresentDriverCompatible+Animated.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE3BC9914CC4D5BA9DC20 /* FluidPresentDriverCompatible+Animated.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -314,57 +314,6 @@
 		A712401821CD43A400883E13 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		A712402D21CE174F00883E13 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		A712403121CE2CB300883E13 /* HelperSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperSpec.swift; sourceTree = "<group>"; };
-		A7167F6D228FAC3200C16D12 /* FluidProxy+UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidProxy+UIViewController.swift"; sourceTree = "<group>"; };
-		A7167F6E228FAC3200C16D12 /* FluidProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidProxy.swift; sourceTree = "<group>"; };
-		A7167F71228FAC3200C16D12 /* FluidDriverType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidDriverType.swift; sourceTree = "<group>"; };
-		A7167F72228FAC3200C16D12 /* FluidDriverCompatible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidDriverCompatible.swift; sourceTree = "<group>"; };
-		A7167F74228FAC3200C16D12 /* FluidDriverCompatible+Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidDriverCompatible+Configuration.swift"; sourceTree = "<group>"; };
-		A7167F78228FAC3300C16D12 /* FluidTransitionDismissDriver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidTransitionDismissDriver.swift; sourceTree = "<group>"; };
-		A7167F79228FAC3300C16D12 /* FluidTransitionPresentDriver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidTransitionPresentDriver.swift; sourceTree = "<group>"; };
-		A7167F83228FAC3300C16D12 /* FluidViewAnimatorCompatible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidViewAnimatorCompatible.swift; sourceTree = "<group>"; };
-		A7167F84228FAC3300C16D12 /* FluidViewAnimatorCompatible+Core.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidViewAnimatorCompatible+Core.swift"; sourceTree = "<group>"; };
-		A7167F86228FAC3300C16D12 /* FluidViewAnimatorCompatible+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidViewAnimatorCompatible+Helper.swift"; sourceTree = "<group>"; };
-		A7167F89228FAC3300C16D12 /* FluidViewAnimatorTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidViewAnimatorTimer.swift; sourceTree = "<group>"; };
-		A7167F8B228FAC3300C16D12 /* FluidViewAnimatorCompatible+Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidViewAnimatorCompatible+Configuration.swift"; sourceTree = "<group>"; };
-		A7167F8E228FAC3300C16D12 /* FluidNavigationViewAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidNavigationViewAnimator.swift; sourceTree = "<group>"; };
-		A7167F8F228FAC3300C16D12 /* FluidTransitionViewAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidTransitionViewAnimator.swift; sourceTree = "<group>"; };
-		A7167F91228FAC3300C16D12 /* FluidRoundCornerStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidRoundCornerStyle.swift; sourceTree = "<group>"; };
-		A7167F92228FAC3300C16D12 /* FluidTransitionStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidTransitionStyle.swift; sourceTree = "<group>"; };
-		A7167F93228FAC3300C16D12 /* FluidFrameStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidFrameStyle.swift; sourceTree = "<group>"; };
-		A7167F94228FAC3300C16D12 /* FluidPresentationStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidPresentationStyle.swift; sourceTree = "<group>"; };
-		A7167F95228FAC3300C16D12 /* FluidBackgroundStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidBackgroundStyle.swift; sourceTree = "<group>"; };
-		A7167F96228FAC3300C16D12 /* FluidCoreAnimatorOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidCoreAnimatorOption.swift; sourceTree = "<group>"; };
-		A7167F97228FAC3300C16D12 /* FluidProgressState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidProgressState.swift; sourceTree = "<group>"; };
-		A7167F98228FAC3300C16D12 /* FluidConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidConst.swift; sourceTree = "<group>"; };
-		A7167F99228FAC3300C16D12 /* FluidAnimationType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidAnimationType.swift; sourceTree = "<group>"; };
-		A7167F9A228FAC3300C16D12 /* FluidInteractionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidInteractionType.swift; sourceTree = "<group>"; };
-		A7167F9B228FAC3300C16D12 /* FluidNavigationStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidNavigationStyle.swift; sourceTree = "<group>"; };
-		A7167F9C228FAC3300C16D12 /* FluidFrameDimension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidFrameDimension.swift; sourceTree = "<group>"; };
-		A7167F9E228FAC3300C16D12 /* FluidNavigationControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidNavigationControllerDelegate.swift; sourceTree = "<group>"; };
-		A7167F9F228FAC3300C16D12 /* FluidNavigationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidNavigationDelegate.swift; sourceTree = "<group>"; };
-		A7167FA0228FAC3300C16D12 /* FluidControllerDelegateCompatible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidControllerDelegateCompatible.swift; sourceTree = "<group>"; };
-		A7167FA1228FAC3300C16D12 /* FluidDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidDelegate.swift; sourceTree = "<group>"; };
-		A7167FA2228FAC3300C16D12 /* Typealias.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Typealias.swift; sourceTree = "<group>"; };
-		A7167FA3228FAC3300C16D12 /* FluidTransitionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidTransitionDelegate.swift; sourceTree = "<group>"; };
-		A7167FA4228FAC3300C16D12 /* FluidViewControllerTransitioningDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidViewControllerTransitioningDelegate.swift; sourceTree = "<group>"; };
-		A7167FA7228FAC3300C16D12 /* FluidGestureDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidGestureDelegate.swift; sourceTree = "<group>"; };
-		A7167FA8228FAC3300C16D12 /* FluidScrollObservable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidScrollObservable.swift; sourceTree = "<group>"; };
-		A7167FA9228FAC3300C16D12 /* FluidGestureObservable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidGestureObservable.swift; sourceTree = "<group>"; };
-		A7167FAA228FAC3300C16D12 /* FluidGestureAxis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidGestureAxis.swift; sourceTree = "<group>"; };
-		A7167FAB228FAC3300C16D12 /* FluidGestureInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidGestureInfo.swift; sourceTree = "<group>"; };
-		A7167FAC228FAC3300C16D12 /* FluidGestureDirection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidGestureDirection.swift; sourceTree = "<group>"; };
-		A7167FAE228FAC3300C16D12 /* FluidTransitionScrollObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidTransitionScrollObserver.swift; sourceTree = "<group>"; };
-		A7167FAF228FAC3300C16D12 /* FluidNavigationGestureObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidNavigationGestureObserver.swift; sourceTree = "<group>"; };
-		A7167FB0228FAC3300C16D12 /* FluidNavigationScrollObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidNavigationScrollObserver.swift; sourceTree = "<group>"; };
-		A7167FB1228FAC3300C16D12 /* FluidTransitionGestureObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidTransitionGestureObserver.swift; sourceTree = "<group>"; };
-		A7167FB4228FAC3300C16D12 /* FluidParametersAccessible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidParametersAccessible.swift; sourceTree = "<group>"; };
-		A7167FB5228FAC3300C16D12 /* FluidParametersCompatible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidParametersCompatible.swift; sourceTree = "<group>"; };
-		A7167FB7228FAC3300C16D12 /* FluidTransitionParameters+Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidTransitionParameters+Configuration.swift"; sourceTree = "<group>"; };
-		A7167FB8228FAC3300C16D12 /* FluidNavigationParameters+Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidNavigationParameters+Configuration.swift"; sourceTree = "<group>"; };
-		A7167FB9228FAC3300C16D12 /* FluidNavigationParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidNavigationParameters.swift; sourceTree = "<group>"; };
-		A7167FBA228FAC3300C16D12 /* FluidTransitionParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidTransitionParameters.swift; sourceTree = "<group>"; };
-		A7167FFC228FC0C700C16D12 /* FluidNavigationDismissDriver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidNavigationDismissDriver.swift; sourceTree = "<group>"; };
-		A7168004228FC0C800C16D12 /* FluidNavigationPresentDriver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidNavigationPresentDriver.swift; sourceTree = "<group>"; };
 		A71F674521C50EA8007CADA0 /* Fluidable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Fluidable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A71F674821C50EA8007CADA0 /* Fluidable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Fluidable.h; sourceTree = "<group>"; };
 		A71F674921C50EA8007CADA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -372,7 +321,6 @@
 		A71F675321C50EA8007CADA0 /* EnumSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumSpec.swift; sourceTree = "<group>"; };
 		A71F675521C50EA8007CADA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A71F676721C52451007CADA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A71F678321C52ABF007CADA0 /* Fluidable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fluidable.swift; sourceTree = "<group>"; };
 		A71F67E921C66248007CADA0 /* FluidableExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FluidableExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A71F67EB21C66248007CADA0 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A71F67F721C6624A007CADA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -388,65 +336,6 @@
 		A7498D3C22B0F54E002282DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NavigationChildViewController.xib; sourceTree = "<group>"; };
 		A756F8F921EEABBB00184FBF /* ExampleConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleConst.swift; sourceTree = "<group>"; };
 		A756F8FC21EF344C00184FBF /* RootNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootNavigationController.swift; sourceTree = "<group>"; };
-		A77766B622432879007F1802 /* Fluidable+Swizzle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Fluidable+Swizzle.swift"; sourceTree = "<group>"; };
-		A77766B822432879007F1802 /* FluidLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidLayout.swift; sourceTree = "<group>"; };
-		A77766B922432879007F1802 /* FluidLayout+Generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidLayout+Generator.swift"; sourceTree = "<group>"; };
-		A77766BA22432879007F1802 /* FluidLayoutConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidLayoutConstant.swift; sourceTree = "<group>"; };
-		A77766BE22432879007F1802 /* Foundation+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Foundation+Ext.swift"; sourceTree = "<group>"; };
-		A77766BF22432879007F1802 /* UIKit+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIKit+Ext.swift"; sourceTree = "<group>"; };
-		A77766C022432879007F1802 /* CoreGraphics+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreGraphics+Ext.swift"; sourceTree = "<group>"; };
-		A77766C122432879007F1802 /* QuartzCore+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "QuartzCore+Ext.swift"; sourceTree = "<group>"; };
-		A77766C322432879007F1802 /* AssociatedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssociatedObject.swift; sourceTree = "<group>"; };
-		A77766C422432879007F1802 /* Swizzle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swizzle.swift; sourceTree = "<group>"; };
-		A77766C622432879007F1802 /* FluidAnimatorCompatible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidAnimatorCompatible.swift; sourceTree = "<group>"; };
-		A77766C722432879007F1802 /* FluidAnimatorState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidAnimatorState.swift; sourceTree = "<group>"; };
-		A77766C922432879007F1802 /* FluidPropertyAnimator+Initializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidPropertyAnimator+Initializer.swift"; sourceTree = "<group>"; };
-		A77766CA22432879007F1802 /* FluidPropertyAnimator+Observing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidPropertyAnimator+Observing.swift"; sourceTree = "<group>"; };
-		A77766CB22432879007F1802 /* UIViewAnimating+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewAnimating+Extension.swift"; sourceTree = "<group>"; };
-		A77766CC22432879007F1802 /* FluidPropertyAnimator+Core.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidPropertyAnimator+Core.swift"; sourceTree = "<group>"; };
-		A77766CD22432879007F1802 /* FluidPropertyAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidPropertyAnimator.swift; sourceTree = "<group>"; };
-		A77766CE22432879007F1802 /* FluidInterruptibleAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidInterruptibleAnimator.swift; sourceTree = "<group>"; };
-		A77766CF22432879007F1802 /* FluidPropertyAnimator+Unavailable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidPropertyAnimator+Unavailable.swift"; sourceTree = "<group>"; };
-		A77766D122432879007F1802 /* PennerEasing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PennerEasing.swift; sourceTree = "<group>"; };
-		A77766D222432879007F1802 /* PennerEasingFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PennerEasingFunction.swift; sourceTree = "<group>"; };
-		A77766D322432879007F1802 /* FluidAnimatorEasing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidAnimatorEasing.swift; sourceTree = "<group>"; };
-		A77766D522432879007F1802 /* FluidCoreAnimatorError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidCoreAnimatorError.swift; sourceTree = "<group>"; };
-		A77766D622432879007F1802 /* FluidCoreAnimator+Initializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidCoreAnimator+Initializer.swift"; sourceTree = "<group>"; };
-		A77766D722432879007F1802 /* FluidCoreAnimatorTransitionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidCoreAnimatorTransitionType.swift; sourceTree = "<group>"; };
-		A77766D822432879007F1802 /* FluidCoreAnimatorKeyPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidCoreAnimatorKeyPath.swift; sourceTree = "<group>"; };
-		A77766D922432879007F1802 /* FluidCoreAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidCoreAnimator.swift; sourceTree = "<group>"; };
-		A77766DA22432879007F1802 /* FluidCoreAnimatorValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidCoreAnimatorValidator.swift; sourceTree = "<group>"; };
-		A77766DB22432879007F1802 /* FluidCoreAnimatorLayerConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidCoreAnimatorLayerConvertible.swift; sourceTree = "<group>"; };
-		A77766DC22432879007F1802 /* FluidCoreAnimator+Core.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidCoreAnimator+Core.swift"; sourceTree = "<group>"; };
-		A77766DD22432879007F1802 /* CAProgressLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAProgressLayer.swift; sourceTree = "<group>"; };
-		A77766DE22432879007F1802 /* FluidCoreAnimator+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidCoreAnimator+Helper.swift"; sourceTree = "<group>"; };
-		A77766E122432879007F1802 /* UITraitCollection+Adaptive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITraitCollection+Adaptive.swift"; sourceTree = "<group>"; };
-		A77766E422432879007F1802 /* Idiom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Idiom.swift; sourceTree = "<group>"; };
-		A77766E522432879007F1802 /* ForceTouch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForceTouch.swift; sourceTree = "<group>"; };
-		A77766E622432879007F1802 /* SizeCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeCategory.swift; sourceTree = "<group>"; };
-		A77766E722432879007F1802 /* LayoutDirection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutDirection.swift; sourceTree = "<group>"; };
-		A77766E822432879007F1802 /* SizeClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeClass.swift; sourceTree = "<group>"; };
-		A77766E922432879007F1802 /* DisplayGamut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayGamut.swift; sourceTree = "<group>"; };
-		A77766EA22432879007F1802 /* Scale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scale.swift; sourceTree = "<group>"; };
-		A77766EC22432879007F1802 /* AdaptiveBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdaptiveBehavior.swift; sourceTree = "<group>"; };
-		A77766ED22432879007F1802 /* AdaptiveConstraintContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdaptiveConstraintContainer.swift; sourceTree = "<group>"; };
-		A77766EE22432879007F1802 /* AdaptiveViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdaptiveViewContainer.swift; sourceTree = "<group>"; };
-		A77766F022432879007F1802 /* AdaptiveAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdaptiveAttribute.swift; sourceTree = "<group>"; };
-		A77766F122432879007F1802 /* AdaptiveInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdaptiveInterface.swift; sourceTree = "<group>"; };
-		A77766F222432879007F1802 /* AdaptiveElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdaptiveElement.swift; sourceTree = "<group>"; };
-		A77766F422432879007F1802 /* FluidError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidError.swift; sourceTree = "<group>"; };
-		A77766F622432879007F1802 /* Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
-		A77766FB22432879007F1802 /* FluidCornerMaskLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidCornerMaskLayer.swift; sourceTree = "<group>"; };
-		A77766FC22432879007F1802 /* FluidInteractiveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidInteractiveView.swift; sourceTree = "<group>"; };
-		A77766FD22432879007F1802 /* FluidShadowLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidShadowLayer.swift; sourceTree = "<group>"; };
-		A77766FE22432879007F1802 /* FluidInterruptibleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidInterruptibleView.swift; sourceTree = "<group>"; };
-		A77766FF22432879007F1802 /* FluidProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidProgressView.swift; sourceTree = "<group>"; };
-		A777670022432879007F1802 /* FluidBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidBackgroundView.swift; sourceTree = "<group>"; };
-		A777670122432879007F1802 /* FluidShadowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidShadowView.swift; sourceTree = "<group>"; };
-		A77BC2872298FC7E00CE107C /* FluidNavigationViewAnimator+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FluidNavigationViewAnimator+Configuration.swift"; sourceTree = "<group>"; };
-		A77BC2892298FC9200CE107C /* FluidNavigationViewAnimator+Interactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FluidNavigationViewAnimator+Interactive.swift"; sourceTree = "<group>"; };
-		A77BC28B2298FCCD00CE107C /* FluidTransitionViewAnimator+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FluidTransitionViewAnimator+Configuration.swift"; sourceTree = "<group>"; };
-		A77BC28D2298FCDB00CE107C /* FluidTransitionViewAnimator+Interactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FluidTransitionViewAnimator+Interactive.swift"; sourceTree = "<group>"; };
 		A791D1B72280369900206A66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NavigationRootNavigationController.xib; sourceTree = "<group>"; };
 		A7B6C3D021EB7ABE000903B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TableCell.xib; sourceTree = "<group>"; };
 		A7B6C3D221EB7ABE000903B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -486,31 +375,142 @@
 		A7EAC339224F411B008904B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TransitionScrollViewController.xib; sourceTree = "<group>"; };
 		A7EAC33C224F411F008904B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TransitionTableViewController.xib; sourceTree = "<group>"; };
 		A7F0132721D12B650022BF84 /* XCUIApplication+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIApplication+Ext.swift"; sourceTree = "<group>"; };
+		A7F5CE0C22CAF6C000578043 /* FluidLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidLayout.swift; sourceTree = "<group>"; };
+		A7F5CE0D22CAF6C000578043 /* FluidLayout+Generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidLayout+Generator.swift"; sourceTree = "<group>"; };
+		A7F5CE0E22CAF6C000578043 /* FluidLayoutConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidLayoutConstant.swift; sourceTree = "<group>"; };
+		A7F5CE1022CAF6C000578043 /* FluidError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidError.swift; sourceTree = "<group>"; };
+		A7F5CE1222CAF6C000578043 /* FluidCornerMaskLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidCornerMaskLayer.swift; sourceTree = "<group>"; };
+		A7F5CE1322CAF6C000578043 /* FluidInteractiveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidInteractiveView.swift; sourceTree = "<group>"; };
+		A7F5CE1422CAF6C000578043 /* FluidShadowLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidShadowLayer.swift; sourceTree = "<group>"; };
+		A7F5CE1522CAF6C000578043 /* FluidInterruptibleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidInterruptibleView.swift; sourceTree = "<group>"; };
+		A7F5CE1622CAF6C000578043 /* FluidProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidProgressView.swift; sourceTree = "<group>"; };
+		A7F5CE1722CAF6C000578043 /* FluidBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidBackgroundView.swift; sourceTree = "<group>"; };
+		A7F5CE1822CAF6C000578043 /* FluidShadowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidShadowView.swift; sourceTree = "<group>"; };
+		A7F5CE1A22CAF6C000578043 /* Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
+		A7F5CE1B22CAF6C000578043 /* NSObject+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Ext.swift"; sourceTree = "<group>"; };
+		A7F5CE1E22CAF6C000578043 /* Foundation+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Foundation+Ext.swift"; sourceTree = "<group>"; };
+		A7F5CE1F22CAF6C000578043 /* UIKit+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIKit+Ext.swift"; sourceTree = "<group>"; };
+		A7F5CE2022CAF6C000578043 /* CoreGraphics+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CoreGraphics+Ext.swift"; sourceTree = "<group>"; };
+		A7F5CE2122CAF6C000578043 /* QuartzCore+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "QuartzCore+Ext.swift"; sourceTree = "<group>"; };
+		A7F5CE2222CAF6C000578043 /* VectorMath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorMath.swift; sourceTree = "<group>"; };
+		A7F5CE2422CAF6C000578043 /* AssociatedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssociatedObject.swift; sourceTree = "<group>"; };
+		A7F5CE2522CAF6C000578043 /* Swizzle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swizzle.swift; sourceTree = "<group>"; };
+		A7F5CE2822CAF6C000578043 /* UITraitCollection+Adaptive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITraitCollection+Adaptive.swift"; sourceTree = "<group>"; };
+		A7F5CE2A22CAF6C000578043 /* Idiom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Idiom.swift; sourceTree = "<group>"; };
+		A7F5CE2B22CAF6C000578043 /* ForceTouch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForceTouch.swift; sourceTree = "<group>"; };
+		A7F5CE2C22CAF6C000578043 /* SizeCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeCategory.swift; sourceTree = "<group>"; };
+		A7F5CE2D22CAF6C000578043 /* LayoutDirection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutDirection.swift; sourceTree = "<group>"; };
+		A7F5CE2E22CAF6C000578043 /* SizeClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeClass.swift; sourceTree = "<group>"; };
+		A7F5CE2F22CAF6C000578043 /* DisplayGamut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayGamut.swift; sourceTree = "<group>"; };
+		A7F5CE3022CAF6C000578043 /* Scale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scale.swift; sourceTree = "<group>"; };
+		A7F5CE3222CAF6C000578043 /* AdaptiveBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdaptiveBehavior.swift; sourceTree = "<group>"; };
+		A7F5CE3322CAF6C000578043 /* AdaptiveConstraintContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdaptiveConstraintContainer.swift; sourceTree = "<group>"; };
+		A7F5CE3422CAF6C000578043 /* AdaptiveViewContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdaptiveViewContainer.swift; sourceTree = "<group>"; };
+		A7F5CE3622CAF6C000578043 /* AdaptiveAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdaptiveAttribute.swift; sourceTree = "<group>"; };
+		A7F5CE3722CAF6C000578043 /* AdaptiveInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdaptiveInterface.swift; sourceTree = "<group>"; };
+		A7F5CE3822CAF6C000578043 /* AdaptiveElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdaptiveElement.swift; sourceTree = "<group>"; };
+		A7F5CE3A22CAF6C000578043 /* FluidAnimatorCompatible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidAnimatorCompatible.swift; sourceTree = "<group>"; };
+		A7F5CE3B22CAF6C000578043 /* FluidAnimatorState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidAnimatorState.swift; sourceTree = "<group>"; };
+		A7F5CE3D22CAF6C000578043 /* FluidPropertyAnimator+Initializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidPropertyAnimator+Initializer.swift"; sourceTree = "<group>"; };
+		A7F5CE3E22CAF6C000578043 /* FluidPropertyAnimator+Observing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidPropertyAnimator+Observing.swift"; sourceTree = "<group>"; };
+		A7F5CE3F22CAF6C000578043 /* UIViewAnimating+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewAnimating+Extension.swift"; sourceTree = "<group>"; };
+		A7F5CE4022CAF6C000578043 /* FluidPropertyAnimator+Core.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidPropertyAnimator+Core.swift"; sourceTree = "<group>"; };
+		A7F5CE4122CAF6C000578043 /* FluidPropertyAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidPropertyAnimator.swift; sourceTree = "<group>"; };
+		A7F5CE4222CAF6C000578043 /* FluidInterruptibleAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidInterruptibleAnimator.swift; sourceTree = "<group>"; };
+		A7F5CE4322CAF6C000578043 /* FluidPropertyAnimator+Unavailable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidPropertyAnimator+Unavailable.swift"; sourceTree = "<group>"; };
+		A7F5CE4522CAF6C000578043 /* PennerEasing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PennerEasing.swift; sourceTree = "<group>"; };
+		A7F5CE4622CAF6C000578043 /* PennerEasingFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PennerEasingFunction.swift; sourceTree = "<group>"; };
+		A7F5CE4722CAF6C000578043 /* FluidAnimatorEasing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidAnimatorEasing.swift; sourceTree = "<group>"; };
+		A7F5CE4922CAF6C000578043 /* FluidCoreAnimatorError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidCoreAnimatorError.swift; sourceTree = "<group>"; };
+		A7F5CE4A22CAF6C000578043 /* FluidCoreAnimator+Initializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidCoreAnimator+Initializer.swift"; sourceTree = "<group>"; };
+		A7F5CE4B22CAF6C000578043 /* FluidCoreAnimatorTransitionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidCoreAnimatorTransitionType.swift; sourceTree = "<group>"; };
+		A7F5CE4C22CAF6C000578043 /* FluidCoreAnimatorKeyPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidCoreAnimatorKeyPath.swift; sourceTree = "<group>"; };
+		A7F5CE4D22CAF6C000578043 /* FluidCoreAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidCoreAnimator.swift; sourceTree = "<group>"; };
+		A7F5CE4E22CAF6C000578043 /* FluidCoreAnimatorValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidCoreAnimatorValidator.swift; sourceTree = "<group>"; };
+		A7F5CE4F22CAF6C000578043 /* FluidCoreAnimatorLayerConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidCoreAnimatorLayerConvertible.swift; sourceTree = "<group>"; };
+		A7F5CE5022CAF6C000578043 /* FluidCoreAnimator+Core.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidCoreAnimator+Core.swift"; sourceTree = "<group>"; };
+		A7F5CE5122CAF6C000578043 /* CAProgressLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAProgressLayer.swift; sourceTree = "<group>"; };
+		A7F5CE5222CAF6C000578043 /* FluidCoreAnimator+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidCoreAnimator+Helper.swift"; sourceTree = "<group>"; };
+		A7F5CE5522CAF6C000578043 /* FluidProxy+UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidProxy+UIViewController.swift"; sourceTree = "<group>"; };
+		A7F5CE5622CAF6C000578043 /* FluidProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidProxy.swift; sourceTree = "<group>"; };
+		A7F5CE5922CAF6C000578043 /* FluidDriverType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidDriverType.swift; sourceTree = "<group>"; };
+		A7F5CE5A22CAF6C000578043 /* FluidDismissDriverCompatible+Animated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidDismissDriverCompatible+Animated.swift"; sourceTree = "<group>"; };
+		A7F5CE5B22CAF6C000578043 /* FluidDismissDriverCompatible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidDismissDriverCompatible.swift; sourceTree = "<group>"; };
+		A7F5CE5C22CAF6C000578043 /* FluidDriverCompatible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidDriverCompatible.swift; sourceTree = "<group>"; };
+		A7F5CE5D22CAF6C000578043 /* FluidDismissDriverCompatible+Delegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidDismissDriverCompatible+Delegate.swift"; sourceTree = "<group>"; };
+		A7F5CE5E22CAF6C000578043 /* FluidPresentDriverCompatible+Interactive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidPresentDriverCompatible+Interactive.swift"; sourceTree = "<group>"; };
+		A7F5CE5F22CAF6C000578043 /* FluidPresentDriverCompatible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidPresentDriverCompatible.swift; sourceTree = "<group>"; };
+		A7F5CE6022CAF6C000578043 /* FluidDriverCompatible+Interactive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidDriverCompatible+Interactive.swift"; sourceTree = "<group>"; };
+		A7F5CE6122CAF6C000578043 /* FluidPresentDriverCompatible+Delegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidPresentDriverCompatible+Delegate.swift"; sourceTree = "<group>"; };
+		A7F5CE6222CAF6C000578043 /* FluidDriverCompatible+Animated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidDriverCompatible+Animated.swift"; sourceTree = "<group>"; };
+		A7F5CE6322CAF6C000578043 /* FluidPresentDriverCompatible+Animated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidPresentDriverCompatible+Animated.swift"; sourceTree = "<group>"; };
+		A7F5CE6422CAF6C000578043 /* FluidDriverCompatible+Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidDriverCompatible+Configuration.swift"; sourceTree = "<group>"; };
+		A7F5CE6522CAF6C000578043 /* FluidDismissDriverCompatible+Interactive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidDismissDriverCompatible+Interactive.swift"; sourceTree = "<group>"; };
+		A7F5CE6722CAF6C000578043 /* FluidTransitionDismissDriver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidTransitionDismissDriver.swift; sourceTree = "<group>"; };
+		A7F5CE6822CAF6C000578043 /* FluidTransitionPresentDriver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidTransitionPresentDriver.swift; sourceTree = "<group>"; };
+		A7F5CE6922CAF6C000578043 /* FluidNavigationPresentDriver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidNavigationPresentDriver.swift; sourceTree = "<group>"; };
+		A7F5CE6A22CAF6C000578043 /* FluidNavigationDismissDriver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidNavigationDismissDriver.swift; sourceTree = "<group>"; };
+		A7F5CE6C22CAF6C000578043 /* FluidRoundCornerStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidRoundCornerStyle.swift; sourceTree = "<group>"; };
+		A7F5CE6D22CAF6C000578043 /* FluidTransitionStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidTransitionStyle.swift; sourceTree = "<group>"; };
+		A7F5CE6E22CAF6C000578043 /* FluidFrameStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidFrameStyle.swift; sourceTree = "<group>"; };
+		A7F5CE6F22CAF6C000578043 /* FluidPresentationStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidPresentationStyle.swift; sourceTree = "<group>"; };
+		A7F5CE7022CAF6C000578043 /* FluidBackgroundStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidBackgroundStyle.swift; sourceTree = "<group>"; };
+		A7F5CE7122CAF6C000578043 /* FluidCoreAnimatorOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidCoreAnimatorOption.swift; sourceTree = "<group>"; };
+		A7F5CE7222CAF6C000578043 /* FluidProgressState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidProgressState.swift; sourceTree = "<group>"; };
+		A7F5CE7322CAF6C000578043 /* FluidConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidConst.swift; sourceTree = "<group>"; };
+		A7F5CE7422CAF6C000578043 /* FluidAnimationType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidAnimationType.swift; sourceTree = "<group>"; };
+		A7F5CE7522CAF6C000578043 /* FluidInteractionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidInteractionType.swift; sourceTree = "<group>"; };
+		A7F5CE7622CAF6C000578043 /* FluidNavigationStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidNavigationStyle.swift; sourceTree = "<group>"; };
+		A7F5CE7722CAF6C000578043 /* FluidFrameDimension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidFrameDimension.swift; sourceTree = "<group>"; };
+		A7F5CE7922CAF6C100578043 /* FluidNavigationControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidNavigationControllerDelegate.swift; sourceTree = "<group>"; };
+		A7F5CE7A22CAF6C100578043 /* FluidNavigationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidNavigationDelegate.swift; sourceTree = "<group>"; };
+		A7F5CE7B22CAF6C100578043 /* FluidControllerDelegateCompatible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidControllerDelegateCompatible.swift; sourceTree = "<group>"; };
+		A7F5CE7C22CAF6C100578043 /* FluidDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidDelegate.swift; sourceTree = "<group>"; };
+		A7F5CE7D22CAF6C100578043 /* Typealias.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Typealias.swift; sourceTree = "<group>"; };
+		A7F5CE7E22CAF6C100578043 /* FluidTransitionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidTransitionDelegate.swift; sourceTree = "<group>"; };
+		A7F5CE7F22CAF6C100578043 /* FluidViewControllerTransitioningDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidViewControllerTransitioningDelegate.swift; sourceTree = "<group>"; };
+		A7F5CE8222CAF6C100578043 /* FluidViewAnimatorCompatible+Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidViewAnimatorCompatible+Configuration.swift"; sourceTree = "<group>"; };
+		A7F5CE8322CAF6C100578043 /* FluidViewAnimatorCompatible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidViewAnimatorCompatible.swift; sourceTree = "<group>"; };
+		A7F5CE8422CAF6C100578043 /* FluidViewAnimatorCompatible+Core.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidViewAnimatorCompatible+Core.swift"; sourceTree = "<group>"; };
+		A7F5CE8522CAF6C100578043 /* FluidViewAnimatorTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidViewAnimatorTimer.swift; sourceTree = "<group>"; };
+		A7F5CE8622CAF6C100578043 /* FluidViewAnimatorCompatible+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidViewAnimatorCompatible+Helper.swift"; sourceTree = "<group>"; };
+		A7F5CE8822CAF6C100578043 /* FluidTransitionViewAnimator+Animated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidTransitionViewAnimator+Animated.swift"; sourceTree = "<group>"; };
+		A7F5CE8922CAF6C100578043 /* FluidTransitionViewAnimator+Interactive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidTransitionViewAnimator+Interactive.swift"; sourceTree = "<group>"; };
+		A7F5CE8A22CAF6C100578043 /* FluidTransitionViewAnimator+Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidTransitionViewAnimator+Configuration.swift"; sourceTree = "<group>"; };
+		A7F5CE8B22CAF6C100578043 /* FluidNavigationViewAnimator+Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidNavigationViewAnimator+Configuration.swift"; sourceTree = "<group>"; };
+		A7F5CE8C22CAF6C100578043 /* FluidTransitionViewAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidTransitionViewAnimator.swift; sourceTree = "<group>"; };
+		A7F5CE8D22CAF6C100578043 /* FluidNavigationViewAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidNavigationViewAnimator.swift; sourceTree = "<group>"; };
+		A7F5CE8E22CAF6C100578043 /* FluidNavigationViewAnimator+Animated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidNavigationViewAnimator+Animated.swift"; sourceTree = "<group>"; };
+		A7F5CE8F22CAF6C100578043 /* FluidNavigationViewAnimator+Interactive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidNavigationViewAnimator+Interactive.swift"; sourceTree = "<group>"; };
+		A7F5CE9222CAF6C100578043 /* FluidGestureDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidGestureDelegate.swift; sourceTree = "<group>"; };
+		A7F5CE9322CAF6C100578043 /* FluidScrollObservable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidScrollObservable.swift; sourceTree = "<group>"; };
+		A7F5CE9422CAF6C100578043 /* FluidGestureObservable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidGestureObservable.swift; sourceTree = "<group>"; };
+		A7F5CE9522CAF6C100578043 /* FluidGestureAxis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidGestureAxis.swift; sourceTree = "<group>"; };
+		A7F5CE9622CAF6C100578043 /* FluidGestureInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidGestureInfo.swift; sourceTree = "<group>"; };
+		A7F5CE9722CAF6C100578043 /* FluidGestureDirection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidGestureDirection.swift; sourceTree = "<group>"; };
+		A7F5CE9922CAF6C100578043 /* FluidTransitionScrollObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidTransitionScrollObserver.swift; sourceTree = "<group>"; };
+		A7F5CE9A22CAF6C100578043 /* FluidNavigationGestureObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidNavigationGestureObserver.swift; sourceTree = "<group>"; };
+		A7F5CE9B22CAF6C100578043 /* FluidNavigationScrollObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidNavigationScrollObserver.swift; sourceTree = "<group>"; };
+		A7F5CE9C22CAF6C100578043 /* FluidTransitionGestureObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidTransitionGestureObserver.swift; sourceTree = "<group>"; };
+		A7F5CE9F22CAF6C100578043 /* FluidParametersAccessible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidParametersAccessible.swift; sourceTree = "<group>"; };
+		A7F5CEA022CAF6C100578043 /* FluidParametersCompatible+Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidParametersCompatible+Configuration.swift"; sourceTree = "<group>"; };
+		A7F5CEA122CAF6C100578043 /* FluidParametersCompatible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidParametersCompatible.swift; sourceTree = "<group>"; };
+		A7F5CEA322CAF6C100578043 /* FluidTransitionParameters+Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidTransitionParameters+Configuration.swift"; sourceTree = "<group>"; };
+		A7F5CEA422CAF6C100578043 /* FluidNavigationParameters+Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidNavigationParameters+Configuration.swift"; sourceTree = "<group>"; };
+		A7F5CEA522CAF6C100578043 /* FluidNavigationParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidNavigationParameters.swift; sourceTree = "<group>"; };
+		A7F5CEA622CAF6C100578043 /* FluidTransitionParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidTransitionParameters.swift; sourceTree = "<group>"; };
+		A7F5CF2922CAF80C00578043 /* Fluidable+Swizzle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Fluidable+Swizzle.swift"; sourceTree = "<group>"; };
+		A7F5CF2A22CAF80D00578043 /* Fluidable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fluidable.swift; sourceTree = "<group>"; };
+		A7F5CF2B22CAF80D00578043 /* Fluidable+SafeArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Fluidable+SafeArea.swift"; sourceTree = "<group>"; };
 		DFABE052FFD740CC0F27F94D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NavigationTableViewController.xib; sourceTree = "<group>"; };
-		DFABE07A709238A8071CF99A /* FluidDriverCompatible+Animated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidDriverCompatible+Animated.swift"; sourceTree = "<group>"; };
-		DFABE0FCB045881056BBF29D /* FluidParametersCompatible+Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidParametersCompatible+Configuration.swift"; sourceTree = "<group>"; };
-		DFABE27FD05BE9DD0CE9C6AB /* Fluidable+SafeArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Fluidable+SafeArea.swift"; sourceTree = "<group>"; };
-		DFABE33C5A65A3DA45F939C7 /* NSObject+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Ext.swift"; sourceTree = "<group>"; };
-		DFABE341F81CFB96CFC779F9 /* FluidTransitionViewAnimator+Animated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidTransitionViewAnimator+Animated.swift"; sourceTree = "<group>"; };
-		DFABE3BC9914CC4D5BA9DC20 /* FluidPresentDriverCompatible+Animated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidPresentDriverCompatible+Animated.swift"; sourceTree = "<group>"; };
-		DFABE4C967BB63295604E7CB /* FluidPresentDriverCompatible+Delegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidPresentDriverCompatible+Delegate.swift"; sourceTree = "<group>"; };
-		DFABE52E28713EC97BF571C4 /* FluidDismissDriverCompatible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidDismissDriverCompatible.swift; sourceTree = "<group>"; };
 		DFABE61D021ABDF43686FD95 /* RootViewController+Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RootViewController+Collection.swift"; sourceTree = "<group>"; };
-		DFABE7CD7DADA6741BB2ABB5 /* FluidDriverCompatible+Interactive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidDriverCompatible+Interactive.swift"; sourceTree = "<group>"; };
-		DFABE817320F80E945E533E0 /* VectorMath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorMath.swift; sourceTree = "<group>"; };
 		DFABE81DB86B266033ED2C1C /* NavigationChildViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationChildViewController.swift; sourceTree = "<group>"; };
 		DFABE98EC8DD362AB89692C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NavigationMultiCollectionViewController.xib; sourceTree = "<group>"; };
-		DFABE9F933F0DB03B150A392 /* FluidPresentDriverCompatible+Interactive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidPresentDriverCompatible+Interactive.swift"; sourceTree = "<group>"; };
 		DFABEA08D9E289F5D59BD2C4 /* RootViewController+Fluidable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RootViewController+Fluidable.swift"; sourceTree = "<group>"; };
-		DFABEA25BBA8BB90CAA5BBC7 /* FluidPresentDriverCompatible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidPresentDriverCompatible.swift; sourceTree = "<group>"; };
 		DFABEB16695950E841D1BF14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NavigationScrollViewController.xib; sourceTree = "<group>"; };
 		DFABEC6EF0DB83BEFF91B48C /* NavigationBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBaseViewController.swift; sourceTree = "<group>"; };
 		DFABEC72BC4B8623907A87C8 /* AlignedCollectionLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlignedCollectionLayout.swift; sourceTree = "<group>"; };
 		DFABED248429BF91062F0299 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NavigationCollectionViewController.xib; sourceTree = "<group>"; };
-		DFABED9026592F652FC102A4 /* FluidDismissDriverCompatible+Delegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidDismissDriverCompatible+Delegate.swift"; sourceTree = "<group>"; };
-		DFABEDD420F1316627D1A817 /* FluidDismissDriverCompatible+Animated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidDismissDriverCompatible+Animated.swift"; sourceTree = "<group>"; };
-		DFABEE70A040ED3E76092979 /* FluidNavigationViewAnimator+Animated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidNavigationViewAnimator+Animated.swift"; sourceTree = "<group>"; };
-		DFABEFB51F8118ADD9ABF35F /* FluidDismissDriverCompatible+Interactive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidDismissDriverCompatible+Interactive.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -552,201 +552,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A7167F6B228FAC3200C16D12 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				A7167F9D228FAC3300C16D12 /* Delegate */,
-				A7167F6F228FAC3200C16D12 /* Driver */,
-				A7167F90228FAC3300C16D12 /* Enumeration */,
-				A7167FA5228FAC3300C16D12 /* Gesture */,
-				A7167FB2228FAC3300C16D12 /* Parameter */,
-				A7167F80228FAC3300C16D12 /* Animator */,
-				A7167F6C228FAC3200C16D12 /* Proxy */,
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
-		A7167F6C228FAC3200C16D12 /* Proxy */ = {
-			isa = PBXGroup;
-			children = (
-				A7167F6E228FAC3200C16D12 /* FluidProxy.swift */,
-				A7167F6D228FAC3200C16D12 /* FluidProxy+UIViewController.swift */,
-			);
-			path = Proxy;
-			sourceTree = "<group>";
-		};
-		A7167F6F228FAC3200C16D12 /* Driver */ = {
-			isa = PBXGroup;
-			children = (
-				A7167F75228FAC3200C16D12 /* Implementation */,
-				A7167F70228FAC3200C16D12 /* Protocol */,
-			);
-			path = Driver;
-			sourceTree = "<group>";
-		};
-		A7167F70228FAC3200C16D12 /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				A7167F72228FAC3200C16D12 /* FluidDriverCompatible.swift */,
-				A7167F74228FAC3200C16D12 /* FluidDriverCompatible+Configuration.swift */,
-				A7167F71228FAC3200C16D12 /* FluidDriverType.swift */,
-				DFABE07A709238A8071CF99A /* FluidDriverCompatible+Animated.swift */,
-				DFABE7CD7DADA6741BB2ABB5 /* FluidDriverCompatible+Interactive.swift */,
-				DFABEA25BBA8BB90CAA5BBC7 /* FluidPresentDriverCompatible.swift */,
-				DFABE52E28713EC97BF571C4 /* FluidDismissDriverCompatible.swift */,
-				DFABE3BC9914CC4D5BA9DC20 /* FluidPresentDriverCompatible+Animated.swift */,
-				DFABEDD420F1316627D1A817 /* FluidDismissDriverCompatible+Animated.swift */,
-				DFABE9F933F0DB03B150A392 /* FluidPresentDriverCompatible+Interactive.swift */,
-				DFABE4C967BB63295604E7CB /* FluidPresentDriverCompatible+Delegate.swift */,
-				DFABEFB51F8118ADD9ABF35F /* FluidDismissDriverCompatible+Interactive.swift */,
-				DFABED9026592F652FC102A4 /* FluidDismissDriverCompatible+Delegate.swift */,
-			);
-			path = Protocol;
-			sourceTree = "<group>";
-		};
-		A7167F75228FAC3200C16D12 /* Implementation */ = {
-			isa = PBXGroup;
-			children = (
-				A7167FFC228FC0C700C16D12 /* FluidNavigationDismissDriver.swift */,
-				A7168004228FC0C800C16D12 /* FluidNavigationPresentDriver.swift */,
-				A7167F78228FAC3300C16D12 /* FluidTransitionDismissDriver.swift */,
-				A7167F79228FAC3300C16D12 /* FluidTransitionPresentDriver.swift */,
-			);
-			path = Implementation;
-			sourceTree = "<group>";
-		};
-		A7167F80228FAC3300C16D12 /* Animator */ = {
-			isa = PBXGroup;
-			children = (
-				A7167F81228FAC3300C16D12 /* Protocol */,
-				A7167F8D228FAC3300C16D12 /* Implementation */,
-			);
-			path = Animator;
-			sourceTree = "<group>";
-		};
-		A7167F81228FAC3300C16D12 /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				A7167F83228FAC3300C16D12 /* FluidViewAnimatorCompatible.swift */,
-				A7167F8B228FAC3300C16D12 /* FluidViewAnimatorCompatible+Configuration.swift */,
-				A7167F84228FAC3300C16D12 /* FluidViewAnimatorCompatible+Core.swift */,
-				A7167F86228FAC3300C16D12 /* FluidViewAnimatorCompatible+Helper.swift */,
-				A7167F89228FAC3300C16D12 /* FluidViewAnimatorTimer.swift */,
-			);
-			path = Protocol;
-			sourceTree = "<group>";
-		};
-		A7167F8D228FAC3300C16D12 /* Implementation */ = {
-			isa = PBXGroup;
-			children = (
-				A7167F8E228FAC3300C16D12 /* FluidNavigationViewAnimator.swift */,
-				A77BC2872298FC7E00CE107C /* FluidNavigationViewAnimator+Configuration.swift */,
-				A77BC2892298FC9200CE107C /* FluidNavigationViewAnimator+Interactive.swift */,
-				A7167F8F228FAC3300C16D12 /* FluidTransitionViewAnimator.swift */,
-				A77BC28B2298FCCD00CE107C /* FluidTransitionViewAnimator+Configuration.swift */,
-				A77BC28D2298FCDB00CE107C /* FluidTransitionViewAnimator+Interactive.swift */,
-				DFABEE70A040ED3E76092979 /* FluidNavigationViewAnimator+Animated.swift */,
-				DFABE341F81CFB96CFC779F9 /* FluidTransitionViewAnimator+Animated.swift */,
-			);
-			path = Implementation;
-			sourceTree = "<group>";
-		};
-		A7167F90228FAC3300C16D12 /* Enumeration */ = {
-			isa = PBXGroup;
-			children = (
-				A7167F99228FAC3300C16D12 /* FluidAnimationType.swift */,
-				A7167F95228FAC3300C16D12 /* FluidBackgroundStyle.swift */,
-				A7167F98228FAC3300C16D12 /* FluidConst.swift */,
-				A7167F96228FAC3300C16D12 /* FluidCoreAnimatorOption.swift */,
-				A7167F9C228FAC3300C16D12 /* FluidFrameDimension.swift */,
-				A7167F93228FAC3300C16D12 /* FluidFrameStyle.swift */,
-				A7167F9A228FAC3300C16D12 /* FluidInteractionType.swift */,
-				A7167F9B228FAC3300C16D12 /* FluidNavigationStyle.swift */,
-				A7167F94228FAC3300C16D12 /* FluidPresentationStyle.swift */,
-				A7167F97228FAC3300C16D12 /* FluidProgressState.swift */,
-				A7167F91228FAC3300C16D12 /* FluidRoundCornerStyle.swift */,
-				A7167F92228FAC3300C16D12 /* FluidTransitionStyle.swift */,
-			);
-			path = Enumeration;
-			sourceTree = "<group>";
-		};
-		A7167F9D228FAC3300C16D12 /* Delegate */ = {
-			isa = PBXGroup;
-			children = (
-				A7167FA0228FAC3300C16D12 /* FluidControllerDelegateCompatible.swift */,
-				A7167FA1228FAC3300C16D12 /* FluidDelegate.swift */,
-				A7167F9E228FAC3300C16D12 /* FluidNavigationControllerDelegate.swift */,
-				A7167F9F228FAC3300C16D12 /* FluidNavigationDelegate.swift */,
-				A7167FA3228FAC3300C16D12 /* FluidTransitionDelegate.swift */,
-				A7167FA4228FAC3300C16D12 /* FluidViewControllerTransitioningDelegate.swift */,
-				A7167FA2228FAC3300C16D12 /* Typealias.swift */,
-			);
-			path = Delegate;
-			sourceTree = "<group>";
-		};
-		A7167FA5228FAC3300C16D12 /* Gesture */ = {
-			isa = PBXGroup;
-			children = (
-				A7167FA6228FAC3300C16D12 /* Protocol */,
-				A7167FAD228FAC3300C16D12 /* Implementation */,
-			);
-			path = Gesture;
-			sourceTree = "<group>";
-		};
-		A7167FA6228FAC3300C16D12 /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				A7167FAA228FAC3300C16D12 /* FluidGestureAxis.swift */,
-				A7167FA7228FAC3300C16D12 /* FluidGestureDelegate.swift */,
-				A7167FAC228FAC3300C16D12 /* FluidGestureDirection.swift */,
-				A7167FAB228FAC3300C16D12 /* FluidGestureInfo.swift */,
-				A7167FA9228FAC3300C16D12 /* FluidGestureObservable.swift */,
-				A7167FA8228FAC3300C16D12 /* FluidScrollObservable.swift */,
-			);
-			path = Protocol;
-			sourceTree = "<group>";
-		};
-		A7167FAD228FAC3300C16D12 /* Implementation */ = {
-			isa = PBXGroup;
-			children = (
-				A7167FAF228FAC3300C16D12 /* FluidNavigationGestureObserver.swift */,
-				A7167FB0228FAC3300C16D12 /* FluidNavigationScrollObserver.swift */,
-				A7167FB1228FAC3300C16D12 /* FluidTransitionGestureObserver.swift */,
-				A7167FAE228FAC3300C16D12 /* FluidTransitionScrollObserver.swift */,
-			);
-			path = Implementation;
-			sourceTree = "<group>";
-		};
-		A7167FB2228FAC3300C16D12 /* Parameter */ = {
-			isa = PBXGroup;
-			children = (
-				A7167FB3228FAC3300C16D12 /* Protocol */,
-				A7167FB6228FAC3300C16D12 /* Implementation */,
-			);
-			path = Parameter;
-			sourceTree = "<group>";
-		};
-		A7167FB3228FAC3300C16D12 /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				A7167FB4228FAC3300C16D12 /* FluidParametersAccessible.swift */,
-				A7167FB5228FAC3300C16D12 /* FluidParametersCompatible.swift */,
-				DFABE0FCB045881056BBF29D /* FluidParametersCompatible+Configuration.swift */,
-			);
-			path = Protocol;
-			sourceTree = "<group>";
-		};
-		A7167FB6228FAC3300C16D12 /* Implementation */ = {
-			isa = PBXGroup;
-			children = (
-				A7167FB9228FAC3300C16D12 /* FluidNavigationParameters.swift */,
-				A7167FB8228FAC3300C16D12 /* FluidNavigationParameters+Configuration.swift */,
-				A7167FBA228FAC3300C16D12 /* FluidTransitionParameters.swift */,
-				A7167FB7228FAC3300C16D12 /* FluidTransitionParameters+Configuration.swift */,
-			);
-			path = Implementation;
-			sourceTree = "<group>";
-		};
 		A71F673B21C50EA8007CADA0 = {
 			isa = PBXGroup;
 			children = (
@@ -773,17 +578,17 @@
 		A71F674721C50EA8007CADA0 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				A71F674921C50EA8007CADA0 /* Info.plist */,
 				A71F674821C50EA8007CADA0 /* Fluidable.h */,
-				A71F678321C52ABF007CADA0 /* Fluidable.swift */,
-				A77766B622432879007F1802 /* Fluidable+Swizzle.swift */,
-				A7167F6B228FAC3200C16D12 /* Core */,
-				A77766F322432879007F1802 /* Error */,
-				A77766BC22432879007F1802 /* Helper */,
-				A77766B722432879007F1802 /* Layout */,
-				A7D3A03E22C7425800742D6D /* Shared */,
-				A77766FA22432879007F1802 /* View */,
-				DFABE27FD05BE9DD0CE9C6AB /* Fluidable+SafeArea.swift */,
+				A71F674921C50EA8007CADA0 /* Info.plist */,
+				A7F5CF2A22CAF80D00578043 /* Fluidable.swift */,
+				A7F5CF2B22CAF80D00578043 /* Fluidable+SafeArea.swift */,
+				A7F5CF2922CAF80C00578043 /* Fluidable+Swizzle.swift */,
+				A7F5CE5322CAF6C000578043 /* Core */,
+				A7F5CE0F22CAF6C000578043 /* Error */,
+				A7F5CE1C22CAF6C000578043 /* Helper */,
+				A7F5CE0B22CAF6C000578043 /* Layout */,
+				A7F5CE1922CAF6C000578043 /* Shared */,
+				A7F5CE1122CAF6C000578043 /* View */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -827,176 +632,6 @@
 				A73A338521ECAE2C00222AC1 /* Image.xcassets */,
 			);
 			path = Example;
-			sourceTree = "<group>";
-		};
-		A77766B722432879007F1802 /* Layout */ = {
-			isa = PBXGroup;
-			children = (
-				A77766B822432879007F1802 /* FluidLayout.swift */,
-				A77766B922432879007F1802 /* FluidLayout+Generator.swift */,
-				A77766BA22432879007F1802 /* FluidLayoutConstant.swift */,
-			);
-			path = Layout;
-			sourceTree = "<group>";
-		};
-		A77766BC22432879007F1802 /* Helper */ = {
-			isa = PBXGroup;
-			children = (
-				A77766DF22432879007F1802 /* AdaptiveLayout */,
-				A77766C522432879007F1802 /* Animations */,
-				A77766BD22432879007F1802 /* Extension */,
-				A77766C222432879007F1802 /* Runtime */,
-			);
-			path = Helper;
-			sourceTree = "<group>";
-		};
-		A77766BD22432879007F1802 /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				A77766C022432879007F1802 /* CoreGraphics+Ext.swift */,
-				A77766BE22432879007F1802 /* Foundation+Ext.swift */,
-				A77766C122432879007F1802 /* QuartzCore+Ext.swift */,
-				A77766BF22432879007F1802 /* UIKit+Ext.swift */,
-				DFABE817320F80E945E533E0 /* VectorMath.swift */,
-			);
-			path = Extension;
-			sourceTree = "<group>";
-		};
-		A77766C222432879007F1802 /* Runtime */ = {
-			isa = PBXGroup;
-			children = (
-				A77766C322432879007F1802 /* AssociatedObject.swift */,
-				A77766C422432879007F1802 /* Swizzle.swift */,
-			);
-			path = Runtime;
-			sourceTree = "<group>";
-		};
-		A77766C522432879007F1802 /* Animations */ = {
-			isa = PBXGroup;
-			children = (
-				A77766C622432879007F1802 /* FluidAnimatorCompatible.swift */,
-				A77766D322432879007F1802 /* FluidAnimatorEasing.swift */,
-				A77766C722432879007F1802 /* FluidAnimatorState.swift */,
-				A77766D422432879007F1802 /* CoreAnimation */,
-				A77766C822432879007F1802 /* PropertyAnimator */,
-				A77766D022432879007F1802 /* RobertPenner */,
-			);
-			path = Animations;
-			sourceTree = "<group>";
-		};
-		A77766C822432879007F1802 /* PropertyAnimator */ = {
-			isa = PBXGroup;
-			children = (
-				A77766CE22432879007F1802 /* FluidInterruptibleAnimator.swift */,
-				A77766CD22432879007F1802 /* FluidPropertyAnimator.swift */,
-				A77766CC22432879007F1802 /* FluidPropertyAnimator+Core.swift */,
-				A77766C922432879007F1802 /* FluidPropertyAnimator+Initializer.swift */,
-				A77766CA22432879007F1802 /* FluidPropertyAnimator+Observing.swift */,
-				A77766CF22432879007F1802 /* FluidPropertyAnimator+Unavailable.swift */,
-				A77766CB22432879007F1802 /* UIViewAnimating+Extension.swift */,
-			);
-			path = PropertyAnimator;
-			sourceTree = "<group>";
-		};
-		A77766D022432879007F1802 /* RobertPenner */ = {
-			isa = PBXGroup;
-			children = (
-				A77766D122432879007F1802 /* PennerEasing.swift */,
-				A77766D222432879007F1802 /* PennerEasingFunction.swift */,
-			);
-			path = RobertPenner;
-			sourceTree = "<group>";
-		};
-		A77766D422432879007F1802 /* CoreAnimation */ = {
-			isa = PBXGroup;
-			children = (
-				A77766DD22432879007F1802 /* CAProgressLayer.swift */,
-				A77766D922432879007F1802 /* FluidCoreAnimator.swift */,
-				A77766DC22432879007F1802 /* FluidCoreAnimator+Core.swift */,
-				A77766DE22432879007F1802 /* FluidCoreAnimator+Helper.swift */,
-				A77766D622432879007F1802 /* FluidCoreAnimator+Initializer.swift */,
-				A77766D522432879007F1802 /* FluidCoreAnimatorError.swift */,
-				A77766D822432879007F1802 /* FluidCoreAnimatorKeyPath.swift */,
-				A77766DB22432879007F1802 /* FluidCoreAnimatorLayerConvertible.swift */,
-				A77766D722432879007F1802 /* FluidCoreAnimatorTransitionType.swift */,
-				A77766DA22432879007F1802 /* FluidCoreAnimatorValidator.swift */,
-			);
-			path = CoreAnimation;
-			sourceTree = "<group>";
-		};
-		A77766DF22432879007F1802 /* AdaptiveLayout */ = {
-			isa = PBXGroup;
-			children = (
-				A77766E322432879007F1802 /* Attributes */,
-				A77766EB22432879007F1802 /* Containers */,
-				A77766E022432879007F1802 /* Extensions */,
-				A77766EF22432879007F1802 /* Protocols */,
-			);
-			path = AdaptiveLayout;
-			sourceTree = "<group>";
-		};
-		A77766E022432879007F1802 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				A77766E122432879007F1802 /* UITraitCollection+Adaptive.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		A77766E322432879007F1802 /* Attributes */ = {
-			isa = PBXGroup;
-			children = (
-				A77766E422432879007F1802 /* Idiom.swift */,
-				A77766E522432879007F1802 /* ForceTouch.swift */,
-				A77766E622432879007F1802 /* SizeCategory.swift */,
-				A77766E722432879007F1802 /* LayoutDirection.swift */,
-				A77766E822432879007F1802 /* SizeClass.swift */,
-				A77766E922432879007F1802 /* DisplayGamut.swift */,
-				A77766EA22432879007F1802 /* Scale.swift */,
-			);
-			path = Attributes;
-			sourceTree = "<group>";
-		};
-		A77766EB22432879007F1802 /* Containers */ = {
-			isa = PBXGroup;
-			children = (
-				A77766EC22432879007F1802 /* AdaptiveBehavior.swift */,
-				A77766ED22432879007F1802 /* AdaptiveConstraintContainer.swift */,
-				A77766EE22432879007F1802 /* AdaptiveViewContainer.swift */,
-			);
-			path = Containers;
-			sourceTree = "<group>";
-		};
-		A77766EF22432879007F1802 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				A77766F022432879007F1802 /* AdaptiveAttribute.swift */,
-				A77766F122432879007F1802 /* AdaptiveInterface.swift */,
-				A77766F222432879007F1802 /* AdaptiveElement.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
-		A77766F322432879007F1802 /* Error */ = {
-			isa = PBXGroup;
-			children = (
-				A77766F422432879007F1802 /* FluidError.swift */,
-			);
-			path = Error;
-			sourceTree = "<group>";
-		};
-		A77766FA22432879007F1802 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				A777670022432879007F1802 /* FluidBackgroundView.swift */,
-				A77766FB22432879007F1802 /* FluidCornerMaskLayer.swift */,
-				A77766FC22432879007F1802 /* FluidInteractiveView.swift */,
-				A77766FE22432879007F1802 /* FluidInterruptibleView.swift */,
-				A77766FF22432879007F1802 /* FluidProgressView.swift */,
-				A77766FD22432879007F1802 /* FluidShadowLayer.swift */,
-				A777670122432879007F1802 /* FluidShadowView.swift */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		A7C7A94E21EC93C2000687C9 /* Model */ = {
@@ -1062,15 +697,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		A7D3A03E22C7425800742D6D /* Shared */ = {
-			isa = PBXGroup;
-			children = (
-				A77766F622432879007F1802 /* Debug.swift */,
-				DFABE33C5A65A3DA45F939C7 /* NSObject+Ext.swift */,
-			);
-			path = Shared;
-			sourceTree = "<group>";
-		};
 		A7EAC30E224F3EE6008904B7 /* Control */ = {
 			isa = PBXGroup;
 			children = (
@@ -1133,6 +759,380 @@
 				A7C7A95121EC93C2000687C9 /* Helper */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		A7F5CE0B22CAF6C000578043 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				A7F5CE0C22CAF6C000578043 /* FluidLayout.swift */,
+				A7F5CE0D22CAF6C000578043 /* FluidLayout+Generator.swift */,
+				A7F5CE0E22CAF6C000578043 /* FluidLayoutConstant.swift */,
+			);
+			path = Layout;
+			sourceTree = "<group>";
+		};
+		A7F5CE0F22CAF6C000578043 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				A7F5CE1022CAF6C000578043 /* FluidError.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		A7F5CE1122CAF6C000578043 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A7F5CE1722CAF6C000578043 /* FluidBackgroundView.swift */,
+				A7F5CE1222CAF6C000578043 /* FluidCornerMaskLayer.swift */,
+				A7F5CE1322CAF6C000578043 /* FluidInteractiveView.swift */,
+				A7F5CE1522CAF6C000578043 /* FluidInterruptibleView.swift */,
+				A7F5CE1622CAF6C000578043 /* FluidProgressView.swift */,
+				A7F5CE1422CAF6C000578043 /* FluidShadowLayer.swift */,
+				A7F5CE1822CAF6C000578043 /* FluidShadowView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A7F5CE1922CAF6C000578043 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				A7F5CE1A22CAF6C000578043 /* Debug.swift */,
+				A7F5CE1B22CAF6C000578043 /* NSObject+Ext.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		A7F5CE1C22CAF6C000578043 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				A7F5CE2622CAF6C000578043 /* AdaptiveLayout */,
+				A7F5CE3922CAF6C000578043 /* Animations */,
+				A7F5CE1D22CAF6C000578043 /* Extension */,
+				A7F5CE2322CAF6C000578043 /* Runtime */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		A7F5CE1D22CAF6C000578043 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				A7F5CE2022CAF6C000578043 /* CoreGraphics+Ext.swift */,
+				A7F5CE1E22CAF6C000578043 /* Foundation+Ext.swift */,
+				A7F5CE2122CAF6C000578043 /* QuartzCore+Ext.swift */,
+				A7F5CE1F22CAF6C000578043 /* UIKit+Ext.swift */,
+				A7F5CE2222CAF6C000578043 /* VectorMath.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		A7F5CE2322CAF6C000578043 /* Runtime */ = {
+			isa = PBXGroup;
+			children = (
+				A7F5CE2422CAF6C000578043 /* AssociatedObject.swift */,
+				A7F5CE2522CAF6C000578043 /* Swizzle.swift */,
+			);
+			path = Runtime;
+			sourceTree = "<group>";
+		};
+		A7F5CE2622CAF6C000578043 /* AdaptiveLayout */ = {
+			isa = PBXGroup;
+			children = (
+				A7F5CE2922CAF6C000578043 /* Attributes */,
+				A7F5CE3122CAF6C000578043 /* Containers */,
+				A7F5CE2722CAF6C000578043 /* Extensions */,
+				A7F5CE3522CAF6C000578043 /* Protocols */,
+			);
+			path = AdaptiveLayout;
+			sourceTree = "<group>";
+		};
+		A7F5CE2722CAF6C000578043 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A7F5CE2822CAF6C000578043 /* UITraitCollection+Adaptive.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A7F5CE2922CAF6C000578043 /* Attributes */ = {
+			isa = PBXGroup;
+			children = (
+				A7F5CE2F22CAF6C000578043 /* DisplayGamut.swift */,
+				A7F5CE2B22CAF6C000578043 /* ForceTouch.swift */,
+				A7F5CE2A22CAF6C000578043 /* Idiom.swift */,
+				A7F5CE2D22CAF6C000578043 /* LayoutDirection.swift */,
+				A7F5CE3022CAF6C000578043 /* Scale.swift */,
+				A7F5CE2C22CAF6C000578043 /* SizeCategory.swift */,
+				A7F5CE2E22CAF6C000578043 /* SizeClass.swift */,
+			);
+			path = Attributes;
+			sourceTree = "<group>";
+		};
+		A7F5CE3122CAF6C000578043 /* Containers */ = {
+			isa = PBXGroup;
+			children = (
+				A7F5CE3222CAF6C000578043 /* AdaptiveBehavior.swift */,
+				A7F5CE3322CAF6C000578043 /* AdaptiveConstraintContainer.swift */,
+				A7F5CE3422CAF6C000578043 /* AdaptiveViewContainer.swift */,
+			);
+			path = Containers;
+			sourceTree = "<group>";
+		};
+		A7F5CE3522CAF6C000578043 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				A7F5CE3622CAF6C000578043 /* AdaptiveAttribute.swift */,
+				A7F5CE3822CAF6C000578043 /* AdaptiveElement.swift */,
+				A7F5CE3722CAF6C000578043 /* AdaptiveInterface.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		A7F5CE3922CAF6C000578043 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				A7F5CE3A22CAF6C000578043 /* FluidAnimatorCompatible.swift */,
+				A7F5CE4722CAF6C000578043 /* FluidAnimatorEasing.swift */,
+				A7F5CE3B22CAF6C000578043 /* FluidAnimatorState.swift */,
+				A7F5CE4822CAF6C000578043 /* CoreAnimation */,
+				A7F5CE3C22CAF6C000578043 /* PropertyAnimator */,
+				A7F5CE4422CAF6C000578043 /* RobertPenner */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
+		A7F5CE3C22CAF6C000578043 /* PropertyAnimator */ = {
+			isa = PBXGroup;
+			children = (
+				A7F5CE4222CAF6C000578043 /* FluidInterruptibleAnimator.swift */,
+				A7F5CE4122CAF6C000578043 /* FluidPropertyAnimator.swift */,
+				A7F5CE4022CAF6C000578043 /* FluidPropertyAnimator+Core.swift */,
+				A7F5CE3D22CAF6C000578043 /* FluidPropertyAnimator+Initializer.swift */,
+				A7F5CE3E22CAF6C000578043 /* FluidPropertyAnimator+Observing.swift */,
+				A7F5CE4322CAF6C000578043 /* FluidPropertyAnimator+Unavailable.swift */,
+				A7F5CE3F22CAF6C000578043 /* UIViewAnimating+Extension.swift */,
+			);
+			path = PropertyAnimator;
+			sourceTree = "<group>";
+		};
+		A7F5CE4422CAF6C000578043 /* RobertPenner */ = {
+			isa = PBXGroup;
+			children = (
+				A7F5CE4522CAF6C000578043 /* PennerEasing.swift */,
+				A7F5CE4622CAF6C000578043 /* PennerEasingFunction.swift */,
+			);
+			path = RobertPenner;
+			sourceTree = "<group>";
+		};
+		A7F5CE4822CAF6C000578043 /* CoreAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				A7F5CE5122CAF6C000578043 /* CAProgressLayer.swift */,
+				A7F5CE4D22CAF6C000578043 /* FluidCoreAnimator.swift */,
+				A7F5CE5022CAF6C000578043 /* FluidCoreAnimator+Core.swift */,
+				A7F5CE5222CAF6C000578043 /* FluidCoreAnimator+Helper.swift */,
+				A7F5CE4A22CAF6C000578043 /* FluidCoreAnimator+Initializer.swift */,
+				A7F5CE4922CAF6C000578043 /* FluidCoreAnimatorError.swift */,
+				A7F5CE4C22CAF6C000578043 /* FluidCoreAnimatorKeyPath.swift */,
+				A7F5CE4F22CAF6C000578043 /* FluidCoreAnimatorLayerConvertible.swift */,
+				A7F5CE4B22CAF6C000578043 /* FluidCoreAnimatorTransitionType.swift */,
+				A7F5CE4E22CAF6C000578043 /* FluidCoreAnimatorValidator.swift */,
+			);
+			path = CoreAnimation;
+			sourceTree = "<group>";
+		};
+		A7F5CE5322CAF6C000578043 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				A7F5CE8022CAF6C100578043 /* Animator */,
+				A7F5CE7822CAF6C000578043 /* Delegate */,
+				A7F5CE5722CAF6C000578043 /* Driver */,
+				A7F5CE6B22CAF6C000578043 /* Enumeration */,
+				A7F5CE9022CAF6C100578043 /* Gesture */,
+				A7F5CE9D22CAF6C100578043 /* Parameter */,
+				A7F5CE5422CAF6C000578043 /* Proxy */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		A7F5CE5422CAF6C000578043 /* Proxy */ = {
+			isa = PBXGroup;
+			children = (
+				A7F5CE5622CAF6C000578043 /* FluidProxy.swift */,
+				A7F5CE5522CAF6C000578043 /* FluidProxy+UIViewController.swift */,
+			);
+			path = Proxy;
+			sourceTree = "<group>";
+		};
+		A7F5CE5722CAF6C000578043 /* Driver */ = {
+			isa = PBXGroup;
+			children = (
+				A7F5CE6622CAF6C000578043 /* Implementation */,
+				A7F5CE5822CAF6C000578043 /* Protocol */,
+			);
+			path = Driver;
+			sourceTree = "<group>";
+		};
+		A7F5CE5822CAF6C000578043 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				A7F5CE5B22CAF6C000578043 /* FluidDismissDriverCompatible.swift */,
+				A7F5CE5A22CAF6C000578043 /* FluidDismissDriverCompatible+Animated.swift */,
+				A7F5CE5D22CAF6C000578043 /* FluidDismissDriverCompatible+Delegate.swift */,
+				A7F5CE6522CAF6C000578043 /* FluidDismissDriverCompatible+Interactive.swift */,
+				A7F5CE5C22CAF6C000578043 /* FluidDriverCompatible.swift */,
+				A7F5CE6222CAF6C000578043 /* FluidDriverCompatible+Animated.swift */,
+				A7F5CE6422CAF6C000578043 /* FluidDriverCompatible+Configuration.swift */,
+				A7F5CE6022CAF6C000578043 /* FluidDriverCompatible+Interactive.swift */,
+				A7F5CE5922CAF6C000578043 /* FluidDriverType.swift */,
+				A7F5CE5F22CAF6C000578043 /* FluidPresentDriverCompatible.swift */,
+				A7F5CE6322CAF6C000578043 /* FluidPresentDriverCompatible+Animated.swift */,
+				A7F5CE6122CAF6C000578043 /* FluidPresentDriverCompatible+Delegate.swift */,
+				A7F5CE5E22CAF6C000578043 /* FluidPresentDriverCompatible+Interactive.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		A7F5CE6622CAF6C000578043 /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				A7F5CE6A22CAF6C000578043 /* FluidNavigationDismissDriver.swift */,
+				A7F5CE6922CAF6C000578043 /* FluidNavigationPresentDriver.swift */,
+				A7F5CE6722CAF6C000578043 /* FluidTransitionDismissDriver.swift */,
+				A7F5CE6822CAF6C000578043 /* FluidTransitionPresentDriver.swift */,
+			);
+			path = Implementation;
+			sourceTree = "<group>";
+		};
+		A7F5CE6B22CAF6C000578043 /* Enumeration */ = {
+			isa = PBXGroup;
+			children = (
+				A7F5CE7422CAF6C000578043 /* FluidAnimationType.swift */,
+				A7F5CE7022CAF6C000578043 /* FluidBackgroundStyle.swift */,
+				A7F5CE7322CAF6C000578043 /* FluidConst.swift */,
+				A7F5CE7122CAF6C000578043 /* FluidCoreAnimatorOption.swift */,
+				A7F5CE7722CAF6C000578043 /* FluidFrameDimension.swift */,
+				A7F5CE6E22CAF6C000578043 /* FluidFrameStyle.swift */,
+				A7F5CE7522CAF6C000578043 /* FluidInteractionType.swift */,
+				A7F5CE7622CAF6C000578043 /* FluidNavigationStyle.swift */,
+				A7F5CE6F22CAF6C000578043 /* FluidPresentationStyle.swift */,
+				A7F5CE7222CAF6C000578043 /* FluidProgressState.swift */,
+				A7F5CE6C22CAF6C000578043 /* FluidRoundCornerStyle.swift */,
+				A7F5CE6D22CAF6C000578043 /* FluidTransitionStyle.swift */,
+			);
+			path = Enumeration;
+			sourceTree = "<group>";
+		};
+		A7F5CE7822CAF6C000578043 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				A7F5CE7B22CAF6C100578043 /* FluidControllerDelegateCompatible.swift */,
+				A7F5CE7C22CAF6C100578043 /* FluidDelegate.swift */,
+				A7F5CE7922CAF6C100578043 /* FluidNavigationControllerDelegate.swift */,
+				A7F5CE7A22CAF6C100578043 /* FluidNavigationDelegate.swift */,
+				A7F5CE7E22CAF6C100578043 /* FluidTransitionDelegate.swift */,
+				A7F5CE7F22CAF6C100578043 /* FluidViewControllerTransitioningDelegate.swift */,
+				A7F5CE7D22CAF6C100578043 /* Typealias.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
+		A7F5CE8022CAF6C100578043 /* Animator */ = {
+			isa = PBXGroup;
+			children = (
+				A7F5CE8722CAF6C100578043 /* Implementation */,
+				A7F5CE8122CAF6C100578043 /* Protocol */,
+			);
+			path = Animator;
+			sourceTree = "<group>";
+		};
+		A7F5CE8122CAF6C100578043 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				A7F5CE8322CAF6C100578043 /* FluidViewAnimatorCompatible.swift */,
+				A7F5CE8222CAF6C100578043 /* FluidViewAnimatorCompatible+Configuration.swift */,
+				A7F5CE8422CAF6C100578043 /* FluidViewAnimatorCompatible+Core.swift */,
+				A7F5CE8622CAF6C100578043 /* FluidViewAnimatorCompatible+Helper.swift */,
+				A7F5CE8522CAF6C100578043 /* FluidViewAnimatorTimer.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		A7F5CE8722CAF6C100578043 /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				A7F5CE8D22CAF6C100578043 /* FluidNavigationViewAnimator.swift */,
+				A7F5CE8E22CAF6C100578043 /* FluidNavigationViewAnimator+Animated.swift */,
+				A7F5CE8B22CAF6C100578043 /* FluidNavigationViewAnimator+Configuration.swift */,
+				A7F5CE8F22CAF6C100578043 /* FluidNavigationViewAnimator+Interactive.swift */,
+				A7F5CE8C22CAF6C100578043 /* FluidTransitionViewAnimator.swift */,
+				A7F5CE8822CAF6C100578043 /* FluidTransitionViewAnimator+Animated.swift */,
+				A7F5CE8A22CAF6C100578043 /* FluidTransitionViewAnimator+Configuration.swift */,
+				A7F5CE8922CAF6C100578043 /* FluidTransitionViewAnimator+Interactive.swift */,
+			);
+			path = Implementation;
+			sourceTree = "<group>";
+		};
+		A7F5CE9022CAF6C100578043 /* Gesture */ = {
+			isa = PBXGroup;
+			children = (
+				A7F5CE9822CAF6C100578043 /* Implementation */,
+				A7F5CE9122CAF6C100578043 /* Protocol */,
+			);
+			path = Gesture;
+			sourceTree = "<group>";
+		};
+		A7F5CE9122CAF6C100578043 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				A7F5CE9522CAF6C100578043 /* FluidGestureAxis.swift */,
+				A7F5CE9222CAF6C100578043 /* FluidGestureDelegate.swift */,
+				A7F5CE9722CAF6C100578043 /* FluidGestureDirection.swift */,
+				A7F5CE9622CAF6C100578043 /* FluidGestureInfo.swift */,
+				A7F5CE9422CAF6C100578043 /* FluidGestureObservable.swift */,
+				A7F5CE9322CAF6C100578043 /* FluidScrollObservable.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		A7F5CE9822CAF6C100578043 /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				A7F5CE9A22CAF6C100578043 /* FluidNavigationGestureObserver.swift */,
+				A7F5CE9B22CAF6C100578043 /* FluidNavigationScrollObserver.swift */,
+				A7F5CE9C22CAF6C100578043 /* FluidTransitionGestureObserver.swift */,
+				A7F5CE9922CAF6C100578043 /* FluidTransitionScrollObserver.swift */,
+			);
+			path = Implementation;
+			sourceTree = "<group>";
+		};
+		A7F5CE9D22CAF6C100578043 /* Parameter */ = {
+			isa = PBXGroup;
+			children = (
+				A7F5CEA222CAF6C100578043 /* Implementation */,
+				A7F5CE9E22CAF6C100578043 /* Protocol */,
+			);
+			path = Parameter;
+			sourceTree = "<group>";
+		};
+		A7F5CE9E22CAF6C100578043 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				A7F5CE9F22CAF6C100578043 /* FluidParametersAccessible.swift */,
+				A7F5CEA122CAF6C100578043 /* FluidParametersCompatible.swift */,
+				A7F5CEA022CAF6C100578043 /* FluidParametersCompatible+Configuration.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		A7F5CEA222CAF6C100578043 /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				A7F5CEA522CAF6C100578043 /* FluidNavigationParameters.swift */,
+				A7F5CEA422CAF6C100578043 /* FluidNavigationParameters+Configuration.swift */,
+				A7F5CEA622CAF6C100578043 /* FluidTransitionParameters.swift */,
+				A7F5CEA322CAF6C100578043 /* FluidTransitionParameters+Configuration.swift */,
+			);
+			path = Implementation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1436,133 +1436,133 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A77767622243287A007F1802 /* AdaptiveAttribute.swift in Sources */,
-				A777675F2243287A007F1802 /* AdaptiveBehavior.swift in Sources */,
-				A77767602243287A007F1802 /* AdaptiveConstraintContainer.swift in Sources */,
-				A77767642243287A007F1802 /* AdaptiveElement.swift in Sources */,
-				A77767632243287A007F1802 /* AdaptiveInterface.swift in Sources */,
-				A77767612243287A007F1802 /* AdaptiveViewContainer.swift in Sources */,
-				A777673E2243287A007F1802 /* AssociatedObject.swift in Sources */,
-				A77767542243287A007F1802 /* CAProgressLayer.swift in Sources */,
-				A777673C2243287A007F1802 /* CoreGraphics+Ext.swift in Sources */,
-				A77767662243287A007F1802 /* Debug.swift in Sources */,
-				A777675D2243287A007F1802 /* DisplayGamut.swift in Sources */,
-				A7167FE0228FAC3300C16D12 /* FluidAnimationType.swift in Sources */,
-				A77767402243287A007F1802 /* FluidAnimatorCompatible.swift in Sources */,
-				A777674B2243287A007F1802 /* FluidAnimatorEasing.swift in Sources */,
-				A77767412243287A007F1802 /* FluidAnimatorState.swift in Sources */,
-				A7167FDC228FAC3300C16D12 /* FluidBackgroundStyle.swift in Sources */,
-				A777676E2243287A007F1802 /* FluidBackgroundView.swift in Sources */,
-				A7167FDF228FAC3300C16D12 /* FluidConst.swift in Sources */,
-				A7167FE6228FAC3300C16D12 /* FluidControllerDelegateCompatible.swift in Sources */,
-				A77767532243287A007F1802 /* FluidCoreAnimator+Core.swift in Sources */,
-				A77767552243287A007F1802 /* FluidCoreAnimator+Helper.swift in Sources */,
-				A777674D2243287A007F1802 /* FluidCoreAnimator+Initializer.swift in Sources */,
-				A77767502243287A007F1802 /* FluidCoreAnimator.swift in Sources */,
-				A777674C2243287A007F1802 /* FluidCoreAnimatorError.swift in Sources */,
-				A777674F2243287A007F1802 /* FluidCoreAnimatorKeyPath.swift in Sources */,
-				A77BC28A2298FC9200CE107C /* FluidNavigationViewAnimator+Interactive.swift in Sources */,
-				A77767522243287A007F1802 /* FluidCoreAnimatorLayerConvertible.swift in Sources */,
-				A7167FDD228FAC3300C16D12 /* FluidCoreAnimatorOption.swift in Sources */,
-				A777674E2243287A007F1802 /* FluidCoreAnimatorTransitionType.swift in Sources */,
-				A77767512243287A007F1802 /* FluidCoreAnimatorValidator.swift in Sources */,
-				A77767692243287A007F1802 /* FluidCornerMaskLayer.swift in Sources */,
-				A7167FE7228FAC3300C16D12 /* FluidDelegate.swift in Sources */,
-				DFABECA8989D382F89B9A60E /* FluidDriverCompatible+Animated.swift in Sources */,
-				A7167FC0228FAC3300C16D12 /* FluidDriverCompatible+Configuration.swift in Sources */,
-				DFABE4E24115F1FF27C80FE7 /* FluidDriverCompatible+Interactive.swift in Sources */,
-				A7167FBE228FAC3300C16D12 /* FluidDriverCompatible.swift in Sources */,
-				A7167FBD228FAC3300C16D12 /* FluidDriverType.swift in Sources */,
-				A77767652243287A007F1802 /* FluidError.swift in Sources */,
-				A7167FE3228FAC3300C16D12 /* FluidFrameDimension.swift in Sources */,
-				A7167FDA228FAC3300C16D12 /* FluidFrameStyle.swift in Sources */,
-				A7167FEE228FAC3300C16D12 /* FluidGestureAxis.swift in Sources */,
-				A7167FEB228FAC3300C16D12 /* FluidGestureDelegate.swift in Sources */,
-				A7167FF0228FAC3300C16D12 /* FluidGestureDirection.swift in Sources */,
-				A7167FEF228FAC3300C16D12 /* FluidGestureInfo.swift in Sources */,
-				A7167FED228FAC3300C16D12 /* FluidGestureObservable.swift in Sources */,
-				A7167FE1228FAC3300C16D12 /* FluidInteractionType.swift in Sources */,
-				A777676A2243287A007F1802 /* FluidInteractiveView.swift in Sources */,
-				A77767472243287A007F1802 /* FluidInterruptibleAnimator.swift in Sources */,
-				A777676C2243287A007F1802 /* FluidInterruptibleView.swift in Sources */,
-				A77767372243287A007F1802 /* FluidLayout+Generator.swift in Sources */,
-				A77767362243287A007F1802 /* FluidLayout.swift in Sources */,
-				A77767382243287A007F1802 /* FluidLayoutConstant.swift in Sources */,
-				A7167FE4228FAC3300C16D12 /* FluidNavigationControllerDelegate.swift in Sources */,
-				A7167FE5228FAC3300C16D12 /* FluidNavigationDelegate.swift in Sources */,
-				A716800F228FC2D800C16D12 /* FluidNavigationDismissDriver.swift in Sources */,
-				A7167FF2228FAC3300C16D12 /* FluidNavigationGestureObserver.swift in Sources */,
-				A7167FF8228FAC3300C16D12 /* FluidNavigationParameters+Configuration.swift in Sources */,
-				A7167FF9228FAC3300C16D12 /* FluidNavigationParameters.swift in Sources */,
-				A7168014228FC2D800C16D12 /* FluidNavigationPresentDriver.swift in Sources */,
-				A7167FD6228FAC3300C16D12 /* FluidNavigationViewAnimator.swift in Sources */,
-				A7167FF3228FAC3300C16D12 /* FluidNavigationScrollObserver.swift in Sources */,
-				A7167FE2228FAC3300C16D12 /* FluidNavigationStyle.swift in Sources */,
-				A7167FF5228FAC3300C16D12 /* FluidParametersAccessible.swift in Sources */,
-				A7167FF6228FAC3300C16D12 /* FluidParametersCompatible.swift in Sources */,
-				A7167FDB228FAC3300C16D12 /* FluidPresentationStyle.swift in Sources */,
-				A7167FD4228FAC3300C16D12 /* FluidViewAnimatorCompatible+Configuration.swift in Sources */,
-				A7167FCD228FAC3300C16D12 /* FluidViewAnimatorCompatible+Core.swift in Sources */,
-				A7167FCF228FAC3300C16D12 /* FluidViewAnimatorCompatible+Helper.swift in Sources */,
-				A7167FCC228FAC3300C16D12 /* FluidViewAnimatorCompatible.swift in Sources */,
-				A7167FD2228FAC3300C16D12 /* FluidViewAnimatorTimer.swift in Sources */,
-				A7167FDE228FAC3300C16D12 /* FluidProgressState.swift in Sources */,
-				A777676D2243287A007F1802 /* FluidProgressView.swift in Sources */,
-				A77767452243287A007F1802 /* FluidPropertyAnimator+Core.swift in Sources */,
-				A77767422243287A007F1802 /* FluidPropertyAnimator+Initializer.swift in Sources */,
-				A77767432243287A007F1802 /* FluidPropertyAnimator+Observing.swift in Sources */,
-				A77767482243287A007F1802 /* FluidPropertyAnimator+Unavailable.swift in Sources */,
-				A77767462243287A007F1802 /* FluidPropertyAnimator.swift in Sources */,
-				A77BC28E2298FCDB00CE107C /* FluidTransitionViewAnimator+Interactive.swift in Sources */,
-				A7167FBB228FAC3300C16D12 /* FluidProxy+UIViewController.swift in Sources */,
-				A7167FBC228FAC3300C16D12 /* FluidProxy.swift in Sources */,
-				A7167FD8228FAC3300C16D12 /* FluidRoundCornerStyle.swift in Sources */,
-				A7167FEC228FAC3300C16D12 /* FluidScrollObservable.swift in Sources */,
-				A777676B2243287A007F1802 /* FluidShadowLayer.swift in Sources */,
-				A777676F2243287A007F1802 /* FluidShadowView.swift in Sources */,
-				A7167FE9228FAC3300C16D12 /* FluidTransitionDelegate.swift in Sources */,
-				A7168019228FC2D800C16D12 /* FluidTransitionDismissDriver.swift in Sources */,
-				A7167FF4228FAC3300C16D12 /* FluidTransitionGestureObserver.swift in Sources */,
-				A7167FF7228FAC3300C16D12 /* FluidTransitionParameters+Configuration.swift in Sources */,
-				A7167FFA228FAC3300C16D12 /* FluidTransitionParameters.swift in Sources */,
-				A716801E228FC2D800C16D12 /* FluidTransitionPresentDriver.swift in Sources */,
-				A7167FD7228FAC3300C16D12 /* FluidTransitionViewAnimator.swift in Sources */,
-				A7167FF1228FAC3300C16D12 /* FluidTransitionScrollObserver.swift in Sources */,
-				A7167FD9228FAC3300C16D12 /* FluidTransitionStyle.swift in Sources */,
-				A7167FEA228FAC3300C16D12 /* FluidViewControllerTransitioningDelegate.swift in Sources */,
-				A77767352243287A007F1802 /* Fluidable+Swizzle.swift in Sources */,
-				A71F678A21C52AC0007CADA0 /* Fluidable.swift in Sources */,
-				A77767592243287A007F1802 /* ForceTouch.swift in Sources */,
-				A777673A2243287A007F1802 /* Foundation+Ext.swift in Sources */,
-				A77767582243287A007F1802 /* Idiom.swift in Sources */,
-				A777675B2243287A007F1802 /* LayoutDirection.swift in Sources */,
-				A77767492243287A007F1802 /* PennerEasing.swift in Sources */,
-				A777674A2243287A007F1802 /* PennerEasingFunction.swift in Sources */,
-				A777673D2243287A007F1802 /* QuartzCore+Ext.swift in Sources */,
-				A777675E2243287A007F1802 /* Scale.swift in Sources */,
-				A777675A2243287A007F1802 /* SizeCategory.swift in Sources */,
-				A777675C2243287A007F1802 /* SizeClass.swift in Sources */,
-				A777673F2243287A007F1802 /* Swizzle.swift in Sources */,
-				A77BC28C2298FCCD00CE107C /* FluidTransitionViewAnimator+Configuration.swift in Sources */,
-				A7167FE8228FAC3300C16D12 /* Typealias.swift in Sources */,
-				A777673B2243287A007F1802 /* UIKit+Ext.swift in Sources */,
-				A77767562243287A007F1802 /* UITraitCollection+Adaptive.swift in Sources */,
-				A77767442243287A007F1802 /* UIViewAnimating+Extension.swift in Sources */,
-				DFABED542ED3CC9941604F3E /* VectorMath.swift in Sources */,
-				DFABE44A513816EFB09E2878 /* FluidPresentDriverCompatible.swift in Sources */,
-				DFABE351AC453AE00DB45C22 /* FluidDismissDriverCompatible.swift in Sources */,
-				DFABEFD356CF10DEA945002F /* FluidPresentDriverCompatible+Animated.swift in Sources */,
-				DFABE0EA19C4B0DC603309B8 /* FluidDismissDriverCompatible+Animated.swift in Sources */,
-				A77BC2882298FC7E00CE107C /* FluidNavigationViewAnimator+Configuration.swift in Sources */,
-				DFABE1D72191FFBEE8DA903D /* FluidPresentDriverCompatible+Interactive.swift in Sources */,
-				DFABE2C9A0376E3FB5A6461B /* FluidPresentDriverCompatible+Delegate.swift in Sources */,
-				DFABEE289BB2B44CF0CAE9C4 /* FluidDismissDriverCompatible+Interactive.swift in Sources */,
-				DFABE8838D076BAA2AE9F639 /* FluidDismissDriverCompatible+Delegate.swift in Sources */,
-				DFABE240DE437855BE8CEEB7 /* FluidNavigationViewAnimator+Animated.swift in Sources */,
-				DFABEBA5047C894A38FF05F2 /* FluidTransitionViewAnimator+Animated.swift in Sources */,
-				DFABEB88E7A79B3CB3157356 /* NSObject+Ext.swift in Sources */,
-				DFABEBFF0D9EDA606CA8F4F6 /* Fluidable+SafeArea.swift in Sources */,
-				DFABE5F9DA4D1B4437EFA6F7 /* FluidParametersCompatible+Configuration.swift in Sources */,
+				A7F5CEC622CAF6C100578043 /* AdaptiveAttribute.swift in Sources */,
+				A7F5CEC322CAF6C100578043 /* AdaptiveBehavior.swift in Sources */,
+				A7F5CEC422CAF6C100578043 /* AdaptiveConstraintContainer.swift in Sources */,
+				A7F5CEC822CAF6C100578043 /* AdaptiveElement.swift in Sources */,
+				A7F5CEC722CAF6C100578043 /* AdaptiveInterface.swift in Sources */,
+				A7F5CEC522CAF6C100578043 /* AdaptiveViewContainer.swift in Sources */,
+				A7F5CEB922CAF6C100578043 /* AssociatedObject.swift in Sources */,
+				A7F5CEDD22CAF6C100578043 /* CAProgressLayer.swift in Sources */,
+				A7F5CEB622CAF6C100578043 /* CoreGraphics+Ext.swift in Sources */,
+				A7F5CEB222CAF6C100578043 /* Debug.swift in Sources */,
+				A7F5CEC122CAF6C100578043 /* DisplayGamut.swift in Sources */,
+				A7F5CEFA22CAF6C100578043 /* FluidAnimationType.swift in Sources */,
+				A7F5CEC922CAF6C100578043 /* FluidAnimatorCompatible.swift in Sources */,
+				A7F5CED422CAF6C100578043 /* FluidAnimatorEasing.swift in Sources */,
+				A7F5CECA22CAF6C100578043 /* FluidAnimatorState.swift in Sources */,
+				A7F5CEF622CAF6C100578043 /* FluidBackgroundStyle.swift in Sources */,
+				A7F5CEB022CAF6C100578043 /* FluidBackgroundView.swift in Sources */,
+				A7F5CEF922CAF6C100578043 /* FluidConst.swift in Sources */,
+				A7F5CF0022CAF6C100578043 /* FluidControllerDelegateCompatible.swift in Sources */,
+				A7F5CEDC22CAF6C100578043 /* FluidCoreAnimator+Core.swift in Sources */,
+				A7F5CEDE22CAF6C100578043 /* FluidCoreAnimator+Helper.swift in Sources */,
+				A7F5CED622CAF6C100578043 /* FluidCoreAnimator+Initializer.swift in Sources */,
+				A7F5CED922CAF6C100578043 /* FluidCoreAnimator.swift in Sources */,
+				A7F5CED522CAF6C100578043 /* FluidCoreAnimatorError.swift in Sources */,
+				A7F5CED822CAF6C100578043 /* FluidCoreAnimatorKeyPath.swift in Sources */,
+				A7F5CEDB22CAF6C100578043 /* FluidCoreAnimatorLayerConvertible.swift in Sources */,
+				A7F5CEF722CAF6C100578043 /* FluidCoreAnimatorOption.swift in Sources */,
+				A7F5CED722CAF6C100578043 /* FluidCoreAnimatorTransitionType.swift in Sources */,
+				A7F5CEDA22CAF6C100578043 /* FluidCoreAnimatorValidator.swift in Sources */,
+				A7F5CEAB22CAF6C100578043 /* FluidCornerMaskLayer.swift in Sources */,
+				A7F5CF0122CAF6C100578043 /* FluidDelegate.swift in Sources */,
+				A7F5CEE222CAF6C100578043 /* FluidDismissDriverCompatible+Animated.swift in Sources */,
+				A7F5CEE522CAF6C100578043 /* FluidDismissDriverCompatible+Delegate.swift in Sources */,
+				A7F5CEED22CAF6C100578043 /* FluidDismissDriverCompatible+Interactive.swift in Sources */,
+				A7F5CEE322CAF6C100578043 /* FluidDismissDriverCompatible.swift in Sources */,
+				A7F5CEEA22CAF6C100578043 /* FluidDriverCompatible+Animated.swift in Sources */,
+				A7F5CEEC22CAF6C100578043 /* FluidDriverCompatible+Configuration.swift in Sources */,
+				A7F5CEE822CAF6C100578043 /* FluidDriverCompatible+Interactive.swift in Sources */,
+				A7F5CEE422CAF6C100578043 /* FluidDriverCompatible.swift in Sources */,
+				A7F5CEE122CAF6C100578043 /* FluidDriverType.swift in Sources */,
+				A7F5CEAA22CAF6C100578043 /* FluidError.swift in Sources */,
+				A7F5CEFD22CAF6C100578043 /* FluidFrameDimension.swift in Sources */,
+				A7F5CEF422CAF6C100578043 /* FluidFrameStyle.swift in Sources */,
+				A7F5CF1522CAF6C100578043 /* FluidGestureAxis.swift in Sources */,
+				A7F5CF1222CAF6C100578043 /* FluidGestureDelegate.swift in Sources */,
+				A7F5CF1722CAF6C100578043 /* FluidGestureDirection.swift in Sources */,
+				A7F5CF1622CAF6C100578043 /* FluidGestureInfo.swift in Sources */,
+				A7F5CF1422CAF6C100578043 /* FluidGestureObservable.swift in Sources */,
+				A7F5CEFB22CAF6C100578043 /* FluidInteractionType.swift in Sources */,
+				A7F5CEAC22CAF6C100578043 /* FluidInteractiveView.swift in Sources */,
+				A7F5CED022CAF6C100578043 /* FluidInterruptibleAnimator.swift in Sources */,
+				A7F5CEAE22CAF6C100578043 /* FluidInterruptibleView.swift in Sources */,
+				A7F5CEA822CAF6C100578043 /* FluidLayout+Generator.swift in Sources */,
+				A7F5CEA722CAF6C100578043 /* FluidLayout.swift in Sources */,
+				A7F5CEA922CAF6C100578043 /* FluidLayoutConstant.swift in Sources */,
+				A7F5CEFE22CAF6C100578043 /* FluidNavigationControllerDelegate.swift in Sources */,
+				A7F5CEFF22CAF6C100578043 /* FluidNavigationDelegate.swift in Sources */,
+				A7F5CEF122CAF6C100578043 /* FluidNavigationDismissDriver.swift in Sources */,
+				A7F5CF1922CAF6C100578043 /* FluidNavigationGestureObserver.swift in Sources */,
+				A7F5CF2022CAF6C100578043 /* FluidNavigationParameters+Configuration.swift in Sources */,
+				A7F5CF2122CAF6C100578043 /* FluidNavigationParameters.swift in Sources */,
+				A7F5CEF022CAF6C100578043 /* FluidNavigationPresentDriver.swift in Sources */,
+				A7F5CF1A22CAF6C100578043 /* FluidNavigationScrollObserver.swift in Sources */,
+				A7F5CEFC22CAF6C100578043 /* FluidNavigationStyle.swift in Sources */,
+				A7F5CF1022CAF6C100578043 /* FluidNavigationViewAnimator+Animated.swift in Sources */,
+				A7F5CF0D22CAF6C100578043 /* FluidNavigationViewAnimator+Configuration.swift in Sources */,
+				A7F5CF1122CAF6C100578043 /* FluidNavigationViewAnimator+Interactive.swift in Sources */,
+				A7F5CF0F22CAF6C100578043 /* FluidNavigationViewAnimator.swift in Sources */,
+				A7F5CF1C22CAF6C100578043 /* FluidParametersAccessible.swift in Sources */,
+				A7F5CF1D22CAF6C100578043 /* FluidParametersCompatible+Configuration.swift in Sources */,
+				A7F5CF1E22CAF6C100578043 /* FluidParametersCompatible.swift in Sources */,
+				A7F5CEEB22CAF6C100578043 /* FluidPresentDriverCompatible+Animated.swift in Sources */,
+				A7F5CEE922CAF6C100578043 /* FluidPresentDriverCompatible+Delegate.swift in Sources */,
+				A7F5CEE622CAF6C100578043 /* FluidPresentDriverCompatible+Interactive.swift in Sources */,
+				A7F5CEE722CAF6C100578043 /* FluidPresentDriverCompatible.swift in Sources */,
+				A7F5CEF522CAF6C100578043 /* FluidPresentationStyle.swift in Sources */,
+				A7F5CEF822CAF6C100578043 /* FluidProgressState.swift in Sources */,
+				A7F5CEAF22CAF6C100578043 /* FluidProgressView.swift in Sources */,
+				A7F5CECE22CAF6C100578043 /* FluidPropertyAnimator+Core.swift in Sources */,
+				A7F5CECB22CAF6C100578043 /* FluidPropertyAnimator+Initializer.swift in Sources */,
+				A7F5CECC22CAF6C100578043 /* FluidPropertyAnimator+Observing.swift in Sources */,
+				A7F5CED122CAF6C100578043 /* FluidPropertyAnimator+Unavailable.swift in Sources */,
+				A7F5CECF22CAF6C100578043 /* FluidPropertyAnimator.swift in Sources */,
+				A7F5CEDF22CAF6C100578043 /* FluidProxy+UIViewController.swift in Sources */,
+				A7F5CEE022CAF6C100578043 /* FluidProxy.swift in Sources */,
+				A7F5CEF222CAF6C100578043 /* FluidRoundCornerStyle.swift in Sources */,
+				A7F5CF1322CAF6C100578043 /* FluidScrollObservable.swift in Sources */,
+				A7F5CEAD22CAF6C100578043 /* FluidShadowLayer.swift in Sources */,
+				A7F5CEB122CAF6C100578043 /* FluidShadowView.swift in Sources */,
+				A7F5CF0322CAF6C100578043 /* FluidTransitionDelegate.swift in Sources */,
+				A7F5CEEE22CAF6C100578043 /* FluidTransitionDismissDriver.swift in Sources */,
+				A7F5CF1B22CAF6C100578043 /* FluidTransitionGestureObserver.swift in Sources */,
+				A7F5CF1F22CAF6C100578043 /* FluidTransitionParameters+Configuration.swift in Sources */,
+				A7F5CF2222CAF6C100578043 /* FluidTransitionParameters.swift in Sources */,
+				A7F5CEEF22CAF6C100578043 /* FluidTransitionPresentDriver.swift in Sources */,
+				A7F5CF1822CAF6C100578043 /* FluidTransitionScrollObserver.swift in Sources */,
+				A7F5CEF322CAF6C100578043 /* FluidTransitionStyle.swift in Sources */,
+				A7F5CF0A22CAF6C100578043 /* FluidTransitionViewAnimator+Animated.swift in Sources */,
+				A7F5CF0C22CAF6C100578043 /* FluidTransitionViewAnimator+Configuration.swift in Sources */,
+				A7F5CF0B22CAF6C100578043 /* FluidTransitionViewAnimator+Interactive.swift in Sources */,
+				A7F5CF0E22CAF6C100578043 /* FluidTransitionViewAnimator.swift in Sources */,
+				A7F5CF0522CAF6C100578043 /* FluidViewAnimatorCompatible+Configuration.swift in Sources */,
+				A7F5CF0722CAF6C100578043 /* FluidViewAnimatorCompatible+Core.swift in Sources */,
+				A7F5CF0922CAF6C100578043 /* FluidViewAnimatorCompatible+Helper.swift in Sources */,
+				A7F5CF0622CAF6C100578043 /* FluidViewAnimatorCompatible.swift in Sources */,
+				A7F5CF0822CAF6C100578043 /* FluidViewAnimatorTimer.swift in Sources */,
+				A7F5CF0422CAF6C100578043 /* FluidViewControllerTransitioningDelegate.swift in Sources */,
+				A7F5CF2E22CAF80D00578043 /* Fluidable+SafeArea.swift in Sources */,
+				A7F5CF2C22CAF80D00578043 /* Fluidable+Swizzle.swift in Sources */,
+				A7F5CF2D22CAF80D00578043 /* Fluidable.swift in Sources */,
+				A7F5CEBD22CAF6C100578043 /* ForceTouch.swift in Sources */,
+				A7F5CEB422CAF6C100578043 /* Foundation+Ext.swift in Sources */,
+				A7F5CEBC22CAF6C100578043 /* Idiom.swift in Sources */,
+				A7F5CEBF22CAF6C100578043 /* LayoutDirection.swift in Sources */,
+				A7F5CEB322CAF6C100578043 /* NSObject+Ext.swift in Sources */,
+				A7F5CED222CAF6C100578043 /* PennerEasing.swift in Sources */,
+				A7F5CED322CAF6C100578043 /* PennerEasingFunction.swift in Sources */,
+				A7F5CEB722CAF6C100578043 /* QuartzCore+Ext.swift in Sources */,
+				A7F5CEC222CAF6C100578043 /* Scale.swift in Sources */,
+				A7F5CEBE22CAF6C100578043 /* SizeCategory.swift in Sources */,
+				A7F5CEC022CAF6C100578043 /* SizeClass.swift in Sources */,
+				A7F5CEBA22CAF6C100578043 /* Swizzle.swift in Sources */,
+				A7F5CF0222CAF6C100578043 /* Typealias.swift in Sources */,
+				A7F5CEB522CAF6C100578043 /* UIKit+Ext.swift in Sources */,
+				A7F5CEBB22CAF6C100578043 /* UITraitCollection+Adaptive.swift in Sources */,
+				A7F5CECD22CAF6C100578043 /* UIViewAnimating+Extension.swift in Sources */,
+				A7F5CEB822CAF6C100578043 /* VectorMath.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1571,8 +1571,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A71F675421C50EA8007CADA0 /* EnumSpec.swift in Sources */,
-				A7D3A04422C7439500742D6D /* NSObject+Ext.swift in Sources */,
-				A7D3A04022C7429500742D6D /* Debug.swift in Sources */,
+				A7F5CF2622CAF6D100578043 /* NSObject+Ext.swift in Sources */,
+				A7F5CF2522CAF6D100578043 /* Debug.swift in Sources */,
 				A712403221CE2CB300883E13 /* HelperSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1587,7 +1587,7 @@
 				A725FB2121ED674500178F1F /* Buttons.swift in Sources */,
 				A7C7A98821EC93C2000687C9 /* CollectionCell.swift in Sources */,
 				A7C7A96821EC93C2000687C9 /* Config.swift in Sources */,
-				A77767892243297B007F1802 /* Debug.swift in Sources */,
+				A7F5CF2322CAF6D000578043 /* Debug.swift in Sources */,
 				A756F8FA21EEABBB00184FBF /* ExampleConst.swift in Sources */,
 				A7C7A96E21EC93C2000687C9 /* Extensions.swift in Sources */,
 				A7C7A98E21EC93C2000687C9 /* HeaderCell.swift in Sources */,
@@ -1618,7 +1618,7 @@
 				A7C7A98021EC93C2000687C9 /* TransitionTableViewController.swift in Sources */,
 				A7C7A98421EC93C2000687C9 /* TableCell.swift in Sources */,
 				A7C7A98621EC93C2000687C9 /* TableView.swift in Sources */,
-				A7D3A04322C7438700742D6D /* NSObject+Ext.swift in Sources */,
+				A7F5CF2422CAF6D000578043 /* NSObject+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1627,27 +1627,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				DFABE996DD1A19EC135F1B78 /* AlignedCollectionLayout.swift in Sources */,
-				A7D3A04522C7439600742D6D /* NSObject+Ext.swift in Sources */,
 				A725FB2A21ED6FBD00178F1F /* AlignedCollectionView.swift in Sources */,
 				A712404021CE426600883E13 /* AppDelegate.swift in Sources */,
 				A725FB2221ED674700178F1F /* Buttons.swift in Sources */,
 				A7C7A98921EC93C2000687C9 /* CollectionCell.swift in Sources */,
-				A7D3A02722C73E3000742D6D /* HeaderReusableView.swift in Sources */,
 				A7C7A96921EC93C2000687C9 /* Config.swift in Sources */,
+				A7F5CF2722CAF6D200578043 /* Debug.swift in Sources */,
 				A756F8FB21EEABBB00184FBF /* ExampleConst.swift in Sources */,
 				A7C7A96F21EC93C2000687C9 /* Extensions.swift in Sources */,
 				A7C7A98F21EC93C2000687C9 /* HeaderCell.swift in Sources */,
-				A7D3A02522C73E2900742D6D /* NavigationChildViewController.swift in Sources */,
+				A7D3A02722C73E3000742D6D /* HeaderReusableView.swift in Sources */,
 				A73FA6032228363000B9B993 /* HeaderView.swift in Sources */,
 				A7DF815421F9982F00CE3E1A /* HorizontalCollectionView.swift in Sources */,
 				A7C7A96D21EC93C2000687C9 /* LoremIpsum.swift in Sources */,
+				A7F5CF2822CAF6D200578043 /* NSObject+Ext.swift in Sources */,
+				A7D3A02622C73E2900742D6D /* NavigationBaseViewController.swift in Sources */,
+				A7D3A02522C73E2900742D6D /* NavigationChildViewController.swift in Sources */,
 				A7C7A97521EC93C2000687C9 /* NavigationCollectionViewController.swift in Sources */,
 				A7DF815121F990E500CE3E1A /* NavigationMultiCollectionViewController.swift in Sources */,
 				A7C7A97121EC93C2000687C9 /* NavigationRootNavigationController.swift in Sources */,
 				A7C7A97F21EC93C2000687C9 /* NavigationScrollViewController.swift in Sources */,
 				A7C7A97B21EC93C2000687C9 /* NavigationTableViewController.swift in Sources */,
 				A7C7A98321EC93C2000687C9 /* RootBaseCell.swift in Sources */,
-				A7D3A03D22C7400900742D6D /* Debug.swift in Sources */,
 				A7C7A99121EC93C2000687C9 /* RootImageCell.swift in Sources */,
 				A7C7A98B21EC93C2000687C9 /* RootImageTextCell.swift in Sources */,
 				A7C7A96B21EC93C2000687C9 /* RootModel.swift in Sources */,
@@ -1657,14 +1658,13 @@
 				A7BC6F0B222433EC007D70F0 /* RootViewController+Collection.swift in Sources */,
 				A7BC6F0A222433EC007D70F0 /* RootViewController+Fluidable.swift in Sources */,
 				A7BC6F09222433EC007D70F0 /* RootViewController.swift in Sources */,
+				A705A4B921CF1343006C9B67 /* Specs.swift in Sources */,
+				A7C7A98521EC93C2000687C9 /* TableCell.swift in Sources */,
+				A7C7A98721EC93C2000687C9 /* TableView.swift in Sources */,
 				A7C7A97721EC93C2000687C9 /* TransitionCollectionViewController.swift in Sources */,
 				A7DF814E21F990D300CE3E1A /* TransitionMultiCollectionViewController.swift in Sources */,
 				A7C7A97321EC93C2000687C9 /* TransitionScrollViewController.swift in Sources */,
 				A7C7A98121EC93C2000687C9 /* TransitionTableViewController.swift in Sources */,
-				A705A4B921CF1343006C9B67 /* Specs.swift in Sources */,
-				A7C7A98521EC93C2000687C9 /* TableCell.swift in Sources */,
-				A7D3A02622C73E2900742D6D /* NavigationBaseViewController.swift in Sources */,
-				A7C7A98721EC93C2000687C9 /* TableView.swift in Sources */,
 				A7F0132821D12B650022BF84 /* XCUIApplication+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
