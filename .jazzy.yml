@@ -5,33 +5,34 @@ author_url: http://gumob.com
 github_url: https://github.com/gumob/Fluidable
 copyright: 'Copyright © 2019 Gumob. All rights reserved.'
 
-min_acl: public
-clean: true
-
 readme: "README.md"
-output: "docs"
 documentation: "USAGE.md"
-
-skip_undocumented: true
-hide_documentation_coverage: true
 
 # theme: fullwidth
 theme: "themes/fullwidth-ex"
 
-source_directory: Sources
-umbrella_header: "Sources/Fluidable.h"
-sdk: iphone
 xcodebuild_arguments:
   - -project
   - ../Fluidable.xcodeproj
   - -scheme
   - Fluidable
 
+output: "docs"
+min_acl: public
+clean: true
+skip_undocumented: true
+hide_documentation_coverage: true
+source_directory: Sources
+umbrella_header: "Sources/Fluidable.h"
+
 exclude:
   - Sources/Layout/*.swift
   - Sources/Helper/*.swift
   - Sources/Shared/*.swift
   - Sources/View/*.swift
+  - Example/*
+  - Tests/*
+  - UITests/*
 
 custom_categories:
 
