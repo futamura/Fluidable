@@ -789,8 +789,8 @@ class EnumSpec: QuickSpec {
                         expect(fluid.defaultPresentEasing).to(equal(FluidAnimatorEasing.spring(dampingRatio: FluidConst.springDampingRatio, frequencyResponse: FluidConst.springFrequencyResponse)))
                         expect(scale.defaultPresentEasing).to(equal(FluidAnimatorEasing.spring(dampingRatio: FluidConst.springDampingRatio, frequencyResponse: FluidConst.springFrequencyResponse)))
                     } else {
-                        expect(fluid.defaultPresentEasing).to(equal(FluidAnimatorEasing.easeInQuad))
-                        expect(scale.defaultPresentEasing).to(equal(FluidAnimatorEasing.easeInQuad))
+                        expect(fluid.defaultPresentEasing).to(equal(FluidAnimatorEasing.easeInOutQuad))
+                        expect(scale.defaultPresentEasing).to(equal(FluidAnimatorEasing.easeInOutQuad))
                     }
                     expect(slideRight.defaultPresentEasing).to(equal(FluidAnimatorEasing.easeOutCubic))
                     expect(slideLeft.defaultPresentEasing).to(equal(FluidAnimatorEasing.easeOutCubic))

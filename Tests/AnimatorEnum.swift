@@ -139,37 +139,6 @@ class AnimatorSpec: QuickSpec {
                     expect(easeInOutBack.defaultDuration(fromFrame, toFrame, isPresenting: true)).to(beGreaterThan(0))
                     expect(cubicBezier.defaultDuration(fromFrame, toFrame, isPresenting: true)).to(beGreaterThan(0))
                     expect(spring.defaultDuration(fromFrame, toFrame, isPresenting: true)).to(beGreaterThan(0))
-
-//                    linear
-//                    easeIn
-//                    easeOut
-//                    easeInOut
-//                    easeInSine
-//                    easeOutSine
-//                    easeInOutSine
-//                    easeInQuad
-//                    easeOutQuad
-//                    easeInOutQuad
-//                    easeInCubic
-//                    easeOutCubic
-//                    easeInOutCubic
-//                    easeInQuart
-//                    easeOutQuart
-//                    easeInOutQuart
-//                    easeInQuint
-//                    easeOutQuint
-//                    easeInOutQuint
-//                    easeInExpo
-//                    easeOutExpo
-//                    easeInOutExpo
-//                    easeInCirc
-//                    easeOutCirc
-//                    easeInOutCirc
-//                    easeInBack
-//                    easeOutBack
-//                    easeInOutBack
-//                    cubicBezier
-//                    spring
                 }
                 it("Condition") {
                     expect(linear.isSpring).to(beFalse())
@@ -291,43 +260,43 @@ class AnimatorSpec: QuickSpec {
                 let begin: CGFloat = 0.0
                 let end: CGFloat = 100.0
                 it("Calculate") {
-                    expect(round(calculate(easing: linear, end: end))).to(equal(end))
-                    expect(round(calculate(easing: easeInCirc, end: end))).to(equal(end))
-                    expect(round(calculate(easing: easeOutCirc, end: end))).to(equal(end))
-                    expect(round(calculate(easing: easeInOutCirc, end: end))).to(equal(end))
-                    expect(round(calculate(easing: easeInCubic, end: end))).to(equal(end))
-                    expect(round(calculate(easing: easeOutCubic, end: end))).to(equal(end))
-                    expect(round(calculate(easing: easeInOutCubic, end: end))).to(equal(end))
-                    expect(round(calculate(easing: easeInExpo, end: end))).to(equal(end))
-                    expect(round(calculate(easing: easeOutExpo, end: end))).to(equal(end))
-                    expect(round(calculate(easing: easeInOutExpo, end: end))).to(equal(end))
-                    expect(round(calculate(easing: easeInQuad, end: end))).to(equal(end))
-                    expect(round(calculate(easing: easeOutQuad, end: end))).to(equal(end))
-                    expect(round(calculate(easing: easeInOutQuad, end: end))).to(equal(end))
-                    expect(round(calculate(easing: easeInQuart, end: end))).to(equal(end))
-                    expect(round(calculate(easing: easeOutQuart, end: end))).to(equal(end))
-                    expect(round(calculate(easing: easeInOutQuart, end: end))).to(equal(end))
-                    expect(round(calculate(easing: easeInQuint, end: end))).to(equal(end))
-                    expect(round(calculate(easing: easeOutQuint, end: end))).to(equal(end))
-                    expect(round(calculate(easing: easeInOutQuint, end: end))).to(equal(end))
-                    expect(round(calculate(easing: easeInSine, end: end))).to(equal(end))
-                    expect(round(calculate(easing: easeOutSine, end: end))).to(equal(end))
-                    expect(round(calculate(easing: easeInOutSine, end: end))).to(equal(end))
-                    expect(round(calculate(easing: easeInBack, end: end))).to(equal(end))
-                    expect(round(calculate(easing: easeOutBack, end: end))).to(equal(end))
-                    expect(round(calculate(easing: easeInOutBack, end: end))).to(equal(end))
-                    expect(round(calculate(easing: easeInBackAdvanced, end: end))).to(equal(end))
-                    expect(round(calculate(easing: easeOutBackAdvanced, end: end))).to(equal(end))
-                    expect(round(calculate(easing: easeInOutBackAdvanced, end: end))).to(equal(end))
-                    expect(round(calculate(easing: easeInBounce, end: end))).to(equal(end))
-                    expect(round(calculate(easing: easeOutBounce, end: end))).to(equal(end))
-                    expect(round(calculate(easing: easeInOutBounce, end: end))).to(equal(end))
-                    expect(round(calculate(easing: easeInElastic, end: end))).to(equal(end))
-                    expect(round(calculate(easing: easeOutElastic, end: end))).to(equal(end))
-                    expect(round(calculate(easing: easeInOutElastic, end: end))).to(equal(end))
-                    expect(round(calculate(easing: easeInElasticAdvanced, end: end))).to(equal(end))
-                    expect(round(calculate(easing: easeOutElasticAdvanced, end: end))).to(equal(end))
-                    expect(round(calculate(easing: easeInOutElasticAdvanced, end: end))).to(equal(end))
+                    expect(calculate(easing: linear, end: end)).to(beCloseTo(end, within: 0.1))
+                    expect(calculate(easing: easeInCirc, end: end)).to(beCloseTo(end, within: 0.1))
+                    expect(calculate(easing: easeOutCirc, end: end)).to(beCloseTo(end, within: 0.1))
+                    expect(calculate(easing: easeInOutCirc, end: end)).to(beCloseTo(end, within: 0.1))
+                    expect(calculate(easing: easeInCubic, end: end)).to(beCloseTo(end, within: 0.1))
+                    expect(calculate(easing: easeOutCubic, end: end)).to(beCloseTo(end, within: 0.1))
+                    expect(calculate(easing: easeInOutCubic, end: end)).to(beCloseTo(end, within: 0.1))
+                    expect(calculate(easing: easeInExpo, end: end)).to(beCloseTo(end, within: 0.1))
+                    expect(calculate(easing: easeOutExpo, end: end)).to(beCloseTo(end, within: 0.1))
+                    expect(calculate(easing: easeInOutExpo, end: end)).to(beCloseTo(end, within: 0.1))
+                    expect(calculate(easing: easeInQuad, end: end)).to(beCloseTo(end, within: 0.1))
+                    expect(calculate(easing: easeOutQuad, end: end)).to(beCloseTo(end, within: 0.1))
+                    expect(calculate(easing: easeInOutQuad, end: end)).to(beCloseTo(end, within: 0.1))
+                    expect(calculate(easing: easeInQuart, end: end)).to(beCloseTo(end, within: 0.1))
+                    expect(calculate(easing: easeOutQuart, end: end)).to(beCloseTo(end, within: 0.1))
+                    expect(calculate(easing: easeInOutQuart, end: end)).to(beCloseTo(end, within: 0.1))
+                    expect(calculate(easing: easeInQuint, end: end)).to(beCloseTo(end, within: 0.1))
+                    expect(calculate(easing: easeOutQuint, end: end)).to(beCloseTo(end, within: 0.1))
+                    expect(calculate(easing: easeInOutQuint, end: end)).to(beCloseTo(end, within: 0.1))
+                    expect(calculate(easing: easeInSine, end: end)).to(beCloseTo(end, within: 0.1))
+                    expect(calculate(easing: easeOutSine, end: end)).to(beCloseTo(end, within: 0.1))
+                    expect(calculate(easing: easeInOutSine, end: end)).to(beCloseTo(end, within: 0.1))
+                    expect(calculate(easing: easeInBack, end: end)).to(beCloseTo(end, within: 0.1))
+                    expect(calculate(easing: easeOutBack, end: end)).to(beCloseTo(end, within: 0.1))
+                    expect(calculate(easing: easeInOutBack, end: end)).to(beCloseTo(end, within: 0.1))
+                    expect(calculate(easing: easeInBackAdvanced, end: end)).to(beCloseTo(end, within: 0.1))
+                    expect(calculate(easing: easeOutBackAdvanced, end: end)).to(beCloseTo(end, within: 0.1))
+                    expect(calculate(easing: easeInOutBackAdvanced, end: end)).to(beCloseTo(end, within: 0.1))
+                    expect(calculate(easing: easeInBounce, end: end)).to(beCloseTo(end, within: 0.1))
+                    expect(calculate(easing: easeOutBounce, end: end)).to(beCloseTo(end, within: 0.1))
+                    expect(calculate(easing: easeInOutBounce, end: end)).to(beCloseTo(end, within: 0.1))
+                    expect(calculate(easing: easeInElastic, end: end)).to(beCloseTo(end, within: 0.1))
+                    expect(calculate(easing: easeOutElastic, end: end)).to(beCloseTo(end, within: 0.1))
+                    expect(calculate(easing: easeInOutElastic, end: end)).to(beCloseTo(end, within: 0.1))
+                    expect(calculate(easing: easeInElasticAdvanced, end: end)).to(beCloseTo(end, within: 0.1))
+                    expect(calculate(easing: easeOutElasticAdvanced, end: end)).to(beCloseTo(end, within: 0.1))
+                    expect(calculate(easing: easeInOutElasticAdvanced, end: end)).to(beCloseTo(end, within: 0.1))
                 }
                 it("Equation") {
                     expect(linear).to(equal(PennerEasing.linear))
