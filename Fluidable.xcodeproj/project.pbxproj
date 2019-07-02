@@ -578,8 +578,8 @@
 		A71F674721C50EA8007CADA0 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				A71F674821C50EA8007CADA0 /* Fluidable.h */,
 				A71F674921C50EA8007CADA0 /* Info.plist */,
+				A71F674821C50EA8007CADA0 /* Fluidable.h */,
 				A7F5CF2A22CAF80D00578043 /* Fluidable.swift */,
 				A7F5CF2B22CAF80D00578043 /* Fluidable+SafeArea.swift */,
 				A7F5CF2922CAF80C00578043 /* Fluidable+Swizzle.swift */,
