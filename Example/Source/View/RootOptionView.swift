@@ -90,6 +90,6 @@ extension RootOptionView {
     }
 
     @IBAction func didChangeBackgroundValue(_ sender: UISegmentedControl) {
-        Config.shared.backgroundStyle = FluidBackgroundStyle(index: sender.selectedSegmentIndex) ?? .blur(radius: 8.0, color: .clear, alpha: 1.0)
+//        Config.shared.backgroundStyle = FluidBackgroundStyle(index: sender.selectedSegmentIndex) ?? .blur(radius: 8.0, color: .clear, alpha: 1.0)
     }
 }

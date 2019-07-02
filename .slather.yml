@@ -4,7 +4,9 @@ scheme: Fluidable
 source_directory: Sources/
 output_directory: Reports/coverage
 ignore:
-  - Sources/Debug.swift
+  # - Sources/Core/Enumeration/FluidConst.swift
+  # - Sources/Core/Enumeration/FluidCoreAnimatorOption.swift
+  - Sources/Shared/*.swift
   - Tests/*
   - UITests/*
   - Example/*

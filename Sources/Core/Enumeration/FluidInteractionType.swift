@@ -51,8 +51,8 @@ extension FluidDriverInteractionType {
     public var isNormal: Bool {
         return {
             switch self {
-            case .normal: return false
-            case .fluid:  return true
+            case .normal: return true
+            case .fluid:  return false
             case .none:   return false
             }
         }()

@@ -32,17 +32,6 @@ public enum FluidBackgroundStyle {
     case none
 }
 
-extension FluidBackgroundStyle: CustomStringConvertible {
-    /* The description. */
-    public var description: String {
-        switch self {
-        case .blur(let radius, let color, let alpha): return "blur(radius: \(radius), color: \(color), alpha: \(alpha))"
-        case .dim(let color): return "dim(color: \(color)"
-        case .none: return "none"
-        }
-    }
-}
-
 public extension FluidBackgroundStyle {
     var index: Int {
         switch self {
@@ -51,13 +40,21 @@ public extension FluidBackgroundStyle {
         case .none: return 2
         }
     }
+}
 
-    init?(index: Int) {
-        switch index {
-        case 0:  self = .blur(radius: 8.0, color: .clear, alpha: 1.0)
-        case 1:  self = .dim(color: UIColor.black.withAlphaComponent(0.8))
-        case 2:  self = .none
-        default: return nil
+extension FluidBackgroundStyle: Equatable {
+    public static func == (lhs: FluidBackgroundStyle, rhs: FluidBackgroundStyle) -> Bool {
+        return lhs.index == rhs.index
+    }
+}
+
+extension FluidBackgroundStyle: CustomStringConvertible {
+    /* The description. */
+    public var description: String {
+        switch self {
+        case .blur(let radius, let color, let alpha): return "blur(radius: \(radius), color: \(color), alpha: \(alpha))"
+        case .dim(let color): return "dim(color: \(color))"
+        case .none: return "none"
         }
     }
 }

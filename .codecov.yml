@@ -3,7 +3,9 @@ codecov:
 #  branch: master
 
 ignore:
-  - "Shared/Sources/Debug/Debug.swift"
+  # - "Sources/Core/Enumeration/FluidConst.swift"
+  # - "Sources/Core/Enumeration/FluidCoreAnimatorOption.swift"
+  - "Sources/Shared/*.swift"
   - "Tests"
   - "UITests"
   - "Example"
