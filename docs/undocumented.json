@@ -706,55 +706,6 @@
       "symbol": "FluidNavigationBarCompatible",
       "symbol_kind": "source.lang.swift.decl.protocol",
       "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Layout/FluidLayout.swift",
-      "line": 11,
-      "symbol": "FluidLayout",
-      "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Layout/FluidLayoutConstant.swift",
-      "line": 28,
-      "symbol": "FluidLayoutEdgeConstraint",
-      "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/View/FluidBackgroundView.swift",
-      "line": 12,
-      "symbol": "FluidBackgroundCompatible",
-      "symbol_kind": "source.lang.swift.decl.protocol",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/View/FluidInteractiveView.swift",
-      "line": null,
-      "symbol": "FluidInteractiveView",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/View/FluidInteractiveView.swift",
-      "line": 12,
-      "symbol": "FluidInteractiveView",
-      "symbol_kind": "source.lang.swift.decl.protocol",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/View/FluidShadowLayer.swift",
-      "line": 12,
-      "symbol": "FluidShadowLayer",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/View/FluidShadowView.swift",
-      "line": 12,
-      "symbol": "FluidShadowView",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
     }
   ],
   "source_directory": "/Users/kojirof/Documents/pj-github/Fluidable/Sources"
