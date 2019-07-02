@@ -1,7 +1,7 @@
 default_platform(:ios)
 
 #
-# Workaround for following error while executing `pod lib lint` and `pod trunk push`
+# The workaround for following the error while executing `pod lib lint` and `pod trunk push`
 #
 # EXPANDED_CODE_SIGN_IDENTITY: unbound variable
 # Command PhaseScriptExecution failed with a nonzero exit code
