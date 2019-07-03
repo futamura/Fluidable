@@ -619,7 +619,7 @@ class CoreGraphicsSpec: QuickSpec {
                         let vec1: CGVector = .init(dx: 20.0, dy: 20.0)
                         expect(vec0.lengthSquared()).to(equal(200.0))
                         expect(vec0.length()).to(equal(14.142135623730951))
-                        expect(vec0.distanceTo(vec1)).to(equal(14.142135623730951))
+                        expect(vec0.distance(to: vec1)).to(equal(14.142135623730951))
                         expect(vec0.normalized()).to(equal(CGVector(dx: 0.7071067811865475, dy: 0.7071067811865475)))
                         expect(vec0.normalize()).to(equal(CGVector(dx: 0.7071067811865475, dy: 0.7071067811865475)))
                     }

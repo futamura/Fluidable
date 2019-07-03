@@ -246,7 +246,7 @@ internal extension CGVector {
     /**
      Calculates the distance between two CGVectors. Pythagoras!
      */
-    func distanceTo(_ vector: CGVector) -> CGFloat { return (self - vector).length() }
+    func distance(to vector: CGVector) -> CGFloat { return (self - vector).length() }
 
     /**
      Returns the angle in radians of the vector described by the CGVector.

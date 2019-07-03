@@ -40,16 +40,12 @@ extension Array where Element: FloatingPoint {
 }
 
 protocol Coordinates {
-    var x: CGFloat { get }
-    var y: CGFloat { get }
 }
 
 extension CGPoint: Coordinates {
 }
 
 extension CGVector: Coordinates {
-    var x: CGFloat { return self.dx }
-    var y: CGFloat { return self.dy }
 }
 
 extension Array where Element: Coordinates {
@@ -58,7 +54,14 @@ extension Array where Element: Coordinates {
         var nearestElement: Element?
         var nearestDist: CGFloat = .infinity
         for (index, element): (Int, Element) in self.enumerated() {
-            let distance: CGFloat = (element as! CGPoint).distance(to: point as! CGPoint)
+            var distance: CGFloat!
+            if element is CGPoint {
+                distance = (element as! CGPoint).distance(to: point as! CGPoint)
+            } else if element is CGVector {
+                distance =  (element as! CGVector).distance(to: point as! CGVector)
+            } else {
+                return nil
+            }
             if distance < nearestDist {
                 nearestDist = distance
                 nearestIndex = index
