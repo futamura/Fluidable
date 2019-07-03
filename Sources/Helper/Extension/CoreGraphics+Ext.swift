@@ -27,9 +27,9 @@ extension Comparable {
     }
 }
 
-internal extension BinaryInteger {
-    var degreesToRadians: CGFloat { return CGFloat(Int(self)) * .pi / 180 }
-}
+//internal extension BinaryInteger {
+//    var degreesToRadians: CGFloat { return CGFloat(Int(self)) * .pi / 180 }
+//}
 
 internal extension FloatingPoint {
     var degreesToRadians: Self { return self * .pi / 180 }
@@ -163,26 +163,26 @@ internal extension CGRect {
     static func + (lhs: CGRect, rhs: CGRect) -> CGRect { return CGRect(x: lhs.origin.x + rhs.origin.x, y: lhs.origin.y + rhs.origin.y, width: lhs.width + rhs.width, height: lhs.height + rhs.height) }
     static func + (rect: CGRect, scalar: CGFloat) -> CGRect { return CGRect(x: rect.origin.x + scalar, y: rect.origin.y + scalar, width: rect.width + scalar, height: rect.height + scalar) }
 
-    static func += (lhs: CGRect, rhs: CGRect) -> CGRect { return lhs + rhs }
-    static func += (rect: CGRect, scalar: CGFloat) -> CGRect { return rect + scalar }
+    static func += (lhs: inout CGRect, rhs: CGRect) { lhs = lhs + rhs }
+    static func += (rect: inout CGRect, scalar: CGFloat) { rect = rect + scalar }
 
     static func - (lhs: CGRect, rhs: CGRect) -> CGRect { return CGRect(x: lhs.origin.x - rhs.origin.x, y: lhs.origin.y - rhs.origin.y, width: lhs.width - rhs.width, height: lhs.height - rhs.height) }
     static func - (rect: CGRect, scalar: CGFloat) -> CGRect { return CGRect(x: rect.origin.x - scalar, y: rect.origin.y - scalar, width: rect.width - scalar, height: rect.height - scalar) }
 
-    static func -= (lhs: CGRect, rhs: CGRect) -> CGRect { return lhs - rhs }
-    static func -= (rect: CGRect, scalar: CGFloat) -> CGRect { return rect - scalar }
+    static func -= (lhs: inout CGRect, rhs: CGRect) { lhs = lhs - rhs }
+    static func -= (rect: inout CGRect, scalar: CGFloat) { rect = rect - scalar }
 
     static func * (lhs: CGRect, rhs: CGRect) -> CGRect { return CGRect(x: lhs.origin.x * rhs.origin.x, y: lhs.origin.y * rhs.origin.y, width: lhs.width * rhs.width, height: lhs.height * rhs.height) }
     static func * (rect: CGRect, scalar: CGFloat) -> CGRect { return CGRect(x: rect.origin.x * scalar, y: rect.origin.y * scalar, width: rect.width * scalar, height: rect.height * scalar) }
 
-    static func *= (lhs: CGRect, rhs: CGRect) -> CGRect { return lhs * rhs }
-    static func *= (rect: CGRect, scalar: CGFloat) -> CGRect { return rect * scalar }
+    static func *= (lhs: inout CGRect, rhs: CGRect) { lhs = lhs * rhs }
+    static func *= (rect: inout CGRect, scalar: CGFloat) { rect = rect * scalar }
 
     static func / (lhs: CGRect, rhs: CGRect) -> CGRect { return CGRect(x: lhs.origin.x / rhs.origin.x, y: lhs.origin.y / rhs.origin.y, width: lhs.width / rhs.width, height: lhs.height / rhs.height) }
     static func / (rect: CGRect, scalar: CGFloat) -> CGRect { return CGRect(x: rect.origin.x / scalar, y: rect.origin.y / scalar, width: rect.width / scalar, height: rect.height / scalar) }
 
-    static func /= (lhs: CGRect, rhs: CGRect) -> CGRect { return lhs / rhs }
-    static func /= (rect: CGRect, scalar: CGFloat) -> CGRect { return rect / scalar }
+    static func /= (lhs: inout CGRect, rhs: CGRect) { lhs = lhs / rhs }
+    static func /= (rect: inout CGRect, scalar: CGFloat) { rect = rect / scalar }
 }
 
 extension CGRect: CustomStringConvertible {
@@ -307,14 +307,14 @@ internal extension CGVector {
 internal extension CGColor {
     var rgba: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
         guard let comps: [CGFloat] = self.components else {
-            return (red: 0, green: 0, blue: 0, alpha: 1)
+            return (red: 0, green: 0, blue: 0, alpha: 0)
         }
         if comps.count == 4 {
             return (red: comps[0], green: comps[1], blue: comps[2], alpha: comps[3])
         } else if comps.count == 3 {
             return (red: comps[0], green: comps[1], blue: comps[2], alpha: 0)
         } else {
-            return (red: 0, green: 0, blue: 0, alpha: 1)
+            return (red: 0, green: 0, blue: 0, alpha: 0)
         }
     }
 }
@@ -323,81 +323,81 @@ internal extension CGColor {
     static func + (lhs: CGColor, rhs: CGColor) -> CGColor {
         let lhc = lhs.rgba
         let rhc = rhs.rgba
-        return UIColor(red: lhc.red + rhc.red, green: lhc.green + rhc.green, blue: lhc.blue + rhc.blue, alpha: lhc.alpha + rhc.alpha).cgColor
+        return UIColor(red: (lhc.red + rhc.red).clamped(0, 1), green: (lhc.green + rhc.green).clamped(0, 1), blue: (lhc.blue + rhc.blue).clamped(0, 1), alpha: (lhc.alpha + rhc.alpha).clamped(0, 1)).cgColor
     }
     static func + (color: CGColor, scalar: CGFloat) -> CGColor {
         let c = color.rgba
-        return UIColor(red: c.red + scalar, green: c.green + scalar, blue: c.blue + scalar, alpha: c.alpha + scalar).cgColor
+        return UIColor(red: (c.red + scalar).clamped(0, 1), green: (c.green + scalar).clamped(0, 1), blue: (c.blue + scalar).clamped(0, 1), alpha: (c.alpha + scalar).clamped(0, 1)).cgColor
     }
 
     static func += (lhs: inout CGColor, rhs: CGColor) {
         let lhc = lhs.rgba
         let rhc = rhs.rgba
-        return lhs = UIColor(red: lhc.red + rhc.red, green: lhc.green + rhc.green, blue: lhc.blue + rhc.blue, alpha: lhc.alpha + rhc.alpha).cgColor
+        return lhs = UIColor(red: (lhc.red + rhc.red).clamped(0, 1), green: (lhc.green + rhc.green).clamped(0, 1), blue: (lhc.blue + rhc.blue).clamped(0, 1), alpha: (lhc.alpha + rhc.alpha).clamped(0, 1)).cgColor
     }
     static func += (color: inout CGColor, scalar: CGFloat) {
         let c = color.rgba
-        return color = UIColor(red: c.red + scalar, green: c.green + scalar, blue: c.blue + scalar, alpha: c.alpha + scalar).cgColor
+        return color = UIColor(red: (c.red + scalar).clamped(0, 1), green: (c.green + scalar).clamped(0, 1), blue: (c.blue + scalar).clamped(0, 1), alpha: (c.alpha + scalar).clamped(0, 1)).cgColor
     }
 
     static func - (lhs: CGColor, rhs: CGColor) -> CGColor {
         let lhc = lhs.rgba
         let rhc = rhs.rgba
-        return UIColor(red: lhc.red - rhc.red, green: lhc.green - rhc.green, blue: lhc.blue - rhc.blue, alpha: lhc.alpha - rhc.alpha).cgColor
+        return UIColor(red: (lhc.red - rhc.red).clamped(0, 1), green: (lhc.green - rhc.green).clamped(0, 1), blue: (lhc.blue - rhc.blue).clamped(0, 1), alpha: (lhc.alpha - rhc.alpha).clamped(0, 1)).cgColor
     }
     static func - (color: CGColor, scalar: CGFloat) -> CGColor {
         let c = color.rgba
-        return UIColor(red: c.red - scalar, green: c.green - scalar, blue: c.blue - scalar, alpha: c.alpha - scalar).cgColor
+        return UIColor(red: (c.red - scalar).clamped(0, 1), green: (c.green - scalar).clamped(0, 1), blue: (c.blue - scalar).clamped(0, 1), alpha: (c.alpha - scalar).clamped(0, 1)).cgColor
     }
 
     static func -= (lhs: inout CGColor, rhs: CGColor) {
         let lhc = lhs.rgba
         let rhc = rhs.rgba
-        return lhs = UIColor(red: lhc.red - rhc.red, green: lhc.green - rhc.green, blue: lhc.blue - rhc.blue, alpha: lhc.alpha - rhc.alpha).cgColor
+        return lhs = UIColor(red: (lhc.red - rhc.red).clamped(0, 1), green: (lhc.green - rhc.green).clamped(0, 1), blue: (lhc.blue - rhc.blue).clamped(0, 1), alpha: (lhc.alpha - rhc.alpha).clamped(0, 1)).cgColor
     }
     static func -= (color: inout CGColor, scalar: CGFloat) {
         let c = color.rgba
-        return color = UIColor(red: c.red - scalar, green: c.green - scalar, blue: c.blue - scalar, alpha: c.alpha - scalar).cgColor
+        return color = UIColor(red: (c.red - scalar).clamped(0, 1), green: (c.green - scalar).clamped(0, 1), blue: (c.blue - scalar).clamped(0, 1), alpha: (c.alpha - scalar).clamped(0, 1)).cgColor
     }
 
     static func * (lhs: CGColor, rhs: CGColor) -> CGColor {
         let lhc = lhs.rgba
         let rhc = rhs.rgba
-        return UIColor(red: lhc.red * rhc.red, green: lhc.green * rhc.green, blue: lhc.blue * rhc.blue, alpha: lhc.alpha * rhc.alpha).cgColor
+        return UIColor(red: (lhc.red * rhc.red).clamped(0, 1), green: (lhc.green * rhc.green).clamped(0, 1), blue: (lhc.blue * rhc.blue).clamped(0, 1), alpha: (lhc.alpha * rhc.alpha).clamped(0, 1)).cgColor
     }
     static func * (color: CGColor, scalar: CGFloat) -> CGColor {
         let c = color.rgba
-        return UIColor(red: c.red * scalar, green: c.green * scalar, blue: c.blue * scalar, alpha: c.alpha * scalar).cgColor
+        return UIColor(red: (c.red * scalar).clamped(0, 1), green: (c.green * scalar).clamped(0, 1), blue: (c.blue * scalar).clamped(0, 1), alpha: (c.alpha * scalar).clamped(0, 1)).cgColor
     }
 
     static func *= (lhs: inout CGColor, rhs: CGColor) {
         let lhc = lhs.rgba
         let rhc = rhs.rgba
-        return lhs = UIColor(red: lhc.red * rhc.red, green: lhc.green * rhc.green, blue: lhc.blue * rhc.blue, alpha: lhc.alpha * rhc.alpha).cgColor
+        return lhs = UIColor(red: (lhc.red * rhc.red).clamped(0, 1), green: (lhc.green * rhc.green).clamped(0, 1), blue: (lhc.blue * rhc.blue).clamped(0, 1), alpha: (lhc.alpha * rhc.alpha).clamped(0, 1)).cgColor
     }
     static func *= (color: inout CGColor, scalar: CGFloat) {
         let c = color.rgba
-        return color = UIColor(red: c.red * scalar, green: c.green * scalar, blue: c.blue * scalar, alpha: c.alpha * scalar).cgColor
+        return color = UIColor(red: (c.red * scalar).clamped(0, 1), green: (c.green * scalar).clamped(0, 1), blue: (c.blue * scalar).clamped(0, 1), alpha: (c.alpha * scalar).clamped(0, 1)).cgColor
     }
 
     static func / (lhs: CGColor, rhs: CGColor) -> CGColor {
         let lhc = lhs.rgba
         let rhc = rhs.rgba
-        return UIColor(red: lhc.red / rhc.red, green: lhc.green / rhc.green, blue: lhc.blue / rhc.blue, alpha: lhc.alpha / rhc.alpha).cgColor
+        return UIColor(red: (lhc.red / rhc.red).clamped(0, 1), green: (lhc.green / rhc.green).clamped(0, 1), blue: (lhc.blue / rhc.blue).clamped(0, 1), alpha: (lhc.alpha / rhc.alpha).clamped(0, 1)).cgColor
     }
     static func / (color: CGColor, scalar: CGFloat) -> CGColor {
         let c = color.rgba
-        return UIColor(red: c.red / scalar, green: c.green / scalar, blue: c.blue / scalar, alpha: c.alpha / scalar).cgColor
+        return UIColor(red: (c.red / scalar).clamped(0, 1), green: (c.green / scalar).clamped(0, 1), blue: (c.blue / scalar).clamped(0, 1), alpha: (c.alpha / scalar).clamped(0, 1)).cgColor
     }
 
     static func /= (lhs: inout CGColor, rhs: CGColor) {
         let lhc = lhs.rgba
         let rhc = rhs.rgba
-        return lhs = UIColor(red: lhc.red / rhc.red, green: lhc.green / rhc.green, blue: lhc.blue / rhc.blue, alpha: lhc.alpha / rhc.alpha).cgColor
+        return lhs = UIColor(red: (lhc.red / rhc.red).clamped(0, 1), green: (lhc.green / rhc.green).clamped(0, 1), blue: (lhc.blue / rhc.blue).clamped(0, 1), alpha: (lhc.alpha / rhc.alpha).clamped(0, 1)).cgColor
     }
     static func /= (color: inout CGColor, scalar: CGFloat) {
         let c = color.rgba
-        return color = UIColor(red: c.red / scalar, green: c.green / scalar, blue: c.blue / scalar, alpha: c.alpha / scalar).cgColor
+        return color = UIColor(red: (c.red / scalar).clamped(0, 1), green: (c.green / scalar).clamped(0, 1), blue: (c.blue / scalar).clamped(0, 1), alpha: (c.alpha / scalar).clamped(0, 1)).cgColor
     }
 }
 
