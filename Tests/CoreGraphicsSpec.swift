@@ -752,24 +752,6 @@ class CoreGraphicsSpec: QuickSpec {
                         expect(col0).to(equal(UIColor(red: 0.1, green: 0, blue: 0, alpha: 0.1).cgColor))
                     }
                 }
-                it("Calculation") {
-//                    do {
-//                        expect(CGColor(angle: 0.0)).to(equal(CGColor(dx: 1.0, dy: 0.0)))
-//                    }
-//                    do {
-//                        var col0: CGColor = .init(dx: 10.0, dy: 10.0)
-//                        expect(col0.offset(dx: 10.0, dy: 10.0)).to(equal(CGColor(dx: 20.0, dy: 20.0)))
-//                    }
-//                    do {
-//                        var col0: CGColor = .init(dx: 10.0, dy: 10.0)
-//                        let col1: CGColor = .init(dx: 20.0, dy: 20.0)
-//                        expect(col0.lengthSquared()).to(equal(200.0))
-//                        expect(col0.length()).to(equal(14.142135623730951))
-//                        expect(col0.distanceTo(col1)).to(equal(14.142135623730951))
-//                        expect(col0.normalized()).to(equal(CGColor(dx: 0.7071067811865475, dy: 0.7071067811865475)))
-//                        expect(col0.normalize()).to(equal(CGColor(dx: 0.7071067811865475, dy: 0.7071067811865475)))
-//                    }
-                }
             }
             describe("CGAffineTransform") {
                 it("Initialization") {
