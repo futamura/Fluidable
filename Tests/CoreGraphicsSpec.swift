@@ -771,10 +771,143 @@ class CoreGraphicsSpec: QuickSpec {
 //                    }
                 }
             }
-//            description("CGAffineTransform") {
-//                it("Calculate") {
-//                }
-//            }
+            describe("CGAffineTransform") {
+                it("Initialization") {
+                    expect(CGAffineTransform(tx: 1, ty: 1)).to(equal(CGAffineTransform(translationX: 1, y: 1)))
+                    expect(CGAffineTransform(scale: 2)).to(equal(CGAffineTransform(scaleX: 2, y: 2)))
+                    expect(CGAffineTransform(sx: 2, sy: 2)).to(equal(CGAffineTransform(scaleX: 2, y: 2)))
+                    expect(CGAffineTransform(angle: CGFloat.pi)).to(equal(CGAffineTransform(rotationAngle: CGFloat.pi)))
+                    expect(CGAffineTransform(CGAffineTransform(tx: 1, ty: 1),
+                                             CGAffineTransform(sx: 2, sy: 2),
+                                             CGAffineTransform(rotationAngle: CGFloat.pi)))
+                            .to(equal(CGAffineTransform(tx: 1, ty: 1).concatenating(CGAffineTransform(sx: 2, sy: 2)).concatenating(CGAffineTransform(angle: CGFloat.pi))))
+                }
+                it("Property") {
+                    let trans: CGAffineTransform = .init(CGAffineTransform(tx: 1, ty: 1), CGAffineTransform(sx: 2, sy: 2), CGAffineTransform(angle: CGFloat.pi))
+                    expect(trans.translation.x).to(beCloseTo(-2))
+                    expect(trans.translation.y).to(beCloseTo(-2))
+                    expect(trans.scale).to(equal(CGPoint(x: 2, y: 2)))
+                    expect(trans.sx).to(equal(2))
+                    expect(trans.sy).to(equal(2))
+                    expect(trans.rotation).to(beCloseTo(CGFloat.pi))
+                }
+                it("Calculate") {
+                    expect(CGAffineTransform.identity.translated(x: 2, y: 2).tx).to(beCloseTo(2))
+                    expect(CGAffineTransform.identity.scaled(x: 2, y: 2).sx).to(beCloseTo(2))
+                    expect(CGAffineTransform.identity.scaled(s: 2).sx).to(beCloseTo(2))
+                    expect(CGAffineTransform.identity.translated(x: 2, y: 2).inverted.tx).to(beCloseTo(-2))
+                    expect(CGAffineTransform.identity.translated(x: 2, y: 2).integralTransform.tx).to(beCloseTo(2))
+                    expect(CGAffineTransform.identity.concatenated(CGAffineTransform(tx: 1, ty: 1),
+                                                                   CGAffineTransform(sx: 2, sy: 2),
+                                                                   CGAffineTransform(rotationAngle: CGFloat.pi)))
+                            .to(equal(CGAffineTransform(tx: 1, ty: 1).concatenating(CGAffineTransform(sx: 2, sy: 2)).concatenating(CGAffineTransform(angle: CGFloat.pi))))
+
+                    do {
+                        let trans0: CGAffineTransform = .identity
+                        let trans1: CGAffineTransform = .init(tx: 2, ty: 2)
+                        expect(trans0 + trans1).to(equal(CGAffineTransform(a: 2, b: 0, c: 0, d: 2, tx: 2, ty: 2)))
+                    }
+                    do {
+                        var trans0: CGAffineTransform = .identity
+                        let trans1: CGAffineTransform = .init(tx: 2, ty: 2)
+                        trans0 += trans1
+                        expect(trans0).to(equal(CGAffineTransform(a: 2, b: 0, c: 0, d: 2, tx: 2, ty: 2)))
+                    }
+
+                    do {
+                        let trans0: CGAffineTransform = .identity
+                        let trans1: CGAffineTransform = .init(tx: 2, ty: 2)
+                        expect(trans0 - trans1).to(equal(CGAffineTransform(a: 0, b: 0, c: 0, d: 0, tx: -2, ty: -2)))
+                    }
+                    do {
+                        var trans0: CGAffineTransform = .identity
+                        let trans1: CGAffineTransform = .init(tx: 2, ty: 2)
+                        trans0 -= trans1
+                        expect(trans0).to(equal(CGAffineTransform(a: 0, b: 0, c: 0, d: 0, tx: -2, ty: -2)))
+                    }
+
+                    do {
+                        let trans0: CGAffineTransform = .identity
+                        let trans1: CGAffineTransform = .init(tx: 2, ty: 2)
+                        expect(trans0 - trans1).to(equal(CGAffineTransform(a: 0, b: 0, c: 0, d: 0, tx: -2, ty: -2)))
+                    }
+
+                    do {
+                        let trans0: CGAffineTransform = .identity
+                        let trans1: CGAffineTransform = .init(tx: 2, ty: 2)
+                        expect(trans0 * trans1).to(equal(CGAffineTransform(a: 1, b: 0, c: 0, d: 1, tx: 2, ty: 2)))
+                    }
+                    do {
+                        var trans0: CGAffineTransform = .identity
+                        let trans1: CGAffineTransform = .init(tx: 2, ty: 2)
+                        trans0 *= trans1
+                        expect(trans0).to(equal(CGAffineTransform(a: 1, b: 0, c: 0, d: 1, tx: 2, ty: 2)))
+                    }
+                    do {
+                        let trans0: CGAffineTransform = .identity
+                        let scalar: CGFloat = 10.0
+                        expect(trans0 * scalar).to(equal(CGAffineTransform(a: 10, b: 0, c: 0, d: 10, tx: 0, ty: 0)))
+                    }
+
+                    do {
+                        let point: CGPoint = CGPoint(x: 10, y: 10)
+                        let trans0: CGAffineTransform = .init(tx: 2, ty: 2)
+                        let trans1: CGAffineTransform = .init(scale: 2)
+                        expect(point * trans0 * trans1).to(equal(CGPoint(x: 24, y: 24)))
+                    }
+                    do {
+                        var point: CGPoint = CGPoint(x: 10, y: 10)
+                        let trans0: CGAffineTransform = .init(tx: 2, ty: 2)
+                        let trans1: CGAffineTransform = .init(scale: 2)
+                        point *= trans0
+                        point *= trans1
+                        expect(point).to(equal(CGPoint(x: 24, y: 24)))
+                    }
+
+                    do {
+                        let size: CGSize = CGSize(width: 10, height: 10)
+                        let trans0: CGAffineTransform = .init(tx: 2, ty: 2)
+                        let trans1: CGAffineTransform = .init(scale: 2)
+                        expect(size * trans0 * trans1).to(equal(CGSize(width: 20, height: 20)))
+                    }
+                    do {
+                        var size: CGSize = CGSize(width: 10, height: 10)
+                        let trans0: CGAffineTransform = .init(tx: 2, ty: 2)
+                        let trans1: CGAffineTransform = .init(scale: 2)
+                        size *= trans0
+                        size *= trans1
+                        expect(size).to(equal(CGSize(width: 20, height: 20)))
+                    }
+
+                    do {
+                        let frame: CGRect = CGRect(x: 10, y: 10, width: 10, height: 10)
+                        let trans0: CGAffineTransform = .init(tx: 2, ty: 2)
+                        let trans1: CGAffineTransform = .init(scale: 2)
+                        expect(frame * trans0 * trans1).to(equal(CGRect(x: 24, y: 24, width: 20, height: 20)))
+                    }
+                    do {
+                        var frame: CGRect = CGRect(x: 10, y: 10, width: 10, height: 10)
+                        let trans0: CGAffineTransform = .init(tx: 2, ty: 2)
+                        let trans1: CGAffineTransform = .init(scale: 2)
+                        frame *= trans0
+                        frame *= trans1
+                        expect(frame).to(equal(CGRect(x: 24, y: 24, width: 20, height: 20)))
+                    }
+
+                    do {
+                        let trans0: CGAffineTransform = .identity
+                        let scalar: CGFloat = 10.0
+                        expect(trans0 / scalar).to(equal(CGAffineTransform(a: 0.1, b: 0, c: 0, d: 0.1, tx: 0, ty: 0)))
+                    }
+                    do {
+                        var trans0: CGAffineTransform = .identity
+                        let scalar: CGFloat = 10.0
+                        trans0 /= scalar
+                        expect(trans0).to(equal(CGAffineTransform(a: 0.1, b: 0, c: 0, d: 0.1, tx: 0, ty: 0)))
+                    }
+
+                }
+            }
         }
     }
 }

@@ -63,11 +63,11 @@ internal extension CGFloat {
     static var pi8: CGFloat { return CGFloat.pi / 8 }
 }
 
-extension CGFloat {
-    public var description: String {
-        return String(describing: self.decimal(4))
-    }
-}
+//extension CGFloat {
+//    public var description: String {
+//        return String(describing: self.decimal(4))
+//    }
+//}
 
 internal extension CGPoint {
     static func + (lhs: CGPoint, rhs: CGPoint) -> CGPoint { return CGPoint(x: lhs.x + rhs.x, y: lhs.y + rhs.y) }
@@ -108,11 +108,11 @@ internal extension CGPoint {
     func length() -> CGFloat { return sqrt(x * x + y * y) }
 }
 
-extension CGPoint: CustomStringConvertible {
-    public var description: String {
-        return "(x: \(self.x.decimal(4)), y: \(self.y.decimal(4)))"
-    }
-}
+//extension CGPoint: CustomStringConvertible {
+//    public var description: String {
+//        return "(x: \(self.x.decimal(4)), y: \(self.y.decimal(4)))"
+//    }
+//}
 
 internal extension CGSize {
     static func + (lhs: CGSize, rhs: CGSize) -> CGSize { return CGSize(width: lhs.width + rhs.width, height: lhs.height + rhs.height) }
@@ -144,11 +144,11 @@ internal extension CGSize {
     var orientation: UIInterfaceOrientation { return (self.width <= self.height) ? .portrait : .landscapeLeft }
 }
 
-extension CGSize: CustomStringConvertible {
-    public var description: String {
-        return "(w: \(self.width.decimal(4)), h: \(self.height.decimal(4)))"
-    }
-}
+//extension CGSize: CustomStringConvertible {
+//    public var description: String {
+//        return "(w: \(self.width.decimal(4)), h: \(self.height.decimal(4)))"
+//    }
+//}
 
 internal extension CGRect {
     var bounds: CGRect {
@@ -185,11 +185,11 @@ internal extension CGRect {
     static func /= (rect: inout CGRect, scalar: CGFloat) { rect = rect / scalar }
 }
 
-extension CGRect: CustomStringConvertible {
-    public var description: String {
-        return "(x: \(self.origin.x.decimal(4)), y: \(self.origin.y.decimal(4)), w: \(self.bounds.width.decimal(4)), h: \(self.bounds.height.decimal(4)))"
-    }
-}
+//extension CGRect: CustomStringConvertible {
+//    public var description: String {
+//        return "(x: \(self.origin.x.decimal(4)), y: \(self.origin.y.decimal(4)), w: \(self.bounds.width.decimal(4)), h: \(self.bounds.height.decimal(4)))"
+//    }
+//}
 
 internal extension CGVector {
     /**
@@ -306,13 +306,10 @@ internal extension CGVector {
 
 internal extension CGColor {
     var rgba: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
-        guard let comps: [CGFloat] = self.components else {
-            return (red: 0, green: 0, blue: 0, alpha: 0)
-        }
-        if comps.count == 4 {
-            return (red: comps[0], green: comps[1], blue: comps[2], alpha: comps[3])
-        } else if comps.count == 3 {
-            return (red: comps[0], green: comps[1], blue: comps[2], alpha: 0)
+        if self.components?.count == 4 {
+            return (red: self.components![0], green: self.components![1], blue: self.components![2], alpha: self.components![3])
+        } else if self.components?.count == 3 {
+            return (red: self.components![0], green: self.components![1], blue: self.components![2], alpha: 0)
         } else {
             return (red: 0, green: 0, blue: 0, alpha: 0)
         }
@@ -425,11 +422,11 @@ public extension CGAffineTransform {
     }
 }
 
-extension CGAffineTransform: CustomStringConvertible {
-    public var description: String {
-        return "CGAffineTransform(\(a), \(b), \(c), \(d), \(tx), \(ty)), \(sx), \(sy))"
-    }
-}
+//extension CGAffineTransform: CustomStringConvertible {
+//    public var description: String {
+//        return "CGAffineTransform(\(a), \(b), \(c), \(d), \(tx), \(ty)), \(sx), \(sy))"
+//    }
+//}
 
 internal extension CGAffineTransform {
     /* Extract translation */
@@ -479,8 +476,20 @@ internal extension CGAffineTransform {
                                  tx: lhs.tx + rhs.tx, ty: lhs.ty + rhs.ty)
     }
 
+    static func += (lhs: inout CGAffineTransform, rhs: CGAffineTransform) {
+        lhs = lhs + rhs
+    }
+
     static func - (lhs: CGAffineTransform, rhs: CGAffineTransform) -> CGAffineTransform {
         return lhs + (-rhs)
+    }
+
+    static func -= (lhs: inout CGAffineTransform, rhs: CGAffineTransform) {
+        lhs = lhs - rhs
+    }
+
+    static prefix func - (matrix: CGAffineTransform) -> CGAffineTransform {
+        return -1 * matrix
     }
 
     static func * (lhs: CGAffineTransform, rhs: CGFloat) -> CGAffineTransform {
@@ -493,44 +502,15 @@ internal extension CGAffineTransform {
         return rhs * lhs
     }
 
-    static prefix func - (matrix: CGAffineTransform) -> CGAffineTransform {
-        return -1 * matrix
-    }
-
-    static func / (lhs: CGAffineTransform, rhs: CGFloat) -> CGAffineTransform {
-        guard rhs != 0 else { fatalError("Can't divide by 0") }
-        return lhs * (1 / rhs)
-    }
-
     static func * (lhs: CGAffineTransform, rhs: CGAffineTransform) -> CGAffineTransform {
         return lhs.concatenating(rhs)
-    }
-
-    static func += (lhs: inout CGAffineTransform, rhs: CGAffineTransform) {
-        lhs = lhs + rhs
-    }
-
-    static func -= (lhs: inout CGAffineTransform, rhs: CGAffineTransform) {
-        lhs = lhs - rhs
     }
 
     static func *= (lhs: inout CGAffineTransform, rhs: CGAffineTransform) {
         lhs = lhs * rhs
     }
 
-    static func /= (lhs: inout CGAffineTransform, rhs: CGFloat) {
-        lhs = lhs / rhs
-    }
-
     static func * (lhs: CGPoint, rhs: CGAffineTransform) -> CGPoint {
-        return lhs.applying(rhs)
-    }
-
-    static func * (lhs: CGSize, rhs: CGAffineTransform) -> CGSize {
-        return lhs.applying(rhs)
-    }
-
-    static func * (lhs: CGRect, rhs: CGAffineTransform) -> CGRect {
         return lhs.applying(rhs)
     }
 
@@ -538,11 +518,28 @@ internal extension CGAffineTransform {
         lhs = lhs * rhs
     }
 
+    static func * (lhs: CGSize, rhs: CGAffineTransform) -> CGSize {
+        return lhs.applying(rhs)
+    }
+
     static func *= (lhs: inout CGSize, rhs: CGAffineTransform) {
         lhs = lhs * rhs
     }
 
+    static func * (lhs: CGRect, rhs: CGAffineTransform) -> CGRect {
+        return lhs.applying(rhs)
+    }
+
     static func *= (lhs: inout CGRect, rhs: CGAffineTransform) {
         lhs = lhs * rhs
+    }
+
+    static func / (lhs: CGAffineTransform, rhs: CGFloat) -> CGAffineTransform {
+        guard rhs != 0 else { fatalError("Can't divide by 0") }
+        return lhs * (1 / rhs)
+    }
+
+    static func /= (lhs: inout CGAffineTransform, rhs: CGFloat) {
+        lhs = lhs / rhs
     }
 }
