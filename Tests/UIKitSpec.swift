@@ -6,4 +6,17 @@
 //  Copyright © 2019 Gumob. All rights reserved.
 //
 
-import Foundation
+import Quick
+import Nimble
+@testable import Fluidable
+
+class UIKitSpec: QuickSpec {
+    override func spec() {
+        describe("Foundation") {
+            describe("XXXXXXXX") {
+                it("XXXXXXXX") {
+                }
+            }
+        }
+    }
+}
