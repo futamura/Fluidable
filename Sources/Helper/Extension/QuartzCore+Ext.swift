@@ -92,8 +92,8 @@ internal extension CALayer {
     }
 
     var center: CGPoint {
-        set { frame = CGRect(x: newValue.x - frame.size.width * 0.5, y: newValue.y - frame.size.height * 0.5, width: width, height: height) }
         get { return CGPoint(x: origin.x + size.width * 0.5, y: origin.y + size.height * 0.5) }
+        set { frame = CGRect(x: newValue.x - frame.size.width * 0.5, y: newValue.y - frame.size.height * 0.5, width: width, height: height) }
     }
 }
 
