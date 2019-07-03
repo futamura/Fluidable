@@ -11,7 +11,6 @@ import Nimble
 @testable import Fluidable
 
 class HelperSpec: QuickSpec {
-
     override func spec() {
         describe("Spec Helpers") {
 //            describe("Spec clamp") {

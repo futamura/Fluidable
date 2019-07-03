@@ -1,5 +1,5 @@
 //
-//  EasingEnum.swift
+//  AnimatorEnum.swift
 //  Fluidable
 //
 //  Created by kojirof on 2019/07/02.
@@ -75,7 +75,6 @@ class AnimatorSpec: QuickSpec {
                     expect(easeInOutBack.timingParameters).to(beAnInstanceOf(UICubicTimingParameters.self))
                     expect(cubicBezier.timingParameters).to(beAnInstanceOf(UICubicTimingParameters.self))
                     expect(spring.timingParameters).to(beAnInstanceOf(UISpringTimingParameters.self))
-
                     expect(linear.timingFunction).notTo(beAnInstanceOf(CAMediaTimingFunction.self))
                     expect(easeIn.timingFunction).notTo(beAnInstanceOf(CAMediaTimingFunction.self))
                     expect(easeOut.timingFunction).notTo(beAnInstanceOf(CAMediaTimingFunction.self))
@@ -143,7 +142,6 @@ class AnimatorSpec: QuickSpec {
                 it("Condition") {
                     expect(linear.isSpring).to(beFalse())
                     expect(spring.isSpring).to(beTrue())
-
                     expect(linear.isAvailable).to(beTrue())
                     expect(easeIn.isAvailable).to(beTrue())
                     expect(easeOut.isAvailable).to(beTrue())
@@ -375,6 +373,16 @@ class AnimatorSpec: QuickSpec {
                     expect(String(describing: easeInElasticAdvanced)).to(beginWith("easeInElasticAdvanced"))
                     expect(String(describing: easeOutElasticAdvanced)).to(beginWith("easeOutElasticAdvanced"))
                     expect(String(describing: easeInOutElasticAdvanced)).to(beginWith("easeInOutElasticAdvanced"))
+                }
+            }
+            describe("FluidAnimatorState") {
+                it("Description") {
+                    expect(String(describing: FluidAnimatorState.ready)).to(beginWith("ready"))
+                    expect(String(describing: FluidAnimatorState.running)).to(beginWith("running"))
+                    expect(String(describing: FluidAnimatorState.paused)).to(beginWith("paused"))
+                    expect(String(describing: FluidAnimatorState.cancelled)).to(beginWith("cancelled"))
+                    expect(String(describing: FluidAnimatorState.failed)).to(beginWith("failed"))
+                    expect(String(describing: FluidAnimatorState.finished)).to(beginWith("finished"))
                 }
             }
         }
