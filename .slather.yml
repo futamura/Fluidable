@@ -6,6 +6,7 @@ output_directory: Reports/coverage
 ignore:
   # - Sources/Core/Enumeration/FluidConst.swift
   # - Sources/Core/Enumeration/FluidCoreAnimatorOption.swift
+  - Sources/Helper/Extension/VectorMath.swift
   - Sources/Shared/*.swift
   - Tests/*
   - UITests/*
