@@ -104,7 +104,9 @@ platform :ios do
       {device: "iPhone XS", clean: true, coverage: true},
       {device: "iPhone 7 Plus (11.4)", clean: false, coverage: false},
       {device: "iPhone 6 (10.3.1)", clean: false, coverage: false},
-      {device: "iPhone 5s (9.3)", clean: false, coverage: false},
+      {device: "iPad Air 2", clean: true, coverage: true},
+      {device: "iPad Air 2 (11.4)", clean: false, coverage: false},
+      {device: "iPad Air 2 (10.3.1)", clean: false, coverage: false},
     ]
     for test in tests
       run_scan(
