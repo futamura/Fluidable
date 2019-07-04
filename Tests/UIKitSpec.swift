@@ -357,12 +357,20 @@ class UIKitSpec: QuickSpec {
         describe("UIViewPropertyAnimator") {
             it("Initialization") {
                 expect(UIViewPropertyAnimator(duration: 1, easing: .linear).duration).to(equal(1))
-                expect(UICubicTimingParameters(0.47, 0, 0.745, 0.715)).to(equal(UICubicTimingParameters(controlPoint1: CGPoint(x: 0.47, y: 0), controlPoint2: CGPoint(x: 0.745, y: 0.715))))
-                let params: UISpringTimingParameters.SpringParameters = UISpringTimingParameters.parameters(dampingRatio: FluidConst.springDampingRatio, frequencyResponse: FluidConst.springFrequencyResponse)
-                expect(UISpringTimingParameters(dampingRatio: FluidConst.springDampingRatio, frequencyResponse: FluidConst.springFrequencyResponse))
-                        .to(equal(UISpringTimingParameters(mass: params.mass, stiffness: params.stiffness, damping: params.damping, initialVelocity: params.velocity)))
-                expect(UISpringTimingParameters.duration(dampingRatio: FluidConst.springDampingRatio, frequencyResponse: FluidConst.springFrequencyResponse))
-                        .to(equal(UISpringTimingParameters.duration(mass: params.mass, stiffness: params.stiffness, damping: params.damping, velocity: params.velocity)))
+                let cubicParam0: UICubicTimingParameters = .init(0.47, 0, 0.745, 0.715)
+                let cubicParam1: UICubicTimingParameters = .init(controlPoint1: CGPoint(x: 0.47, y: 0), controlPoint2: CGPoint(x: 0.745, y: 0.715))
+                expect(cubicParam0.controlPoint1.x).to(beCloseTo(cubicParam1.controlPoint1.x))
+                expect(cubicParam0.controlPoint1.y).to(beCloseTo(cubicParam1.controlPoint1.y))
+                expect(cubicParam0.controlPoint2.x).to(beCloseTo(cubicParam1.controlPoint2.x))
+                expect(cubicParam0.controlPoint2.y).to(beCloseTo(cubicParam1.controlPoint2.y))
+                let springOptions: UISpringTimingParameters.SpringParameters = UISpringTimingParameters.parameters(dampingRatio: FluidConst.springDampingRatio, frequencyResponse: FluidConst.springFrequencyResponse)
+                let springParam0: UISpringTimingParameters = .init(dampingRatio: FluidConst.springDampingRatio, frequencyResponse: FluidConst.springFrequencyResponse)
+                let springParam1: UISpringTimingParameters = .init(mass: springOptions.mass, stiffness: springOptions.stiffness, damping: springOptions.damping, initialVelocity: springOptions.velocity)
+                expect(springParam0.initialVelocity).to(equal(springParam1.initialVelocity))
+                expect(springParam0.timingCurveType).to(equal(springParam1.timingCurveType))
+                let springDuration0: TimeInterval = UISpringTimingParameters.duration(dampingRatio: FluidConst.springDampingRatio, frequencyResponse: FluidConst.springFrequencyResponse)
+                let springDuration1: TimeInterval = UISpringTimingParameters.duration(mass: springOptions.mass, stiffness: springOptions.stiffness, damping: springOptions.damping, velocity: springOptions.velocity)
+                expect(springDuration0).to(beCloseTo(springDuration1))
             }
             it("Description") {
                 expect(String(describing: UITimingCurveType.builtin)).to(match("builtin"))
