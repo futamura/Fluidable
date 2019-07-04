@@ -33,33 +33,33 @@ internal extension UIView {
         return (index: topViewIndex, view: view)
     }
 
-    func commonSuperviews(between lhs: UIView, and rhs: UIView) -> [UIView] {
-        func getSuperviews(for view: UIView) -> [UIView] {
-            guard let superview: UIView = view.superview else {
-                return []
-            }
-            return [superview] + getSuperviews(for: superview)
-        }
-        return Array(Set(getSuperviews(for: lhs)).intersection(Set(getSuperviews(for: rhs))))
-    }
-
-    func findCommonSuper(with view: UIView) -> UIView? {
-        var lhs: UIView? = self
-        var rhs: UIView? = view
-        var superSet = Set<UIView>()
-        while lhs != nil || rhs != nil {
-
-            if let lhsSuper: UIView = lhs {
-                if !superSet.contains(lhsSuper) { superSet.insert(lhsSuper) } else { return lhsSuper }
-            }
-            if let rhsSuper: UIView = rhs {
-                if !superSet.contains(rhsSuper) { superSet.insert(rhsSuper) } else { return rhsSuper }
-            }
-            lhs = lhs?.superview
-            rhs = rhs?.superview
-        }
-        return nil
-    }
+//    func commonSuperviews(between lhs: UIView, and rhs: UIView) -> [UIView] {
+//        func getSuperviews(for view: UIView) -> [UIView] {
+//            guard let superview: UIView = view.superview else {
+//                return []
+//            }
+//            return [superview] + getSuperviews(for: superview)
+//        }
+//        return Array(Set(getSuperviews(for: lhs)).intersection(Set(getSuperviews(for: rhs))))
+//    }
+//
+//    func findCommonSuper(with view: UIView) -> UIView? {
+//        var lhs: UIView? = self
+//        var rhs: UIView? = view
+//        var superSet = Set<UIView>()
+//        while lhs != nil || rhs != nil {
+//
+//            if let lhsSuper: UIView = lhs {
+//                if !superSet.contains(lhsSuper) { superSet.insert(lhsSuper) } else { return lhsSuper }
+//            }
+//            if let rhsSuper: UIView = rhs {
+//                if !superSet.contains(rhsSuper) { superSet.insert(rhsSuper) } else { return rhsSuper }
+//            }
+//            lhs = lhs?.superview
+//            rhs = rhs?.superview
+//        }
+//        return nil
+//    }
 }
 
 extension UIView {
