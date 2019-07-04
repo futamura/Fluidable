@@ -62,6 +62,42 @@ internal extension UIView {
 //    }
 }
 
+internal extension UIViewController {
+    /** A `Boolean` value that indicates whether the view controller is a root view controller or placed at top of view controllers. */
+    var isRootViewController: Bool {
+        guard let nc: UINavigationController = (self as? UINavigationController)
+                                               ?? self.navigationController else { return true }
+        return self === nc.viewControllers.first
+    }
+}
+
+extension UINavigationController.Operation: CustomStringConvertible {
+    public var description: String {
+        switch self {
+        case .none: return "none"
+        case .push: return "push"
+        case .pop:  return "pop"
+        }
+    }
+}
+
+extension UINavigationBar {
+    weak var navigationController: UINavigationController? { return self.parentViewController as? UINavigationController }
+    weak var contentView: UIView? { return self.subviews.first(where: { NSStringFromClass($0.classForCoder).contains("UINavigationBarContentView") }) }
+    weak var backgroundView: UIView? { return self.subviews.first(where: { NSStringFromClass($0.classForCoder).contains("UIBarBackground") }) }
+}
+
+extension UIBarPosition: CustomStringConvertible {
+    public var description: String {
+        switch self {
+        case .any: return "any"
+        case .bottom: return "bottom"
+        case .top:  return "top"
+        case .topAttached:  return "topAttached"
+        }
+    }
+}
+
 extension UIView {
     var firstViewController: UIViewController? {
         let firstViewController = sequence(first: self, next: { $0.next }).first(where: { $0 is UIViewController })
@@ -77,12 +113,6 @@ extension UIView {
         }
         return nil
     }
-}
-
-extension UINavigationBar {
-    weak var navigationController: UINavigationController? { return self.parentViewController as? UINavigationController }
-    weak var contentView: UIView? { return self.subviews.first(where: { NSStringFromClass($0.classForCoder).contains("UINavigationBarContentView") }) }
-    weak var backgroundView: UIView? { return self.subviews.first(where: { NSStringFromClass($0.classForCoder).contains("UIBarBackground") }) }
 }
 
 /**
@@ -343,39 +373,6 @@ extension UIViewAnimatingState: CustomStringConvertible {
         case .inactive: return "inactive"
         case .stopped:  return "stopped"
         default:        return "nil"
-        }
-    }
-}
-
-/**
- Views
- */
-internal extension UIViewController {
-    /** A `Boolean` value that indicates whether the view controller is a root view controller or placed at top of view controllers. */
-    var isRootViewController: Bool {
-        guard let nc: UINavigationController = (self as? UINavigationController)
-                                               ?? self.navigationController else { return true }
-        return nc.viewControllers.count <= 1
-    }
-}
-
-extension UINavigationController.Operation: CustomStringConvertible {
-    public var description: String {
-        switch self {
-        case .none: return "none"
-        case .push: return "push"
-        case .pop:  return "pop"
-        }
-    }
-}
-
-extension UIBarPosition: CustomStringConvertible {
-    public var description: String {
-        switch self {
-        case .any: return "any"
-        case .bottom: return "bottom"
-        case .top:  return "top"
-        case .topAttached:  return "topAttached"
         }
     }
 }

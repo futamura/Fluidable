@@ -171,6 +171,12 @@ class UIKitSpec: QuickSpec {
                     childNC.navigationBar.setNeedsLayout()
                     childNC.navigationBar.layoutIfNeeded()
 
+                    expect(rootVC0.isRootViewController).to(beTrue())
+                    expect(rootVC1.isRootViewController).to(beFalse())
+                    expect(childVC0.isRootViewController).to(beTrue())
+                    expect(childVC1.isRootViewController).to(beFalse())
+                    expect(childVC2.isRootViewController).to(beFalse())
+
                     expect((rootNC.navigationBar.navigationController as? TestNavigationController)?.name).to(match(rootNC.name))
                     expect((rootVC0.view.firstViewController as? TestViewController)?.name).to(match(rootVC0.name))
                     expect((rootVC0.view.parentViewController as? TestViewController)?.name).to(match(rootVC0.name))
@@ -201,6 +207,15 @@ class UIKitSpec: QuickSpec {
 
                     expect((emptyView.firstViewController as? TestViewController)?.name).to(beNil())
                     expect((emptyView.parentViewController as? TestViewController)?.name).to(beNil())
+                }
+                it("Description") {
+                    expect(String(describing: UINavigationController.Operation.none)).to(match("none"))
+                    expect(String(describing: UINavigationController.Operation.push)).to(match("push"))
+                    expect(String(describing: UINavigationController.Operation.pop)).to(match("pop"))
+                    expect(String(describing: UIBarPosition.any)).to(match("any"))
+                    expect(String(describing: UIBarPosition.bottom)).to(match("bottom"))
+                    expect(String(describing: UIBarPosition.top)).to(match("top"))
+                    expect(String(describing: UIBarPosition.topAttached)).to(match("topAttached"))
                 }
             }
         }
@@ -255,6 +270,136 @@ class UIKitSpec: QuickSpec {
                 expect(leftAnchor.isActive).to(beTrue())
                 expect(rightAnchor.isActive).to(beTrue())
                 parentView.updateConstraintsAndLayoutImmediately()
+            }
+            it("Description") {
+                expect(String(describing: NSLayoutConstraint.Attribute.left)).to(match("left"))
+                expect(String(describing: NSLayoutConstraint.Attribute.right)).to(match("right"))
+                expect(String(describing: NSLayoutConstraint.Attribute.top)).to(match("top"))
+                expect(String(describing: NSLayoutConstraint.Attribute.bottom)).to(match("bottom"))
+                expect(String(describing: NSLayoutConstraint.Attribute.leading)).to(match("leading"))
+                expect(String(describing: NSLayoutConstraint.Attribute.trailing)).to(match("trailing"))
+                expect(String(describing: NSLayoutConstraint.Attribute.width)).to(match("width"))
+                expect(String(describing: NSLayoutConstraint.Attribute.height)).to(match("height"))
+                expect(String(describing: NSLayoutConstraint.Attribute.centerX)).to(match("centerX"))
+                expect(String(describing: NSLayoutConstraint.Attribute.centerY)).to(match("centerY"))
+                expect(String(describing: NSLayoutConstraint.Attribute.lastBaseline)).to(match("lastBaseline"))
+                expect(String(describing: NSLayoutConstraint.Attribute.firstBaseline)).to(match("firstBaseline"))
+                expect(String(describing: NSLayoutConstraint.Attribute.leftMargin)).to(match("leftMargin"))
+                expect(String(describing: NSLayoutConstraint.Attribute.rightMargin)).to(match("rightMargin"))
+                expect(String(describing: NSLayoutConstraint.Attribute.topMargin)).to(match("topMargin"))
+                expect(String(describing: NSLayoutConstraint.Attribute.bottomMargin)).to(match("bottomMargin"))
+                expect(String(describing: NSLayoutConstraint.Attribute.leadingMargin)).to(match("leadingMargin"))
+                expect(String(describing: NSLayoutConstraint.Attribute.trailingMargin)).to(match("trailingMargin"))
+                expect(String(describing: NSLayoutConstraint.Attribute.centerXWithinMargins)).to(match("centerXWithinMargins"))
+                expect(String(describing: NSLayoutConstraint.Attribute.centerYWithinMargins)).to(match("centerYWithinMargins"))
+                expect(String(describing: NSLayoutConstraint.Attribute.notAnAttribute)).to(match("notAnAttribute"))
+            }
+        }
+
+        describe("UIGestureRecognizer") {
+            it("Property") {
+                expect(UIScreenEdgePanGestureRecognizer().isEdgePan).to(beTrue())
+                expect(UIScreenEdgePanGestureRecognizer().isNormalPan).to(beFalse())
+                expect(UIPanGestureRecognizer().isEdgePan).to(beFalse())
+                expect(UIPanGestureRecognizer().isNormalPan).to(beTrue())
+            }
+            it("Description") {
+                expect(String(describing: UIGestureRecognizer.State.possible)).to(match("possible"))
+                expect(String(describing: UIGestureRecognizer.State.began)).to(match("began"))
+                expect(String(describing: UIGestureRecognizer.State.changed)).to(match("changed"))
+                expect(String(describing: UIGestureRecognizer.State.ended)).to(match("ended"))
+                expect(String(describing: UIGestureRecognizer.State.cancelled)).to(match("cancelled"))
+                expect(String(describing: UIGestureRecognizer.State.failed)).to(match("failed"))
+            }
+        }
+        describe("UIDeviceOrientation") {
+            it("Description") {
+                expect(String(describing: UIDeviceOrientation.portrait)).to(match("portrait"))
+                expect(String(describing: UIDeviceOrientation.portraitUpsideDown)).to(match("portraitUpsideDown"))
+                expect(String(describing: UIDeviceOrientation.landscapeRight)).to(match("landscapeRight"))
+                expect(String(describing: UIDeviceOrientation.landscapeLeft)).to(match("landscapeLeft"))
+                expect(String(describing: UIDeviceOrientation.faceUp)).to(match("faceUp"))
+                expect(String(describing: UIDeviceOrientation.faceDown)).to(match("faceDown"))
+                expect(String(describing: UIDeviceOrientation.unknown)).to(match("unknown"))
+            }
+        }
+        describe("UIModalPresentationStyle") {
+            it("Description") {
+                expect(String(describing: UIModalPresentationStyle.fullScreen)).to(match("fullScreen"))
+                expect(String(describing: UIModalPresentationStyle.pageSheet)).to(match("pageSheet"))
+                expect(String(describing: UIModalPresentationStyle.formSheet)).to(match("formSheet"))
+                expect(String(describing: UIModalPresentationStyle.currentContext)).to(match("currentContext"))
+                expect(String(describing: UIModalPresentationStyle.custom)).to(match("custom"))
+                expect(String(describing: UIModalPresentationStyle.overFullScreen)).to(match("overFullScreen"))
+                expect(String(describing: UIModalPresentationStyle.overCurrentContext)).to(match("overCurrentContext"))
+                expect(String(describing: UIModalPresentationStyle.popover)).to(match("popover"))
+                expect(String(describing: UIModalPresentationStyle.none)).to(match("none"))
+            }
+        }
+        describe("UIUserInterfaceIdiom") {
+            it("Property") {
+                if UIDevice.current.userInterfaceIdiom.isPhone {
+                    expect(UIDevice.current.userInterfaceIdiom.isPhone).to(beTrue())
+                    expect(UIDevice.current.userInterfaceIdiom.isPad).to(beFalse())
+                } else if UIDevice.current.userInterfaceIdiom.isPad {
+                    expect(UIDevice.current.userInterfaceIdiom.isPhone).to(beFalse())
+                    expect(UIDevice.current.userInterfaceIdiom.isPad).to(beTrue())
+                }
+            }
+            it("Description") {
+                expect(String(describing: UIUserInterfaceIdiom.phone)).to(match("phone"))
+                expect(String(describing: UIUserInterfaceIdiom.pad)).to(match("pad"))
+                expect(String(describing: UIUserInterfaceIdiom.carPlay)).to(match("carPlay"))
+                expect(String(describing: UIUserInterfaceIdiom.tv)).to(match("tv"))
+                expect(String(describing: UIUserInterfaceIdiom.unspecified)).to(match("unspecified"))
+            }
+        }
+        describe("UIViewPropertyAnimator") {
+            it("Initialization") {
+                expect(UIViewPropertyAnimator(duration: 1, easing: .linear).duration).to(equal(1))
+                expect(UICubicTimingParameters(0.47, 0, 0.745, 0.715)).to(equal(UICubicTimingParameters(controlPoint1: CGPoint(x: 0.47, y: 0), controlPoint2: CGPoint(x: 0.745, y: 0.715))))
+                let params: UISpringTimingParameters.SpringParameters = UISpringTimingParameters.parameters(dampingRatio: FluidConst.springDampingRatio, frequencyResponse: FluidConst.springFrequencyResponse)
+                expect(UISpringTimingParameters(dampingRatio: FluidConst.springDampingRatio, frequencyResponse: FluidConst.springFrequencyResponse))
+                        .to(equal(UISpringTimingParameters(mass: params.mass, stiffness: params.stiffness, damping: params.damping, initialVelocity: params.velocity)))
+                expect(UISpringTimingParameters.duration(dampingRatio: FluidConst.springDampingRatio, frequencyResponse: FluidConst.springFrequencyResponse))
+                        .to(equal(UISpringTimingParameters.duration(mass: params.mass, stiffness: params.stiffness, damping: params.damping, velocity: params.velocity)))
+            }
+            it("Description") {
+                expect(String(describing: UITimingCurveType.builtin)).to(match("builtin"))
+                expect(String(describing: UITimingCurveType.cubic)).to(match("cubic"))
+                expect(String(describing: UITimingCurveType.spring)).to(match("spring"))
+                expect(String(describing: UITimingCurveType.composed)).to(match("composed"))
+
+                expect(String(describing: UIViewAnimatingPosition.end)).to(match("end"))
+                expect(String(describing: UIViewAnimatingPosition.start)).to(match("start"))
+                expect(String(describing: UIViewAnimatingPosition.current)).to(match("current"))
+
+                expect(String(describing: UIViewAnimatingState.active)).to(match("active"))
+                expect(String(describing: UIViewAnimatingState.inactive)).to(match("inactive"))
+                expect(String(describing: UIViewAnimatingState.stopped)).to(match("stopped"))
+                expect(String(describing: UIViewAnimatingState(rawValue: 3))).to(match("nil"))
+            }
+        }
+        describe("UIScrollView") {
+            let scrollView: UIScrollView = .init(frame: CGRect(x: 0, y: 0, width: 1000, height: 1000))
+            let childView: UIView = .init(frame: CGRect(x: 0, y: 0, width: 1000, height: 1000))
+            scrollView.setContentOffset(CGPoint(x: 0, y: 100), animated: false)
+            scrollView.addSubview(childView)
+            it("Property") {
+                expect(scrollView.minScrollableX).to(equal(0))
+                expect(scrollView.maxScrollableX).to(equal(-1000))
+                expect(scrollView.minScrollableY).to(equal(0))
+                expect(scrollView.maxScrollableY).to(equal(-1000))
+                expect(scrollView.normalizedContentOffset).to(equal(CGPoint(x: 0, y: 100)))
+                expect(scrollView.effectiveContentInset).to(equal(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)))
+            }
+        }
+        describe("UIBezierPath") {
+            it("Initialization") {
+                let path0: UIBezierPath = UIBezierPath(bounds: CGRect(x: 0, y: 0, width: 100, height: 100), cornerRadius: 10, roundingCorners: .allCorners)
+                expect(path0.bounds).to(equal(CGRect(x: 0, y: 0, width: 100, height: 100)))
+                let path1: UIBezierPath = UIBezierPath(bounds: CGRect(x: 0, y: 0, width: 100, height: 100), cornerRadius: 10, roundingCorners: .none)
+                expect(path1.bounds).to(equal(CGRect(x: 0, y: 0, width: 100, height: 100)))
             }
         }
     }
