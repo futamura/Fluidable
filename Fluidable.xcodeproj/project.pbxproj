@@ -275,6 +275,7 @@
 		DFABEA76E84782BC8CE6D34B /* QuartzCoreSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE7A41959B49A81407C6D /* QuartzCoreSpec.swift */; };
 		DFABEAF4A0A81166CABF601F /* FoundationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEF30085D9F4794BDA1D5 /* FoundationSpec.swift */; };
 		DFABED94484BCC69C0DF8C33 /* AnimatorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEB712A899C167DEFE0D5 /* AnimatorEnum.swift */; };
+		DFABEEBC3B205A04BDFFF716 /* MainSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE4D624937D130011B37E /* MainSpec.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -510,6 +511,7 @@
 		A7F5CF2B22CAF80D00578043 /* Fluidable+SafeArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Fluidable+SafeArea.swift"; sourceTree = "<group>"; };
 		DFABE052FFD740CC0F27F94D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NavigationTableViewController.xib; sourceTree = "<group>"; };
 		DFABE3B66C85AD6FFCF55485 /* VectorMathSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorMathSpec.swift; sourceTree = "<group>"; };
+		DFABE4D624937D130011B37E /* MainSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSpec.swift; sourceTree = "<group>"; };
 		DFABE61D021ABDF43686FD95 /* RootViewController+Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RootViewController+Collection.swift"; sourceTree = "<group>"; };
 		DFABE7A41959B49A81407C6D /* QuartzCoreSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuartzCoreSpec.swift; sourceTree = "<group>"; };
 		DFABE81DB86B266033ED2C1C /* NavigationChildViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationChildViewController.swift; sourceTree = "<group>"; };
@@ -627,6 +629,7 @@
 				A71F676721C52451007CADA0 /* Info.plist */,
 				A705A4B821CF1343006C9B67 /* Specs.swift */,
 				A7F0132721D12B650022BF84 /* XCUIApplication+Ext.swift */,
+				DFABE4D624937D130011B37E /* MainSpec.swift */,
 			);
 			path = UITests;
 			sourceTree = "<group>";
@@ -1690,6 +1693,7 @@
 				A7C7A97321EC93C2000687C9 /* TransitionScrollViewController.swift in Sources */,
 				A7C7A98121EC93C2000687C9 /* TransitionTableViewController.swift in Sources */,
 				A7F0132821D12B650022BF84 /* XCUIApplication+Ext.swift in Sources */,
+				DFABEEBC3B205A04BDFFF716 /* MainSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

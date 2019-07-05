@@ -46,6 +46,8 @@ class RootViewController: UICollectionViewController, Fluidable {
     override func viewDidLoad() {
         Logger()?.log("👑💥", [])
         super.viewDidLoad()
+        self.collectionView.isAccessibilityElement = true
+        self.collectionView.accessibilityIdentifier = "rootCollectionView"
         /* NOTE: Setup collection view */
         self.collectionView.backgroundColor = .white
         self.collectionView.contentInset = UIEdgeInsets(top: ExampleConst.collectionTopMargin, left: ExampleConst.collectionBottomMargin,

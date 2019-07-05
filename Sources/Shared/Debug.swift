@@ -103,7 +103,7 @@ internal class Logger {
     }
 }
 
-func printf(_ name: String, _ value: Any?, icon: String = "ℹ️") {
+func printf(_ name: String, _ value: Any?, pad: Int = 48, icon: String = "ℹ️") {
     var str: String
     switch value {
     case is Bool:
@@ -111,11 +111,5 @@ func printf(_ name: String, _ value: Any?, icon: String = "ℹ️") {
     default:
         str = String(describing: value ?? "nil")
     }
-    print("    \(icon) \(name):".lpad() + str)
-}
-
-internal extension String {
-    func lpad() -> String {
-        return self.padding(toLength: 32, withPad: " ", startingAt: 0)
-    }
+    print("    \(icon) \(name):".lpad(pad) + str)
 }
