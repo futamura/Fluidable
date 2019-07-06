@@ -54,5 +54,16 @@ extension RootViewController {
             return cell
         }
     }
-    public override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool { return false }
+
+//    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+//        guard let model: RootModel = RootModel(rawValue: indexPath.row) else { return }
+//        Logger()?.log("👑💥", [
+//            "indexPath.row: " + String(describing: indexPath.row),
+//        ])
+//        let cell: RootImageCell = collectionView.dequeueReusableCell(with: RootImageCell.self, for: indexPath)
+//        cell.isAccessibilityElement = true
+//        cell.accessibilityIdentifier = model.description
+//    }
+
+    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool { return false }
 }
