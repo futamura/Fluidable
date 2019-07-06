@@ -17,7 +17,6 @@
 		A712402E21CE174F00883E13 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A712402D21CE174F00883E13 /* Nimble.framework */; };
 		A712402F21CE177D00883E13 /* Fluidable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71F674521C50EA8007CADA0 /* Fluidable.framework */; };
 		A712403021CE178B00883E13 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A712402D21CE174F00883E13 /* Nimble.framework */; };
-		A712403221CE2CB300883E13 /* HelperSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = A712403121CE2CB300883E13 /* HelperSpec.swift */; };
 		A712404021CE426600883E13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71F67EB21C66248007CADA0 /* AppDelegate.swift */; };
 		A71F674F21C50EA8007CADA0 /* Fluidable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71F674521C50EA8007CADA0 /* Fluidable.framework */; };
 		A71F675421C50EA8007CADA0 /* EnumSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71F675321C50EA8007CADA0 /* EnumSpec.swift */; };
@@ -320,7 +319,6 @@
 		A705A4B821CF1343006C9B67 /* Specs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Specs.swift; sourceTree = "<group>"; };
 		A712401821CD43A400883E13 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		A712402D21CE174F00883E13 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
-		A712403121CE2CB300883E13 /* HelperSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperSpec.swift; sourceTree = "<group>"; };
 		A71F674521C50EA8007CADA0 /* Fluidable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Fluidable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A71F674821C50EA8007CADA0 /* Fluidable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Fluidable.h; sourceTree = "<group>"; };
 		A71F674921C50EA8007CADA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -612,7 +610,6 @@
 			children = (
 				A71F675521C50EA8007CADA0 /* Info.plist */,
 				A71F675321C50EA8007CADA0 /* EnumSpec.swift */,
-				A712403121CE2CB300883E13 /* HelperSpec.swift */,
 				DFABEB712A899C167DEFE0D5 /* AnimatorEnum.swift */,
 				DFABEA20CD2E0B5FCF8348C4 /* CoreGraphicsSpec.swift */,
 				DFABEF30085D9F4794BDA1D5 /* FoundationSpec.swift */,
@@ -1594,7 +1591,6 @@
 				A71F675421C50EA8007CADA0 /* EnumSpec.swift in Sources */,
 				A7F5CF2622CAF6D100578043 /* NSObject+Ext.swift in Sources */,
 				A7F5CF2522CAF6D100578043 /* Debug.swift in Sources */,
-				A712403221CE2CB300883E13 /* HelperSpec.swift in Sources */,
 				DFABED94484BCC69C0DF8C33 /* AnimatorEnum.swift in Sources */,
 				DFABE1986F3CF86C24A17BEC /* CoreGraphicsSpec.swift in Sources */,
 				DFABEAF4A0A81166CABF601F /* FoundationSpec.swift in Sources */,
