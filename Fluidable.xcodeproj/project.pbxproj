@@ -266,6 +266,7 @@
 		A7F5CF2D22CAF80D00578043 /* Fluidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CF2A22CAF80D00578043 /* Fluidable.swift */; };
 		A7F5CF2E22CAF80D00578043 /* Fluidable+SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CF2B22CAF80D00578043 /* Fluidable+SafeArea.swift */; };
 		DFABE1986F3CF86C24A17BEC /* CoreGraphicsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEA20CD2E0B5FCF8348C4 /* CoreGraphicsSpec.swift */; };
+		DFABE2E93696D716B3785095 /* XCUIElement+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE8E88CFD40B74C6F4BD2 /* XCUIElement+Ext.swift */; };
 		DFABE3D588D52DA0D98549E4 /* AlignedCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEC72BC4B8623907A87C8 /* AlignedCollectionLayout.swift */; };
 		DFABE53D11423F959BB319B3 /* VectorMathSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE3B66C85AD6FFCF55485 /* VectorMathSpec.swift */; };
 		DFABE5F91C76405E1AA14916 /* UIKitSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE820B184C0B8FCE69E18 /* UIKitSpec.swift */; };
@@ -514,6 +515,7 @@
 		DFABE7A41959B49A81407C6D /* QuartzCoreSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuartzCoreSpec.swift; sourceTree = "<group>"; };
 		DFABE81DB86B266033ED2C1C /* NavigationChildViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationChildViewController.swift; sourceTree = "<group>"; };
 		DFABE820B184C0B8FCE69E18 /* UIKitSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitSpec.swift; sourceTree = "<group>"; };
+		DFABE8E88CFD40B74C6F4BD2 /* XCUIElement+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCUIElement+Ext.swift"; sourceTree = "<group>"; };
 		DFABE98EC8DD362AB89692C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NavigationMultiCollectionViewController.xib; sourceTree = "<group>"; };
 		DFABEA08D9E289F5D59BD2C4 /* RootViewController+Fluidable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RootViewController+Fluidable.swift"; sourceTree = "<group>"; };
 		DFABEA20CD2E0B5FCF8348C4 /* CoreGraphicsSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreGraphicsSpec.swift; sourceTree = "<group>"; };
@@ -627,6 +629,7 @@
 				A705A4B821CF1343006C9B67 /* Specs.swift */,
 				A7F0132721D12B650022BF84 /* XCUIApplication+Ext.swift */,
 				DFABE4D624937D130011B37E /* MainSpec.swift */,
+				DFABE8E88CFD40B74C6F4BD2 /* XCUIElement+Ext.swift */,
 			);
 			path = UITests;
 			sourceTree = "<group>";
@@ -1690,6 +1693,7 @@
 				A7C7A98121EC93C2000687C9 /* TransitionTableViewController.swift in Sources */,
 				A7F0132821D12B650022BF84 /* XCUIApplication+Ext.swift in Sources */,
 				DFABEEBC3B205A04BDFFF716 /* MainSpec.swift in Sources */,
+				DFABE2E93696D716B3785095 /* XCUIElement+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
