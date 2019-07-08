@@ -8,6 +8,68 @@
 
 import XCTest
 
+extension XCUIElement {
+    var visibleCells: [XCUIElement] {
+        var cells: [XCUIElement] = [XCUIElement]()
+        for index in 0...self.cells.count {
+            let cell: XCUIElement = self.cells.element(boundBy: index)
+            if cell.exists && cell.isHittable { cells.append(cell) }
+        }
+        return cells
+    }
+
+    var firstVisibleCell: XCUIElement? {
+        for index in 0...self.cells.count {
+            let cell: XCUIElement = self.cells.element(boundBy: index)
+            if cell.exists && cell.isHittable { return cell }
+        }
+        return nil
+    }
+
+    var lastVisibleCell: XCUIElement? {
+        var doesVisibleCellExist: Bool = false
+        for index in 0...self.cells.count {
+            let cell: XCUIElement = self.cells.element(boundBy: index)
+            if cell.exists && cell.isHittable {
+                doesVisibleCellExist = true
+            } else if doesVisibleCellExist {
+                return cell
+            }
+        }
+        return nil
+    }
+
+    var indicesForVisibleCells: [Int] {
+        var indices: [Int] = [Int]()
+        for index in 0...self.cells.count {
+            let cell: XCUIElement = self.cells.element(boundBy: index)
+            if cell.exists && cell.isHittable { indices.append(index) }
+        }
+        return indices
+    }
+
+    var indexOfFirstVisibleCell: Int? {
+        for index in 0...self.cells.count {
+            let cell: XCUIElement = self.cells.element(boundBy: index)
+            if cell.exists && cell.isHittable { return index }
+        }
+        return nil
+    }
+
+    var indexOfLastVisibleCell: Int? {
+        var doesVisibleCellExist: Bool = false
+        for index in 0...self.cells.count {
+            let cell: XCUIElement = self.cells.element(boundBy: index)
+            if cell.exists && cell.isHittable {
+                doesVisibleCellExist = true
+            } else if doesVisibleCellExist {
+                return index
+            }
+        }
+        return nil
+    }
+}
+
 extension XCUIElement.ElementType: CustomStringConvertible {
     public var description: String {
         switch self {
