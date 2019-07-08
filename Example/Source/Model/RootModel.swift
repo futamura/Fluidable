@@ -337,6 +337,9 @@ extension RootModel {
         return "\(presentationString) / \(backgroundString) / \(styleString)"
     }
 
+    var cellAccessibilityIdentifier: String {
+        return self.description + "Cell"
+    }
     var description: String {
         switch self {
         case .navigationFluidModal:      return "navigationFluidModal"
