@@ -44,6 +44,10 @@ internal extension String {
     }
 }
 
+extension Bool {
+    var debugString: String { return self ? "🔵 true" : "🔴 false" }
+}
+
 private func extractFileName(_ file: String) -> String {
     let str: NSString = (file as NSString)
     return str.lastPathComponent.replacingOccurrences(of: ".\(str.pathExtension)", with: "")
