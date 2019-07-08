@@ -20,7 +20,6 @@ class TransitionTableViewController: TransitionBaseViewController, Fluidable {
 
     /** Views */
     @IBOutlet weak var tableView: TableView!
-    @IBOutlet weak var closeButton: CloseButton!
     @IBOutlet weak var footerOverlayView: UIView!
 
     @IBOutlet weak var tableTopConstraint: NSLayoutConstraint!
@@ -38,8 +37,6 @@ class TransitionTableViewController: TransitionBaseViewController, Fluidable {
     override func configure(modelIndex: Int) {
         super.configure(modelIndex: modelIndex)
         Logger()?.log("🚗🛠", ["modelIndex:".lpad() + String(describing: modelIndex)])
-        /* NOTE: Set accessibility */
-        self.closeButton.accessibilityIdentifier = self.model.overlayCloseButtonAccessibilityIdentifier
         /* NOTE: Setup table view */
         self.tableView.configure(model: self.model)
         self.tableView.contentOffset = .zero
@@ -71,13 +68,6 @@ class TransitionTableViewController: TransitionBaseViewController, Fluidable {
     }
 
     deinit { Logger()?.log("🚗🧹🧹🧹", []) }
-}
-
-extension TransitionTableViewController {
-    @IBAction func closeButtonDidTap(_ sender: Any) {
-        Logger()?.log("🚗", [])
-        self.dismiss(animated: true)
-    }
 }
 
 /* IMPORTANT: 🌊 Conform to `FluidDestinationConfigurationDelegate` */

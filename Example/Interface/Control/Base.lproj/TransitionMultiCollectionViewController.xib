@@ -224,7 +224,7 @@
                         </constraints>
                         <state key="normal" image="Close"/>
                         <connections>
-                            <action selector="closeButtonDidTap:" destination="JhL-gM-Ibg" eventType="touchUpInside" id="ov8-CT-Kzx"/>
+                            <action selector="closeButtonDidTap:" destination="JhL-gM-Ibg" eventType="touchUpInside" id="0PE-ol-2uM"/>
                         </connections>
                     </button>
                 </subviews>
@@ -240,7 +240,7 @@
                 <viewLayoutGuide key="safeArea" id="pFF-lC-DyD"/>
             </view>
             <connections>
-                <outlet property="closeButton" destination="PNc-h1-YLi" id="SS7-o3-aq1"/>
+                <outlet property="closeButton" destination="PNc-h1-YLi" id="Uae-e4-ba8"/>
                 <outlet property="fifthCollectionView" destination="NlT-04-Kmg" id="quA-JY-OeD"/>
                 <outlet property="firstCollectionView" destination="4et-KE-2os" id="HvN-jQ-Gcq"/>
                 <outlet property="forthCollectionView" destination="s4o-nd-PQ8" id="3jo-dn-GPF"/>

@@ -24,7 +24,6 @@ class TransitionScrollViewController: TransitionBaseViewController, Fluidable {
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var imageContainerView: UIView!
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var closeButton: CloseButton!
     @IBOutlet weak var textContainerView: UIView!
     @IBOutlet weak var textLabel: UILabel!
 
@@ -45,8 +44,6 @@ class TransitionScrollViewController: TransitionBaseViewController, Fluidable {
     override func configure(modelIndex: Int) {
         super.configure(modelIndex: modelIndex)
         Logger()?.log("🚗🛠", ["modelIndex:".lpad() + String(describing: modelIndex)])
-        /* NOTE: Set accessibility */
-        self.closeButton.accessibilityIdentifier = self.model.overlayCloseButtonAccessibilityIdentifier
         /* NOTE: Header */
         self.headerView = .instantiate(model: self.model)
         self.imageContainerView.addSubview(self.headerView)
@@ -118,13 +115,6 @@ class TransitionScrollViewController: TransitionBaseViewController, Fluidable {
     deinit {
         Logger()?.log("🚗🧹🧹🧹", [])
         self.transitioningDelegate = nil
-    }
-}
-
-extension TransitionScrollViewController {
-    @IBAction func closeButtonDidTap(_ sender: Any) {
-        Logger()?.log("🚗", [])
-        self.dismiss(animated: true)
     }
 }
 

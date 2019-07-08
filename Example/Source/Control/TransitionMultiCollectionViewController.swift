@@ -19,7 +19,6 @@ class TransitionMultiCollectionViewController: TransitionBaseViewController, Flu
     var headerView: HeaderView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var stackView: UIStackView!
-    @IBOutlet weak var closeButton: CloseButton!
 
     @IBOutlet weak var firstCollectionView: HorizontalCollectionView!
     @IBOutlet weak var secondCollectionView: HorizontalCollectionView!
@@ -41,8 +40,6 @@ class TransitionMultiCollectionViewController: TransitionBaseViewController, Flu
     override func configure(modelIndex: Int) {
         super.configure(modelIndex: modelIndex)
         Logger()?.log("🚗🛠", ["modelIndex:".lpad() + String(describing: modelIndex)])
-        /* NOTE: Set accessibility */
-        self.closeButton.accessibilityIdentifier = self.model.overlayCloseButtonAccessibilityIdentifier
         /* NOTE: Header */
         if let model: RootModel = self.model {
             self.headerView = .instantiate(model: model)
@@ -82,13 +79,6 @@ class TransitionMultiCollectionViewController: TransitionBaseViewController, Flu
     }
 
     deinit { Logger()?.log("🚗🧹🧹🧹", []) }
-}
-
-extension TransitionMultiCollectionViewController {
-    @IBAction func closeButtonDidTap(_ sender: Any) {
-        Logger()?.log("🚗", [])
-        self.dismiss(animated: true)
-    }
 }
 
 /* IMPORTANT: 🌊 Conform to `FluidDestinationConfigurationDelegate` */

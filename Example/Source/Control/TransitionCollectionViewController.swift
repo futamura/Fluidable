@@ -17,7 +17,6 @@ class TransitionCollectionViewController: TransitionBaseViewController, Fluidabl
 
     /** Views */
     @IBOutlet weak var collectionView: AlignedCollectionView!
-    @IBOutlet weak var closeButton: CloseButton!
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -34,8 +33,6 @@ class TransitionCollectionViewController: TransitionBaseViewController, Fluidabl
         Logger()?.log("🚗🛠", ["modelIndex:".lpad() + String(describing: modelIndex)])
         /* NOTE: Setup collection view */
         self.collectionView.configure(model: model, headerPosition: .top)
-        /* NOTE: Set accessibility */
-        self.closeButton.accessibilityIdentifier = self.model.overlayCloseButtonAccessibilityIdentifier
     }
 
     override func viewDidLoad() {
@@ -76,13 +73,6 @@ extension TransitionCollectionViewController {
             }
         }, completion: { (context: UIViewControllerTransitionCoordinatorContext) in
         })
-    }
-}
-
-extension TransitionCollectionViewController {
-    @IBAction func closeButtonDidTap(_ sender: Any) {
-        Logger()?.log("🚗", [])
-        self.dismiss(animated: true)
     }
 }
 

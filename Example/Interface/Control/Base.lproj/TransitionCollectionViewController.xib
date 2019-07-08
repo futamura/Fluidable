@@ -34,7 +34,7 @@
                         </constraints>
                         <state key="normal" image="Close"/>
                         <connections>
-                            <action selector="closeButtonDidTap:" destination="u5w-TK-tiI" eventType="touchUpInside" id="aVz-9y-CUj"/>
+                            <action selector="closeButtonDidTap:" destination="u5w-TK-tiI" eventType="touchUpInside" id="bkf-PO-9Op"/>
                         </connections>
                     </button>
                 </subviews>
@@ -50,7 +50,7 @@
                 <viewLayoutGuide key="safeArea" id="GwL-0l-o9P"/>
             </view>
             <connections>
-                <outlet property="closeButton" destination="abo-0t-6Tb" id="tA1-QS-N6g"/>
+                <outlet property="closeButton" destination="abo-0t-6Tb" id="s68-3p-8oH"/>
                 <outlet property="collectionView" destination="Dc5-a5-Y0j" id="TNL-SR-4QA"/>
             </connections>
             <point key="canvasLocation" x="0.0" y="209.59821428571428"/>

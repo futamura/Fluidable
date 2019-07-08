@@ -106,7 +106,7 @@ Vivamus sed velit et arcu egestas suscipit at vel justo. Vestibulum vehicula nis
                         </constraints>
                         <state key="normal" image="Close"/>
                         <connections>
-                            <action selector="closeButtonDidTap:" destination="Kbl-6u-Pch" eventType="touchUpInside" id="Odk-DK-79I"/>
+                            <action selector="closeButtonDidTap:" destination="Kbl-6u-Pch" eventType="touchUpInside" id="gN1-se-EPb"/>
                         </connections>
                     </button>
                 </subviews>
@@ -122,7 +122,7 @@ Vivamus sed velit et arcu egestas suscipit at vel justo. Vestibulum vehicula nis
                 <viewLayoutGuide key="safeArea" id="ReU-W5-KTW"/>
             </view>
             <connections>
-                <outlet property="closeButton" destination="cDu-Zc-jNl" id="dRK-3l-zdD"/>
+                <outlet property="closeButton" destination="cDu-Zc-jNl" id="kF5-B0-man"/>
                 <outlet property="imageContainerView" destination="LEq-Yu-mKV" id="Dub-KW-HIy"/>
                 <outlet property="imageHeightConstraint" destination="dYO-dk-D1k" id="8pX-la-oxp"/>
                 <outlet property="imageView" destination="YXI-i2-p82" id="1fb-6g-5XC"/>

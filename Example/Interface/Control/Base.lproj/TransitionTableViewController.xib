@@ -31,7 +31,7 @@
                         </constraints>
                         <state key="normal" image="Close"/>
                         <connections>
-                            <action selector="closeButtonDidTap:" destination="qm3-5f-DcC" eventType="touchUpInside" id="gDz-mM-SbX"/>
+                            <action selector="closeButtonDidTap:" destination="qm3-5f-DcC" eventType="touchUpInside" id="hHn-6u-TdU"/>
                         </connections>
                     </button>
                     <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S8h-XV-HW5">
@@ -59,7 +59,7 @@
                 <viewLayoutGuide key="safeArea" id="Vzg-4O-DCv"/>
             </view>
             <connections>
-                <outlet property="closeButton" destination="FlM-vN-jED" id="Fb2-9p-F0g"/>
+                <outlet property="closeButton" destination="FlM-vN-jED" id="Gyk-0Q-xie"/>
                 <outlet property="footerOverlayView" destination="S8h-XV-HW5" id="bRR-UT-n6S"/>
                 <outlet property="tableTopConstraint" destination="Duc-lp-hvK" id="vZe-tp-Sdw"/>
                 <outlet property="tableView" destination="xMM-ws-tQc" id="7ee-gX-xIf"/>
