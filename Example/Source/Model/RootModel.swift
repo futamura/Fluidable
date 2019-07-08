@@ -337,9 +337,6 @@ extension RootModel {
         return "\(presentationString) / \(backgroundString) / \(styleString)"
     }
 
-    var cellAccessibilityIdentifier: String {
-        return self.description + "Cell"
-    }
     var description: String {
         switch self {
         case .navigationFluidModal:      return "navigationFluidModal"
@@ -367,6 +364,20 @@ extension RootModel {
         case .transitionSlideLeft:       return "transitionSlideLeft"
         case .transitionSlideRight:      return "transitionSlideRight"
         }
+    }
+}
+
+extension RootModel {
+    var rootCellAccessibilityIdentifier: String {
+        return self.description + "_CollectionCell"
+    }
+
+    var navigationCloseButtonAccessibilityIdentifier: String {
+        return self.description + "_NavigationCloseButton"
+    }
+
+    var overlayCloseButtonAccessibilityIdentifier: String {
+        return self.description + "_OverlayCloseButton"
     }
 }
 

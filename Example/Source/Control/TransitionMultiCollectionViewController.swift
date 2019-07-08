@@ -44,6 +44,8 @@ class TransitionMultiCollectionViewController: UIViewController, Fluidable, Flui
     func configure(modelIndex: Int) {
         Logger()?.log("🚗🛠", ["modelIndex:".lpad() + String(describing: modelIndex)])
         self.modelIndex = modelIndex
+        /* NOTE: Set accessibility */
+        self.closeButton.accessibilityIdentifier = self.model.overlayCloseButtonAccessibilityIdentifier
         /* NOTE: Header */
         if let model: RootModel = self.model {
             self.headerView = .instantiate(model: model)

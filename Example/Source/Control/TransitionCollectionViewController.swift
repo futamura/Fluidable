@@ -37,6 +37,8 @@ class TransitionCollectionViewController: UIViewController, Fluidable, RootModel
         self.modelIndex = modelIndex
         /* NOTE: Setup collection view */
         self.collectionView.configure(model: model, headerPosition: .top)
+        /* NOTE: Set accessibility */
+        self.closeButton.accessibilityIdentifier = self.model.overlayCloseButtonAccessibilityIdentifier
     }
 
     override func viewDidLoad() {

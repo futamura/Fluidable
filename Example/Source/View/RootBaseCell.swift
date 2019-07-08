@@ -18,7 +18,7 @@ class RootBaseCollectionCell: UICollectionViewCell, FluidInteractiveView {
         self.touchHandler = handler
 
         /* NOTE: Set accessibility */
-        self.accessibilityIdentifier = model.cellAccessibilityIdentifier
+        self.accessibilityIdentifier = model.rootCellAccessibilityIdentifier
 
         self.contentView.layer.cornerRadius = ExampleConst.cornerRadius
         self.contentView.layer.borderColor = UIColor.clear.cgColor

@@ -41,6 +41,9 @@ class TransitionTableViewController: UIViewController, Fluidable, RootModelRecei
     func configure(modelIndex: Int) {
         Logger()?.log("🚗🛠", ["modelIndex:".lpad() + String(describing: modelIndex)])
         self.modelIndex = modelIndex
+        /* NOTE: Set accessibility */
+        self.closeButton.accessibilityIdentifier = self.model.overlayCloseButtonAccessibilityIdentifier
+        /* NOTE: Setup table view */
         self.tableView.configure(model: self.model)
         self.tableView.contentOffset = .zero
     }

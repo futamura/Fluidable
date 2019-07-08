@@ -20,7 +20,9 @@ class NavigationBaseViewController: UIViewController, RootModelReceivable {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.rightBarButtonItem = .init(title: "Close", style: .plain, target: self, action: #selector(closeButtonDidTap))
+        let buttonItem: UIBarButtonItem = .init(title: "Close", style: .plain, target: self, action: #selector(closeButtonDidTap))
+        buttonItem.accessibilityIdentifier = self.model.navigationCloseButtonAccessibilityIdentifier
+        self.navigationItem.rightBarButtonItem = buttonItem
     }
 
     @IBAction func closeButtonDidTap(_ sender: Any) {

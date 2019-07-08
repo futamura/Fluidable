@@ -48,6 +48,8 @@ class TransitionScrollViewController: UIViewController, Fluidable, RootModelRece
     func configure(modelIndex: Int) {
         Logger()?.log("🚗🛠", ["modelIndex:".lpad() + String(describing: modelIndex)])
         self.modelIndex = modelIndex
+        /* NOTE: Set accessibility */
+        self.closeButton.accessibilityIdentifier = self.model.overlayCloseButtonAccessibilityIdentifier
         /* NOTE: Header */
         self.headerView = .instantiate(model: self.model)
         self.imageContainerView.addSubview(self.headerView)

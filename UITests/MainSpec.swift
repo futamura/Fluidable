@@ -24,50 +24,42 @@ class MainSpec: QuickSpec {
     override func spec() {
         Logger()?.log("🧪", [
         ])
-        describe("Main") {
-            var app: XCUIApplication!
-            beforeEach {
-                app = XCUIApplication()
-                self.continueAfterFailure = false
-                app.setEnv(self.env)
-                app.launch()
-            }
-            RootModel.allCases.forEach { (model: RootModel) in
-                describe(model.description) {
-//                    afterEach { metadata in
-//                        sleep(1)
-//                        app.terminate()
-//                    }
-                    it("Execute") {
-                        self.execute(app: app, model: model)
+        var app: XCUIApplication!
+        beforeEach {
+            app = XCUIApplication()
+            self.continueAfterFailure = false
+            app.setEnv(self.env)
+            app.launch()
+        }
+//        afterEach { metadata in
+//            sleep(1)
+//            app.terminate()
+//        }
+        RootModel.allCases.forEach { (model: RootModel) in
+            describe(model.description) {
+                context("SimplyPresentAndDismiss") {
+                    it("Present") {
+                        self.presentSimply(app: app, model: model)
+                        self.dismissByTappingCloseButton(app: app, model: model)
                     }
+//                    it("Dismiss") {
+//                    }
                 }
             }
         }
     }
 
-    func execute(app: XCUIApplication, model: RootModel) {
-        Logger()?.log("🧪", [
-            "app:".lpad(48) + String(describing: app),
-            "model:".lpad(48) + String(describing: model),
-        ])
+    func presentSimply(app: XCUIApplication, model: RootModel) {
         /* NOTE: Wait until collection view is ready */
         let collectionView: XCUIElement = app.collectionViews.element(matching: .collectionView, identifier: "rootCollectionView")
-//        let collectionView: XCUIElement = app.collectionViews.element
         expect(collectionView.exists).toEventually(beTrue(), timeout: 10)
-        Logger()?.log("🧪", [
-            "collectionView.exists:".lpad(48) + String(describing: collectionView.exists.debugString),
-            "collectionView.identifier:".lpad(48) + String(describing: collectionView.identifier),
-            "collectionView.cells:".lpad(48) + String(describing: collectionView.cells),
-            "collectionView.cells.count:".lpad(48) + String(describing: collectionView.cells.count),
-        ])
         /* NOTE: Scroll until the collection cell is found */
         var collectionCell: XCUIElement!
         while (true) {
-            collectionCell = collectionView.cells.element(matching: .cell, identifier: model.cellAccessibilityIdentifier)
+            collectionCell = collectionView.cells.element(matching: .cell, identifier: model.rootCellAccessibilityIdentifier)
             if collectionCell.exists && collectionCell.isEnabled && collectionCell.isHittable {
                 Logger()?.log("🧪", [
-                    "model.cellAccessibilityIdentifier:".lpad(48) + String(describing: model.cellAccessibilityIdentifier),
+                    "model.cellAccessibilityIdentifier:".lpad(48) + String(describing: model.rootCellAccessibilityIdentifier),
                     "collectionCell.identifier:".lpad(48) + String(describing: collectionCell.identifier),
                 ])
                 collectionCell.tap()
@@ -82,6 +74,19 @@ class MainSpec: QuickSpec {
             }
         }
         sleep(1)
+    }
+
+    func dismissByTappingCloseButton(app: XCUIApplication, model: RootModel) {
+        let button: XCUIElement = app.buttons.element(matching: .button, identifier: model.overlayCloseButtonAccessibilityIdentifier)
+        Logger()?.log("🧪", [
+            "button.exists:".lpad(48) + String(describing: button.exists.debugString),
+        ])
+        expect(button.exists && button.isEnabled && button.isHittable).toEventually(beTrue(), timeout: 10)
+        button.tap()
+        sleep(1)
+    }
+
+    func execute(app: XCUIApplication, model: RootModel) {
         switch model {
         case .navigationFluidModal:
             break
@@ -124,10 +129,5 @@ class MainSpec: QuickSpec {
         case .transitionSlideRight:
             break
         }
-    }
-
-    func collectionCellFor(app: XCUIApplication, identifier: String) -> XCUIElement {
-        let cellsQuery: XCUIElementQuery = app.collectionViews.children(matching: .cell)
-        return cellsQuery.matching(NSPredicate(format: "identifier == '\(identifier)'")).element
     }
 }

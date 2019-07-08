@@ -31,6 +31,8 @@ class NavigationTableViewController: NavigationBaseViewController, Fluidable {
     override func configure(modelIndex: Int) {
         super.configure(modelIndex: modelIndex)
         Logger()?.log("🚗🛠", ["modelIndex:".lpad() + String(describing: modelIndex)])
+        /* NOTE: Set accessibility */
+        self.closeButton.accessibilityIdentifier = self.model.overlayCloseButtonAccessibilityIdentifier
         /* NOTE: Configure table view */
         self.tableView.configure(model: self.model, headerPosition: .top) { [weak self] (indexPath: IndexPath) in
             self?.nextDidTap(indexPath)

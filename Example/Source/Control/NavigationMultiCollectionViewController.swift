@@ -33,12 +33,13 @@ class NavigationMultiCollectionViewController: NavigationBaseViewController, Flu
     override func configure(modelIndex: Int) {
         super.configure(modelIndex: modelIndex)
         Logger()?.log("🚗🛠", ["modelIndex:".lpad() + String(describing: modelIndex)])
-        if let model: RootModel = self.model {
-            self.headerView = .instantiate(model: model)
-            self.stackView.insertArrangedSubview(self.headerView, at: 0)
-            self.headerView.heightAnchor.constraint(equalToConstant: self.headerView.estimatedHeight).activate()
-            self.headerView.widthAnchor.constraint(equalTo: self.stackView.widthAnchor).activate()
-        }
+        /* NOTE: Set accessibility */
+        self.closeButton.accessibilityIdentifier = self.model.overlayCloseButtonAccessibilityIdentifier
+        /* NOTE: Setup views */
+        self.headerView = .instantiate(model: model)
+        self.stackView.insertArrangedSubview(self.headerView, at: 0)
+        self.headerView.heightAnchor.constraint(equalToConstant: self.headerView.estimatedHeight).activate()
+        self.headerView.widthAnchor.constraint(equalTo: self.stackView.widthAnchor).activate()
         /* NOTE: Configure collection */
         self.firstCollectionView.configure(scrollToRight: false, handler: { [weak self] (indexPath: IndexPath) in self?.nextDidTap(indexPath) })
         self.secondCollectionView.configure(scrollToRight: true, handler: { [weak self] (indexPath: IndexPath) in self?.nextDidTap(indexPath) })
