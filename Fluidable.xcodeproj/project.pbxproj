@@ -270,6 +270,7 @@
 		DFABE2E93696D716B3785095 /* XCUIElement+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE8E88CFD40B74C6F4BD2 /* XCUIElement+Ext.swift */; };
 		DFABE3D588D52DA0D98549E4 /* AlignedCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEC72BC4B8623907A87C8 /* AlignedCollectionLayout.swift */; };
 		DFABE53D11423F959BB319B3 /* VectorMathSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE3B66C85AD6FFCF55485 /* VectorMathSpec.swift */; };
+		DFABE59F491E1000C30A1C54 /* TransitionBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE2E4B74F287D242141CC /* TransitionBaseViewController.swift */; };
 		DFABE5F91C76405E1AA14916 /* UIKitSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE820B184C0B8FCE69E18 /* UIKitSpec.swift */; };
 		DFABE6423A286983D05132BB /* NavigationBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEC6EF0DB83BEFF91B48C /* NavigationBaseViewController.swift */; };
 		DFABE996DD1A19EC135F1B78 /* AlignedCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEC72BC4B8623907A87C8 /* AlignedCollectionLayout.swift */; };
@@ -277,6 +278,7 @@
 		DFABEAF2177C6BE9A205486C /* RootCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEE00E49C659753C6329F /* RootCollectionView.swift */; };
 		DFABEAF4A0A81166CABF601F /* FoundationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEF30085D9F4794BDA1D5 /* FoundationSpec.swift */; };
 		DFABEB2684A6925CA833C241 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE22736E8B0215938EAE4 /* Helper.swift */; };
+		DFABEC899372CF16E5C6CAD0 /* TransitionBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE2E4B74F287D242141CC /* TransitionBaseViewController.swift */; };
 		DFABED94484BCC69C0DF8C33 /* AnimatorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEB712A899C167DEFE0D5 /* AnimatorEnum.swift */; };
 		DFABEEBC3B205A04BDFFF716 /* MainSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE4D624937D130011B37E /* MainSpec.swift */; };
 /* End PBXBuildFile section */
@@ -513,6 +515,7 @@
 		A7F5CF2B22CAF80D00578043 /* Fluidable+SafeArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Fluidable+SafeArea.swift"; sourceTree = "<group>"; };
 		DFABE052FFD740CC0F27F94D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NavigationTableViewController.xib; sourceTree = "<group>"; };
 		DFABE22736E8B0215938EAE4 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		DFABE2E4B74F287D242141CC /* TransitionBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionBaseViewController.swift; sourceTree = "<group>"; };
 		DFABE3B66C85AD6FFCF55485 /* VectorMathSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorMathSpec.swift; sourceTree = "<group>"; };
 		DFABE4D624937D130011B37E /* MainSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSpec.swift; sourceTree = "<group>"; };
 		DFABE61D021ABDF43686FD95 /* RootViewController+Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RootViewController+Collection.swift"; sourceTree = "<group>"; };
@@ -699,6 +702,7 @@
 				A7DF814C21F990D300CE3E1A /* TransitionMultiCollectionViewController.swift */,
 				A7C7A95621EC93C2000687C9 /* TransitionScrollViewController.swift */,
 				A7C7A95D21EC93C2000687C9 /* TransitionTableViewController.swift */,
+				DFABE2E4B74F287D242141CC /* TransitionBaseViewController.swift */,
 			);
 			path = Control;
 			sourceTree = "<group>";
@@ -1656,6 +1660,7 @@
 				A7C7A98621EC93C2000687C9 /* TableView.swift in Sources */,
 				A7F5CF2422CAF6D000578043 /* NSObject+Ext.swift in Sources */,
 				DFABEAF2177C6BE9A205486C /* RootCollectionView.swift in Sources */,
+				DFABE59F491E1000C30A1C54 /* TransitionBaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1706,6 +1711,7 @@
 				DFABE2E93696D716B3785095 /* XCUIElement+Ext.swift in Sources */,
 				DFABE163F763A1533DF00F8F /* RootCollectionView.swift in Sources */,
 				DFABEB2684A6925CA833C241 /* Helper.swift in Sources */,
+				DFABEC899372CF16E5C6CAD0 /* TransitionBaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

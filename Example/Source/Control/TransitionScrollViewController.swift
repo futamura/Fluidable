@@ -11,12 +11,9 @@ import UIKit
 import Fluidable
 
 /* IMPORTANT: 🌊 Conform to `Fluidable` protocol */
-class TransitionScrollViewController: UIViewController, Fluidable, RootModelReceivable {
+class TransitionScrollViewController: TransitionBaseViewController, Fluidable {
     /* IMPORTANT: 🌊 Define the delegate to receive messages from `FluidDestinationConfigurationDelegate` and `FluidDestinationActionDelegate` */
     var fluidableTransitionDelegate: FluidViewControllerTransitioningDelegate = FluidViewControllerTransitioningDelegate()
-
-    /** The value received from RootViewController. */
-    var modelIndex: Int = 0
 
     /** Dummy value to prevent UIViewPropertyAnimator from finishing immediately. */
     @objc dynamic var transitionProgress: CGFloat = 0
@@ -45,9 +42,9 @@ class TransitionScrollViewController: UIViewController, Fluidable, RootModelRece
         self.fluidDelegate = self
     }
 
-    func configure(modelIndex: Int) {
+    override func configure(modelIndex: Int) {
+        super.configure(modelIndex: modelIndex)
         Logger()?.log("🚗🛠", ["modelIndex:".lpad() + String(describing: modelIndex)])
-        self.modelIndex = modelIndex
         /* NOTE: Set accessibility */
         self.closeButton.accessibilityIdentifier = self.model.overlayCloseButtonAccessibilityIdentifier
         /* NOTE: Header */

@@ -11,12 +11,9 @@ import UIKit
 import Fluidable
 
 /* IMPORTANT: 🌊 Conform to `Fluidable` protocol */
-class TransitionCollectionViewController: UIViewController, Fluidable, RootModelReceivable {
+class TransitionCollectionViewController: TransitionBaseViewController, Fluidable {
     /* IMPORTANT: 🌊 Define the delegate to receive messages from `FluidDestinationConfigurationDelegate` and `FluidDestinationActionDelegate` */
     var fluidableTransitionDelegate: FluidViewControllerTransitioningDelegate = FluidViewControllerTransitioningDelegate()
-
-    /** The value received from RootViewController */
-    var modelIndex: Int = 0
 
     /** Views */
     @IBOutlet weak var collectionView: AlignedCollectionView!
@@ -32,9 +29,9 @@ class TransitionCollectionViewController: UIViewController, Fluidable, RootModel
         self.fluidDelegate = self
     }
 
-    func configure(modelIndex: Int) {
+    override func configure(modelIndex: Int) {
+        super.configure(modelIndex: modelIndex)
         Logger()?.log("🚗🛠", ["modelIndex:".lpad() + String(describing: modelIndex)])
-        self.modelIndex = modelIndex
         /* NOTE: Setup collection view */
         self.collectionView.configure(model: model, headerPosition: .top)
         /* NOTE: Set accessibility */

@@ -379,6 +379,10 @@ extension RootModel {
     var overlayCloseButtonAccessibilityIdentifier: String {
         return self.description + "_OverlayCloseButton"
     }
+
+    var visibleControllerViewAccessibilityIdentifier: String {
+        return self.description + "_VisibleView"
+    }
 }
 
 enum RootPresentationType: CustomStringConvertible {

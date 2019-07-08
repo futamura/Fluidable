@@ -11,12 +11,9 @@ import UIKit
 import Fluidable
 
 /* IMPORTANT: 🌊 Conform to `Fluidable` and `FluidResizable` protocol */
-class TransitionMultiCollectionViewController: UIViewController, Fluidable, FluidResizable, RootModelReceivable {
+class TransitionMultiCollectionViewController: TransitionBaseViewController, Fluidable, FluidResizable {
     /* IMPORTANT: 🌊 Define the delegate to receive messages from `FluidDestinationConfigurationDelegate` and `FluidDestinationActionDelegate` */
     var fluidableTransitionDelegate: FluidViewControllerTransitioningDelegate = .init()
-
-    /** The value received from RootViewController */
-    var modelIndex: Int = 0
 
     /** Views */
     var headerView: HeaderView!
@@ -41,9 +38,9 @@ class TransitionMultiCollectionViewController: UIViewController, Fluidable, Flui
         self.fluidResizableDelegate = self
     }
 
-    func configure(modelIndex: Int) {
+    override func configure(modelIndex: Int) {
+        super.configure(modelIndex: modelIndex)
         Logger()?.log("🚗🛠", ["modelIndex:".lpad() + String(describing: modelIndex)])
-        self.modelIndex = modelIndex
         /* NOTE: Set accessibility */
         self.closeButton.accessibilityIdentifier = self.model.overlayCloseButtonAccessibilityIdentifier
         /* NOTE: Header */
