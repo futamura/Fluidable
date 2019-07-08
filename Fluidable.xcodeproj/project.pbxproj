@@ -33,6 +33,7 @@
 		A73FA6022228363000B9B993 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73FA6012228363000B9B993 /* HeaderView.swift */; };
 		A73FA6032228363000B9B993 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73FA6012228363000B9B993 /* HeaderView.swift */; };
 		A73FA6062228373D00B9B993 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A73FA6042228373D00B9B993 /* HeaderView.xib */; };
+		A74186B722D3129800C8DACE /* AutoMate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A74186B622D3129800C8DACE /* AutoMate.framework */; };
 		A743D1CC21C7A17F00230502 /* Fluidable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71F674521C50EA8007CADA0 /* Fluidable.framework */; };
 		A743D1CD21C7A17F00230502 /* Fluidable.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A71F674521C50EA8007CADA0 /* Fluidable.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A7498D3A22B0F474002282DD /* NavigationChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE81DB86B266033ED2C1C /* NavigationChildViewController.swift */; };
@@ -339,6 +340,7 @@
 		A73A338521ECAE2C00222AC1 /* Image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Image.xcassets; sourceTree = "<group>"; };
 		A73FA6012228363000B9B993 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		A73FA6052228373D00B9B993 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/HeaderView.xib; sourceTree = "<group>"; };
+		A74186B622D3129800C8DACE /* AutoMate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AutoMate.framework; path = Carthage/Build/iOS/AutoMate.framework; sourceTree = "<group>"; };
 		A7498D3C22B0F54E002282DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NavigationChildViewController.xib; sourceTree = "<group>"; };
 		A756F8F921EEABBB00184FBF /* ExampleConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleConst.swift; sourceTree = "<group>"; };
 		A756F8FC21EF344C00184FBF /* RootNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootNavigationController.swift; sourceTree = "<group>"; };
@@ -560,6 +562,7 @@
 				A712402F21CE177D00883E13 /* Fluidable.framework in Frameworks */,
 				A712401C21CD43A400883E13 /* Quick.framework in Frameworks */,
 				A712403021CE178B00883E13 /* Nimble.framework in Frameworks */,
+				A74186B722D3129800C8DACE /* AutoMate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -639,6 +642,7 @@
 			children = (
 				A712401821CD43A400883E13 /* Quick.framework */,
 				A712402D21CE174F00883E13 /* Nimble.framework */,
+				A74186B622D3129800C8DACE /* AutoMate.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1380,6 +1384,7 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Quick.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Nimble.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/AutoMate.framework",
 			);
 			name = Carthage;
 			outputFileListPaths = (
@@ -1387,6 +1392,7 @@
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Quick.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Nimble.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/AutoMate.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
