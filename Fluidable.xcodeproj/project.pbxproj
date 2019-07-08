@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A705A4B921CF1343006C9B67 /* Specs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A705A4B821CF1343006C9B67 /* Specs.swift */; };
 		A70E1243224F550700AD8008 /* NavigationCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFABE4B79ED95D4960743568 /* NavigationCollectionViewController.xib */; };
 		A70E1244224F550700AD8008 /* NavigationMultiCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFABE75DE9BFBA9C2CF569D1 /* NavigationMultiCollectionViewController.xib */; };
 		A70E1245224F550700AD8008 /* NavigationScrollViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFABEF237484CDD84BA4185D /* NavigationScrollViewController.xib */; };
@@ -321,7 +320,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		A705A4B821CF1343006C9B67 /* Specs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Specs.swift; sourceTree = "<group>"; };
 		A712401821CD43A400883E13 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		A712402D21CE174F00883E13 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		A71F674521C50EA8007CADA0 /* Fluidable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Fluidable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -634,7 +632,6 @@
 			isa = PBXGroup;
 			children = (
 				A71F676721C52451007CADA0 /* Info.plist */,
-				A705A4B821CF1343006C9B67 /* Specs.swift */,
 				DFABE4D624937D130011B37E /* MainSpec.swift */,
 				A7F0132721D12B650022BF84 /* XCUIApplication+Ext.swift */,
 				DFABE8E88CFD40B74C6F4BD2 /* XCUIElement+Ext.swift */,
@@ -1698,7 +1695,6 @@
 				A7BC6F0B222433EC007D70F0 /* RootViewController+Collection.swift in Sources */,
 				A7BC6F0A222433EC007D70F0 /* RootViewController+Fluidable.swift in Sources */,
 				A7BC6F09222433EC007D70F0 /* RootViewController.swift in Sources */,
-				A705A4B921CF1343006C9B67 /* Specs.swift in Sources */,
 				A7C7A98521EC93C2000687C9 /* TableCell.swift in Sources */,
 				A7C7A98721EC93C2000687C9 /* TableView.swift in Sources */,
 				A7C7A97721EC93C2000687C9 /* TransitionCollectionViewController.swift in Sources */,
