@@ -7,3 +7,12 @@
 //
 
 import Foundation
+import UIKit
+
+class RootCollectionView: UICollectionView {
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        /* NOTE: Set accessibility */
+        self.accessibilityIdentifier = "rootCollectionView"
+    }
+}
