@@ -627,8 +627,8 @@
 			children = (
 				A71F676721C52451007CADA0 /* Info.plist */,
 				A705A4B821CF1343006C9B67 /* Specs.swift */,
-				A7F0132721D12B650022BF84 /* XCUIApplication+Ext.swift */,
 				DFABE4D624937D130011B37E /* MainSpec.swift */,
+				A7F0132721D12B650022BF84 /* XCUIApplication+Ext.swift */,
 				DFABE8E88CFD40B74C6F4BD2 /* XCUIElement+Ext.swift */,
 			);
 			path = UITests;
