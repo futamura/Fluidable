@@ -23,7 +23,7 @@ class MainSpec: QuickSpec {
     override func setUp() {
         Logger()?.log("🧪", [
         ])
-//        super.setUp()
+        super.setUp()
         self.continueAfterFailure = false
     }
 
@@ -64,42 +64,26 @@ class MainSpec: QuickSpec {
             "collectionView.isAccessibilityElement:".lpad(48) + String(debug: collectionView.isAccessibilityElement.debugString),
             "collectionView.identifier:".lpad(48) + String(debug: collectionView.identifier),
         ])
-        let collectionView2: XCUIElement = app.tables.element(matching: .table, identifier: "rootCollectionView")
-        expect(collectionView2.exists).toEventually(beTrue(), timeout: 10)
-        Logger()?.log("🧪", [
-            "collectionView2.exists:".lpad(48) + String(debug: collectionView2.exists.debugString),
-            "collectionView2.isAccessibilityElement:".lpad(48) + String(debug: collectionView2.isAccessibilityElement.debugString),
-            "collectionView2.identifier:".lpad(48) + String(debug: collectionView2.identifier),
-        ])
         /** NOTE: Scroll until the collection cell is found */
         var collectionCell: XCUIElement!
         var retryCount: Int = 0
         while (true) {
             sleep(1)
-            collectionCell = app.collectionViews.element.cells.element(matching: .cell, identifier: model.description)
-//            collectionCell = collectionView.cells.matching(identifier: model.description).element
-//            collectionCell = collectionView.cells.firstMatch
+//            collectionCell = collectionView.cells.matching(identifier: model.description + "Cell").element
+//            collectionCell = app.collectionViews.element.cells.element(matching: .cell, identifier: model.description + "Cell")
+            collectionCell = collectionView.cells.firstMatch
 //            let collectionCell2: XCUIElement = app.collectionViews.children(matching: .cell).element(boundBy: 0)
             Logger()?.log("🧪", [
                 "retryCount:".lpad(48) + String(debug: retryCount),
                 "model.description:".lpad(48) + String(debug: model.description),
                 "collectionView.cells.count:".lpad(48) + String(debug: collectionView.cells.count),
+                "collectionView.disclosedChildRows.count:".lpad(48) + String(debug: collectionView.disclosedChildRows.count),
                 "collectionCell:".lpad(48) + String(debug: collectionCell),
                 "collectionCell.identifier:".lpad(48) + String(debug: collectionCell.identifier),
                 "collectionCell.isAccessibilityElement:".lpad(48) + String(debug: collectionCell.isAccessibilityElement.debugString),
                 "collectionCell.exists:".lpad(48) + String(debug: collectionCell.exists.debugString),
                 "collectionCell.isEnabled:".lpad(48) + String(debug: collectionCell.isEnabled.debugString),
                 "collectionCell.isHittable:".lpad(48) + String(debug: collectionCell.isHittable.debugString),
-                "app.children(matching: .any).count:".lpad(48) + String(debug: app.children(matching: .any).count),
-                "collectionView.children.count:".lpad(48) + String(debug: collectionView.children(matching: .any).count),
-                "elementType:".lpad(48) + String(debug: collectionView.children(matching: .cell).firstMatch.elementType),
-//                "collectionCell2:".lpad(48) + String(debug: collectionCell2),
-//                "collectionCell2.identifier:".lpad(48) + String(debug: collectionCell2.identifier),
-//                "collectionCell2.isAccessibilityElement:".lpad(48) + String(debug: collectionCell2.isAccessibilityElement.debugString),
-//                "collectionCell2.exists:".lpad(48) + String(debug: collectionCell2.exists.debugString),
-//                "collectionCell2.isEnabled:".lpad(48) + String(debug: collectionCell2.isEnabled.debugString),
-//                "collectionCell2.isHittable:".lpad(48) + String(debug: collectionCell2.isHittable.debugString),
-//                "collectionViews.children(matching: .cell).allElementsBoundByIndex.count:".lpad(48) + String(debug: app.collectionViews.children(matching: .cell).allElementsBoundByIndex.count),
             ])
             if collectionCell.exists && collectionCell.isEnabled && collectionCell.isHittable {
                 collectionCell.tap()

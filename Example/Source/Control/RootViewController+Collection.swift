@@ -62,7 +62,7 @@ extension RootViewController {
         ])
         let cell: RootImageCell = collectionView.dequeueReusableCell(with: RootImageCell.self, for: indexPath)
         cell.isAccessibilityElement = true
-        cell.accessibilityIdentifier = model.description
+        cell.accessibilityIdentifier = model.description + "Cell"
     }
 
     override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool { return false }
