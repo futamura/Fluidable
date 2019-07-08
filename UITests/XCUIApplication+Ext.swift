@@ -17,7 +17,3 @@ extension XCUIApplication {
         self.launchEnvironment["testConfig"] = config
     }
 }
-
-extension Bool {
-    var int: Int { return self == true ? 1 : 0 }
-}
