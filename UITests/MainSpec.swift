@@ -35,7 +35,7 @@ class MainSpec: QuickSpec {
             app.terminate()
         }
         describe("Main") {
-            RootModel.allCases.forEach { (model: RootModel) in
+            RootModel.testCases.forEach { (model: RootModel) in
                 context(model.description) {
                     it("AnimatedPresent_AnimatedDismiss") {
                         self.presentWithAnimation(app: app, model: model)

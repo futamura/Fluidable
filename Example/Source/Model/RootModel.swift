@@ -368,6 +368,13 @@ extension RootModel {
 }
 
 extension RootModel {
+    static var testCases: [RootModel] {
+        return [
+            .navigationFluidModal,
+            .navigationFluidFullScreen,
+        ]
+    }
+
     var rootCellAccessibilityIdentifier: String {
         return self.description + "_CollectionCell"
     }
