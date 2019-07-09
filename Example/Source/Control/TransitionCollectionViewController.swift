@@ -30,6 +30,8 @@ class TransitionCollectionViewController: TransitionBaseViewController, Fluidabl
 
     override func configure(modelIndex: Int) {
         super.configure(modelIndex: modelIndex)
+        /* NOTE: Set accessibility */
+        self.collectionView.accessibilityIdentifier = self.model.parentCollectionViewAccessibilityIdentifier
         /* NOTE: Setup collection view */
         self.collectionView.configure(model: model, headerPosition: .top)
     }

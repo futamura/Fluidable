@@ -41,6 +41,7 @@ class NavigationScrollViewController: NavigationBaseViewController, Fluidable {
         super.configure(modelIndex: modelIndex)
         /* NOTE: Set accessibility */
         self.closeButton.accessibilityIdentifier = self.model.overlayCloseButtonAccessibilityIdentifier
+        self.scrollView.accessibilityIdentifier = self.model.parentScrollViewAccessibilityIdentifier
         /* NOTE: Header */
         self.headerView = .instantiate(model: self.model)
         self.imageContainerView.addSubview(self.headerView)

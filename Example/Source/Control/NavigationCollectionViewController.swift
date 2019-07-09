@@ -26,6 +26,7 @@ class NavigationCollectionViewController: NavigationBaseViewController, Fluidabl
         super.configure(modelIndex: modelIndex)
         /* NOTE: Set accessibility */
         self.closeButton.accessibilityIdentifier = self.model.overlayCloseButtonAccessibilityIdentifier
+        self.collectionView.accessibilityIdentifier = self.model.parentCollectionViewAccessibilityIdentifier
         /* NOTE: Configure collection view */
         self.collectionView.configure(model: self.model, headerPosition: .top, handler: { [weak self] (indexPath: IndexPath) in
             self?.nextDidTap(indexPath)

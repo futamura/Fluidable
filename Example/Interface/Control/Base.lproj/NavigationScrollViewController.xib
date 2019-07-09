@@ -100,13 +100,35 @@ Vivamus sed velit et arcu egestas suscipit at vel justo. Vestibulum vehicula nis
                                     <constraint firstItem="Pjz-9P-tZb" firstAttribute="width" secondItem="WCv-cG-4Uu" secondAttribute="width" id="SZJ-rO-j0o"/>
                                 </constraints>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Azr-mS-bf9">
+                                <rect key="frame" x="206" y="3561" width="2" height="2"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration" identifier="bottomView"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="2" id="HeT-4o-7hP"/>
+                                    <constraint firstAttribute="height" constant="2" id="zK9-dC-mkK"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dJ2-Ge-G01">
+                                <rect key="frame" x="206" y="0.0" width="2" height="2"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration" identifier="topView"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="13J-Pf-3Zy"/>
+                                    <constraint firstAttribute="width" constant="2" id="oUM-dt-KV8"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <constraints>
                             <constraint firstItem="WCv-cG-4Uu" firstAttribute="width" secondItem="vKb-qA-Bwu" secondAttribute="width" id="0tI-i7-nkg"/>
                             <constraint firstItem="WCv-cG-4Uu" firstAttribute="leading" secondItem="vKb-qA-Bwu" secondAttribute="leading" id="1ia-9Q-c5H"/>
+                            <constraint firstItem="Azr-mS-bf9" firstAttribute="centerX" secondItem="vKb-qA-Bwu" secondAttribute="centerX" id="BRm-Oz-acu"/>
                             <constraint firstItem="WCv-cG-4Uu" firstAttribute="bottom" secondItem="vKb-qA-Bwu" secondAttribute="bottom" id="L2d-ne-6hF"/>
+                            <constraint firstAttribute="bottom" secondItem="Azr-mS-bf9" secondAttribute="bottom" id="Ok3-MW-GIF"/>
                             <constraint firstItem="WCv-cG-4Uu" firstAttribute="trailing" secondItem="vKb-qA-Bwu" secondAttribute="trailing" id="QSJ-AL-zfk"/>
                             <constraint firstItem="WCv-cG-4Uu" firstAttribute="top" secondItem="vKb-qA-Bwu" secondAttribute="top" id="c6w-1u-CLZ"/>
+                            <constraint firstItem="dJ2-Ge-G01" firstAttribute="centerX" secondItem="vKb-qA-Bwu" secondAttribute="centerX" id="pI4-Vf-v9g"/>
+                            <constraint firstItem="dJ2-Ge-G01" firstAttribute="top" secondItem="vKb-qA-Bwu" secondAttribute="top" id="yO1-8Q-0o3"/>
                         </constraints>
                     </scrollView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jmt-hX-efZ" customClass="CloseButton" customModule="FluidableExample" customModuleProvider="target">

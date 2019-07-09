@@ -39,6 +39,12 @@ class TransitionMultiCollectionViewController: TransitionBaseViewController, Flu
 
     override func configure(modelIndex: Int) {
         super.configure(modelIndex: modelIndex)
+        /* NOTE: Set accessibility */
+        self.scrollView.accessibilityIdentifier = self.model.parentScrollViewAccessibilityIdentifier
+        self.firstCollectionView.accessibilityIdentifier = self.model.childFirstCollectionViewAccessibilityIdentifier
+        self.secondCollectionView.accessibilityIdentifier = self.model.childSecondCollectionViewAccessibilityIdentifier
+        self.thirdCollectionView.accessibilityIdentifier = self.model.childThirdCollectionViewAccessibilityIdentifier
+        self.forthCollectionView.accessibilityIdentifier = self.model.childForthCollectionViewAccessibilityIdentifier
         /* NOTE: Header */
         if let model: RootModel = self.model {
             self.headerView = .instantiate(model: model)

@@ -36,6 +36,8 @@ class TransitionTableViewController: TransitionBaseViewController, Fluidable {
 
     override func configure(modelIndex: Int) {
         super.configure(modelIndex: modelIndex)
+        /* NOTE: Set accessibility */
+        self.tableView.accessibilityIdentifier = self.model.parentTableViewAccessibilityIdentifier
         /* NOTE: Setup table view */
         self.tableView.configure(model: self.model)
         self.tableView.contentOffset = .zero

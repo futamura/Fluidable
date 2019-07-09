@@ -32,6 +32,7 @@ class NavigationTableViewController: NavigationBaseViewController, Fluidable {
         super.configure(modelIndex: modelIndex)
         /* NOTE: Set accessibility */
         self.closeButton.accessibilityIdentifier = self.model.overlayCloseButtonAccessibilityIdentifier
+        self.tableView.accessibilityIdentifier = self.model.parentTableViewAccessibilityIdentifier
         /* NOTE: Configure table view */
         self.tableView.configure(model: self.model, headerPosition: .top) { [weak self] (indexPath: IndexPath) in
             self?.nextDidTap(indexPath)

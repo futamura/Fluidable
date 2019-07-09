@@ -411,8 +411,35 @@ extension RootModel {
     }
 
     var visibleControllerViewAccessibilityIdentifier: String {
-//        return self.description.capitalizingFirstLetter() + "_VisibleView"
         return "VisibleControllerView"
+    }
+
+    var parentScrollViewAccessibilityIdentifier: String {
+        return "ParentScrollView"
+    }
+
+    var parentTableViewAccessibilityIdentifier: String {
+        return "ParentTableView"
+    }
+
+    var parentCollectionViewAccessibilityIdentifier: String {
+        return "ParentCollectionView"
+    }
+
+    var childFirstCollectionViewAccessibilityIdentifier: String {
+        return "ChildFirstCollectionView"
+    }
+
+    var childSecondCollectionViewAccessibilityIdentifier: String {
+        return "ChildSecondCollectionView"
+    }
+
+    var childThirdCollectionViewAccessibilityIdentifier: String {
+        return "ChildThirdCollectionView"
+    }
+
+    var childForthCollectionViewAccessibilityIdentifier: String {
+        return "ChildForthCollectionView"
     }
 }
 

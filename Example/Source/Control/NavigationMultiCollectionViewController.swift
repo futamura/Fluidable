@@ -34,6 +34,11 @@ class NavigationMultiCollectionViewController: NavigationBaseViewController, Flu
         super.configure(modelIndex: modelIndex)
         /* NOTE: Set accessibility */
         self.closeButton.accessibilityIdentifier = self.model.overlayCloseButtonAccessibilityIdentifier
+        self.scrollView.accessibilityIdentifier = self.model.parentScrollViewAccessibilityIdentifier
+        self.firstCollectionView.accessibilityIdentifier = self.model.childFirstCollectionViewAccessibilityIdentifier
+        self.secondCollectionView.accessibilityIdentifier = self.model.childSecondCollectionViewAccessibilityIdentifier
+        self.thirdCollectionView.accessibilityIdentifier = self.model.childThirdCollectionViewAccessibilityIdentifier
+        self.forthCollectionView.accessibilityIdentifier = self.model.childForthCollectionViewAccessibilityIdentifier
         /* NOTE: Setup views */
         self.headerView = .instantiate(model: model)
         self.stackView.insertArrangedSubview(self.headerView, at: 0)

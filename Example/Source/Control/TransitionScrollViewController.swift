@@ -43,6 +43,8 @@ class TransitionScrollViewController: TransitionBaseViewController, Fluidable {
 
     override func configure(modelIndex: Int) {
         super.configure(modelIndex: modelIndex)
+        /* NOTE: Set accessibility */
+        self.scrollView.accessibilityIdentifier = self.model.parentScrollViewAccessibilityIdentifier
         /* NOTE: Header */
         self.headerView = .instantiate(model: self.model)
         self.imageContainerView.addSubview(self.headerView)
