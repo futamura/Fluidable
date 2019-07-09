@@ -33,17 +33,24 @@ class MainSpec: QuickSpec {
         }
         afterEach { metadata in
             app.terminate()
+            XCUIDevice.shared.orientation = .portrait
         }
-        describe("Main") {
-            RootModel.testCases.forEach { (model: RootModel) in
-                context(model.description) {
-//                    it("AnimatedPresent_AnimatedDismiss") {
-//                        self.presentWithAnimation(app: app, model: model)
-//                        self.dismissByTappingCloseButton(app: app, model: model)
-//                    }
-                    it("AnimatedPresent_InteractiveDismiss") {
-                        self.presentWithAnimation(app: app, model: model)
-                        self.dismissWithInteraction(app: app, model: model)
+        let orientations: [UIDeviceOrientation] = [.portrait, .landscapeLeft]
+        orientations.forEach { (orientation: UIDeviceOrientation) in
+            XCUIDevice.shared.orientation = orientation
+            describe(String(describing: orientation).capitalizingFirstLetter()) {
+                RootModel.testCases.forEach { (model: RootModel) in
+                    context(model.description.capitalizingFirstLetter()) {
+                        it("AnimatedPresent_AnimatedDismiss") {
+                            self.presentWithAnimation(app: app, model: model)
+                            self.rotateAndRevertDevice(app: app, model: model)
+                            self.dismissByTappingCloseButton(app: app, model: model)
+                        }
+                        it("AnimatedPresent_InteractiveDismiss") {
+                            self.presentWithAnimation(app: app, model: model)
+                            self.rotateAndRevertDevice(app: app, model: model)
+                            self.dismissWithInteraction(app: app, model: model)
+                        }
                     }
                 }
             }
@@ -59,10 +66,6 @@ class MainSpec: QuickSpec {
         while (true) {
             collectionCell = collectionView.cells.element(matching: .cell, identifier: model.rootCellAccessibilityIdentifier)
             if collectionCell.isVisible {
-                Logger()?.log("🧪", [
-                    "model.rootCellAccessibilityIdentifier:".lpad(64) + String(describing: model.rootCellAccessibilityIdentifier),
-                    "collectionCell.identifier:".lpad(64) + String(describing: collectionCell.identifier),
-                ])
                 collectionCell.tap()
                 break
             } else {
@@ -85,11 +88,8 @@ class MainSpec: QuickSpec {
     }
 
     func dismissWithInteraction(app: XCUIApplication, model: RootModel) {
-        print(app.debugDescription)
+//        print(app.debugDescription)
         let visibleView: XCUIElement = app.otherElements.element(matching: .other, identifier: model.visibleControllerViewAccessibilityIdentifier)
-        Logger()?.log("🧪", [
-            "model.visibleControllerViewAccessibilityIdentifier:".lpad(64) + String(describing: model.visibleControllerViewAccessibilityIdentifier),
-        ])
         expect(visibleView.exists).toEventually(beTrue(), timeout: 10)
         switch model {
         case .navigationFluidModal:
@@ -133,6 +133,14 @@ class MainSpec: QuickSpec {
         case .transitionSlideRight:
             visibleView.swipe(from: CGVector(dx: 0.2, dy: 0.5), to: CGVector(dx: 0.8, dy: 0.5))
         }
+        usleep(sec: 1.5)
+    }
+
+    func rotateAndRevertDevice(app: XCUIApplication, model: RootModel) {
+        XCUIDevice.shared.orientation = XCUIDevice.shared.orientation.isPortrait ? .landscapeLeft : .portrait
+        usleep(sec: 1.5)
+        XCUIDevice.shared.orientation = XCUIDevice.shared.orientation.isPortrait ? .landscapeLeft : .portrait
+        usleep(sec: 1.5)
     }
 
     func execute(app: XCUIApplication, model: RootModel) {
