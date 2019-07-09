@@ -25,7 +25,7 @@ extension MainSpec {
                 collectionCell.tap()
                 break
             } else {
-                collectionView.swipe(from: CGVector(dx: 0.5, dy: 0.75), to: CGVector(dx: 0.5, dy: 0.25))
+                collectionView.swipeUp()
             }
         }
         usleep(sec: 1.2)
@@ -41,24 +41,28 @@ extension MainSpec {
     func dismissWithInteraction(app: XCUIApplication, model: RootModel) {
         let option: InteractiveDismissOption = self.getInteractiveDismissOption(app: app, model: model)
         Logger()?.log("🧪", [
-            "option.interact".lpad() + String(describing: option.interact?.identifier),
-            "option.target".lpad() + String(describing: option.target?.identifier),
-            "option.direction".lpad() + String(describing: option.direction),
+            "interact".lpad() + String(describing: option.interact?.exists),
+            "direction".lpad() + String(describing: option.direction),
         ])
-        /* NOTE: Check whether the view exists */
-        expect(option.interact?.exists ?? false).toEventually(beTrue(), timeout: 10)
-        /* NOTE: Scroll until scroll view reaches to bottom */
-        if let target: XCUIElement = option.target {
-            expect(target.exists).toEventually(beTrue(), timeout: 10)
-            option.interact?.swipe(to: target, avoid: [AvoidableElement.navigationBar, AvoidableElement.keyboard], from: app)
-        }
-        usleep(sec: 1.0)
-        /* NOTE: Perform dismiss interaction */
-        switch option.direction {
-        case .up: option.interact?.swipe(from: CGVector(dx: 0.5, dy: 0.8), to: CGVector(dx: 0.5, dy: 0.2))
-        case .down: option.interact?.swipe(from: CGVector(dx: 0.5, dy: 0.2), to: CGVector(dx: 0.5, dy: 0.8))
-        case .left: option.interact?.swipe(from: CGVector(dx: 0.8, dy: 0.5), to: CGVector(dx: 0.2, dy: 0.5))
-        case .right: option.interact?.swipe(from: CGVector(dx: 0.2, dy: 0.5), to: CGVector(dx: 0.8, dy: 0.5))
+        if let interactView: XCUIElement = option.interact {
+            /* NOTE: Check whether the view exists */
+            expect(interactView.exists).toEventually(beTrue(), timeout: 10)
+            /* NOTE: Scroll until scroll view reaches to bottom */
+            if let targetView: XCUIElement = option.target {
+                Logger()?.log("🧪", [
+                    "target".lpad() + String(describing: targetView.exists),
+                ])
+                expect(targetView.exists).toEventually(beTrue(), timeout: 10)
+                interactView.swipe(to: option.direction.inverted(), until: targetView.isVisible && interactView.frame.contains(targetView.frame))
+            }
+            usleep(sec: 1.0)
+            /* NOTE: Perform dismiss interaction */
+            switch option.direction {
+            case .up: interactView.swipe(from: CGVector(dx: 0.5, dy: 0.8), to: CGVector(dx: 0.5, dy: 0.2))
+            case .down: interactView.swipe(from: CGVector(dx: 0.5, dy: 0.2), to: CGVector(dx: 0.5, dy: 0.8))
+            case .left: interactView.swipe(from: CGVector(dx: 0.8, dy: 0.5), to: CGVector(dx: 0.2, dy: 0.5))
+            case .right: interactView.swipe(from: CGVector(dx: 0.2, dy: 0.5), to: CGVector(dx: 0.8, dy: 0.5))
+            }
         }
         /* NOTE: Check whether the view controller already disappears */
         let visibleView: XCUIElement = app.otherElements.element(matching: .other, identifier: model.visibleControllerViewAccessibilityIdentifier)
@@ -123,10 +127,12 @@ extension MainSpec {
 }
 
 extension MainSpec {
-
     typealias InteractiveDismissOption = (interact: XCUIElement?, target: XCUIElement?, direction: SwipeDirection)
-
     func getInteractiveDismissOption(app: XCUIApplication, model: RootModel) -> InteractiveDismissOption {
+        Logger()?.log("🧪", [
+            "model".lpad() + String(describing: model),
+            "model.className".lpad() + String(describing: model.className),
+        ])
         return {
             switch model {
             case .navigationFluidModal, .transitionFluidModal, .navigationFluidFullScreen, .transitionFluidFullScreen,
@@ -138,7 +144,7 @@ extension MainSpec {
 
                 case "NavigationCollectionViewController", "TransitionCollectionViewController":
                     let interactView: XCUIElement = app.collectionViews.element(matching: .collectionView, identifier: model.parentCollectionViewAccessibilityIdentifier)
-                    guard let targetView: XCUIElement = interactView.cells.allElementsBoundByIndex.first else { return (interact: interactView, target: nil, direction: direction) }
+                    let targetView: XCUIElement = interactView.cells.element(boundBy: 0)
                     return (interact: interactView, target: targetView, direction: direction)
 
                 case "NavigationMultiCollectionViewController", "TransitionMultiCollectionViewController":
@@ -153,7 +159,7 @@ extension MainSpec {
 
                 case "NavigationTableViewController", "TransitionTableViewController":
                     let interactView: XCUIElement = app.tables.element(matching: .table, identifier: model.parentTableViewAccessibilityIdentifier)
-                    guard let targetView: XCUIElement = interactView.cells.allElementsBoundByIndex.first else { return (interact: interactView, target: nil, direction: direction) }
+                    let targetView: XCUIElement = interactView.cells.element(boundBy: 0)
                     return (interact: interactView, target: targetView, direction: direction)
 
                 default: break
@@ -170,7 +176,7 @@ extension MainSpec {
 
                 case "NavigationCollectionViewController", "TransitionCollectionViewController":
                     let interactView: XCUIElement = app.collectionViews.element(matching: .collectionView, identifier: model.parentCollectionViewAccessibilityIdentifier)
-                    guard let targetView: XCUIElement = interactView.cells.allElementsBoundByIndex.last else { return (interact: interactView, target: nil, direction: direction) }
+                    let targetView: XCUIElement = interactView.cells.element(boundBy: interactView.cells.count - 1)
                     return (interact: interactView, target: targetView, direction: direction)
 
                 case "NavigationMultiCollectionViewController", "TransitionMultiCollectionViewController":
@@ -200,16 +206,22 @@ extension MainSpec {
 
                 switch model.className {
 
-                case "NavigationCollectionViewController", "TransitionCollectionViewController": break
+                case "NavigationCollectionViewController", "TransitionCollectionViewController":
+                    let interactView: XCUIElement = app.collectionViews.element(matching: .collectionView, identifier: model.parentCollectionViewAccessibilityIdentifier)
+                    return (interact: interactView, target: nil, direction: direction)
 
                 case "NavigationMultiCollectionViewController", "TransitionMultiCollectionViewController":
                     let interactView: XCUIElement = app.collectionViews.element(matching: .collectionView, identifier: model.childFirstCollectionViewAccessibilityIdentifier)
-                    guard let targetView: XCUIElement = interactView.cells.allElementsBoundByIndex.last else { return (interact: interactView, target: nil, direction: direction) }
+                    let targetView: XCUIElement = interactView.cells.element(boundBy: interactView.cells.count - 1)
                     return (interact: interactView, target: targetView, direction: direction)
 
-                case "NavigationScrollViewController", "TransitionScrollViewController": break
+                case "NavigationScrollViewController", "TransitionScrollViewController":
+                    let interactView: XCUIElement = app.scrollViews.element(matching: .scrollView, identifier: model.parentScrollViewAccessibilityIdentifier)
+                    return (interact: interactView, target: nil, direction: direction)
 
-                case "NavigationTableViewController", "TransitionTableViewController": break
+                case "NavigationTableViewController", "TransitionTableViewController":
+                    let interactView: XCUIElement = app.tables.element(matching: .table, identifier: model.parentTableViewAccessibilityIdentifier)
+                    return (interact: interactView, target: nil, direction: direction)
 
                 default: break
                 }
@@ -223,16 +235,22 @@ extension MainSpec {
 
                 switch model.className {
 
-                case "NavigationCollectionViewController", "TransitionCollectionViewController": break
+                case "NavigationCollectionViewController", "TransitionCollectionViewController":
+                    let interactView: XCUIElement = app.collectionViews.element(matching: .collectionView, identifier: model.parentCollectionViewAccessibilityIdentifier)
+                    return (interact: interactView, target: nil, direction: direction)
 
                 case "NavigationMultiCollectionViewController", "TransitionMultiCollectionViewController":
                     let interactView: XCUIElement = app.collectionViews.element(matching: .collectionView, identifier: model.childSecondCollectionViewAccessibilityIdentifier)
-                    guard let targetView: XCUIElement = interactView.cells.allElementsBoundByIndex.first else { return (interact: interactView, target: nil, direction: direction) }
+                    let targetView: XCUIElement = interactView.cells.element(boundBy: 0)
                     return (interact: interactView, target: targetView, direction: direction)
 
-                case "NavigationScrollViewController", "TransitionScrollViewController": break
+                case "NavigationScrollViewController", "TransitionScrollViewController":
+                    let interactView: XCUIElement = app.scrollViews.element(matching: .scrollView, identifier: model.parentScrollViewAccessibilityIdentifier)
+                    return (interact: interactView, target: nil, direction: direction)
 
-                case "NavigationTableViewController", "TransitionTableViewController": break
+                case "NavigationTableViewController", "TransitionTableViewController":
+                    let interactView: XCUIElement = app.tables.element(matching: .table, identifier: model.parentTableViewAccessibilityIdentifier)
+                    return (interact: interactView, target: nil, direction: direction)
 
                 default: break
                 }

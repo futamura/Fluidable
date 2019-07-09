@@ -208,12 +208,34 @@
                                     <constraint firstItem="6Z7-tv-Nih" firstAttribute="width" secondItem="rhH-jn-dW0" secondAttribute="width" id="pzQ-fV-X2T"/>
                                 </constraints>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HdE-ku-cGF">
+                                <rect key="frame" x="206" y="0.0" width="2" height="2"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration" identifier="ScrollTopView"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="2" id="8ai-1r-4Jh"/>
+                                    <constraint firstAttribute="height" constant="2" id="hLZ-xC-eIm"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o8e-LP-pyE">
+                                <rect key="frame" x="206" y="1098" width="2" height="2"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration" identifier="ScrollBottomView"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="dMF-1E-E1J"/>
+                                    <constraint firstAttribute="width" constant="2" id="wZ7-Ql-Z0i"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="o8e-LP-pyE" firstAttribute="centerX" secondItem="iTr-vo-tyH" secondAttribute="centerX" id="7sF-dB-bUc"/>
+                            <constraint firstItem="HdE-ku-cGF" firstAttribute="centerX" secondItem="iTr-vo-tyH" secondAttribute="centerX" id="8fp-gy-uzR"/>
+                            <constraint firstAttribute="bottom" secondItem="o8e-LP-pyE" secondAttribute="bottom" id="SiO-AE-mYt"/>
                             <constraint firstItem="rhH-jn-dW0" firstAttribute="top" secondItem="iTr-vo-tyH" secondAttribute="top" id="ZHD-AD-3Oy"/>
                             <constraint firstItem="rhH-jn-dW0" firstAttribute="leading" secondItem="iTr-vo-tyH" secondAttribute="leading" id="eEG-CA-Uje"/>
                             <constraint firstItem="rhH-jn-dW0" firstAttribute="bottom" secondItem="iTr-vo-tyH" secondAttribute="bottom" id="egJ-DE-X1b"/>
                             <constraint firstItem="rhH-jn-dW0" firstAttribute="trailing" secondItem="iTr-vo-tyH" secondAttribute="trailing" id="oAq-fX-Nu3"/>
+                            <constraint firstItem="HdE-ku-cGF" firstAttribute="top" secondItem="iTr-vo-tyH" secondAttribute="top" id="v6M-fA-FxK"/>
                             <constraint firstItem="rhH-jn-dW0" firstAttribute="width" secondItem="iTr-vo-tyH" secondAttribute="width" id="wnn-ZU-AdL"/>
                         </constraints>
                     </scrollView>

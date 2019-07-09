@@ -372,62 +372,61 @@ extension RootModel {
         switch orientation.isPortrait {
         case true:
             return [
-//            .navigationFluidModal,
-//            .navigationFluidFullScreen,
+                .navigationFluidModal,
+                .navigationFluidFullScreen,
 
                 .navigationDrawerTop,
-//            .navigationDrawerBottom,
-//            .navigationDrawerLeft,
-//            .navigationDrawerRight,
-//
-//            .navigationSlideTop,
-//            .navigationSlideBottom,
-//            .navigationSlideLeft,
-//            .navigationSlideRight,
-//
-//            .transitionFluidModal,
-//            .transitionFluidFullScreen,
-//
-//            .transitionDrawerTop,
-//            .transitionDrawerBottom,
-//            .transitionDrawerLeft,
-//            .transitionDrawerRight,
-//
-//            .transitionSlideTop,
-//            .transitionSlideBottom,
-//            .transitionSlideLeft,
-//            .transitionSlideRight,
+                .navigationDrawerBottom,
+                .navigationDrawerLeft,
+                .navigationDrawerRight,
+
+                .navigationSlideTop,
+                .navigationSlideBottom,
+                .navigationSlideLeft,
+                .navigationSlideRight,
+
+                .transitionFluidModal,
+                .transitionFluidFullScreen,
+
+                .transitionDrawerTop,
+                .transitionDrawerBottom,
+                .transitionDrawerLeft,
+                .transitionDrawerRight,
+
+                .transitionSlideTop,
+                .transitionSlideBottom,
+                .transitionSlideLeft,
+                .transitionSlideRight,
             ]
         case false:
             return [
-//            .navigationFluidModal,
-//            .navigationFluidFullScreen,
-
-//            .navigationDrawerTop,
-//            .navigationDrawerBottom,
-//            .navigationDrawerLeft,
-//            .navigationDrawerRight,
+//                .navigationFluidModal,
+//                .navigationFluidFullScreen,
 //
-//            .navigationSlideTop,
-//            .navigationSlideBottom,
-//            .navigationSlideLeft,
-//            .navigationSlideRight,
+//                .navigationDrawerTop,
+//                .navigationDrawerBottom,
+//                .navigationDrawerLeft,
+//                .navigationDrawerRight,
 //
-//            .transitionFluidModal,
-//            .transitionFluidFullScreen,
+//                .navigationSlideTop,
+//                .navigationSlideBottom,
+//                .navigationSlideLeft,
+//                .navigationSlideRight,
 //
-//            .transitionDrawerTop,
-//            .transitionDrawerBottom,
-//            .transitionDrawerLeft,
-//            .transitionDrawerRight,
+//                .transitionFluidModal,
+//                .transitionFluidFullScreen,
 //
-//            .transitionSlideTop,
-//            .transitionSlideBottom,
-//            .transitionSlideLeft,
-//            .transitionSlideRight,
+//                .transitionDrawerTop,
+//                .transitionDrawerBottom,
+//                .transitionDrawerLeft,
+//                .transitionDrawerRight,
+//
+//                .transitionSlideTop,
+//                .transitionSlideBottom,
+//                .transitionSlideLeft,
+//                .transitionSlideRight,
             ]
         }
-
     }
 
     var rootCellAccessibilityIdentifier: String {

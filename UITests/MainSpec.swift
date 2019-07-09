@@ -22,8 +22,6 @@ class MainSpec: QuickSpec {
     }
 
     override func spec() {
-        Logger()?.log("🧪", [
-        ])
         var app: XCUIApplication!
         beforeEach {
             app = XCUIApplication()
