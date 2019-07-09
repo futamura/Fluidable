@@ -368,34 +368,66 @@ extension RootModel {
 }
 
 extension RootModel {
-    static var testCases: [RootModel] {
-        return [
-            .navigationFluidModal,
-            .navigationFluidFullScreen,
+    static func testCases(for orientation: UIDeviceOrientation) -> [RootModel] {
+        switch orientation.isPortrait {
+        case true:
+            return [
+//            .navigationFluidModal,
+//            .navigationFluidFullScreen,
 
-            .navigationDrawerTop,
-            .navigationDrawerBottom,
-            .navigationDrawerLeft,
-            .navigationDrawerRight,
+                .navigationDrawerTop,
+//            .navigationDrawerBottom,
+//            .navigationDrawerLeft,
+//            .navigationDrawerRight,
+//
+//            .navigationSlideTop,
+//            .navigationSlideBottom,
+//            .navigationSlideLeft,
+//            .navigationSlideRight,
+//
+//            .transitionFluidModal,
+//            .transitionFluidFullScreen,
+//
+//            .transitionDrawerTop,
+//            .transitionDrawerBottom,
+//            .transitionDrawerLeft,
+//            .transitionDrawerRight,
+//
+//            .transitionSlideTop,
+//            .transitionSlideBottom,
+//            .transitionSlideLeft,
+//            .transitionSlideRight,
+            ]
+        case false:
+            return [
+//            .navigationFluidModal,
+//            .navigationFluidFullScreen,
 
-            .navigationSlideTop,
-            .navigationSlideBottom,
-            .navigationSlideLeft,
-            .navigationSlideRight,
+//            .navigationDrawerTop,
+//            .navigationDrawerBottom,
+//            .navigationDrawerLeft,
+//            .navigationDrawerRight,
+//
+//            .navigationSlideTop,
+//            .navigationSlideBottom,
+//            .navigationSlideLeft,
+//            .navigationSlideRight,
+//
+//            .transitionFluidModal,
+//            .transitionFluidFullScreen,
+//
+//            .transitionDrawerTop,
+//            .transitionDrawerBottom,
+//            .transitionDrawerLeft,
+//            .transitionDrawerRight,
+//
+//            .transitionSlideTop,
+//            .transitionSlideBottom,
+//            .transitionSlideLeft,
+//            .transitionSlideRight,
+            ]
+        }
 
-            .transitionFluidModal,
-            .transitionFluidFullScreen,
-
-            .transitionDrawerTop,
-            .transitionDrawerBottom,
-            .transitionDrawerLeft,
-            .transitionDrawerRight,
-
-            .transitionSlideTop,
-            .transitionSlideBottom,
-            .transitionSlideLeft,
-            .transitionSlideRight,
-        ]
     }
 
     var rootCellAccessibilityIdentifier: String {
