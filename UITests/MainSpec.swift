@@ -37,10 +37,10 @@ class MainSpec: QuickSpec {
         describe("Main") {
             RootModel.testCases.forEach { (model: RootModel) in
                 context(model.description) {
-                    it("AnimatedPresent_AnimatedDismiss") {
-                        self.presentWithAnimation(app: app, model: model)
-                        self.dismissByTappingCloseButton(app: app, model: model)
-                    }
+//                    it("AnimatedPresent_AnimatedDismiss") {
+//                        self.presentWithAnimation(app: app, model: model)
+//                        self.dismissByTappingCloseButton(app: app, model: model)
+//                    }
                     it("AnimatedPresent_InteractiveDismiss") {
                         self.presentWithAnimation(app: app, model: model)
                         self.dismissWithInteraction(app: app, model: model)
@@ -58,10 +58,10 @@ class MainSpec: QuickSpec {
         var collectionCell: XCUIElement!
         while (true) {
             collectionCell = collectionView.cells.element(matching: .cell, identifier: model.rootCellAccessibilityIdentifier)
-            if collectionCell.exists && collectionCell.isEnabled && collectionCell.isHittable {
+            if collectionCell.isVisible {
                 Logger()?.log("🧪", [
-                    "model.cellAccessibilityIdentifier:".lpad(48) + String(describing: model.rootCellAccessibilityIdentifier),
-                    "collectionCell.identifier:".lpad(48) + String(describing: collectionCell.identifier),
+                    "model.rootCellAccessibilityIdentifier:".lpad(64) + String(describing: model.rootCellAccessibilityIdentifier),
+                    "collectionCell.identifier:".lpad(64) + String(describing: collectionCell.identifier),
                 ])
                 collectionCell.tap()
                 break
@@ -79,56 +79,59 @@ class MainSpec: QuickSpec {
 
     func dismissByTappingCloseButton(app: XCUIApplication, model: RootModel) {
         let button: XCUIElement = app.buttons.element(matching: .button, identifier: model.overlayCloseButtonAccessibilityIdentifier)
-        expect(button.exists && button.isEnabled && button.isHittable).toEventually(beTrue(), timeout: 10)
+        expect(button.isVisible).toEventually(beTrue(), timeout: 10)
         button.tap()
         usleep(sec: 1.5)
     }
 
     func dismissWithInteraction(app: XCUIApplication, model: RootModel) {
+        print(app.debugDescription)
         let visibleView: XCUIElement = app.otherElements.element(matching: .other, identifier: model.visibleControllerViewAccessibilityIdentifier)
-//        print(app.debugDescription)
+        Logger()?.log("🧪", [
+            "model.visibleControllerViewAccessibilityIdentifier:".lpad(64) + String(describing: model.visibleControllerViewAccessibilityIdentifier),
+        ])
         expect(visibleView.exists).toEventually(beTrue(), timeout: 10)
         switch model {
         case .navigationFluidModal:
-            break
+            visibleView.swipe(from: CGVector(dx: 0.5, dy: 0.2), to: CGVector(dx: 0.5, dy: 0.8))
         case .navigationFluidFullScreen:
-            break
+            visibleView.swipe(from: CGVector(dx: 0.5, dy: 0.2), to: CGVector(dx: 0.5, dy: 0.8))
         case .navigationDrawerTop:
-            break
+            visibleView.swipe(from: CGVector(dx: 0.5, dy: 0.8), to: CGVector(dx: 0.5, dy: 0.2))
         case .navigationDrawerBottom:
-            break
+            visibleView.swipe(from: CGVector(dx: 0.5, dy: 0.2), to: CGVector(dx: 0.5, dy: 0.8))
         case .navigationDrawerLeft:
-            break
+            visibleView.swipe(from: CGVector(dx: 0.8, dy: 0.5), to: CGVector(dx: 0.2, dy: 0.5))
         case .navigationDrawerRight:
-            break
+            visibleView.swipe(from: CGVector(dx: 0.2, dy: 0.5), to: CGVector(dx: 0.8, dy: 0.5))
         case .navigationSlideTop:
-            break
+            visibleView.swipe(from: CGVector(dx: 0.5, dy: 0.8), to: CGVector(dx: 0.5, dy: 0.2))
         case .navigationSlideBottom:
-            break
+            visibleView.swipe(from: CGVector(dx: 0.5, dy: 0.2), to: CGVector(dx: 0.5, dy: 0.8))
         case .navigationSlideLeft:
-            break
+            visibleView.swipe(from: CGVector(dx: 0.8, dy: 0.5), to: CGVector(dx: 0.2, dy: 0.5))
         case .navigationSlideRight:
-            break
+            visibleView.swipe(from: CGVector(dx: 0.2, dy: 0.5), to: CGVector(dx: 0.8, dy: 0.5))
         case .transitionFluidModal:
-            break
+            visibleView.swipe(from: CGVector(dx: 0.5, dy: 0.2), to: CGVector(dx: 0.5, dy: 0.8))
         case .transitionFluidFullScreen:
-            break
+            visibleView.swipe(from: CGVector(dx: 0.5, dy: 0.2), to: CGVector(dx: 0.5, dy: 0.8))
         case .transitionDrawerTop:
-            break
+            visibleView.swipe(from: CGVector(dx: 0.5, dy: 0.8), to: CGVector(dx: 0.5, dy: 0.2))
         case .transitionDrawerBottom:
-            break
+            visibleView.swipe(from: CGVector(dx: 0.5, dy: 0.2), to: CGVector(dx: 0.5, dy: 0.8))
         case .transitionDrawerLeft:
-            break
+            visibleView.swipe(from: CGVector(dx: 0.8, dy: 0.5), to: CGVector(dx: 0.2, dy: 0.5))
         case .transitionDrawerRight:
-            break
+            visibleView.swipe(from: CGVector(dx: 0.2, dy: 0.5), to: CGVector(dx: 0.8, dy: 0.5))
         case .transitionSlideTop:
-            break
+            visibleView.swipe(from: CGVector(dx: 0.5, dy: 0.8), to: CGVector(dx: 0.5, dy: 0.2))
         case .transitionSlideBottom:
-            break
+            visibleView.swipe(from: CGVector(dx: 0.5, dy: 0.2), to: CGVector(dx: 0.5, dy: 0.8))
         case .transitionSlideLeft:
-            break
+            visibleView.swipe(from: CGVector(dx: 0.8, dy: 0.5), to: CGVector(dx: 0.2, dy: 0.5))
         case .transitionSlideRight:
-            break
+            visibleView.swipe(from: CGVector(dx: 0.2, dy: 0.5), to: CGVector(dx: 0.8, dy: 0.5))
         }
     }
 

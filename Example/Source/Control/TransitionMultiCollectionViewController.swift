@@ -39,7 +39,6 @@ class TransitionMultiCollectionViewController: TransitionBaseViewController, Flu
 
     override func configure(modelIndex: Int) {
         super.configure(modelIndex: modelIndex)
-        Logger()?.log("🚗🛠", ["modelIndex:".lpad() + String(describing: modelIndex)])
         /* NOTE: Header */
         if let model: RootModel = self.model {
             self.headerView = .instantiate(model: model)

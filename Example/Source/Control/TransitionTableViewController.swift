@@ -36,7 +36,6 @@ class TransitionTableViewController: TransitionBaseViewController, Fluidable {
 
     override func configure(modelIndex: Int) {
         super.configure(modelIndex: modelIndex)
-        Logger()?.log("🚗🛠", ["modelIndex:".lpad() + String(describing: modelIndex)])
         /* NOTE: Setup table view */
         self.tableView.configure(model: self.model)
         self.tableView.contentOffset = .zero

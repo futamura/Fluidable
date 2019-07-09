@@ -30,7 +30,6 @@ class TransitionCollectionViewController: TransitionBaseViewController, Fluidabl
 
     override func configure(modelIndex: Int) {
         super.configure(modelIndex: modelIndex)
-        Logger()?.log("🚗🛠", ["modelIndex:".lpad() + String(describing: modelIndex)])
         /* NOTE: Setup collection view */
         self.collectionView.configure(model: model, headerPosition: .top)
     }

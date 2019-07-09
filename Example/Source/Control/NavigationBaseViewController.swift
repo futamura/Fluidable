@@ -16,6 +16,11 @@ class NavigationBaseViewController: UIViewController, RootModelReceivable {
 
     func configure(modelIndex: Int) {
         self.modelIndex = modelIndex
+        Logger()?.log("🚗💥", [
+            "modelIndex:".lpad() + String(describing: modelIndex),
+            "model:".lpad() + String(describing: self.model),
+            "visibleControllerViewAccessibilityIdentifier:".lpad() + String(describing: self.model.visibleControllerViewAccessibilityIdentifier),
+        ])
     }
 
     override func viewDidLoad() {

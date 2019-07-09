@@ -17,6 +17,11 @@ class TransitionBaseViewController: UIViewController, RootModelReceivable {
 
     func configure(modelIndex: Int) {
         self.modelIndex = modelIndex
+        Logger()?.log("🚗💥", [
+            "modelIndex:".lpad(64) + String(describing: modelIndex),
+            "model:".lpad(64) + String(describing: self.model),
+            "visibleControllerViewAccessibilityIdentifier:".lpad(64) + String(describing: self.model.visibleControllerViewAccessibilityIdentifier),
+        ])
     }
 
     override func viewDidLoad() {

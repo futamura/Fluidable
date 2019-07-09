@@ -39,7 +39,6 @@ class NavigationScrollViewController: NavigationBaseViewController, Fluidable {
 
     override func configure(modelIndex: Int) {
         super.configure(modelIndex: modelIndex)
-        Logger()?.log("🚗🛠", ["modelIndex:".lpad() + String(describing: modelIndex)])
         /* NOTE: Set accessibility */
         self.closeButton.accessibilityIdentifier = self.model.overlayCloseButtonAccessibilityIdentifier
         /* NOTE: Header */

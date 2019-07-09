@@ -43,7 +43,6 @@ class TransitionScrollViewController: TransitionBaseViewController, Fluidable {
 
     override func configure(modelIndex: Int) {
         super.configure(modelIndex: modelIndex)
-        Logger()?.log("🚗🛠", ["modelIndex:".lpad() + String(describing: modelIndex)])
         /* NOTE: Header */
         self.headerView = .instantiate(model: self.model)
         self.imageContainerView.addSubview(self.headerView)
