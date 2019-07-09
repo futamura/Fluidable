@@ -233,16 +233,9 @@
     },
     {
       "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidBackgroundStyle.swift",
-      "line": 47,
+      "line": 36,
       "symbol": "FluidBackgroundStyle.index",
       "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidBackgroundStyle.swift",
-      "line": 55,
-      "symbol": "FluidBackgroundStyle.init(index:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
