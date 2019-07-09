@@ -212,8 +212,8 @@
                         <constraints>
                             <constraint firstItem="rhH-jn-dW0" firstAttribute="top" secondItem="iTr-vo-tyH" secondAttribute="top" id="ZHD-AD-3Oy"/>
                             <constraint firstItem="rhH-jn-dW0" firstAttribute="leading" secondItem="iTr-vo-tyH" secondAttribute="leading" id="eEG-CA-Uje"/>
-                            <constraint firstAttribute="bottom" secondItem="rhH-jn-dW0" secondAttribute="bottom" id="egJ-DE-X1b"/>
-                            <constraint firstAttribute="trailing" secondItem="rhH-jn-dW0" secondAttribute="trailing" id="oAq-fX-Nu3"/>
+                            <constraint firstItem="rhH-jn-dW0" firstAttribute="bottom" secondItem="iTr-vo-tyH" secondAttribute="bottom" id="egJ-DE-X1b"/>
+                            <constraint firstItem="rhH-jn-dW0" firstAttribute="trailing" secondItem="iTr-vo-tyH" secondAttribute="trailing" id="oAq-fX-Nu3"/>
                             <constraint firstItem="rhH-jn-dW0" firstAttribute="width" secondItem="iTr-vo-tyH" secondAttribute="width" id="wnn-ZU-AdL"/>
                         </constraints>
                     </scrollView>

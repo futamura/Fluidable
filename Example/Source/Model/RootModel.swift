@@ -418,6 +418,14 @@ extension RootModel {
         return "ParentScrollView"
     }
 
+    var parentScrollTopViewAccessibilityIdentifier: String {
+        return "ScrollTopView"
+    }
+
+    var parentScrollBottomViewAccessibilityIdentifier: String {
+        return "ScrollBottomView"
+    }
+
     var parentTableViewAccessibilityIdentifier: String {
         return "ParentTableView"
     }
@@ -440,6 +448,10 @@ extension RootModel {
 
     var childForthCollectionViewAccessibilityIdentifier: String {
         return "ChildForthCollectionView"
+    }
+
+    var childFifthCollectionViewAccessibilityIdentifier: String {
+        return "ChildFifthCollectionView"
     }
 }
 

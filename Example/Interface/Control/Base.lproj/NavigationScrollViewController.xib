@@ -103,7 +103,7 @@ Vivamus sed velit et arcu egestas suscipit at vel justo. Vestibulum vehicula nis
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Azr-mS-bf9">
                                 <rect key="frame" x="206" y="3561" width="2" height="2"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <accessibility key="accessibilityConfiguration" identifier="bottomView"/>
+                                <accessibility key="accessibilityConfiguration" identifier="ScrollBottomView"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="2" id="HeT-4o-7hP"/>
                                     <constraint firstAttribute="height" constant="2" id="zK9-dC-mkK"/>
@@ -112,7 +112,7 @@ Vivamus sed velit et arcu egestas suscipit at vel justo. Vestibulum vehicula nis
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dJ2-Ge-G01">
                                 <rect key="frame" x="206" y="0.0" width="2" height="2"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <accessibility key="accessibilityConfiguration" identifier="topView"/>
+                                <accessibility key="accessibilityConfiguration" identifier="ScrollTopView"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="13J-Pf-3Zy"/>
                                     <constraint firstAttribute="width" constant="2" id="oUM-dt-KV8"/>
