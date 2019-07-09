@@ -10,6 +10,16 @@ import Foundation
 import UIKit
 import Fluidable
 
+extension String {
+    func capitalizingFirstLetter() -> String {
+        return prefix(1).capitalized + dropFirst()
+    }
+
+    mutating func capitalizeFirstLetter() {
+        self = self.capitalizingFirstLetter()
+    }
+}
+
 extension UIImage {
     enum ImageSize {
         case small, medium, large

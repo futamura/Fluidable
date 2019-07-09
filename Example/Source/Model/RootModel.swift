@@ -370,25 +370,49 @@ extension RootModel {
 extension RootModel {
     static var testCases: [RootModel] {
         return [
-//            .navigationFluidModal,
+            .navigationFluidModal,
             .navigationFluidFullScreen,
+
+            .navigationDrawerTop,
+            .navigationDrawerBottom,
+            .navigationDrawerLeft,
+            .navigationDrawerRight,
+
+            .navigationSlideTop,
+            .navigationSlideBottom,
+            .navigationSlideLeft,
+            .navigationSlideRight,
+
+            .transitionFluidModal,
+            .transitionFluidFullScreen,
+
+            .transitionDrawerTop,
+            .transitionDrawerBottom,
+            .transitionDrawerLeft,
+            .transitionDrawerRight,
+
+            .transitionSlideTop,
+            .transitionSlideBottom,
+            .transitionSlideLeft,
+            .transitionSlideRight,
         ]
     }
 
     var rootCellAccessibilityIdentifier: String {
-        return self.description + "_CollectionCell"
+        return self.description.capitalizingFirstLetter() + "_CollectionCell"
     }
 
     var navigationCloseButtonAccessibilityIdentifier: String {
-        return self.description + "_NavigationCloseButton"
+        return self.description.capitalizingFirstLetter() + "_NavigationCloseButton"
     }
 
     var overlayCloseButtonAccessibilityIdentifier: String {
-        return self.description + "_OverlayCloseButton"
+        return self.description.capitalizingFirstLetter() + "_OverlayCloseButton"
     }
 
     var visibleControllerViewAccessibilityIdentifier: String {
-        return self.description + "_VisibleView"
+//        return self.description.capitalizingFirstLetter() + "_VisibleView"
+        return "VisibleControllerView"
     }
 }
 

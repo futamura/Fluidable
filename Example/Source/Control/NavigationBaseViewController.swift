@@ -27,17 +27,24 @@ class NavigationBaseViewController: UIViewController, RootModelReceivable {
         super.viewDidLoad()
         let buttonItem: UIBarButtonItem = .init(title: "Close", style: .plain, target: self, action: #selector(closeButtonDidTap))
         self.navigationItem.rightBarButtonItem = buttonItem
-        /* NOTE: Set accessibility */
-        buttonItem.accessibilityIdentifier = self.model.navigationCloseButtonAccessibilityIdentifier
-        self.view.accessibilityIdentifier = self.model.visibleControllerViewAccessibilityIdentifier
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        /* NOTE: Set accessibility */
+        self.navigationItem.rightBarButtonItem?.accessibilityIdentifier = self.model.navigationCloseButtonAccessibilityIdentifier
+        self.view.accessibilityIdentifier = self.model.visibleControllerViewAccessibilityIdentifier
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        /* NOTE: Set accessibility */
+        self.navigationItem.rightBarButtonItem?.accessibilityIdentifier = nil
+        self.view.accessibilityIdentifier = nil
     }
 
     @IBAction func closeButtonDidTap(_ sender: Any) {
