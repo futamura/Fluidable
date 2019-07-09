@@ -31,25 +31,26 @@ class MainSpec: QuickSpec {
             app.setEnv(self.env)
             app.launch()
         }
-//        afterEach { metadata in
-//            sleep(1)
-//            app.terminate()
-//        }
-        RootModel.allCases.forEach { (model: RootModel) in
-            describe(model.description) {
-                context("SimplyPresentAndDismiss") {
-                    it("Present") {
-                        self.presentSimply(app: app, model: model)
+        afterEach { metadata in
+            app.terminate()
+        }
+        describe("Main") {
+            RootModel.allCases.forEach { (model: RootModel) in
+                context(model.description) {
+                    it("AnimatedPresent_AnimatedDismiss") {
+                        self.presentWithAnimation(app: app, model: model)
                         self.dismissByTappingCloseButton(app: app, model: model)
                     }
-//                    it("Dismiss") {
-//                    }
+                    it("AnimatedPresent_InteractiveDismiss") {
+                        self.presentWithAnimation(app: app, model: model)
+                        self.dismissWithInteraction(app: app, model: model)
+                    }
                 }
             }
         }
     }
 
-    func presentSimply(app: XCUIApplication, model: RootModel) {
+    func presentWithAnimation(app: XCUIApplication, model: RootModel) {
         /* NOTE: Wait until collection view is ready */
         let collectionView: XCUIElement = app.collectionViews.element(matching: .collectionView, identifier: "rootCollectionView")
         expect(collectionView.exists).toEventually(beTrue(), timeout: 10)
@@ -73,17 +74,62 @@ class MainSpec: QuickSpec {
 //                }
             }
         }
-        sleep(1)
+        usleep(sec: 1.5)
     }
 
     func dismissByTappingCloseButton(app: XCUIApplication, model: RootModel) {
         let button: XCUIElement = app.buttons.element(matching: .button, identifier: model.overlayCloseButtonAccessibilityIdentifier)
-        Logger()?.log("🧪", [
-            "button.exists:".lpad(48) + String(describing: button.exists.debugString),
-        ])
         expect(button.exists && button.isEnabled && button.isHittable).toEventually(beTrue(), timeout: 10)
         button.tap()
-        sleep(1)
+        usleep(sec: 1.5)
+    }
+
+    func dismissWithInteraction(app: XCUIApplication, model: RootModel) {
+        let visibleView: XCUIElement = app.otherElements.element(matching: .other, identifier: model.visibleControllerViewAccessibilityIdentifier)
+//        print(app.debugDescription)
+        expect(visibleView.exists).toEventually(beTrue(), timeout: 10)
+        switch model {
+        case .navigationFluidModal:
+            break
+        case .navigationFluidFullScreen:
+            break
+        case .navigationDrawerTop:
+            break
+        case .navigationDrawerBottom:
+            break
+        case .navigationDrawerLeft:
+            break
+        case .navigationDrawerRight:
+            break
+        case .navigationSlideTop:
+            break
+        case .navigationSlideBottom:
+            break
+        case .navigationSlideLeft:
+            break
+        case .navigationSlideRight:
+            break
+        case .transitionFluidModal:
+            break
+        case .transitionFluidFullScreen:
+            break
+        case .transitionDrawerTop:
+            break
+        case .transitionDrawerBottom:
+            break
+        case .transitionDrawerLeft:
+            break
+        case .transitionDrawerRight:
+            break
+        case .transitionSlideTop:
+            break
+        case .transitionSlideBottom:
+            break
+        case .transitionSlideLeft:
+            break
+        case .transitionSlideRight:
+            break
+        }
     }
 
     func execute(app: XCUIApplication, model: RootModel) {
