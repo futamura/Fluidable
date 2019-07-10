@@ -39,7 +39,7 @@ class MainSpec: QuickSpec {
         ]
         orientations.forEach { (orientation: UIDeviceOrientation) in
             XCUIDevice.shared.orientation = orientation
-            describe(String(describing: orientation).capitalizingFirstLetter()) {
+            describe(XCUIDevice.shared.testDescription(for: orientation)) {
                 RootModel.testCases(for: orientation).forEach { (model: RootModel) in
                     context(model.description.capitalizingFirstLetter()) {
 //                        it("FinishAnimatedPresent_FinishAnimatedDismiss") {
