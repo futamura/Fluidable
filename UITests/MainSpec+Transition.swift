@@ -124,6 +124,66 @@ extension MainSpec {
         expect(visibleView.exists).toNotEventually(beTrue(), timeout: 10)
     }
 
+    func pushViewController(app: XCUIApplication, model: RootModel) {
+        switch model.className {
+        case "NavigationCollectionViewController":
+            let collectionView: XCUIElement = app.collectionViews.element(matching: .collectionView, identifier: model.parentCollectionViewAccessibilityIdentifier)
+            let cell: XCUIElement = collectionView.cells.element(boundBy: 0)
+            expect(cell.isVisible).toEventually(beTrue(), timeout: 10)
+            cell.tap()
+            usleep(sec: 2.0)
+
+        case "NavigationMultiCollectionViewController":
+            let collectionView: XCUIElement = app.collectionViews.element(matching: .collectionView, identifier: model.childFirstCollectionViewAccessibilityIdentifier)
+            let cell: XCUIElement = collectionView.cells.element(boundBy: 0)
+            expect(cell.isVisible).toEventually(beTrue(), timeout: 10)
+            cell.tap()
+            usleep(sec: 2.0)
+
+        case "NavigationScrollViewController":
+            let button: XCUIElement = app.buttons.element(matching: .button, identifier: model.rootNextButtonAccessibilityIdentifier)
+//            let button: XCUIElement = app.buttons.element(matching: .button, identifier: model.childNextButtonAccessibilityIdentifier)
+            expect(button.isVisible).toEventually(beTrue(), timeout: 10)
+            button.tap()
+            usleep(sec: 2.0)
+
+        case "NavigationTableViewController":
+            let tableView: XCUIElement = app.tables.element(matching: .table, identifier: model.parentTableViewAccessibilityIdentifier)
+            let cell: XCUIElement = tableView.cells.element(boundBy: 0)
+            expect(cell.isVisible).toEventually(beTrue(), timeout: 10)
+            cell.tap()
+            usleep(sec: 2.0)
+
+        case "TransitionCollectionViewController",
+             "TransitionMultiCollectionViewController",
+             "TransitionScrollViewController",
+             "TransitionTableViewController":
+            break
+        default: break
+        }
+    }
+
+//    func popViewControllerByTappingBackButton(app: XCUIApplication, model: RootModel) {
+//        switch model.className {
+//        case "NavigationCollectionViewController",
+//             "NavigationMultiCollectionViewController",
+//             "NavigationScrollViewController",
+//             "NavigationTableViewController":
+//            let navigationBar: XCUIElement = app.navigationBars.element(matching: .navigationBar, identifier: model.navigationBarAccessibilityIdentifier)
+//            let button: XCUIElement = navigationBar.buttons.element(boundBy: 0)
+//            expect(button.isVisible).toEventually(beTrue(), timeout: 10)
+//            button.tap()
+//            usleep(sec: 2.0)
+//
+//        case "TransitionCollectionViewController",
+//             "TransitionMultiCollectionViewController",
+//             "TransitionScrollViewController",
+//             "TransitionTableViewController":
+//            break
+//        default: break
+//        }
+//    }
+
     func scrollToDismissiblePosition(app: XCUIApplication, model: RootModel) {
         let option: InteractiveDismissOption = self.getInteractiveDismissOption(app: app, model: model)
         /* NOTE: Check whether the views exist */
@@ -136,7 +196,7 @@ extension MainSpec {
             "target".lpad() + String(describing: targetView.exists),
         ])
         interactView.swipe(to: option.direction.inverted(), until: targetView.isVisible && interactView.frame.contains(targetView.frame))
-        usleep(sec: 1.0)
+        usleep(sec: 2.0)
     }
 
     func finishInteractiveDismiss(app: XCUIApplication, model: RootModel) {
