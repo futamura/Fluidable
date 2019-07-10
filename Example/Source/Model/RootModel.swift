@@ -373,30 +373,30 @@ extension RootModel {
         case true:
             return [
                 .navigationFluidModal,
-                .navigationFluidFullScreen,
+//                .navigationFluidFullScreen,
 
                 .navigationDrawerTop,
                 .navigationDrawerBottom,
                 .navigationDrawerLeft,
                 .navigationDrawerRight,
+//
+//                .navigationSlideTop,
+//                .navigationSlideBottom,
+//                .navigationSlideLeft,
+//                .navigationSlideRight,
 
-                .navigationSlideTop,
-                .navigationSlideBottom,
-                .navigationSlideLeft,
-                .navigationSlideRight,
-
-                .transitionFluidModal,
-                .transitionFluidFullScreen,
-
-                .transitionDrawerTop,
-                .transitionDrawerBottom,
-                .transitionDrawerLeft,
-                .transitionDrawerRight,
-
-                .transitionSlideTop,
-                .transitionSlideBottom,
-                .transitionSlideLeft,
-                .transitionSlideRight,
+//                .transitionFluidModal,
+//                .transitionFluidFullScreen,
+//
+//                .transitionDrawerTop,
+//                .transitionDrawerBottom,
+//                .transitionDrawerLeft,
+//                .transitionDrawerRight,
+//
+//                .transitionSlideTop,
+//                .transitionSlideBottom,
+//                .transitionSlideLeft,
+//                .transitionSlideRight,
             ]
         case false:
             return [

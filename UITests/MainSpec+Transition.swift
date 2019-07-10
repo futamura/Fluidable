@@ -38,12 +38,8 @@ extension MainSpec {
         usleep(sec: 1.2)
     }
 
-    func dismissWithInteraction(app: XCUIApplication, model: RootModel) {
+    func scrollToDismissiblePosition(app: XCUIApplication, model: RootModel) {
         let option: InteractiveDismissOption = self.getInteractiveDismissOption(app: app, model: model)
-        Logger()?.log("🧪", [
-            "interact".lpad() + String(describing: option.interact?.exists),
-            "direction".lpad() + String(describing: option.direction),
-        ])
         if let interactView: XCUIElement = option.interact {
             /* NOTE: Check whether the view exists */
             expect(interactView.exists).toEventually(beTrue(), timeout: 10)
@@ -54,14 +50,24 @@ extension MainSpec {
                 ])
                 expect(targetView.exists).toEventually(beTrue(), timeout: 10)
                 interactView.swipe(to: option.direction.inverted(), until: targetView.isVisible && interactView.frame.contains(targetView.frame))
+                usleep(sec: 1.0)
             }
-            usleep(sec: 1.0)
+        }
+    }
+
+    func dismissWithInteraction(app: XCUIApplication, model: RootModel) {
+        let option: InteractiveDismissOption = self.getInteractiveDismissOption(app: app, model: model)
+        if let interactView: XCUIElement = option.interact {
+            /* NOTE: Check whether the view exists */
+            expect(interactView.exists).toEventually(beTrue(), timeout: 10)
             /* NOTE: Perform dismiss interaction */
-            switch option.direction {
-            case .up: interactView.swipe(from: CGVector(dx: 0.5, dy: 0.8), to: CGVector(dx: 0.5, dy: 0.2))
-            case .down: interactView.swipe(from: CGVector(dx: 0.5, dy: 0.2), to: CGVector(dx: 0.5, dy: 0.8))
-            case .left: interactView.swipe(from: CGVector(dx: 0.8, dy: 0.5), to: CGVector(dx: 0.2, dy: 0.5))
-            case .right: interactView.swipe(from: CGVector(dx: 0.2, dy: 0.5), to: CGVector(dx: 0.8, dy: 0.5))
+            let presentationStyle: FluidPresentationStyle = FluidPresentationStyle(fromTransition: model.transitionStyle)
+            switch presentationStyle.dismissAxis() {
+            case .positiveX: return interactView.swipe(from: CGVector(dx: 0.2, dy: 0.5), to: CGVector(dx: 0.8, dy: 0.5))
+            case .negativeX: return interactView.swipe(from: CGVector(dx: 0.8, dy: 0.5), to: CGVector(dx: 0.2, dy: 0.5))
+            case .positiveY: return interactView.swipe(from: CGVector(dx: 0.5, dy: 0.2), to: CGVector(dx: 0.5, dy: 0.8))
+            case .negativeY: return interactView.swipe(from: CGVector(dx: 0.5, dy: 0.8), to: CGVector(dx: 0.5, dy: 0.2))
+            default: break
             }
         }
         /* NOTE: Check whether the view controller already disappears */

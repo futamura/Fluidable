@@ -50,6 +50,7 @@ class MainSpec: QuickSpec {
                         it("AnimatedPresent_InteractiveDismiss") {
                             self.presentWithAnimation(app: app, model: model)
 //                            self.rotateAndRevertDevice(app: app, model: model)
+                            self.scrollToDismissiblePosition(app: app, model: model)
                             self.dismissWithInteraction(app: app, model: model)
                         }
                     }
