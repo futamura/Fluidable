@@ -70,6 +70,7 @@
                 <outlet property="dismissImageView" destination="ngm-zp-3A7" id="blS-FQ-ruc"/>
                 <outlet property="imageHeightConstraint" destination="0hq-g9-OSk" id="MQ0-YT-Ptm"/>
                 <outlet property="imageView" destination="ZtB-kC-Xoe" id="8lD-3e-3eY"/>
+                <outlet property="nextButton" destination="pZa-T0-Wzv" id="W3r-Ch-KdD"/>
             </connections>
             <point key="canvasLocation" x="176.81159420289856" y="59.598214285714285"/>
         </viewController>

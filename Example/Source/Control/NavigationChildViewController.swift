@@ -12,6 +12,7 @@ import Fluidable
 
 /* IMPORTANT: 🌊 Conform to `Fluidable` protocol */
 class NavigationChildViewController: NavigationBaseViewController, Fluidable {
+    @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var dismissImageView: UIImageView!
@@ -29,8 +30,9 @@ class NavigationChildViewController: NavigationBaseViewController, Fluidable {
         super.configure(modelIndex: modelIndex)
         Logger()?.log("🚗🛠", [
             "modelIndex:".lpad() + String(describing: modelIndex),
-            "modelIndex:".lpad() + String(describing: modelIndex),
         ])
+        /* NOTE: Set accessibility identifier */
+        self.nextButton.accessibilityIdentifier = self.model.childNextButtonAccessibilityIdentifier
         if let imageIndex = imageIndex {
             self.imageHeightConstraint.constant = 284
             self.imageView.image = UIImage(row: imageIndex, size: .medium)
