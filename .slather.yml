@@ -7,6 +7,7 @@ ignore:
   # - Sources/Core/Enumeration/FluidConst.swift
   # - Sources/Core/Enumeration/FluidCoreAnimatorOption.swift
   - Sources/Helper/Extension/VectorMath.swift
+  - Sources/Helper/AdaptiveLayout/*/*.swift
   - Sources/Shared/*.swift
   - Tests/*
   - UITests/*

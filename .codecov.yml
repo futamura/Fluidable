@@ -5,6 +5,7 @@ codecov:
 ignore:
   # - "Sources/Core/Enumeration/FluidConst.swift"
   # - "Sources/Core/Enumeration/FluidCoreAnimatorOption.swift"
+  - "Sources/Helper/AdaptiveLayout/*/*.swift"
   - "Sources/Helper/Extension/VectorMath.swift"
   - "Sources/Shared/*.swift"
   - "Tests"
