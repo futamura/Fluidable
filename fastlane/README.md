@@ -46,6 +46,11 @@ Clean & Run Test
 fastlane ios test
 ```
 Run Test
+### ios test_all
+```
+fastlane ios test_all
+```
+Run All Test
 ### ios coverage
 ```
 fastlane ios coverage

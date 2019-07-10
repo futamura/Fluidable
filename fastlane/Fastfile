@@ -124,34 +124,64 @@ platform :ios do
 
   desc "Clean & Run Test"
   lane :clean_test do |options|
-    run_scan(
-      clean: true,
-      devices: [
-        "iPhone XS",
-      ],
-#       only_testing: [
-#       'FluidableTests/AnimatorSpec',
-#       'FluidableTests/EnumSpec',
-#       'FluidableTests/HelperSpec',
-#       'FluidableTests/RxSpec',
-#       'FluidableTests/MiscSpec',
-#       ],
-    )
-    coverage
-    lint
+    tests = [
+      {device: "iPhone XS", clean: true, coverage: true},
+    ]
+    for test in tests
+      run_scan(
+        clean: true,
+        devices: [test[:device]],
+        only_testing: [],
+        code_coverage: test[:coverage],
+      )
+      if test[:coverage]
+        coverage
+        lint
+      end
+    end
   end
 
   desc "Run Test"
   lane :test do |options|
-    run_scan(
-      clean: false,
-      devices: [
-        "iPhone XS",
-      ],
-      only_testing: [],
-    )
-    coverage
-    lint
+    tests = [
+      {device: "iPhone XS", clean: false, coverage: true},
+    ]
+    for test in tests
+      run_scan(
+        clean: true,
+        devices: [test[:device]],
+        only_testing: [],
+        code_coverage: test[:coverage],
+      )
+      if test[:coverage]
+        coverage
+        lint
+      end
+    end
+  end
+
+  desc "Run All Test"
+  lane :test_all do |options|
+    tests = [
+      {device: "iPhone XS", clean: false, coverage: true},
+      {device: "iPhone 7 Plus (11.4)", clean: false, coverage: false},
+      {device: "iPhone 6 (10.3.1)", clean: false, coverage: false},
+      {device: "iPad Air 2", clean: true, coverage: true},
+      {device: "iPad Air 2 (11.4)", clean: false, coverage: false},
+      {device: "iPad Air 2 (10.3.1)", clean: false, coverage: false},
+    ]
+    for test in tests
+      run_scan(
+        clean: true,
+        devices: [test[:device]],
+        only_testing: [],
+        code_coverage: test[:coverage],
+      )
+      if test[:coverage]
+        coverage
+        lint
+      end
+    end
   end
 
   desc "Run Scan"
