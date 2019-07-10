@@ -14,6 +14,6 @@ import XCTest
  */
 extension XCUIApplication {
     func setEnv(_ config: String) {
-        self.launchEnvironment["testConfig"] = config
+        self.launchEnvironment["com.gumob.Fluidable.test.config"] = config
     }
 }

@@ -268,11 +268,13 @@
 		DFABE163F763A1533DF00F8F /* RootCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEE00E49C659753C6329F /* RootCollectionView.swift */; };
 		DFABE1986F3CF86C24A17BEC /* CoreGraphicsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEA20CD2E0B5FCF8348C4 /* CoreGraphicsSpec.swift */; };
 		DFABE2E93696D716B3785095 /* XCUIElement+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE8E88CFD40B74C6F4BD2 /* XCUIElement+Ext.swift */; };
+		DFABE3A3945F5556E9B7070D /* UITestEnv.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE6E1A8F12D7040B3B70A /* UITestEnv.swift */; };
 		DFABE3D588D52DA0D98549E4 /* AlignedCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEC72BC4B8623907A87C8 /* AlignedCollectionLayout.swift */; };
 		DFABE53D11423F959BB319B3 /* VectorMathSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE3B66C85AD6FFCF55485 /* VectorMathSpec.swift */; };
 		DFABE59F491E1000C30A1C54 /* TransitionBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE2E4B74F287D242141CC /* TransitionBaseViewController.swift */; };
 		DFABE5F91C76405E1AA14916 /* UIKitSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE820B184C0B8FCE69E18 /* UIKitSpec.swift */; };
 		DFABE6423A286983D05132BB /* NavigationBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEC6EF0DB83BEFF91B48C /* NavigationBaseViewController.swift */; };
+		DFABE7993BAB20DC78B46F00 /* UITestEnv.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE6E1A8F12D7040B3B70A /* UITestEnv.swift */; };
 		DFABE7DD7916A92821B4A056 /* MainSpec+Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEDA081BAFF75B8323607 /* MainSpec+Transition.swift */; };
 		DFABE996DD1A19EC135F1B78 /* AlignedCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEC72BC4B8623907A87C8 /* AlignedCollectionLayout.swift */; };
 		DFABEA76E84782BC8CE6D34B /* QuartzCoreSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE7A41959B49A81407C6D /* QuartzCoreSpec.swift */; };
@@ -283,6 +285,7 @@
 		DFABEC899372CF16E5C6CAD0 /* TransitionBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE2E4B74F287D242141CC /* TransitionBaseViewController.swift */; };
 		DFABED94484BCC69C0DF8C33 /* AnimatorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEB712A899C167DEFE0D5 /* AnimatorSpec.swift */; };
 		DFABEEBC3B205A04BDFFF716 /* MainSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE4D624937D130011B37E /* MainSpec.swift */; };
+		DFABEF7EFE8D2989614095BD /* UITestEnv.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE6E1A8F12D7040B3B70A /* UITestEnv.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -521,6 +524,7 @@
 		DFABE3B66C85AD6FFCF55485 /* VectorMathSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorMathSpec.swift; sourceTree = "<group>"; };
 		DFABE4D624937D130011B37E /* MainSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSpec.swift; sourceTree = "<group>"; };
 		DFABE61D021ABDF43686FD95 /* RootViewController+Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RootViewController+Collection.swift"; sourceTree = "<group>"; };
+		DFABE6E1A8F12D7040B3B70A /* UITestEnv.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITestEnv.swift; sourceTree = "<group>"; };
 		DFABE7A41959B49A81407C6D /* QuartzCoreSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuartzCoreSpec.swift; sourceTree = "<group>"; };
 		DFABE81DB86B266033ED2C1C /* NavigationChildViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationChildViewController.swift; sourceTree = "<group>"; };
 		DFABE820B184C0B8FCE69E18 /* UIKitSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitSpec.swift; sourceTree = "<group>"; };
@@ -837,6 +841,7 @@
 			children = (
 				A7F5CE1A22CAF6C000578043 /* Debug.swift */,
 				A7F5CE1B22CAF6C000578043 /* NSObject+Ext.swift */,
+				DFABE6E1A8F12D7040B3B70A /* UITestEnv.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -1604,6 +1609,7 @@
 				A7F5CEBB22CAF6C100578043 /* UITraitCollection+Adaptive.swift in Sources */,
 				A7F5CECD22CAF6C100578043 /* UIViewAnimating+Extension.swift in Sources */,
 				A7F5CEB822CAF6C100578043 /* VectorMath.swift in Sources */,
+				DFABE3A3945F5556E9B7070D /* UITestEnv.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1667,6 +1673,7 @@
 				A7F5CF2422CAF6D000578043 /* NSObject+Ext.swift in Sources */,
 				DFABEAF2177C6BE9A205486C /* RootCollectionView.swift in Sources */,
 				DFABE59F491E1000C30A1C54 /* TransitionBaseViewController.swift in Sources */,
+				DFABE7993BAB20DC78B46F00 /* UITestEnv.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1720,6 +1727,7 @@
 				DFABEC899372CF16E5C6CAD0 /* TransitionBaseViewController.swift in Sources */,
 				DFABE7DD7916A92821B4A056 /* MainSpec+Transition.swift in Sources */,
 				DFABEB9FBFD6C0413F882F50 /* AutoMate+Ext.swift in Sources */,
+				DFABEF7EFE8D2989614095BD /* UITestEnv.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
