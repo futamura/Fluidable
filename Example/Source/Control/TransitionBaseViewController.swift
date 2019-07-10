@@ -31,7 +31,7 @@ class TransitionBaseViewController: UIViewController, RootModelReceivable {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         /* NOTE: Set accessibility */
-        self.navigationItem.rightBarButtonItem?.accessibilityIdentifier = self.model.navigationCloseButtonAccessibilityIdentifier
+        self.closeButton.accessibilityIdentifier = self.model.overlayCloseButtonAccessibilityIdentifier
         self.view.accessibilityIdentifier = self.model.visibleControllerViewAccessibilityIdentifier
     }
 

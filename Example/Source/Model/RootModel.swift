@@ -373,17 +373,17 @@ extension RootModel {
         case true:
             return [
                 .navigationFluidModal,
-//                .navigationFluidFullScreen,
+                .navigationFluidFullScreen,
 
                 .navigationDrawerTop,
                 .navigationDrawerBottom,
                 .navigationDrawerLeft,
                 .navigationDrawerRight,
-//
-//                .navigationSlideTop,
-//                .navigationSlideBottom,
-//                .navigationSlideLeft,
-//                .navigationSlideRight,
+
+                .navigationSlideTop,
+                .navigationSlideBottom,
+                .navigationSlideLeft,
+                .navigationSlideRight,
 
 //                .transitionFluidModal,
 //                .transitionFluidFullScreen,
@@ -412,19 +412,19 @@ extension RootModel {
 //                .navigationSlideBottom,
 //                .navigationSlideLeft,
 //                .navigationSlideRight,
-//
-//                .transitionFluidModal,
-//                .transitionFluidFullScreen,
-//
-//                .transitionDrawerTop,
-//                .transitionDrawerBottom,
-//                .transitionDrawerLeft,
-//                .transitionDrawerRight,
-//
-//                .transitionSlideTop,
-//                .transitionSlideBottom,
-//                .transitionSlideLeft,
-//                .transitionSlideRight,
+
+                .transitionFluidModal,
+                .transitionFluidFullScreen,
+
+                .transitionDrawerTop,
+                .transitionDrawerBottom,
+                .transitionDrawerLeft,
+                .transitionDrawerRight,
+
+                .transitionSlideTop,
+                .transitionSlideBottom,
+                .transitionSlideLeft,
+                .transitionSlideRight,
             ]
         }
     }
@@ -439,6 +439,11 @@ extension RootModel {
 
     var overlayCloseButtonAccessibilityIdentifier: String {
         return self.description.capitalizingFirstLetter() + "_OverlayCloseButton"
+    }
+
+    var containerViewAccessibilityIdentifier: String {
+//        return (self.presentationType == .navigation ? "Navigation" : "Transition") + "_ContainerView"
+        return "ContainerView"
     }
 
     var visibleControllerViewAccessibilityIdentifier: String {

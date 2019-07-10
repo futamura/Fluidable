@@ -214,6 +214,12 @@ extension TransitionTableViewController: FluidTransitionDestinationActionDelegat
             "state:".lpad() + String(describing: state),
             "progress:".lpad() + String(describing: progress),
         ])
+        switch state {
+        case .begin: container?.accessibilityIdentifier = "ContainerView"
+        case .update: break
+        case .cancel: break
+        case .end: break
+        }
     }
 
     func transitionDismissAnimationDidProgress(from destination: FluidDestinationViewController, to source: FluidSourceViewController,

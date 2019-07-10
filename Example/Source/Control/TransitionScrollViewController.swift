@@ -269,10 +269,10 @@ extension TransitionScrollViewController: FluidTransitionDestinationActionDelega
             "progress:".lpad() + String(describing: progress),
         ])
         switch state {
-        case .begin:  break
+        case .begin: container?.accessibilityIdentifier = "ContainerView"
         case .update: break
         case .cancel: break
-        case .end:    break
+        case .end: break
         }
     }
 

@@ -87,6 +87,12 @@ extension NavigationRootNavigationController: FluidNavigationSourceActionDelegat
             "state:".lpad() + String(describing: state),
             "progress:".lpad() + String(describing: progress),
         ])
+        switch state {
+        case .begin: container?.accessibilityIdentifier = "ContainerView"
+        case .update: break
+        case .cancel: break
+        case .end: break
+        }
     }
     func navigationDismissAnimationDidProgress(from destination: FluidDestinationViewController, to source: FluidSourceViewController, with navigation: FluidNavigationController?, on container: UIView?, navigationStyle: FluidNavigationStyle, duration: TimeInterval, easing: FluidAnimatorEasing, state: FluidProgressState, progress: CGFloat) {
         Logger()?.log("🚙💥", [
@@ -118,6 +124,12 @@ extension NavigationRootNavigationController: FluidTransitionDestinationActionDe
             "state:".lpad() + String(describing: state),
             "progress:".lpad() + String(describing: progress),
         ])
+        switch state {
+        case .begin: container?.accessibilityIdentifier = "ContainerView"
+        case .update: break
+        case .cancel: break
+        case .end: break
+        }
     }
 
     func transitionDismissAnimationDidProgress(from destination: FluidDestinationViewController, to source: FluidSourceViewController,

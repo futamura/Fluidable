@@ -42,17 +42,40 @@ class MainSpec: QuickSpec {
             describe(String(describing: orientation).capitalizingFirstLetter()) {
                 RootModel.testCases(for: orientation).forEach { (model: RootModel) in
                     context(model.description.capitalizingFirstLetter()) {
-//                        it("AnimatedPresent_AnimatedDismiss") {
-//                            self.presentWithAnimation(app: app, model: model)
+//                        it("FinishAnimatedPresent_FinishAnimatedDismiss") {
+//                            self.finishAnimatedPresent(app: app, model: model)
 //                            self.rotateAndRevertDevice(app: app, model: model)
-//                            self.dismissWithAnimation(app: app, model: model)
+//                            self.finishAnimatedDismiss(app: app, model: model)
 //                        }
-                        it("AnimatedPresent_InteractiveDismiss") {
-                            self.presentWithAnimation(app: app, model: model)
+//                        it("CancelAnimatedPresent") {
+//                            self.finishAnimatedPresent(app: app, model: model)
+//                        }
+//                        it("FinishInteractivePresent_FinishAnimatedDismiss") {
+//                            self.finishAnimatedPresent(app: app, model: model)
+//                            self.rotateAndRevertDevice(app: app, model: model)
+//                            self.finishAnimatedDismiss(app: app, model: model)
+//                        }
+//                        it("CancelInteractivePresent") {
+//                            self.finishAnimatedPresent(app: app, model: model)
+//                        }
+                        it("FinishAnimatedPresent_FinishInteractiveDismiss") {
+                            self.finishAnimatedPresent(app: app, model: model)
 //                            self.rotateAndRevertDevice(app: app, model: model)
                             self.scrollToDismissiblePosition(app: app, model: model)
-                            self.dismissWithInteraction(app: app, model: model)
+                            self.finishInteractiveDismiss(app: app, model: model)
                         }
+                        it("FinishAnimatedPresent_FinishAnimatedDismissWithBackground") {
+                            self.finishAnimatedPresent(app: app, model: model)
+                            print(app.debugDescription)
+                            self.finishAnimatedDismissByTappingContainer(app: app, model: model)
+                        }
+//                        it("FinishAnimatedPresent_CancelInteractiveDismiss") {
+//                            self.finishAnimatedPresent(app: app, model: model)
+////                            self.rotateAndRevertDevice(app: app, model: model)
+//                            self.scrollToDismissiblePosition(app: app, model: model)
+//                            self.cancelInteractiveDismiss(app: app, model: model)
+//                            self.finishAnimatedDismissByTappingCloseButton(app: app, model: model)
+//                        }
                     }
                 }
             }
