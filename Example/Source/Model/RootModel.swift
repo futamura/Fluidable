@@ -441,6 +441,14 @@ extension RootModel {
         return self.description.capitalizingFirstLetter() + "_OverlayCloseButton"
     }
 
+    var rootNextButtonAccessibilityIdentifier: String {
+        return "RootNextButton"
+    }
+
+    var childNextButtonAccessibilityIdentifier: String {
+        return "ChildNextButton"
+    }
+
     var containerViewAccessibilityIdentifier: String {
 //        return (self.presentationType == .navigation ? "Navigation" : "Transition") + "_ContainerView"
         return "ContainerView"
