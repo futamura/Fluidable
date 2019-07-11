@@ -400,31 +400,31 @@ extension RootModel {
             ]
         case false:
             return [
-                .navigationFluidModal,
-                .navigationFluidFullScreen,
-
-                .navigationDrawerTop,
-                .navigationDrawerBottom,
-                .navigationDrawerLeft,
-                .navigationDrawerRight,
-
-                .navigationSlideTop,
-                .navigationSlideBottom,
-                .navigationSlideLeft,
-                .navigationSlideRight,
-
+//                .navigationFluidModal,
+//                .navigationFluidFullScreen,
+//
+//                .navigationDrawerTop,
+//                .navigationDrawerBottom,
+//                .navigationDrawerLeft,
+//                .navigationDrawerRight,
+//
+//                .navigationSlideTop,
+//                .navigationSlideBottom,
+//                .navigationSlideLeft,
+//                .navigationSlideRight,
+//
                 .transitionFluidModal,
                 .transitionFluidFullScreen,
 
-//                .transitionDrawerTop,
-//                .transitionDrawerBottom,
-//                .transitionDrawerLeft,
-//                .transitionDrawerRight,
-//
-//                .transitionSlideTop,
-//                .transitionSlideBottom,
-//                .transitionSlideLeft,
-//                .transitionSlideRight,
+                .transitionDrawerTop,
+                .transitionDrawerBottom,
+                .transitionDrawerLeft,
+                .transitionDrawerRight,
+
+                .transitionSlideTop,
+                .transitionSlideBottom,
+                .transitionSlideLeft,
+                .transitionSlideRight,
             ]
         }
     }

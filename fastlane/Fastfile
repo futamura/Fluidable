@@ -101,87 +101,81 @@ platform :ios do
   lane :clean_test_all do |options|
     # Execute test one by one to avoid failing with timeout
     tests = [
-      {device: "iPhone XS", clean: true, coverage: true},
-      {device: "iPhone 7 Plus (11.4)", clean: false, coverage: false},
-      {device: "iPhone 6 (10.3.1)", clean: false, coverage: false},
-      {device: "iPad Air 2", clean: true, coverage: true},
-      {device: "iPad Air 2 (11.4)", clean: false, coverage: false},
-      {device: "iPad Air 2 (10.3.1)", clean: false, coverage: false},
+      {device: "iPhone XS"},
+      {device: "iPhone 7 Plus (11.4)"},
+      {device: "iPhone 6 (10.3.1)"},
+      {device: "iPad Air 2"},
+      {device: "iPad Air 2 (11.4)"},
+      {device: "iPad Air 2 (10.3.1)"},
     ]
     for test in tests
       run_scan(
-        clean: true,
+        clean: false,
         devices: [test[:device]],
         only_testing: [],
-        code_coverage: test[:coverage],
+        code_coverage: true,
       )
-      if test[:coverage]
-        coverage
-        lint
-      end
     end
+    coverage
+    lint
   end
 
   desc "Clean & Run Test"
   lane :clean_test do |options|
     tests = [
-      {device: "iPhone XS", clean: true, coverage: true},
+      {device: "iPhone XS"},
     ]
+    xcclean()
     for test in tests
       run_scan(
-        clean: true,
+        clean: false,
         devices: [test[:device]],
         only_testing: [],
-        code_coverage: test[:coverage],
+        code_coverage: true,
       )
-      if test[:coverage]
-        coverage
-        lint
-      end
     end
-  end
-
-  desc "Run Test"
-  lane :test do |options|
-    tests = [
-      {device: "iPhone XS", clean: false, coverage: true},
-    ]
-    for test in tests
-      run_scan(
-        clean: true,
-        devices: [test[:device]],
-        only_testing: [],
-        code_coverage: test[:coverage],
-      )
-      if test[:coverage]
-        coverage
-        lint
-      end
-    end
+    coverage
+    lint
   end
 
   desc "Run All Test"
   lane :test_all do |options|
     tests = [
-      {device: "iPhone XS", clean: false, coverage: true},
-      {device: "iPhone 7 Plus (11.4)", clean: false, coverage: false},
-      {device: "iPhone 6 (10.3.1)", clean: false, coverage: false},
-      {device: "iPad Air 2", clean: true, coverage: true},
-      {device: "iPad Air 2 (11.4)", clean: false, coverage: false},
-      {device: "iPad Air 2 (10.3.1)", clean: false, coverage: false},
+      {device: "iPhone XS"},
+      {device: "iPhone 7 Plus (11.4)"},
+      {device: "iPhone 6 (10.3.1)"},
+      {device: "iPad Air 2"},
+      {device: "iPad Air 2 (11.4)"},
+      {device: "iPad Air 2 (10.3.1)"},
     ]
     for test in tests
       run_scan(
-        clean: true,
+        clean: false,
         devices: [test[:device]],
         only_testing: [],
-        code_coverage: test[:coverage],
+        code_coverage: true,
       )
-      if test[:coverage]
-        coverage
-        lint
-      end
     end
+    coverage
+    lint
+  end
+
+  desc "Run Test"
+  lane :test do |options|
+    tests = [
+      {device: "iPhone XS"},
+    ]
+    xcclean()
+    for test in tests
+      run_scan(
+        clean: false,
+        devices: [test[:device]],
+        only_testing: [],
+        code_coverage: true,
+      )
+    end
+    coverage
+    lint
   end
 
   desc "Run Scan"

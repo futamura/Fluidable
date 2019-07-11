@@ -195,7 +195,12 @@ extension MainSpec {
         Logger()?.log("🧪", [
             "target".lpad() + String(describing: targetView.exists),
         ])
-        interactView.swipe(to: option.direction.inverted(), until: targetView.isVisible && interactView.frame.contains(targetView.frame))
+//        interactView.swipe(to: option.direction.inverted(), until: targetView.isVisible && interactView.frame.contains(targetView.frame))
+//        interactView.swipe(to: option.direction.inverted(), until: targetView.isVisible)
+        let vector: InteractiveDismissVector = self.getReducedInteractiveDismissVector(app: app, model: model)
+        while (!targetView.isVisible) {
+            interactView.swipe(from: vector.start, to: vector.finish)
+        }
         usleep(sec: 2.0)
     }
 
@@ -380,6 +385,17 @@ extension MainSpec {
         case .negativeX: return (start: CGVector(dx: 0.8, dy: 0.5), finish: CGVector(dx: 0.2, dy: 0.5))
         case .positiveY: return (start: CGVector(dx: 0.5, dy: 0.2), finish: CGVector(dx: 0.5, dy: 0.8))
         case .negativeY: return (start: CGVector(dx: 0.5, dy: 0.8), finish: CGVector(dx: 0.5, dy: 0.2))
+        default: return (start: .zero, finish: .zero)
+        }
+    }
+
+    func getReducedInteractiveDismissVector(app: XCUIApplication, model: RootModel) -> InteractiveDismissVector {
+        let presentationStyle: FluidPresentationStyle = FluidPresentationStyle(fromTransition: model.transitionStyle)
+        switch presentationStyle.dismissAxis() {
+        case .positiveX: return (start: CGVector(dx: 0.4, dy: 0.5), finish: CGVector(dx: 0.6, dy: 0.5))
+        case .negativeX: return (start: CGVector(dx: 0.6, dy: 0.5), finish: CGVector(dx: 0.4, dy: 0.5))
+        case .positiveY: return (start: CGVector(dx: 0.5, dy: 0.4), finish: CGVector(dx: 0.5, dy: 0.6))
+        case .negativeY: return (start: CGVector(dx: 0.5, dy: 0.6), finish: CGVector(dx: 0.5, dy: 0.4))
         default: return (start: .zero, finish: .zero)
         }
     }
