@@ -192,14 +192,12 @@ extension MainSpec {
         expect(interactView.exists).toEventually(beTrue(), timeout: 10)
         expect(targetView.exists).toEventually(beTrue(), timeout: 10)
         /* NOTE: Scroll until scroll view reaches to bottom */
-        Logger()?.log("🧪", [
-            "target".lpad() + String(describing: targetView.exists),
-        ])
 //        interactView.swipe(to: option.direction.inverted(), until: targetView.isVisible && interactView.frame.contains(targetView.frame))
 //        interactView.swipe(to: option.direction.inverted(), until: targetView.isVisible)
         let vector: InteractiveDismissVector = self.getReducedInteractiveDismissVector(app: app, orientation: orientation, model: model)
-        while (!targetView.isVisible) {
+        while (true) {
             interactView.swipe(from: vector.start, to: vector.finish)
+            if targetView.isVisible && interactView.frame.contains(targetView.frame) { break }
         }
         usleep(sec: 2.0)
     }

@@ -27,35 +27,9 @@ extension RootModel {
                 .navigationSlideBottom,
                 .navigationSlideLeft,
                 .navigationSlideRight,
-
-//                .transitionFluidModal,
-//                .transitionFluidFullScreen,
-//
-//                .transitionDrawerTop,
-//                .transitionDrawerBottom,
-//                .transitionDrawerLeft,
-//                .transitionDrawerRight,
-//
-//                .transitionSlideTop,
-//                .transitionSlideBottom,
-//                .transitionSlideLeft,
-//                .transitionSlideRight,
             ]
         case false:
             return [
-//                .navigationFluidModal,
-//                .navigationFluidFullScreen,
-//
-//                .navigationDrawerTop,
-//                .navigationDrawerBottom,
-//                .navigationDrawerLeft,
-//                .navigationDrawerRight,
-//
-//                .navigationSlideTop,
-//                .navigationSlideBottom,
-//                .navigationSlideLeft,
-//                .navigationSlideRight,
-//
                 .transitionFluidModal,
                 .transitionFluidFullScreen,
 
@@ -96,9 +70,12 @@ extension RootModel {
         return "ChildNextButton"
     }
 
-    var containerViewAccessibilityIdentifier: String {
-//        return (self.presentationType == .navigation ? "Navigation" : "Transition") + "_ContainerView"
-        return "ContainerView"
+    var navigationContainerViewAccessibilityIdentifier: String {
+        return "NavigationContainerView"
+    }
+
+    var transitionContainerViewAccessibilityIdentifier: String {
+        return "TransitionContainerView"
     }
 
     var visibleControllerViewAccessibilityIdentifier: String {
