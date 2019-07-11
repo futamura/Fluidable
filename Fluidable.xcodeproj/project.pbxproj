@@ -284,6 +284,8 @@
 		DFABEB9FBFD6C0413F882F50 /* AutoMate+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABECB466141931C4EE8391 /* AutoMate+Ext.swift */; };
 		DFABEC899372CF16E5C6CAD0 /* TransitionBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE2E4B74F287D242141CC /* TransitionBaseViewController.swift */; };
 		DFABED94484BCC69C0DF8C33 /* AnimatorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEB712A899C167DEFE0D5 /* AnimatorSpec.swift */; };
+		DFABEDDE21151BB9BCF9CEFA /* RootModel+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEA41ECEF434C73312C7F /* RootModel+Test.swift */; };
+		DFABEE52E4CDF1F3040E0D03 /* RootModel+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEA41ECEF434C73312C7F /* RootModel+Test.swift */; };
 		DFABEEBC3B205A04BDFFF716 /* MainSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE4D624937D130011B37E /* MainSpec.swift */; };
 		DFABEF7EFE8D2989614095BD /* UITestEnv.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE6E1A8F12D7040B3B70A /* UITestEnv.swift */; };
 /* End PBXBuildFile section */
@@ -532,6 +534,7 @@
 		DFABE98EC8DD362AB89692C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NavigationMultiCollectionViewController.xib; sourceTree = "<group>"; };
 		DFABEA08D9E289F5D59BD2C4 /* RootViewController+Fluidable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RootViewController+Fluidable.swift"; sourceTree = "<group>"; };
 		DFABEA20CD2E0B5FCF8348C4 /* CoreGraphicsSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreGraphicsSpec.swift; sourceTree = "<group>"; };
+		DFABEA41ECEF434C73312C7F /* RootModel+Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RootModel+Test.swift"; sourceTree = "<group>"; };
 		DFABEB16695950E841D1BF14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NavigationScrollViewController.xib; sourceTree = "<group>"; };
 		DFABEB712A899C167DEFE0D5 /* AnimatorSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatorSpec.swift; sourceTree = "<group>"; };
 		DFABEC6EF0DB83BEFF91B48C /* NavigationBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBaseViewController.swift; sourceTree = "<group>"; };
@@ -681,6 +684,7 @@
 				A7C7A94F21EC93C2000687C9 /* Config.swift */,
 				A756F8F921EEABBB00184FBF /* ExampleConst.swift */,
 				A7C7A95021EC93C2000687C9 /* RootModel.swift */,
+				DFABEA41ECEF434C73312C7F /* RootModel+Test.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1674,6 +1678,7 @@
 				DFABEAF2177C6BE9A205486C /* RootCollectionView.swift in Sources */,
 				DFABE59F491E1000C30A1C54 /* TransitionBaseViewController.swift in Sources */,
 				DFABE7993BAB20DC78B46F00 /* UITestEnv.swift in Sources */,
+				DFABEDDE21151BB9BCF9CEFA /* RootModel+Test.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1728,6 +1733,7 @@
 				DFABE7DD7916A92821B4A056 /* MainSpec+Transition.swift in Sources */,
 				DFABEB9FBFD6C0413F882F50 /* AutoMate+Ext.swift in Sources */,
 				DFABEF7EFE8D2989614095BD /* UITestEnv.swift in Sources */,
+				DFABEE52E4CDF1F3040E0D03 /* RootModel+Test.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
