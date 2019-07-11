@@ -145,7 +145,7 @@ extension TransitionMultiCollectionViewController: FluidTransitionDestinationAct
             "progress:".lpad() + String(describing: progress),
         ])
         switch state {
-        case .begin: container?.accessibilityIdentifier = "ContainerView"
+        case .begin: container?.accessibilityIdentifier = "TransitionContainerView"
         case .update: break
         case .cancel: break
         case .end: break

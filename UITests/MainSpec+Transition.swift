@@ -97,7 +97,7 @@ extension MainSpec {
 
     func finishAnimatedDismissByTappingContainer(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {
         /* NOTE: Perform dismiss */
-        let containerView: XCUIElement = app.otherElements.element(matching: .other, identifier: model.containerViewAccessibilityIdentifier)
+        let containerView: XCUIElement = app.otherElements.element(matching: .other, identifier: model.transitionContainerViewAccessibilityIdentifier)
         expect(containerView.exists).toEventually(beTrue(), timeout: 10)
         switch model {
         case .navigationFluidModal, .transitionFluidModal,
