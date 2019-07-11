@@ -101,10 +101,10 @@ platform :ios do
   lane :clean_test_all do |options|
     # Execute test one by one to avoid failing with timeout
     tests = [
-      {device: "iPhone XS"},
-      {device: "iPhone 7 Plus (11.4)"},
-      {device: "iPhone 6 (10.3.1)"},
-      {device: "iPad Air 2"},
+      {device: "iPhone XS Max (iOS 12.2)"},
+      {device: "iPhone 8 Plus (11.4)"},
+      {device: "iPhone 7 (10.3.1)"},
+      {device: "iPad Air 2 Max (iOS 12.2)"},
       {device: "iPad Air 2 (11.4)"},
       {device: "iPad Air 2 (10.3.1)"},
     ]
@@ -123,7 +123,7 @@ platform :ios do
   desc "Clean & Run Test"
   lane :clean_test do |options|
     tests = [
-      {device: "iPhone XS"},
+      {device: "iPhone XS Max (iOS 12.2)"},
     ]
     xcclean()
     for test in tests
@@ -141,10 +141,10 @@ platform :ios do
   desc "Run All Test"
   lane :test_all do |options|
     tests = [
-      {device: "iPhone XS"},
-      {device: "iPhone 7 Plus (11.4)"},
-      {device: "iPhone 6 (10.3.1)"},
-      {device: "iPad Air 2"},
+      {device: "iPhone XS Max (iOS 12.2)"},
+      {device: "iPhone 8 Plus (11.4)"},
+      {device: "iPhone 7 (10.3.1)"},
+      {device: "iPad Air 2 Max (iOS 12.2)"},
       {device: "iPad Air 2 (11.4)"},
       {device: "iPad Air 2 (10.3.1)"},
     ]
@@ -163,7 +163,7 @@ platform :ios do
   desc "Run Test"
   lane :test do |options|
     tests = [
-      {device: "iPhone XS"},
+      {device: "iPhone XS Max (iOS 12.2)"},
     ]
     xcclean()
     for test in tests

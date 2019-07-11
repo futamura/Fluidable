@@ -41,16 +41,16 @@ Clean & Run Test for all iOS versions
 fastlane ios clean_test
 ```
 Clean & Run Test
-### ios test
-```
-fastlane ios test
-```
-Run Test
 ### ios test_all
 ```
 fastlane ios test_all
 ```
 Run All Test
+### ios test
+```
+fastlane ios test
+```
+Run Test
 ### ios coverage
 ```
 fastlane ios coverage
