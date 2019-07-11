@@ -433,6 +433,10 @@ extension RootModel {
         return self.description.capitalizingFirstLetter() + "_CollectionCell"
     }
 
+    var navigationBarAccessibilityIdentifier: String {
+        return "NavigationBar"
+    }
+
     var navigationCloseButtonAccessibilityIdentifier: String {
         return self.description.capitalizingFirstLetter() + "_NavigationCloseButton"
     }

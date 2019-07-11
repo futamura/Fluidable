@@ -43,38 +43,41 @@ class MainSpec: QuickSpec {
                 RootModel.testCases(for: orientation).forEach { (model: RootModel) in
                     context(model.description.capitalizingFirstLetter()) {
 //                        it("FinishAnimatedPresent_FinishAnimatedDismiss") {
-//                            self.finishAnimatedPresent(app: app, model: model)
-//                            self.rotateAndRevertDevice(app: app, model: model)
-//                            self.finishAnimatedDismiss(app: app, model: model)
+//                            self.finishAnimatedPresent(app: app, orientation: orientation, model: model)
+//                            self.rotateAndRevertDevice(app: app, orientation: orientation, model: model)
+//                            self.finishAnimatedDismiss(app: app, orientation: orientation, model: model)
 //                        }
 //                        it("CancelAnimatedPresent") {
-//                            self.finishAnimatedPresent(app: app, model: model)
+//                            self.finishAnimatedPresent(app: app, orientation: orientation, model: model)
 //                        }
 //                        it("FinishInteractivePresent_FinishAnimatedDismiss") {
-//                            self.finishAnimatedPresent(app: app, model: model)
-//                            self.rotateAndRevertDevice(app: app, model: model)
-//                            self.finishAnimatedDismiss(app: app, model: model)
+//                            self.finishAnimatedPresent(app: app, orientation: orientation, model: model)
+//                            self.rotateAndRevertDevice(app: app, orientation: orientation, model: model)
+//                            self.finishAnimatedDismiss(app: app, orientation: orientation, model: model)
 //                        }
 //                        it("CancelInteractivePresent") {
-//                            self.finishAnimatedPresent(app: app, model: model)
+//                            self.finishAnimatedPresent(app: app, orientation: orientation, model: model)
 //                        }
                         it("FinishAnimatedPresent_FinishInteractiveDismiss") {
-                            self.finishAnimatedPresent(app: app, model: model)
-//                            self.rotateAndRevertDevice(app: app, model: model)
-                            self.scrollToDismissiblePosition(app: app, model: model)
-                            self.finishInteractiveDismiss(app: app, model: model)
+                            self.finishAnimatedPresent(app: app, orientation: orientation, model: model)
+//                            self.rotateAndRevertDevice(app: app, orientation: orientation, model: model)
+                            self.scrollToDismissiblePosition(app: app, orientation: orientation, model: model)
+                            self.finishInteractiveDismiss(app: app, orientation: orientation, model: model)
                         }
                         it("FinishAnimatedPresent_FinishAnimatedDismissWithBackground") {
-                            self.finishAnimatedPresent(app: app, model: model)
-                            print(app.debugDescription)
-                            self.finishAnimatedDismissByTappingContainer(app: app, model: model)
+                            self.finishAnimatedPresent(app: app, orientation: orientation, model: model)
+                            self.rotateAndRevertDevice(app: app, orientation: orientation, model: model)
+                            self.pushViewController(app: app, orientation: orientation, model: model)
+                            self.popViewControllerByTappingBackButton(app: app, orientation: orientation, model: model)
+//                            print(app.debugDescription)
+                            self.finishAnimatedDismissByTappingContainer(app: app, orientation: orientation, model: model)
                         }
 //                        it("FinishAnimatedPresent_CancelInteractiveDismiss") {
-//                            self.finishAnimatedPresent(app: app, model: model)
-////                            self.rotateAndRevertDevice(app: app, model: model)
-//                            self.scrollToDismissiblePosition(app: app, model: model)
-//                            self.cancelInteractiveDismiss(app: app, model: model)
-//                            self.finishAnimatedDismissByTappingCloseButton(app: app, model: model)
+//                            self.finishAnimatedPresent(app: app, orientation: orientation, model: model)
+////                            self.rotateAndRevertDevice(app: app, orientation: orientation, model: model)
+//                            self.scrollToDismissiblePosition(app: app, orientation: orientation, model: model)
+//                            self.cancelInteractiveDismiss(app: app, orientation: orientation, model: model)
+//                            self.finishAnimatedDismissByTappingCloseButton(app: app, orientation: orientation, model: model)
 //                        }
                     }
                 }

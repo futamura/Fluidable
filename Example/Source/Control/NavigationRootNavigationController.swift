@@ -47,6 +47,8 @@ class NavigationRootNavigationController: UINavigationController, Fluidable, Flu
         super.viewDidLoad()
         Logger()?.log("🚙💥", [])
         self.setNavigationBarHidden(true, animated: false)
+        /* NOTE: Set accessibility identifier */
+        self.navigationBar.accessibilityIdentifier = self.model.navigationBarAccessibilityIdentifier
     }
 
     override func viewWillAppear(_ animated: Bool) {
