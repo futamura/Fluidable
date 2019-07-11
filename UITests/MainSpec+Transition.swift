@@ -392,7 +392,7 @@ extension MainSpec {
         switch presentationStyle.dismissAxis() {
         case .positiveX: return (start: CGVector(dx: 0.4, dy: 0.5), finish: CGVector(dx: 0.6, dy: 0.5))
         case .negativeX: return (start: CGVector(dx: 0.6, dy: 0.5), finish: CGVector(dx: 0.4, dy: 0.5))
-        case .positiveY: return (start: CGVector(dx: 0.5, dy: 0.4), finish: CGVector(dx: 0.5, dy: 0.6))
+        case .positiveY: return (start: CGVector(dx: 0.5, dy: 0.45), finish: CGVector(dx: 0.5, dy: 0.55))
         case .negativeY: return (start: CGVector(dx: 0.5, dy: 0.6), finish: CGVector(dx: 0.5, dy: 0.4))
         default: return (start: .zero, finish: .zero)
         }
