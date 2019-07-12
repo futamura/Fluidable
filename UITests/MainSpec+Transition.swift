@@ -142,7 +142,6 @@ extension MainSpec {
 
         case "NavigationScrollViewController":
             let button: XCUIElement = app.buttons.element(matching: .button, identifier: model.rootNextButtonAccessibilityIdentifier)
-//            let button: XCUIElement = app.buttons.element(matching: .button, identifier: model.childNextButtonAccessibilityIdentifier)
             expect(button.isVisible).toEventually(beTrue(), timeout: 10)
             button.tap()
             usleep(sec: 2.0)
@@ -187,17 +186,21 @@ extension MainSpec {
     func scrollToDismissiblePosition(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {
         let option: InteractiveDismissOption = self.getInteractiveDismissOption(app: app, orientation: orientation, model: model)
         /* NOTE: Check whether the views exist */
-        guard let interactView: XCUIElement = option.interact,
-              let targetView: XCUIElement = option.target else { return }
+        guard let interactView: XCUIElement = option.interact, let targetView: XCUIElement = option.target else { return }
         expect(interactView.exists).toEventually(beTrue(), timeout: 10)
         expect(targetView.exists).toEventually(beTrue(), timeout: 10)
         /* NOTE: Scroll until scroll view reaches to bottom */
-//        interactView.swipe(to: option.direction.inverted(), until: targetView.isVisible && interactView.frame.contains(targetView.frame))
-//        interactView.swipe(to: option.direction.inverted(), until: targetView.isVisible)
-        let vector: InteractiveDismissVector = self.getReducedInteractiveDismissVector(app: app, orientation: orientation, model: model)
+        let vectors: InteractiveDismissVector = self.getReducedInteractiveDismissVector(app: app, orientation: orientation, model: model)
         while (true) {
-            interactView.swipe(from: vector.start, to: vector.finish)
-            if targetView.isVisible && interactView.frame.contains(targetView.frame) { break }
+            Logger()?.log("🧪", [
+                "targetView.isVisible".lpad(64) + String(describing: targetView.isVisible),
+                "isAtDismissiblePosition".lpad(64) + String(describing: self.isAtDismissiblePosition(app: app, orientation: orientation, model: model)),
+            ])
+            if targetView.isVisible && self.isAtDismissiblePosition(app: app, orientation: orientation, model: model) { break }
+            let start: XCUICoordinate = interactView.coordinate(withNormalizedOffset: vectors.start)
+            let finish: XCUICoordinate = interactView.coordinate(withNormalizedOffset: vectors.finish)
+            start.press(forDuration: 0.2, thenDragTo: finish)
+//            interactView.swipe(from: vectors.start, to: vectors.finish)
         }
         usleep(sec: 2.0)
     }
@@ -388,13 +391,46 @@ extension MainSpec {
     }
 
     func getReducedInteractiveDismissVector(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) -> InteractiveDismissVector {
+        let min: CGFloat = 0.45
+        let max: CGFloat = 0.55
         let presentationStyle: FluidPresentationStyle = FluidPresentationStyle(fromTransition: model.transitionStyle)
         switch presentationStyle.dismissAxis() {
-        case .positiveX: return (start: CGVector(dx: 0.4, dy: 0.5), finish: CGVector(dx: 0.6, dy: 0.5))
-        case .negativeX: return (start: CGVector(dx: 0.6, dy: 0.5), finish: CGVector(dx: 0.4, dy: 0.5))
-        case .positiveY: return (start: CGVector(dx: 0.5, dy: 0.45), finish: CGVector(dx: 0.5, dy: 0.55))
-        case .negativeY: return (start: CGVector(dx: 0.5, dy: 0.6), finish: CGVector(dx: 0.5, dy: 0.4))
+        case .positiveX: return (start: CGVector(dx: min, dy: 0.5), finish: CGVector(dx: max, dy: 0.5))
+        case .negativeX: return (start: CGVector(dx: max, dy: 0.5), finish: CGVector(dx: min, dy: 0.5))
+        case .positiveY: return (start: CGVector(dx: 0.5, dy: min), finish: CGVector(dx: 0.5, dy: max))
+        case .negativeY: return (start: CGVector(dx: 0.5, dy: max), finish: CGVector(dx: 0.5, dy: min))
         default: return (start: .zero, finish: .zero)
+        }
+    }
+
+    func isAtDismissiblePosition(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) -> Bool {
+        let option: InteractiveDismissOption = self.getInteractiveDismissOption(app: app, orientation: orientation, model: model)
+        guard let interactView: XCUIElement = option.interact, let targetView: XCUIElement = option.target else { return false }
+        let visibleView: XCUIElement = app.otherElements.element(matching: .other, identifier: model.visibleControllerViewAccessibilityIdentifier)
+        guard visibleView.exists && interactView.exists && targetView.exists else { return false }
+        let presentationStyle: FluidPresentationStyle = FluidPresentationStyle(fromTransition: model.transitionStyle)
+//        Logger()?.log("🧪", [
+//            "presentationStyle.dismissAxis()".lpad(64) + String(describing: presentationStyle.dismissAxis()),
+////            "visibleView.frame".lpad(64) + String(describing: visibleView.frame),
+//            "visibleView.frame.minX".lpad(64) + String(describing: visibleView.frame.minX),
+//            "visibleView.frame.maxX".lpad(64) + String(describing: visibleView.frame.maxX),
+//            "visibleView.frame.minY".lpad(64) + String(describing: visibleView.frame.minY),
+//            "visibleView.frame.maxY".lpad(64) + String(describing: visibleView.frame.maxY),
+//            "targetView.frame.minX".lpad(64) + String(describing: targetView.frame.minX),
+//            "targetView.frame.maxX".lpad(64) + String(describing: targetView.frame.maxX),
+//            "targetView.frame.minY".lpad(64) + String(describing: targetView.frame.minY),
+//            "targetView.frame.maxY".lpad(64) + String(describing: targetView.frame.maxY),
+//            ".positiveX".lpad(64) + String(describing: visibleView.frame.minX >= targetView.frame.minX),
+//            ".negativeX".lpad(64) + String(describing: visibleView.frame.maxX >= targetView.frame.maxX),
+//            ".positiveY".lpad(64) + String(describing: visibleView.frame.minY >= targetView.frame.minY),
+//            ".negativeY".lpad(64) + String(describing: visibleView.frame.maxY >= targetView.frame.maxY),
+//        ])
+        switch presentationStyle.dismissAxis() {
+        case .positiveX: return visibleView.frame.minX <= targetView.frame.minX
+        case .negativeX: return visibleView.frame.maxX >= targetView.frame.maxX
+        case .positiveY: return visibleView.frame.minY <= targetView.frame.minY
+        case .negativeY: return visibleView.frame.maxY >= targetView.frame.maxY
+        default: return false
         }
     }
 }
