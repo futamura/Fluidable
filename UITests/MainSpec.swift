@@ -42,11 +42,11 @@ class MainSpec: QuickSpec {
             describe(XCUIDevice.shared.testDescription(for: orientation)) {
                 RootModel.testCases(for: orientation).forEach { (model: RootModel) in
                     context(model.description.capitalizingFirstLetter()) {
-//                        it("FinishAnimatedPresent_FinishAnimatedDismiss") {
-//                            self.finishAnimatedPresent(app: app, orientation: orientation, model: model)
-//                            self.rotateAndRevertDevice(app: app, orientation: orientation, model: model)
-//                            self.finishAnimatedDismiss(app: app, orientation: orientation, model: model)
-//                        }
+                        it("FinishAnimatedPresent_FinishAnimatedDismiss") {
+                            self.finishAnimatedPresent(app: app, orientation: orientation, model: model)
+                            self.rotateAndRevertDevice(app: app, orientation: orientation, model: model)
+                            self.finishAnimatedDismissByTappingCloseButton(app: app, orientation: orientation, model: model)
+                        }
 //                        it("CancelAnimatedPresent") {
 //                            self.finishAnimatedPresent(app: app, orientation: orientation, model: model)
 //                        }
@@ -66,7 +66,6 @@ class MainSpec: QuickSpec {
                         }
                         it("FinishAnimatedPresent_FinishAnimatedDismissWithBackground") {
                             self.finishAnimatedPresent(app: app, orientation: orientation, model: model)
-                            self.rotateAndRevertDevice(app: app, orientation: orientation, model: model)
                             self.pushViewController(app: app, orientation: orientation, model: model)
                             self.popViewControllerByTappingBackButton(app: app, orientation: orientation, model: model)
 //                            print(app.debugDescription)
