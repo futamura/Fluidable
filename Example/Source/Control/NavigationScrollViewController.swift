@@ -56,6 +56,27 @@ class NavigationScrollViewController: NavigationBaseViewController, Fluidable {
     override func viewDidLoad() {
         super.viewDidLoad()
         Logger()?.log("🚗💥", [])
+        switch self.model! {
+        case .navigationFluidModal, .transitionFluidModal:
+            self.scrollView.topAnchor.constraint(equalTo: self.view.topAnchor).activate()
+            self.scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).activate()
+            self.scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).activate()
+            self.scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).activate()
+//            self.scrollView.heightAnchor.constraint(equalTo: self.view.heightAnchor).activate()
+        default:
+            if #available(iOS 11.0, *) {
+                self.scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).activate()
+                self.scrollView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).activate()
+                self.scrollView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).activate()
+                self.scrollView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).activate()
+            } else {
+                self.scrollView.topAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor).activate()
+                self.scrollView.bottomAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor).activate()
+                self.scrollView.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor).activate()
+                self.scrollView.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor).activate()
+            }
+        }
+        self.scrollView.contentInset.bottom = 40
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -80,29 +101,8 @@ class NavigationScrollViewController: NavigationBaseViewController, Fluidable {
     }
 
     override func updateViewConstraints() {
-        Logger()?.log("🚗💥", [])
-        switch self.model! {
-        case .navigationFluidModal, .transitionFluidModal:
-            self.scrollView.topAnchor.constraint(equalTo: self.view.topAnchor).activate()
-            self.scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).activate()
-            self.scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).activate()
-            self.scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).activate()
-//            self.scrollView.heightAnchor.constraint(equalTo: self.view.heightAnchor).activate()
-        default:
-            if #available(iOS 11.0, *) {
-                self.scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).activate()
-                self.scrollView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).activate()
-                self.scrollView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).activate()
-                self.scrollView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).activate()
-            } else {
-                self.scrollView.topAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor).activate()
-                self.scrollView.bottomAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor).activate()
-                self.scrollView.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor).activate()
-                self.scrollView.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor).activate()
-            }
-        }
-        self.scrollView.contentInset.bottom = 40
         super.updateViewConstraints()
+        Logger()?.log("🚗💥", [])
     }
 
     override func viewWillLayoutSubviews() {
