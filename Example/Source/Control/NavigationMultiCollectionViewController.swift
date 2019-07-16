@@ -55,6 +55,7 @@ class NavigationMultiCollectionViewController: NavigationBaseViewController, Flu
     override func viewDidLoad() {
         super.viewDidLoad()
         Logger()?.log("🚗💥", [])
+        self.configureConstraints(for: self.scrollView)
     }
 
     override func viewWillAppear(_ animated: Bool) {

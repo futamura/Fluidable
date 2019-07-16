@@ -39,6 +39,7 @@ class TransitionCollectionViewController: TransitionBaseViewController, Fluidabl
     override func viewDidLoad() {
         super.viewDidLoad()
         Logger()?.log("🚗💥", [])
+        self.configureConstraints(for: self.collectionView)
     }
 
     override func viewWillAppear(_ animated: Bool) {

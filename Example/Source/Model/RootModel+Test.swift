@@ -21,7 +21,7 @@ extension RootModel {
                 .navigationDrawerTop,
                 .navigationDrawerBottom,
                 .navigationDrawerLeft,
-                .navigationDrawerRight,
+                .navigationDrawerRight, /* TODO: Wait long */
 
                 .navigationSlideTop,
                 .navigationSlideBottom,
@@ -33,7 +33,7 @@ extension RootModel {
                 .transitionFluidModal,
                 .transitionFluidFullScreen,
 
-                .transitionDrawerTop,
+                .transitionDrawerTop, /* TODO: Wait long */
                 .transitionDrawerBottom,
                 .transitionDrawerLeft,
                 .transitionDrawerRight,

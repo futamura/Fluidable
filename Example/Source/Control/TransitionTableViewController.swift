@@ -22,8 +22,6 @@ class TransitionTableViewController: TransitionBaseViewController, Fluidable {
     @IBOutlet weak var tableView: TableView!
     @IBOutlet weak var footerOverlayView: UIView!
 
-    @IBOutlet weak var tableTopConstraint: NSLayoutConstraint!
-
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         Logger()?.log("🚗🛠", [])
@@ -46,6 +44,7 @@ class TransitionTableViewController: TransitionBaseViewController, Fluidable {
     override func viewDidLoad() {
         super.viewDidLoad()
         Logger()?.log("🚗💥", [])
+        self.configureConstraints(for: self.tableView)
     }
 
     override func viewWillAppear(_ animated: Bool) {

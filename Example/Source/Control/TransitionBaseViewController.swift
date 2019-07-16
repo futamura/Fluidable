@@ -47,6 +47,31 @@ class TransitionBaseViewController: UIViewController, RootModelReceivable {
 }
 
 extension TransitionBaseViewController {
+    func configureConstraints(for subview: UIView) {
+        switch self.model! {
+        case .navigationFluidModal, .transitionFluidModal:
+            subview.topAnchor.constraint(equalTo: self.view.topAnchor).activate()
+            subview.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).activate()
+            subview.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).activate()
+            subview.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).activate()
+//            subview.heightAnchor.constraint(equalTo: self.view.heightAnchor).activate()
+        default:
+            if #available(iOS 11.0, *) {
+                subview.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).activate()
+                subview.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).activate()
+                subview.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).activate()
+                subview.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).activate()
+            } else {
+                subview.topAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor).activate()
+                subview.bottomAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor).activate()
+                subview.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor).activate()
+                subview.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor).activate()
+            }
+        }
+    }
+}
+
+extension TransitionBaseViewController {
     @IBAction func closeButtonDidTap(_ sender: Any) {
         Logger()?.log("🚗👆", [])
         self.dismiss(animated: true)

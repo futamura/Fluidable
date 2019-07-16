@@ -42,22 +42,21 @@
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="Deg-dL-2XB" firstAttribute="trailing" secondItem="i42-dj-sdC" secondAttribute="trailing" constant="-16" id="8no-ya-pgX"/>
-                    <constraint firstItem="Deg-dL-2XB" firstAttribute="top" secondItem="i42-dj-sdC" secondAttribute="top" constant="16" id="IYX-ZT-v8T"/>
+                    <constraint firstItem="q8n-Vx-Zq4" firstAttribute="top" secondItem="i42-dj-sdC" secondAttribute="top" placeholder="YES" id="FTo-dJ-W8o"/>
                     <constraint firstItem="aXq-ry-EQi" firstAttribute="trailing" secondItem="i42-dj-sdC" secondAttribute="trailing" id="Kk8-bT-oBs"/>
                     <constraint firstItem="aXq-ry-EQi" firstAttribute="bottom" secondItem="i42-dj-sdC" secondAttribute="bottom" id="MSJ-0v-hKe"/>
                     <constraint firstItem="aXq-ry-EQi" firstAttribute="leading" secondItem="i42-dj-sdC" secondAttribute="leading" id="NqK-f1-40j"/>
-                    <constraint firstItem="i42-dj-sdC" firstAttribute="top" secondItem="q8n-Vx-Zq4" secondAttribute="top" id="Prt-1Z-Sdc"/>
-                    <constraint firstItem="i42-dj-sdC" firstAttribute="leading" secondItem="q8n-Vx-Zq4" secondAttribute="leading" id="Z0G-0X-g4X"/>
-                    <constraint firstItem="i42-dj-sdC" firstAttribute="trailing" secondItem="q8n-Vx-Zq4" secondAttribute="trailing" id="maA-zF-wsW"/>
-                    <constraint firstItem="i42-dj-sdC" firstAttribute="bottom" secondItem="q8n-Vx-Zq4" secondAttribute="bottom" id="skD-4F-8c8"/>
+                    <constraint firstItem="Deg-dL-2XB" firstAttribute="trailing" secondItem="q8n-Vx-Zq4" secondAttribute="trailing" constant="-16" id="Yr9-oZ-Aoc"/>
+                    <constraint firstItem="q8n-Vx-Zq4" firstAttribute="leading" secondItem="i42-dj-sdC" secondAttribute="leading" placeholder="YES" id="Z0G-0X-g4X"/>
+                    <constraint firstItem="Deg-dL-2XB" firstAttribute="top" secondItem="q8n-Vx-Zq4" secondAttribute="top" constant="16" id="m2u-rh-T24"/>
+                    <constraint firstItem="q8n-Vx-Zq4" firstAttribute="trailing" secondItem="i42-dj-sdC" secondAttribute="trailing" placeholder="YES" id="maA-zF-wsW"/>
+                    <constraint firstItem="q8n-Vx-Zq4" firstAttribute="bottom" secondItem="i42-dj-sdC" secondAttribute="bottom" placeholder="YES" id="skD-4F-8c8"/>
                 </constraints>
                 <viewLayoutGuide key="safeArea" id="i42-dj-sdC"/>
             </view>
             <connections>
                 <outlet property="closeButton" destination="Deg-dL-2XB" id="dIJ-Bt-IZl"/>
                 <outlet property="footerOverlayView" destination="aXq-ry-EQi" id="4Jb-Wd-RxE"/>
-                <outlet property="tableTopConstraint" destination="Prt-1Z-Sdc" id="tfO-Ga-7mg"/>
                 <outlet property="tableView" destination="q8n-Vx-Zq4" id="vqW-2r-uRz"/>
             </connections>
             <point key="canvasLocation" x="-92.753623188405811" y="492.85714285714283"/>

@@ -51,32 +51,13 @@ class NavigationScrollViewController: NavigationBaseViewController, Fluidable {
         self.headerView.rightAnchor.constraint(equalTo: self.imageContainerView.rightAnchor).activate()
         self.headerView.heightAnchor.constraint(equalToConstant: self.headerView.estimatedHeight).activate()
         self.imageView.image = UIImage(row: self.modelIndex, size: .medium)
+        self.scrollView.contentInset.bottom = 40
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         Logger()?.log("🚗💥", [])
-        switch self.model! {
-        case .navigationFluidModal, .transitionFluidModal:
-            self.scrollView.topAnchor.constraint(equalTo: self.view.topAnchor).activate()
-            self.scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).activate()
-            self.scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).activate()
-            self.scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).activate()
-//            self.scrollView.heightAnchor.constraint(equalTo: self.view.heightAnchor).activate()
-        default:
-            if #available(iOS 11.0, *) {
-                self.scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).activate()
-                self.scrollView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).activate()
-                self.scrollView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).activate()
-                self.scrollView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).activate()
-            } else {
-                self.scrollView.topAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor).activate()
-                self.scrollView.bottomAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor).activate()
-                self.scrollView.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor).activate()
-                self.scrollView.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor).activate()
-            }
-        }
-        self.scrollView.contentInset.bottom = 40
+        self.configureConstraints(for: self.scrollView)
     }
 
     override func viewWillAppear(_ animated: Bool) {
