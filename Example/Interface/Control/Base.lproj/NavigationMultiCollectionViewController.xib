@@ -247,17 +247,17 @@
                         </constraints>
                         <state key="normal" image="Close"/>
                         <connections>
-                            <action selector="closeButtonDidTap:" destination="JhL-gM-Ibg" eventType="touchUpInside" id="08t-7f-TbI"/>
+                            <action selector="closeButtonDidTap:" destination="JhL-gM-Ibg" eventType="touchUpInside" id="VRK-MK-ABo"/>
                         </connections>
                     </button>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="iGn-RQ-xxR" firstAttribute="trailing" secondItem="pFF-lC-DyD" secondAttribute="trailing" constant="-16" id="9v6-0s-fE8"/>
+                    <constraint firstItem="iGn-RQ-xxR" firstAttribute="trailing" secondItem="pFF-lC-DyD" secondAttribute="trailing" constant="-16" placeholder="YES" id="9v6-0s-fE8"/>
                     <constraint firstItem="iTr-vo-tyH" firstAttribute="leading" secondItem="pFF-lC-DyD" secondAttribute="leading" placeholder="YES" id="Bvk-LM-QsP"/>
                     <constraint firstItem="iTr-vo-tyH" firstAttribute="bottom" secondItem="pFF-lC-DyD" secondAttribute="bottom" placeholder="YES" id="dQF-9k-ENX"/>
                     <constraint firstItem="iTr-vo-tyH" firstAttribute="trailing" secondItem="pFF-lC-DyD" secondAttribute="trailing" placeholder="YES" id="gGe-iK-8aq"/>
-                    <constraint firstItem="iGn-RQ-xxR" firstAttribute="top" secondItem="pFF-lC-DyD" secondAttribute="top" constant="16" id="tZZ-S6-xUA"/>
+                    <constraint firstItem="iGn-RQ-xxR" firstAttribute="top" secondItem="pFF-lC-DyD" secondAttribute="top" constant="16" placeholder="YES" id="tZZ-S6-xUA"/>
                     <constraint firstItem="iTr-vo-tyH" firstAttribute="top" secondItem="pFF-lC-DyD" secondAttribute="top" placeholder="YES" id="usM-u5-YDt"/>
                 </constraints>
                 <viewLayoutGuide key="safeArea" id="pFF-lC-DyD"/>
@@ -266,7 +266,7 @@
                 <barButtonItem key="rightBarButtonItem" title="Close" id="Y8o-3M-dsL"/>
             </navigationItem>
             <connections>
-                <outlet property="closeButton" destination="iGn-RQ-xxR" id="ieM-XL-4Nl"/>
+                <outlet property="closeButton" destination="iGn-RQ-xxR" id="8j6-Tg-v6a"/>
                 <outlet property="fifthCollectionView" destination="qur-z4-IiU" id="Jvk-Ov-uTw"/>
                 <outlet property="firstCollectionView" destination="q4v-Iz-rM0" id="RbO-yk-Z5g"/>
                 <outlet property="forthCollectionView" destination="msq-td-okn" id="VJQ-ir-fAw"/>

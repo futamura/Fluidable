@@ -21,7 +21,6 @@ class NavigationMultiCollectionViewController: NavigationBaseViewController, Flu
     @IBOutlet weak var thirdCollectionView: HorizontalCollectionView!
     @IBOutlet weak var forthCollectionView: HorizontalCollectionView!
     @IBOutlet weak var fifthCollectionView: HorizontalCollectionView!
-    @IBOutlet weak var closeButton: CloseButton!
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

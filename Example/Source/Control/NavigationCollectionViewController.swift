@@ -13,7 +13,6 @@ import Fluidable
 /* IMPORTANT: 🌊 Conform to `Fluidable` protocol */
 class NavigationCollectionViewController: NavigationBaseViewController, Fluidable {
     @IBOutlet weak var collectionView: AlignedCollectionView!
-    @IBOutlet weak var closeButton: CloseButton!
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

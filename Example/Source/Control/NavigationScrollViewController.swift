@@ -19,7 +19,6 @@ class NavigationScrollViewController: NavigationBaseViewController, Fluidable {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var textContainerView: UIView!
     @IBOutlet weak var textLabel: UILabel!
-    @IBOutlet weak var closeButton: CloseButton!
     @IBOutlet weak var nextButton: RoundButton!
     var headerView: HeaderView!
 

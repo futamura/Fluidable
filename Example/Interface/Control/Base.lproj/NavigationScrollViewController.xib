@@ -139,16 +139,16 @@ Vivamus sed velit et arcu egestas suscipit at vel justo. Vestibulum vehicula nis
                         </constraints>
                         <state key="normal" image="Close"/>
                         <connections>
-                            <action selector="closeButtonDidTap:" destination="Kbl-6u-Pch" eventType="touchUpInside" id="Afa-NW-hD3"/>
+                            <action selector="closeButtonDidTap:" destination="Kbl-6u-Pch" eventType="touchUpInside" id="82q-PN-D3q"/>
                         </connections>
                     </button>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="vKb-qA-Bwu" firstAttribute="trailing" secondItem="ReU-W5-KTW" secondAttribute="trailing" placeholder="YES" id="6DD-Xo-pxu"/>
-                    <constraint firstItem="Jmt-hX-efZ" firstAttribute="trailing" secondItem="ReU-W5-KTW" secondAttribute="trailing" constant="-16" id="PXe-tc-g6E"/>
+                    <constraint firstItem="Jmt-hX-efZ" firstAttribute="trailing" secondItem="ReU-W5-KTW" secondAttribute="trailing" constant="-16" placeholder="YES" id="PXe-tc-g6E"/>
                     <constraint firstItem="vKb-qA-Bwu" firstAttribute="top" secondItem="ReU-W5-KTW" secondAttribute="top" placeholder="YES" id="SSf-HY-kay"/>
-                    <constraint firstItem="Jmt-hX-efZ" firstAttribute="top" secondItem="ReU-W5-KTW" secondAttribute="top" constant="16" id="Tvr-cS-peY"/>
+                    <constraint firstItem="Jmt-hX-efZ" firstAttribute="top" secondItem="ReU-W5-KTW" secondAttribute="top" constant="16" placeholder="YES" id="Tvr-cS-peY"/>
                     <constraint firstItem="vKb-qA-Bwu" firstAttribute="leading" secondItem="ReU-W5-KTW" secondAttribute="leading" placeholder="YES" id="ZD3-Rw-uGx"/>
                     <constraint firstItem="vKb-qA-Bwu" firstAttribute="bottom" secondItem="ReU-W5-KTW" secondAttribute="bottom" placeholder="YES" id="mqq-SQ-Wnl"/>
                 </constraints>
@@ -158,7 +158,7 @@ Vivamus sed velit et arcu egestas suscipit at vel justo. Vestibulum vehicula nis
                 <barButtonItem key="rightBarButtonItem" title="Close" id="f7w-AE-R5o"/>
             </navigationItem>
             <connections>
-                <outlet property="closeButton" destination="Jmt-hX-efZ" id="luo-Ly-u9f"/>
+                <outlet property="closeButton" destination="Jmt-hX-efZ" id="1gr-bR-9Fb"/>
                 <outlet property="imageContainerHeightConstraint" destination="dYO-dk-D1k" id="kbd-H3-Yya"/>
                 <outlet property="imageContainerView" destination="LEq-Yu-mKV" id="5ZK-A5-TeM"/>
                 <outlet property="imageView" destination="YXI-i2-p82" id="c6Y-2C-aEF"/>

@@ -14,6 +14,8 @@ class NavigationBaseViewController: UIViewController, RootModelReceivable {
     /** The value received from RootViewController */
     var modelIndex: Int = 0
 
+    @IBOutlet weak var closeButton: CloseButton!
+
     func configure(modelIndex: Int) {
         self.modelIndex = modelIndex
         Logger()?.log("🚗💥", [
@@ -46,7 +48,39 @@ class NavigationBaseViewController: UIViewController, RootModelReceivable {
         self.navigationItem.rightBarButtonItem?.accessibilityIdentifier = nil
         self.view.accessibilityIdentifier = nil
     }
+}
 
+extension NavigationBaseViewController {
+    func configureConstraints(for subview: UIView) {
+        switch self.model! {
+        case .navigationFluidModal, .transitionFluidModal:
+            subview.topAnchor.constraint(equalTo: self.view.topAnchor).activate()
+            subview.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).activate()
+            subview.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).activate()
+            subview.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).activate()
+            self.closeButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 16).activate()
+            self.closeButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16).activate()
+        default:
+            if #available(iOS 11.0, *) {
+                subview.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).activate()
+                subview.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).activate()
+                subview.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).activate()
+                subview.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).activate()
+                self.closeButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 16).activate()
+                self.closeButton.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16).activate()
+            } else {
+                subview.topAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor).activate()
+                subview.bottomAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor).activate()
+                subview.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor).activate()
+                subview.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor).activate()
+                self.closeButton.topAnchor.constraint(equalTo: self.view.layoutMarginsGuide.topAnchor, constant: 16).activate()
+                self.closeButton.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor, constant: -16).activate()
+            }
+        }
+    }
+}
+
+extension NavigationBaseViewController {
     @IBAction func closeButtonDidTap(_ sender: Any) {
         Logger()?.log("🚗👆", [])
         self.navigationController?.dismiss(animated: true)
@@ -66,30 +100,5 @@ class NavigationBaseViewController: UIViewController, RootModelReceivable {
         let vc: NavigationChildViewController = UINib.instantiate(nibName: NavigationChildViewController.className)
         vc.configure(modelIndex: self.modelIndex, imageIndex: imageIndex)
         self.navigationController?.pushViewController(vc, animated: true)
-    }
-}
-
-extension NavigationBaseViewController {
-    func configureConstraints(for subview: UIView) {
-        switch self.model! {
-        case .navigationFluidModal, .transitionFluidModal:
-            subview.topAnchor.constraint(equalTo: self.view.topAnchor).activate()
-            subview.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).activate()
-            subview.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).activate()
-            subview.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).activate()
-//            subview.heightAnchor.constraint(equalTo: self.view.heightAnchor).activate()
-        default:
-            if #available(iOS 11.0, *) {
-                subview.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).activate()
-                subview.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).activate()
-                subview.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).activate()
-                subview.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).activate()
-            } else {
-                subview.topAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor).activate()
-                subview.bottomAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor).activate()
-                subview.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor).activate()
-                subview.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor).activate()
-            }
-        }
     }
 }

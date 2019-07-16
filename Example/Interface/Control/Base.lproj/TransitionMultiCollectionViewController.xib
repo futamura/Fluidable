@@ -249,9 +249,9 @@
                     <constraint firstItem="iTr-vo-tyH" firstAttribute="leading" secondItem="pFF-lC-DyD" secondAttribute="leading" placeholder="YES" id="Bvk-LM-QsP"/>
                     <constraint firstItem="iTr-vo-tyH" firstAttribute="bottom" secondItem="pFF-lC-DyD" secondAttribute="bottom" placeholder="YES" id="dQF-9k-ENX"/>
                     <constraint firstItem="iTr-vo-tyH" firstAttribute="trailing" secondItem="pFF-lC-DyD" secondAttribute="trailing" placeholder="YES" id="gGe-iK-8aq"/>
-                    <constraint firstItem="pFF-lC-DyD" firstAttribute="trailing" secondItem="PNc-h1-YLi" secondAttribute="trailing" constant="16" id="ifN-Rf-lMp"/>
+                    <constraint firstItem="PNc-h1-YLi" firstAttribute="trailing" secondItem="pFF-lC-DyD" secondAttribute="trailing" constant="-16" placeholder="YES" id="ifN-Rf-lMp"/>
                     <constraint firstItem="iTr-vo-tyH" firstAttribute="top" secondItem="pFF-lC-DyD" secondAttribute="top" placeholder="YES" id="usM-u5-YDt"/>
-                    <constraint firstItem="PNc-h1-YLi" firstAttribute="top" secondItem="pFF-lC-DyD" secondAttribute="top" constant="16" id="wpr-PE-6qs"/>
+                    <constraint firstItem="PNc-h1-YLi" firstAttribute="top" secondItem="pFF-lC-DyD" secondAttribute="top" constant="16" placeholder="YES" id="wpr-PE-6qs"/>
                 </constraints>
                 <viewLayoutGuide key="safeArea" id="pFF-lC-DyD"/>
             </view>

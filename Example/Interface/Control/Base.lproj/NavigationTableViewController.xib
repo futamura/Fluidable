@@ -29,7 +29,7 @@
                         </constraints>
                         <state key="normal" image="Close"/>
                         <connections>
-                            <action selector="closeButtonDidTap:" destination="1qB-mX-sRV" eventType="touchUpInside" id="NnY-UZ-Qnw"/>
+                            <action selector="closeButtonDidTap:" destination="1qB-mX-sRV" eventType="touchUpInside" id="yhU-RS-KYz"/>
                         </connections>
                     </button>
                     <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aXq-ry-EQi">
@@ -46,16 +46,16 @@
                     <constraint firstItem="aXq-ry-EQi" firstAttribute="trailing" secondItem="i42-dj-sdC" secondAttribute="trailing" id="Kk8-bT-oBs"/>
                     <constraint firstItem="aXq-ry-EQi" firstAttribute="bottom" secondItem="i42-dj-sdC" secondAttribute="bottom" id="MSJ-0v-hKe"/>
                     <constraint firstItem="aXq-ry-EQi" firstAttribute="leading" secondItem="i42-dj-sdC" secondAttribute="leading" id="NqK-f1-40j"/>
-                    <constraint firstItem="Deg-dL-2XB" firstAttribute="trailing" secondItem="q8n-Vx-Zq4" secondAttribute="trailing" constant="-16" id="Yr9-oZ-Aoc"/>
+                    <constraint firstItem="Deg-dL-2XB" firstAttribute="trailing" secondItem="i42-dj-sdC" secondAttribute="trailing" constant="-16" placeholder="YES" id="Yr9-oZ-Aoc"/>
                     <constraint firstItem="q8n-Vx-Zq4" firstAttribute="leading" secondItem="i42-dj-sdC" secondAttribute="leading" placeholder="YES" id="Z0G-0X-g4X"/>
-                    <constraint firstItem="Deg-dL-2XB" firstAttribute="top" secondItem="q8n-Vx-Zq4" secondAttribute="top" constant="16" id="m2u-rh-T24"/>
+                    <constraint firstItem="Deg-dL-2XB" firstAttribute="top" secondItem="i42-dj-sdC" secondAttribute="top" constant="16" placeholder="YES" id="m2u-rh-T24"/>
                     <constraint firstItem="q8n-Vx-Zq4" firstAttribute="trailing" secondItem="i42-dj-sdC" secondAttribute="trailing" placeholder="YES" id="maA-zF-wsW"/>
                     <constraint firstItem="q8n-Vx-Zq4" firstAttribute="bottom" secondItem="i42-dj-sdC" secondAttribute="bottom" placeholder="YES" id="skD-4F-8c8"/>
                 </constraints>
                 <viewLayoutGuide key="safeArea" id="i42-dj-sdC"/>
             </view>
             <connections>
-                <outlet property="closeButton" destination="Deg-dL-2XB" id="dIJ-Bt-IZl"/>
+                <outlet property="closeButton" destination="Deg-dL-2XB" id="jjh-yf-hRk"/>
                 <outlet property="footerOverlayView" destination="aXq-ry-EQi" id="4Jb-Wd-RxE"/>
                 <outlet property="tableView" destination="q8n-Vx-Zq4" id="vqW-2r-uRz"/>
             </connections>

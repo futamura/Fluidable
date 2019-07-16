@@ -16,7 +16,6 @@ class NavigationTableViewController: NavigationBaseViewController, Fluidable {
     @objc dynamic var transitionProgress: CGFloat = 0
 
     @IBOutlet weak var tableView: TableView!
-    @IBOutlet weak var closeButton: CloseButton!
     @IBOutlet weak var footerOverlayView: UIView!
 
     required init?(coder aDecoder: NSCoder) {
