@@ -54,12 +54,12 @@ class TransitionScrollViewController: TransitionBaseViewController, Fluidable {
         self.headerView.heightAnchor.constraint(equalToConstant: self.headerView.estimatedHeight).activate()
         self.imageView.image = UIImage(row: self.modelIndex, size: .medium)
         self.scrollView.contentInset.bottom = 40
+//        self.configureConstraints(for: self.scrollView)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         Logger()?.log("🚗💥", [])
-        self.configureConstraints(for: self.scrollView)
     }
 
     override func viewWillAppear(_ animated: Bool) {

@@ -24,18 +24,17 @@ class NavigationCollectionViewController: NavigationBaseViewController, Fluidabl
     override func configure(modelIndex: Int) {
         super.configure(modelIndex: modelIndex)
         /* NOTE: Set accessibility */
-        self.closeButton.accessibilityIdentifier = self.model.overlayCloseButtonAccessibilityIdentifier
         self.collectionView.accessibilityIdentifier = self.model.parentCollectionViewAccessibilityIdentifier
         /* NOTE: Configure collection view */
         self.collectionView.configure(model: self.model, headerPosition: .top, handler: { [weak self] (indexPath: IndexPath) in
             self?.nextDidTap(indexPath)
         })
+//        self.configureConstraints(for: self.collectionView)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         Logger()?.log("🚗💥", [])
-        self.configureConstraints(for: self.collectionView)
     }
 
     override func viewWillAppear(_ animated: Bool) {

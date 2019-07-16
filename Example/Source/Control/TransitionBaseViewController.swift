@@ -48,6 +48,10 @@ class TransitionBaseViewController: UIViewController, RootModelReceivable {
 
 extension TransitionBaseViewController {
     func configureConstraints(for subview: UIView) {
+        Logger()?.log("🚗🛠", [
+            "model: " + String(describing: self.model),
+            "model.transitionStyle: " + String(describing: self.model.transitionStyle),
+        ])
         switch self.model! {
         case .navigationFluidModal, .transitionFluidModal:
             subview.topAnchor.constraint(equalTo: self.view.topAnchor).activate()
@@ -69,10 +73,12 @@ extension TransitionBaseViewController {
                 subview.bottomAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor).activate()
                 subview.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor).activate()
                 subview.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor).activate()
-                self.closeButton.topAnchor.constraint(equalTo: self.view.layoutMarginsGuide.topAnchor, constant: 16).activate()
+                self.closeButton.topAnchor.constraint(equalTo: self.view.layoutMarginsGuide.topAnchor, constant: UIApplication.shared.statusBarFrame.height + 16).activate()
                 self.closeButton.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor, constant: -16).activate()
             }
         }
+        self.view.setNeedsLayout()
+        self.view.layoutIfNeeded()
     }
 }
 

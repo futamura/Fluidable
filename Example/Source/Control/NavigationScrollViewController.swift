@@ -39,7 +39,6 @@ class NavigationScrollViewController: NavigationBaseViewController, Fluidable {
     override func configure(modelIndex: Int) {
         super.configure(modelIndex: modelIndex)
         /* NOTE: Set accessibility */
-        self.closeButton.accessibilityIdentifier = self.model.overlayCloseButtonAccessibilityIdentifier
         self.nextButton.accessibilityIdentifier = self.model.rootNextButtonAccessibilityIdentifier
         self.scrollView.accessibilityIdentifier = self.model.parentScrollViewAccessibilityIdentifier
         /* NOTE: Header */
@@ -51,12 +50,12 @@ class NavigationScrollViewController: NavigationBaseViewController, Fluidable {
         self.headerView.heightAnchor.constraint(equalToConstant: self.headerView.estimatedHeight).activate()
         self.imageView.image = UIImage(row: self.modelIndex, size: .medium)
         self.scrollView.contentInset.bottom = 40
+//        self.configureConstraints(for: self.scrollView)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         Logger()?.log("🚗💥", [])
-        self.configureConstraints(for: self.scrollView)
     }
 
     override func viewWillAppear(_ animated: Bool) {

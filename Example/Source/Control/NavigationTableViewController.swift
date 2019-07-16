@@ -28,19 +28,18 @@ class NavigationTableViewController: NavigationBaseViewController, Fluidable {
     override func configure(modelIndex: Int) {
         super.configure(modelIndex: modelIndex)
         /* NOTE: Set accessibility */
-        self.closeButton.accessibilityIdentifier = self.model.overlayCloseButtonAccessibilityIdentifier
         self.tableView.accessibilityIdentifier = self.model.parentTableViewAccessibilityIdentifier
         /* NOTE: Configure table view */
         self.tableView.configure(model: self.model, headerPosition: .top) { [weak self] (indexPath: IndexPath) in
             self?.nextDidTap(indexPath)
         }
         self.tableView.contentOffset = .zero
+//        self.configureConstraints(for: self.tableView)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         Logger()?.log("🚗💥", [])
-        self.configureConstraints(for: self.tableView)
     }
 
     override func viewWillAppear(_ animated: Bool) {

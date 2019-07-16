@@ -42,15 +42,15 @@
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="q8n-Vx-Zq4" firstAttribute="top" secondItem="i42-dj-sdC" secondAttribute="top" placeholder="YES" id="FTo-dJ-W8o"/>
+                    <constraint firstItem="q8n-Vx-Zq4" firstAttribute="top" secondItem="i42-dj-sdC" secondAttribute="top" id="FTo-dJ-W8o"/>
                     <constraint firstItem="aXq-ry-EQi" firstAttribute="trailing" secondItem="i42-dj-sdC" secondAttribute="trailing" id="Kk8-bT-oBs"/>
                     <constraint firstItem="aXq-ry-EQi" firstAttribute="bottom" secondItem="i42-dj-sdC" secondAttribute="bottom" id="MSJ-0v-hKe"/>
                     <constraint firstItem="aXq-ry-EQi" firstAttribute="leading" secondItem="i42-dj-sdC" secondAttribute="leading" id="NqK-f1-40j"/>
-                    <constraint firstItem="Deg-dL-2XB" firstAttribute="trailing" secondItem="i42-dj-sdC" secondAttribute="trailing" constant="-16" placeholder="YES" id="Yr9-oZ-Aoc"/>
-                    <constraint firstItem="q8n-Vx-Zq4" firstAttribute="leading" secondItem="i42-dj-sdC" secondAttribute="leading" placeholder="YES" id="Z0G-0X-g4X"/>
-                    <constraint firstItem="Deg-dL-2XB" firstAttribute="top" secondItem="i42-dj-sdC" secondAttribute="top" constant="16" placeholder="YES" id="m2u-rh-T24"/>
-                    <constraint firstItem="q8n-Vx-Zq4" firstAttribute="trailing" secondItem="i42-dj-sdC" secondAttribute="trailing" placeholder="YES" id="maA-zF-wsW"/>
-                    <constraint firstItem="q8n-Vx-Zq4" firstAttribute="bottom" secondItem="i42-dj-sdC" secondAttribute="bottom" placeholder="YES" id="skD-4F-8c8"/>
+                    <constraint firstItem="Deg-dL-2XB" firstAttribute="trailing" secondItem="i42-dj-sdC" secondAttribute="trailing" constant="-16" id="Yr9-oZ-Aoc"/>
+                    <constraint firstItem="q8n-Vx-Zq4" firstAttribute="leading" secondItem="i42-dj-sdC" secondAttribute="leading" id="Z0G-0X-g4X"/>
+                    <constraint firstItem="Deg-dL-2XB" firstAttribute="top" secondItem="i42-dj-sdC" secondAttribute="top" constant="16" id="m2u-rh-T24"/>
+                    <constraint firstItem="q8n-Vx-Zq4" firstAttribute="trailing" secondItem="i42-dj-sdC" secondAttribute="trailing" id="maA-zF-wsW"/>
+                    <constraint firstItem="q8n-Vx-Zq4" firstAttribute="bottom" secondItem="i42-dj-sdC" secondAttribute="bottom" id="skD-4F-8c8"/>
                 </constraints>
                 <viewLayoutGuide key="safeArea" id="i42-dj-sdC"/>
             </view>

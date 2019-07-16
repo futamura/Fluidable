@@ -44,13 +44,13 @@
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="xMM-ws-tQc" firstAttribute="top" secondItem="Vzg-4O-DCv" secondAttribute="top" placeholder="YES" id="Duc-lp-hvK"/>
+                    <constraint firstItem="xMM-ws-tQc" firstAttribute="top" secondItem="Vzg-4O-DCv" secondAttribute="top" id="Duc-lp-hvK"/>
                     <constraint firstItem="S8h-XV-HW5" firstAttribute="trailing" secondItem="Vzg-4O-DCv" secondAttribute="trailing" id="TMR-uu-lki"/>
-                    <constraint firstItem="xMM-ws-tQc" firstAttribute="trailing" secondItem="Vzg-4O-DCv" secondAttribute="trailing" placeholder="YES" id="Wu3-TG-ql7"/>
-                    <constraint firstItem="FlM-vN-jED" firstAttribute="trailing" secondItem="Vzg-4O-DCv" secondAttribute="trailing" constant="-16" placeholder="YES" id="XuH-Rw-9SX"/>
-                    <constraint firstItem="xMM-ws-tQc" firstAttribute="bottom" secondItem="Vzg-4O-DCv" secondAttribute="bottom" placeholder="YES" id="gpu-gT-Jog"/>
-                    <constraint firstItem="xMM-ws-tQc" firstAttribute="leading" secondItem="Vzg-4O-DCv" secondAttribute="leading" placeholder="YES" id="jWI-y0-dgn"/>
-                    <constraint firstItem="FlM-vN-jED" firstAttribute="top" secondItem="Vzg-4O-DCv" secondAttribute="top" constant="16" placeholder="YES" id="kGP-aB-Jrf"/>
+                    <constraint firstItem="xMM-ws-tQc" firstAttribute="trailing" secondItem="Vzg-4O-DCv" secondAttribute="trailing" id="Wu3-TG-ql7"/>
+                    <constraint firstItem="FlM-vN-jED" firstAttribute="trailing" secondItem="Vzg-4O-DCv" secondAttribute="trailing" constant="-16" id="XuH-Rw-9SX"/>
+                    <constraint firstItem="xMM-ws-tQc" firstAttribute="bottom" secondItem="Vzg-4O-DCv" secondAttribute="bottom" id="gpu-gT-Jog"/>
+                    <constraint firstItem="xMM-ws-tQc" firstAttribute="leading" secondItem="Vzg-4O-DCv" secondAttribute="leading" id="jWI-y0-dgn"/>
+                    <constraint firstItem="FlM-vN-jED" firstAttribute="top" secondItem="Vzg-4O-DCv" secondAttribute="top" constant="16" id="kGP-aB-Jrf"/>
                     <constraint firstItem="S8h-XV-HW5" firstAttribute="bottom" secondItem="Vzg-4O-DCv" secondAttribute="bottom" id="oDE-AX-ndg"/>
                     <constraint firstItem="S8h-XV-HW5" firstAttribute="leading" secondItem="Vzg-4O-DCv" secondAttribute="leading" id="s6k-F4-jCB"/>
                 </constraints>

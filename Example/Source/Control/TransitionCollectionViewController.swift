@@ -34,12 +34,12 @@ class TransitionCollectionViewController: TransitionBaseViewController, Fluidabl
         self.collectionView.accessibilityIdentifier = self.model.parentCollectionViewAccessibilityIdentifier
         /* NOTE: Setup collection view */
         self.collectionView.configure(model: model, headerPosition: .top)
+//        self.configureConstraints(for: self.collectionView)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         Logger()?.log("🚗💥", [])
-        self.configureConstraints(for: self.collectionView)
     }
 
     override func viewWillAppear(_ animated: Bool) {

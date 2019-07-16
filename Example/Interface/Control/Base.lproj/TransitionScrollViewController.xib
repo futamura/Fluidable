@@ -130,12 +130,12 @@ Vivamus sed velit et arcu egestas suscipit at vel justo. Vestibulum vehicula nis
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="vKb-qA-Bwu" firstAttribute="trailing" secondItem="ReU-W5-KTW" secondAttribute="trailing" placeholder="YES" id="6DD-Xo-pxu"/>
-                    <constraint firstItem="cDu-Zc-jNl" firstAttribute="trailing" secondItem="ReU-W5-KTW" secondAttribute="trailing" constant="-16" placeholder="YES" id="BqE-nl-tNR"/>
-                    <constraint firstItem="vKb-qA-Bwu" firstAttribute="top" secondItem="ReU-W5-KTW" secondAttribute="top" placeholder="YES" id="SSf-HY-kay"/>
-                    <constraint firstItem="vKb-qA-Bwu" firstAttribute="leading" secondItem="ReU-W5-KTW" secondAttribute="leading" placeholder="YES" id="ZD3-Rw-uGx"/>
-                    <constraint firstItem="vKb-qA-Bwu" firstAttribute="bottom" secondItem="ReU-W5-KTW" secondAttribute="bottom" placeholder="YES" id="mqq-SQ-Wnl"/>
-                    <constraint firstItem="cDu-Zc-jNl" firstAttribute="top" secondItem="ReU-W5-KTW" secondAttribute="top" constant="16" placeholder="YES" id="wwk-wu-7kn"/>
+                    <constraint firstItem="vKb-qA-Bwu" firstAttribute="trailing" secondItem="ReU-W5-KTW" secondAttribute="trailing" id="6DD-Xo-pxu"/>
+                    <constraint firstItem="cDu-Zc-jNl" firstAttribute="trailing" secondItem="ReU-W5-KTW" secondAttribute="trailing" constant="-16" id="BqE-nl-tNR"/>
+                    <constraint firstItem="vKb-qA-Bwu" firstAttribute="top" secondItem="ReU-W5-KTW" secondAttribute="top" id="SSf-HY-kay"/>
+                    <constraint firstItem="vKb-qA-Bwu" firstAttribute="leading" secondItem="ReU-W5-KTW" secondAttribute="leading" id="ZD3-Rw-uGx"/>
+                    <constraint firstItem="vKb-qA-Bwu" firstAttribute="bottom" secondItem="ReU-W5-KTW" secondAttribute="bottom" id="mqq-SQ-Wnl"/>
+                    <constraint firstItem="cDu-Zc-jNl" firstAttribute="top" secondItem="ReU-W5-KTW" secondAttribute="top" constant="16" id="wwk-wu-7kn"/>
                 </constraints>
                 <viewLayoutGuide key="safeArea" id="ReU-W5-KTW"/>
             </view>

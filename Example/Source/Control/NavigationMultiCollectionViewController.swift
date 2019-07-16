@@ -32,7 +32,6 @@ class NavigationMultiCollectionViewController: NavigationBaseViewController, Flu
     override func configure(modelIndex: Int) {
         super.configure(modelIndex: modelIndex)
         /* NOTE: Set accessibility */
-        self.closeButton.accessibilityIdentifier = self.model.overlayCloseButtonAccessibilityIdentifier
         self.scrollView.accessibilityIdentifier = self.model.parentScrollViewAccessibilityIdentifier
         self.firstCollectionView.accessibilityIdentifier = self.model.childFirstCollectionViewAccessibilityIdentifier
         self.secondCollectionView.accessibilityIdentifier = self.model.childSecondCollectionViewAccessibilityIdentifier
@@ -49,12 +48,12 @@ class NavigationMultiCollectionViewController: NavigationBaseViewController, Flu
         self.thirdCollectionView.configure(scrollToRight: false, handler: { [weak self] (indexPath: IndexPath) in self?.nextDidTap(indexPath) })
         self.forthCollectionView.configure(scrollToRight: true, handler: { [weak self] (indexPath: IndexPath) in self?.nextDidTap(indexPath) })
         self.fifthCollectionView.configure(scrollToRight: false, handler: { [weak self] (indexPath: IndexPath) in self?.nextDidTap(indexPath) })
+//        self.configureConstraints(for: self.scrollView)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         Logger()?.log("🚗💥", [])
-        self.configureConstraints(for: self.scrollView)
     }
 
     override func viewWillAppear(_ animated: Bool) {

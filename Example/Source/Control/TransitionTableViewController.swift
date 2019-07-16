@@ -39,12 +39,12 @@ class TransitionTableViewController: TransitionBaseViewController, Fluidable {
         /* NOTE: Setup table view */
         self.tableView.configure(model: self.model)
         self.tableView.contentOffset = .zero
+//        self.configureConstraints(for: self.tableView)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         Logger()?.log("🚗💥", [])
-        self.configureConstraints(for: self.tableView)
     }
 
     override func viewWillAppear(_ animated: Bool) {
