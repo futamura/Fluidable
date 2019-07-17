@@ -221,7 +221,7 @@ extension FluidPresentDriverCompatible {
     func isPresentationLayerTouched() -> Bool {
         guard let currentLocation: CGPoint = self.observingGesture?.currentLocation,
               let gestureLayer: CALayer = self.observingGesture?.panGestureView?.layer,
-              let topViewLayer: CALayer = self.animationView.layer.presentation() else { return false }
+              let topViewLayer: CALayer = self.layoutContainerView.layer.presentation() else { return false }
         let topViewLocation: CGPoint = topViewLayer.convert(currentLocation, from: gestureLayer)
         return topViewLayer.contains(topViewLocation)
     }

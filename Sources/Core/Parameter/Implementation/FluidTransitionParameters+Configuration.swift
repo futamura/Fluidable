@@ -291,7 +291,7 @@ internal extension FluidTransitionParameters {
 
         self.controllerDelegate = transitioningDelegate
 
-        self.containerView = container
+        self.transitionContainerView = container
         self.sourceView = sourceView
         self.destinationView = destinationView
 
@@ -347,24 +347,24 @@ internal extension FluidTransitionParameters {
 //            "destinationViewController: " + String(describing: destinationViewController),
 //            "destinationViewController.view: " + String(describing: destinationViewController.view),
         ])
-        let animationView: UIView = rootNavigationController?.view ?? destinationViewController.view
-        if shouldInsertSubview && animationView.superview == nil {
-            animationView.translatesAutoresizingMaskIntoConstraints = false /* NOTE: Prevent 'UIView-Encapsulated-Layout' from being generated automatically */
-            animationView.alpha = 0
-            self.containerView.insertSubview(animationView, aboveSubview: sourceView)
+        let layoutContainerView: UIView = rootNavigationController?.view ?? destinationViewController.view
+        if shouldInsertSubview && layoutContainerView.superview == nil {
+            layoutContainerView.translatesAutoresizingMaskIntoConstraints = false /* NOTE: Prevent 'UIView-Encapsulated-Layout' from being generated automatically */
+            layoutContainerView.alpha = 0
+            self.transitionContainerView.insertSubview(layoutContainerView, aboveSubview: sourceView)
         }
         let backgroundView: FluidBackgroundCompatible? = {
-            if let backgroundView: FluidBackgroundCompatible = self.containerView.viewWithTag(FluidConst.backgroundViewTag) as? FluidBackgroundCompatible {
+            if let backgroundView: FluidBackgroundCompatible = self.transitionContainerView.viewWithTag(FluidConst.backgroundViewTag) as? FluidBackgroundCompatible {
                 return backgroundView
             } else {
                 switch backgroundStyle {
                 case .blur(let radius, let color, let alpha):
                     let backgroundView: FluidBlurredBackgroundView = .init(radius: radius, color: color, alpha: alpha)
-                    if shouldInsertSubview { self.containerView.insertSubview(backgroundView, belowSubview: animationView) }
+                    if shouldInsertSubview { self.transitionContainerView.insertSubview(backgroundView, belowSubview: layoutContainerView) }
                     return backgroundView
                 case .dim(let color):
                     let backgroundView: FluidDimmedBackgroundView = .init(color: color)
-                    if shouldInsertSubview { self.containerView.insertSubview(backgroundView, belowSubview: animationView) }
+                    if shouldInsertSubview { self.transitionContainerView.insertSubview(backgroundView, belowSubview: layoutContainerView) }
                     return backgroundView
                 case .none:
                     return nil
@@ -373,22 +373,22 @@ internal extension FluidTransitionParameters {
         }()
         let shadowView: FluidShadowView? = {
             guard shouldCastShadow else { return nil }
-            if let shadowView: FluidShadowView = self.containerView.viewWithTag(FluidConst.shadowViewTag) as? FluidShadowView {
+            if let shadowView: FluidShadowView = self.transitionContainerView.viewWithTag(FluidConst.shadowViewTag) as? FluidShadowView {
                 return shadowView
             } else {
                 let shadowView: FluidShadowView = .init(shadowCornerRadius: finalStyle.cornerRadius, shadowRoundingCorners: finalStyle.roundingCorners,
                                                         shadowOpacity: finalStyle.shadowOpacity, shadowColor: finalStyle.shadowColor,
                                                         shadowRadius: finalStyle.shadowRadius, shadowOffset: finalStyle.shadowOffset,
                                                         isTransparentBackground: finalStyle.isTransparentBackground)
-                if shouldInsertSubview { self.containerView.insertSubview(shadowView, belowSubview: animationView) }
+                if shouldInsertSubview { self.transitionContainerView.insertSubview(shadowView, belowSubview: layoutContainerView) }
                 return shadowView
             }
         }()
         var layout: FluidLayout = .init(for: presentationStyle, presentationType: .transition,
-                                        container: self.containerView, content: animationView,
+                                        container: self.transitionContainerView, content: layoutContainerView,
                                         containerSize: finalContainerSize, contentSize: finalDimension.frame(for: finalContainerSize).size)
         layout.activate(type: .transition)
-        self.animationView = animationView
+        self.layoutContainerView = layoutContainerView
         self.backgroundView = backgroundView
         self.shadowView = shadowView
         self.layout = layout
@@ -400,14 +400,14 @@ extension FluidTransitionParameters {
         switch self.animationType {
         case .present:
             return self.sourceViewControllerDelegate.transitionAdditionalPresentAnimations(from: sourceViewController, to: destinationViewController,
-                                                                                           with: rootNavigationController, on: self.containerView,
+                                                                                           with: rootNavigationController, on: self.transitionContainerView,
                                                                                            initialDimension: initialDimension, finalDimension: finalDimension,
                                                                                            initialStyle: initialStyle, finalStyle: finalStyle,
                                                                                            transitionStyle: self.presentationStyle.toTransitionStyle(),
                                                                                            duration: presentDuration, easing: presentEasing) ?? []
         case .dismiss:
             return self.sourceViewControllerDelegate.transitionAdditionalDismissAnimations(from: destinationViewController, to: sourceViewController,
-                                                                                           with: rootNavigationController, on: self.containerView,
+                                                                                           with: rootNavigationController, on: self.transitionContainerView,
                                                                                            initialDimension: initialDimension, finalDimension: finalDimension,
                                                                                            initialStyle: initialStyle, finalStyle: finalStyle,
                                                                                            transitionStyle: self.presentationStyle.toTransitionStyle(),
@@ -421,14 +421,14 @@ extension FluidTransitionParameters {
         switch self.animationType {
         case .present:
             return self.destinationViewControllerDelegate.transitionAdditionalPresentAnimations(from: sourceViewController, to: destinationViewController,
-                                                                                                with: rootNavigationController, on: self.containerView,
+                                                                                                with: rootNavigationController, on: self.transitionContainerView,
                                                                                                 initialDimension: initialDimension, finalDimension: finalDimension,
                                                                                                 initialStyle: initialStyle, finalStyle: finalStyle,
                                                                                                 transitionStyle: self.presentationStyle.toTransitionStyle(),
                                                                                                 duration: presentDuration, easing: presentEasing) ?? []
         case .dismiss:
             return self.destinationViewControllerDelegate.transitionAdditionalDismissAnimations(from: destinationViewController, to: sourceViewController,
-                                                                                                with: rootNavigationController, on: self.containerView,
+                                                                                                with: rootNavigationController, on: self.transitionContainerView,
                                                                                                 initialDimension: initialDimension, finalDimension: finalDimension,
                                                                                                 initialStyle: initialStyle, finalStyle: finalStyle,
                                                                                                 transitionStyle: self.presentationStyle.toTransitionStyle(),

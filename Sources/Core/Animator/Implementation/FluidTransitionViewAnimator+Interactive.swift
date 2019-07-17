@@ -60,7 +60,7 @@ extension FluidTransitionViewAnimator {
         self.backgroundView?.visibility = 1 - self.interactionProgress
         switch self.interactionType {
         case .normal:
-            let containerSize: CGSize = self.containerView.frame.size
+            let containerSize: CGSize = self.transitionContainerView.frame.size
             /* NOTE: Frame */
             let rangeFrame: CGRect = self.storedFromFrame - self.storedToFrame
             let targetFrame: CGRect = self.storedFromFrame - rangeFrame * self.interactionProgress
@@ -69,12 +69,12 @@ extension FluidTransitionViewAnimator {
             let targetCornerRadius: CGFloat = self.storedFromStyle.cornerRadius - rangeCornerRadius * self.interactionProgress
             /* NOTE: Apply frame */
             self.layout.apply(edges: .init(size: containerSize, frame: targetFrame))
-            self.animationView.updateLayoutImmediately()
+            self.layoutContainerView.updateLayoutImmediately()
             /* NOTE: Mask */
             if #available(iOS 11.0, *) {
-                self.animationView.layer.cornerRadius = targetCornerRadius
+                self.layoutContainerView.layer.cornerRadius = targetCornerRadius
             } else {
-                self.animationView.layer.mask = FluidCornerMaskLayer(bounds: targetFrame.bounds,
+                self.layoutContainerView.layer.mask = FluidCornerMaskLayer(bounds: targetFrame.bounds,
                                                                      cornerRadius: targetCornerRadius,
                                                                      roundingCorners: self.storedFromStyle.roundingCorners)
             }
@@ -128,13 +128,13 @@ extension FluidTransitionViewAnimator {
             }
                 /* NOTE: Translation transform */
 //        let transform: CATransform3D = {
-//            let currentTranslation: CGPoint = self.animationView.transform.translation
+//            let currentTranslation: CGPoint = self.layoutContainerView.transform.translation
 //            let gestureTranslation: CGPoint = info.translation
 //            let targetTranslation: CGPoint = currentTranslation + gestureTranslation
 //            return CATransform3D(tx: targetTranslation.x, ty: targetTranslation.y)
 //        }()
                 /* NOTE: Apply transform */
-//        self.animationView.layer.transform = transform
+//        self.layoutContainerView.layer.transform = transform
 //        self.shadowView?.layer.transform = transform
         case .fluid:
             guard let pausedGestureInfo: FluidGestureInfo = self.pausedGestureInfo else { return }
@@ -144,7 +144,7 @@ extension FluidTransitionViewAnimator {
             let targetScale: CGFloat = behavior.isScale ? 1 - self.interactionProgress * 0.1 : 1.0
             let scaleTransform: CATransform3D = CATransform3D(sx: targetScale, sy: targetScale)
             /* NOTE: Translation transform */
-            let currentTranslation: CGPoint = self.animationView.transform.translation
+            let currentTranslation: CGPoint = self.layoutContainerView.transform.translation
             let pausedGestureTranslation: CGPoint = pausedGestureInfo.translation
             let currentGestureTranslation: CGPoint = currentGestureInfo.translation
             let diffGestureTranslation: CGPoint = currentGestureTranslation - pausedGestureTranslation
@@ -154,22 +154,22 @@ extension FluidTransitionViewAnimator {
                 if behavior.isBidirectional {
                     return CATransform3D(tx: targetTranslation.x, ty: targetTranslation.y)
                 } else if behavior.isVertical {
-                    return CATransform3D(tx: self.animationView.transform.tx, ty: targetTranslation.y)
+                    return CATransform3D(tx: self.layoutContainerView.transform.tx, ty: targetTranslation.y)
                 } else {
                     return .identity
                 }
             }()
             /* NOTE: Apply transform */
             let targetTransform: CATransform3D = scaleTransform * translationTransform
-            self.animationView.transform = targetTransform.toCGAffineTransform()
+            self.layoutContainerView.transform = targetTransform.toCGAffineTransform()
             /* NOTE: Corner radius */
             let rangeCornerRadius: CGFloat = (self.storedFromStyle.cornerRadius - self.storedToStyle.cornerRadius) * 0.8
             let targetCornerRadius: CGFloat = self.storedFromStyle.cornerRadius - rangeCornerRadius * self.interactionProgress
             /* NOTE: Mask */
             if #available(iOS 11.0, *) {
-                self.animationView.layer.cornerRadius = targetCornerRadius
+                self.layoutContainerView.layer.cornerRadius = targetCornerRadius
             } else {
-                self.animationView.layer.mask = FluidCornerMaskLayer(bounds: self.storedFromFrame.bounds,
+                self.layoutContainerView.layer.mask = FluidCornerMaskLayer(bounds: self.storedFromFrame.bounds,
                                                                      cornerRadius: targetCornerRadius,
                                                                      roundingCorners: self.storedFromStyle.roundingCorners)
             }
@@ -182,7 +182,7 @@ extension FluidTransitionViewAnimator {
 ////            var shadowFrame: CGRect = self.finalDimension.frame()
 ////            shadowFrame.origin += targetTranslation
 ////            shadowFrame.size *= CGFloat(scaleTransform.decompose().scale.x)
-            let shadowFrame: CGRect = self.animationView.layer.frame
+            let shadowFrame: CGRect = self.layoutContainerView.layer.frame
             /* NOTE: Shadow corner radius */
             let rangeShadowCornerRadius: CGFloat = (self.storedFromStyle.cornerRadius - self.storedToStyle.cornerRadius) * 0.5
             let targetShadowCornerRadius: CGFloat = self.storedFromStyle.cornerRadius - rangeShadowCornerRadius * self.interactionProgress
@@ -320,18 +320,18 @@ extension FluidTransitionViewAnimator {
                 self.baseConstants.apply(left: targetConstant.clamped(0, CGFloat.greatestFiniteMagnitude))
             }
             self.layout.apply(edges: self.baseConstants)
-            self.animationView.updateLayoutImmediately()
+            self.layoutContainerView.updateLayoutImmediately()
             /* NOTE: Mask */
             if #available(iOS 11.0, *) {
-                self.animationView.layer.cornerRadius = self.storedFromStyle.cornerRadius
+                self.layoutContainerView.layer.cornerRadius = self.storedFromStyle.cornerRadius
             } else {
-                self.animationView.layer.mask = FluidCornerMaskLayer(bounds: self.animationView.frame.bounds,
+                self.layoutContainerView.layer.mask = FluidCornerMaskLayer(bounds: self.layoutContainerView.frame.bounds,
                                                                      cornerRadius: self.storedFromStyle.cornerRadius,
                                                                      roundingCorners: self.storedFromStyle.roundingCorners)
             }
             /* NOTE: Shadow */
             if let shadowView: FluidShadowView = self.shadowView {
-                self.applyShadowProperties(frame: self.animationView.frame,
+                self.applyShadowProperties(frame: self.layoutContainerView.frame,
                                            cornerRadius: shadowView.shadowCornerRadius,
                                            cornerStyle: self.storedFromStyle.cornerStyle,
                                            shadowColor: shadowView.shadowColor,

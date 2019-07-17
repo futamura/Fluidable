@@ -60,9 +60,9 @@ extension FluidNavigationViewAnimator {
             let rangeCornerRadius: CGFloat = self.storedFromStyle.cornerRadius - self.storedToStyle.cornerRadius
             let targetCornerRadius: CGFloat = self.storedFromStyle.cornerRadius - rangeCornerRadius * self.interactionProgress
             /* NOTE: Apply frame */
-            self.animationView.frame = targetFrame
-            self.animationView.updateLayoutImmediately()
-            self.animationView.layer.cornerRadius = targetCornerRadius
+            self.layoutContainerView.frame = targetFrame
+            self.layoutContainerView.updateLayoutImmediately()
+            self.layoutContainerView.layer.cornerRadius = targetCornerRadius
             /* NOTE: Background */
             self.backgroundView?.visibility = 1 - self.interactionProgress
             /* NOTE: Shadow */

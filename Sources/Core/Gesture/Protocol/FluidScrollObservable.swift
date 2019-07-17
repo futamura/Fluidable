@@ -259,7 +259,7 @@ extension FluidScrollObservable {
         switch gesture.state {
         case .possible, .began, .changed:
             self.gestureState = gesture.state
-            self.gestureDirection = .init(point: gesture.translation(in: self.containerView))
+            self.gestureDirection = .init(point: gesture.translation(in: self.transitionContainerView))
         case .ended, .failed, .cancelled:
             self.gestureDirection = .none
             self.gestureState = .none

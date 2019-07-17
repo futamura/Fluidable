@@ -40,10 +40,10 @@ internal protocol FluidParametersCompatible: CustomStringConvertible {
     var destinationResizableDelegate: FluidResizableTransitionDelegate? { get set }
 
     /** Views for `FluidActionDelegate` */
-    var containerView: UIView! { get set }
+    var transitionContainerView: UIView! { get set }
+    var layoutContainerView: UIView! { get set }
     var sourceView: UIView! { get set }
     var destinationView: UIView! { get set }
-    var animationView: UIView! { get set }
 
     /** Shortcut for `FluidConfigurationDelegate` */
     var allowInteractivePresent: Bool { get set }
@@ -179,21 +179,21 @@ extension FluidParametersCompatible {
         case .present:
             switch self.presentationStyle {
             case .drawer, .slide:
-                return self.animationView.layer.presentation()?.frame ?? self.animationView.frame
+                return self.layoutContainerView.layer.presentation()?.frame ?? self.layoutContainerView.frame
             case .fluid, .scale:
                 return self.finalDimension.frame(for: self.finalContainerSize)
             }
         case .dismiss where !isReversed:
             switch self.presentationStyle {
             case .drawer, .slide:
-                return self.animationView.layer.presentation()?.frame ?? self.animationView.frame
+                return self.layoutContainerView.layer.presentation()?.frame ?? self.layoutContainerView.frame
             case .fluid, .scale:
                 return self.finalDimension.frame(for: self.finalContainerSize)
             }
         case .dismiss:
             switch self.presentationStyle {
             case .drawer, .slide:
-                return self.animationView.layer.presentation()?.frame ?? self.animationView.frame
+                return self.layoutContainerView.layer.presentation()?.frame ?? self.layoutContainerView.frame
             case .fluid, .scale:
                 return self.finalDimension.frame(for: self.finalContainerSize)
             }
@@ -253,20 +253,20 @@ extension FluidParametersCompatible {
         case .present where !isReversed:
             return self.initialDimension.transform(for: self.initialContainerSize)
         case .present:
-            return self.animationView.layer.presentation()?.transform ?? CATransform3D.identity
+            return self.layoutContainerView.layer.presentation()?.transform ?? CATransform3D.identity
         case .dismiss where !isReversed:
             switch self.presentationStyle {
             case .drawer, .slide:
-                return self.animationView.layer.presentation()?.transform ?? CATransform3D.identity
+                return self.layoutContainerView.layer.presentation()?.transform ?? CATransform3D.identity
             case .fluid, .scale:
-                return self.animationView.layer.presentation()?.transform ?? CATransform3D.identity
+                return self.layoutContainerView.layer.presentation()?.transform ?? CATransform3D.identity
             }
         case .dismiss:
             switch self.presentationStyle {
             case .drawer, .slide:
-                return self.animationView.layer.presentation()?.transform ?? CATransform3D.identity
+                return self.layoutContainerView.layer.presentation()?.transform ?? CATransform3D.identity
             case .fluid, .scale:
-                return self.animationView.layer.presentation()?.transform ?? CATransform3D.identity
+                return self.layoutContainerView.layer.presentation()?.transform ?? CATransform3D.identity
             }
         case .rotate:
             return self.finalDimension.transform(for: self.finalContainerSize)
@@ -295,7 +295,7 @@ extension FluidParametersCompatible {
         case .present:
             return self.initialStyle
         case .dismiss where !isReversed:
-            var style: FluidFinalFrameStyle = .init(cornerRadius: self.animationView.layer.cornerRadius,
+            var style: FluidFinalFrameStyle = .init(cornerRadius: self.layoutContainerView.layer.cornerRadius,
                                                     cornerStyle: self.finalStyle.cornerStyle,
                                                     shadowColor: self.shadowView?.layer.presentation()?.shadowColor ?? self.finalStyle.shadowColor,
                                                     shadowOpacity: CGFloat(self.shadowView?.layer.presentation()?.shadowOpacity ?? Float(self.finalStyle.shadowOpacity)),
@@ -303,7 +303,7 @@ extension FluidParametersCompatible {
                                                     shadowOffset: self.shadowView?.layer.presentation()?.shadowOffset ?? self.finalStyle.shadowOffset)
             return style.validate(for: self.presentationStyle)
         case .dismiss:
-            var style: FluidFinalFrameStyle = .init(cornerRadius: self.animationView.layer.cornerRadius,
+            var style: FluidFinalFrameStyle = .init(cornerRadius: self.layoutContainerView.layer.cornerRadius,
                                                     cornerStyle: self.finalStyle.cornerStyle,
                                                     shadowColor: self.shadowView?.layer.presentation()?.shadowColor ?? self.finalStyle.shadowColor,
                                                     shadowOpacity: CGFloat(self.shadowView?.layer.presentation()?.shadowOpacity ?? Float(self.finalStyle.shadowOpacity)),
@@ -365,10 +365,10 @@ extension FluidParametersCompatible {
                - \("destinationViewControllerDelegate".lpad(36)): \(String(debug: destinationViewControllerDelegate))
                - \("destinationResizableDelegate".lpad(36)): \(String(debug: destinationResizableDelegate))
                - \("controllerDelegate".lpad(36)): \(String(debug: controllerDelegate))
-               - \("containerView".lpad(36)): \(String(debug: containerView))
+               - \("transitionContainerView".lpad(36)): \(String(debug: transitionContainerView))
+               - \("layoutContainerView".lpad(36)): \(String(debug: layoutContainerView))
                - \("sourceView".lpad(36)): \(String(debug: sourceView))
                - \("destinationView".lpad(36)): \(String(debug: destinationView))
-               - \("animationView".lpad(36)): \(String(debug: animationView))
                - \("allowInteractivePresent".lpad(36)): \(String(debug: allowInteractivePresent))
                - \("allowInteractiveDismiss".lpad(36)): \(String(debug: allowInteractiveDismiss))
                - \("shouldPerformResizing".lpad(36)): \(String(debug: shouldPerformResizing))

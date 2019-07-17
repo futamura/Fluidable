@@ -106,7 +106,7 @@ extension FluidDriverCompatible {
         /* NOTE: Configure parameters */
         try? self.configureParameters(driverType: self.parameters.driverType, animationType: .rotate,
                                       context: self.context,
-                                      container: self.containerView,
+                                      container: self.transitionContainerView,
                                       source: self.sourceViewController,
                                       destination: self.parameters.rootNavigationController ?? self.parameters.destinationViewController,
                                       initialContainerSize: fromContainerSize,
@@ -137,7 +137,7 @@ extension FluidDriverCompatible {
         /* NOTE: Configure animation */
         try? self.configureParameters(driverType: .dismiss, animationType: .dismiss,
                                       context: self.parameters.context,
-                                      container: self.parameters.containerView,
+                                      container: self.parameters.transitionContainerView,
                                       source: self.parameters.sourceViewController,
                                       destination: self.parameters.destinationViewController,
                                       initialContainerSize: self.parameters.finalContainerSize,

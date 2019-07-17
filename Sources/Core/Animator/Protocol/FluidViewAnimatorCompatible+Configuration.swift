@@ -194,8 +194,8 @@ extension FluidViewAnimatorCompatible {
         Logger()?.log("🕊🛠", [
             "animationType:".lpad() + String(describing: self.animationType),
             "isReversed:".lpad() + String(describing: isReversed),
-            "animationView.layer.frame:".lpad() + String(describing: animationView.layer.frame),
-            "animationView.layer.presentation()?.frame:".lpad() + String(describing: animationView.layer.presentation()?.frame),
+            "layoutContainerView.layer.frame:".lpad() + String(describing: layoutContainerView.layer.frame),
+            "layoutContainerView.layer.presentation()?.frame:".lpad() + String(describing: layoutContainerView.layer.presentation()?.frame),
             "shadowView.layer.frame:".lpad() + String(describing: shadowView.layer.frame),
             "shadowView.layer.presentation()?.frame:".lpad() + String(describing: shadowView.layer.presentation()?.frame),
             "fromShadowFrame:".lpad() + String(describing: fromShadowFrame),
@@ -351,15 +351,15 @@ extension FluidViewAnimatorCompatible {
         let toStyle: FluidFrameStyleCompatible = self.toStyle(isReversed)
         /* NOTE: 👍 Set properties before run animation */
         if self.animationType.isPresent {
-            self.animationView.layer.masksToBounds = true
-            self.animationView.layer.cornerRadius = fromStyle.cornerRadius
-            self.animationView.layer.maskedCorners = fromStyle.maskedCorners
+            self.layoutContainerView.layer.masksToBounds = true
+            self.layoutContainerView.layer.cornerRadius = fromStyle.cornerRadius
+            self.layoutContainerView.layer.maskedCorners = fromStyle.maskedCorners
         }
         /* NOTE: 🐅 Configure animator */
         let cornerRadiusAnimator: FluidPropertyAnimator = .init(duration: transitionDuration, easing: transitionEasing, id: "cornerRadiusAnimator (\(String(describing: self.animationType).capitalized))")
         cornerRadiusAnimator.add({ [weak self] in
             guard let `self`: Self = self else { return }
-            self.animationView.layer.cornerRadius = toStyle.cornerRadius
+            self.layoutContainerView.layer.cornerRadius = toStyle.cornerRadius
         })
         /* NOTE: Return animators */
         return [cornerRadiusAnimator]
@@ -375,10 +375,10 @@ extension FluidViewAnimatorCompatible {
         let toMaskLayer: FluidCornerMaskLayer = self.toCornerMaskLayer(isReversed)
         let opt: FluidCoreAnimatorOption = .init(self.animationType, isReversed)
         /* NOTE: 👍 Set properties before run animation */
-        self.animationView.layer.masksToBounds = true
-        self.animationView.layer.mask = toMaskLayer
+        self.layoutContainerView.layer.masksToBounds = true
+        self.layoutContainerView.layer.mask = toMaskLayer
         /* NOTE: 🐅 Configure animator */
-        let cornerRadiusAnimator: FluidCoreAnimator? = FluidCoreAnimator(for: self.animationView.layer.mask, id: "cornerRadiusAnimator (\(String(describing: self.animationType).capitalized))",
+        let cornerRadiusAnimator: FluidCoreAnimator? = FluidCoreAnimator(for: self.layoutContainerView.layer.mask, id: "cornerRadiusAnimator (\(String(describing: self.animationType).capitalized))",
                                                                          duration: transitionDuration, easing: .linear,
                                                                          isRemovedOnCompletion: opt.isRemovedGroup, fillMode: opt.fillModeGroup)
         cornerRadiusAnimator?.add(key: .path, from: fromMaskLayer.path, to: toMaskLayer.path,
@@ -443,21 +443,21 @@ extension FluidViewAnimatorCompatible {
  */
 extension FluidViewAnimatorCompatible {
     func createInterruptibleViewIfNeeded() -> FluidInterruptibleView {
-        if let interruptibleView: FluidInterruptibleView = containerView.viewWithTag(FluidConst.interruptibleViewTag) as? FluidInterruptibleView {
+        if let interruptibleView: FluidInterruptibleView = transitionContainerView.viewWithTag(FluidConst.interruptibleViewTag) as? FluidInterruptibleView {
             return interruptibleView
         } else {
             let interruptibleView: FluidInterruptibleView = FluidInterruptibleView()
-            containerView.insertSubview(interruptibleView, at: 1)
+            transitionContainerView.insertSubview(interruptibleView, at: 1)
             return interruptibleView
         }
     }
 
     func createProgressViewIfNeeded() -> FluidProgressView {
-        if let progressView: FluidProgressView = containerView.viewWithTag(FluidConst.progressViewTag) as? FluidProgressView {
+        if let progressView: FluidProgressView = transitionContainerView.viewWithTag(FluidConst.progressViewTag) as? FluidProgressView {
             return progressView
         } else {
             let progressView: FluidProgressView = FluidProgressView()
-            containerView.insertSubview(progressView, at: 0)
+            transitionContainerView.insertSubview(progressView, at: 0)
             return progressView
         }
     }
@@ -561,8 +561,8 @@ extension FluidViewAnimatorCompatible {
 
     func fromCornerMaskLayer(_ isReversed: Bool = false) -> FluidCornerMaskLayer {
         switch self.animationType {
-        case .dismiss where self.animationView.layer.mask as? FluidCornerMaskLayer != nil:
-            return self.animationView.layer.mask as! FluidCornerMaskLayer
+        case .dismiss where self.layoutContainerView.layer.mask as? FluidCornerMaskLayer != nil:
+            return self.layoutContainerView.layer.mask as! FluidCornerMaskLayer
         case .present, .dismiss, .rotate:
             let fromFrame: CGRect = self.fromViewFrame(isReversed, self.resizePosition)
             let fromStyle: FluidFrameStyleCompatible = self.fromStyle(isReversed)

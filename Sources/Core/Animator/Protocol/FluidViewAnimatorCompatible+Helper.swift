@@ -80,9 +80,9 @@ private extension FluidViewAnimatorCompatible {
 internal extension FluidViewAnimatorCompatible {
     func debugAnimators() {
         var msg: String = "\n"
-//        msg += "animationView.frame:".lpad() + String(debug: self.animationView.frame) + "\n"
+//        msg += "layoutContainerView.frame:".lpad() + String(debug: self.layoutContainerView.frame) + "\n"
 //        msg += "destinationView.frame:".lpad() + String(debug: self.destinationView.frame) + "\n"
-        msg += "animationView.frame:".lpad() + String(debug: self.animationView.layer.presentation()?.frame) + "\n"
+        msg += "layoutContainerView.frame:".lpad() + String(debug: self.layoutContainerView.layer.presentation()?.frame) + "\n"
         msg += "destinationView.frame:".lpad() + String(debug: self.destinationView.layer.presentation()?.frame) + "\n"
         msg += "\n"
         msg += "identifier:".lpad() + String(debug: self.interruptibleAnimator?.identifier) + "\n"
