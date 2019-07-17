@@ -35,7 +35,7 @@ matrix:
 
 before_install:
   - if [ "$POD_LINT" == "YES" ]; then
-    gem uninstall -x cocoapods;
+    gem uninstall -a -x cocoapods;
     gem install cocoapods --pre --no-document --quiet;
     fi
   - if [ "$XCODE_TEST" == "YES" ]; then
