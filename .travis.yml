@@ -34,11 +34,13 @@ matrix:
     - env: POD_LINT="YES"
 
 before_install:
-  - if [ "$POD_LINT" == "YES" ]; then
-    gem uninstall -a -x cocoapods;
-    gem install cocoapods --pre --no-document --quiet;
-    pod repo update;
-    fi
+  - bundle install
+  - pod repo update
+# - if [ "$POD_LINT" == "YES" ]; then
+#   gem uninstall -a -x cocoapods;
+#   gem install cocoapods --pre --no-document --quiet;
+#   pod repo update;
+#   fi
   - if [ "$XCODE_TEST" == "YES" ]; then
     gem install xcpretty -N --no-document --quiet;
     fi
