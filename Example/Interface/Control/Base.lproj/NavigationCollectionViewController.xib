@@ -39,12 +39,12 @@
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="CyF-Nc-GE5" firstAttribute="leading" secondItem="I3B-fE-d09" secondAttribute="leading" id="3sH-LM-RHm"/>
-                    <constraint firstItem="aNS-PS-0IL" firstAttribute="trailing" secondItem="I3B-fE-d09" secondAttribute="trailing" constant="-16" id="AgI-Tx-Z83"/>
-                    <constraint firstItem="CyF-Nc-GE5" firstAttribute="top" secondItem="I3B-fE-d09" secondAttribute="top" id="Hfa-95-z3X"/>
-                    <constraint firstItem="aNS-PS-0IL" firstAttribute="top" secondItem="I3B-fE-d09" secondAttribute="top" constant="16" id="NBd-JO-3qW"/>
-                    <constraint firstItem="CyF-Nc-GE5" firstAttribute="bottom" secondItem="I3B-fE-d09" secondAttribute="bottom" id="VmG-Tn-biP"/>
-                    <constraint firstItem="CyF-Nc-GE5" firstAttribute="trailing" secondItem="I3B-fE-d09" secondAttribute="trailing" id="cp6-9c-Vd6"/>
+                    <constraint firstItem="CyF-Nc-GE5" firstAttribute="leading" secondItem="I3B-fE-d09" secondAttribute="leading" placeholder="YES" id="3sH-LM-RHm"/>
+                    <constraint firstItem="aNS-PS-0IL" firstAttribute="trailing" secondItem="I3B-fE-d09" secondAttribute="trailing" constant="-16" placeholder="YES" id="AgI-Tx-Z83"/>
+                    <constraint firstItem="CyF-Nc-GE5" firstAttribute="top" secondItem="I3B-fE-d09" secondAttribute="top" placeholder="YES" id="Hfa-95-z3X"/>
+                    <constraint firstItem="aNS-PS-0IL" firstAttribute="top" secondItem="I3B-fE-d09" secondAttribute="top" constant="16" placeholder="YES" id="NBd-JO-3qW"/>
+                    <constraint firstItem="CyF-Nc-GE5" firstAttribute="bottom" secondItem="I3B-fE-d09" secondAttribute="bottom" placeholder="YES" id="VmG-Tn-biP"/>
+                    <constraint firstItem="CyF-Nc-GE5" firstAttribute="trailing" secondItem="I3B-fE-d09" secondAttribute="trailing" placeholder="YES" id="cp6-9c-Vd6"/>
                 </constraints>
                 <viewLayoutGuide key="safeArea" id="I3B-fE-d09"/>
             </view>

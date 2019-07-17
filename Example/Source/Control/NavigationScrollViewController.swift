@@ -50,7 +50,7 @@ class NavigationScrollViewController: NavigationBaseViewController, Fluidable {
         self.headerView.heightAnchor.constraint(equalToConstant: self.headerView.estimatedHeight).activate()
         self.imageView.image = UIImage(row: self.modelIndex, size: .medium)
         self.scrollView.contentInset.bottom = 40
-//        self.configureConstraints(for: self.scrollView)
+        self.configureConstraints(for: self.scrollView)
     }
 
     override func viewDidLoad() {

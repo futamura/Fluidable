@@ -48,7 +48,7 @@ class NavigationMultiCollectionViewController: NavigationBaseViewController, Flu
         self.thirdCollectionView.configure(scrollToRight: false, handler: { [weak self] (indexPath: IndexPath) in self?.nextDidTap(indexPath) })
         self.forthCollectionView.configure(scrollToRight: true, handler: { [weak self] (indexPath: IndexPath) in self?.nextDidTap(indexPath) })
         self.fifthCollectionView.configure(scrollToRight: false, handler: { [weak self] (indexPath: IndexPath) in self?.nextDidTap(indexPath) })
-//        self.configureConstraints(for: self.scrollView)
+        self.configureConstraints(for: self.scrollView)
     }
 
     override func viewDidLoad() {

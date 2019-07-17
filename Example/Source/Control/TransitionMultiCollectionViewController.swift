@@ -54,7 +54,7 @@ class TransitionMultiCollectionViewController: TransitionBaseViewController, Flu
         }
         self.secondCollectionView.initiallyScrollToRight = true
         self.forthCollectionView.initiallyScrollToRight = true
-//        self.configureConstraints(for: self.scrollView)
+        self.configureConstraints(for: self.scrollView)
     }
 
     override func viewDidLoad() {
