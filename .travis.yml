@@ -34,8 +34,8 @@ matrix:
     - env: POD_LINT="YES"
 
 before_install:
-  - bundle install
-  - pod repo update
+  - bundle install;
+  - pod repo update;
 # - if [ "$POD_LINT" == "YES" ]; then
 #   gem uninstall -a -x cocoapods;
 #   gem install cocoapods --pre --no-document --quiet;
