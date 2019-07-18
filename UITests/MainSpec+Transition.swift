@@ -28,7 +28,7 @@ extension MainSpec {
                 collectionView.swipeUp()
             }
         }
-        usleep(sec: 2.0)
+        usleep(sec: 1.0)
     }
 
     func cancelAnimatedPresent(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {
@@ -63,7 +63,7 @@ extension MainSpec {
                 collectionView.swipeUp()
             }
         }
-        usleep(sec: 2.0)
+        usleep(sec: 1.0)
     }
 
     func cancelInteractivePresent(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {
@@ -81,14 +81,14 @@ extension MainSpec {
                 collectionView.swipeUp()
             }
         }
-        usleep(sec: 2.0)
+        usleep(sec: 1.0)
     }
 
     func finishAnimatedDismissByTappingCloseButton(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {
         let button: XCUIElement = app.buttons.element(matching: .button, identifier: model.overlayCloseButtonAccessibilityIdentifier)
         expect(button.isVisible).toEventually(beTrue(), timeout: 10)
         button.tap()
-        usleep(sec: 2.0)
+        usleep(sec: 1.0)
         /* NOTE: Check whether the view controller already disappears */
         let visibleView: XCUIElement = app.otherElements.element(matching: .other, identifier: model.visibleControllerViewAccessibilityIdentifier)
         expect(visibleView.exists).toNotEventually(beTrue(), timeout: 10)
@@ -117,7 +117,7 @@ extension MainSpec {
             expect(button.isVisible).toEventually(beTrue(), timeout: 10)
             button.tap()
         }
-        usleep(sec: 2.0)
+        usleep(sec: 1.0)
         /* NOTE: Check whether the view controller already disappears */
         let visibleView: XCUIElement = app.otherElements.element(matching: .other, identifier: model.visibleControllerViewAccessibilityIdentifier)
         expect(visibleView.exists).toNotEventually(beTrue(), timeout: 10)
@@ -130,27 +130,27 @@ extension MainSpec {
             let cell: XCUIElement = collectionView.cells.element(boundBy: 0)
             expect(cell.isVisible).toEventually(beTrue(), timeout: 10)
             cell.tap()
-            usleep(sec: 2.0)
+            usleep(sec: 1.0)
 
         case "NavigationMultiCollectionViewController":
             let collectionView: XCUIElement = app.collectionViews.element(matching: .collectionView, identifier: model.childFirstCollectionViewAccessibilityIdentifier)
             let cell: XCUIElement = collectionView.cells.element(boundBy: 0)
             expect(cell.isVisible).toEventually(beTrue(), timeout: 10)
             cell.tap()
-            usleep(sec: 2.0)
+            usleep(sec: 1.0)
 
         case "NavigationScrollViewController":
             let button: XCUIElement = app.buttons.element(matching: .button, identifier: model.rootNextButtonAccessibilityIdentifier)
             expect(button.isVisible).toEventually(beTrue(), timeout: 10)
             button.tap()
-            usleep(sec: 2.0)
+            usleep(sec: 1.0)
 
         case "NavigationTableViewController":
             let tableView: XCUIElement = app.tables.element(matching: .table, identifier: model.parentTableViewAccessibilityIdentifier)
             let cell: XCUIElement = tableView.cells.element(boundBy: 0)
             expect(cell.isVisible).toEventually(beTrue(), timeout: 10)
             cell.tap()
-            usleep(sec: 2.0)
+            usleep(sec: 1.0)
 
         case "TransitionCollectionViewController",
              "TransitionMultiCollectionViewController",
@@ -171,7 +171,7 @@ extension MainSpec {
             let button: XCUIElement = navigationBar.buttons.element(boundBy: 0)
             expect(button.isVisible).toEventually(beTrue(), timeout: 10)
             button.tap()
-            usleep(sec: 2.0)
+            usleep(sec: 1.0)
 
         case "TransitionCollectionViewController",
              "TransitionMultiCollectionViewController",
@@ -201,7 +201,7 @@ extension MainSpec {
             start.press(forDuration: 0.2, thenDragTo: finish)
 //            interactView.swipe(from: vectors.start, to: vectors.finish)
         }
-        usleep(sec: 2.0)
+        usleep(sec: 1.0)
     }
 
     func finishInteractiveDismiss(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {
@@ -231,14 +231,14 @@ extension MainSpec {
         let finish: XCUICoordinate = interactView.coordinate(withNormalizedOffset: vectors.finish)
         start.press(forDuration: 0.5, thenDragTo: finish)
         finish.press(forDuration: 0.5, thenDragTo: start)
-        usleep(sec: 2.0)
+        usleep(sec: 1.0)
     }
 
     func rotateAndRevertDevice(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {
         XCUIDevice.shared.orientation = XCUIDevice.shared.orientation.isPortrait ? .landscapeLeft : .portrait
-        usleep(sec: 2.0)
+        usleep(sec: 1.0)
         XCUIDevice.shared.orientation = XCUIDevice.shared.orientation.isPortrait ? .landscapeLeft : .portrait
-        usleep(sec: 2.0)
+        usleep(sec: 1.0)
     }
 }
 
