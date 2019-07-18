@@ -390,8 +390,8 @@ extension MainSpec {
     }
 
     func getReducedInteractiveDismissVector(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) -> InteractiveDismissVector {
-        let min: CGFloat = 0.45
-        let max: CGFloat = 0.55
+        let min: CGFloat = 0.40
+        let max: CGFloat = 0.60
         let presentationStyle: FluidPresentationStyle = FluidPresentationStyle(fromTransition: model.transitionStyle)
         switch presentationStyle.dismissAxis() {
         case .positiveX: return (start: CGVector(dx: min, dy: 0.5), finish: CGVector(dx: max, dy: 0.5))
