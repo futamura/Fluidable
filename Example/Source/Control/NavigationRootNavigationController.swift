@@ -13,7 +13,7 @@ import Fluidable
 /* IMPORTANT: 🌊 Conform to `FluidNavigationBarCompatible` protocol */
 class NavigationRootNavigationBar: UINavigationBar, FluidNavigationBarCompatible {
     var preferredSize: CGSize {
-        return CGSize(width: UIApplication.shared.keyWindow?.frame.width ?? UIScreen.main.bounds.width, height: 44)
+        return CGSize(width: self.superview?.frame.width ?? UIScreen.main.bounds.width, height: 44)
     }
 }
 
