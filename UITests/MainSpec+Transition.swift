@@ -46,7 +46,6 @@ extension MainSpec {
                 collectionView.swipeUp()
             }
         }
-        usleep(sec: 2.0)
     }
 
     func finishInteractivePresent(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {
