@@ -104,7 +104,7 @@ platform :ios do
       {device: "iPhone Xs Max"},
       {device: "iPhone 8 Plus (11.4)"},
       {device: "iPhone 7 (10.3.1)"},
-      {device: "iPad Air 2 Max (iOS 12.2)"},
+      {device: "iPad Air 2 (12.2)"},
       {device: "iPad Air 2 (11.4)"},
       {device: "iPad Air 2 (10.3.1)"},
     ]
@@ -144,7 +144,7 @@ platform :ios do
       {device: "iPhone Xs Max"},
       {device: "iPhone 8 Plus (11.4)"},
       {device: "iPhone 7 (10.3.1)"},
-      {device: "iPad Air 2 Max (iOS 12.2)"},
+      {device: "iPad Air 2 (12.2)"},
       {device: "iPad Air 2 (11.4)"},
       {device: "iPad Air 2 (10.3.1)"},
     ]
@@ -156,6 +156,21 @@ platform :ios do
         code_coverage: true,
       )
     end
+    # devices = [
+    #   "iPhone Xs Max",
+    #   "iPhone 8 Plus (11.4)",
+    #   "iPhone 7 (10.3.1)",
+    #   "iPad Air 2 (12.2)",
+    #   "iPad Air 2 (11.4)",
+    #   "iPad Air 2 (10.3.1)",
+    # ]
+    # run_scan(
+    #   clean: false,
+    #   devices: devices,
+    #   max_concurrent_simulators: 3,
+    #   only_testing: [],
+    #   code_coverage: true,
+    # )
     coverage
     lint
   end
