@@ -78,7 +78,7 @@ script:
     carthage build --no-skip-current --platform iOS;
     fi
   - if [ "$POD_LINT" == "YES" ]; then
-    pod lib lint;
+    pod lib lint --allow-warnings;
     fi
   - if [ "$SWIFT_LINT" == "YES" ]; then
     swiftlint lint;
