@@ -379,25 +379,29 @@ extension MainSpec {
 
     typealias InteractiveDismissVector = (start: CGVector, finish: CGVector)
     func getInteractiveDismissVector(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) -> InteractiveDismissVector {
+        let min: CGFloat = 0.2
+        let max: CGFloat = 0.8
+        let middle: CGFloat = 0.5
         let presentationStyle: FluidPresentationStyle = FluidPresentationStyle(fromTransition: model.transitionStyle)
         switch presentationStyle.dismissAxis() {
-        case .positiveX: return (start: CGVector(dx: 0.2, dy: 0.5), finish: CGVector(dx: 0.8, dy: 0.5))
-        case .negativeX: return (start: CGVector(dx: 0.8, dy: 0.5), finish: CGVector(dx: 0.2, dy: 0.5))
-        case .positiveY: return (start: CGVector(dx: 0.5, dy: 0.2), finish: CGVector(dx: 0.5, dy: 0.8))
-        case .negativeY: return (start: CGVector(dx: 0.5, dy: 0.8), finish: CGVector(dx: 0.5, dy: 0.2))
+        case .positiveX: return (start: CGVector(dx: min, dy: middle), finish: CGVector(dx: max, dy: middle))
+        case .negativeX: return (start: CGVector(dx: max, dy: middle), finish: CGVector(dx: min, dy: middle))
+        case .positiveY: return (start: CGVector(dx: middle, dy: min), finish: CGVector(dx: middle, dy: max))
+        case .negativeY: return (start: CGVector(dx: middle, dy: max), finish: CGVector(dx: middle, dy: min))
         default: return (start: .zero, finish: .zero)
         }
     }
 
     func getReducedInteractiveDismissVector(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) -> InteractiveDismissVector {
-        let min: CGFloat = 0.30
-        let max: CGFloat = 0.70
+        let min: CGFloat = 0.35
+        let max: CGFloat = 0.65
+        let middle: CGFloat = 0.5
         let presentationStyle: FluidPresentationStyle = FluidPresentationStyle(fromTransition: model.transitionStyle)
         switch presentationStyle.dismissAxis() {
-        case .positiveX: return (start: CGVector(dx: min, dy: 0.5), finish: CGVector(dx: max, dy: 0.5))
-        case .negativeX: return (start: CGVector(dx: max, dy: 0.5), finish: CGVector(dx: min, dy: 0.5))
-        case .positiveY: return (start: CGVector(dx: 0.5, dy: min), finish: CGVector(dx: 0.5, dy: max))
-        case .negativeY: return (start: CGVector(dx: 0.5, dy: max), finish: CGVector(dx: 0.5, dy: min))
+        case .positiveX: return (start: CGVector(dx: min, dy: middle), finish: CGVector(dx: max, dy: middle))
+        case .negativeX: return (start: CGVector(dx: max, dy: middle), finish: CGVector(dx: min, dy: middle))
+        case .positiveY: return (start: CGVector(dx: middle, dy: min), finish: CGVector(dx: middle, dy: max))
+        case .negativeY: return (start: CGVector(dx: middle, dy: max), finish: CGVector(dx: middle, dy: min))
         default: return (start: .zero, finish: .zero)
         }
     }

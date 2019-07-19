@@ -43,11 +43,11 @@ class MainSpec: QuickSpec {
                 RootModel.testCases(for: orientation).forEach { (model: RootModel) in
                     context(model.description.capitalizingFirstLetter()) {
                         /* Fixed */
-                        it("FinishAnimatedPresent_FinishAnimatedDismiss") {
-                            self.finishAnimatedPresent(app: app, orientation: orientation, model: model)
-                            self.rotateAndRevertDevice(app: app, orientation: orientation, model: model)
-                            self.finishAnimatedDismissByTappingCloseButton(app: app, orientation: orientation, model: model)
-                        }
+//                        it("FinishAnimatedPresent_FinishAnimatedDismiss") {
+//                            self.finishAnimatedPresent(app: app, orientation: orientation, model: model)
+//                            self.rotateAndRevertDevice(app: app, orientation: orientation, model: model)
+//                            self.finishAnimatedDismissByTappingCloseButton(app: app, orientation: orientation, model: model)
+//                        }
                         /* FIXME: No way to perform interruptible transition */
 //                        it("CancelAnimatedPresent") {
 //                            self.cancelAnimatedPresent(app: app, orientation: orientation, model: model)
