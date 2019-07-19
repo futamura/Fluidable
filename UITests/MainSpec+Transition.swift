@@ -261,7 +261,7 @@ extension MainSpec {
 
                 case "NavigationCollectionViewController", "TransitionCollectionViewController":
                     let interactView: XCUIElement = app.collectionViews.element(matching: .collectionView, identifier: model.parentCollectionViewAccessibilityIdentifier)
-                    let targetView: XCUIElement = app.collectionViews.cells.element(boundBy: 0)
+                    let targetView: XCUIElement = interactView.cells.element(boundBy: 0)
                     return (interact: interactView, target: targetView, direction: direction)
 
                 case "NavigationMultiCollectionViewController", "TransitionMultiCollectionViewController":
@@ -293,7 +293,7 @@ extension MainSpec {
 
                 case "NavigationCollectionViewController", "TransitionCollectionViewController":
                     let interactView: XCUIElement = app.collectionViews.element(matching: .collectionView, identifier: model.parentCollectionViewAccessibilityIdentifier)
-                    let targetView: XCUIElement = app.collectionViews.cells.element(boundBy: interactView.cells.count - 1)
+                    let targetView: XCUIElement = interactView.cells.element(boundBy: interactView.cells.count - 1)
                     return (interact: interactView, target: targetView, direction: direction)
 
                 case "NavigationMultiCollectionViewController", "TransitionMultiCollectionViewController":
