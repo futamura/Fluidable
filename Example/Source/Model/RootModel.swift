@@ -59,7 +59,7 @@ extension RootModel {
 
         case .transitionDrawerLeft:      return TransitionScrollViewController.self
         case .transitionDrawerRight:     return TransitionTableViewController.self
-        case .transitionDrawerTop:       return TransitionCollectionViewController.self
+        case .transitionDrawerTop:       return TransitionScrollViewController.self
         case .transitionDrawerBottom:    return TransitionMultiCollectionViewController.self
 
         case .transitionSlideTop:        return TransitionScrollViewController.self

@@ -189,13 +189,14 @@ extension MainSpec {
         expect(interactView.exists).toEventually(beTrue(), timeout: 10)
         expect(targetView.exists).toEventually(beTrue(), timeout: 10)
         /* NOTE: Scroll until scroll view reaches to bottom */
-        let vectors: InteractiveDismissVector = self.getReducedInteractiveDismissVector(app: app, orientation: orientation, model: model)
         while (true) {
             Logger()?.log("🧪", [
+                "interactView.isVisible".lpad(64) + String(describing: interactView.isVisible),
                 "targetView.isVisible".lpad(64) + String(describing: targetView.isVisible),
                 "isAtDismissiblePosition".lpad(64) + String(describing: self.isAtDismissiblePosition(app: app, orientation: orientation, model: model)),
             ])
             if targetView.isVisible && self.isAtDismissiblePosition(app: app, orientation: orientation, model: model) { break }
+            let vectors: InteractiveDismissVector = self.getReducedInteractiveDismissVector(app: app, orientation: orientation, model: model)
             let start: XCUICoordinate = interactView.coordinate(withNormalizedOffset: vectors.start)
             let finish: XCUICoordinate = interactView.coordinate(withNormalizedOffset: vectors.finish)
             start.press(forDuration: 0.2, thenDragTo: finish)
@@ -245,10 +246,10 @@ extension MainSpec {
 extension MainSpec {
     typealias InteractiveDismissOption = (interact: XCUIElement?, target: XCUIElement?, direction: SwipeDirection)
     func getInteractiveDismissOption(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) -> InteractiveDismissOption {
-        Logger()?.log("🧪", [
-            "model".lpad() + String(describing: model),
-            "model.className".lpad() + String(describing: model.className),
-        ])
+//        Logger()?.log("🧪", [
+//            "model".lpad() + String(describing: model),
+//            "model.className".lpad() + String(describing: model.className),
+//        ])
         return {
             switch model {
             case .navigationFluidModal, .transitionFluidModal, .navigationFluidFullScreen, .transitionFluidFullScreen,
@@ -260,7 +261,7 @@ extension MainSpec {
 
                 case "NavigationCollectionViewController", "TransitionCollectionViewController":
                     let interactView: XCUIElement = app.collectionViews.element(matching: .collectionView, identifier: model.parentCollectionViewAccessibilityIdentifier)
-                    let targetView: XCUIElement = interactView.cells.element(boundBy: 0)
+                    let targetView: XCUIElement = app.collectionViews.cells.element(boundBy: 0)
                     return (interact: interactView, target: targetView, direction: direction)
 
                 case "NavigationMultiCollectionViewController", "TransitionMultiCollectionViewController":
@@ -292,7 +293,7 @@ extension MainSpec {
 
                 case "NavigationCollectionViewController", "TransitionCollectionViewController":
                     let interactView: XCUIElement = app.collectionViews.element(matching: .collectionView, identifier: model.parentCollectionViewAccessibilityIdentifier)
-                    let targetView: XCUIElement = interactView.cells.element(boundBy: interactView.cells.count - 1)
+                    let targetView: XCUIElement = app.collectionViews.cells.element(boundBy: interactView.cells.count - 1)
                     return (interact: interactView, target: targetView, direction: direction)
 
                 case "NavigationMultiCollectionViewController", "TransitionMultiCollectionViewController":
@@ -381,7 +382,7 @@ extension MainSpec {
     func getInteractiveDismissVector(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) -> InteractiveDismissVector {
         let min: CGFloat = 0.2
         let max: CGFloat = 0.8
-        let middle: CGFloat = 0.5
+        let middle: CGFloat = 0.2
         let presentationStyle: FluidPresentationStyle = FluidPresentationStyle(fromTransition: model.transitionStyle)
         switch presentationStyle.dismissAxis() {
         case .positiveX: return (start: CGVector(dx: min, dy: middle), finish: CGVector(dx: max, dy: middle))
@@ -393,10 +394,13 @@ extension MainSpec {
     }
 
     func getReducedInteractiveDismissVector(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) -> InteractiveDismissVector {
-        let min: CGFloat = 0.35
-        let max: CGFloat = 0.65
-        let middle: CGFloat = 0.5
+        let min: CGFloat = UIDevice.current.isPhone ? 0.35 : 0.35
+        let max: CGFloat = UIDevice.current.isPhone ? 0.65 : 0.65
+        let middle: CGFloat = 0.2
         let presentationStyle: FluidPresentationStyle = FluidPresentationStyle(fromTransition: model.transitionStyle)
+//        Logger()?.log("🧪", [
+//            "presentationStyle.dismissAxis()".lpad(64) + String(describing: presentationStyle.dismissAxis()),
+//        ])
         switch presentationStyle.dismissAxis() {
         case .positiveX: return (start: CGVector(dx: min, dy: middle), finish: CGVector(dx: max, dy: middle))
         case .negativeX: return (start: CGVector(dx: max, dy: middle), finish: CGVector(dx: min, dy: middle))

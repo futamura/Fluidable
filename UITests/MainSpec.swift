@@ -66,6 +66,7 @@ class MainSpec: QuickSpec {
                         /* Fixed */
                         it("FinishAnimatedPresent_FinishInteractiveDismiss") {
                             self.finishAnimatedPresent(app: app, orientation: orientation, model: model)
+                            self.rotateAndRevertDevice(app: app, orientation: orientation, model: model)
                             self.scrollToDismissiblePosition(app: app, orientation: orientation, model: model)
                             self.finishInteractiveDismiss(app: app, orientation: orientation, model: model)
                         }
