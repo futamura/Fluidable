@@ -133,12 +133,12 @@ internal extension FluidTransitionParameters {
             return style
         }()
         let initialStyle: FluidInitialFrameStyle = {
-            var initialStyle: FluidInitialFrameStyle
+            var style: FluidInitialFrameStyle
                     = sourceViewControllerDelegate.transitionInitialDestinationFrameStyle(from: sourceViewController,
                                                                                           to: destinationViewController,
                                                                                           with: rootNavigationController) ?? FluidInitialFrameStyle()
-            initialStyle = initialStyle.validate(for: presentationStyle, finalFrameStyle: finalStyle)
-            return initialStyle
+            style = style.validate(for: presentationStyle, finalFrameStyle: finalStyle)
+            return style
         }()
 
         let presentEasing: FluidAnimatorEasing = {

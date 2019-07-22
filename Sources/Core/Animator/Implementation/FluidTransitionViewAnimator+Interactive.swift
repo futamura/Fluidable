@@ -75,8 +75,8 @@ extension FluidTransitionViewAnimator {
                 self.layoutContainerView.layer.cornerRadius = targetCornerRadius
             } else {
                 self.layoutContainerView.layer.mask = FluidCornerMaskLayer(bounds: targetFrame.bounds,
-                                                                     cornerRadius: targetCornerRadius,
-                                                                     roundingCorners: self.storedFromStyle.roundingCorners)
+                                                                           cornerRadius: targetCornerRadius,
+                                                                           roundingCorners: self.storedFromStyle.roundingCorners)
             }
             /* NOTE: Shadow */
             if self.shadowView != nil {
@@ -170,8 +170,8 @@ extension FluidTransitionViewAnimator {
                 self.layoutContainerView.layer.cornerRadius = targetCornerRadius
             } else {
                 self.layoutContainerView.layer.mask = FluidCornerMaskLayer(bounds: self.storedFromFrame.bounds,
-                                                                     cornerRadius: targetCornerRadius,
-                                                                     roundingCorners: self.storedFromStyle.roundingCorners)
+                                                                           cornerRadius: targetCornerRadius,
+                                                                           roundingCorners: self.storedFromStyle.roundingCorners)
             }
             /* NOTE: Shadow */
             guard self.shadowView != nil else { return }
@@ -326,8 +326,8 @@ extension FluidTransitionViewAnimator {
                 self.layoutContainerView.layer.cornerRadius = self.storedFromStyle.cornerRadius
             } else {
                 self.layoutContainerView.layer.mask = FluidCornerMaskLayer(bounds: self.layoutContainerView.frame.bounds,
-                                                                     cornerRadius: self.storedFromStyle.cornerRadius,
-                                                                     roundingCorners: self.storedFromStyle.roundingCorners)
+                                                                           cornerRadius: self.storedFromStyle.cornerRadius,
+                                                                           roundingCorners: self.storedFromStyle.roundingCorners)
             }
             /* NOTE: Shadow */
             if let shadowView: FluidShadowView = self.shadowView {

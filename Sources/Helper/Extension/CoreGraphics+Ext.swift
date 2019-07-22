@@ -310,6 +310,8 @@ internal extension CGColor {
             return (red: self.components![0], green: self.components![1], blue: self.components![2], alpha: self.components![3])
         } else if self.components?.count == 3 {
             return (red: self.components![0], green: self.components![1], blue: self.components![2], alpha: 0)
+        } else if self.components?.count == 2 {
+            return (red: self.components![0], green: self.components![0], blue: self.components![0], alpha: self.components![1])
         } else {
             return (red: 0, green: 0, blue: 0, alpha: 0)
         }
