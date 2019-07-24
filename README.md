@@ -8,20 +8,33 @@
 ![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg)
 
 # Fluidable
-The Swift library that allows you to create a custom transition conforming to Fluid Interfaces.
+A Swift library that allows you to create a custom transition conforming to Fluid Interfaces.
+
+## Features & To-Do
+- [x] Support `UINavigationControllerDelegate` and `UIViewControllerTransitioningDelegate`
+- [x] Interactive transition with `UIScrollView`, `UITableView`, and `UICollectionView`
+- [x] Customizable presentation style (Fluid, Drawer, and Slide)
+- [x] Resizable drawer
+- [x] Customizable style (Rounded Corner, Shadow, and Background effect)
+- [x] Customizable animation easing and duration
+- [x] Support `UIViewPropertyAnimator` and `Core Animation`
+- [ ] Interact with underlying views like Apple Maps
+- [ ] Custom animation
 
 <!--
-<img src="https://raw.githubusercontent.com/gumob/Fluidable/master/Metadata/screenshot-animation.gif" alt="drawing" width="240px" style="width:240px;"/>
-
-## Features
-
-- Support UIScrollView, UITableView, and UICollectionView
-- Customizable refresh view
-- Customizable animaton options
-- Configurable option whether to load while dragging or to load after an user release a finger
-- Error handling
-- Support RxSwift/RxCocoa
+<img src="https://media.githubusercontent.com/media/gumob/Fluidable-Metadata/master/Movies/Exports/Fluidable-fluid-modal.gif" alt="drawing" width="240px" style="width:240px;"/>
+<img src="https://media.githubusercontent.com/media/gumob/Fluidable-Metadata/master/Movies/Exports/Fluidable-fluid-fullscreen.gif" alt="drawing" width="240px" style="width:240px;"/>
+<img src="https://media.githubusercontent.com/media/gumob/Fluidable-Metadata/master/Movies/Exports/Fluidable-drawer-bottom.gif" alt="drawing" width="240px" style="width:240px;"/>
+<img src="https://media.githubusercontent.com/media/gumob/Fluidable-Metadata/master/Movies/Exports/Fluidable-drawer-right.gif" alt="drawing" width="240px" style="width:240px;"/>
+<img src="https://media.githubusercontent.com/media/gumob/Fluidable-Metadata/master/Movies/Exports/Fluidable-slide-right.gif" alt="drawing" width="240px" style="width:240px;"/>
+<img src="https://media.githubusercontent.com/media/gumob/Fluidable-Metadata/master/Movies/Exports/Fluidable-slide-bottom.gif" alt="drawing" width="240px" style="width:240px;"/>
 -->
+
+
+Fluid                      |  Drawer                   | Slide
+:-------------------------:|:-------------------------:|:-------------------------:
+![](https://media.githubusercontent.com/media/gumob/Fluidable-Metadata/master/Movies/Exports/Fluidable-fluid-modal.gif)  |  ![](https://media.githubusercontent.com/media/gumob/Fluidable-Metadata/master/Movies/Exports/Fluidable-fluid-fullscreen.gif)  |  ![](https://media.githubusercontent.com/media/gumob/Fluidable-Metadata/master/Movies/Exports/Fluidable-drawer-bottom.gif)
+![](https://media.githubusercontent.com/media/gumob/Fluidable-Metadata/master/Movies/Exports/Fluidable-drawer-right.gif)  |  ![](https://media.githubusercontent.com/media/gumob/Fluidable-Metadata/master/Movies/Exports/Fluidable-slide-right.gif)  |  ![](https://media.githubusercontent.com/media/gumob/Fluidable-Metadata/master/Movies/Exports/Fluidable-slide-bottom.gif)
 
 ## Requirements
 
