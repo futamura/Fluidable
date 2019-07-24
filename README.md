@@ -12,14 +12,15 @@ A Swift library that allows you to create a custom transition conforming to Flui
 
 ## Features & To-Do
 - [x] Support `UINavigationControllerDelegate` and `UIViewControllerTransitioningDelegate`
-- [x] Interactive transition with `UIScrollView`, `UITableView`, and `UICollectionView`
+- [x] Interactive and intrruptible transition with `UIScrollView`, `UITableView`, and `UICollectionView`
+- [x] Additional animations for view controllers that can be defined in the delegate method (supports both `UIViewPropertyAnimator` and` Core Animation`)
+- [x] Monitor transition states and progress with delegate methods
 - [x] Customizable presentation style (Fluid, Drawer, and Slide)
 - [x] Resizable drawer
-- [x] Customizable style (Rounded Corner, Shadow, and Background effect)
+- [x] Customizable style (rounded corner, shadow, and background effect)
 - [x] Customizable animation easing and duration
-- [x] Support `UIViewPropertyAnimator` and `Core Animation`
 - [ ] Interact with underlying views like Apple Maps
-- [ ] Custom animation
+- [ ] Custom transitions with user-definable plug-ins
 
 <!--
 <img src="https://media.githubusercontent.com/media/gumob/Fluidable-Metadata/master/Movies/Exports/Fluidable-fluid-modal.gif" alt="drawing" width="240px" style="width:240px;"/>
@@ -51,8 +52,6 @@ Add the following to your `Cartfile` and follow [these instructions](https://git
 github "gumob/Fluidable"
 ```
 
-<!-- <img src="https://raw.githubusercontent.com/gumob/Fluidable/master/Metadata/carthage-xcode-config.jpg" alt="drawing" width="480" style="width:100%; max-width: 480px;"/> -->
-
 ### CocoaPods
 
 To integrate Fluidable into your project, add the following to your `Podfile`.
@@ -66,7 +65,7 @@ pod 'Fluidable'
 
 ## Usage
 
-Read the [API reference](https://gumob.github.io/Fluidable/Classes/Fluidable.html) and the [USAGE.md](https://gumob.github.io/Fluidable/usage.html) for detailed information.
+Read the [API reference](https://gumob.github.io/Fluidable/Core.html) and the [USAGE.md](https://gumob.github.io/Fluidable/usage.html) for detailed information.
 
 ## Copyright
 
