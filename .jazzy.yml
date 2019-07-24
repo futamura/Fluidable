@@ -48,10 +48,18 @@ custom_categories:
     - FluidViewControllerTransitionDelegate
     - FluidConfigurationDelegate
     - FluidSourceConfigurationDelegate
+    - FluidNavigationSourceConfigurationDelegate
+    - FluidTransitionSourceConfigurationDelegate
     - FluidDestinationConfigurationDelegate
+    - FluidNavigationDestinationConfigurationDelegate
+    - FluidTransitionDestinationConfigurationDelegate
     - FluidActionDelegate
     - FluidSourceActionDelegate
+    - FluidNavigationSourceActionDelegate
+    - FluidTransitionSourceActionDelegate
     - FluidDestinationActionDelegate
+    - FluidNavigationDestinationActionDelegate
+    - FluidTransitionDestinationActionDelegate
 
   - name: Type Aliases
     children:

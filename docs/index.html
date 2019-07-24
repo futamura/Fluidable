@@ -66,6 +66,18 @@
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Delegate.html#/s:9Fluidable13FluidDelegateP">FluidDelegate</a>
               </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/FluidNavigationSourceConfigurationDelegate.html">FluidNavigationSourceConfigurationDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/FluidTransitionSourceConfigurationDelegate.html">FluidTransitionSourceConfigurationDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/FluidNavigationDestinationConfigurationDelegate.html">FluidNavigationDestinationConfigurationDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/FluidTransitionDestinationConfigurationDelegate.html">FluidTransitionDestinationConfigurationDelegate</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -200,12 +212,6 @@
                 <a class="nav-group-task-link" href="Protocols/FluidNavigationConfigurationDelegate.html">FluidNavigationConfigurationDelegate</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/FluidNavigationDestinationConfigurationDelegate.html">FluidNavigationDestinationConfigurationDelegate</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/FluidNavigationSourceConfigurationDelegate.html">FluidNavigationSourceConfigurationDelegate</a>
-              </li>
-              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/FluidResizable.html">FluidResizable</a>
               </li>
               <li class="nav-group-task">
@@ -216,12 +222,6 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/FluidTransitionConfigurationDelegate.html">FluidTransitionConfigurationDelegate</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/FluidTransitionDestinationConfigurationDelegate.html">FluidTransitionDestinationConfigurationDelegate</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/FluidTransitionSourceConfigurationDelegate.html">FluidTransitionSourceConfigurationDelegate</a>
               </li>
             </ul>
           </li>
@@ -316,13 +316,13 @@
 </thead><tbody>
 <tr>
 <td style="text-align: center"><img src="https://media.githubusercontent.com/media/gumob/Fluidable-Metadata/master/Movies/Exports/Fluidable-fluid-modal.gif" alt=""></td>
-<td style="text-align: center"><img src="https://media.githubusercontent.com/media/gumob/Fluidable-Metadata/master/Movies/Exports/Fluidable-fluid-fullscreen.gif" alt=""></td>
 <td style="text-align: center"><img src="https://media.githubusercontent.com/media/gumob/Fluidable-Metadata/master/Movies/Exports/Fluidable-drawer-bottom.gif" alt=""></td>
+<td style="text-align: center"><img src="https://media.githubusercontent.com/media/gumob/Fluidable-Metadata/master/Movies/Exports/Fluidable-slide-bottom.gif" alt=""></td>
 </tr>
 <tr>
+<td style="text-align: center"><img src="https://media.githubusercontent.com/media/gumob/Fluidable-Metadata/master/Movies/Exports/Fluidable-fluid-fullscreen.gif" alt=""></td>
 <td style="text-align: center"><img src="https://media.githubusercontent.com/media/gumob/Fluidable-Metadata/master/Movies/Exports/Fluidable-drawer-right.gif" alt=""></td>
 <td style="text-align: center"><img src="https://media.githubusercontent.com/media/gumob/Fluidable-Metadata/master/Movies/Exports/Fluidable-slide-right.gif" alt=""></td>
-<td style="text-align: center"><img src="https://media.githubusercontent.com/media/gumob/Fluidable-Metadata/master/Movies/Exports/Fluidable-slide-bottom.gif" alt=""></td>
 </tr>
 </tbody></table>
 <h2 id='requirements' class='heading'>Requirements</h2>
@@ -351,7 +351,60 @@
 You can build an example app by choosing <code>FluidableExample</code> from the Xcode schemes.</p>
 <h2 id='usage' class='heading'>Usage</h2>
 
-<p>Read the <a href="https://gumob.github.io/Fluidable/Core.html">API reference</a> and the <a href="https://gumob.github.io/Fluidable/usage.html">USAGE.md</a> for detailed information.</p>
+<p>Full documentation is available at <a href="https://gumob.github.io/Fluidable/">https://gumob.github.io/Fluidable/</a>.</p>
+<h4 id='custom-transition-using-a-href-https-gumob-github-io-fluidable-protocols-fluidviewcontrollertransitiondelegate-html-code-fluidviewcontrollertransitiondelegate-code-a' class='heading'>Custom transition using <a href="https://gumob.github.io/Fluidable/Protocols/FluidViewControllerTransitionDelegate.html"><code>FluidViewControllerTransitionDelegate</code></a></h4>
+
+<p>1) Import <code><a href="Protocols/Fluidable.html">Fluidable</a></code> framework to your project files:</p>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">UIKit</span>
+<span class="kd">import</span> <span class="kt">Fluidable</span>
+</code></pre>
+
+<p>2) Initialze <code><a href="Protocols/Fluidable.html">Fluidable</a></code> framework in <code>AppDelegate</code>:</p>
+<pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">AppDelegate</span><span class="p">:</span> <span class="kt">UIResponder</span><span class="p">,</span> <span class="kt">UIApplicationDelegate</span> <span class="p">{</span>
+  <span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="n">_</span> <span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="n">didFinishLaunchingWithOptions</span> <span class="nv">launchOptions</span><span class="p">:</span> <span class="p">[</span><span class="kt">UIApplication</span><span class="o">.</span><span class="kt">LaunchOptionsKey</span><span class="p">:</span> <span class="kt">Any</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
+      <span class="kt">FluidableInit</span><span class="p">()</span>
+      <span class="k">return</span> <span class="kc">true</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>3) Conform to <a href="https://gumob.github.io/Fluidable/Protocols/Fluidable.html"><code><a href="Protocols/Fluidable.html">Fluidable</a></code></a> protocol in the <span style="color:magenta">source</span> view controller:</p>
+<pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">RootViewController</span><span class="p">:</span> <span class="kt">UICollectionViewController</span><span class="p">,</span> <span class="kt">Fluidable</span> <span class="p">{</span>
+  <span class="kd">required</span> <span class="nf">init</span><span class="p">?(</span><span class="n">coder</span> <span class="nv">aDecoder</span><span class="p">:</span> <span class="kt">NSCoder</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">super</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">coder</span><span class="p">:</span> <span class="n">aDecoder</span><span class="p">)</span>
+      <span class="k">self</span><span class="o">.</span><span class="n">fluidDelegate</span> <span class="o">=</span> <span class="k">self</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>4) Conform to <a href="https://gumob.github.io/Fluidable/Protocols/FluidTransitionSourceConfigurationDelegate.html"><code><a href="Protocols/FluidTransitionSourceConfigurationDelegate.html">FluidTransitionSourceConfigurationDelegate</a></code></a> and <a href="https://gumob.github.io/Fluidable/Protocols/FluidTransitionSourceActionDelegate.html"><code>FluidTransitionSourceActionDelegate</code></a> protocols in the <span style="color:magenta">source</span> view controller:</p>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">RootViewController</span><span class="p">:</span> <span class="kt">FluidTransitionSourceConfigurationDelegate</span> <span class="p">{</span>
+  <span class="cm">/* Implement delegate methods */</span>
+<span class="p">}</span>
+<span class="kd">extension</span> <span class="kt">RootViewController</span><span class="p">:</span> <span class="kt">FluidTransitionSourceActionDelegate</span> <span class="p">{</span>
+  <span class="cm">/* Implement delegate methods */</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>5) Conform to <a href="https://gumob.github.io/Fluidable/Protocols/Fluidable.html"><code><a href="Protocols/Fluidable.html">Fluidable</a></code></a> protocol in the <span style="color:magenta">destination</span> view controller:</p>
+<pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">TransitionScrollViewController</span><span class="p">:</span> <span class="kt">TransitionBaseViewController</span><span class="p">,</span> <span class="kt">Fluidable</span> <span class="p">{</span>
+  <span class="k">var</span> <span class="nv">fluidableTransitionDelegate</span><span class="p">:</span> <span class="kt">FluidViewControllerTransitioningDelegate</span> <span class="o">=</span> <span class="kt">FluidViewControllerTransitioningDelegate</span><span class="p">()</span>
+  <span class="kd">required</span> <span class="nf">init</span><span class="p">?(</span><span class="n">coder</span> <span class="nv">aDecoder</span><span class="p">:</span> <span class="kt">NSCoder</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">super</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">coder</span><span class="p">:</span> <span class="n">aDecoder</span><span class="p">)</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">transitioningDelegate</span> <span class="o">=</span> <span class="k">self</span><span class="o">.</span><span class="n">fluidableTransitionDelegate</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">fluidDelegate</span> <span class="o">=</span> <span class="k">self</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>6) Conform to <a href="https://gumob.github.io/Fluidable/Protocols/FluidTransitionDestinationConfigurationDelegate.html"><code><a href="Protocols/FluidTransitionDestinationConfigurationDelegate.html">FluidTransitionDestinationConfigurationDelegate</a></code></a> and <a href="https://gumob.github.io/Fluidable/Protocols/FluidTransitionDestinationActionDelegate.html"><code>FluidTransitionDestinationActionDelegate</code></a> protocols in the <span style="color:magenta">destination</span> view controller:</p>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">TransitionScrollViewController</span><span class="p">:</span> <span class="kt">FluidTransitionDestinationConfigurationDelegate</span> <span class="p">{</span>
+  <span class="cm">/* Implement delegate methods */</span>
+<span class="p">}</span>
+<span class="kd">extension</span> <span class="kt">TransitionScrollViewController</span><span class="p">:</span> <span class="kt">FluidTransitionDestinationActionDelegate</span> <span class="p">{</span>
+  <span class="cm">/* Implement delegate methods */</span>
+<span class="p">}</span>
+</code></pre>
 <h2 id='copyright' class='heading'>Copyright</h2>
 
 <p>Fluidable is released under MIT license, which means you can modify it, redistribute it or use it however you like.</p>
