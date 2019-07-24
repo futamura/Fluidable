@@ -63,6 +63,10 @@ use_frameworks!
 pod 'Fluidable'
 ```
 
+## Example application
+Repository contains example sources under [Example](https://github.com/gumob/Fluidable/tree/master/Example) directory. Structure of the application is simple, but the project contains mutiple case of UI petterns to showcase capabilities of the library.
+You can build an example app by choosing `FluidableExample` from the Xcode schemes.
+
 ## Usage
 
 Read the [API reference](https://gumob.github.io/Fluidable/Core.html) and the [USAGE.md](https://gumob.github.io/Fluidable/usage.html) for detailed information.
