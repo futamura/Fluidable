@@ -8,8 +8,8 @@ copyright: 'Copyright © 2019 Gumob. All rights reserved.'
 readme: "README.md"
 documentation: "USAGE.md"
 
-# theme: fullwidth
-theme: "themes/fullwidth-ex"
+theme: fullwidth
+# theme: "themes/fullwidth-ex"
 
 xcodebuild_arguments:
   - -project
@@ -20,7 +20,7 @@ xcodebuild_arguments:
 output: "docs"
 min_acl: public
 clean: true
-skip_undocumented: true
+skip_undocumented: false
 hide_documentation_coverage: true
 source_directory: Sources
 umbrella_header: "Sources/Fluidable.h"
@@ -33,6 +33,11 @@ exclude:
   - Example/*
   - Tests/*
   - UITests/*
+# - FluidNavigationConfigurationDelegate
+# - FluidTransitionConfigurationDelegate
+# - FluidNavigationActionDelegate
+# - FluidTransitionActionDelegate
+# - FluidResizable
 
 custom_categories:
 
@@ -44,31 +49,20 @@ custom_categories:
   - name: Delegate
     children:
     - FluidDelegate
+
     - FluidNavigationControllerDelegate
-    - FluidViewControllerTransitionDelegate
-    - FluidConfigurationDelegate
-    - FluidSourceConfigurationDelegate
     - FluidNavigationSourceConfigurationDelegate
-    - FluidTransitionSourceConfigurationDelegate
-    - FluidDestinationConfigurationDelegate
     - FluidNavigationDestinationConfigurationDelegate
-    - FluidTransitionDestinationConfigurationDelegate
-    - FluidResizableTransitionDelegate
-    - FluidActionDelegate
-    - FluidSourceActionDelegate
     - FluidNavigationSourceActionDelegate
-    - FluidTransitionSourceActionDelegate
-    - FluidDestinationActionDelegate
     - FluidNavigationDestinationActionDelegate
+
+    - FluidViewControllerTransitionDelegate
+    - FluidTransitionSourceConfigurationDelegate
+    - FluidTransitionDestinationConfigurationDelegate
+    - FluidTransitionSourceActionDelegate
     - FluidTransitionDestinationActionDelegate
 
-  - name: Type Aliases
-    children:
-    - FluidSourceViewControllerDelegate
-    - FluidDestinationNavigationControllerDelegate
-    - FluidDestinationViewControllerDelegate
-    - FluidDestinationNavigationController
-    - FluidDestinationViewController
+    - FluidResizableTransitionDelegate
 
   - name: Transition - Transition Style
     children:
@@ -100,6 +94,19 @@ custom_categories:
     children:
     - FluidProxy
     - FluidProxyCompatible
+
+  - name: Type Aliases
+    children:
+    - FluidNavigationController
+    - FluidSourceViewController
+    - FluidDestinationViewController
+    - FluidNavigationBar
+    - FluidNavigationRootNavigationControllerDelegate
+    - FluidNavigationSourceViewControllerDelegate
+    - FluidNavigationDestinationViewControllerDelegate
+    - FluidTransitionRootNavigationControllerDelegate
+    - FluidTransitionSourceViewControllerDelegate
+    - FluidTransitionDestinationViewControllerDelegate
 
   - name: Error
     children:

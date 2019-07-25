@@ -70,13 +70,13 @@ public enum FluidError: Swift.Error {
         case .unsupportedDismissalEasing(let easing):
             return "The easing `FluidAnimatorEasing.\(String(describing: easing))` is not available on iOS \(UIDevice.current.systemVersion)."
         case .ignoredPresentationDuration(let easing, let defaultDuration, let userDefinedDuration):
-            return "You set the present duration (\(userDefinedDuration)) at `FluidSourceConfigurationDelegate.dismissalDuration(destination:source:navigation:)` but the easing type is `FluidAnimatorEasing.\(String(describing: easing))`. The default duration (\(defaultDuration)) will be used." /** swiftlint:disable:this line_length */
+            return "You set the present duration (\(userDefinedDuration)) in the source view controller delegate but the easing type is `FluidAnimatorEasing.\(String(describing: easing))`. The default duration (\(defaultDuration)) will be used." /** swiftlint:disable:this line_length */
         case .ignoredDismissalDuration(let easing, let defaultDuration, let userDefinedDuration):
-            return "You set the dismiss duration (\(userDefinedDuration)) at `FluidSourceConfigurationDelegate.dismissalDuration(destination:source:navigation:)` but the easing type is `FluidAnimatorEasing.\(String(describing: easing))`. The default duration (\(defaultDuration)) will be used." /** swiftlint:disable:this line_length */
+            return "You set the dismiss duration (\(userDefinedDuration)) in the source view controller delegate but the easing type is `FluidAnimatorEasing.\(String(describing: easing))`. The default duration (\(defaultDuration)) will be used." /** swiftlint:disable:this line_length */
         case .invalidInitialFrameDimension:
-            return "The argument `layouts` of `FluidFrameDimension(origin:size:layouts:)` specified with `FluidSourceConfigurationDelegate.initialDestinationFrameDimension(from:to:with:)` will be ignored."
+            return "The argument `layouts` of `FluidFrameDimension(origin:size:layouts:)` declared in the source view controller delegate will be ignored."
         case .invalidFinalFrameDimension:
-            return "`FluidFrameDimension(origin:size:layouts:)` generated with `FluidSourceConfigurationDelegate.finalDestinationFrameDimension(from:to:with:)` needs to set all the values of `origin`, `size` and `layouts`."
+            return "`FluidFrameDimension(origin:size:layouts:)` generated in the source view controller delegate needs to set all the values of `origin`, `size` and `layouts`."
         case .invalidResizeConfiguration:
             return "The resizing interaction is available for only the bottom drawer on the current version."
         }

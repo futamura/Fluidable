@@ -128,7 +128,7 @@ extension NavigationMultiCollectionViewController: FluidNavigationSourceActionDe
     }
 }
 
-/* IMPORTANT: 🌊 Conform to `FluidDestinationConfigurationDelegate` */
+/* IMPORTANT: 🌊 Conform to `FluidTransitionDestinationConfigurationDelegate` */
 extension NavigationMultiCollectionViewController: FluidTransitionDestinationConfigurationDelegate {
     func transitionAllowsInteractiveDismiss(from destination: FluidDestinationViewController, to source: FluidSourceViewController, with navigation: FluidNavigationController?) -> Bool { return true }
     func transitionAllowsDismissFromChildViewControllers(from destination: FluidDestinationViewController, to source: FluidSourceViewController, with navigation: FluidNavigationController?) -> Bool { return true }
@@ -180,7 +180,7 @@ extension NavigationMultiCollectionViewController: FluidTransitionDestinationCon
     }
 }
 
-/* IMPORTANT: 🌊 Conform to `FluidDestinationActionDelegate` */
+/* IMPORTANT: 🌊 Conform to `FluidTransitionDestinationActionDelegate` */
 extension NavigationMultiCollectionViewController: FluidTransitionDestinationActionDelegate {
     func transitionPresentAnimationDidProgress(from source: FluidSourceViewController, to destination: FluidDestinationViewController,
                                                with navigation: FluidNavigationController?, on container: UIView?,

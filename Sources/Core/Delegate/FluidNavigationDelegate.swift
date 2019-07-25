@@ -63,7 +63,7 @@ public protocol FluidNavigationConfigurationDelegate: FluidDelegate {
 }
 
 /**
- The `FluidConfigurationDelegate` for the source view controller and the navigation animation.
+ The `FluidNavigationConfigurationDelegate` for the source view controller and the navigation animation.
  */
 public protocol FluidNavigationSourceConfigurationDelegate: FluidNavigationConfigurationDelegate {
     /**
@@ -216,7 +216,7 @@ public extension FluidNavigationSourceConfigurationDelegate {
 }
 
 /**
- The `FluidConfigurationDelegate` for the destination view controller and the navigation animation.
+ The `FluidNavigationConfigurationDelegate` for the destination view controller and the navigation animation.
  */
 public protocol FluidNavigationDestinationConfigurationDelegate: FluidNavigationConfigurationDelegate {
     /**

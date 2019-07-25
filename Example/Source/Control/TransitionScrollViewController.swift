@@ -12,7 +12,7 @@ import Fluidable
 
 /* IMPORTANT: 🌊 Conform to `Fluidable` protocol */
 class TransitionScrollViewController: TransitionBaseViewController, Fluidable {
-    /* IMPORTANT: 🌊 Define the delegate to receive messages from `FluidDestinationConfigurationDelegate` and `FluidDestinationActionDelegate` */
+    /* IMPORTANT: 🌊 Define the delegate to receive messages from `FluidTransitionDestinationConfigurationDelegate` and `FluidTransitionDestinationActionDelegate` */
     var fluidableTransitionDelegate: FluidViewControllerTransitioningDelegate = FluidViewControllerTransitioningDelegate()
 
     /** Dummy value to prevent UIViewPropertyAnimator from finishing immediately. */
@@ -99,7 +99,7 @@ class TransitionScrollViewController: TransitionBaseViewController, Fluidable {
     }
 }
 
-/* IMPORTANT: 🌊 Conform to `FluidDestinationConfigurationDelegate` */
+/* IMPORTANT: 🌊 Conform to `FluidTransitionDestinationConfigurationDelegate` */
 extension TransitionScrollViewController: FluidTransitionDestinationConfigurationDelegate {
     func transitionAllowsInteractiveDismiss(from destination: FluidDestinationViewController, to source: FluidSourceViewController, with navigation: FluidNavigationController?) -> Bool { return true }
     func transitionAllowsDismissFromChildViewControllers(from destination: FluidDestinationViewController, to source: FluidSourceViewController, with navigation: FluidNavigationController?) -> Bool { return true }
@@ -238,7 +238,7 @@ extension TransitionScrollViewController: FluidTransitionDestinationConfiguratio
     }
 }
 
-/* IMPORTANT: 🌊 Conform to `FluidDestinationActionDelegate` */
+/* IMPORTANT: 🌊 Conform to `FluidTransitionDestinationActionDelegate` */
 extension TransitionScrollViewController: FluidTransitionDestinationActionDelegate {
     func transitionPresentAnimationDidProgress(from source: FluidSourceViewController, to destination: FluidDestinationViewController,
                                                with navigation: FluidNavigationController?, on container: UIView?,

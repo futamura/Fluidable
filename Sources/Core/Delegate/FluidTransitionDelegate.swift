@@ -64,7 +64,7 @@ public protocol FluidTransitionConfigurationDelegate: FluidDelegate {
 }
 
 /**
- The `FluidConfigurationDelegate` for the source view controller and the transition animation.
+ The `FluidTransitionConfigurationDelegate` for the source view controller and the transition animation.
  */
 public protocol FluidTransitionSourceConfigurationDelegate: FluidTransitionConfigurationDelegate {
     /**
@@ -217,7 +217,7 @@ public extension FluidTransitionSourceConfigurationDelegate {
 }
 
 /**
- The `FluidConfigurationDelegate` for the destination view controller and the transition animation.
+ The `FluidTransitionConfigurationDelegate` for the destination view controller and the transition animation.
  */
 public protocol FluidTransitionDestinationConfigurationDelegate: FluidTransitionConfigurationDelegate {
     /**

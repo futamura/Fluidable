@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Fluidable
 
-/* IMPORTANT: 🌊 Conform to `FluidDestinationConfigurationDelegate` */
+/* IMPORTANT: 🌊 Conform to `FluidTransitionSourceConfigurationDelegate` */
 extension RootViewController: FluidTransitionSourceConfigurationDelegate {
     func transitionPresentationStyle(from source: FluidSourceViewController, to destination: FluidDestinationViewController,
                                      with navigation: FluidNavigationController?) -> FluidTransitionStyle {
@@ -160,7 +160,7 @@ extension RootViewController: FluidTransitionSourceConfigurationDelegate {
     }
 }
 
-/* IMPORTANT: 🌊 Conform to `FluidDestinationActionDelegate` */
+/* IMPORTANT: 🌊 Conform to `FluidTransitionSourceActionDelegate` */
 extension RootViewController: FluidTransitionSourceActionDelegate {
     func transitionPresentAnimationDidProgress(from source: FluidSourceViewController, to destination: FluidDestinationViewController,
                                                with navigation: FluidNavigationController?, on container: UIView?,

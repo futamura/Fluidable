@@ -39,7 +39,7 @@ internal protocol FluidParametersCompatible: CustomStringConvertible {
     var destinationViewControllerDelegate: DestinationViewControllerDelegate! { get set }
     var destinationResizableDelegate: FluidResizableTransitionDelegate? { get set }
 
-    /** Views for `FluidActionDelegate` */
+    /** Container views */
     var transitionContainerView: UIView! { get set }
     var layoutContainerView: UIView! { get set }
     var sourceView: UIView! { get set }

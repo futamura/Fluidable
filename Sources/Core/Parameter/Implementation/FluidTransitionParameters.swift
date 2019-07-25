@@ -42,7 +42,7 @@ struct FluidTransitionParameters: FluidParametersCompatible {
     /** The `FluidTransitionInteractionType` value. */
     var interactionType: FluidDriverInteractionType
 
-    /** Views for `FluidActionDelegate` */
+    /** Container views */
     weak var transitionContainerView: UIView!
     weak var sourceView: UIView!
     weak var destinationView: UIView!
