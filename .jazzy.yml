@@ -53,7 +53,7 @@ custom_categories:
     - FluidNavigationSourceActionDelegate
     - FluidNavigationDestinationActionDelegate
 
-    - FluidViewControllerTransitionDelegate
+    - FluidViewControllerTransitioningDelegate
     - FluidTransitionSourceConfigurationDelegate
     - FluidTransitionDestinationConfigurationDelegate
     - FluidTransitionSourceActionDelegate
@@ -61,21 +61,21 @@ custom_categories:
 
     - FluidResizableTransitionDelegate
 
-  - name: Transition - Transition Style
+  - name: Configuration - Transition Style
     children:
     - FluidPresentationStyle
     - FluidDrawerPosition
     - FluidSlideDirection
-  - name: Transition - Background
-    children:
-    - FluidBackgroundStyle
-  - name: Transition - Transition Frame
+  - name: Configuration - Frame Style
     children:
     - FluidInitialFrameDimension
     - FluidFinalFrameDimension
     - FluidInitialFrameStyle
     - FluidFinalFrameStyle
     - FluidRoundCornerStyle
+  - name: Configuration - Background Style
+    children:
+    - FluidBackgroundStyle
   - name: Transition - Custom Transition
     children:
       - FluidTransitionAnimatorCompatible

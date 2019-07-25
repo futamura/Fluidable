@@ -436,203 +436,105 @@
     },
     {
       "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
-      "line": 70,
-      "symbol": "FluidPresentationStyle.isFluid",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
-      "line": 76,
-      "symbol": "FluidPresentationStyle.isScale",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
-      "line": 82,
-      "symbol": "FluidPresentationStyle.isSlide",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
-      "line": 88,
-      "symbol": "FluidPresentationStyle.isVerticalSlide",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
-      "line": 94,
-      "symbol": "FluidPresentationStyle.isTopSlide",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
-      "line": 100,
-      "symbol": "FluidPresentationStyle.isBottomSlide",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
-      "line": 106,
-      "symbol": "FluidPresentationStyle.isDrawer",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
-      "line": 112,
-      "symbol": "FluidPresentationStyle.isVerticalDrawer",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
-      "line": 118,
-      "symbol": "FluidPresentationStyle.isTopDrawer",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
-      "line": 124,
-      "symbol": "FluidPresentationStyle.isBottomDrawer",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
-      "line": 130,
-      "symbol": "FluidPresentationStyle.interactionBehavior",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
-      "line": 150,
+      "line": 155,
       "symbol": "FluidPresentationStyle.init(index:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
-      "line": 160,
+      "line": 165,
       "symbol": "FluidPresentationStyle.init(fromNavigation:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
-      "line": 168,
+      "line": 173,
       "symbol": "FluidPresentationStyle.init(fromTransition:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
-      "line": 272,
-      "symbol": "FluidInteractionBehavior.isScale",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
-      "line": 273,
-      "symbol": "FluidInteractionBehavior.isVertical",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
-      "line": 274,
-      "symbol": "FluidInteractionBehavior.isBidirectional",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
-      "line": 304,
+      "line": 309,
       "symbol": "FluidSlideDirection.isFromTop",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
-      "line": 305,
+      "line": 310,
       "symbol": "FluidSlideDirection.isFromBottom",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
-      "line": 306,
+      "line": 311,
       "symbol": "FluidSlideDirection.isFromLeft",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
-      "line": 307,
+      "line": 312,
       "symbol": "FluidSlideDirection.isFromRight",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
-      "line": 308,
+      "line": 313,
       "symbol": "FluidSlideDirection.isFromVertical",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
-      "line": 309,
+      "line": 314,
       "symbol": "FluidSlideDirection.isFromHorizontal",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
-      "line": 338,
+      "line": 343,
       "symbol": "FluidDrawerPosition.isTop",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
-      "line": 339,
+      "line": 344,
       "symbol": "FluidDrawerPosition.isBottom",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
-      "line": 340,
+      "line": 345,
       "symbol": "FluidDrawerPosition.isLeft",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
-      "line": 341,
+      "line": 346,
       "symbol": "FluidDrawerPosition.isRight",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
-      "line": 342,
+      "line": 347,
       "symbol": "FluidDrawerPosition.isVertical",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidPresentationStyle.swift",
-      "line": 343,
+      "line": 348,
       "symbol": "FluidDrawerPosition.isHorizontal",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
