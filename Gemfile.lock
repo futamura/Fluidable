@@ -281,7 +281,7 @@ DEPENDENCIES
   cocoapods-clean
   cocoapods-deintegrate
   fastlane
-  jazzy (= 0.9.6)
+  jazzy
   pry
   slather
   travis

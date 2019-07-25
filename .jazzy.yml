@@ -53,6 +53,7 @@ custom_categories:
     - FluidDestinationConfigurationDelegate
     - FluidNavigationDestinationConfigurationDelegate
     - FluidTransitionDestinationConfigurationDelegate
+    - FluidResizableTransitionDelegate
     - FluidActionDelegate
     - FluidSourceActionDelegate
     - FluidNavigationSourceActionDelegate
