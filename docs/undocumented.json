@@ -50,57 +50,29 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidNavigationDelegate.swift",
-      "line": null,
-      "symbol": "FluidNavigationDestinationActionDelegate",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidNavigationDelegate.swift",
-      "line": null,
-      "symbol": "FluidNavigationSourceActionDelegate",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidNavigationDelegate.swift",
-      "line": 312,
-      "symbol": "FluidNavigationSourceActionDelegate",
-      "symbol_kind": "source.lang.swift.decl.protocol",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidNavigationDelegate.swift",
-      "line": 322,
-      "symbol": "FluidNavigationDestinationActionDelegate",
-      "symbol_kind": "source.lang.swift.decl.protocol",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidTransitionDelegate.swift",
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidTransitionDelegate+Implementation.swift",
       "line": null,
       "symbol": "FluidTransitionDestinationActionDelegate",
       "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidTransitionDelegate.swift",
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidTransitionDelegate+Implementation.swift",
       "line": null,
       "symbol": "FluidTransitionSourceActionDelegate",
       "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidTransitionDelegate.swift",
-      "line": 349,
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidTransitionDelegate+Implementation.swift",
+      "line": 25,
       "symbol": "FluidTransitionSourceActionDelegate",
       "symbol_kind": "source.lang.swift.decl.protocol",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidTransitionDelegate.swift",
-      "line": 359,
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidTransitionDelegate+Implementation.swift",
+      "line": 35,
       "symbol": "FluidTransitionDestinationActionDelegate",
       "symbol_kind": "source.lang.swift.decl.protocol",
       "warning": "undocumented"

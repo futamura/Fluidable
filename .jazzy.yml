@@ -26,6 +26,8 @@ source_directory: Sources
 umbrella_header: "Sources/Fluidable.h"
 
 exclude:
+  - Sources/Core/FluidNavigationDelegate.swift
+  - Sources/Core/FluidTransitionDelegate.swift
   - Sources/Layout/*.swift
   - Sources/Helper/*.swift
   - Sources/Shared/*.swift
@@ -33,11 +35,6 @@ exclude:
   - Example/*
   - Tests/*
   - UITests/*
-# - FluidNavigationConfigurationDelegate
-# - FluidTransitionConfigurationDelegate
-# - FluidNavigationActionDelegate
-# - FluidTransitionActionDelegate
-# - FluidResizable
 
 custom_categories:
 

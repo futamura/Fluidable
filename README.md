@@ -196,9 +196,9 @@ extension TransitionScrollViewController: FluidTransitionDestinationActionDelega
 
 ### Resizable drawer
 
-`FluidResizableTransitionDelegate` is available for only bottom drawer.
+The `FluidResizableTransitionDelegate` is available for only bottom drawer.
 
-1) Conform to [`FluidResizable`](https://gumob.github.io/Fluidable/Protocols/FluidResizable.html) protocol in the <span style="color:magenta">destination</span> view controller:
+1) Conform to [`FluidResizableTransitionDelegate`](https://gumob.github.io/Fluidable/Protocols/FluidResizableTransitionDelegate.html) protocol in the <span style="color:magenta">destination</span> view controller:
 ```swift
 class TransitionScrollViewController: TransitionBaseViewController, Fluidable, FluidResizable {
   required init?(coder aDecoder: NSCoder) {
