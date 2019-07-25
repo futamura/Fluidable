@@ -2,126 +2,70 @@
   "warnings": [
     {
       "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidNavigationControllerDelegate.swift",
-      "line": null,
-      "symbol": "FluidNavigationControllerDelegate",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidNavigationControllerDelegate.swift",
-      "line": 11,
-      "symbol": "FluidNavigationControllerDelegate",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidNavigationControllerDelegate.swift",
-      "line": 20,
+      "line": 23,
       "symbol": "FluidNavigationControllerDelegate.init()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidNavigationControllerDelegate.swift",
-      "line": 41,
+      "line": 44,
       "symbol": "FluidNavigationControllerDelegate.navigationController(_:willShow:animated:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidNavigationControllerDelegate.swift",
-      "line": 52,
+      "line": 55,
       "symbol": "FluidNavigationControllerDelegate.navigationController(_:didShow:animated:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidNavigationControllerDelegate.swift",
-      "line": 63,
+      "line": 66,
       "symbol": "FluidNavigationControllerDelegate.navigationController(_:animationControllerFor:from:to:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidNavigationControllerDelegate.swift",
-      "line": 91,
+      "line": 94,
       "symbol": "FluidNavigationControllerDelegate.navigationController(_:interactionControllerFor:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidTransitionDelegate+Implementation.swift",
-      "line": null,
-      "symbol": "FluidTransitionDestinationActionDelegate",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidTransitionDelegate+Implementation.swift",
-      "line": null,
-      "symbol": "FluidTransitionSourceActionDelegate",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidTransitionDelegate+Implementation.swift",
-      "line": 25,
-      "symbol": "FluidTransitionSourceActionDelegate",
-      "symbol_kind": "source.lang.swift.decl.protocol",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidTransitionDelegate+Implementation.swift",
-      "line": 35,
-      "symbol": "FluidTransitionDestinationActionDelegate",
-      "symbol_kind": "source.lang.swift.decl.protocol",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidViewControllerTransitioningDelegate.swift",
-      "line": null,
-      "symbol": "FluidViewControllerTransitioningDelegate",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidViewControllerTransitioningDelegate.swift",
-      "line": 12,
-      "symbol": "FluidViewControllerTransitioningDelegate",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidViewControllerTransitioningDelegate.swift",
-      "line": 21,
+      "line": 24,
       "symbol": "FluidViewControllerTransitioningDelegate.init()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidViewControllerTransitioningDelegate.swift",
-      "line": 41,
+      "line": 44,
       "symbol": "FluidViewControllerTransitioningDelegate.animationController(forPresented:presenting:source:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidViewControllerTransitioningDelegate.swift",
-      "line": 49,
+      "line": 52,
       "symbol": "FluidViewControllerTransitioningDelegate.animationController(forDismissed:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidViewControllerTransitioningDelegate.swift",
-      "line": 54,
+      "line": 57,
       "symbol": "FluidViewControllerTransitioningDelegate.interactionControllerForPresentation(using:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Delegate/FluidViewControllerTransitioningDelegate.swift",
-      "line": 59,
+      "line": 62,
       "symbol": "FluidViewControllerTransitioningDelegate.interactionControllerForDismissal(using:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"

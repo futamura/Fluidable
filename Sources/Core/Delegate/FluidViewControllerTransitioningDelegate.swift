@@ -9,6 +9,9 @@
 import Foundation
 import UIKit
 
+/**
+  A class that conforms to `UIViewControllerTransitioningDelegate` protocol.
+ */
 public class FluidViewControllerTransitioningDelegate: NSObject, FluidControllerDelegateCompatible {
     internal typealias ViewAnimator = FluidTransitionViewAnimator
     internal typealias PresentDriver = FluidTransitionPresentDriver

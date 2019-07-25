@@ -77,6 +77,12 @@
                 <a class="nav-group-task-link" href="Protocols/FluidNavigationDestinationConfigurationDelegate.html">FluidNavigationDestinationConfigurationDelegate</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/FluidNavigationSourceActionDelegate.html">FluidNavigationSourceActionDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/FluidNavigationDestinationActionDelegate.html">FluidNavigationDestinationActionDelegate</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/FluidTransitionSourceConfigurationDelegate.html">FluidTransitionSourceConfigurationDelegate</a>
               </li>
               <li class="nav-group-task">
@@ -379,7 +385,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>A class that conforms to <code>UINavigationControllerDelegate</code> protocol.</p>
 
                         <a href="Classes/FluidNavigationControllerDelegate.html" class="slightly-smaller">See more</a>
                       </div>
@@ -454,6 +460,62 @@
                     </section>
                   </div>
                 </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9Fluidable35FluidNavigationSourceActionDelegateP"></a>
+                    <a name="//apple_ref/swift/Protocol/FluidNavigationSourceActionDelegate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Fluidable35FluidNavigationSourceActionDelegateP">FluidNavigationSourceActionDelegate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The methods in this protocol let you control views while performing the <code><a href="Classes/FluidNavigationControllerDelegate.html">FluidNavigationControllerDelegate</a></code> transition.</p>
+
+                        <a href="Protocols/FluidNavigationSourceActionDelegate.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">FluidNavigationSourceActionDelegate</span> <span class="p">:</span> <span class="kt"><a href="Protocols/FluidNavigationActionDelegate.html">FluidNavigationActionDelegate</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9Fluidable40FluidNavigationDestinationActionDelegateP"></a>
+                    <a name="//apple_ref/swift/Protocol/FluidNavigationDestinationActionDelegate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Fluidable40FluidNavigationDestinationActionDelegateP">FluidNavigationDestinationActionDelegate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The methods in this protocol let you control views while performing the <code><a href="Classes/FluidNavigationControllerDelegate.html">FluidNavigationControllerDelegate</a></code> transition.</p>
+
+                        <a href="Protocols/FluidNavigationDestinationActionDelegate.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">FluidNavigationDestinationActionDelegate</span> <span class="p">:</span> <span class="kt"><a href="Protocols/FluidNavigationActionDelegate.html">FluidNavigationActionDelegate</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
               </ul>
             </div>
             <div class="task-group">
@@ -517,38 +579,6 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:9Fluidable32FluidResizableTransitionDelegateP"></a>
-                    <a name="//apple_ref/swift/Protocol/FluidResizableTransitionDelegate" class="dashAnchor"></a>
-                    <a class="token" href="#/s:9Fluidable32FluidResizableTransitionDelegateP">FluidResizableTransitionDelegate</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The <code>FluidResizableDelegate</code> protocol. The delegates will be invoked if you only specify the presentation style to .drawer(position: top) or  .drawer(position: bottom)</p>
-
-                        <a href="Protocols/FluidResizableTransitionDelegate.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">FluidResizableTransitionDelegate</span> <span class="p">:</span> <span class="kt">NSObjectProtocol</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul class="item-container">
-                <li class="item">
-                  <div>
-                    <code>
                     <a name="/s:9Fluidable35FluidTransitionSourceActionDelegateP"></a>
                     <a name="//apple_ref/swift/Protocol/FluidTransitionSourceActionDelegate" class="dashAnchor"></a>
                     <a class="token" href="#/s:9Fluidable35FluidTransitionSourceActionDelegateP">FluidTransitionSourceActionDelegate</a>
@@ -559,7 +589,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The methods in this protocol let you control views while performing the <code><a href="Classes/FluidViewControllerTransitioningDelegate.html">FluidViewControllerTransitioningDelegate</a></code> transition.</p>
 
                         <a href="Protocols/FluidTransitionSourceActionDelegate.html" class="slightly-smaller">See more</a>
                       </div>
@@ -587,7 +617,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The methods in this protocol let you control views while performing the <code><a href="Classes/FluidViewControllerTransitioningDelegate.html">FluidViewControllerTransitioningDelegate</a></code> transition.</p>
 
                         <a href="Protocols/FluidTransitionDestinationActionDelegate.html" class="slightly-smaller">See more</a>
                       </div>
@@ -596,6 +626,34 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">FluidTransitionDestinationActionDelegate</span> <span class="p">:</span> <span class="kt"><a href="Protocols/FluidTransitionActionDelegate.html">FluidTransitionActionDelegate</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9Fluidable32FluidResizableTransitionDelegateP"></a>
+                    <a name="//apple_ref/swift/Protocol/FluidResizableTransitionDelegate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Fluidable32FluidResizableTransitionDelegateP">FluidResizableTransitionDelegate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The <code>FluidResizableDelegate</code> protocol. The delegates will be invoked if you only specify the presentation style to .drawer(position: top) or  .drawer(position: bottom)</p>
+
+                        <a href="Protocols/FluidResizableTransitionDelegate.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">FluidResizableTransitionDelegate</span> <span class="p">:</span> <span class="kt">NSObjectProtocol</span></code></pre>
 
                         </div>
                       </div>

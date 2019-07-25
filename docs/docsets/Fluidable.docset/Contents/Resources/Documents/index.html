@@ -76,6 +76,12 @@
                 <a class="nav-group-task-link" href="Protocols/FluidNavigationDestinationConfigurationDelegate.html">FluidNavigationDestinationConfigurationDelegate</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/FluidNavigationSourceActionDelegate.html">FluidNavigationSourceActionDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/FluidNavigationDestinationActionDelegate.html">FluidNavigationDestinationActionDelegate</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/FluidTransitionSourceConfigurationDelegate.html">FluidTransitionSourceConfigurationDelegate</a>
               </li>
               <li class="nav-group-task">
@@ -514,9 +520,9 @@ You can build an example app by choosing <code>FluidableExample</code> from the 
 </code></pre>
 <h3 id='resizable-drawer' class='heading'>Resizable drawer</h3>
 
-<p><code><a href="Protocols/FluidResizableTransitionDelegate.html">FluidResizableTransitionDelegate</a></code> is available for only bottom drawer.</p>
+<p>The <code><a href="Protocols/FluidResizableTransitionDelegate.html">FluidResizableTransitionDelegate</a></code> is available for only bottom drawer.</p>
 
-<p>1) Conform to <a href="https://gumob.github.io/Fluidable/Protocols/FluidResizable.html"><code><a href="Protocols/FluidResizable.html">FluidResizable</a></code></a> protocol in the <span style="color:magenta">destination</span> view controller:</p>
+<p>1) Conform to <a href="https://gumob.github.io/Fluidable/Protocols/FluidResizableTransitionDelegate.html"><code><a href="Protocols/FluidResizableTransitionDelegate.html">FluidResizableTransitionDelegate</a></code></a> protocol in the <span style="color:magenta">destination</span> view controller:</p>
 <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">TransitionScrollViewController</span><span class="p">:</span> <span class="kt">TransitionBaseViewController</span><span class="p">,</span> <span class="kt">Fluidable</span><span class="p">,</span> <span class="kt">FluidResizable</span> <span class="p">{</span>
   <span class="kd">required</span> <span class="nf">init</span><span class="p">?(</span><span class="n">coder</span> <span class="nv">aDecoder</span><span class="p">:</span> <span class="kt">NSCoder</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">super</span><span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">coder</span><span class="p">:</span> <span class="n">aDecoder</span><span class="p">)</span>

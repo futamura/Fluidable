@@ -77,6 +77,12 @@
                 <a class="nav-group-task-link" href="../Protocols/FluidNavigationDestinationConfigurationDelegate.html">FluidNavigationDestinationConfigurationDelegate</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/FluidNavigationSourceActionDelegate.html">FluidNavigationSourceActionDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/FluidNavigationDestinationActionDelegate.html">FluidNavigationDestinationActionDelegate</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols/FluidTransitionSourceConfigurationDelegate.html">FluidTransitionSourceConfigurationDelegate</a>
               </li>
               <li class="nav-group-task">
@@ -349,6 +355,9 @@
                     <a name="//apple_ref/swift/Method/navigationAllowsInteractiveDismiss(from:to:with:)" class="dashAnchor"></a>
                     <a class="token" href="#/s:9Fluidable47FluidNavigationDestinationConfigurationDelegateP34navigationAllowsInteractiveDismiss4from2to4withSbA2A_So16UIViewControllerCXc_A2A_AIXcA2A_So012UINavigationO0CXcSgtF">navigationAllowsInteractiveDismiss(from:to:with:)</a>
                     </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
                   </div>
                   <div class="height-container">
                     <div class="pointer-container"></div>
@@ -357,6 +366,10 @@
                       <div class="abstract">
                         <p>The function that determines whether an interactive dismissal navigation can begin.</p>
 
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -412,6 +425,72 @@
                       <div>
                         <h4>Return Value</h4>
                         <p>A <code>Boolean</code> value.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9Fluidable36FluidNavigationConfigurationDelegateP37navigationAdditionalPresentAnimations4from2to4with2on16initialDimension05finalO00N5Style0pQ00fQ08duration6easingSayAA0B18AnimatorCompatible_pGSgA2A_So16UIViewControllerCXc_A2A_ATXcA2A_So012UINavigationW0CXcSgSo0V0CSgAA0b12InitialFrameO0VAA0b5FinalzO0VAA0byzQ0VAA0b5FinalzQ0VAA0bcQ0OSdAA0bT6EasingOtF"></a>
+                    <a name="//apple_ref/swift/Method/navigationAdditionalPresentAnimations(from:to:with:on:initialDimension:finalDimension:initialStyle:finalStyle:navigationStyle:duration:easing:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Fluidable36FluidNavigationConfigurationDelegateP37navigationAdditionalPresentAnimations4from2to4with2on16initialDimension05finalO00N5Style0pQ00fQ08duration6easingSayAA0B18AnimatorCompatible_pGSgA2A_So16UIViewControllerCXc_A2A_ATXcA2A_So012UINavigationW0CXcSgSo0V0CSgAA0b12InitialFrameO0VAA0b5FinalzO0VAA0byzQ0VAA0b5FinalzQ0VAA0bcQ0OSdAA0bT6EasingOtF">navigationAdditionalPresentAnimations(from:to:with:on:initialDimension:finalDimension:initialStyle:finalStyle:navigationStyle:duration:easing:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">navigationAdditionalPresentAnimations</span><span class="p">(</span><span class="n">from</span> <span class="nv">source</span><span class="p">:</span> <span class="kt"><a href="../Type Aliases.html#/s:9Fluidable25FluidSourceViewControllera">FluidSourceViewController</a></span><span class="p">,</span> <span class="n">to</span> <span class="nv">destination</span><span class="p">:</span> <span class="kt"><a href="../Type Aliases.html#/s:9Fluidable30FluidDestinationViewControllera">FluidDestinationViewController</a></span><span class="p">,</span> <span class="n">with</span> <span class="nv">navigation</span><span class="p">:</span> <span class="kt"><a href="../Type Aliases.html#/s:9Fluidable25FluidNavigationControllera">FluidNavigationController</a></span><span class="p">?,</span> <span class="n">on</span> <span class="nv">container</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">?,</span>
+                                           <span class="nv">initialDimension</span><span class="p">:</span> <span class="kt"><a href="../Structs/FluidInitialFrameDimension.html">FluidInitialFrameDimension</a></span><span class="p">,</span> <span class="nv">finalDimension</span><span class="p">:</span> <span class="kt"><a href="../Structs/FluidFinalFrameDimension.html">FluidFinalFrameDimension</a></span><span class="p">,</span> <span class="nv">initialStyle</span><span class="p">:</span> <span class="kt"><a href="../Structs/FluidInitialFrameStyle.html">FluidInitialFrameStyle</a></span><span class="p">,</span> <span class="nv">finalStyle</span><span class="p">:</span> <span class="kt"><a href="../Structs/FluidFinalFrameStyle.html">FluidFinalFrameStyle</a></span><span class="p">,</span>
+                                           <span class="nv">navigationStyle</span><span class="p">:</span> <span class="kt"><a href="../Enums/FluidNavigationStyle.html">FluidNavigationStyle</a></span><span class="p">,</span> <span class="nv">duration</span><span class="p">:</span> <span class="kt">TimeInterval</span><span class="p">,</span> <span class="nv">easing</span><span class="p">:</span> <span class="kt">FluidAnimatorEasing</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">FluidAnimatorCompatible</span><span class="p">]?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9Fluidable36FluidNavigationConfigurationDelegateP37navigationAdditionalDismissAnimations4from2to4with2on16initialDimension05finalO00N5Style0pQ00fQ08duration6easingSayAA0B18AnimatorCompatible_pGSgA2A_So16UIViewControllerCXc_A2A_ATXcA2A_So012UINavigationW0CXcSgSo0V0CSgAA0b12InitialFrameO0VAA0b5FinalzO0VAA0byzQ0VAA0b5FinalzQ0VAA0bcQ0OSdAA0bT6EasingOtF"></a>
+                    <a name="//apple_ref/swift/Method/navigationAdditionalDismissAnimations(from:to:with:on:initialDimension:finalDimension:initialStyle:finalStyle:navigationStyle:duration:easing:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Fluidable36FluidNavigationConfigurationDelegateP37navigationAdditionalDismissAnimations4from2to4with2on16initialDimension05finalO00N5Style0pQ00fQ08duration6easingSayAA0B18AnimatorCompatible_pGSgA2A_So16UIViewControllerCXc_A2A_ATXcA2A_So012UINavigationW0CXcSgSo0V0CSgAA0b12InitialFrameO0VAA0b5FinalzO0VAA0byzQ0VAA0b5FinalzQ0VAA0bcQ0OSdAA0bT6EasingOtF">navigationAdditionalDismissAnimations(from:to:with:on:initialDimension:finalDimension:initialStyle:finalStyle:navigationStyle:duration:easing:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">navigationAdditionalDismissAnimations</span><span class="p">(</span><span class="n">from</span> <span class="nv">destination</span><span class="p">:</span> <span class="kt"><a href="../Type Aliases.html#/s:9Fluidable30FluidDestinationViewControllera">FluidDestinationViewController</a></span><span class="p">,</span> <span class="n">to</span> <span class="nv">source</span><span class="p">:</span> <span class="kt"><a href="../Type Aliases.html#/s:9Fluidable25FluidSourceViewControllera">FluidSourceViewController</a></span><span class="p">,</span> <span class="n">with</span> <span class="nv">navigation</span><span class="p">:</span> <span class="kt"><a href="../Type Aliases.html#/s:9Fluidable25FluidNavigationControllera">FluidNavigationController</a></span><span class="p">?,</span> <span class="n">on</span> <span class="nv">container</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">?,</span>
+                                           <span class="nv">initialDimension</span><span class="p">:</span> <span class="kt"><a href="../Structs/FluidInitialFrameDimension.html">FluidInitialFrameDimension</a></span><span class="p">,</span> <span class="nv">finalDimension</span><span class="p">:</span> <span class="kt"><a href="../Structs/FluidFinalFrameDimension.html">FluidFinalFrameDimension</a></span><span class="p">,</span> <span class="nv">initialStyle</span><span class="p">:</span> <span class="kt"><a href="../Structs/FluidInitialFrameStyle.html">FluidInitialFrameStyle</a></span><span class="p">,</span> <span class="nv">finalStyle</span><span class="p">:</span> <span class="kt"><a href="../Structs/FluidFinalFrameStyle.html">FluidFinalFrameStyle</a></span><span class="p">,</span>
+                                           <span class="nv">navigationStyle</span><span class="p">:</span> <span class="kt"><a href="../Enums/FluidNavigationStyle.html">FluidNavigationStyle</a></span><span class="p">,</span> <span class="nv">duration</span><span class="p">:</span> <span class="kt">TimeInterval</span><span class="p">,</span> <span class="nv">easing</span><span class="p">:</span> <span class="kt">FluidAnimatorEasing</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">FluidAnimatorCompatible</span><span class="p">]?</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
