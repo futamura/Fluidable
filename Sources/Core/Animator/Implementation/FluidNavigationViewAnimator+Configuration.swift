@@ -14,7 +14,7 @@ import Foundation
 extension FluidNavigationViewAnimator {
     func createFrameAnimation(_ isReversed: Bool = false) -> [FluidAnimatorCompatible] {
         var animators: [FluidAnimatorCompatible] = [FluidAnimatorCompatible]()
-        /* NOTE: Configure properties to animate */
+        // NOTE: Configure properties to animate
         let transitionDuration: TimeInterval = !isReversed ? self.activeDuration : FluidConst.fluidInteractionReverseDuration
         let transitionEasing: FluidAnimatorEasing = !isReversed ? self.activeEasing : .easeInOutQuad
         let fromContainerSize: CGSize = self.fromContainerSize(isReversed)
@@ -55,7 +55,7 @@ extension FluidNavigationViewAnimator {
             "fromStyle:".lpad() + String(describing: fromStyle),
             "toStyle:".lpad() + String(describing: toStyle),
         ])
-        /* NOTE: Set properties before run animation */
+        // NOTE: Set properties before run animation
         if self.animationType.isPresent {
             self.layoutContainerView.alpha = fromStyle.alpha
             self.layoutContainerView.frame = fromFrame
@@ -63,7 +63,7 @@ extension FluidNavigationViewAnimator {
             self.layout.apply(edges: fromConstants)
             self.transitionContainerView.updateLayoutImmediately()
         }
-        /* NOTE: Configure constraint animator */
+        // NOTE: Configure constraint animator
         self.layout.apply(edges: toConstants)
         self.transitionContainerView.setNeedsLayout()
         let frameConstraintAnimator: FluidPropertyAnimator = .init(duration: transitionDuration, easing: transitionEasing, id: "frameConstraintAnimator (\(String(describing: self.animationType).capitalized))")
@@ -75,7 +75,7 @@ extension FluidNavigationViewAnimator {
             self.transitionContainerView.layoutIfNeeded()
         })
         animators.append(frameConstraintAnimator)
-        /* NOTE: Return animators */
+        // NOTE: Return animators
         return animators
     }
 }
