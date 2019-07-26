@@ -198,16 +198,16 @@
     },
     {
       "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidProgressState.swift",
-      "line": null,
+      "line": 11,
       "symbol": "FluidProgressState",
-      "symbol_kind": "source.lang.swift.decl.extension",
+      "symbol_kind": "source.lang.swift.decl.enum",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Core/Enumeration/FluidProgressState.swift",
-      "line": 11,
+      "line": 22,
       "symbol": "FluidProgressState",
-      "symbol_kind": "source.lang.swift.decl.enum",
+      "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
     },
     {
@@ -240,13 +240,6 @@
     },
     {
       "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Fluidable+SafeArea.swift",
-      "line": null,
-      "symbol": "FluidNavigationBarCompatible",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Fluidable+SafeArea.swift",
       "line": 114,
       "symbol": "FluidNavigationBarCompatible",
       "symbol_kind": "source.lang.swift.decl.protocol",
@@ -257,6 +250,13 @@
       "line": 115,
       "symbol": "FluidNavigationBarCompatible.preferredSize",
       "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/Fluidable/Sources/Fluidable+SafeArea.swift",
+      "line": 118,
+      "symbol": "FluidNavigationBarCompatible",
+      "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
     },
     {
