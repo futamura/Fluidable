@@ -1,5 +1,5 @@
 //
-//  FluidTransitionCompatible+Configuration.swift
+//  FluidDriverCompatible+Configuration.swift
 //  Fluidable
 //
 //  Created by kojirof on 2019/06/29.
