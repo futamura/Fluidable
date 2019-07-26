@@ -26,8 +26,23 @@ source_directory: Sources
 umbrella_header: "Sources/Fluidable.h"
 
 exclude:
-  - Sources/Core/FluidNavigationDelegate.swift
-  - Sources/Core/FluidTransitionDelegate.swift
+  - Sources/Core/Proxy/FluidCompatible.swift
+  - Sources/Core/Enumeration/FluidAnimationType.swift
+  - Sources/Core/Enumeration/FluidInteractionType.swift
+  - Sources/Core/Enumeration/FluidNavigationStyle.swift
+  - Sources/Core/Enumeration/FluidTransitionStyle.swift
+  - Sources/Core/Enumeration/FluidFrameDimension.swift
+  - Sources/Core/Enumeration/FluidFrameStyle.swift
+  - Sources/Core/Animator/Protocol/*.swift
+  - Sources/Core/Animator/Implementation/*.swift
+  - Sources/Core/Driver/Protocol/*.swift
+  - Sources/Core/Driver/Implementation/*.swift
+  - Sources/Core/Gesture/Protocol/FluidGestureDelegate.swift
+  - Sources/Core/Gesture/Protocol/FluidGestureObservable.swift
+  - Sources/Core/Gesture/Protocol/FluidScrollObservable.swift
+  - Sources/Core/Gesture/Implementation/*.swift
+  - Sources/Core/Parameter/Protocol/*.swift
+  - Sources/Core/Parameter/Implementation/*.swift
   - Sources/Layout/*.swift
   - Sources/Helper/*.swift
   - Sources/Shared/*.swift
@@ -61,31 +76,36 @@ custom_categories:
 
     - FluidResizableTransitionDelegate
 
-  - name: Configuration - Transition Style
+  - name: Enumerations - Presentation Style
     children:
     - FluidPresentationStyle
     - FluidDrawerPosition
     - FluidSlideDirection
-  - name: Configuration - Frame Style
+
+  - name: Enumerations - Transtion & Interaction
+    children:
+    - FluidProgressState
+
+  - name: Struct - Transtion & Interaction
+    children:
+    - FluidGestureInfo
+    - FluidGestureDirection
+    - FluidGestureAxis
+    - FluidInteractionBehavior
+
+  - name: Struct - Frame and Style
     children:
     - FluidInitialFrameDimension
     - FluidFinalFrameDimension
     - FluidInitialFrameStyle
     - FluidFinalFrameStyle
     - FluidRoundCornerStyle
-  - name: Configuration - Background Style
-    children:
     - FluidBackgroundStyle
+
   - name: Transition - Custom Transition
     children:
       - FluidTransitionAnimatorCompatible
       - FluidTransitionAnimatorParameter
-
-  - name: Interaction
-    children:
-    - FluidGestureInfo
-    - FluidGestureDirection
-    - FluidGestureAxis
 
   - name: Proxy
     children:
@@ -161,6 +181,12 @@ custom_categories:
     children:
     - UITraitCollection
     - UIView+Adaptive
+    - AdaptiveViewContainer
+
+  - name: Extensions
+    children:
+    - CATransform3D
+    - CGAffineTransform
 
   - name: Guide
     children:

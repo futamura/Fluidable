@@ -265,11 +265,13 @@
 		A7F5CF2C22CAF80D00578043 /* Fluidable+Swizzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CF2922CAF80C00578043 /* Fluidable+Swizzle.swift */; };
 		A7F5CF2D22CAF80D00578043 /* Fluidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CF2A22CAF80D00578043 /* Fluidable.swift */; };
 		A7F5CF2E22CAF80D00578043 /* Fluidable+SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5CF2B22CAF80D00578043 /* Fluidable+SafeArea.swift */; };
+		DFABE10EFD09794EF26529DA /* FluidFrameDimension+Implementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE663B3ACA5FE0F6F1C72 /* FluidFrameDimension+Implementation.swift */; };
 		DFABE163F763A1533DF00F8F /* RootCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEE00E49C659753C6329F /* RootCollectionView.swift */; };
 		DFABE1986F3CF86C24A17BEC /* CoreGraphicsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEA20CD2E0B5FCF8348C4 /* CoreGraphicsSpec.swift */; };
 		DFABE2E93696D716B3785095 /* XCUIElement+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE8E88CFD40B74C6F4BD2 /* XCUIElement+Ext.swift */; };
 		DFABE3A3945F5556E9B7070D /* UITestEnv.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE6E1A8F12D7040B3B70A /* UITestEnv.swift */; };
 		DFABE3D588D52DA0D98549E4 /* AlignedCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEC72BC4B8623907A87C8 /* AlignedCollectionLayout.swift */; };
+		DFABE4842A1C8E53155C44A1 /* FluidFrameStyle+Implementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEC85FD8CDA919FC71496 /* FluidFrameStyle+Implementation.swift */; };
 		DFABE53D11423F959BB319B3 /* VectorMathSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE3B66C85AD6FFCF55485 /* VectorMathSpec.swift */; };
 		DFABE59F491E1000C30A1C54 /* TransitionBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE2E4B74F287D242141CC /* TransitionBaseViewController.swift */; };
 		DFABE5F91C76405E1AA14916 /* UIKitSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE820B184C0B8FCE69E18 /* UIKitSpec.swift */; };
@@ -277,6 +279,7 @@
 		DFABE7993BAB20DC78B46F00 /* UITestEnv.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE6E1A8F12D7040B3B70A /* UITestEnv.swift */; };
 		DFABE7DD7916A92821B4A056 /* MainSpec+Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEDA081BAFF75B8323607 /* MainSpec+Transition.swift */; };
 		DFABE996DD1A19EC135F1B78 /* AlignedCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEC72BC4B8623907A87C8 /* AlignedCollectionLayout.swift */; };
+		DFABEA62681D202A843D7B05 /* FluidCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE82527BBB15857D3AF0B /* FluidCompatible.swift */; };
 		DFABEA76E84782BC8CE6D34B /* QuartzCoreSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE7A41959B49A81407C6D /* QuartzCoreSpec.swift */; };
 		DFABEAF2177C6BE9A205486C /* RootCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEE00E49C659753C6329F /* RootCollectionView.swift */; };
 		DFABEAF4A0A81166CABF601F /* FoundationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEF30085D9F4794BDA1D5 /* FoundationSpec.swift */; };
@@ -526,10 +529,12 @@
 		DFABE3B66C85AD6FFCF55485 /* VectorMathSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorMathSpec.swift; sourceTree = "<group>"; };
 		DFABE4D624937D130011B37E /* MainSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSpec.swift; sourceTree = "<group>"; };
 		DFABE61D021ABDF43686FD95 /* RootViewController+Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RootViewController+Collection.swift"; sourceTree = "<group>"; };
+		DFABE663B3ACA5FE0F6F1C72 /* FluidFrameDimension+Implementation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidFrameDimension+Implementation.swift"; sourceTree = "<group>"; };
 		DFABE6E1A8F12D7040B3B70A /* UITestEnv.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITestEnv.swift; sourceTree = "<group>"; };
 		DFABE7A41959B49A81407C6D /* QuartzCoreSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuartzCoreSpec.swift; sourceTree = "<group>"; };
 		DFABE81DB86B266033ED2C1C /* NavigationChildViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationChildViewController.swift; sourceTree = "<group>"; };
 		DFABE820B184C0B8FCE69E18 /* UIKitSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitSpec.swift; sourceTree = "<group>"; };
+		DFABE82527BBB15857D3AF0B /* FluidCompatible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidCompatible.swift; sourceTree = "<group>"; };
 		DFABE8E88CFD40B74C6F4BD2 /* XCUIElement+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCUIElement+Ext.swift"; sourceTree = "<group>"; };
 		DFABE98EC8DD362AB89692C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NavigationMultiCollectionViewController.xib; sourceTree = "<group>"; };
 		DFABEA08D9E289F5D59BD2C4 /* RootViewController+Fluidable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RootViewController+Fluidable.swift"; sourceTree = "<group>"; };
@@ -539,6 +544,7 @@
 		DFABEB712A899C167DEFE0D5 /* AnimatorSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatorSpec.swift; sourceTree = "<group>"; };
 		DFABEC6EF0DB83BEFF91B48C /* NavigationBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBaseViewController.swift; sourceTree = "<group>"; };
 		DFABEC72BC4B8623907A87C8 /* AlignedCollectionLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlignedCollectionLayout.swift; sourceTree = "<group>"; };
+		DFABEC85FD8CDA919FC71496 /* FluidFrameStyle+Implementation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidFrameStyle+Implementation.swift"; sourceTree = "<group>"; };
 		DFABECB466141931C4EE8391 /* AutoMate+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AutoMate+Ext.swift"; sourceTree = "<group>"; };
 		DFABED248429BF91062F0299 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NavigationCollectionViewController.xib; sourceTree = "<group>"; };
 		DFABEDA081BAFF75B8323607 /* MainSpec+Transition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MainSpec+Transition.swift"; sourceTree = "<group>"; };
@@ -1007,6 +1013,7 @@
 			children = (
 				A7F5CE5622CAF6C000578043 /* FluidProxy.swift */,
 				A7F5CE5522CAF6C000578043 /* FluidProxy+UIViewController.swift */,
+				DFABE82527BBB15857D3AF0B /* FluidCompatible.swift */,
 			);
 			path = Proxy;
 			sourceTree = "<group>";
@@ -1066,6 +1073,8 @@
 				A7F5CE7222CAF6C000578043 /* FluidProgressState.swift */,
 				A7F5CE6C22CAF6C000578043 /* FluidRoundCornerStyle.swift */,
 				A7F5CE6D22CAF6C000578043 /* FluidTransitionStyle.swift */,
+				DFABE663B3ACA5FE0F6F1C72 /* FluidFrameDimension+Implementation.swift */,
+				DFABEC85FD8CDA919FC71496 /* FluidFrameStyle+Implementation.swift */,
 			);
 			path = Enumeration;
 			sourceTree = "<group>";
@@ -1614,6 +1623,9 @@
 				A7F5CECD22CAF6C100578043 /* UIViewAnimating+Extension.swift in Sources */,
 				A7F5CEB822CAF6C100578043 /* VectorMath.swift in Sources */,
 				DFABE3A3945F5556E9B7070D /* UITestEnv.swift in Sources */,
+				DFABE10EFD09794EF26529DA /* FluidFrameDimension+Implementation.swift in Sources */,
+				DFABE4842A1C8E53155C44A1 /* FluidFrameStyle+Implementation.swift in Sources */,
+				DFABEA62681D202A843D7B05 /* FluidCompatible.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
