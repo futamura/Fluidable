@@ -56,6 +56,9 @@
                 <a class="nav-group-task-link" href="Protocols/Fluidable.html">Fluidable</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/FluidResizable.html">FluidResizable</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Extensions/UIApplicationDelegate.html">UIApplicationDelegate</a>
               </li>
             </ul>
@@ -164,6 +167,17 @@
             </ul>
           </li>
           <li class="nav-group-name">
+            <a class="nav-group-name-link" href="NavigationBar.html">NavigationBar</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="NavigationBar.html#/s:9Fluidable18FluidNavigationBara">FluidNavigationBar</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/FluidNavigationBarCompatible.html">FluidNavigationBarCompatible</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
             <a class="nav-group-name-link" href="Proxy.html">Proxy</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
@@ -182,9 +196,6 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Type Aliases.html#/s:9Fluidable30FluidDestinationViewControllera">FluidDestinationViewController</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Type Aliases.html#/s:9Fluidable18FluidNavigationBara">FluidNavigationBar</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Type Aliases.html#/s:9Fluidable019FluidNavigationRootC18ControllerDelegatea">FluidNavigationRootNavigationControllerDelegate</a>
@@ -219,29 +230,6 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="usage.html">USAGE</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a class="nav-group-name-link" href="Other Protocols.html">Other Protocols</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/FluidNavigationActionDelegate.html">FluidNavigationActionDelegate</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/FluidNavigationBarCompatible.html">FluidNavigationBarCompatible</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/FluidNavigationConfigurationDelegate.html">FluidNavigationConfigurationDelegate</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/FluidResizable.html">FluidResizable</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/FluidTransitionActionDelegate.html">FluidTransitionActionDelegate</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/FluidTransitionConfigurationDelegate.html">FluidTransitionConfigurationDelegate</a>
               </li>
             </ul>
           </li>
@@ -334,12 +322,12 @@ You can build an example app by choosing <code>FluidableExample</code> from the 
 <p>Full documentation is available at <a href="https://gumob.github.io/Fluidable/">https://gumob.github.io/Fluidable/</a>.</p>
 <h3 id='custom-transition-using-a-href-https-developer-apple-com-documentation-uikit-uiviewcontrollertransitioningdelegate-code-uiviewcontrollertransitioningdelegate-code-a' class='heading'>Custom transition using <a href="https://developer.apple.com/documentation/uikit/uiviewcontrollertransitioningdelegate"><code>UIViewControllerTransitioningDelegate</code></a></h3>
 
-<p>1) Import <code><a href="Protocols/Fluidable.html">Fluidable</a></code> framework to your project files:</p>
+<p>1) Import <a href="https://gumob.github.io/Fluidable/Protocols/Fluidable.html"><code><a href="Protocols/Fluidable.html">Fluidable</a></code></a> framework to your project files:</p>
 <pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">UIKit</span>
 <span class="kd">import</span> <span class="kt">Fluidable</span>
 </code></pre>
 
-<p>2) Initialze <code><a href="Protocols/Fluidable.html">Fluidable</a></code> framework in <code>AppDelegate</code>:</p>
+<p>2) Initialze <a href="https://gumob.github.io/Fluidable/Protocols/Fluidable.html"><code><a href="Protocols/Fluidable.html">Fluidable</a></code></a> framework in <code>AppDelegate</code>:</p>
 <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">AppDelegate</span><span class="p">:</span> <span class="kt">UIResponder</span><span class="p">,</span> <span class="kt">UIApplicationDelegate</span> <span class="p">{</span>
   <span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="n">_</span> <span class="nv">application</span><span class="p">:</span> <span class="kt">UIApplication</span><span class="p">,</span> <span class="n">didFinishLaunchingWithOptions</span> <span class="nv">launchOptions</span><span class="p">:</span> <span class="p">[</span><span class="kt">UIApplication</span><span class="o">.</span><span class="kt">LaunchOptionsKey</span><span class="p">:</span> <span class="kt">Any</span><span class="p">]?)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
       <span class="kt">FluidableInit</span><span class="p">()</span>
@@ -440,7 +428,7 @@ You can build an example app by choosing <code>FluidableExample</code> from the 
 </code></pre>
 <h3 id='resizable-drawer' class='heading'>Resizable drawer</h3>
 
-<p>The <code><a href="Protocols/FluidResizableTransitionDelegate.html">FluidResizableTransitionDelegate</a></code> is available for only bottom drawer.</p>
+<p>The <a href="https://gumob.github.io/Fluidable/Protocols/FluidResizableTransitionDelegate.html"><code><a href="Protocols/FluidResizableTransitionDelegate.html">FluidResizableTransitionDelegate</a></code></a> is available for only bottom drawer.</p>
 
 <p>1) Conform to <a href="https://gumob.github.io/Fluidable/Protocols/FluidResizableTransitionDelegate.html"><code><a href="Protocols/FluidResizableTransitionDelegate.html">FluidResizableTransitionDelegate</a></code></a> protocol in the <span style="color:magenta">destination</span> view controller:</p>
 <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">TransitionScrollViewController</span><span class="p">:</span> <span class="kt">TransitionBaseViewController</span><span class="p">,</span> <span class="kt">Fluidable</span><span class="p">,</span> <span class="kt">FluidResizable</span> <span class="p">{</span>

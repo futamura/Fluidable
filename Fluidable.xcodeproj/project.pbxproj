@@ -278,9 +278,12 @@
 		DFABE6423A286983D05132BB /* NavigationBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEC6EF0DB83BEFF91B48C /* NavigationBaseViewController.swift */; };
 		DFABE7993BAB20DC78B46F00 /* UITestEnv.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE6E1A8F12D7040B3B70A /* UITestEnv.swift */; };
 		DFABE7DD7916A92821B4A056 /* MainSpec+Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEDA081BAFF75B8323607 /* MainSpec+Transition.swift */; };
+		DFABE80FFAF0DABA486EC436 /* FluidResizableTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE622A48EE18A4A78673D /* FluidResizableTransitionDelegate.swift */; };
+		DFABE96DA27C7FA7A46476B6 /* FluidNavigationDelegate+Implemenation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEC1AF6640C0D0909A61F /* FluidNavigationDelegate+Implemenation.swift */; };
 		DFABE996DD1A19EC135F1B78 /* AlignedCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEC72BC4B8623907A87C8 /* AlignedCollectionLayout.swift */; };
 		DFABEA62681D202A843D7B05 /* FluidCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE82527BBB15857D3AF0B /* FluidCompatible.swift */; };
 		DFABEA76E84782BC8CE6D34B /* QuartzCoreSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE7A41959B49A81407C6D /* QuartzCoreSpec.swift */; };
+		DFABEAA641FF274919C8D834 /* FluidTransitionDelegate+Implementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE614B91FDC2B47F92ACD /* FluidTransitionDelegate+Implementation.swift */; };
 		DFABEAF2177C6BE9A205486C /* RootCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEE00E49C659753C6329F /* RootCollectionView.swift */; };
 		DFABEAF4A0A81166CABF601F /* FoundationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEF30085D9F4794BDA1D5 /* FoundationSpec.swift */; };
 		DFABEB2684A6925CA833C241 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE22736E8B0215938EAE4 /* Helper.swift */; };
@@ -289,6 +292,7 @@
 		DFABED94484BCC69C0DF8C33 /* AnimatorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEB712A899C167DEFE0D5 /* AnimatorSpec.swift */; };
 		DFABEDDE21151BB9BCF9CEFA /* RootModel+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEA41ECEF434C73312C7F /* RootModel+Test.swift */; };
 		DFABEE52E4CDF1F3040E0D03 /* RootModel+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABEA41ECEF434C73312C7F /* RootModel+Test.swift */; };
+		DFABEEB193056501419C4600 /* FluidResizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE6E9D5FEC5A566F9C7A5 /* FluidResizable.swift */; };
 		DFABEEBC3B205A04BDFFF716 /* MainSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE4D624937D130011B37E /* MainSpec.swift */; };
 		DFABEF7EFE8D2989614095BD /* UITestEnv.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE6E1A8F12D7040B3B70A /* UITestEnv.swift */; };
 /* End PBXBuildFile section */
@@ -528,9 +532,12 @@
 		DFABE2E4B74F287D242141CC /* TransitionBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionBaseViewController.swift; sourceTree = "<group>"; };
 		DFABE3B66C85AD6FFCF55485 /* VectorMathSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorMathSpec.swift; sourceTree = "<group>"; };
 		DFABE4D624937D130011B37E /* MainSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSpec.swift; sourceTree = "<group>"; };
+		DFABE614B91FDC2B47F92ACD /* FluidTransitionDelegate+Implementation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidTransitionDelegate+Implementation.swift"; sourceTree = "<group>"; };
 		DFABE61D021ABDF43686FD95 /* RootViewController+Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RootViewController+Collection.swift"; sourceTree = "<group>"; };
+		DFABE622A48EE18A4A78673D /* FluidResizableTransitionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidResizableTransitionDelegate.swift; sourceTree = "<group>"; };
 		DFABE663B3ACA5FE0F6F1C72 /* FluidFrameDimension+Implementation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidFrameDimension+Implementation.swift"; sourceTree = "<group>"; };
 		DFABE6E1A8F12D7040B3B70A /* UITestEnv.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITestEnv.swift; sourceTree = "<group>"; };
+		DFABE6E9D5FEC5A566F9C7A5 /* FluidResizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidResizable.swift; sourceTree = "<group>"; };
 		DFABE7A41959B49A81407C6D /* QuartzCoreSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuartzCoreSpec.swift; sourceTree = "<group>"; };
 		DFABE81DB86B266033ED2C1C /* NavigationChildViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationChildViewController.swift; sourceTree = "<group>"; };
 		DFABE820B184C0B8FCE69E18 /* UIKitSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitSpec.swift; sourceTree = "<group>"; };
@@ -542,6 +549,7 @@
 		DFABEA41ECEF434C73312C7F /* RootModel+Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RootModel+Test.swift"; sourceTree = "<group>"; };
 		DFABEB16695950E841D1BF14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NavigationScrollViewController.xib; sourceTree = "<group>"; };
 		DFABEB712A899C167DEFE0D5 /* AnimatorSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatorSpec.swift; sourceTree = "<group>"; };
+		DFABEC1AF6640C0D0909A61F /* FluidNavigationDelegate+Implemenation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidNavigationDelegate+Implemenation.swift"; sourceTree = "<group>"; };
 		DFABEC6EF0DB83BEFF91B48C /* NavigationBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBaseViewController.swift; sourceTree = "<group>"; };
 		DFABEC72BC4B8623907A87C8 /* AlignedCollectionLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlignedCollectionLayout.swift; sourceTree = "<group>"; };
 		DFABEC85FD8CDA919FC71496 /* FluidFrameStyle+Implementation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidFrameStyle+Implementation.swift"; sourceTree = "<group>"; };
@@ -629,6 +637,7 @@
 				A7F5CE0B22CAF6C000578043 /* Layout */,
 				A7F5CE1922CAF6C000578043 /* Shared */,
 				A7F5CE1122CAF6C000578043 /* View */,
+				DFABE6E9D5FEC5A566F9C7A5 /* FluidResizable.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -1089,6 +1098,9 @@
 				A7F5CE7E22CAF6C100578043 /* FluidTransitionDelegate.swift */,
 				A7F5CE7F22CAF6C100578043 /* FluidViewControllerTransitioningDelegate.swift */,
 				A7F5CE7D22CAF6C100578043 /* Typealias.swift */,
+				DFABEC1AF6640C0D0909A61F /* FluidNavigationDelegate+Implemenation.swift */,
+				DFABE614B91FDC2B47F92ACD /* FluidTransitionDelegate+Implementation.swift */,
+				DFABE622A48EE18A4A78673D /* FluidResizableTransitionDelegate.swift */,
 			);
 			path = Delegate;
 			sourceTree = "<group>";
@@ -1626,6 +1638,10 @@
 				DFABE10EFD09794EF26529DA /* FluidFrameDimension+Implementation.swift in Sources */,
 				DFABE4842A1C8E53155C44A1 /* FluidFrameStyle+Implementation.swift in Sources */,
 				DFABEA62681D202A843D7B05 /* FluidCompatible.swift in Sources */,
+				DFABE96DA27C7FA7A46476B6 /* FluidNavigationDelegate+Implemenation.swift in Sources */,
+				DFABEAA641FF274919C8D834 /* FluidTransitionDelegate+Implementation.swift in Sources */,
+				DFABEEB193056501419C4600 /* FluidResizable.swift in Sources */,
+				DFABE80FFAF0DABA486EC436 /* FluidResizableTransitionDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

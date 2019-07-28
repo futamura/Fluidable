@@ -75,13 +75,13 @@ Full documentation is available at [https://gumob.github.io/Fluidable/](https://
 
 ### Custom transition using [`UIViewControllerTransitioningDelegate`](https://developer.apple.com/documentation/uikit/uiviewcontrollertransitioningdelegate)
 
-1) Import `Fluidable` framework to your project files:
+1) Import [`Fluidable`](https://gumob.github.io/Fluidable/Protocols/Fluidable.html) framework to your project files:
 ```swift
 import UIKit
 import Fluidable
 ```
 
-2) Initialze `Fluidable` framework in `AppDelegate`:
+2) Initialze [`Fluidable`](https://gumob.github.io/Fluidable/Protocols/Fluidable.html) framework in `AppDelegate`:
 ```swift
 class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -196,7 +196,7 @@ extension TransitionScrollViewController: FluidTransitionDestinationActionDelega
 
 ### Resizable drawer
 
-The `FluidResizableTransitionDelegate` is available for only bottom drawer.
+The [`FluidResizableTransitionDelegate`](https://gumob.github.io/Fluidable/Protocols/FluidResizableTransitionDelegate.html) is available for only bottom drawer.
 
 1) Conform to [`FluidResizableTransitionDelegate`](https://gumob.github.io/Fluidable/Protocols/FluidResizableTransitionDelegate.html) protocol in the <span style="color:magenta">destination</span> view controller:
 ```swift

@@ -27,6 +27,8 @@ umbrella_header: "Sources/Fluidable.h"
 
 exclude:
   - Sources/Core/Proxy/FluidCompatible.swift
+  - Sources/Core/Delegate/FluidNavigationDelegate.swift
+  - Sources/Core/Delegate/FluidTransitionDelegate.swift
   - Sources/Core/Enumeration/FluidAnimationType.swift
   - Sources/Core/Enumeration/FluidInteractionType.swift
   - Sources/Core/Enumeration/FluidNavigationStyle.swift
@@ -56,6 +58,7 @@ custom_categories:
   - name: Core
     children:
     - Fluidable
+    - FluidResizable
     - UIApplicationDelegate
 
   - name: Delegate
@@ -107,6 +110,11 @@ custom_categories:
       - FluidTransitionAnimatorCompatible
       - FluidTransitionAnimatorParameter
 
+  - name: NavigationBar
+    children:
+      - FluidNavigationBar
+      - FluidNavigationBarCompatible
+
   - name: Proxy
     children:
     - FluidProxy
@@ -117,7 +125,6 @@ custom_categories:
     - FluidNavigationController
     - FluidSourceViewController
     - FluidDestinationViewController
-    - FluidNavigationBar
     - FluidNavigationRootNavigationControllerDelegate
     - FluidNavigationSourceViewControllerDelegate
     - FluidNavigationDestinationViewControllerDelegate
