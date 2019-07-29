@@ -80,8 +80,8 @@ class NavigationScrollViewController: NavigationBaseViewController, Fluidable {
     }
 
     override func updateViewConstraints() {
-        super.updateViewConstraints()
         Logger()?.log("🚗💥", [])
+        super.updateViewConstraints()
     }
 
     override func viewWillLayoutSubviews() {

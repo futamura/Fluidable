@@ -91,6 +91,12 @@ class TransitionScrollViewController: TransitionBaseViewController, Fluidable {
         /* NOTE: Set width to 1 to avoid horizontal scroll */
         self.scrollView.contentSize.width = 1
         super.viewWillLayoutSubviews()
+        Logger()?.log("🚗💥", [])
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        Logger()?.log("🚗💥", [])
     }
 
     deinit {
