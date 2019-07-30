@@ -696,13 +696,13 @@
 		A77D9EAC22F0119E0071867E /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				A77D9EAD22F0119E0071867E /* Proxy */,
+				A77D9EDF22F0119E0071867E /* Animator */,
+				A77D9ED422F0119E0071867E /* Delegate */,
 				A77D9EB122F0119E0071867E /* Driver */,
 				A77D9EC522F0119E0071867E /* Enumeration */,
-				A77D9ED422F0119E0071867E /* Delegate */,
-				A77D9EDF22F0119E0071867E /* Animator */,
 				A77D9EEF22F0119E0071867E /* Gesture */,
 				A77D9EFC22F0119E0071867E /* Parameter */,
+				A77D9EAD22F0119E0071867E /* Proxy */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -710,9 +710,9 @@
 		A77D9EAD22F0119E0071867E /* Proxy */ = {
 			isa = PBXGroup;
 			children = (
-				A77D9EAE22F0119E0071867E /* FluidProxy+UIViewController.swift */,
-				A77D9EAF22F0119E0071867E /* FluidProxy.swift */,
 				A77D9EB022F0119E0071867E /* FluidCompatible.swift */,
+				A77D9EAF22F0119E0071867E /* FluidProxy.swift */,
+				A77D9EAE22F0119E0071867E /* FluidProxy+UIViewController.swift */,
 			);
 			path = Proxy;
 			sourceTree = "<group>";
@@ -729,19 +729,19 @@
 		A77D9EB222F0119E0071867E /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				A77D9EB322F0119E0071867E /* FluidDriverType.swift */,
-				A77D9EB422F0119E0071867E /* FluidDismissDriverCompatible+Animated.swift */,
 				A77D9EB522F0119E0071867E /* FluidDismissDriverCompatible.swift */,
-				A77D9EB622F0119E0071867E /* FluidDriverCompatible.swift */,
+				A77D9EB422F0119E0071867E /* FluidDismissDriverCompatible+Animated.swift */,
 				A77D9EB722F0119E0071867E /* FluidDismissDriverCompatible+Delegate.swift */,
-				A77D9EB822F0119E0071867E /* FluidPresentDriverCompatible+Interactive.swift */,
-				A77D9EB922F0119E0071867E /* FluidPresentDriverCompatible.swift */,
-				A77D9EBA22F0119E0071867E /* FluidDriverCompatible+Interactive.swift */,
-				A77D9EBB22F0119E0071867E /* FluidPresentDriverCompatible+Delegate.swift */,
-				A77D9EBC22F0119E0071867E /* FluidDriverCompatible+Animated.swift */,
-				A77D9EBD22F0119E0071867E /* FluidPresentDriverCompatible+Animated.swift */,
-				A77D9EBE22F0119E0071867E /* FluidDriverCompatible+Configuration.swift */,
 				A77D9EBF22F0119E0071867E /* FluidDismissDriverCompatible+Interactive.swift */,
+				A77D9EB622F0119E0071867E /* FluidDriverCompatible.swift */,
+				A77D9EBC22F0119E0071867E /* FluidDriverCompatible+Animated.swift */,
+				A77D9EBE22F0119E0071867E /* FluidDriverCompatible+Configuration.swift */,
+				A77D9EBA22F0119E0071867E /* FluidDriverCompatible+Interactive.swift */,
+				A77D9EB322F0119E0071867E /* FluidDriverType.swift */,
+				A77D9EB922F0119E0071867E /* FluidPresentDriverCompatible.swift */,
+				A77D9EBD22F0119E0071867E /* FluidPresentDriverCompatible+Animated.swift */,
+				A77D9EBB22F0119E0071867E /* FluidPresentDriverCompatible+Delegate.swift */,
+				A77D9EB822F0119E0071867E /* FluidPresentDriverCompatible+Interactive.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -749,10 +749,10 @@
 		A77D9EC022F0119E0071867E /* Implementation */ = {
 			isa = PBXGroup;
 			children = (
+				A77D9EC422F0119E0071867E /* FluidNavigationDismissDriver.swift */,
+				A77D9EC322F0119E0071867E /* FluidNavigationPresentDriver.swift */,
 				A77D9EC122F0119E0071867E /* FluidTransitionDismissDriver.swift */,
 				A77D9EC222F0119E0071867E /* FluidTransitionPresentDriver.swift */,
-				A77D9EC322F0119E0071867E /* FluidNavigationPresentDriver.swift */,
-				A77D9EC422F0119E0071867E /* FluidNavigationDismissDriver.swift */,
 			);
 			path = Implementation;
 			sourceTree = "<group>";
@@ -760,20 +760,20 @@
 		A77D9EC522F0119E0071867E /* Enumeration */ = {
 			isa = PBXGroup;
 			children = (
+				A77D9ECE22F0119E0071867E /* FluidAnimationType.swift */,
+				A77D9ECA22F0119E0071867E /* FluidBackgroundStyle.swift */,
+				A77D9ECD22F0119E0071867E /* FluidConst.swift */,
+				A77D9ECB22F0119E0071867E /* FluidCoreAnimatorOption.swift */,
+				A77D9ED322F0119E0071867E /* FluidFrameDimension.swift */,
+				A77D9ED222F0119E0071867E /* FluidFrameDimension+Implementation.swift */,
+				A77D9EC822F0119E0071867E /* FluidFrameStyle.swift */,
+				A77D9ED022F0119E0071867E /* FluidFrameStyle+Implementation.swift */,
+				A77D9ECF22F0119E0071867E /* FluidInteractionType.swift */,
+				A77D9ED122F0119E0071867E /* FluidNavigationStyle.swift */,
+				A77D9EC922F0119E0071867E /* FluidPresentationStyle.swift */,
+				A77D9ECC22F0119E0071867E /* FluidProgressState.swift */,
 				A77D9EC622F0119E0071867E /* FluidRoundCornerStyle.swift */,
 				A77D9EC722F0119E0071867E /* FluidTransitionStyle.swift */,
-				A77D9EC822F0119E0071867E /* FluidFrameStyle.swift */,
-				A77D9EC922F0119E0071867E /* FluidPresentationStyle.swift */,
-				A77D9ECA22F0119E0071867E /* FluidBackgroundStyle.swift */,
-				A77D9ECB22F0119E0071867E /* FluidCoreAnimatorOption.swift */,
-				A77D9ECC22F0119E0071867E /* FluidProgressState.swift */,
-				A77D9ECD22F0119E0071867E /* FluidConst.swift */,
-				A77D9ECE22F0119E0071867E /* FluidAnimationType.swift */,
-				A77D9ECF22F0119E0071867E /* FluidInteractionType.swift */,
-				A77D9ED022F0119E0071867E /* FluidFrameStyle+Implementation.swift */,
-				A77D9ED122F0119E0071867E /* FluidNavigationStyle.swift */,
-				A77D9ED222F0119E0071867E /* FluidFrameDimension+Implementation.swift */,
-				A77D9ED322F0119E0071867E /* FluidFrameDimension.swift */,
 			);
 			path = Enumeration;
 			sourceTree = "<group>";
@@ -781,16 +781,16 @@
 		A77D9ED422F0119E0071867E /* Delegate */ = {
 			isa = PBXGroup;
 			children = (
+				A77D9ED722F0119E0071867E /* FluidControllerDelegateCompatible.swift */,
+				A77D9ED922F0119E0071867E /* FluidDelegate.swift */,
 				A77D9ED522F0119E0071867E /* FluidNavigationControllerDelegate.swift */,
 				A77D9ED622F0119E0071867E /* FluidNavigationDelegate.swift */,
-				A77D9ED722F0119E0071867E /* FluidControllerDelegateCompatible.swift */,
-				A77D9ED822F0119E0071867E /* FluidTransitionDelegate+Implementation.swift */,
-				A77D9ED922F0119E0071867E /* FluidDelegate.swift */,
-				A77D9EDA22F0119E0071867E /* Typealias.swift */,
-				A77D9EDB22F0119E0071867E /* FluidTransitionDelegate.swift */,
-				A77D9EDC22F0119E0071867E /* FluidResizableTransitionDelegate.swift */,
 				A77D9EDD22F0119E0071867E /* FluidNavigationDelegate+Implemenation.swift */,
+				A77D9EDC22F0119E0071867E /* FluidResizableTransitionDelegate.swift */,
+				A77D9EDB22F0119E0071867E /* FluidTransitionDelegate.swift */,
+				A77D9ED822F0119E0071867E /* FluidTransitionDelegate+Implementation.swift */,
 				A77D9EDE22F0119E0071867E /* FluidViewControllerTransitioningDelegate.swift */,
+				A77D9EDA22F0119E0071867E /* Typealias.swift */,
 			);
 			path = Delegate;
 			sourceTree = "<group>";
@@ -798,8 +798,8 @@
 		A77D9EDF22F0119E0071867E /* Animator */ = {
 			isa = PBXGroup;
 			children = (
-				A77D9EE022F0119E0071867E /* Protocol */,
 				A77D9EE622F0119E0071867E /* Implementation */,
+				A77D9EE022F0119E0071867E /* Protocol */,
 			);
 			path = Animator;
 			sourceTree = "<group>";
@@ -807,11 +807,11 @@
 		A77D9EE022F0119E0071867E /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				A77D9EE122F0119E0071867E /* FluidViewAnimatorCompatible+Configuration.swift */,
 				A77D9EE222F0119E0071867E /* FluidViewAnimatorCompatible.swift */,
+				A77D9EE122F0119E0071867E /* FluidViewAnimatorCompatible+Configuration.swift */,
 				A77D9EE322F0119E0071867E /* FluidViewAnimatorCompatible+Core.swift */,
-				A77D9EE422F0119E0071867E /* FluidViewAnimatorTimer.swift */,
 				A77D9EE522F0119E0071867E /* FluidViewAnimatorCompatible+Helper.swift */,
+				A77D9EE422F0119E0071867E /* FluidViewAnimatorTimer.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -819,14 +819,14 @@
 		A77D9EE622F0119E0071867E /* Implementation */ = {
 			isa = PBXGroup;
 			children = (
-				A77D9EE722F0119E0071867E /* FluidTransitionViewAnimator+Animated.swift */,
-				A77D9EE822F0119E0071867E /* FluidTransitionViewAnimator+Interactive.swift */,
-				A77D9EE922F0119E0071867E /* FluidTransitionViewAnimator+Configuration.swift */,
-				A77D9EEA22F0119E0071867E /* FluidNavigationViewAnimator+Configuration.swift */,
-				A77D9EEB22F0119E0071867E /* FluidTransitionViewAnimator.swift */,
 				A77D9EEC22F0119E0071867E /* FluidNavigationViewAnimator.swift */,
 				A77D9EED22F0119E0071867E /* FluidNavigationViewAnimator+Animated.swift */,
+				A77D9EEA22F0119E0071867E /* FluidNavigationViewAnimator+Configuration.swift */,
 				A77D9EEE22F0119E0071867E /* FluidNavigationViewAnimator+Interactive.swift */,
+				A77D9EEB22F0119E0071867E /* FluidTransitionViewAnimator.swift */,
+				A77D9EE722F0119E0071867E /* FluidTransitionViewAnimator+Animated.swift */,
+				A77D9EE922F0119E0071867E /* FluidTransitionViewAnimator+Configuration.swift */,
+				A77D9EE822F0119E0071867E /* FluidTransitionViewAnimator+Interactive.swift */,
 			);
 			path = Implementation;
 			sourceTree = "<group>";
@@ -843,12 +843,12 @@
 		A77D9EF022F0119E0071867E /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				A77D9EF122F0119E0071867E /* FluidGestureDelegate.swift */,
-				A77D9EF222F0119E0071867E /* FluidScrollObservable.swift */,
-				A77D9EF322F0119E0071867E /* FluidGestureObservable.swift */,
 				A77D9EF422F0119E0071867E /* FluidGestureAxis.swift */,
-				A77D9EF522F0119E0071867E /* FluidGestureInfo.swift */,
+				A77D9EF122F0119E0071867E /* FluidGestureDelegate.swift */,
 				A77D9EF622F0119E0071867E /* FluidGestureDirection.swift */,
+				A77D9EF522F0119E0071867E /* FluidGestureInfo.swift */,
+				A77D9EF322F0119E0071867E /* FluidGestureObservable.swift */,
+				A77D9EF222F0119E0071867E /* FluidScrollObservable.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -856,10 +856,10 @@
 		A77D9EF722F0119E0071867E /* Implementation */ = {
 			isa = PBXGroup;
 			children = (
-				A77D9EF822F0119E0071867E /* FluidTransitionScrollObserver.swift */,
 				A77D9EF922F0119E0071867E /* FluidNavigationGestureObserver.swift */,
 				A77D9EFA22F0119E0071867E /* FluidNavigationScrollObserver.swift */,
 				A77D9EFB22F0119E0071867E /* FluidTransitionGestureObserver.swift */,
+				A77D9EF822F0119E0071867E /* FluidTransitionScrollObserver.swift */,
 			);
 			path = Implementation;
 			sourceTree = "<group>";
@@ -877,8 +877,8 @@
 			isa = PBXGroup;
 			children = (
 				A77D9EFE22F0119E0071867E /* FluidParametersAccessible.swift */,
-				A77D9EFF22F0119E0071867E /* FluidParametersCompatible+Configuration.swift */,
 				A77D9F0022F0119E0071867E /* FluidParametersCompatible.swift */,
+				A77D9EFF22F0119E0071867E /* FluidParametersCompatible+Configuration.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -886,10 +886,10 @@
 		A77D9F0122F0119E0071867E /* Implementation */ = {
 			isa = PBXGroup;
 			children = (
-				A77D9F0222F0119E0071867E /* FluidTransitionParameters+Configuration.swift */,
-				A77D9F0322F0119E0071867E /* FluidNavigationParameters+Configuration.swift */,
 				A77D9F0422F0119E0071867E /* FluidNavigationParameters.swift */,
+				A77D9F0322F0119E0071867E /* FluidNavigationParameters+Configuration.swift */,
 				A77D9F0522F0119E0071867E /* FluidTransitionParameters.swift */,
+				A77D9F0222F0119E0071867E /* FluidTransitionParameters+Configuration.swift */,
 			);
 			path = Implementation;
 			sourceTree = "<group>";
@@ -907,9 +907,9 @@
 		A77D9F0B22F0119E0071867E /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				A77D9F0C22F0119E0071867E /* UITestEnv.swift */,
 				A77D9F0D22F0119E0071867E /* Debug.swift */,
 				A77D9F0E22F0119E0071867E /* NSObject+Ext.swift */,
+				A77D9F0C22F0119E0071867E /* UITestEnv.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -917,12 +917,12 @@
 		A77D9F1222F0119E0071867E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A77D9F1822F0119E0071867E /* FluidBackgroundView.swift */,
 				A77D9F1322F0119E0071867E /* FluidCornerMaskLayer.swift */,
 				A77D9F1422F0119E0071867E /* FluidInteractiveView.swift */,
-				A77D9F1522F0119E0071867E /* FluidShadowLayer.swift */,
 				A77D9F1622F0119E0071867E /* FluidInterruptibleView.swift */,
 				A77D9F1722F0119E0071867E /* FluidProgressView.swift */,
-				A77D9F1822F0119E0071867E /* FluidBackgroundView.swift */,
+				A77D9F1522F0119E0071867E /* FluidShadowLayer.swift */,
 				A77D9F1922F0119E0071867E /* FluidShadowView.swift */,
 			);
 			path = View;
@@ -931,10 +931,10 @@
 		A77D9F1A22F0119E0071867E /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				A77D9F1B22F0119E0071867E /* Extension */,
-				A77D9F2122F0119E0071867E /* Runtime */,
 				A77D9F2422F0119E0071867E /* AdaptiveLayout */,
 				A77D9F3722F0119E0071867E /* Animations */,
+				A77D9F1B22F0119E0071867E /* Extension */,
+				A77D9F2122F0119E0071867E /* Runtime */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -942,10 +942,10 @@
 		A77D9F1B22F0119E0071867E /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				A77D9F1C22F0119E0071867E /* Foundation+Ext.swift */,
-				A77D9F1D22F0119E0071867E /* UIKit+Ext.swift */,
 				A77D9F1E22F0119E0071867E /* CoreGraphics+Ext.swift */,
+				A77D9F1C22F0119E0071867E /* Foundation+Ext.swift */,
 				A77D9F1F22F0119E0071867E /* QuartzCore+Ext.swift */,
+				A77D9F1D22F0119E0071867E /* UIKit+Ext.swift */,
 				A77D9F2022F0119E0071867E /* VectorMath.swift */,
 			);
 			path = Extension;
@@ -982,13 +982,13 @@
 		A77D9F2722F0119E0071867E /* Attributes */ = {
 			isa = PBXGroup;
 			children = (
-				A77D9F2822F0119E0071867E /* Idiom.swift */,
-				A77D9F2922F0119E0071867E /* ForceTouch.swift */,
-				A77D9F2A22F0119E0071867E /* SizeCategory.swift */,
-				A77D9F2B22F0119E0071867E /* LayoutDirection.swift */,
-				A77D9F2C22F0119E0071867E /* SizeClass.swift */,
 				A77D9F2D22F0119E0071867E /* DisplayGamut.swift */,
+				A77D9F2922F0119E0071867E /* ForceTouch.swift */,
+				A77D9F2822F0119E0071867E /* Idiom.swift */,
+				A77D9F2B22F0119E0071867E /* LayoutDirection.swift */,
 				A77D9F2E22F0119E0071867E /* Scale.swift */,
+				A77D9F2A22F0119E0071867E /* SizeCategory.swift */,
+				A77D9F2C22F0119E0071867E /* SizeClass.swift */,
 			);
 			path = Attributes;
 			sourceTree = "<group>";
@@ -1007,8 +1007,8 @@
 			isa = PBXGroup;
 			children = (
 				A77D9F3422F0119E0071867E /* AdaptiveAttribute.swift */,
-				A77D9F3522F0119E0071867E /* AdaptiveInterface.swift */,
 				A77D9F3622F0119E0071867E /* AdaptiveElement.swift */,
+				A77D9F3522F0119E0071867E /* AdaptiveInterface.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1017,11 +1017,11 @@
 			isa = PBXGroup;
 			children = (
 				A77D9F3822F0119E0071867E /* FluidAnimatorCompatible.swift */,
+				A77D9F4522F0119E0071867E /* FluidAnimatorEasing.swift */,
 				A77D9F3922F0119E0071867E /* FluidAnimatorState.swift */,
+				A77D9F4622F0119E0071867E /* CoreAnimation */,
 				A77D9F3A22F0119E0071867E /* PropertyAnimator */,
 				A77D9F4222F0119E0071867E /* RobertPenner */,
-				A77D9F4522F0119E0071867E /* FluidAnimatorEasing.swift */,
-				A77D9F4622F0119E0071867E /* CoreAnimation */,
 			);
 			path = Animations;
 			sourceTree = "<group>";
@@ -1029,13 +1029,13 @@
 		A77D9F3A22F0119E0071867E /* PropertyAnimator */ = {
 			isa = PBXGroup;
 			children = (
+				A77D9F4022F0119E0071867E /* FluidInterruptibleAnimator.swift */,
+				A77D9F3F22F0119E0071867E /* FluidPropertyAnimator.swift */,
+				A77D9F3E22F0119E0071867E /* FluidPropertyAnimator+Core.swift */,
 				A77D9F3B22F0119E0071867E /* FluidPropertyAnimator+Initializer.swift */,
 				A77D9F3C22F0119E0071867E /* FluidPropertyAnimator+Observing.swift */,
-				A77D9F3D22F0119E0071867E /* UIViewAnimating+Extension.swift */,
-				A77D9F3E22F0119E0071867E /* FluidPropertyAnimator+Core.swift */,
-				A77D9F3F22F0119E0071867E /* FluidPropertyAnimator.swift */,
-				A77D9F4022F0119E0071867E /* FluidInterruptibleAnimator.swift */,
 				A77D9F4122F0119E0071867E /* FluidPropertyAnimator+Unavailable.swift */,
+				A77D9F3D22F0119E0071867E /* UIViewAnimating+Extension.swift */,
 			);
 			path = PropertyAnimator;
 			sourceTree = "<group>";
@@ -1052,16 +1052,16 @@
 		A77D9F4622F0119E0071867E /* CoreAnimation */ = {
 			isa = PBXGroup;
 			children = (
-				A77D9F4722F0119E0071867E /* FluidCoreAnimatorError.swift */,
-				A77D9F4822F0119E0071867E /* FluidCoreAnimator+Initializer.swift */,
-				A77D9F4922F0119E0071867E /* FluidCoreAnimatorTransitionType.swift */,
-				A77D9F4A22F0119E0071867E /* FluidCoreAnimatorKeyPath.swift */,
-				A77D9F4B22F0119E0071867E /* FluidCoreAnimator.swift */,
-				A77D9F4C22F0119E0071867E /* FluidCoreAnimatorValidator.swift */,
-				A77D9F4D22F0119E0071867E /* FluidCoreAnimatorLayerConvertible.swift */,
-				A77D9F4E22F0119E0071867E /* FluidCoreAnimator+Core.swift */,
 				A77D9F4F22F0119E0071867E /* CAProgressLayer.swift */,
+				A77D9F4B22F0119E0071867E /* FluidCoreAnimator.swift */,
+				A77D9F4E22F0119E0071867E /* FluidCoreAnimator+Core.swift */,
 				A77D9F5022F0119E0071867E /* FluidCoreAnimator+Helper.swift */,
+				A77D9F4822F0119E0071867E /* FluidCoreAnimator+Initializer.swift */,
+				A77D9F4722F0119E0071867E /* FluidCoreAnimatorError.swift */,
+				A77D9F4A22F0119E0071867E /* FluidCoreAnimatorKeyPath.swift */,
+				A77D9F4D22F0119E0071867E /* FluidCoreAnimatorLayerConvertible.swift */,
+				A77D9F4922F0119E0071867E /* FluidCoreAnimatorTransitionType.swift */,
+				A77D9F4C22F0119E0071867E /* FluidCoreAnimatorValidator.swift */,
 			);
 			path = CoreAnimation;
 			sourceTree = "<group>";
@@ -1143,10 +1143,10 @@
 		A7EAC30E224F3EE6008904B7 /* Control */ = {
 			isa = PBXGroup;
 			children = (
-				A791D1B62280369900206A66 /* NavigationRootNavigationController.xib */,
 				A7498D3B22B0F54E002282DD /* NavigationChildViewController.xib */,
 				DFABE4B79ED95D4960743568 /* NavigationCollectionViewController.xib */,
 				DFABE75DE9BFBA9C2CF569D1 /* NavigationMultiCollectionViewController.xib */,
+				A791D1B62280369900206A66 /* NavigationRootNavigationController.xib */,
 				DFABEF237484CDD84BA4185D /* NavigationScrollViewController.xib */,
 				DFABE692442A34025E1F0F44 /* NavigationTableViewController.xib */,
 				A7EAC334224F4111008904B7 /* TransitionCollectionViewController.xib */,
