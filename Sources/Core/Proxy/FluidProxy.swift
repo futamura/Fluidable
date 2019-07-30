@@ -25,33 +25,3 @@ public struct FluidProxy<Base> {
         self.base = base
     }
 }
-
-/** The type that has `fluid` extensions. */
-public protocol FluidCompatible {
-    /** The extended type. */
-    associatedtype CompatibleType
-
-    /** The static property for `FluidProxy` extensions. */
-    static var fluid: FluidProxy<CompatibleType>.Type { get set }
-
-    /** The instance property for `FluidProxy` extensions. */
-    var fluid: FluidProxy<CompatibleType> { get set }
-}
-
-extension FluidCompatible {
-    /** The static property for `FluidProxy` extensions. */
-    public static var fluid: FluidProxy<Self>.Type {
-        get { return FluidProxy<Self>.self }
-        set { /* this enables using `FluidProxy` to "mutate" base type */ }
-    }
-
-    /** The instance property for `FluidProxy` extensions. */
-    public var fluid: FluidProxy<Self> {
-        get { return FluidProxy(self) }
-        set { /* this enables using `FluidProxy` to "mutate" base object */ }
-    }
-}
-
-/* The UIViewController conforms to the `FluidCompatible` protocol. */
-extension NSObject: FluidCompatible {
-}

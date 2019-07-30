@@ -40,6 +40,8 @@
 		A756F8FB21EEABBB00184FBF /* ExampleConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = A756F8F921EEABBB00184FBF /* ExampleConst.swift */; };
 		A756F8FD21EF344C00184FBF /* RootNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A756F8FC21EF344C00184FBF /* RootNavigationController.swift */; };
 		A756F8FE21EF344C00184FBF /* RootNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A756F8FC21EF344C00184FBF /* RootNavigationController.swift */; };
+		A77D9E9022F00DE60071867E /* FluidResizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D9E8F22F00DE60071867E /* FluidResizable.swift */; };
+		A77D9E9222F00E760071867E /* FluidCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D9E9122F00E760071867E /* FluidCompatible.swift */; };
 		A791D1B82280369900206A66 /* NavigationRootNavigationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A791D1B62280369900206A66 /* NavigationRootNavigationController.xib */; };
 		A797576B22B38BA100E80EF6 /* NavigationChildViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7498D3B22B0F54E002282DD /* NavigationChildViewController.xib */; };
 		A7B6C3DF21EB7ABF000903B1 /* TableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7B6C3CF21EB7ABE000903B1 /* TableCell.xib */; };
@@ -354,6 +356,8 @@
 		A7498D3C22B0F54E002282DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NavigationChildViewController.xib; sourceTree = "<group>"; };
 		A756F8F921EEABBB00184FBF /* ExampleConst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleConst.swift; sourceTree = "<group>"; };
 		A756F8FC21EF344C00184FBF /* RootNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootNavigationController.swift; sourceTree = "<group>"; };
+		A77D9E8F22F00DE60071867E /* FluidResizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidResizable.swift; sourceTree = "<group>"; };
+		A77D9E9122F00E760071867E /* FluidCompatible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidCompatible.swift; sourceTree = "<group>"; };
 		A791D1B72280369900206A66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NavigationRootNavigationController.xib; sourceTree = "<group>"; };
 		A7B6C3D021EB7ABE000903B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TableCell.xib; sourceTree = "<group>"; };
 		A7B6C3D221EB7ABE000903B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -617,6 +621,7 @@
 				A7F5CF2A22CAF80D00578043 /* Fluidable.swift */,
 				A7F5CF2B22CAF80D00578043 /* Fluidable+SafeArea.swift */,
 				A7F5CF2922CAF80C00578043 /* Fluidable+Swizzle.swift */,
+				A77D9E8F22F00DE60071867E /* FluidResizable.swift */,
 				A7F5CE5322CAF6C000578043 /* Core */,
 				A7F5CE0F22CAF6C000578043 /* Error */,
 				A7F5CE1C22CAF6C000578043 /* Helper */,
@@ -1007,6 +1012,7 @@
 			children = (
 				A7F5CE5622CAF6C000578043 /* FluidProxy.swift */,
 				A7F5CE5522CAF6C000578043 /* FluidProxy+UIViewController.swift */,
+				A77D9E9122F00E760071867E /* FluidCompatible.swift */,
 			);
 			path = Proxy;
 			sourceTree = "<group>";
@@ -1568,6 +1574,7 @@
 				A7F5CECB22CAF6C100578043 /* FluidPropertyAnimator+Initializer.swift in Sources */,
 				A7F5CECC22CAF6C100578043 /* FluidPropertyAnimator+Observing.swift in Sources */,
 				A7F5CED122CAF6C100578043 /* FluidPropertyAnimator+Unavailable.swift in Sources */,
+				A77D9E9222F00E760071867E /* FluidCompatible.swift in Sources */,
 				A7F5CECF22CAF6C100578043 /* FluidPropertyAnimator.swift in Sources */,
 				A7F5CEDF22CAF6C100578043 /* FluidProxy+UIViewController.swift in Sources */,
 				A7F5CEE022CAF6C100578043 /* FluidProxy.swift in Sources */,
@@ -1601,6 +1608,7 @@
 				A7F5CEBC22CAF6C100578043 /* Idiom.swift in Sources */,
 				A7F5CEBF22CAF6C100578043 /* LayoutDirection.swift in Sources */,
 				A7F5CEB322CAF6C100578043 /* NSObject+Ext.swift in Sources */,
+				A77D9E9022F00DE60071867E /* FluidResizable.swift in Sources */,
 				A7F5CED222CAF6C100578043 /* PennerEasing.swift in Sources */,
 				A7F5CED322CAF6C100578043 /* PennerEasingFunction.swift in Sources */,
 				A7F5CEB722CAF6C100578043 /* QuartzCore+Ext.swift in Sources */,
