@@ -102,7 +102,7 @@ extension FluidNavigationGestureObserver {
 //            self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapGestureHandler))
 //            self.tapGestureRecognizer?.cancelsTouchesInView = false
 //            self.tapGestureRecognizer?.delegate = self
-//            self.tapGestureView = self.containerView
+//            self.tapGestureView = self.transitionContainerView
 //            self.tapGestureView?.addGestureRecognizer(self.tapGestureRecognizer!)
 //            self.tapGestureRecognizer?.isEnabled = self.shouldDismissWhenTapBackground
 //        }
@@ -111,7 +111,7 @@ extension FluidNavigationGestureObserver {
 //            self.panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(panGestureHandler))
 //            self.panGestureRecognizer.cancelsTouchesInView = false
 //            self.panGestureRecognizer.delegate = self
-//            self.panGestureView = self.animationView
+//            self.panGestureView = self.layoutContainerView
 //            self.panGestureView?.addGestureRecognizer(self.panGestureRecognizer)
 //        }
         /* NOTE: Start observing edge pan gesture */
@@ -120,7 +120,7 @@ extension FluidNavigationGestureObserver {
 //            self.edgePanGestureRecognizer?.edges = self.interactionType.edges
 //            self.edgePanGestureRecognizer?.cancelsTouchesInView = false
 //            self.edgePanGestureRecognizer?.delegate = self
-//            self.edgePanGestureView = self.animationView
+//            self.edgePanGestureView = self.layoutContainerView
 //            self.edgePanGestureView?.addGestureRecognizer(self.edgePanGestureRecognizer!)
 //        }
         Logger()?.log("👋🛠", [

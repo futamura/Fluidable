@@ -78,7 +78,7 @@ extension FluidParametersCompatible {
             let initialDimension: FluidInitialFrameDimension = self.initialDimension
             let finalDimension: FluidFinalFrameDimension = self.finalDimension
             let initialFrame: CGRect = initialDimension.frame()
-            let finalFrame: CGRect = finalDimension.frame(for: self.containerView.frame.size)
+            let finalFrame: CGRect = finalDimension.frame(for: self.transitionContainerView.frame.size)
             let defaultDuration: TimeInterval = easing.defaultDuration(initialFrame, finalFrame, isPresenting: true)
             throw FluidError.ignoredPresentationDuration(easing: easing, defaultDuration: defaultDuration,
                                                          userDefinedDuration: userDefinedDuration)
@@ -96,7 +96,7 @@ extension FluidParametersCompatible {
             let initialDimension: FluidInitialFrameDimension = self.initialDimension
             let finalDimension: FluidFinalFrameDimension = self.finalDimension
             let initialFrame: CGRect = initialDimension.frame()
-            let finalFrame: CGRect = finalDimension.frame(for: self.containerView.frame.size)
+            let finalFrame: CGRect = finalDimension.frame(for: self.transitionContainerView.frame.size)
             let defaultDuration: TimeInterval = easing.defaultDuration(initialFrame, finalFrame, isPresenting: false)
             throw FluidError.ignoredPresentationDuration(easing: easing, defaultDuration: defaultDuration,
                                                          userDefinedDuration: userDefinedDuration)

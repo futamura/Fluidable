@@ -76,7 +76,7 @@ extension FluidDismissDriverCompatible where Self: FluidNavigationDismissDriver 
             /* NOTE: Configure parameters */
             try? self.configureParameters(driverType: .dismiss, animationType: .dismiss,
                                           context: self.parameters.context,
-                                          container: self.parameters.containerView,
+                                          container: self.parameters.transitionContainerView,
                                           source: self.parameters.sourceViewController,
                                           destination: self.parameters.destinationViewController,
                                           initialContainerSize: self.parameters.finalContainerSize,
@@ -97,11 +97,11 @@ extension FluidDismissDriverCompatible where Self: FluidTransitionDismissDriver 
             "transitionCompleted:".lpad() + String(describing: transitionCompleted),
             "controllerDelegate:".lpad() + String(describing: controllerDelegate),
             "controllerDelegate?.dismissDriver:".lpad() + String(describing: controllerDelegate?.dismissDriver),
-            "containerView:".lpad() + String(debug: self.parameters?.containerView),
+            "transitionContainerView:".lpad() + String(debug: self.parameters?.transitionContainerView),
+            "layoutContainerView:".lpad() + String(debug: layoutContainerView),
             "sourceViewController:".lpad() + String(debug: self.parameters?.sourceViewController),
             "destinationViewController:".lpad() + String(debug: self.parameters?.destinationViewController),
             "sourceView:".lpad() + String(debug: sourceView),
-            "animationView:".lpad() + String(debug: animationView),
         ])
         switch transitionCompleted {
         case true:  /* NOTE: Transition is completed */
@@ -118,8 +118,8 @@ extension FluidDismissDriverCompatible where Self: FluidTransitionDismissDriver 
             /* NOTE: Remove view */
             self.parameters?.layout.deactivate(type: .transition)
             self.parameters?.destinationViewController?.view.removeFromSuperview()
-            self.parameters?.containerView?.subviews.forEach { $0.removeFromSuperview() }
-            self.parameters?.containerView?.removeFromSuperview()
+            self.parameters?.transitionContainerView?.subviews.forEach { $0.removeFromSuperview() }
+            self.parameters?.transitionContainerView?.removeFromSuperview()
             /* NOTE: Invalidate transition delegate */
             self.controllerDelegate?.dispose()
         case false: /* NOTE: Transition is cancelled */
@@ -134,7 +134,7 @@ extension FluidDismissDriverCompatible where Self: FluidTransitionDismissDriver 
             /* NOTE: Configure parameters */
             try? self.configureParameters(driverType: .dismiss, animationType: .dismiss,
                                           context: self.parameters.context,
-                                          container: self.parameters.containerView,
+                                          container: self.parameters.transitionContainerView,
                                           source: self.parameters.sourceViewController,
                                           destination: self.parameters.rootNavigationController ?? self.parameters.destinationViewController,
                                           initialContainerSize: self.parameters.finalContainerSize,
@@ -158,7 +158,7 @@ extension FluidDismissDriverCompatible where Self: FluidTransitionDismissDriver 
         /* NOTE: Configure parameters */
         try? self.configureParameters(driverType: .dismiss, animationType: .dismiss,
                                       context: self.parameters.context,
-                                      container: self.parameters.containerView,
+                                      container: self.parameters.transitionContainerView,
                                       source: self.parameters.sourceViewController,
                                       destination: self.parameters.rootNavigationController ?? self.parameters.destinationViewController,
                                       initialContainerSize: self.parameters.finalContainerSize,

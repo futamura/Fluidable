@@ -74,7 +74,7 @@ extension FluidTransitionStyle {
 extension FluidTransitionStyle: CustomStringConvertible {
     public var description: String {
         switch self {
-        case .fluid: return "fluid"
+        case .fluid(let behavior): return "fluid(\(behavior))"
         case .scale: return "scale"
         case .slide(let direction):  return "slide(\(direction))"
         case .drawer(let position):  return "drawer(\(position))"

@@ -101,7 +101,7 @@ extension FluidGestureObservable {
               let currentTranslation: CGPoint = self.currentTranslation,
               let currentVelocity: CGVector = self.currentVelocity else { return .init() }
         return FluidGestureInfo(locationLocal: currentLocation,
-                                locationGlobal: window.convert(currentLocation, from: self.containerView),
+                                locationGlobal: window.convert(currentLocation, from: self.transitionContainerView),
                                 translation: currentTranslation,
                                 velocity: currentVelocity,
                                 direction: self.averageGestureDirection)
@@ -111,14 +111,14 @@ extension FluidGestureObservable {
 extension FluidGestureObservable {
     func updateCurrentParameters(gesture: UIGestureRecognizer) {
         /* NOTE: Update location */
-        self.currentLocation = gesture.location(in: self.containerView)
+        self.currentLocation = gesture.location(in: self.transitionContainerView)
         if self.initialLocation == nil { self.initialLocation = self.currentLocation }
         self.locationHistory.insert(self.currentLocation!, at: 0)
         if self.locationHistory.count > self.maxTranslationCount { self.locationHistory.removeLast() }
         /* NOTE: Update translation */
         if let panGesture: UIPanGestureRecognizer = gesture as? UIPanGestureRecognizer {
-            self.currentTranslation = panGesture.translation(in: self.containerView)
-            self.currentVelocity = CGVector(point: panGesture.velocity(in: self.containerView))
+            self.currentTranslation = panGesture.translation(in: self.transitionContainerView)
+            self.currentVelocity = CGVector(point: panGesture.velocity(in: self.transitionContainerView))
             if self.initialTranslation == nil { self.initialTranslation = self.currentTranslation }
             self.translationHistory.insert(self.currentTranslation!, at: 0)
             if self.translationHistory.count > self.maxTranslationCount { self.translationHistory.removeLast() }
@@ -184,12 +184,12 @@ extension FluidGestureObservable {
 
 extension FluidGestureObservable {
     func handleGestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        let location: CGPoint = touch.location(in: self.containerView)
+        let location: CGPoint = touch.location(in: self.transitionContainerView)
         let isTouchingDestination: Bool = {
-            if let layer: CALayer = self.animationView.layer.presentation() {
+            if let layer: CALayer = self.layoutContainerView.layer.presentation() {
                 return layer.frame.contains(location)
             } else {
-                return self.animationView.frame.bounds.contains(location)
+                return self.layoutContainerView.frame.bounds.contains(location)
             }
         }()
         switch gestureRecognizer {
@@ -201,12 +201,12 @@ extension FluidGestureObservable {
     }
 
     func handleGestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        let location: CGPoint = gestureRecognizer.location(in: self.containerView)
+        let location: CGPoint = gestureRecognizer.location(in: self.transitionContainerView)
         let isTouchingDestination: Bool = {
-            if let layer: CALayer = self.animationView.layer.presentation() {
+            if let layer: CALayer = self.layoutContainerView.layer.presentation() {
                 return layer.frame.contains(location)
             } else {
-                return self.animationView.frame.bounds.contains(location)
+                return self.layoutContainerView.frame.bounds.contains(location)
             }
         }()
         switch gestureRecognizer {

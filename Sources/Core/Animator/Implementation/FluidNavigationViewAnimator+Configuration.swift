@@ -14,7 +14,7 @@ import Foundation
 extension FluidNavigationViewAnimator {
     func createFrameAnimation(_ isReversed: Bool = false) -> [FluidAnimatorCompatible] {
         var animators: [FluidAnimatorCompatible] = [FluidAnimatorCompatible]()
-        /* NOTE: 👌 Configure properties to animate */
+        // NOTE: Configure properties to animate
         let transitionDuration: TimeInterval = !isReversed ? self.activeDuration : FluidConst.fluidInteractionReverseDuration
         let transitionEasing: FluidAnimatorEasing = !isReversed ? self.activeEasing : .easeInOutQuad
         let fromContainerSize: CGSize = self.fromContainerSize(isReversed)
@@ -36,11 +36,11 @@ extension FluidNavigationViewAnimator {
             "transitionDuration:".lpad() + String(describing: transitionDuration),
             "activeEasing:".lpad() + String(describing: activeEasing),
             "transitionEasing:".lpad() + String(describing: transitionEasing),
-            "containerView:".lpad() + String(describing: containerView),
+            "transitionContainerView:".lpad() + String(describing: transitionContainerView),
+            "layoutContainerView:".lpad() + String(describing: layoutContainerView),
+            "layoutContainerView.layer.frame:".lpad() + String(describing: layoutContainerView.layer.frame),
+            "layoutContainerView.layer.presentation()?.frame:".lpad() + String(describing: layoutContainerView.layer.presentation()?.frame),
             "sourceView:".lpad() + String(describing: sourceView),
-            "animationView:".lpad() + String(describing: animationView),
-            "animationView.layer.frame:".lpad() + String(describing: animationView.layer.frame),
-            "animationView.layer.presentation()?.frame:".lpad() + String(describing: animationView.layer.presentation()?.frame),
             "destinationView:".lpad() + String(describing: destinationView),
             "destinationView.layer.frame:".lpad() + String(describing: destinationView.layer.frame),
             "destinationView.layer.presentation()?.frame:".lpad() + String(describing: destinationView.layer.presentation()?.frame),
@@ -55,27 +55,27 @@ extension FluidNavigationViewAnimator {
             "fromStyle:".lpad() + String(describing: fromStyle),
             "toStyle:".lpad() + String(describing: toStyle),
         ])
-        /* NOTE: 👍 Set properties before run animation */
+        // NOTE: Set properties before run animation
         if self.animationType.isPresent {
-            self.animationView.alpha = fromStyle.alpha
-            self.animationView.frame = fromFrame
-            self.animationView.transform = toTransform.toCGAffineTransform()
+            self.layoutContainerView.alpha = fromStyle.alpha
+            self.layoutContainerView.frame = fromFrame
+            self.layoutContainerView.transform = toTransform.toCGAffineTransform()
 //            self.layout.apply(edges: fromConstants)
-            self.containerView.updateLayoutImmediately()
+            self.transitionContainerView.updateLayoutImmediately()
         }
-        /* NOTE: 🐅 Configure constraint animator */
-        self.containerView.setNeedsLayout()
+        // NOTE: Configure constraint animator
+        self.transitionContainerView.setNeedsLayout()
         let frameConstraintAnimator: FluidPropertyAnimator = .init(duration: transitionDuration, easing: transitionEasing, id: "frameConstraintAnimator (\(String(describing: self.animationType).capitalized))")
         frameConstraintAnimator.add({ [weak self] in
             guard let `self`: FluidNavigationViewAnimator = self else { return }
-            self.animationView.alpha = toStyle.alpha
-            self.animationView.frame = toFrame
-            self.animationView.transform = toTransform.toCGAffineTransform()
+            self.layoutContainerView.alpha = toStyle.alpha
+            self.layoutContainerView.frame = toFrame
+            self.layoutContainerView.transform = toTransform.toCGAffineTransform()
 //            self.layout.apply(edges: toConstants)
-            self.containerView.layoutIfNeeded()
+            self.transitionContainerView.layoutIfNeeded()
         })
         animators.append(frameConstraintAnimator)
-        /* NOTE: Return animators */
+        // NOTE: Return animators
         return animators
     }
 }

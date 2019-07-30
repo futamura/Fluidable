@@ -59,7 +59,7 @@ internal class FluidTransitionDismissDriver: UIPercentDrivenInteractiveTransitio
     var previousResizePosition: CGFloat?
 
     /**
-     The function that returns a `FluidDismissTransition` object to `FluidViewControllerTransitionDelegate.interactionControllerForDismissal(using:)` method.
+     The function that returns a `FluidTransitionDismissDriver` object to `FluidViewControllerTransitioningDelegate.interactionControllerForDismissal(using:)` method.
      The interactive transition is enabled only if an user is dragging or panning a view.
      */
     func asOptional() -> FluidTransitionDismissDriver? { return self.isInteracting ? self : nil }

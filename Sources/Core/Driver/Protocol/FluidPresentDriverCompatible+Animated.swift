@@ -34,11 +34,11 @@ extension FluidPresentDriverCompatible where Self: FluidNavigationPresentDriver 
             "transitionCompleted:".lpad() + String(describing: transitionCompleted),
             "controllerDelegate:".lpad() + String(describing: controllerDelegate),
             "controllerDelegate?.presentDriver:".lpad() + String(describing: controllerDelegate?.presentDriver),
-            "containerView:".lpad() + String(debug: self.parameters?.containerView),
+            "transitionContainerView:".lpad() + String(debug: self.parameters?.transitionContainerView),
+            "layoutContainerView:".lpad() + String(debug: layoutContainerView),
             "sourceViewController:".lpad() + String(debug: self.parameters?.sourceViewController),
             "destinationViewController:".lpad() + String(debug: self.parameters?.destinationViewController),
             "sourceView:".lpad() + String(debug: sourceView),
-            "animationView:".lpad() + String(debug: animationView),
         ])
         switch transitionCompleted {
         case true:  /* NOTE: Transition is completed */
@@ -57,7 +57,7 @@ extension FluidPresentDriverCompatible where Self: FluidNavigationPresentDriver 
             /* NOTE: Update dismiss transition */
             try? self.controllerDelegate?.dismissDriver.configureParameters(driverType: .dismiss, animationType: .dismiss,
                                                                             context: self.parameters.context,
-                                                                            container: self.parameters.containerView,
+                                                                            container: self.parameters.transitionContainerView,
                                                                             source: self.parameters.sourceViewController,
                                                                             destination: self.parameters.destinationViewController,
                                                                             initialContainerSize: self.parameters.finalContainerSize,
@@ -97,11 +97,11 @@ extension FluidPresentDriverCompatible where Self: FluidTransitionPresentDriver 
             "transitionCompleted:".lpad() + String(describing: transitionCompleted),
             "controllerDelegate:".lpad() + String(describing: controllerDelegate),
             "controllerDelegate?.presentDriver:".lpad() + String(describing: controllerDelegate?.presentDriver),
-            "containerView:".lpad() + String(debug: self.parameters?.containerView),
+            "transitionContainerView:".lpad() + String(debug: self.parameters?.transitionContainerView),
+            "layoutContainerView:".lpad() + String(debug: layoutContainerView),
             "sourceViewController:".lpad() + String(debug: self.parameters?.sourceViewController),
             "destinationViewController:".lpad() + String(debug: self.parameters?.destinationViewController),
             "sourceView:".lpad() + String(debug: sourceView),
-            "animationView:".lpad() + String(debug: animationView),
         ])
         switch transitionCompleted {
         case true:  /* NOTE: Transition is completed */
@@ -118,7 +118,7 @@ extension FluidPresentDriverCompatible where Self: FluidTransitionPresentDriver 
             /* NOTE: Update dismiss transition */
             try? self.controllerDelegate?.dismissDriver.configureParameters(driverType: .dismiss, animationType: .dismiss,
                                                                             context: self.parameters.context,
-                                                                            container: self.parameters.containerView,
+                                                                            container: self.parameters.transitionContainerView,
                                                                             source: self.parameters.sourceViewController,
                                                                             destination: self.parameters.rootNavigationController ?? self.parameters.destinationViewController,
                                                                             initialContainerSize: self.parameters.finalContainerSize,
@@ -141,8 +141,8 @@ extension FluidPresentDriverCompatible where Self: FluidTransitionPresentDriver 
             /* NOTE: Remove container */
             self.parameters?.layout.deactivate(type: .transition)
             self.parameters?.destinationViewController?.view.removeFromSuperview()
-            self.parameters?.containerView?.subviews.forEach { $0.removeFromSuperview() }
-            self.parameters?.containerView?.removeFromSuperview()
+            self.parameters?.transitionContainerView?.subviews.forEach { $0.removeFromSuperview() }
+            self.parameters?.transitionContainerView?.removeFromSuperview()
             /* NOTE: Invalidate transition delegate */
             self.controllerDelegate?.dispose()
         }

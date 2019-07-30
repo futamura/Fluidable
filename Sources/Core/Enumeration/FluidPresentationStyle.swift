@@ -31,14 +31,19 @@ public enum FluidPresentationStyle {
     case drawer(position: FluidDrawerPosition)
 }
 
-/** The function that conforms to `Equatable`. */
 extension FluidPresentationStyle: Equatable {
+    /**
+     The function that conforms to `Equatable`.
+     - parameter lhs: A `FluidPresentationStyle` value.
+     - parameter rhs: A `FluidPresentationStyle` value.
+     - returns: The `Bool` value.
+     */
     public static func == (lhs: FluidPresentationStyle, rhs: FluidPresentationStyle) -> Bool {
         return lhs.description == rhs.description
     }
 }
 
-extension FluidPresentationStyle {
+internal extension FluidPresentationStyle {
     func toNavigationStyle() -> FluidNavigationStyle {
         switch self {
         case .fluid: return .scale
@@ -66,68 +71,68 @@ extension FluidPresentationStyle {
     }
 }
 
-extension FluidPresentationStyle {
-    public var isFluid: Bool {
+internal extension FluidPresentationStyle {
+    var isFluid: Bool {
         switch self {
         case .fluid: return true
         case .scale, .slide, .drawer: return false
         }
     }
-    public var isScale: Bool {
+    var isScale: Bool {
         switch self {
         case .scale: return true
         case .fluid, .slide, .drawer: return false
         }
     }
-    public var isSlide: Bool {
+    var isSlide: Bool {
         switch self {
         case .slide: return true
         case .fluid, .scale, .drawer: return false
         }
     }
-    public var isVerticalSlide: Bool {
+    var isVerticalSlide: Bool {
         switch self {
         case .slide(let position) where position.isFromTop || position.isFromBottom: return true
         case .fluid, .scale, .slide, .drawer: return false
         }
     }
-    public var isTopSlide: Bool {
+    var isTopSlide: Bool {
         switch self {
         case .slide(let position) where position.isFromTop: return true
         case .fluid, .scale, .slide, .drawer: return false
         }
     }
-    public var isBottomSlide: Bool {
+    var isBottomSlide: Bool {
         switch self {
         case .slide(let position) where position.isFromBottom: return true
         case .fluid, .scale, .slide, .drawer: return false
         }
     }
-    public var isDrawer: Bool {
+    var isDrawer: Bool {
         switch self {
         case .drawer: return true
         case .fluid, .scale, .slide: return false
         }
     }
-    public var isVerticalDrawer: Bool {
+    var isVerticalDrawer: Bool {
         switch self {
         case .drawer(let position) where position.isTop || position.isBottom: return true
         case .fluid, .scale, .slide, .drawer: return false
         }
     }
-    public var isTopDrawer: Bool {
+    var isTopDrawer: Bool {
         switch self {
         case .drawer(let position) where position.isTop: return true
         case .fluid, .scale, .slide, .drawer: return false
         }
     }
-    public var isBottomDrawer: Bool {
+    var isBottomDrawer: Bool {
         switch self {
         case .drawer(let position) where position.isBottom: return true
         case .fluid, .scale, .slide, .drawer: return false
         }
     }
-    public var interactionBehavior: FluidInteractionBehavior {
+    var interactionBehavior: FluidInteractionBehavior {
         switch self {
         case .fluid(let behavior): return behavior
         case .scale, .slide, .drawer: return .none
@@ -268,10 +273,10 @@ public struct FluidInteractionBehavior: OptionSet {
     }
 }
 
-extension FluidInteractionBehavior {
-    public var isScale: Bool { return self.contains(.scale) }
-    public var isVertical: Bool { return self.contains(.vertical) }
-    public var isBidirectional: Bool { return self.contains(.bidirectional) }
+internal extension FluidInteractionBehavior {
+    var isScale: Bool { return self.contains(.scale) }
+    var isVertical: Bool { return self.contains(.vertical) }
+    var isBidirectional: Bool { return self.contains(.bidirectional) }
 }
 
 extension FluidInteractionBehavior: CustomStringConvertible {

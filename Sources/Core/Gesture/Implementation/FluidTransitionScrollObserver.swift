@@ -123,7 +123,7 @@ extension FluidTransitionScrollObserver {
                - \("minScrollableY".lpad(36)): \(String(debug: sv.minScrollableY))
                - \("maxScrollableX".lpad(36)): \(String(debug: sv.maxScrollableX))
                - \("maxScrollableY".lpad(36)): \(String(debug: sv.maxScrollableY))
-               - \("animationView.frame".lpad(36)): \(String(debug: self.animationView.frame))
+               - \("layoutContainerView.frame".lpad(36)): \(String(debug: self.layoutContainerView.frame))
                - \("destinationViewController.view.frame".lpad(36)): \(String(debug: self.destinationViewController.view.frame))
                )
                """

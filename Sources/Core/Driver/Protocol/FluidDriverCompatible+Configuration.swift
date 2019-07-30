@@ -1,5 +1,5 @@
 //
-//  FluidTransitionCompatible+Configuration.swift
+//  FluidDriverCompatible+Configuration.swift
 //  Fluidable
 //
 //  Created by kojirof on 2019/06/29.
@@ -33,10 +33,10 @@ extension FluidDriverCompatible {
                                 initialContainerSize: initialContainerSize, finalContainerSize: finalContainerSize,
                                 duration: duration, easing: easing)
         self.parameters.configureViews(shouldInsertSubview: shouldInsertSubview)
-        /* NOTE: Register parameters */
+        // NOTE: Register parameters
         self.registerParameters(parameters: self.parameters)
         Logger()?.log("🐮🛠", ["\n" + String(debug: self.parameters), ])
-        /* NOTE: Validate */
+        // NOTE: Validate
         do {
             try self.parameters.validateParameters()
             switch driverType {

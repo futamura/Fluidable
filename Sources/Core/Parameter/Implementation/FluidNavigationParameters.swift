@@ -41,11 +41,11 @@ struct FluidNavigationParameters: FluidParametersCompatible {
     /** The `FluidNavigationInteractionType` value. */
     var interactionType: FluidDriverInteractionType
 
-    /** Views for `FluidActionDelegate` */
-    weak var containerView: UIView!
+    /** Container views */
+    weak var transitionContainerView: UIView!
     weak var sourceView: UIView!
     weak var destinationView: UIView!
-    weak var animationView: UIView! = nil
+    weak var layoutContainerView: UIView! = nil
 
     /** Shortcut for `FluidConfigurationDelegate` */
     var allowInteractivePresent: Bool

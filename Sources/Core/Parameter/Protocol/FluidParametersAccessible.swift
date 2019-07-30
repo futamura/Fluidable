@@ -43,13 +43,13 @@ internal protocol FluidParametersAccessible: NSObjectProtocol {
     var destinationViewControllerDelegate: DestinationViewControllerDelegate! { get }
 
     /** The reference to the container view. */
-    var containerView: UIView! { get }
+    var transitionContainerView: UIView! { get }
+    /** The reference to the animated view that displayed above the source view. */
+    var layoutContainerView: UIView! { get }
     /** The reference to the source view that transition starts from. */
     var sourceView: UIView! { get }
     /** The reference to the destination view that displayed above the source view. */
     var destinationView: UIView! { get }
-    /** The reference to the animated view that displayed above the source view. */
-    var animationView: UIView! { get }
 
     /** The `Bool` value that determines whether an interactive present transition can begin. */
     var allowInteractivePresent: Bool { get }
@@ -186,10 +186,10 @@ extension FluidParametersAccessible {
     var animationType: FluidAnimationType { return self.parameters.animationType }
     var interactionType: FluidDriverInteractionType { return self.parameters.interactionType }
 
-    weak var containerView: UIView! { return self.parameters.containerView }
+    weak var transitionContainerView: UIView! { return self.parameters.transitionContainerView }
     weak var sourceView: UIView! { return self.parameters.sourceView }
     weak var destinationView: UIView! { return self.parameters.destinationView }
-    weak var animationView: UIView! { return self.parameters.animationView }
+    weak var layoutContainerView: UIView! { return self.parameters.layoutContainerView }
 
     var allowInteractivePresent: Bool { return self.parameters.allowInteractivePresent }
     var allowInteractiveDismiss: Bool { return self.parameters.allowInteractiveDismiss }
