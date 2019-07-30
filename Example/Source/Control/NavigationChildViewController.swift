@@ -49,7 +49,7 @@ class NavigationChildViewController: NavigationBaseViewController, Fluidable {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         Logger()?.log("🚗💥", [])
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
     override func viewDidAppear(_ animated: Bool) {

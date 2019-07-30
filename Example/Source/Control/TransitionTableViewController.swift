@@ -12,7 +12,7 @@ import Fluidable
 
 /* IMPORTANT: 🌊 Conform to `Fluidable` protocol */
 class TransitionTableViewController: TransitionBaseViewController, Fluidable {
-    /* IMPORTANT: 🌊 Define the delegate to receive messages from `FluidDestinationConfigurationDelegate` and `FluidDestinationActionDelegate` */
+    /* IMPORTANT: 🌊 Define the delegate to receive messages from `FluidTransitionDestinationConfigurationDelegate` and `FluidTransitionDestinationActionDelegate` */
     var fluidableTransitionDelegate: FluidViewControllerTransitioningDelegate = .init()
 
     /** Dummy value to prevent UIViewPropertyAnimator from finishing immediately. */
@@ -70,7 +70,7 @@ class TransitionTableViewController: TransitionBaseViewController, Fluidable {
     deinit { Logger()?.log("🚗🧹🧹🧹", []) }
 }
 
-/* IMPORTANT: 🌊 Conform to `FluidDestinationConfigurationDelegate` */
+/* IMPORTANT: 🌊 Conform to `FluidTransitionDestinationConfigurationDelegate` */
 extension TransitionTableViewController: FluidTransitionDestinationConfigurationDelegate {
     func transitionAllowsInteractiveDismiss(from destination: FluidDestinationViewController, to source: FluidSourceViewController, with navigation: FluidNavigationController?) -> Bool { return true }
     func transitionAllowsDismissFromChildViewControllers(from destination: FluidDestinationViewController, to source: FluidSourceViewController, with navigation: FluidNavigationController?) -> Bool { return true }
@@ -203,7 +203,7 @@ extension TransitionTableViewController: FluidTransitionDestinationConfiguration
     }
 }
 
-/* IMPORTANT: 🌊 Conform to `FluidDestinationActionDelegate` */
+/* IMPORTANT: 🌊 Conform to `FluidTransitionDestinationActionDelegate` */
 extension TransitionTableViewController: FluidTransitionDestinationActionDelegate {
     func transitionPresentAnimationDidProgress(from source: FluidSourceViewController, to destination: FluidDestinationViewController,
                                                with navigation: FluidNavigationController?, on container: UIView?,

@@ -12,7 +12,6 @@ import Fluidable
 
 /* IMPORTANT: 🌊 Conform to `Fluidable` protocol */
 class RootViewController: UICollectionViewController, Fluidable {
-    /* NOTE: The values referenced from 'FluidSourceConfigurationDelegate.initialDestinationFrameDimension(source:destination:navigation:)` */
     var selectedIndex: Int?
     weak var selectedCell: RootBaseCollectionCell? {
         guard let index: Int = self.selectedIndex else { return nil }
@@ -21,7 +20,6 @@ class RootViewController: UICollectionViewController, Fluidable {
     weak var selectedImage: UIImage? {
         return self.selectedCell?.contentView.toImage()
     }
-    /* NOTE: Pass the current dimension of the selected cell */
     var selectedFrame: (frame: CGRect, transform: CATransform3D)? {
         guard let cell: RootBaseCollectionCell = self.selectedCell else { return nil }
         let frame: CGRect = cell.contentView.convert(cell.contentView.frame, to: UIApplication.shared.keyWindow)

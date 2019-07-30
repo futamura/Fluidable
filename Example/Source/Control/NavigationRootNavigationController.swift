@@ -13,13 +13,13 @@ import Fluidable
 /* IMPORTANT: 🌊 Conform to `FluidNavigationBarCompatible` protocol */
 class NavigationRootNavigationBar: UINavigationBar, FluidNavigationBarCompatible {
     var preferredSize: CGSize {
-        return CGSize(width: UIApplication.shared.keyWindow?.frame.width ?? UIScreen.main.bounds.width, height: 44)
+        return CGSize(width: self.superview?.frame.width ?? UIScreen.main.bounds.width, height: 44)
     }
 }
 
 /* IMPORTANT: 🌊 Conform to `Fluidable` protocol */
 class NavigationRootNavigationController: UINavigationController, Fluidable, FluidResizable, RootModelReceivable {
-    /* IMPORTANT: 🌊 Define the delegate to receive messages from `FluidDestinationConfigurationDelegate` and `FluidDestinationActionDelegate` */
+    /* IMPORTANT: 🌊 Define the delegate to receive messages from `FluidTransitionDestinationConfigurationDelegate` and `FluidTransitionDestinationActionDelegate` */
     let fluidNavigationDelegate: FluidNavigationControllerDelegate = .init()
     let fluidTransitionDelegate: FluidViewControllerTransitioningDelegate = .init()
 
@@ -116,7 +116,7 @@ extension NavigationRootNavigationController: FluidNavigationSourceActionDelegat
     }
 }
 
-/* IMPORTANT: 🌊 Conform to `FluidDestinationActionDelegate` */
+/* IMPORTANT: 🌊 Conform to `FluidTransitionDestinationActionDelegate` */
 extension NavigationRootNavigationController: FluidTransitionDestinationActionDelegate {
     func transitionPresentAnimationDidProgress(from source: FluidSourceViewController, to destination: FluidDestinationViewController,
                                                with navigation: FluidNavigationController?, on container: UIView?,

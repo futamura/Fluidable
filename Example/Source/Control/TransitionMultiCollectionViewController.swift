@@ -12,7 +12,7 @@ import Fluidable
 
 /* IMPORTANT: 🌊 Conform to `Fluidable` and `FluidResizable` protocol */
 class TransitionMultiCollectionViewController: TransitionBaseViewController, Fluidable, FluidResizable {
-    /* IMPORTANT: 🌊 Define the delegate to receive messages from `FluidDestinationConfigurationDelegate` and `FluidDestinationActionDelegate` */
+    /* IMPORTANT: 🌊 Define the delegate to receive messages from `FluidTransitionDestinationConfigurationDelegate` and `FluidTransitionDestinationActionDelegate` */
     var fluidableTransitionDelegate: FluidViewControllerTransitioningDelegate = .init()
 
     /** Views */
@@ -87,7 +87,7 @@ class TransitionMultiCollectionViewController: TransitionBaseViewController, Flu
     deinit { Logger()?.log("🚗🧹🧹🧹", []) }
 }
 
-/* IMPORTANT: 🌊 Conform to `FluidDestinationConfigurationDelegate` */
+/* IMPORTANT: 🌊 Conform to `FluidTransitionDestinationConfigurationDelegate` */
 extension TransitionMultiCollectionViewController: FluidTransitionDestinationConfigurationDelegate {
     func transitionAllowsInteractiveDismiss(from destination: FluidDestinationViewController, to source: FluidSourceViewController, with navigation: FluidNavigationController?) -> Bool { return true }
     func transitionAllowsDismissFromChildViewControllers(from destination: FluidDestinationViewController, to source: FluidSourceViewController, with navigation: FluidNavigationController?) -> Bool { return true }
@@ -135,7 +135,7 @@ extension TransitionMultiCollectionViewController: FluidTransitionDestinationCon
     }
 }
 
-/* IMPORTANT: 🌊 Conform to `FluidDestinationActionDelegate` */
+/* IMPORTANT: 🌊 Conform to `FluidTransitionDestinationActionDelegate` */
 extension TransitionMultiCollectionViewController: FluidTransitionDestinationActionDelegate {
     func transitionPresentAnimationDidProgress(from source: FluidSourceViewController, to destination: FluidDestinationViewController,
                                                with navigation: FluidNavigationController?, on container: UIView?,
