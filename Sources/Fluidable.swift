@@ -12,7 +12,6 @@ import UIKit
 /** Obj-C association key */
 private struct AssociationKey {
     static let fluidDelegate: UnsafeMutablePointer<UInt> = UnsafeMutablePointer<UInt>.allocate(capacity: 1)
-    static let fluidResizableDelegate: UnsafeMutablePointer<UInt> = UnsafeMutablePointer<UInt>.allocate(capacity: 1)
 }
 
 /**
@@ -27,20 +26,5 @@ public extension Fluidable where Self: UIViewController {
     weak var fluidDelegate: FluidDelegate? {
         get { return AssociatedObject.get(self, AssociationKey.fluidDelegate) }
         set { AssociatedObject.set(self, AssociationKey.fluidDelegate, newValue, .assign) }
-    }
-}
-
-/**
- The `FluidResizable` protocol.
- */
-public protocol FluidResizable: NSObjectProtocol {
-    /** The `FluidResizableDelegate` object. */
-    var fluidResizableDelegate: FluidResizableTransitionDelegate? { get set }
-}
-
-public extension FluidResizable where Self: UIViewController {
-    weak var fluidResizableDelegate: FluidResizableTransitionDelegate? {
-        get { return AssociatedObject.get(self, AssociationKey.fluidResizableDelegate) }
-        set { AssociatedObject.set(self, AssociationKey.fluidResizableDelegate, newValue, .assign) }
     }
 }

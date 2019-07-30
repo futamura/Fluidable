@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>FluidNavigationDestinationActionDelegate Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Protocol/FluidNavigationDestinationActionDelegate" class="dashAnchor"></a>
+
+    <a title="FluidNavigationDestinationActionDelegate Protocol Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          Fluidable Docs
+        </a>
+        
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/gumob/Fluidable">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">Fluidable Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      FluidNavigationDestinationActionDelegate Protocol Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Core.html">Core</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/Fluidable.html">Fluidable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/FluidResizable.html">FluidResizable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/UIApplicationDelegate.html">UIApplicationDelegate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Delegate.html">Delegate</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Delegate.html#/s:9Fluidable13FluidDelegateP">FluidDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/FluidNavigationControllerDelegate.html">FluidNavigationControllerDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/FluidNavigationSourceConfigurationDelegate.html">FluidNavigationSourceConfigurationDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/FluidNavigationDestinationConfigurationDelegate.html">FluidNavigationDestinationConfigurationDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/FluidNavigationSourceActionDelegate.html">FluidNavigationSourceActionDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/FluidNavigationDestinationActionDelegate.html">FluidNavigationDestinationActionDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/FluidViewControllerTransitioningDelegate.html">FluidViewControllerTransitioningDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/FluidTransitionSourceConfigurationDelegate.html">FluidTransitionSourceConfigurationDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/FluidTransitionDestinationConfigurationDelegate.html">FluidTransitionDestinationConfigurationDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/FluidTransitionSourceActionDelegate.html">FluidTransitionSourceActionDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/FluidTransitionDestinationActionDelegate.html">FluidTransitionDestinationActionDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/FluidResizableTransitionDelegate.html">FluidResizableTransitionDelegate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enumerations - Presentation Style.html">Enumerations - Presentation Style</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/FluidPresentationStyle.html">FluidPresentationStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/FluidDrawerPosition.html">FluidDrawerPosition</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/FluidSlideDirection.html">FluidSlideDirection</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Enumerations - Transtion &amp; Interaction.html">Enumerations - Transtion &amp; Interaction</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/FluidProgressState.html">FluidProgressState</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Struct - Transtion &amp; Interaction.html">Struct - Transtion &amp; Interaction</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Struct - Transtion &amp; Interaction.html#/s:9Fluidable16FluidGestureInfoV">FluidGestureInfo</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/FluidGestureDirection.html">FluidGestureDirection</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/FluidGestureAxis.html">FluidGestureAxis</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/FluidInteractionBehavior.html">FluidInteractionBehavior</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Struct - Frame and Style.html">Struct - Frame and Style</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/FluidInitialFrameDimension.html">FluidInitialFrameDimension</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/FluidFinalFrameDimension.html">FluidFinalFrameDimension</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/FluidInitialFrameStyle.html">FluidInitialFrameStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/FluidFinalFrameStyle.html">FluidFinalFrameStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/FluidRoundCornerStyle.html">FluidRoundCornerStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/FluidBackgroundStyle.html">FluidBackgroundStyle</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../NavigationBar.html">NavigationBar</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../NavigationBar.html#/s:9Fluidable18FluidNavigationBara">FluidNavigationBar</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/FluidNavigationBarCompatible.html">FluidNavigationBarCompatible</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Proxy.html">Proxy</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/FluidProxy.html">FluidProxy</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Type Aliases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Type Aliases.html#/s:9Fluidable25FluidNavigationControllera">FluidNavigationController</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Type Aliases.html#/s:9Fluidable25FluidSourceViewControllera">FluidSourceViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Type Aliases.html#/s:9Fluidable30FluidDestinationViewControllera">FluidDestinationViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Type Aliases.html#/s:9Fluidable019FluidNavigationRootC18ControllerDelegatea">FluidNavigationRootNavigationControllerDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Type Aliases.html#/s:9Fluidable43FluidNavigationSourceViewControllerDelegatea">FluidNavigationSourceViewControllerDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Type Aliases.html#/s:9Fluidable48FluidNavigationDestinationViewControllerDelegatea">FluidNavigationDestinationViewControllerDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Type Aliases.html#/s:9Fluidable47FluidTransitionRootNavigationControllerDelegatea">FluidTransitionRootNavigationControllerDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Type Aliases.html#/s:9Fluidable43FluidTransitionSourceViewControllerDelegatea">FluidTransitionSourceViewControllerDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Type Aliases.html#/s:9Fluidable48FluidTransitionDestinationViewControllerDelegatea">FluidTransitionDestinationViewControllerDelegate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Error.html">Error</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/FluidError.html">FluidError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Guide.html">Guide</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../usage.html">USAGE</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>FluidNavigationDestinationActionDelegate</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">FluidNavigationDestinationActionDelegate</span> <span class="p">:</span> <span class="kt">FluidNavigationActionDelegate</span></code></pre>
+
+                </div>
+              </div>
+            <p>The methods in this protocol let you control views while performing the <code><a href="../Classes/FluidNavigationControllerDelegate.html">FluidNavigationControllerDelegate</a></code> transition.</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9Fluidable29FluidNavigationActionDelegateP37navigationPresentAnimationDidProgress4from2to4with2on0F5Style8duration6easing5state8progressyA2A_So16UIViewControllerCXc_A2A_AOXcA2A_So012UINavigationU0CXcSgSo0T0CSgAA0bcO0OSdAA0B14AnimatorEasingOAA0bJ5StateO12CoreGraphics7CGFloatVtF"></a>
+                    <a name="//apple_ref/swift/Method/navigationPresentAnimationDidProgress(from:to:with:on:navigationStyle:duration:easing:state:progress:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Fluidable29FluidNavigationActionDelegateP37navigationPresentAnimationDidProgress4from2to4with2on0F5Style8duration6easing5state8progressyA2A_So16UIViewControllerCXc_A2A_AOXcA2A_So012UINavigationU0CXcSgSo0T0CSgAA0bcO0OSdAA0B14AnimatorEasingOAA0bJ5StateO12CoreGraphics7CGFloatVtF">navigationPresentAnimationDidProgress(from:to:with:on:navigationStyle:duration:easing:state:progress:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">navigationPresentAnimationDidProgress</span><span class="p">(</span><span class="n">from</span> <span class="nv">source</span><span class="p">:</span> <span class="kt"><a href="../Type Aliases.html#/s:9Fluidable25FluidSourceViewControllera">FluidSourceViewController</a></span><span class="p">,</span> <span class="n">to</span> <span class="nv">destination</span><span class="p">:</span> <span class="kt"><a href="../Type Aliases.html#/s:9Fluidable30FluidDestinationViewControllera">FluidDestinationViewController</a></span><span class="p">,</span> <span class="n">with</span> <span class="nv">navigation</span><span class="p">:</span> <span class="kt"><a href="../Type Aliases.html#/s:9Fluidable25FluidNavigationControllera">FluidNavigationController</a></span><span class="p">?,</span> <span class="n">on</span> <span class="nv">container</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">?,</span> <span class="nv">navigationStyle</span><span class="p">:</span> <span class="kt">FluidNavigationStyle</span><span class="p">,</span> <span class="nv">duration</span><span class="p">:</span> <span class="kt">TimeInterval</span><span class="p">,</span> <span class="nv">easing</span><span class="p">:</span> <span class="kt">FluidAnimatorEasing</span><span class="p">,</span> <span class="nv">state</span><span class="p">:</span> <span class="kt"><a href="../Enums/FluidProgressState.html">FluidProgressState</a></span><span class="p">,</span> <span class="nv">progress</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9Fluidable29FluidNavigationActionDelegateP37navigationDismissAnimationDidProgress4from2to4with2on0F5Style8duration6easing5state8progressyA2A_So16UIViewControllerCXc_A2A_AOXcA2A_So012UINavigationU0CXcSgSo0T0CSgAA0bcO0OSdAA0B14AnimatorEasingOAA0bJ5StateO12CoreGraphics7CGFloatVtF"></a>
+                    <a name="//apple_ref/swift/Method/navigationDismissAnimationDidProgress(from:to:with:on:navigationStyle:duration:easing:state:progress:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Fluidable29FluidNavigationActionDelegateP37navigationDismissAnimationDidProgress4from2to4with2on0F5Style8duration6easing5state8progressyA2A_So16UIViewControllerCXc_A2A_AOXcA2A_So012UINavigationU0CXcSgSo0T0CSgAA0bcO0OSdAA0B14AnimatorEasingOAA0bJ5StateO12CoreGraphics7CGFloatVtF">navigationDismissAnimationDidProgress(from:to:with:on:navigationStyle:duration:easing:state:progress:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">navigationDismissAnimationDidProgress</span><span class="p">(</span><span class="n">from</span> <span class="nv">destination</span><span class="p">:</span> <span class="kt"><a href="../Type Aliases.html#/s:9Fluidable30FluidDestinationViewControllera">FluidDestinationViewController</a></span><span class="p">,</span> <span class="n">to</span> <span class="nv">source</span><span class="p">:</span> <span class="kt"><a href="../Type Aliases.html#/s:9Fluidable25FluidSourceViewControllera">FluidSourceViewController</a></span><span class="p">,</span> <span class="n">with</span> <span class="nv">navigation</span><span class="p">:</span> <span class="kt"><a href="../Type Aliases.html#/s:9Fluidable25FluidNavigationControllera">FluidNavigationController</a></span><span class="p">?,</span> <span class="n">on</span> <span class="nv">container</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">?,</span> <span class="nv">navigationStyle</span><span class="p">:</span> <span class="kt">FluidNavigationStyle</span><span class="p">,</span> <span class="nv">duration</span><span class="p">:</span> <span class="kt">TimeInterval</span><span class="p">,</span> <span class="nv">easing</span><span class="p">:</span> <span class="kt">FluidAnimatorEasing</span><span class="p">,</span> <span class="nv">state</span><span class="p">:</span> <span class="kt"><a href="../Enums/FluidProgressState.html">FluidProgressState</a></span><span class="p">,</span> <span class="nv">progress</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9Fluidable29FluidNavigationActionDelegateP39navigationPresentInteractionDidProgress4from2to4with2on0F5Style8duration6easing5state8progress4infoyA2A_So16UIViewControllerCXc_A2A_APXcA2A_So012UINavigationV0CXcSgSo0U0CSgAA0bcO0OSdAA0B14AnimatorEasingOAA0bJ5StateO12CoreGraphics7CGFloatVAA0B11GestureInfoVtF"></a>
+                    <a name="//apple_ref/swift/Method/navigationPresentInteractionDidProgress(from:to:with:on:navigationStyle:duration:easing:state:progress:info:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Fluidable29FluidNavigationActionDelegateP39navigationPresentInteractionDidProgress4from2to4with2on0F5Style8duration6easing5state8progress4infoyA2A_So16UIViewControllerCXc_A2A_APXcA2A_So012UINavigationV0CXcSgSo0U0CSgAA0bcO0OSdAA0B14AnimatorEasingOAA0bJ5StateO12CoreGraphics7CGFloatVAA0B11GestureInfoVtF">navigationPresentInteractionDidProgress(from:to:with:on:navigationStyle:duration:easing:state:progress:info:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">navigationPresentInteractionDidProgress</span><span class="p">(</span><span class="n">from</span> <span class="nv">source</span><span class="p">:</span> <span class="kt"><a href="../Type Aliases.html#/s:9Fluidable25FluidSourceViewControllera">FluidSourceViewController</a></span><span class="p">,</span> <span class="n">to</span> <span class="nv">destination</span><span class="p">:</span> <span class="kt"><a href="../Type Aliases.html#/s:9Fluidable30FluidDestinationViewControllera">FluidDestinationViewController</a></span><span class="p">,</span> <span class="n">with</span> <span class="nv">navigation</span><span class="p">:</span> <span class="kt"><a href="../Type Aliases.html#/s:9Fluidable25FluidNavigationControllera">FluidNavigationController</a></span><span class="p">?,</span> <span class="n">on</span> <span class="nv">container</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">?,</span> <span class="nv">navigationStyle</span><span class="p">:</span> <span class="kt">FluidNavigationStyle</span><span class="p">,</span> <span class="nv">duration</span><span class="p">:</span> <span class="kt">TimeInterval</span><span class="p">,</span> <span class="nv">easing</span><span class="p">:</span> <span class="kt">FluidAnimatorEasing</span><span class="p">,</span> <span class="nv">state</span><span class="p">:</span> <span class="kt"><a href="../Enums/FluidProgressState.html">FluidProgressState</a></span><span class="p">,</span> <span class="nv">progress</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">info</span><span class="p">:</span> <span class="kt"><a href="../Struct - Transtion & Interaction.html#/s:9Fluidable16FluidGestureInfoV">FluidGestureInfo</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9Fluidable29FluidNavigationActionDelegateP39navigationDismissInteractionDidProgress4from2to4with2on0F5Style8duration6easing5state8progress4infoyA2A_So16UIViewControllerCXc_A2A_APXcA2A_So012UINavigationV0CXcSgSo0U0CSgAA0bcO0OSdAA0B14AnimatorEasingOAA0bJ5StateO12CoreGraphics7CGFloatVAA0B11GestureInfoVtF"></a>
+                    <a name="//apple_ref/swift/Method/navigationDismissInteractionDidProgress(from:to:with:on:navigationStyle:duration:easing:state:progress:info:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9Fluidable29FluidNavigationActionDelegateP39navigationDismissInteractionDidProgress4from2to4with2on0F5Style8duration6easing5state8progress4infoyA2A_So16UIViewControllerCXc_A2A_APXcA2A_So012UINavigationV0CXcSgSo0U0CSgAA0bcO0OSdAA0B14AnimatorEasingOAA0bJ5StateO12CoreGraphics7CGFloatVAA0B11GestureInfoVtF">navigationDismissInteractionDidProgress(from:to:with:on:navigationStyle:duration:easing:state:progress:info:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">navigationDismissInteractionDidProgress</span><span class="p">(</span><span class="n">from</span> <span class="nv">destination</span><span class="p">:</span> <span class="kt"><a href="../Type Aliases.html#/s:9Fluidable30FluidDestinationViewControllera">FluidDestinationViewController</a></span><span class="p">,</span> <span class="n">to</span> <span class="nv">source</span><span class="p">:</span> <span class="kt"><a href="../Type Aliases.html#/s:9Fluidable25FluidSourceViewControllera">FluidSourceViewController</a></span><span class="p">,</span> <span class="n">with</span> <span class="nv">navigation</span><span class="p">:</span> <span class="kt"><a href="../Type Aliases.html#/s:9Fluidable25FluidNavigationControllera">FluidNavigationController</a></span><span class="p">?,</span> <span class="n">on</span> <span class="nv">container</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">?,</span> <span class="nv">navigationStyle</span><span class="p">:</span> <span class="kt">FluidNavigationStyle</span><span class="p">,</span> <span class="nv">duration</span><span class="p">:</span> <span class="kt">TimeInterval</span><span class="p">,</span> <span class="nv">easing</span><span class="p">:</span> <span class="kt">FluidAnimatorEasing</span><span class="p">,</span> <span class="nv">state</span><span class="p">:</span> <span class="kt"><a href="../Enums/FluidProgressState.html">FluidProgressState</a></span><span class="p">,</span> <span class="nv">progress</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">info</span><span class="p">:</span> <span class="kt"><a href="../Struct - Transtion & Interaction.html#/s:9Fluidable16FluidGestureInfoV">FluidGestureInfo</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>Copyright © 2019 Gumob. All rights reserved.</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.10.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>
