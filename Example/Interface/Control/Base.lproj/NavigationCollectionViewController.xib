@@ -39,12 +39,12 @@
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="CyF-Nc-GE5" firstAttribute="leading" secondItem="I3B-fE-d09" secondAttribute="leading" placeholder="YES" id="3sH-LM-RHm"/>
-                    <constraint firstItem="aNS-PS-0IL" firstAttribute="trailing" secondItem="I3B-fE-d09" secondAttribute="trailing" constant="-16" placeholder="YES" id="AgI-Tx-Z83"/>
-                    <constraint firstItem="CyF-Nc-GE5" firstAttribute="top" secondItem="I3B-fE-d09" secondAttribute="top" placeholder="YES" id="Hfa-95-z3X"/>
-                    <constraint firstItem="aNS-PS-0IL" firstAttribute="top" secondItem="I3B-fE-d09" secondAttribute="top" constant="16" placeholder="YES" id="NBd-JO-3qW"/>
-                    <constraint firstItem="CyF-Nc-GE5" firstAttribute="bottom" secondItem="I3B-fE-d09" secondAttribute="bottom" placeholder="YES" id="VmG-Tn-biP"/>
-                    <constraint firstItem="CyF-Nc-GE5" firstAttribute="trailing" secondItem="I3B-fE-d09" secondAttribute="trailing" placeholder="YES" id="cp6-9c-Vd6"/>
+                    <constraint firstItem="CyF-Nc-GE5" firstAttribute="leading" secondItem="I3B-fE-d09" secondAttribute="leading" id="3sH-LM-RHm"/>
+                    <constraint firstItem="aNS-PS-0IL" firstAttribute="trailing" secondItem="I3B-fE-d09" secondAttribute="trailing" constant="-16" id="AgI-Tx-Z83"/>
+                    <constraint firstItem="CyF-Nc-GE5" firstAttribute="top" secondItem="I3B-fE-d09" secondAttribute="top" id="Hfa-95-z3X"/>
+                    <constraint firstItem="aNS-PS-0IL" firstAttribute="top" secondItem="I3B-fE-d09" secondAttribute="top" constant="16" id="NBd-JO-3qW"/>
+                    <constraint firstItem="CyF-Nc-GE5" firstAttribute="bottom" secondItem="I3B-fE-d09" secondAttribute="bottom" id="VmG-Tn-biP"/>
+                    <constraint firstItem="CyF-Nc-GE5" firstAttribute="trailing" secondItem="I3B-fE-d09" secondAttribute="trailing" id="cp6-9c-Vd6"/>
                 </constraints>
                 <viewLayoutGuide key="safeArea" id="I3B-fE-d09"/>
             </view>
@@ -53,7 +53,13 @@
             </navigationItem>
             <connections>
                 <outlet property="closeButton" destination="aNS-PS-0IL" id="08z-bD-MjH"/>
+                <outlet property="closeButtonTopConstraint" destination="NBd-JO-3qW" id="bBe-3s-X7W"/>
+                <outlet property="closeButtonTrailingConstraint" destination="AgI-Tx-Z83" id="aJz-O4-mbr"/>
                 <outlet property="collectionView" destination="CyF-Nc-GE5" id="jCg-OY-1Ty"/>
+                <outlet property="subviewBottomConstraint" destination="VmG-Tn-biP" id="V0F-j3-Svy"/>
+                <outlet property="subviewLeadingConstraint" destination="3sH-LM-RHm" id="5N4-Jt-xnm"/>
+                <outlet property="subviewTopConstraint" destination="Hfa-95-z3X" id="I59-2g-3Oa"/>
+                <outlet property="subviewTrailingConstraint" destination="AgI-Tx-Z83" id="bYu-6u-FcJ"/>
             </connections>
         </viewController>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

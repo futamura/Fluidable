@@ -58,20 +58,18 @@ extension FluidTransitionViewAnimator {
         // NOTE: Set properties before run animation
         if self.animationType.isPresent {
             self.layoutContainerView.alpha = fromStyle.alpha
-            self.layoutContainerView.frame = fromFrame
             self.layoutContainerView.transform = toTransform.toCGAffineTransform()
             self.layout.apply(edges: fromConstants)
             self.transitionContainerView.updateLayoutImmediately()
         }
         // NOTE: Configure constraint animator
-        self.layout.apply(edges: toConstants)
         self.transitionContainerView.setNeedsLayout()
         let frameConstraintAnimator: FluidPropertyAnimator = .init(duration: transitionDuration, easing: transitionEasing, id: "frameConstraintAnimator (\(String(describing: self.animationType).capitalized))")
         frameConstraintAnimator.add({ [weak self] in
             guard let `self`: FluidTransitionViewAnimator = self else { return }
             self.layoutContainerView.alpha = toStyle.alpha
-            self.layoutContainerView.frame = toFrame
             self.layoutContainerView.transform = toTransform.toCGAffineTransform()
+            self.layout.apply(edges: toConstants)
             self.transitionContainerView.layoutIfNeeded()
         })
         animators.append(frameConstraintAnimator)

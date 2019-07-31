@@ -253,12 +253,12 @@
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="iGn-RQ-xxR" firstAttribute="trailing" secondItem="pFF-lC-DyD" secondAttribute="trailing" constant="-16" placeholder="YES" id="9v6-0s-fE8"/>
-                    <constraint firstItem="iTr-vo-tyH" firstAttribute="leading" secondItem="pFF-lC-DyD" secondAttribute="leading" placeholder="YES" id="Bvk-LM-QsP"/>
-                    <constraint firstItem="iTr-vo-tyH" firstAttribute="bottom" secondItem="pFF-lC-DyD" secondAttribute="bottom" placeholder="YES" id="dQF-9k-ENX"/>
-                    <constraint firstItem="iTr-vo-tyH" firstAttribute="trailing" secondItem="pFF-lC-DyD" secondAttribute="trailing" placeholder="YES" id="gGe-iK-8aq"/>
-                    <constraint firstItem="iGn-RQ-xxR" firstAttribute="top" secondItem="pFF-lC-DyD" secondAttribute="top" constant="16" placeholder="YES" id="tZZ-S6-xUA"/>
-                    <constraint firstItem="iTr-vo-tyH" firstAttribute="top" secondItem="pFF-lC-DyD" secondAttribute="top" placeholder="YES" id="usM-u5-YDt"/>
+                    <constraint firstItem="iGn-RQ-xxR" firstAttribute="trailing" secondItem="pFF-lC-DyD" secondAttribute="trailing" constant="-16" id="9v6-0s-fE8"/>
+                    <constraint firstItem="iTr-vo-tyH" firstAttribute="leading" secondItem="pFF-lC-DyD" secondAttribute="leading" id="Bvk-LM-QsP"/>
+                    <constraint firstItem="iTr-vo-tyH" firstAttribute="bottom" secondItem="pFF-lC-DyD" secondAttribute="bottom" id="dQF-9k-ENX"/>
+                    <constraint firstItem="iTr-vo-tyH" firstAttribute="trailing" secondItem="pFF-lC-DyD" secondAttribute="trailing" id="gGe-iK-8aq"/>
+                    <constraint firstItem="iGn-RQ-xxR" firstAttribute="top" secondItem="pFF-lC-DyD" secondAttribute="top" constant="16" id="tZZ-S6-xUA"/>
+                    <constraint firstItem="iTr-vo-tyH" firstAttribute="top" secondItem="pFF-lC-DyD" secondAttribute="top" id="usM-u5-YDt"/>
                 </constraints>
                 <viewLayoutGuide key="safeArea" id="pFF-lC-DyD"/>
             </view>
@@ -267,12 +267,18 @@
             </navigationItem>
             <connections>
                 <outlet property="closeButton" destination="iGn-RQ-xxR" id="8j6-Tg-v6a"/>
+                <outlet property="closeButtonTopConstraint" destination="tZZ-S6-xUA" id="ocl-E7-TtY"/>
+                <outlet property="closeButtonTrailingConstraint" destination="9v6-0s-fE8" id="TNy-Fu-NKg"/>
                 <outlet property="fifthCollectionView" destination="qur-z4-IiU" id="Jvk-Ov-uTw"/>
                 <outlet property="firstCollectionView" destination="q4v-Iz-rM0" id="RbO-yk-Z5g"/>
                 <outlet property="forthCollectionView" destination="msq-td-okn" id="VJQ-ir-fAw"/>
                 <outlet property="scrollView" destination="iTr-vo-tyH" id="KAk-CJ-J4I"/>
                 <outlet property="secondCollectionView" destination="zcM-C9-50l" id="LvQ-1D-B1m"/>
                 <outlet property="stackView" destination="rhH-jn-dW0" id="SLR-tB-4WG"/>
+                <outlet property="subviewBottomConstraint" destination="dQF-9k-ENX" id="Xk9-QH-gTm"/>
+                <outlet property="subviewLeadingConstraint" destination="Bvk-LM-QsP" id="ObK-DD-Zw5"/>
+                <outlet property="subviewTopConstraint" destination="usM-u5-YDt" id="cqp-Ru-Xi8"/>
+                <outlet property="subviewTrailingConstraint" destination="gGe-iK-8aq" id="yLn-eC-dgV"/>
                 <outlet property="thirdCollectionView" destination="gCo-gL-aLR" id="tl4-At-hYF"/>
             </connections>
             <point key="canvasLocation" x="332" y="102"/>

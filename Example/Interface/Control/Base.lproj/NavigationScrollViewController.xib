@@ -59,14 +59,14 @@
                                         <rect key="frame" x="0.0" y="276" width="414" height="1258"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8QW-YM-kXn">
-                                                <rect key="frame" x="20" y="0.0" width="374" height="1238"/>
-                                                <mutableString key="text">Vestibulum scelerisque lorem ut tincidunt aliquam. Interdum et malesuada fames ac ante ipsum primis in faucibus. Maecenas pretium molestie vestibulum. Nunc convallis blandit dapibus. Phasellus euismod viverra lorem id vulputate. Proin ac facilisis metus. Vestibulum iaculis posuere nibh, eget hendrerit enim ullamcorper at. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec tempor urna non orci tristique, ut blandit orci vulputate. Curabitur id sapien porta, vehicula dolor eu, imperdiet tellus. In molestie augue quis dui viverra, in dapibus velit suscipit. Mauris pellentesque vitae leo eget porta. Vestibulum sagittis libero eget lobortis tristique.
+                                                <rect key="frame" x="20" y="0.0" width="374" height="1258"/>
+                                                <string key="text">Vestibulum scelerisque lorem ut tincidunt aliquam. Interdum et malesuada fames ac ante ipsum primis in faucibus. Maecenas pretium molestie vestibulum. Nunc convallis blandit dapibus. Phasellus euismod viverra lorem id vulputate. Proin ac facilisis metus. Vestibulum iaculis posuere nibh, eget hendrerit enim ullamcorper at. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec tempor urna non orci tristique, ut blandit orci vulputate. Curabitur id sapien porta, vehicula dolor eu, imperdiet tellus. In molestie augue quis dui viverra, in dapibus velit suscipit. Mauris pellentesque vitae leo eget porta. Vestibulum sagittis libero eget lobortis tristique.
 
 Quisque felis dolor, dictum vel est et, tristique aliquet ante. Nunc malesuada sed risus id pulvinar. Maecenas iaculis elit a rhoncus maximus. Quisque fringilla sollicitudin accumsan. Duis vel tortor id dolor pulvinar dignissim non nec felis. Ut nisl enim, congue non volutpat et, facilisis nec ante. Nullam cursus quam eget mauris pretium, vitae accumsan nulla porttitor. Nam tristique ligula nec ultricies ultricies.
 
 Suspendisse vel lacus feugiat, volutpat dolor ac, fermentum mi. Nam vitae libero nec dolor gravida facilisis interdum vel ipsum. Nam posuere ultricies ullamcorper. Curabitur aliquet neque in leo semper, a pulvinar sem molestie. Nulla convallis neque magna, ut varius mi aliquet ut. Mauris eget interdum massa, eget vehicula odio. Pellentesque diam lorem, molestie ac porttitor sit amet, facilisis vestibulum leo. Morbi pellentesque risus diam, ut fringilla eros maximus eget.
 
-Sed malesuada, risus non elementum rhoncus, lorem nibh convallis urna, eget egestas velit eros vel ex. Donec eget nulla nec purus iaculis varius. Vivamus ut mauris id sem malesuada bibendum et id nisi. Maecenas tempus, ligula vitae placerat auctor, dolor neque malesuada mi, sed viverra libero orci nec nisl. Nullam et lacus a turpis ornare placerat eu nec arcu. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer sed quam ut est mattis cursus ut ac nulla. Nam consectetur, magna non tristique posuere, dui ipsum tincidunt risus, sed ullamcorper turpis nibh vitae ante. Phasellus eu magna ac ipsum varius dapibus. Quisque sed metus sed lorem fringilla luctus consequat ut massa. Nam interdum vestibulum ex sed scelerisque. Duis efficitur arcu sed ipsum posuere varius. Praesent gravida, felis in mattis dignissim, elit arcu porttitor turpis, eget faucibus orci diam eu lectus. Suspendisse tempus tincidunt elementum. Nulla quis risus auctor, dictum nunc eu, hendrerit lacus. Nulla ultricies et neque et ultricies.</mutableString>
+Sed malesuada, risus non elementum rhoncus, lorem nibh convallis urna, eget egestas velit eros vel ex. Donec eget nulla nec purus iaculis varius. Vivamus ut mauris id sem malesuada bibendum et id nisi. Maecenas tempus, ligula vitae placerat auctor, dolor neque malesuada mi, sed viverra libero orci nec nisl. Nullam et lacus a turpis ornare placerat eu nec arcu. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer sed quam ut est mattis cursus ut ac nulla. Nam consectetur, magna non tristique posuere, dui ipsum tincidunt risus, sed ullamcorper turpis nibh vitae ante. Phasellus eu magna ac ipsum varius dapibus. Quisque sed metus sed lorem fringilla luctus consequat ut massa. Nam interdum vestibulum ex sed scelerisque. Duis efficitur arcu sed ipsum posuere varius. Praesent gravida, felis in mattis dignissim, elit arcu porttitor turpis, eget faucibus orci diam eu lectus. Suspendisse tempus tincidunt elementum. Nulla quis risus auctor, dictum nunc eu, hendrerit lacus. Nulla ultricies et neque et ultricies.</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -131,12 +131,12 @@ Sed malesuada, risus non elementum rhoncus, lorem nibh convallis urna, eget eges
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="vKb-qA-Bwu" firstAttribute="trailing" secondItem="ReU-W5-KTW" secondAttribute="trailing" placeholder="YES" id="6DD-Xo-pxu"/>
-                    <constraint firstItem="Jmt-hX-efZ" firstAttribute="trailing" secondItem="ReU-W5-KTW" secondAttribute="trailing" constant="-16" placeholder="YES" id="PXe-tc-g6E"/>
-                    <constraint firstItem="vKb-qA-Bwu" firstAttribute="top" secondItem="ReU-W5-KTW" secondAttribute="top" placeholder="YES" id="SSf-HY-kay"/>
-                    <constraint firstItem="Jmt-hX-efZ" firstAttribute="top" secondItem="ReU-W5-KTW" secondAttribute="top" constant="16" placeholder="YES" id="Tvr-cS-peY"/>
-                    <constraint firstItem="vKb-qA-Bwu" firstAttribute="leading" secondItem="ReU-W5-KTW" secondAttribute="leading" placeholder="YES" id="ZD3-Rw-uGx"/>
-                    <constraint firstItem="vKb-qA-Bwu" firstAttribute="bottom" secondItem="ReU-W5-KTW" secondAttribute="bottom" placeholder="YES" id="mqq-SQ-Wnl"/>
+                    <constraint firstItem="vKb-qA-Bwu" firstAttribute="trailing" secondItem="ReU-W5-KTW" secondAttribute="trailing" id="6DD-Xo-pxu"/>
+                    <constraint firstItem="Jmt-hX-efZ" firstAttribute="trailing" secondItem="ReU-W5-KTW" secondAttribute="trailing" constant="-16" id="PXe-tc-g6E"/>
+                    <constraint firstItem="vKb-qA-Bwu" firstAttribute="top" secondItem="ReU-W5-KTW" secondAttribute="top" id="SSf-HY-kay"/>
+                    <constraint firstItem="Jmt-hX-efZ" firstAttribute="top" secondItem="ReU-W5-KTW" secondAttribute="top" constant="16" id="Tvr-cS-peY"/>
+                    <constraint firstItem="vKb-qA-Bwu" firstAttribute="leading" secondItem="ReU-W5-KTW" secondAttribute="leading" id="ZD3-Rw-uGx"/>
+                    <constraint firstItem="vKb-qA-Bwu" firstAttribute="bottom" secondItem="ReU-W5-KTW" secondAttribute="bottom" id="mqq-SQ-Wnl"/>
                 </constraints>
                 <viewLayoutGuide key="safeArea" id="ReU-W5-KTW"/>
             </view>
@@ -145,12 +145,18 @@ Sed malesuada, risus non elementum rhoncus, lorem nibh convallis urna, eget eges
             </navigationItem>
             <connections>
                 <outlet property="closeButton" destination="Jmt-hX-efZ" id="1gr-bR-9Fb"/>
+                <outlet property="closeButtonTopConstraint" destination="Tvr-cS-peY" id="Y5V-Nu-qrP"/>
+                <outlet property="closeButtonTrailingConstraint" destination="PXe-tc-g6E" id="dGF-mN-QBp"/>
                 <outlet property="imageContainerHeightConstraint" destination="dYO-dk-D1k" id="kbd-H3-Yya"/>
                 <outlet property="imageContainerView" destination="LEq-Yu-mKV" id="5ZK-A5-TeM"/>
                 <outlet property="imageView" destination="YXI-i2-p82" id="c6Y-2C-aEF"/>
                 <outlet property="nextButton" destination="PkY-2t-Vea" id="9tM-vy-Z1k"/>
                 <outlet property="scrollView" destination="vKb-qA-Bwu" id="Dh1-wH-jNm"/>
                 <outlet property="stackView" destination="WCv-cG-4Uu" id="zKc-nQ-DTG"/>
+                <outlet property="subviewBottomConstraint" destination="mqq-SQ-Wnl" id="eWD-yq-r9A"/>
+                <outlet property="subviewLeadingConstraint" destination="ZD3-Rw-uGx" id="4G4-fr-6FS"/>
+                <outlet property="subviewTopConstraint" destination="SSf-HY-kay" id="AUV-pz-wuy"/>
+                <outlet property="subviewTrailingConstraint" destination="6DD-Xo-pxu" id="qBW-Cl-Axv"/>
                 <outlet property="textContainerView" destination="Pjz-9P-tZb" id="K7g-LO-jum"/>
                 <outlet property="textLabel" destination="8QW-YM-kXn" id="Kbc-OM-IqJ"/>
             </connections>

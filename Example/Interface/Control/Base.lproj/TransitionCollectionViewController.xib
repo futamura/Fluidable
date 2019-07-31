@@ -40,18 +40,24 @@
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="Dc5-a5-Y0j" firstAttribute="top" secondItem="GwL-0l-o9P" secondAttribute="top" placeholder="YES" id="Lfa-UT-Tkm"/>
-                    <constraint firstItem="Dc5-a5-Y0j" firstAttribute="trailing" secondItem="GwL-0l-o9P" secondAttribute="trailing" placeholder="YES" id="PKQ-cw-SVI"/>
-                    <constraint firstItem="abo-0t-6Tb" firstAttribute="top" secondItem="GwL-0l-o9P" secondAttribute="top" constant="16" placeholder="YES" id="dKK-6f-qzH"/>
-                    <constraint firstItem="abo-0t-6Tb" firstAttribute="trailing" secondItem="GwL-0l-o9P" secondAttribute="trailing" constant="-16" placeholder="YES" id="eDJ-2f-OOw"/>
-                    <constraint firstItem="Dc5-a5-Y0j" firstAttribute="leading" secondItem="GwL-0l-o9P" secondAttribute="leading" placeholder="YES" id="vZA-Bf-WkN"/>
-                    <constraint firstItem="Dc5-a5-Y0j" firstAttribute="bottom" secondItem="GwL-0l-o9P" secondAttribute="bottom" placeholder="YES" id="x51-rZ-MRG"/>
+                    <constraint firstItem="Dc5-a5-Y0j" firstAttribute="top" secondItem="GwL-0l-o9P" secondAttribute="top" id="Lfa-UT-Tkm"/>
+                    <constraint firstItem="Dc5-a5-Y0j" firstAttribute="trailing" secondItem="GwL-0l-o9P" secondAttribute="trailing" id="PKQ-cw-SVI"/>
+                    <constraint firstItem="abo-0t-6Tb" firstAttribute="top" secondItem="GwL-0l-o9P" secondAttribute="top" constant="16" id="dKK-6f-qzH"/>
+                    <constraint firstItem="abo-0t-6Tb" firstAttribute="trailing" secondItem="GwL-0l-o9P" secondAttribute="trailing" constant="-16" id="eDJ-2f-OOw"/>
+                    <constraint firstItem="Dc5-a5-Y0j" firstAttribute="leading" secondItem="GwL-0l-o9P" secondAttribute="leading" id="vZA-Bf-WkN"/>
+                    <constraint firstItem="Dc5-a5-Y0j" firstAttribute="bottom" secondItem="GwL-0l-o9P" secondAttribute="bottom" id="x51-rZ-MRG"/>
                 </constraints>
                 <viewLayoutGuide key="safeArea" id="GwL-0l-o9P"/>
             </view>
             <connections>
                 <outlet property="closeButton" destination="abo-0t-6Tb" id="s68-3p-8oH"/>
+                <outlet property="closeButtonTopConstraint" destination="dKK-6f-qzH" id="RNg-hA-Wvq"/>
+                <outlet property="closeButtonTrailingConstraint" destination="eDJ-2f-OOw" id="RC4-QS-IW1"/>
                 <outlet property="collectionView" destination="Dc5-a5-Y0j" id="TNL-SR-4QA"/>
+                <outlet property="subviewBottomConstraint" destination="x51-rZ-MRG" id="njw-5X-Ymu"/>
+                <outlet property="subviewLeadingConstraint" destination="vZA-Bf-WkN" id="ikk-Cy-DhD"/>
+                <outlet property="subviewTopConstraint" destination="Lfa-UT-Tkm" id="CHX-br-Hgd"/>
+                <outlet property="subviewTrailingConstraint" destination="PKQ-cw-SVI" id="f1j-WJ-acS"/>
             </connections>
             <point key="canvasLocation" x="0.0" y="209.59821428571428"/>
         </viewController>
