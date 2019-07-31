@@ -52,6 +52,7 @@ extension TransitionBaseViewController {
             "model: " + String(describing: self.model),
             "model.transitionStyle: " + String(describing: self.model.transitionStyle),
         ])
+        if #available(iOS 11.0, *) { return }
         switch self.model! {
         case .navigationFluidModal, .transitionFluidModal:
             subview.topAnchor.constraint(equalTo: self.view.topAnchor).activate()
@@ -61,36 +62,27 @@ extension TransitionBaseViewController {
             self.closeButton?.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 16).activate()
             self.closeButton?.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16).activate()
         default:
-            if #available(iOS 11.0, *) {
-                subview.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).activate()
-                subview.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).activate()
-                subview.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).activate()
-                subview.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).activate()
-                self.closeButton?.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 16).activate()
-                self.closeButton?.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16).activate()
-            } else {
-                subview.topAnchor.constraint(equalTo: self.topLayoutGuide.topAnchor).activate()
-                subview.bottomAnchor.constraint(equalTo: self.bottomLayoutGuide.topAnchor).activate()
-                subview.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).activate()
-                subview.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).activate()
-                let topMargin: CGFloat = {
-                    switch self.model! {
-                    case .navigationFluidFullScreen,
-                         .transitionFluidFullScreen,
-                         .navigationDrawerTop, .navigationDrawerLeft, .navigationDrawerRight,
-                         .navigationSlideTop, .navigationSlideBottom, .navigationSlideLeft, .navigationSlideRight,
-                         .transitionDrawerTop, .transitionDrawerLeft, .transitionDrawerRight,
-                         .transitionSlideTop, .transitionSlideBottom, .transitionSlideLeft, .transitionSlideRight:
-                        return UIApplication.shared.statusBarFrame.height + 16
-                    case .navigationFluidModal,
-                         .transitionFluidModal,
-                         .navigationDrawerBottom, .transitionDrawerBottom:
-                        return 16
-                    }
-                }()
-                self.closeButton?.topAnchor.constraint(equalTo: self.topLayoutGuide.topAnchor, constant: topMargin).activate()
-                self.closeButton?.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16).activate()
-            }
+            subview.topAnchor.constraint(equalTo: self.topLayoutGuide.topAnchor).activate()
+            subview.bottomAnchor.constraint(equalTo: self.bottomLayoutGuide.topAnchor).activate()
+            subview.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).activate()
+            subview.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).activate()
+            let topMargin: CGFloat = {
+                switch self.model! {
+                case .navigationFluidFullScreen,
+                     .transitionFluidFullScreen,
+                     .navigationDrawerTop, .navigationDrawerLeft, .navigationDrawerRight,
+                     .navigationSlideTop, .navigationSlideBottom, .navigationSlideLeft, .navigationSlideRight,
+                     .transitionDrawerTop, .transitionDrawerLeft, .transitionDrawerRight,
+                     .transitionSlideTop, .transitionSlideBottom, .transitionSlideLeft, .transitionSlideRight:
+                    return UIApplication.shared.statusBarFrame.height + 16
+                case .navigationFluidModal,
+                     .transitionFluidModal,
+                     .navigationDrawerBottom, .transitionDrawerBottom:
+                    return 16
+                }
+            }()
+            self.closeButton?.topAnchor.constraint(equalTo: self.topLayoutGuide.topAnchor, constant: topMargin).activate()
+            self.closeButton?.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16).activate()
         }
         self.view.setNeedsLayout()
         self.view.layoutIfNeeded()

@@ -34,7 +34,7 @@ class NavigationTableViewController: NavigationBaseViewController, Fluidable {
             self?.nextDidTap(indexPath)
         }
         self.tableView.contentOffset = .zero
-//        self.configureConstraints(for: self.tableView)
+        self.configureConstraints(for: self.tableView)
     }
 
     override func viewDidLoad() {

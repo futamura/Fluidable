@@ -29,7 +29,7 @@ class NavigationCollectionViewController: NavigationBaseViewController, Fluidabl
         self.collectionView.configure(model: self.model, headerPosition: .top, handler: { [weak self] (indexPath: IndexPath) in
             self?.nextDidTap(indexPath)
         })
-//        self.configureConstraints(for: self.collectionView)
+        self.configureConstraints(for: self.collectionView)
     }
 
     override func viewDidLoad() {

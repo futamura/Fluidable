@@ -39,7 +39,7 @@ class TransitionTableViewController: TransitionBaseViewController, Fluidable {
         /* NOTE: Setup table view */
         self.tableView.configure(model: self.model)
         self.tableView.contentOffset = .zero
-//        self.configureConstraints(for: self.tableView)
+        self.configureConstraints(for: self.tableView)
     }
 
     override func viewDidLoad() {
