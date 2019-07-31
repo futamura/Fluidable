@@ -58,7 +58,13 @@
             </view>
             <connections>
                 <outlet property="closeButton" destination="FlM-vN-jED" id="Gyk-0Q-xie"/>
+                <outlet property="closeButtonTopConstraint" destination="kGP-aB-Jrf" id="zd7-7v-tbD"/>
+                <outlet property="closeButtonTrailingConstraint" destination="XuH-Rw-9SX" id="P59-xo-kE5"/>
                 <outlet property="footerOverlayView" destination="S8h-XV-HW5" id="bRR-UT-n6S"/>
+                <outlet property="subviewBottomConstraint" destination="gpu-gT-Jog" id="hYc-A6-VM4"/>
+                <outlet property="subviewLeadingConstraint" destination="jWI-y0-dgn" id="AZx-7d-gMG"/>
+                <outlet property="subviewTopConstraint" destination="Duc-lp-hvK" id="Tsr-G7-i77"/>
+                <outlet property="subviewTrailingConstraint" destination="Wu3-TG-ql7" id="spO-N6-5bf"/>
                 <outlet property="tableView" destination="xMM-ws-tQc" id="7ee-gX-xIf"/>
             </connections>
             <point key="canvasLocation" x="271" y="-333"/>

@@ -15,6 +15,13 @@ class TransitionBaseViewController: UIViewController, RootModelReceivable {
 
     @IBOutlet weak var closeButton: CloseButton!
 
+    @IBOutlet weak var subviewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var subviewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var subviewLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var subviewTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var closeButtonTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var closeButtonTrailingConstraint: NSLayoutConstraint!
+
     func configure(modelIndex: Int) {
         self.modelIndex = modelIndex
         Logger()?.log("🚗💥", [
@@ -53,19 +60,31 @@ extension TransitionBaseViewController {
             "model.transitionStyle: " + String(describing: self.model.transitionStyle),
         ])
         if #available(iOS 11.0, *) { return }
+        self.subviewTopConstraint.deactivate()
+        self.subviewBottomConstraint.deactivate()
+        self.subviewLeadingConstraint.deactivate()
+        self.subviewTrailingConstraint.deactivate()
+        self.closeButtonTopConstraint.deactivate()
+        self.closeButtonTrailingConstraint.deactivate()
+        subview.removeConstraints([self.subviewTopConstraint,
+                                   self.subviewBottomConstraint,
+                                   self.subviewLeadingConstraint,
+                                   self.subviewTrailingConstraint])
+        self.closeButton?.removeConstraints([self.closeButtonTopConstraint,
+                                             self.closeButtonTrailingConstraint])
         switch self.model! {
         case .navigationFluidModal, .transitionFluidModal:
-            subview.topAnchor.constraint(equalTo: self.view.topAnchor).activate()
-            subview.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).activate()
-            subview.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).activate()
-            subview.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).activate()
-            self.closeButton?.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 16).activate()
-            self.closeButton?.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16).activate()
+            self.subviewTopConstraint = subview.topAnchor.constraint(equalTo: self.view.topAnchor).activate()
+            self.subviewBottomConstraint = subview.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).activate()
+            self.subviewLeadingConstraint = subview.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).activate()
+            self.subviewTrailingConstraint = subview.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).activate()
+            self.closeButtonTopConstraint = self.closeButton?.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 16).activate()
+            self.closeButtonTrailingConstraint = self.closeButton?.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16).activate()
         default:
-            subview.topAnchor.constraint(equalTo: self.topLayoutGuide.topAnchor).activate()
-            subview.bottomAnchor.constraint(equalTo: self.bottomLayoutGuide.topAnchor).activate()
-            subview.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).activate()
-            subview.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).activate()
+            self.subviewTopConstraint = subview.topAnchor.constraint(equalTo: self.topLayoutGuide.topAnchor).activate()
+            self.subviewBottomConstraint = subview.bottomAnchor.constraint(equalTo: self.bottomLayoutGuide.topAnchor).activate()
+            self.subviewLeadingConstraint = subview.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).activate()
+            self.subviewTrailingConstraint = subview.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).activate()
             let topMargin: CGFloat = {
                 switch self.model! {
                 case .navigationFluidFullScreen,
@@ -81,8 +100,8 @@ extension TransitionBaseViewController {
                     return 16
                 }
             }()
-            self.closeButton?.topAnchor.constraint(equalTo: self.topLayoutGuide.topAnchor, constant: topMargin).activate()
-            self.closeButton?.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16).activate()
+            self.closeButtonTopConstraint = self.closeButton?.topAnchor.constraint(equalTo: self.topLayoutGuide.topAnchor, constant: topMargin).activate()
+            self.closeButtonTrailingConstraint = self.closeButton?.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16).activate()
         }
         self.view.setNeedsLayout()
         self.view.layoutIfNeeded()

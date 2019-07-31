@@ -145,12 +145,18 @@ Sed malesuada, risus non elementum rhoncus, lorem nibh convallis urna, eget eges
             </navigationItem>
             <connections>
                 <outlet property="closeButton" destination="Jmt-hX-efZ" id="1gr-bR-9Fb"/>
+                <outlet property="closeButtonTopConstraint" destination="Tvr-cS-peY" id="Y5V-Nu-qrP"/>
+                <outlet property="closeButtonTrailingConstraint" destination="PXe-tc-g6E" id="dGF-mN-QBp"/>
                 <outlet property="imageContainerHeightConstraint" destination="dYO-dk-D1k" id="kbd-H3-Yya"/>
                 <outlet property="imageContainerView" destination="LEq-Yu-mKV" id="5ZK-A5-TeM"/>
                 <outlet property="imageView" destination="YXI-i2-p82" id="c6Y-2C-aEF"/>
                 <outlet property="nextButton" destination="PkY-2t-Vea" id="9tM-vy-Z1k"/>
                 <outlet property="scrollView" destination="vKb-qA-Bwu" id="Dh1-wH-jNm"/>
                 <outlet property="stackView" destination="WCv-cG-4Uu" id="zKc-nQ-DTG"/>
+                <outlet property="subviewBottomConstraint" destination="mqq-SQ-Wnl" id="eWD-yq-r9A"/>
+                <outlet property="subviewLeadingConstraint" destination="ZD3-Rw-uGx" id="4G4-fr-6FS"/>
+                <outlet property="subviewTopConstraint" destination="SSf-HY-kay" id="AUV-pz-wuy"/>
+                <outlet property="subviewTrailingConstraint" destination="6DD-Xo-pxu" id="qBW-Cl-Axv"/>
                 <outlet property="textContainerView" destination="Pjz-9P-tZb" id="K7g-LO-jum"/>
                 <outlet property="textLabel" destination="8QW-YM-kXn" id="Kbc-OM-IqJ"/>
             </connections>

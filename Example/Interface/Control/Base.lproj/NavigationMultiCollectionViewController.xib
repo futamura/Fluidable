@@ -267,12 +267,18 @@
             </navigationItem>
             <connections>
                 <outlet property="closeButton" destination="iGn-RQ-xxR" id="8j6-Tg-v6a"/>
+                <outlet property="closeButtonTopConstraint" destination="tZZ-S6-xUA" id="ocl-E7-TtY"/>
+                <outlet property="closeButtonTrailingConstraint" destination="9v6-0s-fE8" id="TNy-Fu-NKg"/>
                 <outlet property="fifthCollectionView" destination="qur-z4-IiU" id="Jvk-Ov-uTw"/>
                 <outlet property="firstCollectionView" destination="q4v-Iz-rM0" id="RbO-yk-Z5g"/>
                 <outlet property="forthCollectionView" destination="msq-td-okn" id="VJQ-ir-fAw"/>
                 <outlet property="scrollView" destination="iTr-vo-tyH" id="KAk-CJ-J4I"/>
                 <outlet property="secondCollectionView" destination="zcM-C9-50l" id="LvQ-1D-B1m"/>
                 <outlet property="stackView" destination="rhH-jn-dW0" id="SLR-tB-4WG"/>
+                <outlet property="subviewBottomConstraint" destination="dQF-9k-ENX" id="Xk9-QH-gTm"/>
+                <outlet property="subviewLeadingConstraint" destination="Bvk-LM-QsP" id="ObK-DD-Zw5"/>
+                <outlet property="subviewTopConstraint" destination="usM-u5-YDt" id="cqp-Ru-Xi8"/>
+                <outlet property="subviewTrailingConstraint" destination="gGe-iK-8aq" id="yLn-eC-dgV"/>
                 <outlet property="thirdCollectionView" destination="gCo-gL-aLR" id="tl4-At-hYF"/>
             </connections>
             <point key="canvasLocation" x="332" y="102"/>

@@ -51,7 +51,13 @@
             </view>
             <connections>
                 <outlet property="closeButton" destination="abo-0t-6Tb" id="s68-3p-8oH"/>
+                <outlet property="closeButtonTopConstraint" destination="dKK-6f-qzH" id="RNg-hA-Wvq"/>
+                <outlet property="closeButtonTrailingConstraint" destination="eDJ-2f-OOw" id="RC4-QS-IW1"/>
                 <outlet property="collectionView" destination="Dc5-a5-Y0j" id="TNL-SR-4QA"/>
+                <outlet property="subviewBottomConstraint" destination="x51-rZ-MRG" id="njw-5X-Ymu"/>
+                <outlet property="subviewLeadingConstraint" destination="vZA-Bf-WkN" id="ikk-Cy-DhD"/>
+                <outlet property="subviewTopConstraint" destination="Lfa-UT-Tkm" id="CHX-br-Hgd"/>
+                <outlet property="subviewTrailingConstraint" destination="PKQ-cw-SVI" id="f1j-WJ-acS"/>
             </connections>
             <point key="canvasLocation" x="0.0" y="209.59821428571428"/>
         </viewController>

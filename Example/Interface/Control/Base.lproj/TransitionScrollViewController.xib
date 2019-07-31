@@ -127,11 +127,17 @@ Sed malesuada, risus non elementum rhoncus, lorem nibh convallis urna, eget eges
             </view>
             <connections>
                 <outlet property="closeButton" destination="cDu-Zc-jNl" id="kF5-B0-man"/>
+                <outlet property="closeButtonTopConstraint" destination="wwk-wu-7kn" id="qWn-up-gL8"/>
+                <outlet property="closeButtonTrailingConstraint" destination="BqE-nl-tNR" id="zl5-nN-pym"/>
                 <outlet property="imageContainerView" destination="LEq-Yu-mKV" id="Dub-KW-HIy"/>
                 <outlet property="imageHeightConstraint" destination="dYO-dk-D1k" id="8pX-la-oxp"/>
                 <outlet property="imageView" destination="YXI-i2-p82" id="1fb-6g-5XC"/>
                 <outlet property="scrollView" destination="vKb-qA-Bwu" id="qvu-zN-0eZ"/>
                 <outlet property="stackView" destination="WCv-cG-4Uu" id="ydX-Xn-HXM"/>
+                <outlet property="subviewBottomConstraint" destination="mqq-SQ-Wnl" id="A39-Eb-s35"/>
+                <outlet property="subviewLeadingConstraint" destination="ZD3-Rw-uGx" id="Rxm-JG-YIQ"/>
+                <outlet property="subviewTopConstraint" destination="SSf-HY-kay" id="GQG-hd-LJ8"/>
+                <outlet property="subviewTrailingConstraint" destination="6DD-Xo-pxu" id="Ehb-s8-7Bw"/>
                 <outlet property="textContainerView" destination="Pjz-9P-tZb" id="a7B-ND-wHO"/>
                 <outlet property="textLabel" destination="8QW-YM-kXn" id="tVk-x6-bCh"/>
             </connections>

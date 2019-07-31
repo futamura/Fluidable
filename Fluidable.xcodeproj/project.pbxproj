@@ -1144,9 +1144,9 @@
 			isa = PBXGroup;
 			children = (
 				A7498D3B22B0F54E002282DD /* NavigationChildViewController.xib */,
+				A791D1B62280369900206A66 /* NavigationRootNavigationController.xib */,
 				DFABE4B79ED95D4960743568 /* NavigationCollectionViewController.xib */,
 				DFABE75DE9BFBA9C2CF569D1 /* NavigationMultiCollectionViewController.xib */,
-				A791D1B62280369900206A66 /* NavigationRootNavigationController.xib */,
 				DFABEF237484CDD84BA4185D /* NavigationScrollViewController.xib */,
 				DFABE692442A34025E1F0F44 /* NavigationTableViewController.xib */,
 				A7EAC334224F4111008904B7 /* TransitionCollectionViewController.xib */,
