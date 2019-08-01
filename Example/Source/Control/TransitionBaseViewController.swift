@@ -56,8 +56,10 @@ class TransitionBaseViewController: UIViewController, RootModelReceivable {
 extension TransitionBaseViewController {
     func configureConstraints(for subview: UIView) {
         Logger()?.log("🚗🛠", [
+            "className: " + String(describing: self.className),
             "model: " + String(describing: self.model),
             "model.transitionStyle: " + String(describing: self.model.transitionStyle),
+            "view.superview: " + String(describing: self.view.superview),
         ])
         if #available(iOS 11.0, *) { return }
         self.subviewTopConstraint.deactivate()

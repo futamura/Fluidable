@@ -61,8 +61,10 @@ class NavigationBaseViewController: UIViewController, RootModelReceivable {
 extension NavigationBaseViewController {
     func configureConstraints(for subview: UIView) {
         Logger()?.log("🚗🛠", [
+            "className: " + String(describing: self.className),
             "model: " + String(describing: self.model),
             "model.transitionStyle: " + String(describing: self.model.transitionStyle),
+            "view.superview: " + String(describing: self.view.superview),
         ])
         if #available(iOS 11.0, *) { return }
         switch self.model! {
