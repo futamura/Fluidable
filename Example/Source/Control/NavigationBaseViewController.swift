@@ -99,8 +99,8 @@ extension NavigationBaseViewController {
                     return 16
                 }
             }()
-            self.closeButton?.topAnchor.constraint(equalTo: self.topLayoutGuide.topAnchor, constant: topMargin).activate()
-            self.closeButton?.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16).activate()
+            self.closeButtonTopConstraint = self.closeButton?.topAnchor.constraint(equalTo: self.topLayoutGuide.topAnchor, constant: topMargin).activate()
+            self.closeButtonTrailingConstraint = self.closeButton?.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16).activate()
         }
         self.view.setNeedsLayout()
         self.view.layoutIfNeeded()
