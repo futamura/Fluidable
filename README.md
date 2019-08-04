@@ -21,16 +21,7 @@ A Swift library that allows you to create a custom transition conforming to Flui
 - [x] Customizable animation easing and duration
 - [ ] Interact with underlying views like Apple Maps
 - [ ] Custom transitions with user-definable plug-ins
-
-<!--
-<img src="https://media.githubusercontent.com/media/gumob/Fluidable-Metadata/master/Movies/Exports/Fluidable-fluid-modal.gif" alt="drawing" width="240px" style="width:240px;"/>
-<img src="https://media.githubusercontent.com/media/gumob/Fluidable-Metadata/master/Movies/Exports/Fluidable-fluid-fullscreen.gif" alt="drawing" width="240px" style="width:240px;"/>
-<img src="https://media.githubusercontent.com/media/gumob/Fluidable-Metadata/master/Movies/Exports/Fluidable-drawer-bottom.gif" alt="drawing" width="240px" style="width:240px;"/>
-<img src="https://media.githubusercontent.com/media/gumob/Fluidable-Metadata/master/Movies/Exports/Fluidable-drawer-right.gif" alt="drawing" width="240px" style="width:240px;"/>
-<img src="https://media.githubusercontent.com/media/gumob/Fluidable-Metadata/master/Movies/Exports/Fluidable-slide-right.gif" alt="drawing" width="240px" style="width:240px;"/>
-<img src="https://media.githubusercontent.com/media/gumob/Fluidable-Metadata/master/Movies/Exports/Fluidable-slide-bottom.gif" alt="drawing" width="240px" style="width:240px;"/>
--->
-
+- [ ] Support iOS 10
 
 Fluid                      |  Drawer                   | Slide
 :-------------------------:|:-------------------------:|:-------------------------:

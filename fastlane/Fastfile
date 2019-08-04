@@ -143,10 +143,10 @@ platform :ios do
     tests = [
       {device: "iPhone Xs Max"},
       {device: "iPhone 8 Plus (11.4)"},
-      {device: "iPhone 7 (10.3.1)"},
+      # {device: "iPhone 7 (10.3.1)"},
       {device: "iPad Air 2 (12.2)"},
       {device: "iPad Air 2 (11.4)"},
-      {device: "iPad Air 2 (10.3.1)"},
+      # {device: "iPad Air 2 (10.3.1)"},
     ]
     for test in tests
       run_scan(

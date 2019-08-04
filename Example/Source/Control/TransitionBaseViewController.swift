@@ -61,6 +61,8 @@ extension TransitionBaseViewController {
             "model.transitionStyle: " + String(describing: self.model.transitionStyle),
             "view.superview: " + String(describing: self.view.superview),
         ])
+        /* TODO: Support iOS 10 */
+        /* FIXME: Fix subview's constraints using fluid transition on iOS 10 */
         if #available(iOS 11.0, *) { return }
         self.subviewTopConstraint.deactivate()
         self.subviewBottomConstraint.deactivate()
