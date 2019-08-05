@@ -30,7 +30,7 @@ Fluid                      |  Drawer                   | Slide
 
 ## Requirements
 
-- iOS 10.0 or later
+- iOS 11.0 or later
 - Swift 4.2
 
 ## Installation
@@ -60,8 +60,8 @@ You can build an example app by choosing `FluidableExample` from the Xcode schem
 
 ## Usage
 
-Full documentation is available at [https://gumob.github.io/Fluidable/](https://gumob.github.io/Fluidable/).
-
+Full documentation is available at [https://gumob.github.io/Fluidable/](https://gumob.github.io/Fluidable/).<br/>
+You can find more specific implementations by searching the [Example](https://github.com/gumob/Fluidable/tree/master/Example) sources with "`IMPORTANT: 🌊`".
 
 
 ### Custom transition using [`UIViewControllerTransitioningDelegate`](https://developer.apple.com/documentation/uikit/uiviewcontrollertransitioningdelegate)

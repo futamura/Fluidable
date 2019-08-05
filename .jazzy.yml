@@ -6,7 +6,7 @@ github_url: https://github.com/gumob/Fluidable
 copyright: 'Copyright © 2019 Gumob. All rights reserved.'
 
 readme: "README.md"
-documentation: "USAGE.md"
+# documentation: "USAGE.md"
 
 theme: fullwidth
 # theme: "themes/fullwidth-ex"
@@ -195,6 +195,6 @@ custom_categories:
     - CATransform3D
     - CGAffineTransform
 
-  - name: Guide
-    children:
-    - USAGE
+#  - name: Guide
+#    children:
+#    - USAGE
