@@ -33,7 +33,7 @@
                         </connections>
                     </button>
                     <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aXq-ry-EQi">
-                        <rect key="frame" x="0.0" y="842" width="414" height="20"/>
+                        <rect key="frame" x="0.0" y="876" width="414" height="20"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="Epx-Zj-owO"/>
@@ -44,7 +44,7 @@
                 <constraints>
                     <constraint firstItem="q8n-Vx-Zq4" firstAttribute="top" secondItem="i42-dj-sdC" secondAttribute="top" id="FTo-dJ-W8o"/>
                     <constraint firstItem="aXq-ry-EQi" firstAttribute="trailing" secondItem="i42-dj-sdC" secondAttribute="trailing" id="Kk8-bT-oBs"/>
-                    <constraint firstItem="aXq-ry-EQi" firstAttribute="bottom" secondItem="i42-dj-sdC" secondAttribute="bottom" id="MSJ-0v-hKe"/>
+                    <constraint firstItem="aXq-ry-EQi" firstAttribute="bottom" secondItem="I5p-bn-hy8" secondAttribute="bottom" id="MSJ-0v-hKe"/>
                     <constraint firstItem="aXq-ry-EQi" firstAttribute="leading" secondItem="i42-dj-sdC" secondAttribute="leading" id="NqK-f1-40j"/>
                     <constraint firstItem="Deg-dL-2XB" firstAttribute="trailing" secondItem="i42-dj-sdC" secondAttribute="trailing" constant="-16" id="Yr9-oZ-Aoc"/>
                     <constraint firstItem="q8n-Vx-Zq4" firstAttribute="leading" secondItem="i42-dj-sdC" secondAttribute="leading" id="Z0G-0X-g4X"/>

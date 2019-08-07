@@ -33,11 +33,9 @@
                         </connections>
                     </button>
                     <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S8h-XV-HW5">
-                        <rect key="frame" x="0.0" y="842" width="414" height="20"/>
+                        <rect key="frame" x="0.0" y="876" width="414" height="20"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="20" id="0CU-z4-cp6"/>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="o4K-yH-gln"/>
                             <constraint firstAttribute="height" constant="20" id="oR0-tY-QL3"/>
                         </constraints>
                     </view>
@@ -51,7 +49,7 @@
                     <constraint firstItem="xMM-ws-tQc" firstAttribute="bottom" secondItem="Vzg-4O-DCv" secondAttribute="bottom" id="gpu-gT-Jog"/>
                     <constraint firstItem="xMM-ws-tQc" firstAttribute="leading" secondItem="Vzg-4O-DCv" secondAttribute="leading" id="jWI-y0-dgn"/>
                     <constraint firstItem="FlM-vN-jED" firstAttribute="top" secondItem="Vzg-4O-DCv" secondAttribute="top" constant="16" id="kGP-aB-Jrf"/>
-                    <constraint firstItem="S8h-XV-HW5" firstAttribute="bottom" secondItem="Vzg-4O-DCv" secondAttribute="bottom" id="oDE-AX-ndg"/>
+                    <constraint firstItem="S8h-XV-HW5" firstAttribute="bottom" secondItem="eHy-Vk-sTv" secondAttribute="bottom" id="oDE-AX-ndg"/>
                     <constraint firstItem="S8h-XV-HW5" firstAttribute="leading" secondItem="Vzg-4O-DCv" secondAttribute="leading" id="s6k-F4-jCB"/>
                 </constraints>
                 <viewLayoutGuide key="safeArea" id="Vzg-4O-DCv"/>
