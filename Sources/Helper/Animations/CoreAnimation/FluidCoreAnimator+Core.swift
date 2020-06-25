@@ -128,7 +128,7 @@ extension FluidCoreAnimator {
     public func run() -> Self {
         /* NOTE: Validate */
         guard self.isReady else { return self }
-        guard let layer: CALayer = (try? FluidCoreAnimatorValidator.validate(layer: self.layer, id: self.groupAnimationId)) ?? nil else {
+        guard let layer: CALayer = (((try? FluidCoreAnimatorValidator.validate(layer: self.layer, id: self.groupAnimationId)) as CALayer??)) ?? nil else {
             self._animatorState = .failed
             return self
         }
@@ -161,7 +161,7 @@ extension FluidCoreAnimator {
     public func pause() -> Self {
         /* NOTE: Validate */
         guard self.isRunning else { return self }
-        guard let layer: CALayer = (try? FluidCoreAnimatorValidator.validate(layer: layer, id: self.groupAnimationId)) ?? nil else {
+        guard let layer: CALayer = (((try? FluidCoreAnimatorValidator.validate(layer: layer, id: self.groupAnimationId)) as CALayer??)) ?? nil else {
             self._animatorState = .failed
             return self
         }
@@ -190,7 +190,7 @@ extension FluidCoreAnimator {
     public func resume(reverse: Bool, progress: CGFloat?, resetSpeedAfterFinish: Bool = false) -> Self {
         /* NOTE: Validate */
         guard self.isPaused else { return self }
-        guard let layer: CALayer = (try? FluidCoreAnimatorValidator.validate(layer: layer, id: self.groupAnimationId)) ?? nil else {
+        guard let layer: CALayer = (((try? FluidCoreAnimatorValidator.validate(layer: layer, id: self.groupAnimationId)) as CALayer??)) ?? nil else {
             self._animatorState = .failed
             return self
         }
@@ -227,7 +227,7 @@ extension FluidCoreAnimator {
     public func cancel() -> Self {
         /* NOTE: Validate */
         guard !self.isCompleted else { return self }
-        guard let layer: CALayer = (try? FluidCoreAnimatorValidator.validate(layer: layer, id: self.groupAnimationId)) ?? nil else {
+        guard let layer: CALayer = (((try? FluidCoreAnimatorValidator.validate(layer: layer, id: self.groupAnimationId)) as CALayer??)) ?? nil else {
             self._animatorState = .failed
             return self
         }

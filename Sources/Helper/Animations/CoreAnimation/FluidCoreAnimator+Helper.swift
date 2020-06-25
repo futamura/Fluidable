@@ -18,7 +18,7 @@ internal extension FluidCoreAnimator {
                                                    easing: FluidAnimatorEasing? = nil,
                                                    isRemovedOnCompletion: Bool? = nil, fillMode: CAMediaTimingFillMode? = nil,
                                                    repeatCount: Float? = nil, repeatDuration: CFTimeInterval? = nil, autoreverses: Bool? = nil) -> CAAnimation? {
-        guard let layer: CALayer = (try? FluidCoreAnimatorValidator.validate(layer: layer, id: self.groupAnimationId)) ?? nil,
+        guard let layer: CALayer = (((try? FluidCoreAnimatorValidator.validate(layer: layer, id: self.groupAnimationId)) as CALayer??)) ?? nil,
               let value: (from: T, to: T) = try? FluidCoreAnimatorValidator.validate(layer: layer, keyPath: keyPath, from: from, to: to, id: self.groupAnimationId) else {
             return nil
         }

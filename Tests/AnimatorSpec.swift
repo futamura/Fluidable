@@ -253,9 +253,9 @@ class AnimatorSpec: QuickSpec {
                 let easeInElasticAdvanced: PennerEasing = .easeInElasticAdvanced(0.1, 0.1)
                 let easeOutElasticAdvanced: PennerEasing = .easeOutElasticAdvanced(0.1, 0.1)
                 let easeInOutElasticAdvanced: PennerEasing = .easeInOutElasticAdvanced(0.1, 0.1)
-                let step: CGFloat = 0.01
-                let duration: CGFloat = 1.0
-                let begin: CGFloat = 0.0
+//                let step: CGFloat = 0.01
+//                let duration: CGFloat = 1.0
+//                let begin: CGFloat = 0.0
                 let end: CGFloat = 100.0
                 it("Calculate") {
                     expect(calculate(easing: linear, end: end)).to(beCloseTo(end, within: 0.1))

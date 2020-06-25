@@ -55,14 +55,14 @@ extension FluidPresentDriverCompatible where Self: FluidNavigationPresentDriver 
             /* NOTE: Remove view */
             self.parameters?.sourceViewController?.view.removeFromSuperview()
             /* NOTE: Update dismiss transition */
-            try? self.controllerDelegate?.dismissDriver.configureParameters(driverType: .dismiss, animationType: .dismiss,
+            ((try? self.controllerDelegate?.dismissDriver.configureParameters(driverType: .dismiss, animationType: .dismiss,
                                                                             context: self.parameters.context,
                                                                             container: self.parameters.transitionContainerView,
                                                                             source: self.parameters.sourceViewController,
                                                                             destination: self.parameters.destinationViewController,
                                                                             initialContainerSize: self.parameters.finalContainerSize,
                                                                             finalContainerSize: self.parameters.finalContainerSize,
-                                                                            shouldInsertSubview: false)
+                                                                            shouldInsertSubview: false)) as ()??)
             /* NOTE: Start observing gestures and scroll views */
             self.controllerDelegate?.dismissDriver.stopObservingGestures()
             self.controllerDelegate?.dismissDriver.startObservingGestures()
@@ -116,14 +116,14 @@ extension FluidPresentDriverCompatible where Self: FluidTransitionPresentDriver 
             /* NOTE: Reset interactor */
             self.resetInteractionState()
             /* NOTE: Update dismiss transition */
-            try? self.controllerDelegate?.dismissDriver.configureParameters(driverType: .dismiss, animationType: .dismiss,
+            ((try? self.controllerDelegate?.dismissDriver.configureParameters(driverType: .dismiss, animationType: .dismiss,
                                                                             context: self.parameters.context,
                                                                             container: self.parameters.transitionContainerView,
                                                                             source: self.parameters.sourceViewController,
                                                                             destination: self.parameters.rootNavigationController ?? self.parameters.destinationViewController,
                                                                             initialContainerSize: self.parameters.finalContainerSize,
                                                                             finalContainerSize: self.parameters.finalContainerSize,
-                                                                            shouldInsertSubview: false)
+                                                                            shouldInsertSubview: false)) as ()??)
             /* NOTE: Start observing gestures and scroll views */
             self.controllerDelegate?.dismissDriver.stopObservingGestures()
             self.controllerDelegate?.dismissDriver.startObservingGestures()

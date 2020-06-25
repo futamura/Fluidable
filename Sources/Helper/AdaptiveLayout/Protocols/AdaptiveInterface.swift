@@ -185,7 +185,7 @@ public extension AdaptiveInterface {
      */
     func addView(for attributes: [AdaptiveAttribute], view: UIView, parent: UIView, constraints: @autoclosure () -> [NSLayoutConstraint] = []) {
         let traitCollection: UITraitCollection = UITraitCollection(attributes: attributes)
-        addView(for: traitCollection, view: view, parent: parent, constraints: constraints)
+        addView(for: traitCollection, view: view, parent: parent, constraints: constraints())
     }
 
     /**
@@ -200,6 +200,6 @@ public extension AdaptiveInterface {
      */
     func addView(for attribute: AdaptiveAttribute, view: UIView, parent: UIView, constraints: @autoclosure () -> [NSLayoutConstraint] = []) {
         let traitCollection: UITraitCollection = UITraitCollection(attributes: [attribute])
-        addView(for: traitCollection, view: view, parent: parent, constraints: constraints)
+        addView(for: traitCollection, view: view, parent: parent, constraints: constraints())
     }
 }

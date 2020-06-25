@@ -1307,16 +1307,19 @@
 				TargetAttributes = {
 					A71F674421C50EA8007CADA0 = {
 						CreatedOnToolsVersion = 10.1;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1150;
 					};
 					A71F674D21C50EA8007CADA0 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1150;
 					};
 					A71F67E821C66248007CADA0 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1150;
 					};
 					A71F680621C6624A007CADA0 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1150;
 						TestTargetID = A71F67E821C66248007CADA0;
 					};
 				};
@@ -2106,7 +2109,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2137,7 +2140,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.gumob.Fluidable;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -2161,7 +2164,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gumob.FluidableTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2185,7 +2188,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gumob.FluidableTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -2209,7 +2212,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gumob.FluidableExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2233,7 +2236,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gumob.FluidableExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -2257,7 +2260,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gumob.FluidableUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = FluidableExample;
 			};
@@ -2282,7 +2285,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gumob.FluidableUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = FluidableExample;
 			};
