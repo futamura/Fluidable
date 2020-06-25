@@ -44,6 +44,7 @@ public extension UITraitCollection {
         case .tv: attributes.append(Idiom.tv)
         case .carPlay: attributes.append(Idiom.carPlay)
         case .unspecified: break
+        @unknown default: break
         }
 
         switch displayScale {
@@ -58,18 +59,21 @@ public extension UITraitCollection {
         case .compact: attributes.append(SizeClass.horizontalCompact)
         case .regular: attributes.append(SizeClass.horizontalRegular)
         case .unspecified: break
+        @unknown default: break
         }
 
         switch verticalSizeClass {
         case .compact: attributes.append(SizeClass.verticalCompact)
         case .regular: attributes.append(SizeClass.verticalRegular)
         case .unspecified: break
+        @unknown default: break
         }
 
         switch forceTouchCapability {
         case .available: attributes.append(ForceTouch.available)
         case .unavailable: attributes.append(ForceTouch.unavailable)
         case .unknown: break
+        @unknown default: break
         }
 
         if #available(iOS 10.0, *) {
@@ -77,6 +81,7 @@ public extension UITraitCollection {
             case .leftToRight: attributes.append(LayoutDirection.leftToRight)
             case .rightToLeft: attributes.append(LayoutDirection.rightToLeft)
             case .unspecified: break
+            @unknown default: break
             }
         }
 
@@ -103,6 +108,7 @@ public extension UITraitCollection {
             case .SRGB: attributes.append(DisplayGamut.SRGB)
             case .P3: attributes.append(DisplayGamut.P3)
             case .unspecified: break
+            @unknown default: break
             }
         }
 

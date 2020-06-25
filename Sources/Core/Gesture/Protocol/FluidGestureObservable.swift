@@ -257,6 +257,7 @@ extension FluidGestureObservable {
         switch gesture.state {
         case .began, .changed: break
         case .possible, .ended, .failed, .cancelled: self.resetParameters()
+        @unknown default: break
         }
         /* NOTE: Set previous value */
         self.updatePreviousParameters()
@@ -272,6 +273,7 @@ extension FluidGestureObservable {
         switch gesture.state {
         case .began, .changed: break
         case .possible, .ended, .failed, .cancelled: self.resetParameters()
+        @unknown default: break
         }
         /* NOTE: Set previous value */
         self.updatePreviousParameters()

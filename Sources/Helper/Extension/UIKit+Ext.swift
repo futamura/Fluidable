@@ -77,6 +77,7 @@ extension UINavigationController.Operation: CustomStringConvertible {
         case .none: return "none"
         case .push: return "push"
         case .pop:  return "pop"
+        @unknown default: return "unknown"
         }
     }
 }
@@ -94,6 +95,7 @@ extension UIBarPosition: CustomStringConvertible {
         case .bottom: return "bottom"
         case .top:  return "top"
         case .topAttached:  return "topAttached"
+        @unknown default: return "unknown"
         }
     }
 }
@@ -200,6 +202,7 @@ extension NSLayoutConstraint.Attribute: CustomStringConvertible {
         case .centerXWithinMargins: return "centerXWithinMargins"
         case .centerYWithinMargins: return "centerYWithinMargins"
         case .notAnAttribute:       return "notAnAttribute"
+        @unknown default: return "unknown"
         }
     }
 }
@@ -221,6 +224,7 @@ extension UIGestureRecognizer.State: CustomStringConvertible {
         case .ended:     return "ended"
         case .cancelled: return "cancelled"
         case .failed:    return "failed"
+        @unknown default: return "unknown"
         }
     }
 }
@@ -236,6 +240,7 @@ extension UIInterfaceOrientation: CustomStringConvertible {
         case .landscapeRight:     return "landscapeRight"
         case .landscapeLeft:      return "landscapeLeft"
         case .unknown:            return "unknown"
+        @unknown default: return "unknown"
         }
     }
 }
@@ -250,6 +255,7 @@ extension UIDeviceOrientation: CustomStringConvertible {
         case .faceUp:             return "faceUp"
         case .faceDown:           return "faceDown"
         case .unknown:            return "unknown"
+        @unknown default: return "unknown"
         }
     }
 }
@@ -270,6 +276,7 @@ extension UIModalPresentationStyle: CustomStringConvertible {
         case .popover:            return "popover"
         case .automatic:          return "automatic"
         case .none:               return "none"
+        @unknown default: return "unknown"
         }
     }
 }
@@ -290,6 +297,7 @@ extension UIUserInterfaceIdiom: CustomStringConvertible {
         case .carPlay:     return "carPlay"
         case .tv:          return "tv"
         case .unspecified: return "unspecified"
+        @unknown default: return "unknown"
         }
     }
 }
@@ -353,6 +361,7 @@ extension UITimingCurveType: CustomStringConvertible {
         case .cubic:    return "cubic"
         case .spring:   return "spring"
         case .composed: return "composed"
+        @unknown default: return "unknown"
         }
     }
 }
@@ -363,6 +372,7 @@ extension UIViewAnimatingPosition: CustomStringConvertible {
         case .end:     return "end"
         case .start:   return "start"
         case .current: return "current"
+        @unknown default: return "unknown"
         }
     }
 }

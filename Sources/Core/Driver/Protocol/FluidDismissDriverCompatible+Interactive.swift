@@ -85,6 +85,7 @@ extension FluidDismissDriverCompatible {
         case .ended, .failed, .cancelled:
             self.finishPanGesture(gesture: gesture, isEdgePan: false)
         case .possible: break
+        @unknown default: break
         }
         /* NOTE: Set previous value */
         self.previousInteractionProgress = self.currentInteractionProgress
@@ -103,6 +104,7 @@ extension FluidDismissDriverCompatible {
         case .ended, .failed, .cancelled:
             self.finishPanGesture(gesture: gesture, isEdgePan: true)
         case .possible: break
+        @unknown default: break
         }
         /* NOTE: Set previous value */
         self.previousInteractionProgress = self.currentInteractionProgress

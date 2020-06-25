@@ -263,6 +263,9 @@ extension FluidScrollObservable {
         case .ended, .failed, .cancelled:
             self.gestureDirection = .none
             self.gestureState = .none
+        @unknown default:
+            self.gestureDirection = .none
+            self.gestureState = .none
         }
     }
 }
