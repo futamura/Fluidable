@@ -17,7 +17,7 @@ public struct FluidInitialFrameStyle: FluidFrameStyleCompatible {
     /** A `CGFloat` value that determines a corner radius. */
     public internal(set) var cornerRadius: CGFloat
     /** A `FluidRoundCornerStyle` value that determines which corners should be rounded. */
-    public internal(set) var cornerStyle: FluidRoundCornerStyle? = .none
+    public internal(set) var cornerStyle: FluidRoundCornerStyle? = FluidRoundCornerStyle.none
     /** A `CGColor` value that determines a shadow color. */
     public internal(set) var shadowColor: CGColor
     /** A `Float` value that determines a shadow opacity. */
@@ -83,7 +83,7 @@ public struct FluidFinalFrameStyle: FluidFrameStyleCompatible {
 
     public init(alpha: CGFloat? = nil,
                 cornerRadius: CGFloat = 0.0,
-                cornerStyle: FluidRoundCornerStyle? = .none,
+                cornerStyle: FluidRoundCornerStyle? = FluidRoundCornerStyle.none,
                 shadowColor: CGColor = UIColor.black.cgColor,
                 shadowOpacity: CGFloat = 0.0,
                 shadowRadius: CGFloat = 3.0,
