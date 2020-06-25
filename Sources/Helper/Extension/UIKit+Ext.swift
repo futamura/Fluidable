@@ -268,6 +268,7 @@ extension UIModalPresentationStyle: CustomStringConvertible {
         case .overFullScreen:     return "overFullScreen"
         case .overCurrentContext: return "overCurrentContext"
         case .popover:            return "popover"
+        case .automatic:          return "automatic"
         case .none:               return "none"
         }
     }
