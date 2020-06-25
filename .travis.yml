@@ -45,7 +45,7 @@ before_install:
     carthage bootstrap --platform iOS --no-use-binaries --cache-builds;
     fi
   - if [ "$POD_LINT" == "YES" ]; then
-    gem install cocoapods --pre --no-document --quiet;
+    gem install cocoapods -v 1.8.4 --pre --no-document --quiet;
     pod repo update;
     fi
 
