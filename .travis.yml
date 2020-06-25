@@ -1,6 +1,6 @@
 language: swift
 os: osx
-osx_image: xcode10.2
+osx_image: xcode11.5
 
 xcode_project: Fluidable.xcodeproj
 xcode_scheme: Fluidable
@@ -8,7 +8,7 @@ xcode_scheme: Fluidable
 branches:
   only:
     - master
-#    - develop
+    - develop
 #    - "/^v?[0-9\\.]+/"
 
 cache:
@@ -23,65 +23,59 @@ env:
 
 matrix:
   include:
-    - env: XCODE_TEST="YES" RUNTIME="iOS 12.2" DEVICE="iPhone XS Max" COVERAGE="YES" CODECOV_FLAG="ios12"
-    - env: XCODE_TEST="YES" RUNTIME="iOS 11.4" DEVICE="iPhone 8 Plus" COVERAGE="NO"
-#    - env: XCODE_TEST="YES" RUNTIME="iOS 10.3" DEVICE="iPhone 7"      COVERAGE="NO"
-    - env: XCODE_TEST="YES" RUNTIME="iOS 12.2" DEVICE="iPad Air 2"    COVERAGE="YES" CODECOV_FLAG="ios12"
-    - env: XCODE_TEST="YES" RUNTIME="iOS 11.4" DEVICE="iPad Air 2"    COVERAGE="NO"
-#    - env: XCODE_TEST="YES" RUNTIME="iOS 10.3" DEVICE="iPad Air 2"    COVERAGE="NO"
-#    - env: CARTHAGE_TEST="YES"
+    - env: DESTINATION="OS=13.5,name=iPhone 11 Pro"  XCODE_TEST="YES" COVERAGE="YES" CODECOV_FLAG="ios13"
+    - env: DESTINATION="OS=12.4,name=iPhone X"       XCODE_TEST="YES" COVERAGE="NO"  CODECOV_FLAG="ios12"
+    - env: DESTINATION="OS=11.4,name=iPhone 7"       XCODE_TEST="YES" COVERAGE="NO"  CODECOV_FLAG="ios11"
+    #- env: DESTINATION="OS=10.3.1,name=iPhone 6"     XCODE_TEST="YES" COVERAGE="NO"  CODECOV_FLAG="ios10"
+    - env: DESTINATION="OS=13.5,name=iPad Air 2"     XCODE_TEST="YES" COVERAGE="YES" CODECOV_FLAG="ios13"
+    - env: DESTINATION="OS=12.4,name=iPad Air 2"     XCODE_TEST="YES" COVERAGE="NO"  CODECOV_FLAG="ios12"
+    - env: DESTINATION="OS=11.4,name=iPad Air 2"     XCODE_TEST="YES" COVERAGE="NO"  CODECOV_FLAG="ios11"
+    #- env: DESTINATION="OS=10.3.1,name=iPhone 6"     XCODE_TEST="YES" COVERAGE="NO"  CODECOV_FLAG="ios10"
+    #    - env: CARTHAGE_TEST="YES"
     - env: SWIFT_LINT="YES"
     - env: POD_LINT="YES"
 
 before_install:
-  - bundle install;
-  - pod repo update;
-#  - if [ "$POD_LINT" == "YES" ]; then
-#    gem install cocoapods --pre --no-document --quiet;
-#    pod repo update;
-#    fi
   - if [ "$XCODE_TEST" == "YES" ]; then
-    gem install xcpretty -N --no-document --quiet;
+    gem install xcpretty --no-document --quiet;
     fi
   - if [ "$CARTHAGE_TEST" = "YES" ] || [ "$XCODE_TEST" = "YES" ]; then
     brew update;
     brew outdated carthage || brew upgrade carthage;
-    fi
-  - if [ "$CARTHAGE_TEST" = "YES" ] || [ "$XCODE_TEST" = "YES" ]; then
     carthage bootstrap --platform iOS --no-use-binaries --cache-builds;
     fi
-#  - swift -version;
-#  - xcrun simctl list;
-#  - xcodebuild -version;
-#  - xcodebuild -showsdks;
-#  - xcodebuild -list;
+  - if [ "$POD_LINT" == "YES" ]; then
+    gem install cocoapods --pre --no-document --quiet;
+    pod repo update;
+    fi
 
 install:
   - if [ "$SWIFT_LINT" == "YES" ]; then
     ./install-swiftlint.sh;
     fi
 
-before_script:
-  - if [ "$XCODE_TEST" == "YES" ]; then
-    DEVICE_ID=com.apple.CoreSimulator.SimDeviceType.$(echo $DEVICE | sed -E -e "s/[ \-]+/ /g" -e "s/[^[:alnum:]]/-/g");
-    RUNTIME_ID=com.apple.CoreSimulator.SimRuntime.$(echo $RUNTIME | sed -E -e "s/[ \-]+/ /g" -e "s/[^[:alnum:]]/-/g");
-    DESTINATION_ID=$(xcrun simctl create Travis $DEVICE_ID $RUNTIME_ID);
-    xcrun simctl boot $DESTINATION_ID;
-    fi
-
 script:
   - set -o pipefail;
+
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then
+    swift -version;
+    xcrun simctl list;
+    xcodebuild -version;
+    xcodebuild -showsdks;
+    xcodebuild -list;
+    fi
+
   - if [ "$XCODE_TEST" == "YES" ]; then
-    xcodebuild clean test -project "$TRAVIS_XCODE_PROJECT" -scheme "$TRAVIS_XCODE_SCHEME" -destination "id=$DESTINATION_ID" -enableCodeCoverage $COVERAGE | xcpretty -c;
+    xcodebuild clean test -project "$TRAVIS_XCODE_PROJECT" -scheme "$TRAVIS_XCODE_SCHEME" -destination "$DESTINATION" -enableCodeCoverage $COVERAGE | xcpretty -c;
     fi
   - if [ "$CARTHAGE_TEST" == "YES" ]; then
     carthage build --no-skip-current --platform iOS;
     fi
-  - if [ "$POD_LINT" == "YES" ]; then
-    pod lib lint --allow-warnings;
-    fi
   - if [ "$SWIFT_LINT" == "YES" ]; then
     swiftlint lint;
+    fi
+  - if [ "$POD_LINT" == "YES" ]; then
+    pod lib lint;
     fi
 
 after_success:
@@ -89,17 +83,17 @@ after_success:
     bash <(curl -s https://codecov.io/bash) -J 'Fluidable' -cF "$CODECOV_FLAG" -y ".codecov.yml";
     fi
 
-after_failure:
-  - if [ "$CARTHAGE_TEST" == "YES" ]; then
-    cat $TMPDIR/carthage-*.log | true
-    cat /var/log/system.log
-    fi
-  - if [ "$XCODE_TEST" == "YES" ]; then
-    find $HOME/Library/Developer/Xcode/DerivedData/Fluidable-*/Logs/ -name '*.log' -print0 | xargs -0 cat
-    cat /var/log/system.log
-    fi
+# after_failure:
+#   - if [ "$CARTHAGE_TEST" == "YES" ]; then
+#     cat $TMPDIR/carthage-*.log | true
+#     cat /var/log/system.log
+#     fi
+#   - if [ "$XCODE_TEST" == "YES" ]; then
+#     find $HOME/Library/Developer/Xcode/DerivedData/Fluidable-*/Logs/ -name '*.log' -print0 | xargs -0 cat
+#     cat /var/log/system.log
+#     fi
 
-notifications:
-  email: false
-  slack:
-    secure: Q7z8piC9uUmPQHmjov051jM+j4nKF5i5iaO/ZXm+JZlC7nddmHQlMZFJ75ZFuMTAnzHWPKJvBnPW4upG6BALNrQZOexqjUeyUVy3fR5S9eM0+uBr69+AYUH1jFSlXTmhHqTepZDKtP1pNnexrO31Rt5l/rH1BkGGOispeOZdY4quxj5QHRFQle3cMx4qdl93TCVpKmATbtpSz8kMdsda5gO4lsNW2LiMKPWwapXME5E7g2sO/4Qg17Mbzx16pWFILMHBHPHIcYEaFwithgfb3ALIx1IqDzmj1iZ7XoxsC+D6b3vr8eMv5EFW3MgVE1nc8yTjgKRJ/qZ/WGE0Z+jmhLyFCRxvX0cCui6a3RoFEXRniCAWPq58PK1JCjB8vhqJ18YzA7ctzf8k+kava4KTFrNJ7GMITuuEh4GrURRCeulKuVj+AQJQh40HdbOZ56PtR7uFQpCY+UL8lzWSAmnNEydf+UTHs/FDYqT9GB4qVahmmjmnD29N0OHFdjbAzdkn1+RkAI09Z2Kr7YjlSk51vbR0hNRvtMPy3r5qEb6g5gu02DACCDcVBD/Atdpmv2ISqez3STSSA3xcTC8OOtGNM/WTQw1fKBjSs5stsALnGYmtFSbPiKKo6CKaryOedtnQbVYX8YU6nKcwaEKw1X51JxYoivt+LXXsHsZcDVJ4cbg=
+# notifications:
+#   email: false
+#   slack:
+#     secure: Q7z8piC9uUmPQHmjov051jM+j4nKF5i5iaO/ZXm+JZlC7nddmHQlMZFJ75ZFuMTAnzHWPKJvBnPW4upG6BALNrQZOexqjUeyUVy3fR5S9eM0+uBr69+AYUH1jFSlXTmhHqTepZDKtP1pNnexrO31Rt5l/rH1BkGGOispeOZdY4quxj5QHRFQle3cMx4qdl93TCVpKmATbtpSz8kMdsda5gO4lsNW2LiMKPWwapXME5E7g2sO/4Qg17Mbzx16pWFILMHBHPHIcYEaFwithgfb3ALIx1IqDzmj1iZ7XoxsC+D6b3vr8eMv5EFW3MgVE1nc8yTjgKRJ/qZ/WGE0Z+jmhLyFCRxvX0cCui6a3RoFEXRniCAWPq58PK1JCjB8vhqJ18YzA7ctzf8k+kava4KTFrNJ7GMITuuEh4GrURRCeulKuVj+AQJQh40HdbOZ56PtR7uFQpCY+UL8lzWSAmnNEydf+UTHs/FDYqT9GB4qVahmmjmnD29N0OHFdjbAzdkn1+RkAI09Z2Kr7YjlSk51vbR0hNRvtMPy3r5qEb6g5gu02DACCDcVBD/Atdpmv2ISqez3STSSA3xcTC8OOtGNM/WTQw1fKBjSs5stsALnGYmtFSbPiKKo6CKaryOedtnQbVYX8YU6nKcwaEKw1X51JxYoivt+LXXsHsZcDVJ4cbg=
