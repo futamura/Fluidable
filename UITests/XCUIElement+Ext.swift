@@ -156,6 +156,7 @@ extension XCUIElement.ElementType: CustomStringConvertible {
         case .tab: return "tab"
         case .touchBar: return "touchBar"
         case .statusItem: return "statusItem"
+        @unknown default: return  "unknown"
         }
     }
 }
