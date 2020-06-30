@@ -451,3 +451,29 @@ extension UIRectEdge: CustomStringConvertible {
         return options.joined(separator: ", ")
     }
 }
+
+#if DEBUG
+extension UIWindow {
+    class var key: UIWindow {
+        let selector: Selector = NSSelectorFromString("keyWindow")
+        let result = UIWindow.perform(selector)
+        return result?.takeUnretainedValue() as! UIWindow
+    }
+}
+
+extension UIView {
+    var recursiveDescription: NSString {
+        let selector: Selector = NSSelectorFromString("recursiveDescription")
+        let result = perform(selector)
+        return result?.takeUnretainedValue() as! NSString
+    }
+}
+
+extension UIViewController {
+    var printHierarchy: NSString {
+        let selector: Selector = NSSelectorFromString("_printHierarchy")
+        let result = perform(selector)
+        return result?.takeUnretainedValue() as! NSString
+    }
+}
+#endif
