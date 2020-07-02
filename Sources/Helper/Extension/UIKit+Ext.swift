@@ -453,7 +453,7 @@ extension UIRectEdge: CustomStringConvertible {
 }
 
 #if DEBUG
-internal extension UIWindow {
+extension UIWindow {
     class var key: UIWindow {
         let selector: Selector = NSSelectorFromString("keyWindow")
         let result = UIWindow.perform(selector)
@@ -461,7 +461,7 @@ internal extension UIWindow {
     }
 }
 
-internal extension UIView {
+extension UIView {
     var recursiveDescription: NSString {
         let selector: Selector = NSSelectorFromString("recursiveDescription")
         let result = perform(selector)
@@ -469,7 +469,7 @@ internal extension UIView {
     }
 }
 
-internal extension CALayer {
+extension CALayer {
     var recursiveDescription: NSString {
         let selector: Selector = NSSelectorFromString("recursiveDescription")
         let result = perform(selector)
@@ -477,7 +477,7 @@ internal extension CALayer {
     }
 }
 
-internal extension UIViewController {
+extension UIViewController {
     var printHierarchy: NSString {
         let selector: Selector = NSSelectorFromString("_printHierarchy")
         let result = perform(selector)
