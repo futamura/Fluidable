@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
     s.name              = "Fluidable"
-    s.version           = "0.0.1"
+    s.version           = "1.0.0"
     s.summary           = "The Swift library that allows you to create a custom transition conforming to Fluid Interfaces."
     s.homepage          = "https://github.com/gumob/Fluidable"
     s.documentation_url = "https://gumob.github.io/Fluidable"
