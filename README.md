@@ -4,7 +4,7 @@
 [![Build Status](https://travis-ci.com/gumob/Fluidable.svg?branch=master)](https://travis-ci.com/gumob/Fluidable)
 [![codecov](https://codecov.io/gh/gumob/Fluidable/branch/master/graph/badge.svg)](https://codecov.io/gh/gumob/Fluidable)
 [![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)
-![Language](https://img.shields.io/badge/Language-Swift%204.2-orange.svg)
+![Language](https://img.shields.io/badge/Language-Swift%205.0-orange.svg)
 ![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg)
 
 # Fluidable
@@ -30,8 +30,8 @@ Fluid                      |  Drawer                   | Slide
 
 ## Requirements
 
-- iOS 11.0 or later
-- Swift 4.2
+- iOS 10.0 or later
+- Swift 5.0
 
 ## Installation
 
