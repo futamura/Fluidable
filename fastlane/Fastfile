@@ -1,7 +1,6 @@
 default_platform(:ios)
 
 require "fileutils"
-require "tmpdir"
 
 project_name = ENV.fetch("PROJECT_NAME", "Fluidable")
 repo_root = File.expand_path("..", __dir__)
@@ -9,57 +8,38 @@ xcodeproj_framework = ENV.fetch("XCODEPROJ_FRAMEWORK", "#{project_name}.xcodepro
 scheme_ios = ENV.fetch("SCHEME_IOS", project_name)
 ios_destination = "platform=iOS Simulator,name=iPhone 17,OS=26.5"
 ios_simulator_triple = "arm64-apple-ios15.0-simulator"
+coverage_result_bundle = File.join(repo_root, "Reports", "coverage", "#{project_name}.xcresult")
+coverage_report_path = File.join(repo_root, "Reports", "coverage", "xccov.txt")
+docc_output_path = File.join(repo_root, "docs")
+docc_hosting_base_path = ENV.fetch("DOCC_HOSTING_BASE_PATH", project_name)
 
-def preserve_docs_sidecars(repo_root)
-  preserved = %w[docs/memory docs/superpowers].select do |path|
-    File.directory?(File.join(repo_root, path))
-  end
-
-  Dir.mktmpdir("fluidable-jazzy-sidecars") do |tmpdir|
-    preserved.each do |path|
-      source = File.join(repo_root, path)
-      backup = File.join(tmpdir, path)
-      FileUtils.mkdir_p(File.dirname(backup))
-      FileUtils.cp_r(source, backup)
-    end
-
-    begin
-      yield
-    ensure
-      preserved.each do |path|
-        backup = File.join(tmpdir, path)
-        target = File.join(repo_root, path)
-        next unless File.exist?(backup)
-
-        FileUtils.mkdir_p(File.dirname(target))
-        FileUtils.rm_rf(target)
-        FileUtils.cp_r(backup, target)
-      end
-    end
-  end
+def clean_generated_docs(repo_root)
+  docs_dir = File.join(repo_root, "docs")
+  FileUtils.mkdir_p(docs_dir)
+  FileUtils.rm_rf(Dir.children(docs_dir).map { |entry| File.join(docs_dir, entry) })
 end
 
 platform :ios do
-  desc "Run SwiftPM build and Xcode unit tests"
+  desc "Run SwiftPM build, coverage-enabled Xcode unit tests, and SwiftLint"
   lane :test do
     Dir.chdir(repo_root) do
       sh("swift package resolve")
       sdk_path = sh("xcrun --sdk iphonesimulator --show-sdk-path").strip
       sh("swift build --sdk '#{sdk_path}' --triple #{ios_simulator_triple}")
       sh("xcodebuild build-for-testing -project #{xcodeproj_framework} -scheme #{scheme_ios} -destination '#{ios_destination}' CODE_SIGNING_ALLOWED=NO")
-      sh("xcodebuild test -project #{xcodeproj_framework} -scheme #{scheme_ios} -destination '#{ios_destination}' -only-testing:FluidableTests CODE_SIGNING_ALLOWED=NO")
     end
+    coverage
     lint
   end
 
-  desc "Run Coverage"
+  desc "Run Xcode coverage and export an xccov text report"
   lane :coverage do
     Dir.chdir(repo_root) do
-      slather(
-        html: true,
-        verbose: true,
-        show: true,
-      )
+      FileUtils.mkdir_p(File.dirname(coverage_result_bundle))
+      FileUtils.rm_rf(coverage_result_bundle)
+      FileUtils.rm_f(coverage_report_path)
+      sh("xcodebuild test -project #{xcodeproj_framework} -scheme #{scheme_ios} -destination '#{ios_destination}' -only-testing:FluidableTests -enableCodeCoverage YES -resultBundlePath '#{coverage_result_bundle}' CODE_SIGNING_ALLOWED=NO")
+      sh("xcrun xccov view --report '#{coverage_result_bundle}' > '#{coverage_report_path}'")
     end
   end
 
@@ -70,13 +50,13 @@ platform :ios do
     end
   end
 
-  desc "Create documentation"
+  desc "Create DocC documentation"
   lane :create_doc do
     Dir.chdir(repo_root) do
-      preserve_docs_sidecars(repo_root) do
-        sh("jazzy --config #{File.join(repo_root, ".jazzy.yml")}")
-        sh("find docs -name '*.html' -exec sed -i '' -e 's/[[:blank:]]*$//' {} +")
-      end
+      clean_generated_docs(repo_root)
+      sdk_path = sh("xcrun --sdk iphonesimulator --show-sdk-path").strip
+      sh("swift package --sdk '#{sdk_path}' --triple #{ios_simulator_triple} --allow-writing-to-directory '#{docc_output_path}' generate-documentation --target #{project_name} --output-path '#{docc_output_path}' --transform-for-static-hosting --hosting-base-path #{docc_hosting_base_path}")
+      FileUtils.touch(File.join(docc_output_path, ".nojekyll"))
     end
   end
 

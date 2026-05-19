@@ -8,7 +8,7 @@
 
 1. `pwd` で CWD が repo-root (`Fluidable/`) であることを確認する。
 2. `CODING-GUIDE.md` を読む。
-3. `docs/memory/MEMORY.md` を読む。
+3. `.agents/memory/MEMORY.md` を読む。
 4. `MEMORY.md` の `Feedback` / `Gotchas` / `Projects` / `Tasks` を確認し、当該タスクに関連する `feedback_*`, `gotcha_*`, `project_*` を読む。
 5. 読んだ前提を反映してから、作業方針を提示する。
 

@@ -21,7 +21,7 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 [bundle exec] fastlane ios test
 ```
 
-Run SwiftPM build and Xcode unit tests
+Run SwiftPM build, coverage-enabled Xcode unit tests, and SwiftLint
 
 ### ios coverage
 
@@ -29,7 +29,7 @@ Run SwiftPM build and Xcode unit tests
 [bundle exec] fastlane ios coverage
 ```
 
-Run Coverage
+Run Xcode coverage and export an xccov text report
 
 ### ios lint
 
@@ -45,7 +45,7 @@ Run SwiftLint
 [bundle exec] fastlane ios create_doc
 ```
 
-Create documentation
+Create DocC documentation
 
 ### ios reset_simulator
 

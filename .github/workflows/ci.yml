@@ -6,11 +6,15 @@ on:
     branches:
       - master
 
+permissions:
+  contents: read
+  id-token: write
+
 jobs:
   test:
     runs-on: macos-26
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: Select Xcode
         run: sudo xcode-select -s /Applications/Xcode_26.5.app/Contents/Developer
@@ -32,8 +36,25 @@ jobs:
       - name: Xcode build-for-testing on iOS 26.5
         run: xcodebuild build-for-testing -project Fluidable.xcodeproj -scheme Fluidable -destination 'platform=iOS Simulator,name=iPhone 17,OS=26.5' CODE_SIGNING_ALLOWED=NO
 
+      - name: Prepare coverage directory
+        run: mkdir -p Reports/coverage
+
       - name: Xcode unit tests on iOS 26.5
-        run: xcodebuild test -project Fluidable.xcodeproj -scheme Fluidable -destination 'platform=iOS Simulator,name=iPhone 17,OS=26.5' -only-testing:FluidableTests CODE_SIGNING_ALLOWED=NO
+        run: xcodebuild test -project Fluidable.xcodeproj -scheme Fluidable -destination 'platform=iOS Simulator,name=iPhone 17,OS=26.5' -only-testing:FluidableTests -enableCodeCoverage YES -resultBundlePath Reports/coverage/Fluidable.xcresult CODE_SIGNING_ALLOWED=NO
+
+      - name: Export coverage report
+        run: xcrun xccov view --report Reports/coverage/Fluidable.xcresult > Reports/coverage/xccov.txt
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v6
+        with:
+          disable_search: true
+          fail_ci_if_error: true
+          files: Reports/coverage/xccov.txt
+          flags: unittests
+          name: Fluidable
+          swift_project: Fluidable
+          use_oidc: true
 
       - name: Xcode build with iOS 15 deployment target
         run: xcodebuild build -project Fluidable.xcodeproj -scheme Fluidable -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO IPHONEOS_DEPLOYMENT_TARGET=15.0

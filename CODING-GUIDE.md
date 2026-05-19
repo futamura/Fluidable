@@ -6,7 +6,7 @@ Codex の全プロジェクト横断グローバルルールは `~/.codex/AGENTS
 
 ## プロジェクト概要
 
-UIKit ベースの Swift 5.0 library。`UIViewControllerTransitioningDelegate` / `UINavigationControllerDelegate` による custom transition、interactive / interruptible transition、drawer / slide / fluid presentation、resizable drawer を扱う。配布形態は CocoaPods / Carthage。Xcode project は `Fluidable.xcodeproj`、主 scheme は `Fluidable` と `FluidableExample`。
+UIKit ベースの Swift 5.0 library。`UIViewControllerTransitioningDelegate` / `UINavigationControllerDelegate` による custom transition、interactive / interruptible transition、drawer / slide / fluid presentation、resizable drawer を扱う。配布形態は Swift Package Manager。Xcode project は `Fluidable.xcodeproj`、主 scheme は `Fluidable` と `FluidableExample`。
 
 ## コマンド
 
@@ -17,13 +17,15 @@ bundle install
 bundle exec fastlane ios test
 bundle exec fastlane ios lint
 bundle exec fastlane ios create_doc
+bundle exec fastlane ios coverage
 xcodebuild test -project Fluidable.xcodeproj -scheme Fluidable -destination 'platform=iOS Simulator,name=<Simulator Name>'
 ```
 
-- `bundle install`: Fastlane / CocoaPods / Jazzy など Ruby 依存を入れる。
-- `bundle exec fastlane ios test`: 共有 lane 経由で test / coverage / SwiftLint を実行する。
-- `bundle exec fastlane ios lint`: `Sources/` に SwiftLint を実行する。
-- `bundle exec fastlane ios create_doc`: Jazzy documentation を生成する。
+- `bundle install`: Fastlane など Ruby 依存を入れる。
+- `bundle exec fastlane ios test`: 共有 lane 経由で SwiftPM build / coverage 付き unit test / SwiftLint を実行する。
+- `bundle exec fastlane ios lint`: `Sources/` に mise 管理の SwiftLint を実行する。
+- `bundle exec fastlane ios create_doc`: Swift-DocC documentation を `docs/` に生成する。
+- `bundle exec fastlane ios coverage`: Xcode coverage を `.xcresult` に出力し、Codecov upload 用 `xccov.txt` を生成する。
 - `xcodebuild test ...`: Fastlane を介さず XCTest を実行する。
 
 複数コマンドを `&&` / `||` / `;` で連結しない。連続実行は個別 tool call に分ける。
@@ -41,8 +43,9 @@ xcodebuild test -project Fluidable.xcodeproj -scheme Fluidable -destination 'pla
 - `Example/`: demo application source、storyboard、resources
 - `Tests/`: Quick / Nimble ベースの unit tests
 - `UITests/`: example app を対象にした UI tests
-- `fastlane/`: test、lint、coverage、doc、CocoaPods / Carthage task
-- `docs/`: 既存 Jazzy 生成 documentation と project-local docs
+- `fastlane/`: test、lint、coverage、DocC、cleanup task
+- `docs/`: Swift-DocC 生成 documentation
+- `.agents/`: project-local memory、spec、plan
 
 ## セッション初期プロトコル
 
@@ -72,7 +75,7 @@ xcodebuild test -project Fluidable.xcodeproj -scheme Fluidable -destination 'pla
 6. `superpowers:writing-plans` で implementation plan を作る。
 7. implementation start の明示承認後に作業する。
 8. plan と本 guide の上位 gate に従って verification を行う。
-9. memory へ影響する task では `docs/memory/MEMORY.md` を更新する。
+9. memory へ影響する task では `.agents/memory/MEMORY.md` を更新する。
 10. Commit Gate を通過した場合のみ commit する。
 
 phase boundary をまたぐ場合は別途承認を得る。
@@ -85,7 +88,7 @@ phase boundary をまたぐ場合は別途承認を得る。
 - Swift pure logic: 関連 XCTest、または `bundle exec fastlane ios test` / `xcodebuild test`。
 - transition / layout / gesture / animation: unit test に加え、Example app で該当 presentation style と interaction を Simulator または実機確認する。
 - Storyboard / Auto Layout / asset / font: Simulator または実機で画面確認。変更画面、主要端末サイズ、回転有無を記録する。
-- CocoaPods / Carthage / podspec / release: `bundle exec fastlane ios lint_cocoapods`、必要に応じて `bundle exec fastlane ios build_carthage`。配布操作は dry-run と承認を優先する。
+- Swift Package / documentation / release: `swift package describe`、`bundle exec fastlane ios create_doc`、必要に応じて Xcode build。配布操作は dry-run と承認を優先する。
 - signing / provisioning / Fastlane release: `.envrc`、証明書、keychain、token を表示・commit しない。dry-run や lane 結果を報告する。
 
 必須 gate を `任意` / `可能なら` に弱めない。実施できない場合は理由と残リスクを明記する。
@@ -118,18 +121,18 @@ branch prefix は `docs/`, `feature/`, `fix/`, `refactor/`, `build/`, `chore/` �
 - public API と delegate method は source compatibility を意識し、変更前に影響範囲を確認する。
 - `Sources/` の library 実装と `Example/` の demo 実装を混同しない。
 - 画像は既存の `@2x` / `@3x` と asset 配置を崩さない。
-- 承認なしに Swift / Xcode / Ruby gem / Fastlane plugin / CocoaPods / Carthage の version を変更しない。
+- 承認なしに Swift / Xcode / Ruby gem / Fastlane plugin / SPM dependency の version を変更しない。
 - UI 色、font、spacing、既存 visual behavior は明示承認なしに変更しない。
 
 ## ドキュメント構成
 
-project docs は既存の `docs/` に集約する。macOS の case-insensitive filesystem で `docs/` と `Docs/` を混在させない。
+Swift-DocC の公開生成物は `docs/` に集約する。macOS の case-insensitive filesystem で `docs/` と `Docs/` を混在させない。
 
-- `docs/`: 既存 Jazzy 生成 documentation と project-local docs
-- `docs/memory/`: project memory の canonical store
-- `docs/memory/archive/`: 常時参照しない完了済み memory
-- `docs/superpowers/specs/`: 必要時の仕様書
-- `docs/superpowers/plans/`: 必要時の実行計画
+- `docs/`: Swift-DocC 生成 documentation。agent memory / specs / plans を置かない。
+- `.agents/memory/`: project memory の canonical store
+- `.agents/memory/archive/`: 常時参照しない完了済み memory
+- `.agents/superpowers/specs/`: 必要時の仕様書
+- `.agents/superpowers/plans/`: 必要時の実行計画
 
 ## Documentation Style
 
@@ -145,9 +148,9 @@ repo 内に作成・更新する project docs / memory / spec / plan は、簡�
 
 ## Memory 運用
 
-project memory の canonical store は `docs/memory/`。Claude Code 側の project-local auto memory path は、この directory への symlink として扱う。Codex は Claude Code の自動 memory 読み込みを前提にせず、session bootstrap で明示的に読む。
+project memory の canonical store は `.agents/memory/`。Claude Code 側の project-local auto memory path は、この directory への symlink として扱う。Codex は Claude Code の自動 memory 読み込みを前提にせず、session bootstrap で明示的に読む。
 
-`docs/memory/MEMORY.md` は常時参照 index。全履歴ログではない。
+`.agents/memory/MEMORY.md` は常時参照 index。全履歴ログではない。
 
 `MEMORY.md` に置く情報:
 
@@ -171,13 +174,13 @@ memory file の分類:
 | `project_*` | 特定 task / feature の作業記録 |
 | `user_*` | ユーザー背景 |
 
-`Tasks` に新規 task を追加する場合は `#NN` ID を使う。既存最大番号を `MEMORY.md` と `docs/memory/archive/*.md` から確認し、次の未使用番号を採番する。
+`Tasks` に新規 task を追加する場合は `#NN` ID を使う。既存最大番号を `MEMORY.md` と `.agents/memory/archive/*.md` から確認し、次の未使用番号を採番する。
 
 ## セキュリティと設定
 
-`.envrc`、CocoaPods trunk token、GitHub token、Apple ID、app-specific password、`MATCH_PASSWORD`、keychain password、signing identity、provisioning profile、証明書は機密。雛形以外は commit しない。
+`.envrc`、Codecov token、GitHub token、Apple ID、app-specific password、`MATCH_PASSWORD`、keychain password、signing identity、provisioning profile、証明書は機密。雛形以外は commit しない。
 
-`Reports/`、coverage report、Jazzy 生成物、Fastlane metadata、スクリーンショット、配布設定は公開範囲と機密性を確認してから変更する。
+`Reports/`、coverage report、Swift-DocC 生成物、Fastlane metadata、スクリーンショット、配布設定は公開範囲と機密性を確認してから変更する。
 
 ## 外部生成物
 

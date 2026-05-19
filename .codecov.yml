@@ -1,17 +1,9 @@
-codecov:
-  token: c82f3f4f-9bd2-42b4-ad38-f7d4bf9f507b
-#  branch: master
-
 ignore:
-  # - "Sources/Core/Enumeration/FluidConst.swift"
-  # - "Sources/Core/Enumeration/FluidCoreAnimatorOption.swift"
   - "Sources/Helper/AdaptiveLayout/*/*.swift"
   - "Sources/Helper/Extension/VectorMath.swift"
   - "Sources/Shared/*.swift"
   - "Tests"
   - "UITests"
   - "Example"
-  - "Carthage"
-  - "Pods"
   - "Module"
   - "Submodule"
