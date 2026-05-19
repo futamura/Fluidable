@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_26.5.app/Contents/Developer
+
+      - name: Show versions
+        run: |
+          xcodebuild -version
+          swift --version
+          xcodebuild -showsdks
+
+      - name: Resolve packages
+        run: swift package resolve
+
+      - name: SwiftPM iOS simulator build
+        run: |
+          SDK_PATH="$(xcrun --sdk iphonesimulator --show-sdk-path)"
+          swift build --sdk "$SDK_PATH" --triple arm64-apple-ios15.0-simulator
+
+      - name: Xcode build-for-testing on iOS 26.5
+        run: xcodebuild build-for-testing -project Fluidable.xcodeproj -scheme Fluidable -destination 'platform=iOS Simulator,name=iPhone 17,OS=26.5' CODE_SIGNING_ALLOWED=NO
+
+      - name: Xcode unit tests on iOS 26.5
+        run: xcodebuild test -project Fluidable.xcodeproj -scheme Fluidable -destination 'platform=iOS Simulator,name=iPhone 17,OS=26.5' -only-testing:FluidableTests CODE_SIGNING_ALLOWED=NO
+
+      - name: Xcode build with iOS 15 deployment target
+        run: xcodebuild build -project Fluidable.xcodeproj -scheme Fluidable -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO IPHONEOS_DEPLOYMENT_TARGET=15.0

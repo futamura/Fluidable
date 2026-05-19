@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /**
  The methods in this protocol let you configure the navigation.

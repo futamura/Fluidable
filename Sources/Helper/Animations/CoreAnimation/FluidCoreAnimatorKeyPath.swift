@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /**
  The protocol that compatible to a keyPath property for `CAAnimation`.
@@ -56,7 +57,7 @@ extension FluidCoreAnimatorKey {
     public static var cornerRadius: FluidCoreAnimatorPath<CGFloat> { return FluidCoreAnimatorPath<CGFloat>(keyPath: #keyPath(CALayer.cornerRadius)) }
     public static var filters: FluidCoreAnimatorPath<[CIFilter]> { return FluidCoreAnimatorPath<[CIFilter]>(keyPath: #keyPath(CALayer.filters)) }
     public static var frame: FluidCoreAnimatorPath<CGRect> { return FluidCoreAnimatorPath<CGRect>(keyPath: #keyPath(CALayer.frame)) }
-    public static var hidden: FluidCoreAnimatorPath<Bool> { return FluidCoreAnimatorPath<Bool>(keyPath: #keyPath(CALayer.hidden)) }
+    public static var hidden: FluidCoreAnimatorPath<Bool> { return FluidCoreAnimatorPath<Bool>(keyPath: #keyPath(CALayer.isHidden)) }
     public static var mask: FluidCoreAnimatorPath<CALayer> { return FluidCoreAnimatorPath<CALayer>(keyPath: #keyPath(CALayer.mask)) }
     public static var masksToBounds: FluidCoreAnimatorPath<Bool> { return FluidCoreAnimatorPath<Bool>(keyPath: #keyPath(CALayer.masksToBounds)) }
     public static var opacity: FluidCoreAnimatorPath<CGFloat> { return FluidCoreAnimatorPath<CGFloat>(keyPath: #keyPath(CALayer.opacity)) }

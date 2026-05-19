@@ -7,6 +7,7 @@
 //
 
 import ObjectiveC
+import UIKit
 
 /** Ported from [inamiy/Swizzle](https://github.com/inamiy/Swizzle) */
 internal struct Swizzle {

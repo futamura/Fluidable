@@ -32,6 +32,7 @@
 //
 
 import Foundation
+import UIKit
 
 // MARK: Types
 

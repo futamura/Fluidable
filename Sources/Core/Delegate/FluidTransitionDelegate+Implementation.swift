@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /**
  The `FluidTransitionConfigurationDelegate` for the source view controller and the transition animation.

@@ -8,9 +8,10 @@
 
 import Quick
 import Nimble
+import UIKit
 @testable import Fluidable
 
-class UIKitSpec: QuickSpec {
+final class UIKitSpec: QuickSpec {
     class TestView: UIView {
         var name: String?
         init(name: String) {
@@ -59,7 +60,7 @@ class UIKitSpec: QuickSpec {
         }
     }
 
-    override func spec() {
+    override class func spec() {
         describe("UIKit") {
             describe("UIView") {
                 let rootView: TestView = .init(name: "rootView")

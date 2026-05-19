@@ -1,299 +1,99 @@
 default_platform(:ios)
 
-#
-# The workaround for following the error while executing `pod lib lint` and `pod trunk push`
-#
-# EXPANDED_CODE_SIGN_IDENTITY: unbound variable
-# Command PhaseScriptExecution failed with a nonzero exit code
-#
-# For more information is available at
-# https://github.com/CocoaPods/CocoaPods/issues/8000#issuecomment-434488071
-#
-ENV["EXPANDED_CODE_SIGN_IDENTITY"] = ""
-ENV["EXPANDED_CODE_SIGN_IDENTITY_NAME"] = ""
-ENV["EXPANDED_PROVISIONING_PROFILE"] = ""
-# ENV["SOURCEKIT_LOGGING"] = "3"
+require "fileutils"
+require "tmpdir"
 
-project_name = ENV["PROJECT_NAME"]
-project_example_name = ENV["PROJECT_EXAMPLE_NAME"]
-project_company = ENV["PROJECT_COMPANY"]
-company_id = ENV["COMPANY_ID"]
+project_name = ENV.fetch("PROJECT_NAME", "Fluidable")
+repo_root = File.expand_path("..", __dir__)
+xcodeproj_framework = ENV.fetch("XCODEPROJ_FRAMEWORK", "#{project_name}.xcodeproj")
+scheme_ios = ENV.fetch("SCHEME_IOS", project_name)
+ios_destination = "platform=iOS Simulator,name=iPhone 17,OS=26.5"
+ios_simulator_triple = "arm64-apple-ios15.0-simulator"
 
-xcodeproj_framework = ENV["XCODEPROJ_FRAMEWORK"]
-xcodeproj_test = ENV["XCODEPROJ_TEST"]
-xcodeproj_uitest = ENV["XCODEPROJ_UITEST"]
+def preserve_docs_sidecars(repo_root)
+  preserved = %w[docs/memory docs/superpowers].select do |path|
+    File.directory?(File.join(repo_root, path))
+  end
 
-default_podspec = ENV["DEFAULT_PODSPEC"]
+  Dir.mktmpdir("fluidable-jazzy-sidecars") do |tmpdir|
+    preserved.each do |path|
+      source = File.join(repo_root, path)
+      backup = File.join(tmpdir, path)
+      FileUtils.mkdir_p(File.dirname(backup))
+      FileUtils.cp_r(source, backup)
+    end
 
-scheme_ios = ENV["SCHEME_IOS"]
+    begin
+      yield
+    ensure
+      preserved.each do |path|
+        backup = File.join(tmpdir, path)
+        target = File.join(repo_root, path)
+        next unless File.exist?(backup)
 
-info_plist_framework = ENV["INFO_PLIST_FRAMEWORK"]
-info_plist_example = ENV["INFO_PLIST_EXAMPLE"]
-info_plist_test = ENV["INFO_PLIST_TEST"]
-info_plist_uitest = ENV["INFO_PLIST_UITEST"]
+        FileUtils.mkdir_p(File.dirname(target))
+        FileUtils.rm_rf(target)
+        FileUtils.cp_r(backup, target)
+      end
+    end
+  end
+end
 
 platform :ios do
-  desc "Prebuild"
-  lane :prebuild do
-    tests
-    build_carthage
-    lint_cocoapods
-  end
-
-  ##########################################
-  # Versioning
-  ##########################################
-
-  desc "Set version number"
-  lane :set_version do
-    current_app_version = get_info_plist_value(path: info_plist_framework, key: "CFBundleShortVersionString")
-    new_app_version = prompt(
-      text: "Please enter version number (Current: #{current_app_version}): ",
-      ci_input: current_app_version,
-    )
-    regexp = Regexp.new("[0-9]+\.[0-9]+\.[0-9]+")
-    matched = regexp.match(new_app_version)
-    if matched
-      set_info_plist_value(path: info_plist_framework, key: "CFBundleShortVersionString", value: new_app_version)
-      set_info_plist_value(path: info_plist_example, key: "CFBundleShortVersionString", value: new_app_version)
-      set_info_plist_value(path: info_plist_test, key: "CFBundleShortVersionString", value: new_app_version)
-      set_info_plist_value(path: info_plist_uitest, key: "CFBundleShortVersionString", value: new_app_version)
-      version_bump_podspec(path: default_podspec, version_number: new_app_version)
-      UI.message("Changed version from #{current_app_version} to #{new_app_version} ")
-    else
-      UI.error("Invalid version number. #{new_app_version}")
+  desc "Run SwiftPM build and Xcode unit tests"
+  lane :test do
+    Dir.chdir(repo_root) do
+      sh("swift package resolve")
+      sdk_path = sh("xcrun --sdk iphonesimulator --show-sdk-path").strip
+      sh("swift build --sdk '#{sdk_path}' --triple #{ios_simulator_triple}")
+      sh("xcodebuild build-for-testing -project #{xcodeproj_framework} -scheme #{scheme_ios} -destination '#{ios_destination}' CODE_SIGNING_ALLOWED=NO")
+      sh("xcodebuild test -project #{xcodeproj_framework} -scheme #{scheme_ios} -destination '#{ios_destination}' -only-testing:FluidableTests CODE_SIGNING_ALLOWED=NO")
     end
-  end
-
-  desc "Bump version number"
-  lane :bump_version do
-    bump_type = UI.select("Select version position to be upgraded: ", ["patch", "minor", "major"])
-    current_app_version = get_info_plist_value(path: info_plist_framework, key: "CFBundleShortVersionString")
-    current_app_versions = current_app_version.split(".")
-    current_app_version_patch = current_app_versions[2].to_i
-    current_app_version_minor = current_app_versions[1].to_i
-    current_app_version_major = current_app_versions[0].to_i
-    UI.message(current_app_versions)
-    if bump_type == "patch"
-      current_app_version_patch += 1
-    elsif bump_type == "minor"
-      current_app_version_patch = 0
-      current_app_version_minor += 1
-    elsif bump_type == "major"
-      current_app_version_patch = 0
-      current_app_version_minor = 0
-      current_app_version_major += 1
-    end
-    new_app_version = [current_app_version_major, current_app_version_minor, current_app_version_patch].join(".")
-    set_info_plist_value(path: info_plist_framework, key: "CFBundleShortVersionString", value: new_app_version)
-    set_info_plist_value(path: info_plist_example, key: "CFBundleShortVersionString", value: new_app_version)
-    set_info_plist_value(path: info_plist_test, key: "CFBundleShortVersionString", value: new_app_version)
-    set_info_plist_value(path: info_plist_uitest, key: "CFBundleShortVersionString", value: new_app_version)
-    version_bump_podspec(path: default_podspec, version_number: new_app_version)
-    UI.message("Changed version from #{current_app_version_major} to #{new_app_version} ")
-  end
-
-  ##########################################
-  # Test
-  ##########################################
-
-  desc "Clean & Run Test for all iOS versions"
-  lane :clean_test_all do |options|
-    # Execute test one by one to avoid failing with timeout
-    tests = [
-      {device: "iPhone Xs Max"},
-      {device: "iPhone Xs (12.4)"},
-      {device: "iPhone 8 Plus (11.4)"},
-      {device: "iPhone 7 (10.3.1)"},
-      {device: "iPad Pro (12.9-inch) (4th generation)"},
-      {device: "iPad Air 2 (12.4)"},
-      {device: "iPad Air 2 (11.4)"},
-      {device: "iPad Air 2 (10.3.1)"},
-    ]
-    for test in tests
-      run_scan(
-        clean: false,
-        devices: [test[:device]],
-        only_testing: [],
-        code_coverage: true,
-      )
-    end
-    coverage
     lint
-  end
-
-  desc "Clean & Run Test"
-  lane :clean_test do |options|
-    tests = [
-      {device: "iPhone Xs Max"},
-    ]
-    xcclean()
-    for test in tests
-      run_scan(
-        clean: false,
-        devices: [test[:device]],
-        only_testing: [],
-        code_coverage: true,
-      )
-    end
-    coverage
-    lint
-  end
-
-  desc "Run All Test"
-  lane :test_all do |options|
-    tests = [
-      {device: "iPhone Xs Max"},
-      {device: "iPhone Xs (12.4)"},
-      {device: "iPhone 8 Plus (11.4)"},
-      # {device: "iPhone 7 (10.3.1)"},
-      {device: "iPad Pro (12.9-inch) (4th generation)"},
-      {device: "iPad Air 2 (12.4)"},
-      {device: "iPad Air 2 (11.4)"},
-      # {device: "iPad Air 2 (10.3.1)"},
-    ]
-    for test in tests
-      run_scan(
-        clean: false,
-        devices: [test[:device]],
-        only_testing: [],
-        code_coverage: true,
-      )
-    end
-    # devices = [
-    #   "iPhone Xs Max",
-    #   "iPhone 8 Plus (11.4)",
-    #   "iPhone 7 (10.3.1)",
-    #   "iPad Air 2 (12.2)",
-    #   "iPad Air 2 (11.4)",
-    #   "iPad Air 2 (10.3.1)",
-    # ]
-    # run_scan(
-    #   clean: false,
-    #   devices: devices,
-    #   max_concurrent_simulators: 3,
-    #   only_testing: [],
-    #   code_coverage: true,
-    # )
-    coverage
-    lint
-  end
-
-  desc "Run Test"
-  lane :test do |options|
-    tests = [
-      {device: "iPhone Xs Max"},
-    ]
-    xcclean()
-    for test in tests
-      run_scan(
-        clean: false,
-        devices: [test[:device]],
-        only_testing: [],
-        code_coverage: true,
-      )
-    end
-    coverage
-    lint
-  end
-
-  desc "Run Scan"
-  private_lane :run_scan do |options|
-    scan(
-      scheme: scheme_ios,
-      clean: options[:clean],
-      devices: options[:devices],
-      code_coverage: options[:code_coverage],
-      only_testing: options[:only_testing],
-      # xcargs: "-UseNewBuildSystem=NO",
-      # max_concurrent_simulators: 1,
-    )
   end
 
   desc "Run Coverage"
-  lane :coverage do |options|
-    slather(
-      html: true,
-      verbose: true,
-      show: true,
-    )
+  lane :coverage do
+    Dir.chdir(repo_root) do
+      slather(
+        html: true,
+        verbose: true,
+        show: true,
+      )
+    end
   end
 
-  desc "Run Swiftlint"
-  lane :lint do |options|
-    swiftlint(
-      mode: :lint,
-      path: "Sources/",
-      config_file: "../.swiftlint.yml",
-      ignore_exit_status: true,
-    )
+  desc "Run SwiftLint"
+  lane :lint do
+    Dir.chdir(repo_root) do
+      sh("swiftlint lint --config .swiftlint.yml Sources")
+    end
   end
 
-  ##########################################
-  # Appledoc
-  ##########################################
   desc "Create documentation"
-  lane :create_doc do |options|
-    jazzy(config: ".jazzy.yml")
+  lane :create_doc do
+    Dir.chdir(repo_root) do
+      preserve_docs_sidecars(repo_root) do
+        sh("jazzy --config #{File.join(repo_root, ".jazzy.yml")}")
+        sh("find docs -name '*.html' -exec sed -i '' -e 's/[[:blank:]]*$//' {} +")
+      end
+    end
   end
-
-  ##########################################
-  # Cleanup
-  ##########################################
 
   desc "Reset Simulator"
-  lane :reset_simulator do |options|
+  lane :reset_simulator do
     reset_simulator_contents
   end
 
   desc "Reset Derived Data"
-  lane :reset_derived_data do |options|
+  lane :reset_derived_data do
     clear_derived_data
   end
 
   desc "Remove .DS_Store"
-  lane :remove_ds_store do |options|
-    Dir.chdir("..") do
-        puts Dir.pwd
-        sh("find . -name '.DS_Store' -delete")
+  lane :remove_ds_store do
+    Dir.chdir(repo_root) do
+      sh("find . -name '.DS_Store' -delete")
     end
-  end
-
-  ##########################################
-  # Package Manager
-  ##########################################
-
-  desc "Update Carthage"
-  lane :update_carthage do |options|
-    cache_builds = prompt(
-      text: "Enable cache build?",
-      boolean: true,
-    )
-    carthage(
-      command: "update",
-      platform: "iOS",
-      cache_builds: cache_builds,
-      verbose: true,
-    )
-  end
-
-  desc "Build Carthage"
-  lane :build_carthage do |options|
-    carthage(
-      command: "build",
-      no_skip_current: true,
-      verbose: true,
-    )
-  end
-
-  desc "Lint Cocoapods"
-  lane :lint_cocoapods do |options|
-    pod_lib_lint(verbose: true)
-  end
-
-  desc "Push Cocoapods"
-  lane :push_cocoapods do |options|
-    pod_lib_lint(verbose: true, allow_warnings: true)
-    pod_push(path: default_podspec)
   end
 end

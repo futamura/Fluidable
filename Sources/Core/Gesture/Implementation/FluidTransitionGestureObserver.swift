@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 internal class FluidTransitionGestureObserver: NSObject, FluidGestureObservable {
     /** Type Aliases */

@@ -22,7 +22,7 @@ class RootViewController: UICollectionViewController, Fluidable {
     }
     var selectedFrame: (frame: CGRect, transform: CATransform3D)? {
         guard let cell: RootBaseCollectionCell = self.selectedCell else { return nil }
-        let frame: CGRect = cell.contentView.convert(cell.contentView.frame, to: UIApplication.shared.keyWindow)
+        let frame: CGRect = cell.contentView.convert(cell.contentView.frame, to: UIApplication.shared.exampleKeyWindow)
         let transform: CATransform3D = cell.layer.presentation()?.transform ?? cell.layer.transform
         return (frame: frame, transform: transform)
     }

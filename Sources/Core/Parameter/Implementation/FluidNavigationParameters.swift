@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct FluidNavigationParameters: FluidParametersCompatible {
     /** Type Aliases */

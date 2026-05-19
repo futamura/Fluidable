@@ -1,10 +1,7 @@
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg)](https://github.com/gumob/Fluidable)
-[![Version](http://img.shields.io/cocoapods/v/Fluidable.svg)](http://cocoadocs.org/docsets/Fluidable)
-[![Platform](http://img.shields.io/cocoapods/p/Fluidable.svg)](http://cocoadocs.org/docsets/Fluidable)
-[![Build Status](https://travis-ci.com/gumob/Fluidable.svg?branch=master)](https://travis-ci.com/gumob/Fluidable)
+[![CI](https://github.com/gumob/Fluidable/actions/workflows/ci.yml/badge.svg)](https://github.com/gumob/Fluidable/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/gumob/Fluidable/branch/master/graph/badge.svg)](https://codecov.io/gh/gumob/Fluidable)
 [![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)
-![Language](https://img.shields.io/badge/Language-Swift%205.0-orange.svg)
+![Language](https://img.shields.io/badge/Language-Swift%205-orange.svg)
 ![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg)
 
 # Fluidable
@@ -21,7 +18,7 @@ A Swift library that allows you to create a custom transition conforming to Flui
 - [x] Customizable animation easing and duration
 - [ ] Interact with underlying views like Apple Maps
 - [ ] Custom transitions with user-definable plug-ins
-- [ ] Support iOS 10
+- [x] Support iOS 15 or later
 
 Fluid                      |  Drawer                   | Slide
 :-------------------------:|:-------------------------:|:-------------------------:
@@ -30,28 +27,17 @@ Fluid                      |  Drawer                   | Slide
 
 ## Requirements
 
-- iOS 10.0 or later
-- Swift 5.0
+- iOS 15.0 or later
+- Xcode 26 / Swift 6.3 compiler, using Swift 5 language mode
 
 ## Installation
 
-### Carthage
+Fluidable is distributed with Swift Package Manager.
 
-Add the following to your `Cartfile` and follow [these instructions](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application).
-
-```
-github "gumob/Fluidable"
-```
-
-### CocoaPods
-
-To integrate Fluidable into your project, add the following to your `Podfile`.
-
-```ruby
-platform :ios, '10.0'
-use_frameworks!
-
-pod 'Fluidable'
+```swift
+dependencies: [
+    .package(url: "https://github.com/gumob/Fluidable.git", from: "1.0.0"),
+]
 ```
 
 ## Example application

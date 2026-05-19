@@ -8,10 +8,11 @@
 
 import Quick
 import Nimble
+import UIKit
 @testable import Fluidable
 
-class QuartzCoreSpec: QuickSpec {
-    override func spec() {
+final class QuartzCoreSpec: QuickSpec {
+    override class func spec() {
         describe("QuartzCore") {
             describe("CALayer") {
                 it("Property") {

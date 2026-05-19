@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /** The type that has `fluid` extensions. */
 public protocol FluidCompatible {

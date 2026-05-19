@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /** An `UIScrollView` observer to be monitored its touching state. */
 internal class FluidNavigationScrollObserver: NSObject, FluidScrollObservable {

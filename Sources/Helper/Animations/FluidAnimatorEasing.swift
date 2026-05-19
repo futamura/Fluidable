@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import QuartzCore
+import UIKit
 
 /**
  The enumerations of easing that compatible to `FluidCoreAnimator` and `FluidPropertyAnimator`.

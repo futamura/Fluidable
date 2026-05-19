@@ -8,6 +8,17 @@
 
 **Tech Stack:** Xcode 26.5, Swift 6.3 compiler, Swift Package Manager, UIKit, XCTest, Quick 7+, Nimble 14+, SwiftLint 0.63+, mise, Ruby 4.0.4, Python 3.14.5, GitHub Actions。
 
+## 実施結果メモ
+
+- Dependency 管理は SPM に一本化。Quick / Nimble は Xcode project と `Package.swift` の両方で SPM 参照にした。
+- Carthage / CocoaPods の直接利用は撤去。`Cartfile*`, `Fluidable.podspec`, Carthage script phases, CocoaPods/Carthage fastlane lanes は削除。
+- `fastlane` は retained。`ios test` は SwiftPM resolve/build、Xcode `build-for-testing`、Xcode unit tests、SwiftLint を実行する。
+- `ios create_doc` は `docs/memory` と `docs/superpowers` を退避・復元してから jazzy を実行する。
+- `docs/` の jazzy 生成物も再生成し、公開 docs の古い Carthage / CocoaPods 表記を撤去した。
+- `Gemfile.lock` には `fastlane` gem の推移依存として `cocoapods` が残る。project の package manager としては使っていない。
+- SPM の通常 `swift build` は macOS host target になり UIKit library には不適合のため、検証では iOS simulator SDK と triple を指定する。
+- Full UI test 実行は legacy UI specs の待機が長く現時点では gate 化しない。`build-for-testing` で UI test bundle のコンパイルは確認する。
+
 ---
 
 ## 前提
@@ -65,7 +76,7 @@
 - Delete: `Carthage/`
 - Delete: `Fluidable.podspec`
 - Delete: `.ruby-version`
-- Delete: `UITests/AutoMate+Ext.swift`
+- Modify: `UITests/AutoMate+Ext.swift`
 - Delete: `.travis.yml`
 
 ## Verification Gate

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 internal struct FluidConst {
     /* For debugging */

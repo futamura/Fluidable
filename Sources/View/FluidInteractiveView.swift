@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public protocol FluidInteractiveView: class {
+public protocol FluidInteractiveView: AnyObject {
     func shrink(delayFactor: CGFloat, completion: ((UIViewAnimatingPosition) -> Void)?)
     func expand(delayFactor: CGFloat, completion: ((UIViewAnimatingPosition) -> Void)?)
     func restore(delayFactor: CGFloat, completion: ((UIViewAnimatingPosition) -> Void)?)

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension FluidPresentDriverCompatible where Self: FluidNavigationPresentDriver {
     func propagateAnimationActionDelegate(state: FluidProgressState, progress: CGFloat) {

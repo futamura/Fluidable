@@ -14,7 +14,7 @@ canonical store は repo 内 `docs/memory/`。Claude Code 側の project auto me
 
 ## Projects
 
-現時点で進行中 project memory は未登録。
+- [project_xcode26_spm_migration.md](project_xcode26_spm_migration.md) — Xcode 26 / iOS 15-26 / SPM 完全移行。
 
 ## Tasks
 
@@ -37,6 +37,7 @@ canonical store は repo 内 `docs/memory/`。Claude Code 側の project auto me
 ### Done
 
 - [x] **#1 Repository guidelines 初期作成** — 2026-05-19 / `AGENTS.md`, `CLAUDE.md`, `CODING-GUIDE.md`, `docs/memory/` を作成。
+- [x] **#2 Xcode 26 SPM migration** — 2026-05-19 / Xcode 26.5, iOS 15 minimum, SPM, mise, fastlane 整理。
 
 ## Memory 運用メモ
 
