@@ -70,7 +70,7 @@ xcodebuild test -project Fluidable.xcodeproj -scheme Fluidable -destination 'pla
 1. session bootstrap を行う。
 2. 必要な skill を読む。
 3. 初期プロトコルを提示し、承認を待つ。
-4. 必要なら `master` から作業ブランチを作る。
+4. 必要なら `develop` から作業ブランチを作る。
 5. `superpowers:brainstorming` で要件と代替案を整理する。
 6. `superpowers:writing-plans` で implementation plan を作る。
 7. implementation start の明示承認後に作業する。
@@ -109,7 +109,9 @@ commit message は Conventional Commits 寄りにする。例: `docs: add agent 
 
 ## ブランチと PR
 
-通常 task は `master` から作業ブランチを切る。`master` で直接作業しない。小さな docs 修正でも、ユーザーが直接 commit を明示しない限りブランチを提案する。
+通常 task は `develop` から作業ブランチを切る。`develop` で直接作業しない。小さな docs 修正でも、ユーザーが直接 commit を明示しない限りブランチを提案する。
+
+作業完了後の PR / merge target は原則 `develop`。まとまった更新が完了し、version up / release 公開を行う段階でのみ `master` に merge する。`master` は公開済みまたは公開準備済みの状態を保つ。
 
 branch prefix は `docs/`, `feature/`, `fix/`, `refactor/`, `build/`, `chore/` を優先する。PR には目的、主要変更点、verification、UI 変更時のスクリーンショットまたは実機確認メモ、関連 issue を記載する。
 

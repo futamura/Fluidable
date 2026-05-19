@@ -6,7 +6,7 @@ canonical store は repo 内 `.agents/memory/`。Claude Code 側の project auto
 
 ## Feedback
 
-現時点で project-local feedback は未登録。
+- [feedback_branch_flow.md](feedback_branch_flow.md) — 作業ブランチは `develop` から切り、完了後は `develop` に merge。`master` は version up / release 公開時のみ。
 
 ## Gotchas
 
