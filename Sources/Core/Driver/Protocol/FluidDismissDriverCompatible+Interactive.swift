@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /**
  Dismissal - Normal interaction

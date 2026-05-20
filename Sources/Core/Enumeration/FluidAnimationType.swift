@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import UIKit
 
 /**
  The enumerations that indicates the transition mode of `FluidTransitionAnimator`.

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /**
    The attributes of an Element.

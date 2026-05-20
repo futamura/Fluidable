@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension FluidDriverCompatible {
     func configureForwardTransitionAnimation(using transitionContext: UIViewControllerContextTransitioning,

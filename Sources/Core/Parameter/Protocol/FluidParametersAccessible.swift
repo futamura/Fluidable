@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 internal protocol FluidParametersAccessible: NSObjectProtocol {
     associatedtype ControllerDelegate: FluidControllerDelegateCompatible
@@ -165,14 +166,14 @@ internal protocol FluidParametersAccessible: NSObjectProtocol {
  Default implementation
  */
 extension FluidParametersAccessible {
-    weak var context: UIViewControllerContextTransitioning? { return self.parameters.context }
+    var context: UIViewControllerContextTransitioning? { return self.parameters.context }
 
-    weak var controllerDelegate: ControllerDelegate? { return self.parameters?.controllerDelegate as? ControllerDelegate }
+    var controllerDelegate: ControllerDelegate? { return self.parameters?.controllerDelegate as? ControllerDelegate }
 
     /** References to controllers */
-    weak var rootNavigationController: FluidNavigationController? { return self.parameters.rootNavigationController }
-    weak var sourceViewController: FluidSourceViewController! { return self.parameters.sourceViewController }
-    weak var destinationViewController: FluidDestinationViewController! { return self.parameters.destinationViewController }
+    var rootNavigationController: FluidNavigationController? { return self.parameters.rootNavigationController }
+    var sourceViewController: FluidSourceViewController! { return self.parameters.sourceViewController }
+    var destinationViewController: FluidDestinationViewController! { return self.parameters.destinationViewController }
 
     /** References to delegates */
     var rootNavigationControllerDelegate: RootNavigationControllerDelegate? { return self.parameters.rootNavigationControllerDelegate as? RootNavigationControllerDelegate }
@@ -186,10 +187,10 @@ extension FluidParametersAccessible {
     var animationType: FluidAnimationType { return self.parameters.animationType }
     var interactionType: FluidDriverInteractionType { return self.parameters.interactionType }
 
-    weak var transitionContainerView: UIView! { return self.parameters.transitionContainerView }
-    weak var sourceView: UIView! { return self.parameters.sourceView }
-    weak var destinationView: UIView! { return self.parameters.destinationView }
-    weak var layoutContainerView: UIView! { return self.parameters.layoutContainerView }
+    var transitionContainerView: UIView! { return self.parameters.transitionContainerView }
+    var sourceView: UIView! { return self.parameters.sourceView }
+    var destinationView: UIView! { return self.parameters.destinationView }
+    var layoutContainerView: UIView! { return self.parameters.layoutContainerView }
 
     var allowInteractivePresent: Bool { return self.parameters.allowInteractivePresent }
     var allowInteractiveDismiss: Bool { return self.parameters.allowInteractiveDismiss }

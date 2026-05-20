@@ -70,7 +70,7 @@ extension XCUIElement {
     }
 }
 
-extension XCUIElement.ElementType: CustomStringConvertible {
+extension XCUIElement.ElementType: @retroactive CustomStringConvertible {
     public var description: String {
         switch self {
         case .any: return "any"

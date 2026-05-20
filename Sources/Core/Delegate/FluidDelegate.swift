@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /**
  The base protocol.

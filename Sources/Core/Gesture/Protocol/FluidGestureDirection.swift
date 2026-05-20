@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /**
  Enumerations indicating a panning direction of `UIPanGestureRecognizer`.

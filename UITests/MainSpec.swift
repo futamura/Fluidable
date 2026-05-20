@@ -7,13 +7,12 @@
 //
 
 import Quick
-import Nimble
-import AutoMate
+import XCTest
 
 @testable import Fluidable
 
-class MainSpec: QuickSpec {
-    var env: String {
+final class MainSpec: QuickSpec {
+    static var env: String {
         return """
                {
                "isTesting": \(true),
@@ -21,11 +20,10 @@ class MainSpec: QuickSpec {
                """
     }
 
-    override func spec() {
+    override class func spec() {
         var app: XCUIApplication!
         beforeEach {
             app = XCUIApplication()
-            self.continueAfterFailure = false
             app.setEnv(self.env)
             app.launch()
         }

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-protocol AlignedCollectionLayoutDelegate: class {
+protocol AlignedCollectionLayoutDelegate: AnyObject {
     var numberOfColumns: Int { get }
     var cellPadding: CGFloat { get }
     func collectionView(_ collectionView: UICollectionView, heightForItemAtIndexPath indexPath: IndexPath) -> CGFloat

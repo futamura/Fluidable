@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreGraphics
+import UIKit
 
 extension Comparable {
     func clamped(_ lower: ClosedRange<Self>.Bound, _ upper: ClosedRange<Self>.Bound) -> Self {

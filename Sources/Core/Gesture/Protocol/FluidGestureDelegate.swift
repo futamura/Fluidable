@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /**
  The delegate for receiving gesture actions.
