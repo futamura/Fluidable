@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /**
  The initial frame style that conforms to the `FluidFrameStyleCompatible` protocol.

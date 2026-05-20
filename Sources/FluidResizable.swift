@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /** Obj-C association key */
 private struct AssociationKey {

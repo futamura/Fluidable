@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension Fluidable where Self: UINavigationController {
     @available(iOS 11, *)
@@ -23,14 +24,14 @@ extension Fluidable where Self: UINavigationController {
             switch direction {
             case .fromTop:
                 if self.view.frame.origin.y < 0 {
-                    let statusBarHeight: CGFloat = UIApplication.shared.isStatusBarHidden ? 0 : UIApplication.shared.statusBarFrame.height
+                    let statusBarHeight: CGFloat = UIApplication.shared.fluidStatusBarHeight
                     self.additionalSafeAreaInsets.top = statusBarHeight
                 } else {
                     self.additionalSafeAreaInsets.top = 0
                 }
             case .fromBottom:
                 if self.view.frame.origin.y > 0 {
-                    let statusBarHeight: CGFloat = UIApplication.shared.isStatusBarHidden ? 0 : UIApplication.shared.statusBarFrame.height
+                    let statusBarHeight: CGFloat = UIApplication.shared.fluidStatusBarHeight
                     self.additionalSafeAreaInsets.top = statusBarHeight
                 } else {
                     self.additionalSafeAreaInsets.top = 0
@@ -41,14 +42,14 @@ extension Fluidable where Self: UINavigationController {
             switch drawerPosition {
             case .top:
                 if self.view.frame.origin.y < 0 {
-                    let statusBarHeight: CGFloat = UIApplication.shared.isStatusBarHidden ? 0 : UIApplication.shared.statusBarFrame.height
+                    let statusBarHeight: CGFloat = UIApplication.shared.fluidStatusBarHeight
                     self.additionalSafeAreaInsets.top = statusBarHeight
                 } else {
                     self.additionalSafeAreaInsets.top = 0
                 }
             case .bottom:
                 if self.view.frame.origin.y < 0 {
-                    let statusBarHeight: CGFloat = UIApplication.shared.isStatusBarHidden ? 0 : UIApplication.shared.statusBarFrame.height
+                    let statusBarHeight: CGFloat = UIApplication.shared.fluidStatusBarHeight
                     self.additionalSafeAreaInsets.top = statusBarHeight
                 } else {
                     self.additionalSafeAreaInsets.top = 0
@@ -75,14 +76,14 @@ extension Fluidable where Self: UIViewController {
             switch direction {
             case .fromTop:
                 if self.view.frame.origin.y < 0 {
-                    let statusBarHeight: CGFloat = UIApplication.shared.isStatusBarHidden ? 0 : UIApplication.shared.statusBarFrame.height
+                    let statusBarHeight: CGFloat = UIApplication.shared.fluidStatusBarHeight
                     self.additionalSafeAreaInsets.top = statusBarHeight
                 } else {
                     self.additionalSafeAreaInsets.top = 0
                 }
             case .fromBottom:
                 if self.view.frame.origin.y > 0 {
-                    let statusBarHeight: CGFloat = UIApplication.shared.isStatusBarHidden ? 0 : UIApplication.shared.statusBarFrame.height
+                    let statusBarHeight: CGFloat = UIApplication.shared.fluidStatusBarHeight
                     self.additionalSafeAreaInsets.top = statusBarHeight
                 } else {
                     self.additionalSafeAreaInsets.top = 0
@@ -93,14 +94,14 @@ extension Fluidable where Self: UIViewController {
             switch drawerPosition {
             case .top:
                 if self.view.frame.origin.y < 0 {
-                    let statusBarHeight: CGFloat = UIApplication.shared.isStatusBarHidden ? 0 : UIApplication.shared.statusBarFrame.height
+                    let statusBarHeight: CGFloat = UIApplication.shared.fluidStatusBarHeight
                     self.additionalSafeAreaInsets.top = statusBarHeight
                 } else {
                     self.additionalSafeAreaInsets.top = 0
                 }
             case .bottom:
                 if self.view.frame.origin.y < 0 {
-                    let statusBarHeight: CGFloat = UIApplication.shared.isStatusBarHidden ? 0 : UIApplication.shared.statusBarFrame.height
+                    let statusBarHeight: CGFloat = UIApplication.shared.fluidStatusBarHeight
                     self.additionalSafeAreaInsets.top = statusBarHeight
                 } else {
                     self.additionalSafeAreaInsets.top = 0
@@ -123,7 +124,7 @@ public extension FluidNavigationBarCompatible where Self: UINavigationBar {
               let delegate: FluidViewControllerTransitioningDelegate = nc.transitioningDelegate as? FluidViewControllerTransitioningDelegate,
               let param: FluidTransitionParameters = delegate.dismissDriver.parameters,
               param.presentationStyle.isBottomDrawer || param.presentationStyle.isBottomSlide else { return }
-        let statusBarHeight: CGFloat = UIApplication.shared.isStatusBarHidden ? 0 : UIApplication.shared.statusBarFrame.height
+        let statusBarHeight: CGFloat = UIApplication.shared.fluidStatusBarHeight
         let frameY: CGFloat = nc.view.frame.origin.y
         if param.presentationStyle.isBottomSlide {
             switch frameY {

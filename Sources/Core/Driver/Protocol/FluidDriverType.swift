@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /** The enumerations that indicates the transition type. */
 public enum FluidDriverType {

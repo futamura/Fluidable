@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /**
  The initial frame dimension that conforms to the `FluidFrameDimensionCompatible` protocol.
@@ -33,7 +34,7 @@ public struct FluidInitialFrameDimension: FluidFrameDimensionCompatible {
     internal init<T: FluidTransformConvertible>(for presentationStyle: FluidPresentationStyle,
                                                 containerSize: CGSize? = nil, contentOrigin: CGPoint, contentSize: CGSize, contentTransform: T = T.identity) {
         let idiom: UIUserInterfaceIdiom = UIDevice.current.userInterfaceIdiom
-        let containerSize: CGSize = containerSize ?? UIApplication.shared.keyWindow?.frame.size ?? UIScreen.main.bounds.size
+        let containerSize: CGSize = containerSize ?? UIApplication.shared.fluidKeyWindow?.frame.size ?? UIScreen.main.bounds.size
         let frame: CGRect = FluidLayout.createFrame(for: presentationStyle,
                                                     containerSize: containerSize, contentOrigin: contentOrigin, contentSize: contentSize,
                                                     idiom: idiom, isInitial: true)
@@ -95,7 +96,7 @@ extension FluidInitialFrameDimension {
             if presentationStyle.isSlide || presentationStyle.isDrawer { return finalDimension?.frame().size }
             return nil
         }()
-        let containerSize: CGSize = containerSize ?? UIApplication.shared.keyWindow?.frame.size ?? UIScreen.main.bounds.size
+        let containerSize: CGSize = containerSize ?? UIApplication.shared.fluidKeyWindow?.frame.size ?? UIScreen.main.bounds.size
         let contentFrame: CGRect = FluidLayout.createFrame(for: presentationStyle,
                                                            containerSize: containerSize, contentOrigin: origin, contentSize: contentSize,
                                                            idiom: idiom, isInitial: true)
@@ -140,7 +141,7 @@ public struct FluidFinalFrameDimension: FluidFrameDimensionCompatible {
                                                 portraitContentOrigin: CGPoint? = nil, portraitContentSize: CGSize? = nil,
                                                 landscapeContentOrigin: CGPoint? = nil, landscapeContentSize: CGSize? = nil,
                                                 portraitContentTransform: T = .identity, landscapeContentTransform: T = .identity) {
-        let containerSize: CGSize = UIApplication.shared.keyWindow?.frame.size ?? UIScreen.main.bounds.size
+        let containerSize: CGSize = UIApplication.shared.fluidKeyWindow?.frame.size ?? UIScreen.main.bounds.size
         let minLength: CGFloat = min(containerSize.width, containerSize.height)
         let maxLength: CGFloat = max(containerSize.width, containerSize.height)
         let portraitContainerSize: CGSize = portraitContainerSize ?? CGSize(width: minLength, height: maxLength)
@@ -217,7 +218,7 @@ extension FluidFinalFrameDimension {
      - returns: The `CGRect` value.
      */
     public func frame(for containerSize: CGSize? = nil) -> CGRect {
-        let orientation: UIInterfaceOrientation = containerSize?.orientation ?? UIApplication.shared.keyWindow?.bounds.size.orientation ?? UIApplication.shared.statusBarOrientation
+        let orientation: UIInterfaceOrientation = containerSize?.orientation ?? UIApplication.shared.fluidKeyWindow?.bounds.size.orientation ?? UIApplication.shared.fluidInterfaceOrientation
         return orientation.isPortrait ? self.portraitFrame : self.landscapeFrame
     }
 
@@ -228,7 +229,7 @@ extension FluidFinalFrameDimension {
      - returns: The `CATransform3D` value.
      */
     public func transform(for containerSize: CGSize? = nil) -> CATransform3D {
-        let orientation: UIInterfaceOrientation = containerSize?.orientation ?? UIApplication.shared.keyWindow?.bounds.size.orientation ?? UIApplication.shared.statusBarOrientation
+        let orientation: UIInterfaceOrientation = containerSize?.orientation ?? UIApplication.shared.fluidKeyWindow?.bounds.size.orientation ?? UIApplication.shared.fluidInterfaceOrientation
         return orientation.isPortrait ? self.portraitTransform : self.landscapeTransform
     }
 }

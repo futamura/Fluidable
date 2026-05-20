@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /** The typealias for `UINavigationController` that conforms to `Fluidable` protocol. */
 public typealias FluidNavigationController = Fluidable & UINavigationController

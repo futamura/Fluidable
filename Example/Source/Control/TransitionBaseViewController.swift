@@ -85,8 +85,8 @@ extension TransitionBaseViewController {
             self.closeButtonTopConstraint = self.closeButton?.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 16).activate()
             self.closeButtonTrailingConstraint = self.closeButton?.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16).activate()
         default:
-            self.subviewTopConstraint = subview.topAnchor.constraint(equalTo: self.topLayoutGuide.topAnchor).activate()
-            self.subviewBottomConstraint = subview.bottomAnchor.constraint(equalTo: self.bottomLayoutGuide.topAnchor).activate()
+            self.subviewTopConstraint = subview.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).activate()
+            self.subviewBottomConstraint = subview.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).activate()
             self.subviewLeadingConstraint = subview.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).activate()
             self.subviewTrailingConstraint = subview.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).activate()
             let topMargin: CGFloat = {
@@ -97,14 +97,14 @@ extension TransitionBaseViewController {
                      .navigationSlideTop, .navigationSlideBottom, .navigationSlideLeft, .navigationSlideRight,
                      .transitionDrawerTop, .transitionDrawerLeft, .transitionDrawerRight,
                      .transitionSlideTop, .transitionSlideBottom, .transitionSlideLeft, .transitionSlideRight:
-                    return UIApplication.shared.statusBarFrame.height + 16
+                    return UIApplication.shared.exampleStatusBarHeight + 16
                 case .navigationFluidModal,
                      .transitionFluidModal,
                      .navigationDrawerBottom, .transitionDrawerBottom:
                     return 16
                 }
             }()
-            self.closeButtonTopConstraint = self.closeButton?.topAnchor.constraint(equalTo: self.topLayoutGuide.topAnchor, constant: topMargin).activate()
+            self.closeButtonTopConstraint = self.closeButton?.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: topMargin).activate()
             self.closeButtonTrailingConstraint = self.closeButton?.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16).activate()
         }
         self.view.setNeedsLayout()

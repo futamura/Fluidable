@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 internal extension FluidNavigationParameters {
     init(driverType: FluidDriverType, animationType: FluidAnimationType,

@@ -84,8 +84,8 @@ extension NavigationBaseViewController {
             self.closeButton?.removeConstraints([self.closeButtonTopConstraint,
                                                  self.closeButtonTrailingConstraint])
         default:
-            subview.topAnchor.constraint(equalTo: self.topLayoutGuide.topAnchor).activate()
-            subview.bottomAnchor.constraint(equalTo: self.bottomLayoutGuide.topAnchor).activate()
+            subview.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).activate()
+            subview.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).activate()
             subview.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).activate()
             subview.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).activate()
             let topMargin: CGFloat = {
@@ -96,14 +96,14 @@ extension NavigationBaseViewController {
                      .navigationSlideTop, .navigationSlideBottom, .navigationSlideLeft, .navigationSlideRight,
                      .transitionDrawerTop, .transitionDrawerLeft, .transitionDrawerRight,
                      .transitionSlideTop, .transitionSlideBottom, .transitionSlideLeft, .transitionSlideRight:
-                    return UIApplication.shared.statusBarFrame.height + 16
+                    return UIApplication.shared.exampleStatusBarHeight + 16
                 case .navigationFluidModal,
                      .transitionFluidModal,
                      .navigationDrawerBottom, .transitionDrawerBottom:
                     return 16
                 }
             }()
-            self.closeButtonTopConstraint = self.closeButton?.topAnchor.constraint(equalTo: self.topLayoutGuide.topAnchor, constant: topMargin).activate()
+            self.closeButtonTopConstraint = self.closeButton?.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: topMargin).activate()
             self.closeButtonTrailingConstraint = self.closeButton?.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16).activate()
         }
         self.view.setNeedsLayout()

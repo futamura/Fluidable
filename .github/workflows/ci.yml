@@ -1,0 +1,66 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  test:
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_26.4.1.app/Contents/Developer
+
+      - name: Show versions
+        run: |
+          xcodebuild -version
+          swift --version
+          xcodebuild -showsdks
+
+      - name: Resolve packages
+        run: swift package resolve
+
+      - name: SwiftPM iOS simulator build
+        run: |
+          SDK_PATH="$(xcrun --sdk iphonesimulator --show-sdk-path)"
+          swift build --sdk "$SDK_PATH" --triple arm64-apple-ios15.0-simulator
+
+      - name: Resolve iOS simulator destination
+        run: |
+          IOS_DESTINATION="$(ruby fastlane/ios_simulator_destination.rb)"
+          echo "IOS_DESTINATION=$IOS_DESTINATION" >> "$GITHUB_ENV"
+          echo "Using iOS simulator destination: $IOS_DESTINATION"
+
+      - name: Xcode build-for-testing on iOS Simulator
+        run: xcodebuild build-for-testing -project Fluidable.xcodeproj -scheme Fluidable -destination "$IOS_DESTINATION" CODE_SIGNING_ALLOWED=NO
+
+      - name: Prepare coverage directory
+        run: mkdir -p Reports/coverage
+
+      - name: Xcode unit tests on iOS Simulator
+        run: xcodebuild test -project Fluidable.xcodeproj -scheme Fluidable -destination "$IOS_DESTINATION" -only-testing:FluidableTests -enableCodeCoverage YES -resultBundlePath Reports/coverage/Fluidable.xcresult CODE_SIGNING_ALLOWED=NO
+
+      - name: Export coverage report
+        run: xcrun xccov view --report Reports/coverage/Fluidable.xcresult > Reports/coverage/xccov.txt
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v6
+        with:
+          disable_search: true
+          fail_ci_if_error: true
+          files: Reports/coverage/xccov.txt
+          flags: unittests
+          name: Fluidable
+          swift_project: Fluidable
+          use_oidc: true
+
+      - name: Xcode build with iOS 15 deployment target
+        run: xcodebuild build -project Fluidable.xcodeproj -scheme Fluidable -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO IPHONEOS_DEPLOYMENT_TARGET=15.0

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension FluidNavigationViewAnimator {
     func animationWillStart(isReversed: Bool) -> [FluidAnimatorCompatible]? {

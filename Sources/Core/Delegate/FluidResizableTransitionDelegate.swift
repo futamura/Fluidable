@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /**
  The `FluidResizableDelegate` protocol. The delegates will be invoked if you only specify the presentation style to .drawer(position: top) or  .drawer(position: bottom)

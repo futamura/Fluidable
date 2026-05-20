@@ -8,9 +8,9 @@
 
 1. `pwd` で CWD が repo-root (`Fluidable/`) であることを確認する。
 2. `CODING-GUIDE.md` を読む。
-3. `docs/memory/MEMORY.md` を読む。
-4. `MEMORY.md` の `Feedback` / `Gotchas` / `Projects` / `Tasks` を確認し、当該タスクに関連する `feedback_*`, `gotcha_*`, `project_*` を読む。
-5. `CODING-GUIDE.md` の Verification Gate / Commit Gate を参照し、当該タスクの必須 verification を抽出する。
+3. `.agents/memory/MEMORY.md` を読む。
+4. `MEMORY.md` の Backlog / In Progress / Feedback / Gotchas / Projects を確認し、当該タスクに関連する `feedback_*`, `gotcha_*`, `project_*` を読む。
+5. `CODING-GUIDE.md` の Verification Gate / Verification Gate Derivation / Commit Preflight / Commit Gate を参照し、当該タスクの必須 verification を抽出する。
 6. 読んだ前提と必須 verification gate を反映してから、作業方針を提示する。
 
 `@CODING-GUIDE.md` は補助参照であり、この bootstrap を省略する理由にはならない。

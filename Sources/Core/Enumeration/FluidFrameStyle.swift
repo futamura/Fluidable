@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /**
  The protocol that compatibles to `FluidInitialFrameStyle` amd `FluidFinalFrameStyle`.

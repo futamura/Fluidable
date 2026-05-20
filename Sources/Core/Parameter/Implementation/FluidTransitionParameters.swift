@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct FluidTransitionParameters: FluidParametersCompatible {
     /** Type Aliases */

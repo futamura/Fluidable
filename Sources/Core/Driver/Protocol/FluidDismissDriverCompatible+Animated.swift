@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension FluidDismissDriverCompatible {
     func configureInterruptibleAnimator(using transitionContext: UIViewControllerContextTransitioning) -> UIViewImplicitlyAnimating {

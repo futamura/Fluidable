@@ -29,9 +29,10 @@ identifier_name:
     - ok
 
 excluded:
+  - .build
   - .bundle
+  - .swiftpm
   - fastlane
-  - Carthage
   - Tests
   - UITests
   - Example
