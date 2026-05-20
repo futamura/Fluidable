@@ -24,6 +24,7 @@ canonical store は repo 内 `.agents/memory/`。agent 固有の自動 memory �
 
 ### Backlog
 
+- [ ] **#10 DocC generated docs reproducibility / output policy 整理** — 2026-05-20 更新 / `fastlane ios create_doc` の連続実行で `docs/data/**/*.json` の key order、`docs/index/*.index` binary、`docs/js/chunk-vendors*.js` trailing whitespace が揺れる。DocC 設定・生成手順・commit 対象・post-process 可否を調査し、`docs/` を生成物としてどう扱うか決める。
 - [ ] **#7 Example 挙動不具合修正** — 2026-05-20 更新 / 新規セッションで対応。Simulator / 実機確認を必須 gate にする。
 
 ### Icebox
