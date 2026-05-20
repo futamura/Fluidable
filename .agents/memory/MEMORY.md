@@ -20,7 +20,7 @@ canonical store は repo 内 `.agents/memory/`。agent 固有の自動 memory �
 
 ### In Progress
 
-- [ ] **#9 SwiftLint / DocC warning debt 整理** — 2026-05-20 更新 / SwiftLint low-risk cleanup を進行中。Phase 1 で DocC source comment warnings 解消済み。Phase 2 で comment spacing / unused closure parameter / unused setter value / orphaned doc comment / prefer type checking / shorthand operator / trailing newline / vertical whitespace の 36 件を整理し、SwiftLint は 152 warnings から 116 warnings へ減少。残りは accessor order / complexity / force cast / implicit optional / line length / type name / vertical parameter alignment / file length / function body length / for_where。Nimble deprecation warning は外部ライブラリ由来のため現時点では放置。
+なし。
 
 ### Backlog
 
@@ -37,6 +37,7 @@ canonical store は repo 内 `.agents/memory/`。agent 固有の自動 memory �
 
 ### Done
 
+- [x] **#9 SwiftLint / DocC warning debt 整理** — 2026-05-20 / PR #8 を `develop` へ squash merge。merge commit `91b1822`。Phase 1 で DocC source comment warnings を解消。Phase 2 で comment spacing / unused closure parameter / unused setter value / orphaned doc comment / prefer type checking / shorthand operator / trailing newline / vertical whitespace と PR 差分上の Hound line_length 指摘を整理し、SwiftLint は 152 warnings から 116 warnings へ減少。残りは accessor order / complexity / force cast / implicit optional / line length / type name / vertical parameter alignment / file length / function body length / for_where。Nimble deprecation warning は外部ライブラリ由来のため現時点では放置。
 - [x] **#8 `master` -> `main` rename** — 2026-05-20 / repo 内表記を `develop` 向けに更新し、PR #5 を `develop` へ squash merge。merge commit `8a30ed5`。GitHub default branch は `main` に変更済み。local / remote `master` は削除済み。`main` への PR・merge は未実行。
 - [x] **#6 PR #4 merge** — 2026-05-20 / PR #4 を `develop` へ squash merge。merge commit `7ebb9e3`。`build/xcode26-spm-migration` は local / remote とも削除済み。
 - [x] **#5 PR #4 CI simulator destination 修正** — 2026-05-20 / `fastlane/ios_simulator_destination.rb` で available simulator を動的選択し、CI は runner に installed simulator がある Xcode 26.4.1 を使用。PR #4 の CI `test` と Hound は pass。
