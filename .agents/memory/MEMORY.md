@@ -20,7 +20,7 @@ canonical store は repo 内 `.agents/memory/`。agent 固有の自動 memory �
 
 ### In Progress
 
-- [ ] **#8 `master` -> `main` rename** — 2026-05-20 更新 / `chore/master-to-main-rename` で repo 内表記を `develop` 向けに更新済み。remote `main` は `origin/master` と同じ `949fd18` で作成済み。GitHub default branch は `main` に変更済み。local `origin/HEAD` も `origin/main` に更新済み。local `master` は削除済み。remote `master` deletion / `main` への PR・merge は未実行であり、各操作前に明示確認する。
+- [ ] **#8 `master` -> `main` rename** — 2026-05-20 更新 / `chore/master-to-main-rename` で repo 内表記を `develop` 向けに更新し、PR #5 を `develop` 向けに作成済み。remote `main` は `origin/master` と同じ `949fd18` で作成済み。GitHub default branch は `main` に変更済み。local `origin/HEAD` も `origin/main` に更新済み。local `master` は削除済み。remote `master` deletion / `main` への PR・merge は未実行であり、各操作前に明示確認する。
 
 ### Backlog
 
