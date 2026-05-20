@@ -20,7 +20,7 @@ canonical store は repo 内 `.agents/memory/`。agent 固有の自動 memory �
 
 ### In Progress
 
-なし。
+- [ ] **#9 SwiftLint / DocC warning debt 整理** — 2026-05-20 更新 / 次セッションで対応。SwiftLint 152 warnings と DocC source comment warnings の段階的解消。まず warning 全体を再計測し、対象分類、段階分割、verification gate を抽出する。Nimble deprecation warning は外部ライブラリ由来のため現時点では放置。
 
 ### Backlog
 
@@ -28,7 +28,7 @@ canonical store は repo 内 `.agents/memory/`。agent 固有の自動 memory �
 
 ### Icebox
 
-- [ ] **#9 SwiftLint / DocC warning debt 整理** — 2026-05-20 更新 / SwiftLint 152 warnings と DocC source comment warnings の段階的解消。Nimble deprecation warning は外部ライブラリ由来のため現時点では放置。
+なし。
 
 ### Frozen
 
