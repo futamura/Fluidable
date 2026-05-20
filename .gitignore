@@ -64,5 +64,8 @@ Reports
 htmldoc.html
 report-*.html
 
+# Swift-DocC generated site
+docs/
+
 Submodule
 DummyFile

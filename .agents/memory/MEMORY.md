@@ -15,16 +15,16 @@ canonical store は repo 内 `.agents/memory/`。agent 固有の自動 memory �
 ## Projects
 
 - [project_xcode26_spm_migration.md](project_xcode26_spm_migration.md) — Xcode 26 / iOS 15-26 / SPM 完全移行。
+- [project_docc_output_policy.md](project_docc_output_policy.md) — DocC 生成 docs の再現性・local preview・公開方針調査。
 
 ## Tasks
 
 ### In Progress
 
-なし。
+- [ ] **#10 DocC generated docs reproducibility / output policy 整理** — 2026-05-20 更新 / 調査結果と決定事項は [project_docc_output_policy.md](project_docc_output_policy.md) に記録。`file://.../docs/index.html` 直開き失敗は生成欠損ではなく、`/Fluidable/` base path の HTTP static hosting 前提が主因。公開 URL は `https://gumob.github.io/Fluidable/`。source branch では `docs/` 生成物を commit せず、GitHub Pages Actions が `main` から DocC を生成・deploy する方針。
 
 ### Backlog
 
-- [ ] **#10 DocC generated docs reproducibility / output policy 整理** — 2026-05-20 更新 / `fastlane ios create_doc` の連続実行で `docs/data/**/*.json` の key order、`docs/index/*.index` binary、`docs/js/chunk-vendors*.js` trailing whitespace が揺れる。DocC 設定・生成手順・commit 対象・post-process 可否を調査し、`docs/` を生成物としてどう扱うか決める。
 - [ ] **#7 Example 挙動不具合修正** — 2026-05-20 更新 / 新規セッションで対応。Simulator / 実機確認を必須 gate にする。
 
 ### Icebox
