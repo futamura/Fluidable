@@ -2,12 +2,13 @@
 
 Date: 2026-05-20
 Branch: `docs/docc-output-policy`
+Decision: publish DocC with GitHub Pages Actions from `main`; do not commit generated `docs/` to source branches.
 
 ## Scope
 
 Task #10 covers DocC generated output reproducibility, local preview, GitHub Pages publication, and `docs/` commit policy.
 
-Do not create `Docs/`. The existing lowercase `docs/` directory is reserved for Swift-DocC generated output.
+Do not create `Docs/`. The existing lowercase `docs/` directory is reserved for Swift-DocC local generated output and is ignored by Git.
 
 ## Findings
 
@@ -30,6 +31,18 @@ The current `fastlane ios create_doc` lane uses:
 - `docs/.nojekyll`
 
 This matches GitHub Pages project-site hosting, where the site is served below `/<repositoryname>`.
+
+## Publication Decision
+
+Publish the DocC site with GitHub Pages Actions from `main`.
+
+- Public URL: `https://gumob.github.io/Fluidable/`
+- Pages source: GitHub Actions
+- Source branch policy: do not commit generated `docs/`
+- Generation command: `DOCC_HOSTING_BASE_PATH=Fluidable bundle exec fastlane ios create_doc`
+- Artifact path: `docs`
+
+This avoids noisy source branch diffs from DocC generated JSON key order, binary index files, and generated JS whitespace.
 
 ## Local Preview
 
@@ -74,11 +87,12 @@ docs/js/chunk-vendors.0b7dc663.js:12: trailing whitespace.
 
 The generated output is therefore not cleanly reproducible enough for routine commit without an explicit policy.
 
-## Policy Options
+## Policy
 
-Recommended baseline:
+Selected baseline:
 
-- Keep `docs/` committed only for intentional publication updates.
+- Do not commit generated `docs/` to source branches.
+- Publish from `main` through GitHub Pages Actions.
 - Do not include incidental DocC regeneration in unrelated work.
 - Preview committed output through an HTTP server that serves `docs/` under `/Fluidable/`.
 - Treat `file://.../docs/index.html` as unsupported for this repository's current DocC output.
@@ -88,7 +102,6 @@ Open decisions before implementation:
 - Whether to add a documented local preview command/script.
 - Whether to add post-processing for generated JSON key ordering and JS trailing whitespace.
 - Whether to accept generated binary index churn, exclude it from routine review, or change publication flow.
-- Whether to keep publishing from committed `docs/` or move publication to GitHub Actions artifact / `gh-pages` flow.
 - Whether `git diff --check` should keep blocking generated `docs/js/*.js` trailing whitespace or gain a generated-output exception.
 
 No Swift, Xcode, Ruby gem, Fastlane plugin, SPM dependency, UI, or Example behavior change was approved during this investigation.

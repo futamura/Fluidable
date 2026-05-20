@@ -24,7 +24,7 @@ xcodebuild test -project Fluidable.xcodeproj -scheme Fluidable -destination 'pla
 - `bundle install`: Fastlane など Ruby 依存を入れる。
 - `bundle exec fastlane ios test`: 共有 lane 経由で SwiftPM build / coverage 付き unit test / SwiftLint を実行する。
 - `bundle exec fastlane ios lint`: `Sources/` に mise 管理の SwiftLint を実行する。
-- `bundle exec fastlane ios create_doc`: Swift-DocC documentation を `docs/` に生成する。
+- `bundle exec fastlane ios create_doc`: Swift-DocC documentation を local generated artifact として `docs/` に生成する。`docs/` は Git 管理しない。
 - `bundle exec fastlane ios coverage`: Xcode coverage を `.xcresult` に出力し、Codecov upload 用 `xccov.txt` を生成する。
 - `xcodebuild test ...`: Fastlane を介さず XCTest を実行する。
 
@@ -52,7 +52,7 @@ agent session の起動位置は repo-root (`Fluidable/`) 固定。
 - `Tests/`: Quick / Nimble ベースの unit tests
 - `UITests/`: example app を対象にした UI tests
 - `fastlane/`: test、lint、coverage、DocC、cleanup task
-- `docs/`: Swift-DocC 生成 documentation
+- `docs/`: Swift-DocC 生成 documentation。local artifact のため Git 管理しない
 - `.agents/`: project-local memory、spec、plan
 
 ## Agent 運用ポリシー
@@ -265,13 +265,25 @@ project-local worktree を使う場合は、作成前に `.worktrees/` が ignor
 
 ## ドキュメント構成
 
-Swift-DocC の公開生成物は `docs/` に集約する。macOS の case-insensitive filesystem で `docs/` と `Docs/` を混在させない。
+Swift-DocC の local 生成物は `docs/` に集約する。macOS の case-insensitive filesystem で `docs/` と `Docs/` を混在させない。
 
-- `docs/`: Swift-DocC 生成 documentation。agent memory / specs / plans を置かない。
+- `docs/`: Swift-DocC 生成 documentation。local artifact のため Git 管理しない。agent memory / specs / plans を置かない。
 - `.agents/memory/`: project memory の canonical store
 - `.agents/memory/archive/`: 常時参照しない完了済み memory
 - `.agents/superpowers/specs/`: 必要時の仕様書
 - `.agents/superpowers/plans/`: 必要時の実行計画
+
+### Swift-DocC 公開方針
+
+公開 documentation は GitHub Pages workflow が `main` から生成・deploy する。
+
+- 公開 URL は `https://gumob.github.io/Fluidable/`。
+- Pages source は GitHub Actions を使う。
+- workflow は `DOCC_HOSTING_BASE_PATH=Fluidable bundle exec fastlane ios create_doc` で `docs/` を生成し、Pages artifact として upload する。
+- source branch へ `docs/` 生成物を commit しない。
+- `file://.../docs/index.html` 直開きは、この repository の DocC static-hosting output ではサポートしない。
+- local で生成済み `docs/` を確認する場合は、`/Fluidable/` を `docs/` に map する HTTP server で確認する。
+- Swift-DocC plugin の preview server は生成中の確認に使えるが、GitHub Pages 用 base path の artifact 確認とは分けて扱う。
 
 ## Documentation Style
 

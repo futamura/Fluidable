@@ -21,7 +21,7 @@ canonical store は repo 内 `.agents/memory/`。agent 固有の自動 memory �
 
 ### In Progress
 
-- [ ] **#10 DocC generated docs reproducibility / output policy 整理** — 2026-05-20 更新 / 調査結果は [project_docc_output_policy.md](project_docc_output_policy.md) に記録。`file://.../docs/index.html` 直開き失敗は生成欠損ではなく、`/Fluidable/` base path の HTTP static hosting 前提が主因。`fastlane ios create_doc` の連続実行で JSON key order、`docs/index/*.index` binary、生成 JS trailing whitespace の差分を確認済み。実装・設定変更・生成物 commit は未承認。
+- [ ] **#10 DocC generated docs reproducibility / output policy 整理** — 2026-05-20 更新 / 調査結果と決定事項は [project_docc_output_policy.md](project_docc_output_policy.md) に記録。`file://.../docs/index.html` 直開き失敗は生成欠損ではなく、`/Fluidable/` base path の HTTP static hosting 前提が主因。公開 URL は `https://gumob.github.io/Fluidable/`。source branch では `docs/` 生成物を commit せず、GitHub Pages Actions が `main` から DocC を生成・deploy する方針。
 
 ### Backlog
 
