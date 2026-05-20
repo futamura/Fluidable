@@ -28,8 +28,10 @@ public struct FluidInitialFrameDimension: FluidFrameDimensionCompatible {
      The initializer that instantiates a `FluidInitialFrameDimension` object.
 
      - parameter presentationStyle: The `FluidPresentationStyle` value of the transition.
-     - parameter origin: The position value of the destination frame when the transition starts.
-     - parameter size: The size value of the destination frame when the transition starts.
+     - parameter containerSize: The container size used to calculate the frame.
+     - parameter contentOrigin: The position value of the destination frame when the transition starts.
+     - parameter contentSize: The size value of the destination frame when the transition starts.
+     - parameter contentTransform: The transform value of the destination frame when the transition starts.
      */
     internal init<T: FluidTransformConvertible>(for presentationStyle: FluidPresentationStyle,
                                                 containerSize: CGSize? = nil, contentOrigin: CGPoint, contentSize: CGSize, contentTransform: T = T.identity) {
@@ -47,8 +49,10 @@ public struct FluidInitialFrameDimension: FluidFrameDimensionCompatible {
      The initializer that instantiates a `FluidInitialFrameDimension` object.
 
      - parameter navigationStyle: The `FluidNavigationStyle` value of the navigation.
-     - parameter origin: The position value of the destination frame when the transition starts.
-     - parameter size: The size value of the destination frame when the transition starts.
+     - parameter containerSize: The container size used to calculate the frame.
+     - parameter contentOrigin: The position value of the destination frame when the transition starts.
+     - parameter contentSize: The size value of the destination frame when the transition starts.
+     - parameter contentTransform: The transform value of the destination frame when the transition starts.
      */
     public init<T: FluidTransformConvertible>(for navigationStyle: FluidNavigationStyle, containerSize: CGSize? = nil, contentOrigin: CGPoint, contentSize: CGSize, contentTransform: T = T.identity) {
         self.init(for: .init(fromNavigation: navigationStyle), containerSize: containerSize, contentOrigin: contentOrigin, contentSize: contentSize, contentTransform: contentTransform)
@@ -58,8 +62,10 @@ public struct FluidInitialFrameDimension: FluidFrameDimensionCompatible {
      The initializer that instantiates a `FluidInitialFrameDimension` object.
 
      - parameter transitionStyle: The `FluidTransitionStyle` value of the transition.
-     - parameter origin: The position value of the destination frame when the transition starts.
-     - parameter size: The size value of the destination frame when the transition starts.
+     - parameter containerSize: The container size used to calculate the frame.
+     - parameter contentOrigin: The position value of the destination frame when the transition starts.
+     - parameter contentSize: The size value of the destination frame when the transition starts.
+     - parameter contentTransform: The transform value of the destination frame when the transition starts.
      */
     public init<T: FluidTransformConvertible>(for transitionStyle: FluidTransitionStyle, containerSize: CGSize? = nil, contentOrigin: CGPoint, contentSize: CGSize, contentTransform: T = T.identity) {
         self.init(for: .init(fromTransition: transitionStyle), containerSize: containerSize, contentOrigin: contentOrigin, contentSize: contentSize, contentTransform: contentTransform)
@@ -70,8 +76,8 @@ extension FluidInitialFrameDimension {
     /**
      The function that returns initial frame for an orientation.
 
-     - parameter orientation: The `UIInterfaceOrientation` value.
-     - returns: The `CATransform3D` value.
+     - parameter containerSize: The optional container size.
+     - returns: The `CGRect` value.
      */
     public func frame(for containerSize: CGSize? = nil) -> CGRect {
         return self.frame
@@ -80,7 +86,7 @@ extension FluidInitialFrameDimension {
     /**
      The function that returns final transform for an orientation.
 
-     - parameter orientation: The `UIInterfaceOrientation` value.
+     - parameter containerSize: The optional container size.
      - returns: The `CATransform3D` value.
      */
     public func transform(for containerSize: CGSize? = nil) -> CATransform3D {
@@ -130,11 +136,17 @@ public struct FluidFinalFrameDimension: FluidFrameDimensionCompatible {
     internal init() {}
 
     /**
-     The initializer that instantiates a `FluidInitialFrameDimension` object.
+     The initializer that instantiates a `FluidFinalFrameDimension` object.
 
      - parameter presentationStyle: The `FluidPresentationStyle` value of the transition.
-     - parameter origin: The position value of the destination frame when the transition ends.
-     - parameter size: The size value of the destination frame when the transition ends.
+     - parameter portraitContainerSize: The portrait container size used to calculate the frame.
+     - parameter landscapeContainerSize: The landscape container size used to calculate the frame.
+     - parameter portraitContentOrigin: The portrait position value of the destination frame when the transition ends.
+     - parameter portraitContentSize: The portrait size value of the destination frame when the transition ends.
+     - parameter landscapeContentOrigin: The landscape position value of the destination frame when the transition ends.
+     - parameter landscapeContentSize: The landscape size value of the destination frame when the transition ends.
+     - parameter portraitContentTransform: The portrait transform value of the destination frame when the transition ends.
+     - parameter landscapeContentTransform: The landscape transform value of the destination frame when the transition ends.
      */
     internal init<T: FluidTransformConvertible>(for presentationStyle: FluidPresentationStyle,
                                                 portraitContainerSize: CGSize? = nil, landscapeContainerSize: CGSize? = nil,
@@ -172,11 +184,17 @@ public struct FluidFinalFrameDimension: FluidFrameDimensionCompatible {
     }
 
     /**
-     The initializer that instantiates a `FluidInitialFrameDimension` object.
+     The initializer that instantiates a `FluidFinalFrameDimension` object.
 
      - parameter navigationStyle: The `FluidNavigationStyle` value of the navigation.
-     - parameter origin: The position value of the destination frame when the transition ends.
-     - parameter size: The size value of the destination frame when the transition ends.
+     - parameter portraitContainerSize: The portrait container size used to calculate the frame.
+     - parameter landscapeContainerSize: The landscape container size used to calculate the frame.
+     - parameter portraitContentOrigin: The portrait position value of the destination frame when the transition ends.
+     - parameter portraitContentSize: The portrait size value of the destination frame when the transition ends.
+     - parameter landscapeContentOrigin: The landscape position value of the destination frame when the transition ends.
+     - parameter landscapeContentSize: The landscape size value of the destination frame when the transition ends.
+     - parameter portraitContentTransform: The portrait transform value of the destination frame when the transition ends.
+     - parameter landscapeContentTransform: The landscape transform value of the destination frame when the transition ends.
      */
     public init<T: FluidTransformConvertible>(for navigationStyle: FluidNavigationStyle,
                                               portraitContainerSize: CGSize? = nil, landscapeContainerSize: CGSize? = nil,
@@ -191,11 +209,17 @@ public struct FluidFinalFrameDimension: FluidFrameDimensionCompatible {
     }
 
     /**
-     The initializer that instantiates a `FluidInitialFrameDimension` object.
+     The initializer that instantiates a `FluidFinalFrameDimension` object.
 
      - parameter transitionStyle: The `FluidTransitionStyle` value of the transition.
-     - parameter origin: The position value of the destination frame when the transition ends.
-     - parameter size: The size value of the destination frame when the transition ends.
+     - parameter portraitContainerSize: The portrait container size used to calculate the frame.
+     - parameter landscapeContainerSize: The landscape container size used to calculate the frame.
+     - parameter portraitContentOrigin: The portrait position value of the destination frame when the transition ends.
+     - parameter portraitContentSize: The portrait size value of the destination frame when the transition ends.
+     - parameter landscapeContentOrigin: The landscape position value of the destination frame when the transition ends.
+     - parameter landscapeContentSize: The landscape size value of the destination frame when the transition ends.
+     - parameter portraitContentTransform: The portrait transform value of the destination frame when the transition ends.
+     - parameter landscapeContentTransform: The landscape transform value of the destination frame when the transition ends.
      */
     public init<T: FluidTransformConvertible>(for transitionStyle: FluidTransitionStyle,
                                               portraitContainerSize: CGSize? = nil, landscapeContainerSize: CGSize? = nil,
@@ -214,7 +238,7 @@ extension FluidFinalFrameDimension {
     /**
      The function that returns final frame for an orientation.
 
-     - parameter orientation: The `UIInterfaceOrientation` value.
+     - parameter containerSize: The container size used to resolve the orientation.
      - returns: The `CGRect` value.
      */
     public func frame(for containerSize: CGSize? = nil) -> CGRect {
@@ -225,7 +249,7 @@ extension FluidFinalFrameDimension {
     /**
      The function that returns final transform for an orientation.
 
-     - parameter orientation: The `UIInterfaceOrientation` value.
+     - parameter containerSize: The container size used to resolve the orientation.
      - returns: The `CATransform3D` value.
      */
     public func transform(for containerSize: CGSize? = nil) -> CATransform3D {

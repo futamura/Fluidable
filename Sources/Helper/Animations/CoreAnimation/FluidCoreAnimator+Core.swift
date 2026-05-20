@@ -105,7 +105,7 @@ extension FluidCoreAnimator {
     /**
      The function that adds a callback function invoked when the state value changes.
 
-     - parameter progress: The `StateBlock` function.
+     - parameter state: The `StateBlock` function.
      - returns: The `FluidCoreAnimator` object.
      */
     @discardableResult
