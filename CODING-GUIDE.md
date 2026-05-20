@@ -332,8 +332,10 @@ memory file は file 種別ごとに commit timing を分ける。
 | --- | --- | --- |
 | `gotcha_*.md` / `feedback_*.md` の新規追加 | 作業ブランチで PR 前 commit、PR に含める | 永続的な技術知見・ユーザー規律で PR # / merge SHA に依存しない。 |
 | `project_*.md` の進行中 task 状態更新 | 作業ブランチに含める | task 中で書いた中間記録であり、作業ブランチが自然な置き場。 |
-| `MEMORY.md` の該当 task 完了チェック (`[ ]` -> `[x]`) | 作業ブランチで PR 前 commit、PR に含める | ブランチ task は memory の task list 更新まで含めて完了扱いにする。 |
-| `MEMORY.md` Done section への PR # / merge SHA 追記 | merge 後に小ブランチを切り、PR 経由で反映する | PR # / merge SHA は merge 後しか確定しない。`develop` / release branch で直接作業しない。 |
+| `MEMORY.md` の task registry 更新 (`In Progress` / `Backlog` / `Done` 移動、確定済み task 状態) | 原則として作業ブランチで PR 前 commit、PR に含める | ブランチ task は memory の task list 更新まで含めて完了扱いにする。 |
+| `MEMORY.md` Done section への PR # / merge SHA / branch deletion / remote rename 等の merge 後にしか確定しない事実追記 | 原則として merge 後に小ブランチを切り、PR 経由で反映する | PR # / merge SHA / branch deletion / remote rename は merge 後または後続操作後に確定する。 |
+
+例外として、`MEMORY.md` の task registry correction だけを更新し、code / CI / project policy / public docs / spec / plan を一切含まない場合に限り、ユーザー明示承認があれば現在の integration branch (`develop` など) へ直接小 commit してよい。この例外でも `git diff --check`、対象 diff の目視、Commit Gate は必須とする。unrelated dirty worktree がある場合は停止する。
 
 ### Task Registry / Memory Backlog Policy
 
