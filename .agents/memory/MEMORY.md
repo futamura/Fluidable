@@ -20,7 +20,7 @@ canonical store は repo 内 `.agents/memory/`。agent 固有の自動 memory �
 
 ### In Progress
 
-- [ ] **#5 PR #4 CI simulator destination 修正** — 2026-05-20 更新 / PR #4 CI `test` failure は `iPhone 17 / iOS 26.5` 固定 destination が GitHub Actions runner 上に無いことが原因。`xcrun simctl` の available simulator から destination を動的選択する修正をローカル検証済み。push / CI 再確認待ち。branch: `build/xcode26-spm-migration`。
+- [ ] **#5 PR #4 CI simulator destination 修正** — 2026-05-20 更新 / PR #4 CI `test` failure は `iPhone 17 / iOS 26.5` 固定 destination が GitHub Actions runner 上に無いことが原因。`f4447be` で simulator 動的選択へ変更したが、runner の Xcode 26.5 には利用可能な iOS 26.5 runtime がなく失敗。runner に installed simulator がある Xcode 26.4.1 へ切替中。branch: `build/xcode26-spm-migration`。
 
 ### Backlog
 
