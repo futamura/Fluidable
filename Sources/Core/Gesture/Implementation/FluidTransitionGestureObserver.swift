@@ -57,8 +57,8 @@ internal class FluidTransitionGestureObserver: NSObject, FluidGestureObservable 
         guard let previous: CGPoint = self.previousTranslation, let current: CGPoint = self.currentTranslation else { return .none }
         return .init(point: current - previous)
     }
-    /** The average gesture direction. */
 //    internal var averageGestureDirection: FluidGestureDirection { return .init(point: self.averageTranslation) }
+    /** The average gesture direction. */
     var averageGestureDirection: FluidGestureDirection {
         let translations: [CGPoint] = self.translationHistory
                 .enumerated()
