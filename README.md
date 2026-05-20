@@ -1,5 +1,5 @@
 [![CI](https://github.com/gumob/Fluidable/actions/workflows/ci.yml/badge.svg)](https://github.com/gumob/Fluidable/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/gumob/Fluidable/branch/master/graph/badge.svg)](https://codecov.io/gh/gumob/Fluidable)
+[![codecov](https://codecov.io/gh/gumob/Fluidable/branch/main/graph/badge.svg)](https://codecov.io/gh/gumob/Fluidable)
 [![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)
 ![Language](https://img.shields.io/badge/Language-Swift%205-orange.svg)
 ![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg)
@@ -41,13 +41,13 @@ dependencies: [
 ```
 
 ## Example application
-Repository contains example sources under [Example](https://github.com/gumob/Fluidable/tree/master/Example) directory. Structure of the application is simple, but the project contains mutiple case of UI petterns to showcase capabilities of the library.
+Repository contains example sources under [Example](https://github.com/gumob/Fluidable/tree/main/Example) directory. Structure of the application is simple, but the project contains mutiple case of UI petterns to showcase capabilities of the library.
 You can build an example app by choosing `FluidableExample` from the Xcode schemes.
 
 ## Usage
 
 Full documentation is available at [https://gumob.github.io/Fluidable/documentation/fluidable/](https://gumob.github.io/Fluidable/documentation/fluidable/).<br/>
-You can find more specific implementations by searching the [Example](https://github.com/gumob/Fluidable/tree/master/Example) sources with "`IMPORTANT: 🌊`".
+You can find more specific implementations by searching the [Example](https://github.com/gumob/Fluidable/tree/main/Example) sources with "`IMPORTANT: 🌊`".
 
 
 ### Custom transition using [`UIViewControllerTransitioningDelegate`](https://developer.apple.com/documentation/uikit/uiviewcontrollertransitioningdelegate)
