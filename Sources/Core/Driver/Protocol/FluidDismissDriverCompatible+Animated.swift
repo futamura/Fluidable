@@ -30,7 +30,8 @@ extension FluidDismissDriverCompatible {
         }()
         self.configureForwardTransitionAnimation(using: transitionContext,
                                                  driverType: .dismiss, animationType: .dismiss,
-                                                 source: transitionContext.viewController(forKey: .to), destination: transitionContext.viewController(forKey: .from),
+                                                 source: transitionContext.viewController(forKey: .to),
+                                                 destination: transitionContext.viewController(forKey: .from),
                                                  duration: duration, easing: easing, fromValue: self.clampedInteractionProgress,
                                                  completion: { [weak self] (_: UIViewAnimatingPosition, _: UIViewAnimatingStateEx) in
                                                      self?.viewAnimatorDidFinish(using: transitionContext)
