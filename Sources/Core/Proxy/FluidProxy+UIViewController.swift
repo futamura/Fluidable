@@ -82,7 +82,7 @@ extension FluidProxy where Base: UIViewController {
     }
 }
 
-//extension FluidProxy where Base: UIViewController {
+// extension FluidProxy where Base: UIViewController {
 //    /** The `FluidPresentationStyle` value that indicates the presentation style. */
 //    public var presentationStyle: FluidPresentationStyle {
 //        if let delegate: FluidNavigationControllerDelegate = self.navigationControllerDelegate {
@@ -137,7 +137,7 @@ extension FluidProxy where Base: UIViewController {
 //            return .linear
 //        }
 //    }
-//}
+// }
 
 extension FluidProxy where Base: UIViewController {
     /** The `FluidInitialFrameDimension` value that indicates the initial dimension. */

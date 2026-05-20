@@ -76,7 +76,7 @@ extension FluidNavigationScrollObserver {
             sv.addGestureRecognizer(self.panGestureRecognizer)
         }
         if self.offsetObservation == nil {
-            self.offsetObservation = sv.observe(\.contentOffset, options: [.old]) { [weak self] (scrollView, change) in
+            self.offsetObservation = sv.observe(\.contentOffset, options: [.old]) { [weak self] (_, change) in
                 guard let oldValue: CGPoint = change.oldValue else { return }
                 self?.contentOffsetDidChange(oldValue: oldValue)
             }
