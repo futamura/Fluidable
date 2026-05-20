@@ -20,7 +20,7 @@ canonical store は repo 内 `.agents/memory/`。agent 固有の自動 memory �
 
 ### In Progress
 
-- [ ] **#5 PR #4 CI simulator destination 修正** — 2026-05-20 更新 / PR #4 CI `test` failure は `iPhone 17 / iOS 26.5` 固定 destination が GitHub Actions runner 上に無いことが原因。`f4447be` で simulator 動的選択へ変更したが、runner の Xcode 26.5 には利用可能な iOS 26.5 runtime がなく失敗。runner に installed simulator がある Xcode 26.4.1 へ切替中。branch: `build/xcode26-spm-migration`。
+なし。
 
 ### Backlog
 
@@ -38,6 +38,7 @@ canonical store は repo 内 `.agents/memory/`。agent 固有の自動 memory �
 
 ### Done
 
+- [x] **#5 PR #4 CI simulator destination 修正** — 2026-05-20 / `fastlane/ios_simulator_destination.rb` で available simulator を動的選択し、CI は runner に installed simulator がある Xcode 26.4.1 を使用。PR #4 の CI `test` と Hound は pass。
 - [x] **#1 Repository guidelines 初期作成** — 2026-05-19 / agent entrypoint、`CODING-GUIDE.md`、project memory を作成。
 - [x] **#2 Xcode 26 SPM migration** — 2026-05-19 / Xcode 26.5, iOS 15 minimum, SPM, mise, fastlane 整理。
 - [x] **#3 Tooling DocC coverage migration** — 2026-05-19 / SwiftLint mise 管理、Jazzy から DocC、Slather から xccov/Codecov へ移行。
