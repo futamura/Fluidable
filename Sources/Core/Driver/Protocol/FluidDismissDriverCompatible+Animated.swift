@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension FluidDismissDriverCompatible {
     func configureInterruptibleAnimator(using transitionContext: UIViewControllerContextTransitioning) -> UIViewImplicitlyAnimating {
@@ -29,9 +30,11 @@ extension FluidDismissDriverCompatible {
         }()
         self.configureForwardTransitionAnimation(using: transitionContext,
                                                  driverType: .dismiss, animationType: .dismiss,
-                                                 source: transitionContext.viewController(forKey: .to), destination: transitionContext.viewController(forKey: .from),
-                                                 duration: duration, easing: easing, fromValue: self.clampedInteractionProgress,
-                                                 completion: { [weak self] (position: UIViewAnimatingPosition, state: UIViewAnimatingStateEx) in
+                                                 source: transitionContext.viewController(forKey: .to),
+                                                 destination: transitionContext.viewController(forKey: .from),
+                                                 duration: duration, easing: easing,
+                                                 fromValue: self.clampedInteractionProgress,
+                                                 completion: { [weak self] _, _ in
                                                      self?.viewAnimatorDidFinish(using: transitionContext)
                                                  })
         /* NOTE: Run extra animations */

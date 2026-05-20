@@ -16,7 +16,7 @@ extension FluidCoreAnimator {
     /**
       The function that instantiates `Animation`
 
-      - parameter layer: The reference to `CALayer` to be animated.
+      - parameter layerConvertible: The reference to an object that can provide the `CALayer` to be animated.
       - parameter id: The identifier for `CAAnimationGroup`.
       - parameter duration: The total duration of the animations, measured in seconds.
       - parameter beginTime: The amount of time (measured in seconds) to wait before beginning the animations. Specify a value of 0 to begin the animations immediately.

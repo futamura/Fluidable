@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 public protocol FluidTransformConvertible {
     static var identity: Self { get }

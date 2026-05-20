@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /** The type that has `fluid` extensions. */
 public protocol FluidCompatible {
@@ -24,13 +25,19 @@ extension FluidCompatible {
     /** The static property for `FluidProxy` extensions. */
     public static var fluid: FluidProxy<Self>.Type {
         get { return FluidProxy<Self>.self }
-        set { /* this enables using `FluidProxy` to "mutate" base type */ }
+        set {
+            _ = newValue
+            /* this enables using `FluidProxy` to "mutate" base type */
+        }
     }
 
     /** The instance property for `FluidProxy` extensions. */
     public var fluid: FluidProxy<Self> {
         get { return FluidProxy(self) }
-        set { /* this enables using `FluidProxy` to "mutate" base object */ }
+        set {
+            _ = newValue
+            /* this enables using `FluidProxy` to "mutate" base object */
+        }
     }
 }
 

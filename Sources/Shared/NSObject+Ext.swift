@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol ClassNameIdentifiable: NSObjectProtocol {
     static var className: String { get }

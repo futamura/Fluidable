@@ -8,6 +8,8 @@
 
 import Foundation
 import CoreGraphics
+import QuartzCore
+import UIKit
 
 /* MARK: - Frame & Struct */
 internal extension CALayer {
@@ -187,7 +189,7 @@ public extension CATransform3D {
 public extension CATransform3D {
 }
 
-extension CATransform3D: Equatable {
+extension CATransform3D: @retroactive Equatable {
     public static func == (lhs: CATransform3D, rhs: CATransform3D) -> Bool {
         return CATransform3DEqualToTransform(lhs, rhs)
     }

@@ -7,16 +7,15 @@
 //
 
 import Quick
-import Nimble
-import AutoMate
+import XCTest
 
 @testable import Fluidable
 
 extension MainSpec {
-    func finishAnimatedPresent(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {
+    static func finishAnimatedPresent(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {
         /* NOTE: Wait until collection view is ready */
         let collectionView: XCUIElement = app.collectionViews.element(matching: .collectionView, identifier: "rootCollectionView")
-        expect(collectionView.exists).toEventually(beTrue(), timeout: 10)
+        self.assertEventually(collectionView.exists)
         /* NOTE: Scroll until the collection targetView is found */
         var collectionCell: XCUIElement!
         while (true) {
@@ -31,10 +30,10 @@ extension MainSpec {
         usleep(sec: 1.0)
     }
 
-    func cancelAnimatedPresent(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {
+    static func cancelAnimatedPresent(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {
         /* NOTE: Wait until collection view is ready */
         let collectionView: XCUIElement = app.collectionViews.element(matching: .collectionView, identifier: "rootCollectionView")
-        expect(collectionView.exists).toEventually(beTrue(), timeout: 10)
+        self.assertEventually(collectionView.exists)
         /* NOTE: Scroll until the collection targetView is found */
         var collectionCell: XCUIElement!
         while (true) {
@@ -48,28 +47,10 @@ extension MainSpec {
         }
     }
 
-    func finishInteractivePresent(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {
+    static func finishInteractivePresent(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {
         /* NOTE: Wait until collection view is ready */
         let collectionView: XCUIElement = app.collectionViews.element(matching: .collectionView, identifier: "rootCollectionView")
-        expect(collectionView.exists).toEventually(beTrue(), timeout: 10)
-        /* NOTE: Scroll until the collection targetView is found */
-        var collectionCell: XCUIElement!
-        while (true) {
-            collectionCell = collectionView.cells.element(matching: .cell, identifier: model.rootCellAccessibilityIdentifier)
-            if collectionCell.isVisible {
-                collectionCell.tap()
-                break
-            } else {
-                collectionView.swipeUp()
-            }
-        }
-        usleep(sec: 1.0)
-    }
-
-    func cancelInteractivePresent(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {
-        /* NOTE: Wait until collection view is ready */
-        let collectionView: XCUIElement = app.collectionViews.element(matching: .collectionView, identifier: "rootCollectionView")
-        expect(collectionView.exists).toEventually(beTrue(), timeout: 10)
+        self.assertEventually(collectionView.exists)
         /* NOTE: Scroll until the collection targetView is found */
         var collectionCell: XCUIElement!
         while (true) {
@@ -84,20 +65,38 @@ extension MainSpec {
         usleep(sec: 1.0)
     }
 
-    func finishAnimatedDismissByTappingCloseButton(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {
+    static func cancelInteractivePresent(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {
+        /* NOTE: Wait until collection view is ready */
+        let collectionView: XCUIElement = app.collectionViews.element(matching: .collectionView, identifier: "rootCollectionView")
+        self.assertEventually(collectionView.exists)
+        /* NOTE: Scroll until the collection targetView is found */
+        var collectionCell: XCUIElement!
+        while (true) {
+            collectionCell = collectionView.cells.element(matching: .cell, identifier: model.rootCellAccessibilityIdentifier)
+            if collectionCell.isVisible {
+                collectionCell.tap()
+                break
+            } else {
+                collectionView.swipeUp()
+            }
+        }
+        usleep(sec: 1.0)
+    }
+
+    static func finishAnimatedDismissByTappingCloseButton(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {
         let button: XCUIElement = app.buttons.element(matching: .button, identifier: model.overlayCloseButtonAccessibilityIdentifier)
-        expect(button.isVisible).toEventually(beTrue(), timeout: 10)
+        self.assertEventually(button.isVisible)
         button.tap()
         usleep(sec: 1.0)
         /* NOTE: Check whether the view controller already disappears */
         let visibleView: XCUIElement = app.otherElements.element(matching: .other, identifier: model.visibleControllerViewAccessibilityIdentifier)
-        expect(visibleView.exists).toNotEventually(beTrue(), timeout: 10)
+        self.assertEventually(!visibleView.exists)
     }
 
-    func finishAnimatedDismissByTappingContainer(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {
+    static func finishAnimatedDismissByTappingContainer(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {
         /* NOTE: Perform dismiss */
         let containerView: XCUIElement = app.otherElements.element(matching: .other, identifier: model.transitionContainerViewAccessibilityIdentifier)
-        expect(containerView.exists).toEventually(beTrue(), timeout: 10)
+        self.assertEventually(containerView.exists)
         switch model {
         case .navigationFluidModal, .transitionFluidModal,
              .navigationDrawerTop, .transitionDrawerTop:
@@ -114,41 +113,41 @@ extension MainSpec {
              .navigationSlideLeft, .transitionSlideLeft,
              .navigationSlideRight, .transitionSlideRight:
             let button: XCUIElement = app.buttons.element(matching: .button, identifier: model.overlayCloseButtonAccessibilityIdentifier)
-            expect(button.isVisible).toEventually(beTrue(), timeout: 10)
+            self.assertEventually(button.isVisible)
             button.tap()
         }
         usleep(sec: 1.0)
         /* NOTE: Check whether the view controller already disappears */
         let visibleView: XCUIElement = app.otherElements.element(matching: .other, identifier: model.visibleControllerViewAccessibilityIdentifier)
-        expect(visibleView.exists).toNotEventually(beTrue(), timeout: 10)
+        self.assertEventually(!visibleView.exists)
     }
 
-    func pushViewController(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {
+    static func pushViewController(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {
         switch model.className {
         case "NavigationCollectionViewController":
             let collectionView: XCUIElement = app.collectionViews.element(matching: .collectionView, identifier: model.parentCollectionViewAccessibilityIdentifier)
             let cell: XCUIElement = collectionView.cells.element(boundBy: 0)
-            expect(cell.isVisible).toEventually(beTrue(), timeout: 10)
+            self.assertEventually(cell.isVisible)
             cell.tap()
             usleep(sec: 1.0)
 
         case "NavigationMultiCollectionViewController":
             let collectionView: XCUIElement = app.collectionViews.element(matching: .collectionView, identifier: model.childFirstCollectionViewAccessibilityIdentifier)
             let cell: XCUIElement = collectionView.cells.element(boundBy: 0)
-            expect(cell.isVisible).toEventually(beTrue(), timeout: 10)
+            self.assertEventually(cell.isVisible)
             cell.tap()
             usleep(sec: 1.0)
 
         case "NavigationScrollViewController":
             let button: XCUIElement = app.buttons.element(matching: .button, identifier: model.rootNextButtonAccessibilityIdentifier)
-            expect(button.isVisible).toEventually(beTrue(), timeout: 10)
+            self.assertEventually(button.isVisible)
             button.tap()
             usleep(sec: 1.0)
 
         case "NavigationTableViewController":
             let tableView: XCUIElement = app.tables.element(matching: .table, identifier: model.parentTableViewAccessibilityIdentifier)
             let cell: XCUIElement = tableView.cells.element(boundBy: 0)
-            expect(cell.isVisible).toEventually(beTrue(), timeout: 10)
+            self.assertEventually(cell.isVisible)
             cell.tap()
             usleep(sec: 1.0)
 
@@ -161,7 +160,7 @@ extension MainSpec {
         }
     }
 
-    func popViewControllerByTappingBackButton(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {
+    static func popViewControllerByTappingBackButton(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {
         switch model.className {
         case "NavigationCollectionViewController",
              "NavigationMultiCollectionViewController",
@@ -169,7 +168,7 @@ extension MainSpec {
              "NavigationTableViewController":
             let navigationBar: XCUIElement = app.navigationBars.element(matching: .navigationBar, identifier: model.navigationBarAccessibilityIdentifier)
             let button: XCUIElement = navigationBar.buttons.element(boundBy: 0)
-            expect(button.isVisible).toEventually(beTrue(), timeout: 10)
+            self.assertEventually(button.isVisible)
             button.tap()
             usleep(sec: 1.0)
 
@@ -182,12 +181,12 @@ extension MainSpec {
         }
     }
 
-    func scrollToDismissiblePosition(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {
+    static func scrollToDismissiblePosition(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {
         let option: InteractiveDismissOption = self.getInteractiveDismissOption(app: app, orientation: orientation, model: model)
         /* NOTE: Check whether the views exist */
         guard let interactView: XCUIElement = option.interact, let targetView: XCUIElement = option.target else { return }
-        expect(interactView.exists).toEventually(beTrue(), timeout: 10)
-        expect(targetView.exists).toEventually(beTrue(), timeout: 10)
+        self.assertEventually(interactView.exists)
+        self.assertEventually(targetView.exists)
         /* NOTE: Scroll until scroll view reaches to bottom */
         while (true) {
             Logger()?.log("🧪", [
@@ -205,27 +204,27 @@ extension MainSpec {
         usleep(sec: 1.0)
     }
 
-    func finishInteractiveDismiss(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {
+    static func finishInteractiveDismiss(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {
         let option: InteractiveDismissOption = self.getInteractiveDismissOption(app: app, orientation: orientation, model: model)
         defer {
             /* NOTE: Check whether the view controller already disappears */
             let visibleView: XCUIElement = app.otherElements.element(matching: .other, identifier: model.visibleControllerViewAccessibilityIdentifier)
-            expect(visibleView.exists).toNotEventually(beTrue(), timeout: 10)
+            self.assertEventually(!visibleView.exists)
         }
         /* NOTE: Check whether the view exists */
         guard let interactView: XCUIElement = option.interact else { return }
-        expect(interactView.exists).toEventually(beTrue(), timeout: 10)
+        self.assertEventually(interactView.exists)
         /* NOTE: Perform dismiss interaction */
         let vectors: InteractiveDismissVector = self.getInteractiveDismissVector(app: app, orientation: orientation, model: model)
         interactView.swipe(from: vectors.start, to: vectors.finish)
     }
 
-    func cancelInteractiveDismiss(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {
+    static func cancelInteractiveDismiss(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {
 //        print(app.debugDescription)
         let option: InteractiveDismissOption = self.getInteractiveDismissOption(app: app, orientation: orientation, model: model)
         /* NOTE: Check whether the view exists */
         guard let interactView: XCUIElement = option.interact else { return }
-        expect(interactView.exists).toEventually(beTrue(), timeout: 10)
+        self.assertEventually(interactView.exists)
         /* NOTE: Perform cancel dismissal interaction */
         let vectors: InteractiveDismissVector = self.getInteractiveDismissVector(app: app, orientation: orientation, model: model)
         let start: XCUICoordinate = interactView.coordinate(withNormalizedOffset: vectors.start)
@@ -235,7 +234,7 @@ extension MainSpec {
         usleep(sec: 1.0)
     }
 
-    func rotateAndRevertDevice(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {
+    static func rotateAndRevertDevice(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {
         XCUIDevice.shared.orientation = XCUIDevice.shared.orientation.isPortrait ? .landscapeLeft : .portrait
         usleep(sec: 1.0)
         XCUIDevice.shared.orientation = XCUIDevice.shared.orientation.isPortrait ? .landscapeLeft : .portrait
@@ -245,7 +244,7 @@ extension MainSpec {
 
 extension MainSpec {
     typealias InteractiveDismissOption = (interact: XCUIElement?, target: XCUIElement?, direction: SwipeDirection)
-    func getInteractiveDismissOption(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) -> InteractiveDismissOption {
+    static func getInteractiveDismissOption(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) -> InteractiveDismissOption {
 //        Logger()?.log("🧪", [
 //            "model".lpad() + String(describing: model),
 //            "model.className".lpad() + String(describing: model.className),
@@ -379,7 +378,7 @@ extension MainSpec {
     }
 
     typealias InteractiveDismissVector = (start: CGVector, finish: CGVector)
-    func getInteractiveDismissVector(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) -> InteractiveDismissVector {
+    static func getInteractiveDismissVector(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) -> InteractiveDismissVector {
         let min: CGFloat = 0.2
         let max: CGFloat = 0.8
         let middle: CGFloat = 0.2
@@ -393,7 +392,7 @@ extension MainSpec {
         }
     }
 
-    func getReducedInteractiveDismissVector(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) -> InteractiveDismissVector {
+    static func getReducedInteractiveDismissVector(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) -> InteractiveDismissVector {
         let min: CGFloat = UIDevice.current.isPhone ? 0.35 : 0.35
         let max: CGFloat = UIDevice.current.isPhone ? 0.65 : 0.65
         let middle: CGFloat = 0.2
@@ -410,7 +409,7 @@ extension MainSpec {
         }
     }
 
-    func isAtDismissiblePosition(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) -> Bool {
+    static func isAtDismissiblePosition(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) -> Bool {
         let option: InteractiveDismissOption = self.getInteractiveDismissOption(app: app, orientation: orientation, model: model)
         guard let interactView: XCUIElement = option.interact, let targetView: XCUIElement = option.target else { return false }
         let visibleView: XCUIElement = app.otherElements.element(matching: .other, identifier: model.visibleControllerViewAccessibilityIdentifier)
@@ -439,5 +438,17 @@ extension MainSpec {
         case .negativeY: return visibleView.frame.maxY >= targetView.frame.maxY
         default: return false
         }
+    }
+
+    static func assertEventually(_ condition: @autoclosure @escaping () -> Bool,
+                                 timeout: TimeInterval = 10,
+                                 file: StaticString = #filePath,
+                                 line: UInt = #line) {
+        let deadline = Date().addingTimeInterval(timeout)
+        while Date() < deadline {
+            if condition() { return }
+            RunLoop.current.run(until: Date().addingTimeInterval(0.1))
+        }
+        XCTAssertTrue(condition(), file: file, line: line)
     }
 }

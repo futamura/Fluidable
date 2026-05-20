@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /**
  Enumerations to determine an animated navigation style.

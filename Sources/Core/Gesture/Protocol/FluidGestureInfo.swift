@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /**
  A struct showing information about an interactive transition gesture

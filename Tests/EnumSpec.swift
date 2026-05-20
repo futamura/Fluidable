@@ -8,10 +8,11 @@
 
 import Quick
 import Nimble
+import UIKit
 @testable import Fluidable
 
-class EnumSpec: QuickSpec {
-    override func spec() {
+final class EnumSpec: QuickSpec {
+    override class func spec() {
         describe("Enumeration") {
             describe("FluidAnimationType") {
                 let present: FluidAnimationType = FluidAnimationType.present

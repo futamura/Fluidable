@@ -8,10 +8,11 @@
 
 import Quick
 import Nimble
+import UIKit
 @testable import Fluidable
 
 //class VectorMathSpec: QuickSpec {
-//    override func spec() {
+//    override class func spec() {
 //        describe("VectorMath") {
 //            describe("Scalar") {
 //                it("Property") {

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /**
  The methods in this protocol let you configure the transition.
@@ -46,7 +47,6 @@ public protocol FluidTransitionConfigurationDelegate: FluidDelegate {
      - parameter source: The source view controller that conforms to `FluidSourceViewController`.
      - parameter destination: The destination view controller that conforms to `FluidDestinationViewController`.
      - parameter navigation: The destination navigation view controller that conforms to `FluidDestinationNavigationController`.
-     - parameter container: The `UIView` object in which the animated transition should take place.
      - parameter container: The `UIView` object in which the animated transition should take place.
      - parameter initialDimension: The `FluidInitialFrameDimension` value at the beginning of navigation.
      - parameter finalDimension: The `FluidFinalFrameDimension` value at the end of navigation.

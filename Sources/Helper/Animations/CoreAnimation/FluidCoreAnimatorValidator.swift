@@ -7,6 +7,7 @@
 //
 
 import QuartzCore
+import UIKit
 
 internal class FluidCoreAnimatorValidator {
     private init() {}

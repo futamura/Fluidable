@@ -43,6 +43,8 @@ public extension UITraitCollection {
         case .phone: attributes.append(Idiom.phone)
         case .tv: attributes.append(Idiom.tv)
         case .carPlay: attributes.append(Idiom.carPlay)
+        case .mac: break
+        case .vision: break
         case .unspecified: break
         @unknown default: break
         }

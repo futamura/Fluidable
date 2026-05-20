@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 public enum FluidProgressState {
     /** The transition begins. */

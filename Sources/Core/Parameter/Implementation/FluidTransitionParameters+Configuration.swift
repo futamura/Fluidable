@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 internal extension FluidTransitionParameters {
     init(driverType: FluidDriverType, animationType: FluidAnimationType,

@@ -160,6 +160,21 @@ extension UIDevice {
     var isPad: Bool { return UIDevice.current.userInterfaceIdiom == .pad }
 }
 
+extension UIApplication {
+    var exampleKeyWindow: UIWindow? {
+        return connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .flatMap { $0.windows }
+            .first { $0.isKeyWindow }
+    }
+
+    var exampleStatusBarHeight: CGFloat {
+        guard let statusBarManager = exampleKeyWindow?.windowScene?.statusBarManager,
+              !statusBarManager.isStatusBarHidden else { return 0 }
+        return statusBarManager.statusBarFrame.height
+    }
+}
+
 extension Comparable {
     func clamped(_ lower: ClosedRange<Self>.Bound, _ upper: ClosedRange<Self>.Bound) -> Self {
         return self < lower ? lower : (upper < self ? upper : self)

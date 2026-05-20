@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /**
  The enumerations for `FluidCoreAnimatorError`.

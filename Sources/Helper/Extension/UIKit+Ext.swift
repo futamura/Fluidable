@@ -9,6 +9,25 @@
 import Foundation
 import UIKit
 
+internal extension UIApplication {
+    var fluidKeyWindow: UIWindow? {
+        return connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .flatMap { $0.windows }
+            .first { $0.isKeyWindow }
+    }
+
+    var fluidInterfaceOrientation: UIInterfaceOrientation {
+        return fluidKeyWindow?.windowScene?.interfaceOrientation ?? .unknown
+    }
+
+    var fluidStatusBarHeight: CGFloat {
+        guard let statusBarManager: UIStatusBarManager = fluidKeyWindow?.windowScene?.statusBarManager,
+              !statusBarManager.isStatusBarHidden else { return 0 }
+        return statusBarManager.statusBarFrame.height
+    }
+}
+
 internal extension UIView {
     var numberOfSuperview: Int {
         var count: Int = 0
@@ -71,7 +90,7 @@ internal extension UIViewController {
     }
 }
 
-extension UINavigationController.Operation: CustomStringConvertible {
+extension UINavigationController.Operation: @retroactive CustomStringConvertible {
     public var description: String {
         switch self {
         case .none: return "none"
@@ -88,7 +107,7 @@ extension UINavigationBar {
     weak var backgroundView: UIView? { return self.subviews.first(where: { NSStringFromClass($0.classForCoder).contains("UIBarBackground") }) }
 }
 
-extension UIBarPosition: CustomStringConvertible {
+extension UIBarPosition: @retroactive CustomStringConvertible {
     public var description: String {
         switch self {
         case .any: return "any"
@@ -178,7 +197,7 @@ internal extension NSLayoutConstraint {
     }
 }
 
-extension NSLayoutConstraint.Attribute: CustomStringConvertible {
+extension NSLayoutConstraint.Attribute: @retroactive CustomStringConvertible {
     public var description: String {
         switch self {
         case .left:                 return "left"
@@ -215,7 +234,7 @@ extension UIGestureRecognizer {
     public var isNormalPan: Bool { return self is UIPanGestureRecognizer && !(self is UIScreenEdgePanGestureRecognizer) }
 }
 
-extension UIGestureRecognizer.State: CustomStringConvertible {
+extension UIGestureRecognizer.State: @retroactive CustomStringConvertible {
     public var description: String {
         switch self {
         case .possible:  return "possible"
@@ -232,7 +251,7 @@ extension UIGestureRecognizer.State: CustomStringConvertible {
 /**
  Orientation
  */
-extension UIInterfaceOrientation: CustomStringConvertible {
+extension UIInterfaceOrientation: @retroactive CustomStringConvertible {
     public var description: String {
         switch self {
         case .portrait:           return "portrait"
@@ -245,7 +264,7 @@ extension UIInterfaceOrientation: CustomStringConvertible {
     }
 }
 
-extension UIDeviceOrientation: CustomStringConvertible {
+extension UIDeviceOrientation: @retroactive CustomStringConvertible {
     public var description: String {
         switch self {
         case .portrait:           return "portrait"
@@ -263,7 +282,7 @@ extension UIDeviceOrientation: CustomStringConvertible {
 /**
  Transition
  */
-extension UIModalPresentationStyle: CustomStringConvertible {
+extension UIModalPresentationStyle: @retroactive CustomStringConvertible {
     public var description: String {
         switch self {
         case .fullScreen:         return "fullScreen"
@@ -289,13 +308,15 @@ internal extension UIUserInterfaceIdiom {
     var isPad: Bool { return self == .pad }
 }
 
-extension UIUserInterfaceIdiom: CustomStringConvertible {
+extension UIUserInterfaceIdiom: @retroactive CustomStringConvertible {
     public var description: String {
         switch self {
         case .phone:       return "phone"
         case .pad:         return "pad"
         case .carPlay:     return "carPlay"
         case .tv:          return "tv"
+        case .mac:         return "mac"
+        case .vision:      return "vision"
         case .unspecified: return "unspecified"
         @unknown default: return "unknown"
         }
@@ -354,7 +375,7 @@ public extension UISpringTimingParameters {
     }
 }
 
-extension UITimingCurveType: CustomStringConvertible {
+extension UITimingCurveType: @retroactive CustomStringConvertible {
     public var description: String {
         switch self {
         case .builtin:  return "builtin"
@@ -366,7 +387,7 @@ extension UITimingCurveType: CustomStringConvertible {
     }
 }
 
-extension UIViewAnimatingPosition: CustomStringConvertible {
+extension UIViewAnimatingPosition: @retroactive CustomStringConvertible {
     public var description: String {
         switch self {
         case .end:     return "end"
@@ -377,7 +398,7 @@ extension UIViewAnimatingPosition: CustomStringConvertible {
     }
 }
 
-extension UIViewAnimatingState: CustomStringConvertible {
+extension UIViewAnimatingState: @retroactive CustomStringConvertible {
     public var description: String {
         switch self {
         case .active:   return "active"
@@ -424,7 +445,7 @@ internal extension UIBezierPath {
     }
 }
 
-extension UIRectCorner: CustomStringConvertible {
+extension UIRectCorner: @retroactive CustomStringConvertible {
     /** The description. */
     public var description: String {
         var options: [String] = [String]()
@@ -438,7 +459,7 @@ extension UIRectCorner: CustomStringConvertible {
     }
 }
 
-extension UIRectEdge: CustomStringConvertible {
+extension UIRectEdge: @retroactive CustomStringConvertible {
     /** The description. */
     public var description: String {
         var options: [String] = [String]()
