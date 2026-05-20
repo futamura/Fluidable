@@ -173,7 +173,11 @@ commit 承認前に提示する内容:
 
 commit message は Conventional Commits 寄りにする。例: `docs: add agent guide`, `fix(ios): correct transition state`。`Co-Authored-By` や AI 生成署名は入れない。
 
-`進めて` / `どうぞ` / `修正よろしく` / `OK` / `了解` は編集・調査・検証の承認であり、commit 承認ではない。commit するには `commitして` / `コミットOK` / `その内容でcommit` / `commit まで進めて` 等、commit を明示する承認が必要。
+Commit Gate では、commit する選択肢を数字付きで提示してよい。直前の Commit Gate で `1. commit する` / `1. 推奨: ... で commit` のように commit action が明示された選択肢に対し、ユーザーが該当番号だけを返した場合、その番号回答を commit 承認として扱う。
+
+番号回答による commit 承認は、直前に提示した Commit Gate の選択肢に限って有効とする。古い選択肢番号や、commit action が明示されていない選択肢番号を commit 承認と解釈しない。
+
+`進めて` / `どうぞ` / `修正よろしく` / `OK` / `了解` は編集・調査・検証の承認であり、commit 承認ではない。番号回答以外で commit するには `commitして` / `コミットOK` / `その内容でcommit` / `commit まで進めて` 等、commit を明示する承認が必要。
 
 例外:
 
