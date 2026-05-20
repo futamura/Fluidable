@@ -185,11 +185,11 @@ commit message は Conventional Commits 寄りにする。例: `docs: add agent 
 
 通常 task は `develop` から作業ブランチを切る。`develop` で直接作業しない。小さな docs 修正でも、ユーザーが直接 commit を明示しない限りブランチを提案する。
 
-作業完了後の PR / merge target は原則 `develop`。まとまった更新が完了し、version up / release 公開を行う段階でのみ `master` に merge する。`master` は公開済みまたは公開準備済みの状態を保つ。
+作業完了後の PR / merge target は原則 `develop`。まとまった更新が完了し、version up / release 公開を行う段階でのみ `main` に merge する。`main` は公開済みまたは公開準備済みの状態を保つ。
 
-`master` は現時点の release / public branch 名である。`master` -> `main` rename task が完了したら、本 guide の `master` 表記も同時に `main` へ更新する。
+`main` は release / public branch 名である。`main` への PR / merge は公開処理が走る可能性があるため、通常 task では行わない。
 
-作業ブランチ -> `develop` は squash merge を基本とする。`develop` -> `master` は release 境界を残すため merge commit を基本とする。
+作業ブランチ -> `develop` は squash merge を基本とする。`develop` -> `main` は release 境界を残すため merge commit を基本とする。
 
 branch prefix は `docs/`, `feature/`, `fix/`, `improve/`, `perf/`, `refactor/`, `upgrade/`, `build/`, `chore/` のいずれかを優先する。ブランチ名は候補を複数提示し、ユーザー承諾後に作成する。ブランチ作成後もすぐに実装に入らず、作業内容と方針をユーザーに確認してから着手する。
 
@@ -214,7 +214,7 @@ branch deletion は、completion flow の一括承認があっても自動実行
 - checks failed を確認した。
 - unrelated な dirty worktree。
 - protected branch / permission / GitHub 側 error。
-- `develop` / `master` へ直接 commit が必要になりそうな場合。
+- `develop` / `main` へ直接 commit が必要になりそうな場合。
 
 ### PR Checks / Merge Gate
 
@@ -224,7 +224,7 @@ PR 作成後の checks / merge は base branch ごとに扱いを分ける。
 
 checks が pending の場合は状態を報告して待機または停止する。checks が failed の場合は default では merge せず、failure 内容を報告する。ユーザーが `checks を無視して merge` / `このまま merge` 等で明示的に指示した場合のみ、現在の checks 状態を再報告した上で merge してよい。
 
-`develop` から `master` への PR は release / public 境界であるため、required checks を待機する。checks が pass し、ユーザーが merge を承認したら、`master` へ merge commit で統合する。
+`develop` から `main` への PR は release / public 境界であるため、required checks を待機する。checks が pass し、ユーザーが merge を承認したら、`main` へ merge commit で統合する。
 
 checks polling 中にユーザーから新しい指示が来た場合、その指示を優先する。`status` 要求なら現在の checks 状態を返して polling を継続する。`merge` 指示なら checks 状態を再確認し、上記の明示 merge 指示として扱う。
 

@@ -20,13 +20,11 @@ canonical store は repo 内 `.agents/memory/`。agent 固有の自動 memory �
 
 ### In Progress
 
-なし。
+- [ ] **#8 `master` -> `main` rename** — 2026-05-20 更新 / `chore/master-to-main-rename` で repo 内表記を `develop` 向けに更新し、PR #5 を `develop` 向けに作成済み。remote `main` は `origin/master` と同じ `949fd18` で作成済み。GitHub default branch は `main` に変更済み。local `origin/HEAD` も `origin/main` に更新済み。local `master` は削除済み。remote `master` deletion / `main` への PR・merge は未実行であり、各操作前に明示確認する。
 
 ### Backlog
 
-- [ ] **#6 PR #4 merge** — 2026-05-20 更新 / CI pass 後、PR #4 を `develop` へ merge。
 - [ ] **#7 Example 挙動不具合修正** — 2026-05-20 更新 / 新規セッションで対応。Simulator / 実機確認を必須 gate にする。
-- [ ] **#8 `master` -> `main` rename** — 2026-05-20 更新 / 別作業。GitHub default branch、branch protection、CI `push.branches`、guide 表記を更新。
 
 ### Icebox
 
@@ -38,6 +36,7 @@ canonical store は repo 内 `.agents/memory/`。agent 固有の自動 memory �
 
 ### Done
 
+- [x] **#6 PR #4 merge** — 2026-05-20 / PR #4 を `develop` へ squash merge。merge commit `7ebb9e3`。`build/xcode26-spm-migration` は local / remote とも削除済み。
 - [x] **#5 PR #4 CI simulator destination 修正** — 2026-05-20 / `fastlane/ios_simulator_destination.rb` で available simulator を動的選択し、CI は runner に installed simulator がある Xcode 26.4.1 を使用。PR #4 の CI `test` と Hound は pass。
 - [x] **#1 Repository guidelines 初期作成** — 2026-05-19 / agent entrypoint、`CODING-GUIDE.md`、project memory を作成。
 - [x] **#2 Xcode 26 SPM migration** — 2026-05-19 / Xcode 26.5, iOS 15 minimum, SPM, mise, fastlane 整理。
