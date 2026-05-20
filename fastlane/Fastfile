@@ -1,17 +1,21 @@
 default_platform(:ios)
 
 require "fileutils"
+require_relative "ios_simulator_destination"
 
 project_name = ENV.fetch("PROJECT_NAME", "Fluidable")
 repo_root = File.expand_path("..", __dir__)
 xcodeproj_framework = ENV.fetch("XCODEPROJ_FRAMEWORK", "#{project_name}.xcodeproj")
 scheme_ios = ENV.fetch("SCHEME_IOS", project_name)
-ios_destination = "platform=iOS Simulator,name=iPhone 17,OS=26.5"
 ios_simulator_triple = "arm64-apple-ios15.0-simulator"
 coverage_result_bundle = File.join(repo_root, "Reports", "coverage", "#{project_name}.xcresult")
 coverage_report_path = File.join(repo_root, "Reports", "coverage", "xccov.txt")
 docc_output_path = File.join(repo_root, "docs")
 docc_hosting_base_path = ENV.fetch("DOCC_HOSTING_BASE_PATH", project_name)
+
+def ios_destination
+  ENV.fetch("IOS_DESTINATION") { IOSSimulatorDestination.destination }
+end
 
 def clean_generated_docs(repo_root)
   docs_dir = File.join(repo_root, "docs")
@@ -26,6 +30,7 @@ platform :ios do
       sh("swift package resolve")
       sdk_path = sh("xcrun --sdk iphonesimulator --show-sdk-path").strip
       sh("swift build --sdk '#{sdk_path}' --triple #{ios_simulator_triple}")
+      UI.message("Using iOS simulator destination: #{ios_destination}")
       sh("xcodebuild build-for-testing -project #{xcodeproj_framework} -scheme #{scheme_ios} -destination '#{ios_destination}' CODE_SIGNING_ALLOWED=NO")
     end
     coverage
@@ -38,6 +43,7 @@ platform :ios do
       FileUtils.mkdir_p(File.dirname(coverage_result_bundle))
       FileUtils.rm_rf(coverage_result_bundle)
       FileUtils.rm_f(coverage_report_path)
+      UI.message("Using iOS simulator destination: #{ios_destination}")
       sh("xcodebuild test -project #{xcodeproj_framework} -scheme #{scheme_ios} -destination '#{ios_destination}' -only-testing:FluidableTests -enableCodeCoverage YES -resultBundlePath '#{coverage_result_bundle}' CODE_SIGNING_ALLOWED=NO")
       sh("xcrun xccov view --report '#{coverage_result_bundle}' > '#{coverage_report_path}'")
     end
