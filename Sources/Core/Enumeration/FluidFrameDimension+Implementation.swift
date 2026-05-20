@@ -139,14 +139,14 @@ public struct FluidFinalFrameDimension: FluidFrameDimensionCompatible {
      The initializer that instantiates a `FluidFinalFrameDimension` object.
 
      - parameter presentationStyle: The `FluidPresentationStyle` value of the transition.
-     - parameter portraitContainerSize: The portrait container size used to calculate the frame.
-     - parameter landscapeContainerSize: The landscape container size used to calculate the frame.
-     - parameter portraitContentOrigin: The portrait position value of the destination frame when the transition ends.
-     - parameter portraitContentSize: The portrait size value of the destination frame when the transition ends.
-     - parameter landscapeContentOrigin: The landscape position value of the destination frame when the transition ends.
-     - parameter landscapeContentSize: The landscape size value of the destination frame when the transition ends.
-     - parameter portraitContentTransform: The portrait transform value of the destination frame when the transition ends.
-     - parameter landscapeContentTransform: The landscape transform value of the destination frame when the transition ends.
+     - parameter portraitContainerSize: Portrait container size used to calculate the frame.
+     - parameter landscapeContainerSize: Landscape container size used to calculate the frame.
+     - parameter portraitContentOrigin: Portrait destination frame origin when the transition ends.
+     - parameter portraitContentSize: Portrait destination frame size when the transition ends.
+     - parameter landscapeContentOrigin: Landscape destination frame origin when the transition ends.
+     - parameter landscapeContentSize: Landscape destination frame size when the transition ends.
+     - parameter portraitContentTransform: Portrait destination frame transform when the transition ends.
+     - parameter landscapeContentTransform: Landscape destination frame transform when the transition ends.
      */
     internal init<T: FluidTransformConvertible>(for presentationStyle: FluidPresentationStyle,
                                                 portraitContainerSize: CGSize? = nil, landscapeContainerSize: CGSize? = nil,
@@ -187,14 +187,14 @@ public struct FluidFinalFrameDimension: FluidFrameDimensionCompatible {
      The initializer that instantiates a `FluidFinalFrameDimension` object.
 
      - parameter navigationStyle: The `FluidNavigationStyle` value of the navigation.
-     - parameter portraitContainerSize: The portrait container size used to calculate the frame.
-     - parameter landscapeContainerSize: The landscape container size used to calculate the frame.
-     - parameter portraitContentOrigin: The portrait position value of the destination frame when the transition ends.
-     - parameter portraitContentSize: The portrait size value of the destination frame when the transition ends.
-     - parameter landscapeContentOrigin: The landscape position value of the destination frame when the transition ends.
-     - parameter landscapeContentSize: The landscape size value of the destination frame when the transition ends.
-     - parameter portraitContentTransform: The portrait transform value of the destination frame when the transition ends.
-     - parameter landscapeContentTransform: The landscape transform value of the destination frame when the transition ends.
+     - parameter portraitContainerSize: Portrait container size used to calculate the frame.
+     - parameter landscapeContainerSize: Landscape container size used to calculate the frame.
+     - parameter portraitContentOrigin: Portrait destination frame origin when the transition ends.
+     - parameter portraitContentSize: Portrait destination frame size when the transition ends.
+     - parameter landscapeContentOrigin: Landscape destination frame origin when the transition ends.
+     - parameter landscapeContentSize: Landscape destination frame size when the transition ends.
+     - parameter portraitContentTransform: Portrait destination frame transform when the transition ends.
+     - parameter landscapeContentTransform: Landscape destination frame transform when the transition ends.
      */
     public init<T: FluidTransformConvertible>(for navigationStyle: FluidNavigationStyle,
                                               portraitContainerSize: CGSize? = nil, landscapeContainerSize: CGSize? = nil,
@@ -212,14 +212,14 @@ public struct FluidFinalFrameDimension: FluidFrameDimensionCompatible {
      The initializer that instantiates a `FluidFinalFrameDimension` object.
 
      - parameter transitionStyle: The `FluidTransitionStyle` value of the transition.
-     - parameter portraitContainerSize: The portrait container size used to calculate the frame.
-     - parameter landscapeContainerSize: The landscape container size used to calculate the frame.
-     - parameter portraitContentOrigin: The portrait position value of the destination frame when the transition ends.
-     - parameter portraitContentSize: The portrait size value of the destination frame when the transition ends.
-     - parameter landscapeContentOrigin: The landscape position value of the destination frame when the transition ends.
-     - parameter landscapeContentSize: The landscape size value of the destination frame when the transition ends.
-     - parameter portraitContentTransform: The portrait transform value of the destination frame when the transition ends.
-     - parameter landscapeContentTransform: The landscape transform value of the destination frame when the transition ends.
+     - parameter portraitContainerSize: Portrait container size used to calculate the frame.
+     - parameter landscapeContainerSize: Landscape container size used to calculate the frame.
+     - parameter portraitContentOrigin: Portrait destination frame origin when the transition ends.
+     - parameter portraitContentSize: Portrait destination frame size when the transition ends.
+     - parameter landscapeContentOrigin: Landscape destination frame origin when the transition ends.
+     - parameter landscapeContentSize: Landscape destination frame size when the transition ends.
+     - parameter portraitContentTransform: Portrait destination frame transform when the transition ends.
+     - parameter landscapeContentTransform: Landscape destination frame transform when the transition ends.
      */
     public init<T: FluidTransformConvertible>(for transitionStyle: FluidTransitionStyle,
                                               portraitContainerSize: CGSize? = nil, landscapeContainerSize: CGSize? = nil,
