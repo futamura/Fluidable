@@ -13,7 +13,7 @@ import UIKit
  */
 
 public enum FluidPresentationStyle {
-    /** The fade transition with modal view */
+    /* The fade transition with modal view */
 //    case fade
     /** The fluid transition with modal view */
     case fluid(behavior: FluidInteractionBehavior)

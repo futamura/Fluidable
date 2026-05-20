@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /**
  A struct determining which corners should be rounded.

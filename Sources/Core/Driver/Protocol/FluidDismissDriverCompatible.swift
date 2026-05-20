@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 internal protocol FluidDismissDriverCompatible: FluidDriverCompatible {
     func dismissViewController()

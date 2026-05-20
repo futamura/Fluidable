@@ -383,7 +383,7 @@ enum RootCellType {
     var size: CGSize {
         let numberOfColumns: CGFloat = CGFloat(ExampleConst.collectionNumberOfColumns)
         let width: CGFloat = {
-            let screenWidth: CGFloat = UIApplication.shared.keyWindow!.bounds.width
+            let screenWidth: CGFloat = UIApplication.shared.exampleKeyWindow?.bounds.width ?? UIScreen.main.bounds.width
             let contentWidth = screenWidth - ExampleConst.collectionLeftMargin + ExampleConst.collectionRightMargin
             return (contentWidth - ExampleConst.collectionLeftMargin * (numberOfColumns + 1)) / numberOfColumns
         }()
@@ -405,7 +405,7 @@ enum RootHeaderPosition {
     case top, bottom, none
 }
 
-protocol RootModelReceivable: class {
+protocol RootModelReceivable: AnyObject {
     var modelIndex: Int { set get }
     var model: RootModel! { get }
     func configure(modelIndex: Int)

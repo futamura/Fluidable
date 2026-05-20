@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /**
  The `FluidNavigationConfigurationDelegate` for the source view controller and the navigation animation.

@@ -8,10 +8,11 @@
 
 import Quick
 import Nimble
+import UIKit
 @testable import Fluidable
 
-class AnimatorSpec: QuickSpec {
-    override func spec() {
+final class AnimatorSpec: QuickSpec {
+    override class func spec() {
         describe("Animator") {
             describe("FluidAnimatorEasing") {
                 let linear: FluidAnimatorEasing = FluidAnimatorEasing.linear

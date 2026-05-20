@@ -8,10 +8,11 @@
 
 import Quick
 import Nimble
+import UIKit
 @testable import Fluidable
 
-class FoundationSpec: QuickSpec {
-    override func spec() {
+final class FoundationSpec: QuickSpec {
+    override class func spec() {
         describe("Foundation") {
             describe("String") {
                 it("Description") {

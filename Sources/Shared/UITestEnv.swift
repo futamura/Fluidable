@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct UITestEnv: Codable {
     var isTesting: Bool = false

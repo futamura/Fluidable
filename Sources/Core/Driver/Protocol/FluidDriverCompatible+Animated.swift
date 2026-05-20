@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension FluidDriverCompatible {
     func configureForwardTransitionAnimation(using transitionContext: UIViewControllerContextTransitioning,
@@ -41,12 +42,12 @@ extension FluidDriverCompatible {
                 .registerParameters(parameters: self.parameters)
                 .configureInterruptibleAnimator(completion: completion)
                 .configureTransitionAnimators(isReversed: false, from: fromValue, to: 1,
-                                              progress: { [weak self] (progress: CGFloat) in
+                                              progress: { [weak self] (_: CGFloat) in
                                                   guard let `self`: Self = self else { return }
                                                   /* NOTE: Propagate FluidableDelegate */
                                                   self.propagateAnimationActionDelegate(state: .update, progress: self.viewAnimator.animationProgress)
                                               },
-                                              state: { [weak self] (state: FluidAnimatorState, progress: CGFloat) in
+                                              state: { [weak self] (state: FluidAnimatorState, _: CGFloat) in
                                                   guard let `self`: Self = self else { return }
                                                   switch state {
                                                   case .ready:   break
@@ -65,12 +66,12 @@ extension FluidDriverCompatible {
                 .invalidate(willRemoveContainer: false)
                 .registerParameters(parameters: self.parameters)
                 .configureTransitionAnimators(isReversed: true, from: self.clampedInteractionProgress, to: 0,
-                                              progress: { [weak self] (progress: CGFloat) in
+                                              progress: { [weak self] (_: CGFloat) in
                                                   guard let `self`: Self = self else { return }
                                                   /* NOTE: Propagate FluidableDelegate */
                                                   self.propagateAnimationActionDelegate(state: .update, progress: self.viewAnimator.animationProgress)
                                               },
-                                              state: { [weak self] (state: FluidAnimatorState, progress: CGFloat) in
+                                              state: { [weak self] (state: FluidAnimatorState, _: CGFloat) in
                                                   guard let `self`: Self = self else { return }
                                                   switch state {
                                                   case .ready:   break
@@ -120,7 +121,7 @@ extension FluidDriverCompatible {
                 .invalidate(willRemoveContainer: false)
                 .registerParameters(parameters: self.parameters)
                 .configureTransitionAnimators(isReversed: false, from: 0, to: 1,
-                                              state: { [weak self] (state: FluidAnimatorState, progress: CGFloat) in
+                                              state: { [weak self] (state: FluidAnimatorState, _: CGFloat) in
                                                   switch state {
                                                   case .ready:   break
                                                   case .running: break

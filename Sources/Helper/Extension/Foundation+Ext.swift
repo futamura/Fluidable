@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import UIKit
 
 internal extension String {
     init<Subject>(debug instance: Subject?) {

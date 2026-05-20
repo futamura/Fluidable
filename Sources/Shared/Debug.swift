@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 internal protocol Debuggable {
     var debug: String { get }

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /**
    The attributes of an Element.
@@ -213,7 +214,7 @@ extension PennerEasingFunction {
         var t: CGFloat = t
         if t == 0 { return b }
 
-        t = t / (d / 2)
+        t /= d / 2
         if t == 2 { return b + c }
 
         let p = d * (0.3 * 1.5)

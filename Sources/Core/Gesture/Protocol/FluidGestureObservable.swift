@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol FluidGestureObservable: FluidParametersAccessible, UIGestureRecognizerDelegate {
     var maxTranslationCount: Int { get }
@@ -96,7 +97,7 @@ extension FluidGestureObservable {
 extension FluidGestureObservable {
     /** The function that returns gesture information. */
     func currentGestureInfo() -> FluidGestureInfo {
-        guard let window: UIWindow = UIApplication.shared.keyWindow,
+        guard let window: UIWindow = UIApplication.shared.fluidKeyWindow,
               let currentLocation: CGPoint = self.currentLocation,
               let currentTranslation: CGPoint = self.currentTranslation,
               let currentVelocity: CGVector = self.currentVelocity else { return .init() }
