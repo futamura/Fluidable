@@ -19,7 +19,7 @@ extension FluidPresentDriverCompatible {
                                                  source: transitionContext.viewController(forKey: .from),
                                                  destination: transitionContext.viewController(forKey: .to),
                                                  duration: nil, easing: nil, fromValue: 0,
-                                                 completion: { [weak self] (_: UIViewAnimatingPosition, _: UIViewAnimatingStateEx) in
+                                                 completion: { [weak self] _, _ in
                                                      self?.viewAnimatorDidFinish(using: transitionContext)
                                                  })
         /* NOTE: Run extra animations */
