@@ -58,8 +58,8 @@ public extension FluidPropertyAnimator {
      The function that instantiates a `FluidPropertyAnimator` object.
 
      - parameter duration: The `TimeInterval` value for the animation.
-     - parameter point1: The first control point for the cubic bezier timing curve.
-     - parameter point2: The second control point for the cubic bezier timing curve.
+     - parameter controlPoint1: The first control point for the cubic bezier timing curve.
+     - parameter controlPoint2: The second control point for the cubic bezier timing curve.
      - parameter animations: The block containing the animations.
      - parameter id: The identifier.
      */

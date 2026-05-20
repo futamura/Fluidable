@@ -62,7 +62,7 @@ public extension FluidPropertyAnimator {
     /**
      The chainable function that adds a callback block invoked when the animation progress changes.
 
-     - parameter progression: The progression block.
+     - parameter block: The progression block.
      - returns: The `FluidPropertyAnimator` object.
      */
     @discardableResult
@@ -74,7 +74,7 @@ public extension FluidPropertyAnimator {
     /**
      The chainable function that adds a callback block invoked when the animation state changes.
 
-     - parameter completion: The completion block.
+     - parameter block: The state block.
      - returns: The `FluidPropertyAnimator` object.
      */
     @discardableResult
@@ -208,10 +208,9 @@ public extension FluidPropertyAnimator {
     }
 
     /**
-     The function that continues and adjusts the timing and duration of a paused animation.
+     The function that stops the animation.
 
-     - parameter timingParameters: The new timing information to apply to the animation.
-     - parameter durationFactor: A multiplying factor to apply to the animation’s original duration.
+     - parameter withoutFinishing: When true, stops the animation without finishing at its final position.
      - returns: The `FluidPropertyAnimator` object.
      */
     @discardableResult
