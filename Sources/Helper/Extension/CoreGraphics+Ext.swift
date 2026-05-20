@@ -28,9 +28,9 @@ extension Comparable {
     }
 }
 
-//internal extension BinaryInteger {
+// internal extension BinaryInteger {
 //    var degreesToRadians: CGFloat { return CGFloat(Int(self)) * .pi / 180 }
-//}
+// }
 
 internal extension FloatingPoint {
     var degreesToRadians: Self { return self * .pi / 180 }
@@ -64,11 +64,11 @@ internal extension CGFloat {
     static var pi8: CGFloat { return CGFloat.pi / 8 }
 }
 
-//extension CGFloat {
+// extension CGFloat {
 //    public var description: String {
 //        return String(describing: self.decimal(4))
 //    }
-//}
+// }
 
 internal extension CGPoint {
     static func + (lhs: CGPoint, rhs: CGPoint) -> CGPoint { return CGPoint(x: lhs.x + rhs.x, y: lhs.y + rhs.y) }
@@ -109,11 +109,11 @@ internal extension CGPoint {
     func length() -> CGFloat { return sqrt(x * x + y * y) }
 }
 
-//extension CGPoint: CustomStringConvertible {
+// extension CGPoint: CustomStringConvertible {
 //    public var description: String {
 //        return "(x: \(self.x.decimal(4)), y: \(self.y.decimal(4)))"
 //    }
-//}
+// }
 
 internal extension CGSize {
     static func + (lhs: CGSize, rhs: CGSize) -> CGSize { return CGSize(width: lhs.width + rhs.width, height: lhs.height + rhs.height) }
@@ -145,11 +145,11 @@ internal extension CGSize {
     var orientation: UIInterfaceOrientation { return (self.width <= self.height) ? .portrait : .landscapeLeft }
 }
 
-//extension CGSize: CustomStringConvertible {
+// extension CGSize: CustomStringConvertible {
 //    public var description: String {
 //        return "(w: \(self.width.decimal(4)), h: \(self.height.decimal(4)))"
 //    }
-//}
+// }
 
 internal extension CGRect {
     var bounds: CGRect {
@@ -186,11 +186,11 @@ internal extension CGRect {
     static func /= (rect: inout CGRect, scalar: CGFloat) { rect = rect / scalar }
 }
 
-//extension CGRect: CustomStringConvertible {
+// extension CGRect: CustomStringConvertible {
 //    public var description: String {
 //        return "(x: \(self.origin.x.decimal(4)), y: \(self.origin.y.decimal(4)), w: \(self.bounds.width.decimal(4)), h: \(self.bounds.height.decimal(4)))"
 //    }
-//}
+// }
 
 internal extension CGVector {
     /**
@@ -425,11 +425,11 @@ public extension CGAffineTransform {
     }
 }
 
-//extension CGAffineTransform: CustomStringConvertible {
+// extension CGAffineTransform: CustomStringConvertible {
 //    public var description: String {
 //        return "CGAffineTransform(\(a), \(b), \(c), \(d), \(tx), \(ty)), \(sx), \(sy))"
 //    }
-//}
+// }
 
 internal extension CGAffineTransform {
     /* Extract translation */

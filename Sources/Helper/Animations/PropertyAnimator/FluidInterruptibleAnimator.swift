@@ -44,7 +44,6 @@ extension FluidInterruptibleAnimator {
         super.startAnimation()
     }
 
-
     override func startAnimation(afterDelay delay: TimeInterval) {
         super.startAnimation(afterDelay: delay)
         Logger()?.log("🚨⏩", [

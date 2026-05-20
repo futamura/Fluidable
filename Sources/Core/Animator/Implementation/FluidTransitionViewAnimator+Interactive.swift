@@ -150,7 +150,7 @@ extension FluidTransitionViewAnimator {
             let currentGestureTranslation: CGPoint = currentGestureInfo.translation
             let diffGestureTranslation: CGPoint = currentGestureTranslation - pausedGestureTranslation
             var targetTranslation: CGPoint = currentTranslation + (diffGestureTranslation - currentTranslation) / 4 /* NOTE: Moving to gesture translation */
-            targetTranslation = targetTranslation + (.zero - targetTranslation) / 2 /* NOTE: Pulling back by attraction force */
+            targetTranslation += (.zero - targetTranslation) / 2 /* NOTE: Pulling back by attraction force */
             let translationTransform: CATransform3D = {
                 if behavior.isBidirectional {
                     return CATransform3D(tx: targetTranslation.x, ty: targetTranslation.y)

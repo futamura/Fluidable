@@ -536,7 +536,7 @@ extension FluidViewAnimatorCompatible {
         let fromFrame: CGRect = self.fromViewFrame(isReversed, self.resizePosition)
         let fromStyle: FluidFrameStyleCompatible = self.fromStyle(isReversed)
         switch self.animationType {
-        case .dismiss where self.shadowView?.layer.mask as? CAShapeLayer != nil:
+        case .dismiss where self.shadowView?.layer.mask is CAShapeLayer:
             return self.shadowView?.layer.mask as? CAShapeLayer
         case .present, .dismiss, .rotate:
             return FluidShadowLayer.createShadowMask(bounds: fromFrame.bounds,
@@ -561,7 +561,7 @@ extension FluidViewAnimatorCompatible {
 
     func fromCornerMaskLayer(_ isReversed: Bool = false) -> FluidCornerMaskLayer {
         switch self.animationType {
-        case .dismiss where self.layoutContainerView.layer.mask as? FluidCornerMaskLayer != nil:
+        case .dismiss where self.layoutContainerView.layer.mask is FluidCornerMaskLayer:
             return self.layoutContainerView.layer.mask as! FluidCornerMaskLayer
         case .present, .dismiss, .rotate:
             let fromFrame: CGRect = self.fromViewFrame(isReversed, self.resizePosition)
