@@ -87,6 +87,14 @@ docs/js/chunk-vendors.0b7dc663.js:12: trailing whitespace.
 
 The generated output is therefore not cleanly reproducible enough for routine commit without an explicit policy.
 
+## Root URL Note
+
+After publishing through GitHub Pages, `https://gumob.github.io/Fluidable/` can serve the DocC app shell with HTTP 200 while still displaying DocC's internal "The page you're looking for can't be found." screen.
+
+This is not a Pages deployment failure. It happens because the DocC SPA has documentation content at `/documentation/fluidable/`, while the project root `/Fluidable/` is not a documentation node.
+
+Decision: do not post-process DocC output for root redirects. Link readers directly to `https://gumob.github.io/Fluidable/documentation/fluidable/`.
+
 ## Policy
 
 Selected baseline:
