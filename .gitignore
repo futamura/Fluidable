@@ -67,5 +67,11 @@ report-*.html
 # Swift-DocC generated site
 docs/
 
+# Local agent instructions and memory
+.agents/
+AGENTS.md
+CLAUDE.md
+CODING-GUIDE.md
+
 Submodule
 DummyFile
