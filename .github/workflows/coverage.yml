@@ -99,11 +99,11 @@ jobs:
         run: mkdir -p Reports/coverage/ui-shard-${{ matrix.shard }}
 
       - name: Xcode build-for-testing for UI coverage
-        run: xcodebuild build-for-testing -project Fluidable.xcodeproj -scheme Fluidable -destination "$IOS_DESTINATION" -enableCodeCoverage YES -derivedDataPath "$RUNNER_TEMP/fluidable-coverage/ui-shard-${{ matrix.shard }}/DerivedData" CODE_SIGNING_ALLOWED=NO
+        run: xcodebuild build-for-testing -project Fluidable.xcodeproj -scheme Fluidable -destination "$IOS_DESTINATION" -enableCodeCoverage YES CODE_SIGNING_ALLOWED=NO
 
       - name: Configure UI coverage shard
         run: |
-          XCTESTRUN_FILE="$(find "$RUNNER_TEMP/fluidable-coverage/ui-shard-${{ matrix.shard }}/DerivedData/Build/Products" -name '*.xctestrun' -print -quit)"
+          XCTESTRUN_FILE="$(find "$HOME/Library/Developer/Xcode/DerivedData" -path '*/Build/Products/*.xctestrun' -print -quit)"
           if [ -z "$XCTESTRUN_FILE" ]; then
             echo "Missing .xctestrun file"
             exit 1
