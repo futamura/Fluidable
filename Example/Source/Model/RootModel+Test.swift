@@ -2,7 +2,7 @@
 //  RootModel+Test.swift
 //  Fluidable
 //
-//  Created by kojirof on 2019/07/11.
+//  Created by Kojiro Futamura on 2019/07/11.
 //  Copyright © 2019 Gumob. All rights reserved.
 //
 
