@@ -1,0 +1,130 @@
+name: Coverage
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  unit-coverage:
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_26.4.1.app/Contents/Developer
+
+      - name: Show versions
+        run: |
+          xcodebuild -version
+          swift --version
+          xcodebuild -showsdks
+
+      - name: Resolve packages
+        run: swift package resolve
+
+      - name: SwiftPM iOS simulator build
+        run: |
+          SDK_PATH="$(xcrun --sdk iphonesimulator --show-sdk-path)"
+          swift build --sdk "$SDK_PATH" --triple arm64-apple-ios15.0-simulator
+
+      - name: Resolve iOS simulator destination
+        run: |
+          IOS_DESTINATION="$(ruby fastlane/ios_simulator_destination.rb)"
+          echo "IOS_DESTINATION=$IOS_DESTINATION" >> "$GITHUB_ENV"
+          echo "Using iOS simulator destination: $IOS_DESTINATION"
+
+      - name: Xcode build-for-testing on iOS Simulator
+        run: xcodebuild build-for-testing -project Fluidable.xcodeproj -scheme Fluidable -destination "$IOS_DESTINATION" CODE_SIGNING_ALLOWED=NO
+
+      - name: Prepare coverage directory
+        run: mkdir -p Reports/coverage/unit
+
+      - name: Xcode unit coverage on iOS Simulator
+        run: xcodebuild test -project Fluidable.xcodeproj -scheme Fluidable -destination "$IOS_DESTINATION" -only-testing:FluidableTests -enableCodeCoverage YES -resultBundlePath Reports/coverage/unit/Fluidable.xcresult CODE_SIGNING_ALLOWED=NO
+
+      - name: Export unit coverage report
+        run: xcrun xccov view --report Reports/coverage/unit/Fluidable.xcresult > Reports/coverage/unit/xccov.txt
+
+      - name: Upload unit coverage to Codecov
+        uses: codecov/codecov-action@v6
+        with:
+          fail_ci_if_error: true
+          flags: unit
+          name: Fluidable unit coverage
+          swift_project: Fluidable
+          use_oidc: true
+
+  ui-coverage:
+    runs-on: macos-26
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3]
+    env:
+      FLUIDABLE_UI_TEST_SHARD_INDEX: ${{ matrix.shard }}
+      FLUIDABLE_UI_TEST_SHARD_TOTAL: 4
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_26.4.1.app/Contents/Developer
+
+      - name: Show versions
+        run: |
+          xcodebuild -version
+          swift --version
+          xcodebuild -showsdks
+
+      - name: Resolve packages
+        run: swift package resolve
+
+      - name: SwiftPM iOS simulator build
+        run: |
+          SDK_PATH="$(xcrun --sdk iphonesimulator --show-sdk-path)"
+          swift build --sdk "$SDK_PATH" --triple arm64-apple-ios15.0-simulator
+
+      - name: Resolve iOS simulator destination
+        run: |
+          IOS_DESTINATION="$(ruby fastlane/ios_simulator_destination.rb)"
+          echo "IOS_DESTINATION=$IOS_DESTINATION" >> "$GITHUB_ENV"
+          echo "Using iOS simulator destination: $IOS_DESTINATION"
+
+      - name: Prepare coverage directory
+        run: mkdir -p Reports/coverage/ui-shard-${{ matrix.shard }}
+
+      - name: Xcode build-for-testing for UI coverage
+        run: xcodebuild build-for-testing -project Fluidable.xcodeproj -scheme Fluidable -destination "$IOS_DESTINATION" -enableCodeCoverage YES -derivedDataPath "$RUNNER_TEMP/fluidable-coverage/ui-shard-${{ matrix.shard }}/DerivedData" CODE_SIGNING_ALLOWED=NO
+
+      - name: Configure UI coverage shard
+        run: |
+          XCTESTRUN_FILE="$(find "$RUNNER_TEMP/fluidable-coverage/ui-shard-${{ matrix.shard }}/DerivedData/Build/Products" -name '*.xctestrun' -print -quit)"
+          if [ -z "$XCTESTRUN_FILE" ]; then
+            echo "Missing .xctestrun file"
+            exit 1
+          fi
+          echo "XCTESTRUN_FILE=$XCTESTRUN_FILE" >> "$GITHUB_ENV"
+          plutil -replace FluidableUITests.EnvironmentVariables.FLUIDABLE_UI_TEST_SHARD_INDEX -string "${FLUIDABLE_UI_TEST_SHARD_INDEX}" "$XCTESTRUN_FILE"
+          plutil -replace FluidableUITests.EnvironmentVariables.FLUIDABLE_UI_TEST_SHARD_TOTAL -string "${FLUIDABLE_UI_TEST_SHARD_TOTAL}" "$XCTESTRUN_FILE"
+          plutil -replace FluidableUITests.TestingEnvironmentVariables.FLUIDABLE_UI_TEST_SHARD_INDEX -string "${FLUIDABLE_UI_TEST_SHARD_INDEX}" "$XCTESTRUN_FILE"
+          plutil -replace FluidableUITests.TestingEnvironmentVariables.FLUIDABLE_UI_TEST_SHARD_TOTAL -string "${FLUIDABLE_UI_TEST_SHARD_TOTAL}" "$XCTESTRUN_FILE"
+
+      - name: Xcode UI coverage shard on iOS Simulator
+        run: xcodebuild test-without-building -xctestrun "$XCTESTRUN_FILE" -destination "$IOS_DESTINATION" -only-testing:FluidableUITests -resultBundlePath Reports/coverage/ui-shard-${{ matrix.shard }}/Fluidable.xcresult
+
+      - name: Export UI coverage report
+        run: xcrun xccov view --report Reports/coverage/ui-shard-${{ matrix.shard }}/Fluidable.xcresult > Reports/coverage/ui-shard-${{ matrix.shard }}/xccov.txt
+
+      - name: Upload UI coverage to Codecov
+        uses: codecov/codecov-action@v6
+        with:
+          fail_ci_if_error: true
+          flags: ui
+          name: Fluidable UI coverage shard ${{ matrix.shard }}
+          swift_project: Fluidable
+          use_oidc: true
