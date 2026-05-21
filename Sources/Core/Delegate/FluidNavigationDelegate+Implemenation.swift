@@ -2,7 +2,7 @@
 //  FluidNavigationActionDelegate+Implemenation.swift
 //  Fluidable
 //
-//  Created by kojirof on 2019/07/28.
+//  Created by Kojiro Futamura on 2019/07/28.
 //  Copyright © 2019 Gumob. All rights reserved.
 //
 

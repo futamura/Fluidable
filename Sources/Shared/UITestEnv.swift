@@ -2,7 +2,7 @@
 //  UITestEnv.swift
 //  Fluidable
 //
-//  Created by kojirof on 2019/07/10.
+//  Created by Kojiro Futamura on 2019/07/10.
 //  Copyright © 2019 Gumob. All rights reserved.
 //
 
