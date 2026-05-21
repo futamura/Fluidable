@@ -1,5 +1,5 @@
 //
-// Created by kojirof on 2019-03-07.
+// Created by Kojiro Futamura on 2019-03-07.
 // Copyright (c) 2019 Gumob. All rights reserved.
 //
 
