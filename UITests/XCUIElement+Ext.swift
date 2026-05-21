@@ -2,7 +2,7 @@
 //  XCUIElement+Ext.swift
 //  Fluidable
 //
-//  Created by kojirof on 2019/07/07.
+//  Created by Kojiro Futamura on 2019/07/07.
 //  Copyright © 2019 Gumob. All rights reserved.
 //
 

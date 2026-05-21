@@ -2,7 +2,7 @@
 //  QuartzCoreSpec.swift
 //  Fluidable
 //
-//  Created by kojirof on 2019/07/03.
+//  Created by Kojiro Futamura on 2019/07/03.
 //  Copyright © 2019 Gumob. All rights reserved.
 //
 
