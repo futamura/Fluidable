@@ -21,7 +21,7 @@ extension MainSpec {
         while (true) {
             collectionCell = collectionView.cells.element(matching: .cell, identifier: model.rootCellAccessibilityIdentifier)
             if collectionCell.isVisible {
-                collectionCell.tap()
+                collectionCell.tapVisibleCenter()
                 break
             } else {
                 collectionView.swipeUp()
@@ -39,7 +39,7 @@ extension MainSpec {
         while (true) {
             collectionCell = collectionView.cells.element(matching: .cell, identifier: model.rootCellAccessibilityIdentifier)
             if collectionCell.isVisible {
-                collectionCell.tap()
+                collectionCell.tapVisibleCenter()
                 break
             } else {
                 collectionView.swipeUp()
@@ -56,7 +56,7 @@ extension MainSpec {
         while (true) {
             collectionCell = collectionView.cells.element(matching: .cell, identifier: model.rootCellAccessibilityIdentifier)
             if collectionCell.isVisible {
-                collectionCell.tap()
+                collectionCell.tapVisibleCenter()
                 break
             } else {
                 collectionView.swipeUp()
@@ -74,7 +74,7 @@ extension MainSpec {
         while (true) {
             collectionCell = collectionView.cells.element(matching: .cell, identifier: model.rootCellAccessibilityIdentifier)
             if collectionCell.isVisible {
-                collectionCell.tap()
+                collectionCell.tapVisibleCenter()
                 break
             } else {
                 collectionView.swipeUp()
@@ -216,7 +216,15 @@ extension MainSpec {
         self.assertEventually(interactView.exists)
         /* NOTE: Perform dismiss interaction */
         let vectors: InteractiveDismissVector = self.getInteractiveDismissVector(app: app, orientation: orientation, model: model)
-        interactView.swipe(from: vectors.start, to: vectors.finish)
+        let gestureView: XCUIElement
+        if model == .transitionSlideRight {
+            // The child collection proves edge position, but the dismiss gesture is recognized from the visible controller.
+            gestureView = app.otherElements.element(matching: .other, identifier: model.visibleControllerViewAccessibilityIdentifier)
+            self.assertEventually(gestureView.exists)
+        } else {
+            gestureView = interactView
+        }
+        gestureView.swipe(from: vectors.start, to: vectors.finish)
     }
 
     static func cancelInteractiveDismiss(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {

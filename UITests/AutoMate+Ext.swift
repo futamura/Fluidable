@@ -26,7 +26,23 @@ enum SwipeDirection {
 
 extension XCUIElement {
     var isVisible: Bool {
-        return exists && isHittable && !frame.isEmpty
+        guard exists && !frame.isEmpty else { return false }
+        return XCUIApplication().windows.element(boundBy: 0).frame.intersects(frame)
+    }
+
+    func tapVisibleCenter() {
+        let windowFrame = XCUIApplication().windows.element(boundBy: 0).frame
+        let visibleFrame = frame.intersection(windowFrame)
+        guard !visibleFrame.isNull && !visibleFrame.isEmpty else {
+            tap()
+            return
+        }
+
+        let offset = CGVector(
+            dx: (visibleFrame.midX - frame.minX) / frame.width,
+            dy: (visibleFrame.midY - frame.minY) / frame.height
+        )
+        coordinate(withNormalizedOffset: offset).tap()
     }
 
     func swipe(from startVector: CGVector, to stopVector: CGVector) {
