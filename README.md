@@ -58,7 +58,7 @@ import UIKit
 import Fluidable
 ```
 
-2) Initialze [`Fluidable`](https://gumob.github.io/Fluidable/Protocols/Fluidable.html) framework in `AppDelegate`:
+2) Initialze [`Fluidable`](https://gumob.github.io/Fluidable/documentation/fluidable/fluidable) framework in `AppDelegate`:
 ```swift
 class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
