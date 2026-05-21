@@ -40,16 +40,16 @@ jobs:
           xcodebuild -showsdks
 
       - name: Set up Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Generate DocC site
         run: DOCC_HOSTING_BASE_PATH=Fluidable bundle exec fastlane ios create_doc
 
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: docs
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
