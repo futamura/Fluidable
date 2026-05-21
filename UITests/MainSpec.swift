@@ -35,10 +35,21 @@ final class MainSpec: QuickSpec {
             .portrait,
             .landscapeLeft,
         ]
+        let allTestCases: [(orientation: UIDeviceOrientation, model: RootModel)] = orientations.flatMap { orientation in
+            RootModel.testCases(for: orientation).map { model in
+                (orientation: orientation, model: model)
+            }
+        }
         orientations.forEach { (orientation: UIDeviceOrientation) in
+            let models = allTestCases.enumerated().compactMap { index, testCase -> RootModel? in
+                guard testCase.orientation == orientation else { return nil }
+                guard UITestShard.includes(testCaseIndex: index) else { return nil }
+                return testCase.model
+            }
+            guard !models.isEmpty else { return }
             XCUIDevice.shared.orientation = orientation
             describe(XCUIDevice.shared.testDescription(for: orientation)) {
-                RootModel.testCases(for: orientation).forEach { (model: RootModel) in
+                models.forEach { (model: RootModel) in
                     context(model.description.capitalizingFirstLetter()) {
                         /* Fixed */
 //                        it("FinishAnimatedPresent_FinishAnimatedDismiss") {
@@ -86,6 +97,23 @@ final class MainSpec: QuickSpec {
                     }
                 }
             }
+        }
+    }
+
+    private enum UITestShard {
+        static let index = ProcessInfo.processInfo.environment["FLUIDABLE_UI_TEST_SHARD_INDEX"].flatMap(Int.init)
+        static let total = ProcessInfo.processInfo.environment["FLUIDABLE_UI_TEST_SHARD_TOTAL"].flatMap(Int.init)
+
+        static func includes(testCaseIndex: Int) -> Bool {
+            guard let index = index,
+                  let total = total,
+                  total > 0,
+                  index >= 0,
+                  index < total else {
+                return true
+            }
+
+            return testCaseIndex % total == index
         }
     }
 

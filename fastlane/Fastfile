@@ -44,7 +44,7 @@ platform :ios do
       FileUtils.rm_rf(coverage_result_bundle)
       FileUtils.rm_f(coverage_report_path)
       UI.message("Using iOS simulator destination: #{ios_destination}")
-      sh("xcodebuild test -project #{xcodeproj_framework} -scheme #{scheme_ios} -destination '#{ios_destination}' -only-testing:FluidableTests -enableCodeCoverage YES -resultBundlePath '#{coverage_result_bundle}' CODE_SIGNING_ALLOWED=NO")
+      sh("xcodebuild test -project #{xcodeproj_framework} -scheme #{scheme_ios} -destination '#{ios_destination}' -enableCodeCoverage YES -resultBundlePath '#{coverage_result_bundle}' CODE_SIGNING_ALLOWED=NO")
       sh("xcrun xccov view --report '#{coverage_result_bundle}' > '#{coverage_report_path}'")
     end
   end
