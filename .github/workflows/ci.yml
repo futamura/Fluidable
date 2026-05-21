@@ -45,8 +45,8 @@ jobs:
       - name: Prepare coverage directory
         run: mkdir -p Reports/coverage
 
-      - name: Xcode unit tests on iOS Simulator
-        run: xcodebuild test -project Fluidable.xcodeproj -scheme Fluidable -destination "$IOS_DESTINATION" -only-testing:FluidableTests -enableCodeCoverage YES -resultBundlePath Reports/coverage/Fluidable.xcresult CODE_SIGNING_ALLOWED=NO
+      - name: Xcode tests on iOS Simulator
+        run: xcodebuild test -project Fluidable.xcodeproj -scheme Fluidable -destination "$IOS_DESTINATION" -enableCodeCoverage YES -resultBundlePath Reports/coverage/Fluidable.xcresult CODE_SIGNING_ALLOWED=NO
 
       - name: Export coverage report
         run: xcrun xccov view --report Reports/coverage/Fluidable.xcresult > Reports/coverage/xccov.txt
