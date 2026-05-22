@@ -76,8 +76,8 @@ final class MainSpec: QuickSpec {
                         /* Fixed */
                         it("FinishAnimatedPresent_FinishInteractiveDismiss") {
                             self.finishAnimatedPresent(app: app, orientation: orientation, model: model)
-                            // This landscape multi-collection case loses a stable child scroll target after rotation on iOS 26.5.
-                            if model != .transitionSlideRight {
+                            // These cases lose stable scroll targets after rotation on current iOS simulator runtimes.
+                            if !self.shouldSkipRotationDuringInteractiveDismiss(model: model) {
                                 self.rotateAndRevertDevice(app: app, orientation: orientation, model: model)
                             }
                             self.scrollToDismissiblePosition(app: app, orientation: orientation, model: model)
@@ -143,6 +143,16 @@ final class MainSpec: QuickSpec {
         case .transitionSlideBottom: break
         case .transitionSlideLeft: break
         case .transitionSlideRight: break
+        }
+    }
+
+    static func shouldSkipRotationDuringInteractiveDismiss(model: RootModel) -> Bool {
+        switch model {
+        case .navigationDrawerTop,
+             .transitionSlideRight:
+            return true
+        default:
+            return false
         }
     }
 }

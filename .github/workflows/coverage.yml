@@ -96,14 +96,16 @@ jobs:
           echo "Using iOS simulator destination: $IOS_DESTINATION"
 
       - name: Prepare coverage directory
-        run: mkdir -p Reports/coverage/ui-shard-${{ matrix.shard }}
+        run: |
+          mkdir -p Reports/coverage/ui-shard-${{ matrix.shard }}
+          echo "UI_DERIVED_DATA_PATH=$HOME/Library/Developer/Xcode/DerivedData/FluidableCoverage-ui-shard-${{ matrix.shard }}" >> "$GITHUB_ENV"
 
       - name: Xcode build-for-testing for UI coverage
-        run: xcodebuild build-for-testing -project Fluidable.xcodeproj -scheme Fluidable -destination "$IOS_DESTINATION" -enableCodeCoverage YES CODE_SIGNING_ALLOWED=NO
+        run: xcodebuild build-for-testing -project Fluidable.xcodeproj -scheme Fluidable -destination "$IOS_DESTINATION" -derivedDataPath "$UI_DERIVED_DATA_PATH" -enableCodeCoverage YES CODE_SIGNING_ALLOWED=NO
 
       - name: Configure UI coverage shard
         run: |
-          XCTESTRUN_FILE="$(find "$HOME/Library/Developer/Xcode/DerivedData" -path '*/Build/Products/*.xctestrun' -print -quit)"
+          XCTESTRUN_FILE="$(find "$UI_DERIVED_DATA_PATH/Build/Products" -path '*/Build/Products/*.xctestrun' -print -quit)"
           if [ -z "$XCTESTRUN_FILE" ]; then
             echo "Missing .xctestrun file"
             exit 1
@@ -115,7 +117,7 @@ jobs:
           plutil -replace FluidableUITests.TestingEnvironmentVariables.FLUIDABLE_UI_TEST_SHARD_TOTAL -string "${FLUIDABLE_UI_TEST_SHARD_TOTAL}" "$XCTESTRUN_FILE"
 
       - name: Xcode UI coverage shard on iOS Simulator
-        run: xcodebuild test-without-building -xctestrun "$XCTESTRUN_FILE" -destination "$IOS_DESTINATION" -only-testing:FluidableUITests -resultBundlePath Reports/coverage/ui-shard-${{ matrix.shard }}/Fluidable.xcresult
+        run: xcodebuild test-without-building -xctestrun "$XCTESTRUN_FILE" -destination "$IOS_DESTINATION" -derivedDataPath "$UI_DERIVED_DATA_PATH" -only-testing:FluidableUITests -resultBundlePath Reports/coverage/ui-shard-${{ matrix.shard }}/Fluidable.xcresult
 
       - name: Export UI coverage report
         run: xcrun xccov view --report Reports/coverage/ui-shard-${{ matrix.shard }}/Fluidable.xcresult > Reports/coverage/ui-shard-${{ matrix.shard }}/xccov.txt
