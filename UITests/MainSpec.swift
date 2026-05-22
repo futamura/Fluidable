@@ -76,10 +76,7 @@ final class MainSpec: QuickSpec {
                         /* Fixed */
                         it("FinishAnimatedPresent_FinishInteractiveDismiss") {
                             self.finishAnimatedPresent(app: app, orientation: orientation, model: model)
-                            // These cases lose stable scroll targets after rotation on current iOS simulator runtimes.
-                            if !self.shouldSkipRotationDuringInteractiveDismiss(model: model) {
-                                self.rotateAndRevertDevice(app: app, orientation: orientation, model: model)
-                            }
+                            self.rotateAndRevertDevice(app: app, orientation: orientation, model: model)
                             self.scrollToDismissiblePosition(app: app, orientation: orientation, model: model)
                             self.finishInteractiveDismiss(app: app, orientation: orientation, model: model)
                         }
@@ -146,13 +143,4 @@ final class MainSpec: QuickSpec {
         }
     }
 
-    static func shouldSkipRotationDuringInteractiveDismiss(model: RootModel) -> Bool {
-        switch model {
-        case .navigationDrawerTop,
-             .transitionSlideRight:
-            return true
-        default:
-            return false
-        }
-    }
 }
