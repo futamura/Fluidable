@@ -219,6 +219,70 @@ final class UIKitSpec: QuickSpec {
                     expect(String(describing: UIBarPosition.topAttached)).to(match("topAttached"))
                 }
             }
+            describe("FluidProxy") {
+                it("keeps the original base object") {
+                    let controller = CoreTestFluidViewController()
+
+                    expect(controller.fluid.base).to(beIdenticalTo(controller))
+                    expect(FluidProxy(controller).base).to(beIdenticalTo(controller))
+                }
+
+                it("classifies navigation delegate roles") {
+                    let controller = CoreTestFluidViewController()
+                    expect(controller.fluid.isFluidNavigationSourceNavigationController).to(beFalse())
+                    expect(controller.fluid.isFluidNavigationSourceViewController).to(beFalse())
+                    expect(controller.fluid.isFluidNavigationDestinationViewController).to(beFalse())
+
+                    let rootDelegate = CoreTestNavigationRootDelegate()
+                    controller.fluidDelegate = rootDelegate
+                    expect(controller.fluid.isFluidNavigationSourceNavigationController).to(beTrue())
+
+                    let sourceDelegate = CoreTestNavigationSourceDelegate()
+                    controller.fluidDelegate = sourceDelegate
+                    expect(controller.fluid.isFluidNavigationSourceViewController).to(beTrue())
+
+                    let destinationDelegate = CoreTestNavigationDestinationDelegate()
+                    controller.fluidDelegate = destinationDelegate
+                    expect(controller.fluid.isFluidNavigationDestinationViewController).to(beTrue())
+                }
+
+                it("classifies transition delegate roles") {
+                    let controller = CoreTestFluidViewController()
+                    expect(controller.fluid.isFluidTransitionDestinationNavigationController).to(beFalse())
+                    expect(controller.fluid.isFluidTransitionSourceViewController).to(beFalse())
+                    expect(controller.fluid.isFluidTransitionDestinationViewController).to(beFalse())
+
+                    let rootDelegate = CoreTestTransitionRootDelegate()
+                    controller.fluidDelegate = rootDelegate
+                    expect(controller.fluid.isFluidTransitionDestinationNavigationController).to(beTrue())
+
+                    let sourceDelegate = CoreTestTransitionSourceDelegate()
+                    controller.fluidDelegate = sourceDelegate
+                    expect(controller.fluid.isFluidTransitionSourceViewController).to(beTrue())
+
+                    let destinationDelegate = CoreTestTransitionDestinationDelegate()
+                    controller.fluidDelegate = destinationDelegate
+                    expect(controller.fluid.isFluidTransitionDestinationViewController).to(beTrue())
+                }
+
+                it("returns configured controller delegates and drivers") {
+                    let navigation = CoreTestFluidNavigationController()
+                    let navigationDelegate = FluidNavigationControllerDelegate()
+                    navigation.delegate = navigationDelegate
+
+                    expect(navigation.fluid.navigationControllerDelegate).to(beIdenticalTo(navigationDelegate))
+                    expect(navigation.fluid.navigationPresentDriver).to(beIdenticalTo(navigationDelegate.presentDriver))
+                    expect(navigation.fluid.navigationDismissDriver).to(beIdenticalTo(navigationDelegate.dismissDriver))
+
+                    let controller = CoreTestFluidViewController()
+                    let transitionDelegate = FluidViewControllerTransitioningDelegate()
+                    controller.transitioningDelegate = transitionDelegate
+
+                    expect(controller.fluid.viewControllerTransitionDelegate).to(beIdenticalTo(transitionDelegate))
+                    expect(controller.fluid.transitionPresentDriver).to(beIdenticalTo(transitionDelegate.presentDriver))
+                    expect(controller.fluid.transitionDismissDriver).to(beIdenticalTo(transitionDelegate.dismissDriver))
+                }
+            }
             describe("FluidLayoutEdgeConstant") {
                 it("calculates edge constants from container size and frame") {
                     let constants = FluidLayoutEdgeConstant(
@@ -317,6 +381,96 @@ final class UIKitSpec: QuickSpec {
                     expect(portrait.verticalSizeClass).to(equal(UIUserInterfaceSizeClass.regular))
                     expect(landscape.horizontalSizeClass).to(equal(UIUserInterfaceSizeClass.regular))
                     expect(landscape.verticalSizeClass).to(equal(UIUserInterfaceSizeClass.compact))
+                }
+            }
+            describe("FluidFrameStyle validation") {
+                it("fills initial style defaults from presentation style and final style") {
+                    var scaleStyle = FluidInitialFrameStyle(alpha: nil, cornerRadius: 2)
+                    var drawerStyle = FluidInitialFrameStyle(alpha: nil, cornerRadius: 3)
+                    var finalStyle = FluidFinalFrameStyle(alpha: nil, cornerRadius: 8, cornerStyle: .top)
+                    finalStyle = finalStyle.validate(for: .drawer(position: .bottom))
+
+                    let validatedScale = scaleStyle.validate(for: .scale, finalFrameStyle: finalStyle)
+                    let validatedDrawer = drawerStyle.validate(for: .drawer(position: .bottom), finalFrameStyle: finalStyle)
+
+                    expect(validatedScale.alpha).to(beCloseTo(0))
+                    expect(validatedDrawer.alpha).to(beCloseTo(1))
+                    expect(validatedScale.cornerStyle?.rawValue).to(equal(finalStyle.cornerStyle?.rawValue))
+                    expect(validatedDrawer.cornerStyle?.rawValue).to(equal(finalStyle.cornerStyle?.rawValue))
+                    expect(validatedScale.isTransparentBackground).to(equal(finalStyle.isTransparentBackground))
+                    expect(validatedDrawer.isTransparentBackground).to(equal(finalStyle.isTransparentBackground))
+                }
+
+                it("maps drawer positions to exposed final corners") {
+                    var top = FluidFinalFrameStyle(alpha: nil, cornerStyle: nil)
+                    var right = FluidFinalFrameStyle(alpha: nil, cornerStyle: nil)
+                    var bottom = FluidFinalFrameStyle(alpha: nil, cornerStyle: nil)
+                    var left = FluidFinalFrameStyle(alpha: nil, cornerStyle: nil)
+
+                    expect(top.validate(for: .drawer(position: .top)).cornerStyle?.rawValue).to(equal(FluidRoundCornerStyle.bottom.rawValue))
+                    expect(right.validate(for: .drawer(position: .right)).cornerStyle?.rawValue).to(equal(FluidRoundCornerStyle.left.rawValue))
+                    expect(bottom.validate(for: .drawer(position: .bottom)).cornerStyle?.rawValue).to(equal(FluidRoundCornerStyle.top.rawValue))
+                    expect(left.validate(for: .drawer(position: .left)).cornerStyle?.rawValue).to(equal(FluidRoundCornerStyle.right.rawValue))
+                }
+            }
+            describe("FluidFrameDimension") {
+                it("creates initial frames from explicit transition containers") {
+                    let containerSize = CGSize(width: 320, height: 480)
+                    let contentOrigin = CGPoint(x: 12, y: 24)
+                    let contentSize = CGSize(width: 120, height: 160)
+                    let transform = CATransform3DMakeTranslation(4, 5, 0)
+                    let dimension = FluidInitialFrameDimension(
+                        for: FluidTransitionStyle.slide(direction: .fromLeft),
+                        containerSize: containerSize,
+                        contentOrigin: contentOrigin,
+                        contentSize: contentSize,
+                        contentTransform: transform
+                    )
+
+                    expect(dimension.frame()).to(equal(FluidLayout.createFrame(for: .slide(direction: .fromLeft),
+                                                                               containerSize: containerSize,
+                                                                               contentOrigin: contentOrigin,
+                                                                               contentSize: contentSize,
+                                                                               idiom: UIDevice.current.userInterfaceIdiom,
+                                                                               isInitial: true)))
+                    expect(CATransform3DEqualToTransform(dimension.transform(), transform)).to(beTrue())
+                }
+
+                it("selects final frames by portrait and landscape container orientation") {
+                    let portraitContainer = CGSize(width: 320, height: 480)
+                    let landscapeContainer = CGSize(width: 480, height: 320)
+                    let portraitOrigin = CGPoint(x: 10, y: 20)
+                    let portraitSize = CGSize(width: 200, height: 240)
+                    let landscapeOrigin = CGPoint(x: 30, y: 40)
+                    let landscapeSize = CGSize(width: 260, height: 180)
+                    let portraitTransform = CATransform3DMakeScale(1.1, 1.2, 1)
+                    let landscapeTransform = CATransform3DMakeTranslation(7, 8, 0)
+                    let dimension = FluidFinalFrameDimension(
+                        for: FluidTransitionStyle.drawer(position: .bottom),
+                        portraitContainerSize: portraitContainer,
+                        landscapeContainerSize: landscapeContainer,
+                        portraitContentOrigin: portraitOrigin,
+                        portraitContentSize: portraitSize,
+                        landscapeContentOrigin: landscapeOrigin,
+                        landscapeContentSize: landscapeSize,
+                        portraitContentTransform: portraitTransform,
+                        landscapeContentTransform: landscapeTransform
+                    )
+
+                    expect(dimension.frame(for: portraitContainer)).to(equal(FluidLayout.createFrame(for: .drawer(position: .bottom),
+                                                                                                     containerSize: portraitContainer,
+                                                                                                     contentOrigin: portraitOrigin,
+                                                                                                     contentSize: portraitSize,
+                                                                                                     idiom: UIDevice.current.userInterfaceIdiom,
+                                                                                                     isInitial: false)))
+                    expect(dimension.frame(for: landscapeContainer)).to(equal(FluidLayout.createFrame(for: .drawer(position: .bottom),
+                                                                                                      containerSize: landscapeContainer,
+                                                                                                      contentOrigin: landscapeOrigin,
+                                                                                                      contentSize: landscapeSize,
+                                                                                                      idiom: UIDevice.current.userInterfaceIdiom,
+                                                                                                      isInitial: false)))
+                    expect(CATransform3DEqualToTransform(dimension.transform(for: portraitContainer), portraitTransform)).to(beTrue())
+                    expect(CATransform3DEqualToTransform(dimension.transform(for: landscapeContainer), landscapeTransform)).to(beTrue())
                 }
             }
         }
@@ -513,3 +667,29 @@ final class UIKitSpec: QuickSpec {
         }
     }
 }
+
+private final class CoreTestFluidViewController: UIViewController, Fluidable {}
+
+private final class CoreTestFluidNavigationController: UINavigationController, Fluidable {}
+
+private final class CoreTestNavigationRootDelegate: NSObject, FluidNavigationRootNavigationControllerDelegate {
+    func navigationPresentAnimationDidProgress(from source: FluidSourceViewController, to destination: FluidDestinationViewController, with navigation: FluidNavigationController?, on container: UIView?, navigationStyle: FluidNavigationStyle, duration: TimeInterval, easing: FluidAnimatorEasing, state: FluidProgressState, progress: CGFloat) {}
+    func navigationDismissAnimationDidProgress(from destination: FluidDestinationViewController, to source: FluidSourceViewController, with navigation: FluidNavigationController?, on container: UIView?, navigationStyle: FluidNavigationStyle, duration: TimeInterval, easing: FluidAnimatorEasing, state: FluidProgressState, progress: CGFloat) {}
+    func navigationPresentInteractionDidProgress(from source: FluidSourceViewController, to destination: FluidDestinationViewController, with navigation: FluidNavigationController?, on container: UIView?, navigationStyle: FluidNavigationStyle, duration: TimeInterval, easing: FluidAnimatorEasing, state: FluidProgressState, progress: CGFloat, info: FluidGestureInfo) {}
+    func navigationDismissInteractionDidProgress(from destination: FluidDestinationViewController, to source: FluidSourceViewController, with navigation: FluidNavigationController?, on container: UIView?, navigationStyle: FluidNavigationStyle, duration: TimeInterval, easing: FluidAnimatorEasing, state: FluidProgressState, progress: CGFloat, info: FluidGestureInfo) {}
+}
+
+private final class CoreTestNavigationSourceDelegate: NSObject, FluidNavigationSourceViewControllerDelegate {}
+
+private final class CoreTestNavigationDestinationDelegate: NSObject, FluidNavigationDestinationViewControllerDelegate {}
+
+private final class CoreTestTransitionRootDelegate: NSObject, FluidTransitionRootNavigationControllerDelegate {
+    func transitionPresentAnimationDidProgress(from source: FluidSourceViewController, to destination: FluidDestinationViewController, with navigation: FluidNavigationController?, on container: UIView?, transitionStyle: FluidTransitionStyle, duration: TimeInterval, easing: FluidAnimatorEasing, state: FluidProgressState, progress: CGFloat) {}
+    func transitionPresentInteractionDidProgress(from source: FluidSourceViewController, to destination: FluidDestinationViewController, with navigation: FluidNavigationController?, on container: UIView?, transitionStyle: FluidTransitionStyle, duration: TimeInterval, easing: FluidAnimatorEasing, state: FluidProgressState, progress: CGFloat, info: FluidGestureInfo) {}
+    func transitionDismissAnimationDidProgress(from destination: FluidDestinationViewController, to source: FluidSourceViewController, with navigation: FluidNavigationController?, on container: UIView?, transitionStyle: FluidTransitionStyle, duration: TimeInterval, easing: FluidAnimatorEasing, state: FluidProgressState, progress: CGFloat) {}
+    func transitionDismissInteractionDidProgress(from destination: FluidDestinationViewController, to source: FluidSourceViewController, with navigation: FluidNavigationController?, on container: UIView?, transitionStyle: FluidTransitionStyle, duration: TimeInterval, easing: FluidAnimatorEasing, state: FluidProgressState, progress: CGFloat, info: FluidGestureInfo) {}
+}
+
+private final class CoreTestTransitionSourceDelegate: NSObject, FluidTransitionSourceViewControllerDelegate {}
+
+private final class CoreTestTransitionDestinationDelegate: NSObject, FluidTransitionDestinationViewControllerDelegate {}
