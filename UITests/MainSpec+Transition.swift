@@ -31,7 +31,7 @@ extension MainSpec {
                 }
             }
         }
-        usleep(sec: 1.0)
+        self.waitForPresentedController(app: app, model: model)
     }
 
     private static func tapRootCollectionCell(_ collectionView: XCUIElement, app: XCUIApplication, model: RootModel) {
@@ -217,13 +217,22 @@ extension MainSpec {
     }
 
     static func scrollToDismissiblePosition(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {
-        let option: InteractiveDismissOption = self.getInteractiveDismissOption(app: app, orientation: orientation, model: model)
+        var option: InteractiveDismissOption = self.waitForInteractiveDismissViews(app: app, orientation: orientation, model: model)
         /* NOTE: Check whether the views exist */
         guard let interactView: XCUIElement = option.interact, let targetView: XCUIElement = option.target else { return }
         self.assertEventually(interactView.exists)
         self.assertEventually(targetView.exists)
         /* NOTE: Scroll until scroll view reaches to bottom */
-        while (true) {
+        let deadline = Date().addingTimeInterval(30)
+        while Date() < deadline {
+            option = self.getInteractiveDismissOption(app: app, orientation: orientation, model: model)
+            guard let interactView: XCUIElement = option.interact,
+                  let targetView: XCUIElement = option.target,
+                  interactView.exists,
+                  targetView.exists else {
+                RunLoop.current.run(until: Date().addingTimeInterval(0.2))
+                continue
+            }
             Logger()?.log("🧪", [
                 "interactView.isVisible".lpad(64) + String(describing: interactView.isVisible),
                 "targetView.isVisible".lpad(64) + String(describing: targetView.isVisible),
@@ -236,30 +245,34 @@ extension MainSpec {
             start.press(forDuration: 0.2, thenDragTo: finish)
 //            interactView.swipe(from: vectors.start, to: vectors.finish)
         }
+        XCTAssertTrue(self.isAtDismissiblePosition(app: app, orientation: orientation, model: model))
         usleep(sec: 1.0)
     }
 
     static func finishInteractiveDismiss(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {
-        let option: InteractiveDismissOption = self.getInteractiveDismissOption(app: app, orientation: orientation, model: model)
-        defer {
-            /* NOTE: Check whether the view controller already disappears */
-            let visibleView: XCUIElement = app.otherElements.element(matching: .other, identifier: model.visibleControllerViewAccessibilityIdentifier)
-            self.assertEventually(!visibleView.exists)
+        let visibleView: XCUIElement = app.otherElements.element(matching: .other, identifier: model.visibleControllerViewAccessibilityIdentifier)
+        let deadline = Date().addingTimeInterval(30)
+        while Date() < deadline && visibleView.exists {
+            let option: InteractiveDismissOption = self.waitForInteractiveDismissViews(app: app, orientation: orientation, model: model, timeout: 5)
+            guard let interactView: XCUIElement = option.interact else { return }
+            self.assertEventually(interactView.exists)
+            /* NOTE: Perform dismiss interaction */
+            let vectors: InteractiveDismissVector = self.getInteractiveDismissVector(app: app, orientation: orientation, model: model)
+            let gestureView: XCUIElement
+            if model == .transitionSlideRight {
+                // The child collection proves edge position, but the dismiss gesture is recognized from the visible controller.
+                gestureView = visibleView
+                self.assertEventually(gestureView.exists)
+            } else {
+                gestureView = interactView
+            }
+            let start: XCUICoordinate = gestureView.coordinate(withNormalizedOffset: vectors.start)
+            let finish: XCUICoordinate = gestureView.coordinate(withNormalizedOffset: vectors.finish)
+            start.press(forDuration: 0.2, thenDragTo: finish)
+            RunLoop.current.run(until: Date().addingTimeInterval(1.0))
         }
-        /* NOTE: Check whether the view exists */
-        guard let interactView: XCUIElement = option.interact else { return }
-        self.assertEventually(interactView.exists)
-        /* NOTE: Perform dismiss interaction */
-        let vectors: InteractiveDismissVector = self.getInteractiveDismissVector(app: app, orientation: orientation, model: model)
-        let gestureView: XCUIElement
-        if model == .transitionSlideRight {
-            // The child collection proves edge position, but the dismiss gesture is recognized from the visible controller.
-            gestureView = app.otherElements.element(matching: .other, identifier: model.visibleControllerViewAccessibilityIdentifier)
-            self.assertEventually(gestureView.exists)
-        } else {
-            gestureView = interactView
-        }
-        gestureView.swipe(from: vectors.start, to: vectors.finish)
+        /* NOTE: Check whether the view controller already disappears */
+        self.assertEventually(!visibleView.exists)
     }
 
     static func cancelInteractiveDismiss(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {
@@ -279,9 +292,9 @@ extension MainSpec {
 
     static func rotateAndRevertDevice(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {
         XCUIDevice.shared.orientation = XCUIDevice.shared.orientation.isPortrait ? .landscapeLeft : .portrait
-        usleep(sec: 1.0)
+        self.waitForPresentedController(app: app, model: model)
         XCUIDevice.shared.orientation = XCUIDevice.shared.orientation.isPortrait ? .landscapeLeft : .portrait
-        usleep(sec: 1.0)
+        self.waitForPresentedController(app: app, model: model)
     }
 }
 
@@ -493,5 +506,34 @@ extension MainSpec {
             RunLoop.current.run(until: Date().addingTimeInterval(0.1))
         }
         XCTAssertTrue(condition(), file: file, line: line)
+    }
+
+    private static func waitForPresentedController(app: XCUIApplication,
+                                                   model: RootModel,
+                                                   timeout: TimeInterval = 15) {
+        let visibleView: XCUIElement = app.otherElements.element(matching: .other, identifier: model.visibleControllerViewAccessibilityIdentifier)
+        let containerView: XCUIElement = app.otherElements.element(matching: .other, identifier: model.transitionContainerViewAccessibilityIdentifier)
+        self.assertEventually(visibleView.exists, timeout: timeout)
+        self.assertEventually(containerView.exists, timeout: timeout)
+        RunLoop.current.run(until: Date().addingTimeInterval(0.2))
+    }
+
+    private static func waitForInteractiveDismissViews(app: XCUIApplication,
+                                                       orientation: UIDeviceOrientation,
+                                                       model: RootModel,
+                                                       timeout: TimeInterval = 15) -> InteractiveDismissOption {
+        let deadline = Date().addingTimeInterval(timeout)
+        var option: InteractiveDismissOption = self.getInteractiveDismissOption(app: app, orientation: orientation, model: model)
+        while Date() < deadline {
+            option = self.getInteractiveDismissOption(app: app, orientation: orientation, model: model)
+            guard let interactView: XCUIElement = option.interact, interactView.exists else {
+                RunLoop.current.run(until: Date().addingTimeInterval(0.2))
+                continue
+            }
+            guard let targetView: XCUIElement = option.target else { return option }
+            if targetView.exists { return option }
+            RunLoop.current.run(until: Date().addingTimeInterval(0.2))
+        }
+        return option
     }
 }
