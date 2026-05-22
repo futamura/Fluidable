@@ -219,6 +219,106 @@ final class UIKitSpec: QuickSpec {
                     expect(String(describing: UIBarPosition.topAttached)).to(match("topAttached"))
                 }
             }
+            describe("FluidLayoutEdgeConstant") {
+                it("calculates edge constants from container size and frame") {
+                    let constants = FluidLayoutEdgeConstant(
+                        size: CGSize(width: 100, height: 80),
+                        frame: CGRect(x: 10, y: 12, width: 40, height: 30)
+                    )
+
+                    expect(constants.top).to(beCloseTo(12))
+                    expect(constants.bottom).to(beCloseTo(-38))
+                    expect(constants.left).to(beCloseTo(10))
+                    expect(constants.right).to(beCloseTo(-50))
+                    expect(String(describing: constants)).to(equal("(t: 12.0, b: -38.0, l: 10.0, r: -50.0)"))
+                }
+
+                it("creates optional constants only when all edges are provided") {
+                    let constants = FluidLayoutEdgeConstant(top: 1, bottom: 2, left: 3, right: 4)
+                    expect(constants).notTo(beNil())
+                    expect(constants?.top).to(beCloseTo(1))
+                    expect(constants?.bottom).to(beCloseTo(2))
+                    expect(constants?.left).to(beCloseTo(3))
+                    expect(constants?.right).to(beCloseTo(4))
+
+                    expect(FluidLayoutEdgeConstant(top: nil, bottom: 2, left: 3, right: 4)).to(beNil())
+                    expect(FluidLayoutEdgeConstant(top: 1, bottom: nil, left: 3, right: 4)).to(beNil())
+                    expect(FluidLayoutEdgeConstant(top: 1, bottom: 2, left: nil, right: 4)).to(beNil())
+                    expect(FluidLayoutEdgeConstant(top: 1, bottom: 2, left: 3, right: nil)).to(beNil())
+                }
+
+                it("applies only provided edge overrides") {
+                    var constants = FluidLayoutEdgeConstant(top: 1, bottom: 2, left: 3, right: 4)!
+                    constants.apply(top: 10, right: 40)
+
+                    expect(constants).to(equal(FluidLayoutEdgeConstant(top: 10, bottom: 2, left: 3, right: 40)))
+                    expect(constants).notTo(equal(FluidLayoutEdgeConstant(top: 1, bottom: 2, left: 3, right: 4)))
+                }
+            }
+            describe("FluidLayout generator") {
+                it("creates expected frames for slide and drawer styles") {
+                    let containerSize = CGSize(width: 320, height: 480)
+
+                    expect(FluidLayout.createFrame(for: .slide(direction: .fromTop),
+                                                   containerSize: containerSize,
+                                                   contentOrigin: nil,
+                                                   contentSize: nil,
+                                                   idiom: .phone,
+                                                   isInitial: true))
+                        .to(equal(CGRect(x: 0, y: -480, width: 320, height: 480)))
+
+                    expect(FluidLayout.createFrame(for: .slide(direction: .fromRight),
+                                                   containerSize: containerSize,
+                                                   contentOrigin: nil,
+                                                   contentSize: nil,
+                                                   idiom: .phone,
+                                                   isInitial: true))
+                        .to(equal(CGRect(x: 320, y: 0, width: 320, height: 480)))
+
+                    expect(FluidLayout.createFrame(for: .drawer(position: .bottom),
+                                                   containerSize: containerSize,
+                                                   contentOrigin: nil,
+                                                   contentSize: nil,
+                                                   idiom: .phone,
+                                                   isInitial: false))
+                        .to(equal(CGRect(x: 0, y: 120, width: 320, height: 360)))
+
+                    expect(FluidLayout.createFrame(for: .drawer(position: .left),
+                                                   containerSize: containerSize,
+                                                   contentOrigin: nil,
+                                                   contentSize: nil,
+                                                   idiom: .phone,
+                                                   isInitial: false))
+                        .to(equal(CGRect(x: 0, y: 0, width: 228, height: 480)))
+                }
+
+                it("creates center and size constraints for full screen content") {
+                    let container = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 480))
+                    let content = UIView(frame: .zero)
+                    container.addSubview(content)
+
+                    let constraints = FluidLayout.centeredFullScreenAnchors(container, content)
+
+                    expect(constraints.midX.firstAttribute).to(equal(NSLayoutConstraint.Attribute.centerX))
+                    expect(constraints.midY.firstAttribute).to(equal(NSLayoutConstraint.Attribute.centerY))
+                    expect(constraints.width.firstAttribute).to(equal(NSLayoutConstraint.Attribute.width))
+                    expect(constraints.height.firstAttribute).to(equal(NSLayoutConstraint.Attribute.height))
+                    expect(constraints.midX.constant).to(beCloseTo(0))
+                    expect(constraints.midY.constant).to(beCloseTo(0))
+                    expect(constraints.width.constant).to(beCloseTo(0))
+                    expect(constraints.height.constant).to(beCloseTo(0))
+                }
+
+                it("derives layout traits from size orientation") {
+                    let portrait = FluidLayout.trait(for: CGSize(width: 320, height: 480))
+                    let landscape = FluidLayout.trait(for: CGSize(width: 480, height: 320))
+
+                    expect(portrait.horizontalSizeClass).to(equal(UIUserInterfaceSizeClass.compact))
+                    expect(portrait.verticalSizeClass).to(equal(UIUserInterfaceSizeClass.regular))
+                    expect(landscape.horizontalSizeClass).to(equal(UIUserInterfaceSizeClass.regular))
+                    expect(landscape.verticalSizeClass).to(equal(UIUserInterfaceSizeClass.compact))
+                }
+            }
         }
         describe("NSLayoutConstraint") {
             let prefix: String = "test"
