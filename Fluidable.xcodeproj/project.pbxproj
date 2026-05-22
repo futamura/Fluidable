@@ -32,6 +32,7 @@
 		A73FA6062228373D00B9B993 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A73FA6042228373D00B9B993 /* HeaderView.xib */; };
 		A743D1CC21C7A17F00230502 /* Fluidable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71F674521C50EA8007CADA0 /* Fluidable.framework */; };
 		A743D1CD21C7A17F00230502 /* Fluidable.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A71F674521C50EA8007CADA0 /* Fluidable.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A743D1CF21C7A17F00230502 /* Fluidable.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A71F674521C50EA8007CADA0 /* Fluidable.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A7498D3A22B0F474002282DD /* NavigationChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE81DB86B266033ED2C1C /* NavigationChildViewController.swift */; };
 		A74ACA1822F01513009BF25C /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D9F0D22F0119E0071867E /* Debug.swift */; };
 		A74ACA1922F01513009BF25C /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D9F0D22F0119E0071867E /* Debug.swift */; };
@@ -327,6 +328,17 @@
 			dstSubfolderSpec = 10;
 			files = (
 				A743D1CD21C7A17F00230502 /* Fluidable.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A743D1D021C7A17F00230502 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A743D1CF21C7A17F00230502 /* Fluidable.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1273,6 +1285,7 @@
 			buildPhases = (
 				A71F680321C6624A007CADA0 /* Sources */,
 				A71F680421C6624A007CADA0 /* Frameworks */,
+				A743D1D021C7A17F00230502 /* Embed Frameworks */,
 				A71F680521C6624A007CADA0 /* Resources */,
 			);
 			buildRules = (

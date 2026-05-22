@@ -17,17 +17,52 @@ extension MainSpec {
         let collectionView: XCUIElement = app.collectionViews.element(matching: .collectionView, identifier: "rootCollectionView")
         self.assertEventually(collectionView.exists)
         /* NOTE: Scroll until the collection targetView is found */
-        var collectionCell: XCUIElement!
-        while (true) {
-            collectionCell = collectionView.cells.element(matching: .cell, identifier: model.rootCellAccessibilityIdentifier)
+        if model == .transitionFluidModal {
+            self.tapRootCollectionCell(collectionView, app: app, model: model)
+        } else {
+            var collectionCell: XCUIElement!
+            while (true) {
+                collectionCell = collectionView.cells.element(matching: .cell, identifier: model.rootCellAccessibilityIdentifier)
+                if collectionCell.isVisible {
+                    collectionCell.tapVisibleCenter()
+                    break
+                } else {
+                    collectionView.swipeUp()
+                }
+            }
+        }
+        usleep(sec: 1.0)
+    }
+
+    private static func tapRootCollectionCell(_ collectionView: XCUIElement, app: XCUIApplication, model: RootModel) {
+        for _ in 0..<40 {
+            let collectionCell = collectionView.cells.element(matching: .cell, identifier: model.rootCellAccessibilityIdentifier)
             if collectionCell.isVisible {
-                collectionCell.tapVisibleCenter()
-                break
+                let windowFrame = app.windows.element(boundBy: 0).frame
+                let visibleCollectionFrame = collectionView.frame.intersection(windowFrame)
+                let centerY = collectionCell.frame.midY
+                let topInset = visibleCollectionFrame.minY + min(24, visibleCollectionFrame.height * 0.1)
+                let bottomInset = visibleCollectionFrame.maxY - min(24, visibleCollectionFrame.height * 0.1)
+
+                if centerY >= topInset && centerY <= bottomInset {
+                    collectionCell.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+                    return
+                }
+
+                self.nudgeRootCollection(collectionView, downward: centerY < topInset)
             } else {
                 collectionView.swipeUp()
             }
         }
-        usleep(sec: 1.0)
+        XCTFail("Failed to bring \(model.rootCellAccessibilityIdentifier) into a tappable position")
+    }
+
+    private static func nudgeRootCollection(_ collectionView: XCUIElement, downward: Bool) {
+        let startY: CGFloat = downward ? 0.4 : 0.6
+        let finishY: CGFloat = downward ? 0.6 : 0.4
+        let start = collectionView.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: startY))
+        let finish = collectionView.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: finishY))
+        start.press(forDuration: 0.05, thenDragTo: finish)
     }
 
     static func cancelAnimatedPresent(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {

@@ -1,6 +1,7 @@
 default_platform(:ios)
 
 require "fileutils"
+require "shellwords"
 require_relative "ios_simulator_destination"
 
 project_name = ENV.fetch("PROJECT_NAME", "Fluidable")
@@ -8,13 +9,59 @@ repo_root = File.expand_path("..", __dir__)
 xcodeproj_framework = ENV.fetch("XCODEPROJ_FRAMEWORK", "#{project_name}.xcodeproj")
 scheme_ios = ENV.fetch("SCHEME_IOS", project_name)
 ios_simulator_triple = "arm64-apple-ios15.0-simulator"
-coverage_result_bundle = File.join(repo_root, "Reports", "coverage", "#{project_name}.xcresult")
+coverage_dir = File.join(repo_root, "Reports", "coverage")
 coverage_report_path = File.join(repo_root, "Reports", "coverage", "xccov.txt")
 docc_output_path = File.join(repo_root, "docs")
 docc_hosting_base_path = ENV.fetch("DOCC_HOSTING_BASE_PATH", project_name)
 
+def escape_sh(value)
+  Shellwords.escape(value.to_s)
+end
+
 def ios_destination
   ENV.fetch("IOS_DESTINATION") { IOSSimulatorDestination.destination }
+end
+
+def ui_coverage_shard_total
+  total = Integer(ENV.fetch("FLUIDABLE_UI_TEST_SHARD_TOTAL", "4"))
+  UI.user_error!("FLUIDABLE_UI_TEST_SHARD_TOTAL must be greater than 0") unless total.positive?
+
+  total
+rescue ArgumentError
+  UI.user_error!("FLUIDABLE_UI_TEST_SHARD_TOTAL must be an integer")
+end
+
+def ui_coverage_shards(total)
+  raw_shards = ENV["FLUIDABLE_UI_TEST_SHARDS"]
+  return (0...total).to_a if raw_shards.nil? || raw_shards.strip.empty?
+
+  raw_shards.split(",").map do |raw_shard|
+    shard = Integer(raw_shard.strip)
+    unless shard.between?(0, total - 1)
+      UI.user_error!("FLUIDABLE_UI_TEST_SHARDS contains #{shard}, but valid shard indexes are 0...#{total}")
+    end
+
+    shard
+  end
+rescue ArgumentError
+  UI.user_error!("FLUIDABLE_UI_TEST_SHARDS must be a comma-separated integer list")
+end
+
+def xctestrun_file(derived_data_path)
+  Dir.glob(File.join(derived_data_path, "Build", "Products", "*.xctestrun")).first.tap do |path|
+    UI.user_error!("Missing .xctestrun file under #{derived_data_path}") if path.nil?
+  end
+end
+
+def set_ui_coverage_shard(xctestrun_path, shard_index:, shard_total:)
+  {
+    "FluidableUITests.EnvironmentVariables.FLUIDABLE_UI_TEST_SHARD_INDEX" => shard_index,
+    "FluidableUITests.EnvironmentVariables.FLUIDABLE_UI_TEST_SHARD_TOTAL" => shard_total,
+    "FluidableUITests.TestingEnvironmentVariables.FLUIDABLE_UI_TEST_SHARD_INDEX" => shard_index,
+    "FluidableUITests.TestingEnvironmentVariables.FLUIDABLE_UI_TEST_SHARD_TOTAL" => shard_total
+  }.each do |key, value|
+    sh("plutil -replace #{key} -string #{escape_sh(value)} #{escape_sh(xctestrun_path)}")
+  end
 end
 
 def clean_generated_docs(repo_root)
@@ -40,12 +87,49 @@ platform :ios do
   desc "Run Xcode coverage and export an xccov text report"
   lane :coverage do
     Dir.chdir(repo_root) do
-      FileUtils.mkdir_p(File.dirname(coverage_result_bundle))
-      FileUtils.rm_rf(coverage_result_bundle)
+      shard_total = ui_coverage_shard_total
+      shard_indexes = ui_coverage_shards(shard_total)
+      unit_dir = File.join(coverage_dir, "unit")
+      unit_result_bundle = File.join(unit_dir, "#{project_name}.xcresult")
+      unit_report_path = File.join(unit_dir, "xccov.txt")
+      report_entries = [["unit", unit_report_path]]
+
+      FileUtils.mkdir_p(coverage_dir)
+      FileUtils.rm_rf(unit_dir)
       FileUtils.rm_f(coverage_report_path)
       UI.message("Using iOS simulator destination: #{ios_destination}")
-      sh("xcodebuild test -project #{xcodeproj_framework} -scheme #{scheme_ios} -destination '#{ios_destination}' -enableCodeCoverage YES -resultBundlePath '#{coverage_result_bundle}' CODE_SIGNING_ALLOWED=NO")
-      sh("xcrun xccov view --report '#{coverage_result_bundle}' > '#{coverage_report_path}'")
+      UI.message("Running unit coverage")
+      FileUtils.mkdir_p(unit_dir)
+      sh("xcodebuild test -project #{escape_sh(xcodeproj_framework)} -scheme #{escape_sh(scheme_ios)} -destination #{escape_sh(ios_destination)} #{escape_sh("-only-testing:#{project_name}Tests")} -enableCodeCoverage YES -resultBundlePath #{escape_sh(unit_result_bundle)} CODE_SIGNING_ALLOWED=NO")
+      sh("xcrun xccov view --report #{escape_sh(unit_result_bundle)} > #{escape_sh(unit_report_path)}")
+
+      shard_indexes.each do |shard_index|
+        shard_dir = File.join(coverage_dir, "ui-shard-#{shard_index}")
+        shard_derived_data_path = File.join(shard_dir, "DerivedData")
+        shard_result_bundle = File.join(shard_dir, "#{project_name}.xcresult")
+        shard_report_path = File.join(shard_dir, "xccov.txt")
+
+        FileUtils.rm_rf(shard_dir)
+        FileUtils.mkdir_p(shard_dir)
+        UI.message("Running UI coverage shard #{shard_index}/#{shard_total - 1}")
+        sh("xcodebuild build-for-testing -project #{escape_sh(xcodeproj_framework)} -scheme #{escape_sh(scheme_ios)} -destination #{escape_sh(ios_destination)} -derivedDataPath #{escape_sh(shard_derived_data_path)} -enableCodeCoverage YES CODE_SIGNING_ALLOWED=NO")
+        set_ui_coverage_shard(
+          xctestrun_file(shard_derived_data_path),
+          shard_index: shard_index,
+          shard_total: shard_total
+        )
+        sh("xcodebuild test-without-building -xctestrun #{escape_sh(xctestrun_file(shard_derived_data_path))} -destination #{escape_sh(ios_destination)} -derivedDataPath #{escape_sh(shard_derived_data_path)} -only-testing:FluidableUITests -resultBundlePath #{escape_sh(shard_result_bundle)}")
+        sh("xcrun xccov view --report #{escape_sh(shard_result_bundle)} > #{escape_sh(shard_report_path)}")
+        report_entries << ["ui-shard-#{shard_index}", shard_report_path]
+      end
+
+      File.open(coverage_report_path, "w") do |report|
+        report_entries.each do |name, path|
+          report.puts("== #{name} ==")
+          report.write(File.read(path))
+          report.puts
+        end
+      end
     end
   end
 
