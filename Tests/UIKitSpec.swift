@@ -23,6 +23,8 @@ final class UIKitSpec: QuickSpec {
         }
     }
 
+    class TestInteractiveView: UIView, FluidInteractiveView {}
+
     class TestNavigationController: UINavigationController {
         var name: String?
         init(rootViewController: UIViewController, name: String) {
@@ -57,6 +59,44 @@ final class UIKitSpec: QuickSpec {
         }
         required init?(coder aDecoder: NSCoder) {
             super.init(coder: aDecoder)
+        }
+    }
+
+    class TestShadowLayerCoder: NSCoder {
+        var floats: [String: Float] = [:]
+        var bools: [String: Bool] = [:]
+
+        override var allowsKeyedCoding: Bool { return true }
+
+        override func encode(_ value: Float, forKey key: String) {
+            floats[key] = value
+        }
+
+        override func encode(_ value: Bool, forKey key: String) {
+            bools[key] = value
+        }
+
+        override func encode(_ objv: Any?, forKey key: String) {}
+        override func encode(_ value: Double, forKey key: String) {}
+        override func encode(_ value: Int, forKey key: String) {}
+        override func encode(_ value: Int32, forKey key: String) {}
+        override func encode(_ value: Int64, forKey key: String) {}
+        override func encodeBytes(_ bytesp: UnsafePointer<UInt8>?, length lenv: Int, forKey key: String) {}
+
+        override func decodeFloat(forKey key: String) -> Float {
+            return floats[key] ?? 0
+        }
+
+        override func decodeBool(forKey key: String) -> Bool {
+            return bools[key] ?? false
+        }
+
+        override func decodeObject(forKey key: String) -> Any? {
+            return nil
+        }
+
+        override func containsValue(forKey key: String) -> Bool {
+            return floats[key] != nil || bools[key] != nil
         }
     }
 
@@ -792,6 +832,64 @@ final class UIKitSpec: QuickSpec {
                     expect(layer.mask as? CAShapeLayer).notTo(beNil())
                     expect(FluidShadowLayer.needsDisplay(forKey: "shadowCornerRadius")).to(beTrue())
                     expect(FluidShadowLayer.needsDisplay(forKey: "isTransparentBackground")).to(beTrue())
+                }
+
+                it("preserves shadow state when copied and encoded") {
+                    let layer = FluidShadowLayer(frame: CGRect(x: 1, y: 2, width: 30, height: 40))
+                    layer.castShadow(frame: CGRect(x: 0, y: 0, width: 50, height: 60),
+                                     shadowCornerRadius: 9,
+                                     shadowRoundingCorners: [.topLeft, .bottomRight],
+                                     shadowColor: UIColor.green.cgColor,
+                                     shadowOpacity: 0.45,
+                                     shadowRadius: 6,
+                                     shadowOffset: CGSize(width: 3, height: 4),
+                                     isTransparentBackground: true)
+
+                    layer.castShadow(frame: CGRect(x: 0, y: 0, width: 50, height: 60))
+
+                    expect(layer.shadowCornerRadius).to(beCloseTo(9))
+                    expect(layer.shadowRoundingCorners).to(equal([.topLeft, .bottomRight]))
+                    expect(CGFloat(layer.shadowOpacity)).to(beCloseTo(0.45, within: 0.001))
+                    expect(layer.shadowRadius).to(beCloseTo(6))
+                    expect(layer.shadowOffset).to(equal(CGSize(width: 3, height: 4)))
+                    expect(layer.isTransparentBackground).to(beTrue())
+
+                    let copied = FluidShadowLayer(layer: layer)
+                    expect(copied.shadowCornerRadius).to(beCloseTo(layer.shadowCornerRadius))
+                    expect(copied.shadowRoundingCorners).to(equal(layer.shadowRoundingCorners))
+                    expect(copied.isTransparentBackground).to(equal(layer.isTransparentBackground))
+
+                    let coder = TestShadowLayerCoder()
+                    layer.encode(with: coder)
+
+                    let decoded = FluidShadowLayer(coder: coder)
+
+                    expect(decoded?.shadowCornerRadius).to(beCloseTo(layer.shadowCornerRadius))
+                    expect(decoded?.isTransparentBackground).to(equal(layer.isTransparentBackground))
+                    expect(FluidShadowLayer.needsDisplay(forKey: "shadowOpacity")).to(beFalse())
+                }
+            }
+            describe("FluidInteractiveView") {
+                it("expands, restores, and resets transforms") {
+                    let view = TestInteractiveView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+
+                    expect(view.expandScale).to(beCloseTo(1.05))
+                    expect(view.restoreScale).to(beCloseTo(1.0))
+
+                    view.expand()
+
+                    expect(view.transform.a).to(beCloseTo(view.expandScale, within: 0.001))
+                    expect(view.transform.d).to(beCloseTo(view.expandScale, within: 0.001))
+
+                    view.restore()
+
+                    expect(view.transform.a).to(beCloseTo(view.restoreScale, within: 0.001))
+                    expect(view.transform.d).to(beCloseTo(view.restoreScale, within: 0.001))
+
+                    view.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+                    view.reset()
+
+                    expect(view.transform).to(equal(.identity))
                 }
             }
             describe("FluidCornerMaskLayer") {
