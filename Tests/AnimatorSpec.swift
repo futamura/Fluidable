@@ -472,6 +472,74 @@ final class AnimatorSpec: QuickSpec {
                     expect(animator.animatorState).to(equal(.finished))
                     expect(animator.displayLink).to(beNil())
                 }
+
+                it("initializes timing variants and queued animations") {
+                    var invokedCount = 0
+                    let curveAnimator = FluidPropertyAnimator(duration: 1, curve: .easeInOut, id: "property-curve") {
+                        invokedCount += 1
+                    }
+                    let pointAnimator = FluidPropertyAnimator(duration: 1,
+                                                             controlPoint1: CGPoint(x: 0.2, y: 0.1),
+                                                             controlPoint2: CGPoint(x: 0.8, y: 0.9),
+                                                             id: "property-point") {
+                        invokedCount += 1
+                    }
+                    let scalarAnimator = FluidPropertyAnimator(duration: 1,
+                                                              c1x: 0.1,
+                                                              c1y: 0.2,
+                                                              c2x: 0.8,
+                                                              c2y: 0.9)
+                    let dampingAnimator = FluidPropertyAnimator(duration: 1, dampingRatio: 0.6, id: "property-damping") {
+                        invokedCount += 1
+                    }
+
+                    expect(curveAnimator.identifier).to(equal("property-curve"))
+                    expect(pointAnimator.identifier).to(equal("property-point"))
+                    expect(dampingAnimator.identifier).to(equal("property-damping"))
+                    expect(scalarAnimator.duration).to(equal(1))
+                    expect(curveAnimator.animations?.count).to(equal(1))
+                    expect(pointAnimator.animations?.count).to(equal(1))
+                    expect(dampingAnimator.animations?.count).to(equal(1))
+
+                    [curveAnimator, pointAnimator, scalarAnimator, dampingAnimator].forEach {
+                        $0.add({}, lazy: true)
+                        $0.run()
+                        $0.finish(at: .current)
+                        expect($0.animatorState).to(equal(.finished))
+                    }
+                    expect(invokedCount).to(equal(3))
+                }
+
+                it("converts and merges queued property animations") {
+                    let first = FluidPropertyAnimator(duration: 1, easing: .linear, id: "property-first")
+                    let second = FluidPropertyAnimator(duration: 1, easing: .easeOut, id: "property-second")
+                    let empty = FluidPropertyAnimator(duration: 1, easing: .easeIn, id: "property-empty")
+
+                    first.add({}, lazy: true)
+                    second.add({}, delayFactor: 0.2, lazy: true)
+
+                    let converted = FluidPropertyAnimator.convert([first, second, empty],
+                                                                 duration: 1,
+                                                                 easing: .linear,
+                                                                 id: "converted-property")
+                    let emptyConverted = FluidPropertyAnimator.convert(nil,
+                                                                      duration: 1,
+                                                                      easing: .linear,
+                                                                      id: "empty-converted-property")
+                    let merged = FluidPropertyAnimator.merge([first, second, empty],
+                                                            duration: 1,
+                                                            easing: .linear)
+                    let emptyMerged = FluidPropertyAnimator.merge(nil,
+                                                                 duration: 1,
+                                                                 easing: .linear)
+
+                    expect(converted.identifier).to(equal("converted-property"))
+                    expect(emptyConverted.identifier).to(equal("empty-converted-property"))
+                    expect(merged.identifier).to(equal("interruptible"))
+                    expect(emptyMerged.identifier).to(equal("interruptible"))
+                    expect(merged.animations).notTo(beNil())
+                    expect(emptyMerged.animations).notTo(beNil())
+                }
             }
         }
 
