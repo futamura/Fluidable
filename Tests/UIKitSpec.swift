@@ -636,6 +636,63 @@ final class UIKitSpec: QuickSpec {
                     expect(animator.layoutContainerView.layer.maskedCorners).to(equal(animator.initialStyle.maskedCorners))
                 }
 
+                it("creates core animation fallbacks for shadow and corner masks") {
+                    let fixture = makeCoreTestTransitionFixture(style: .slide(direction: .fromBottom))
+                    let animator = fixture.presentAnimator
+                    let layoutContainerView = animator.layoutContainerView!
+                    let shadowView = FluidShadowView(shadowCornerRadius: 0,
+                                                     shadowRoundingCorners: nil,
+                                                     shadowOpacity: 0,
+                                                     shadowColor: UIColor.black.cgColor,
+                                                     shadowRadius: 0,
+                                                     shadowOffset: .zero,
+                                                     isTransparentBackground: true)
+
+                    fixture.container.addSubview(shadowView)
+                    shadowView.layer.mask = CAShapeLayer()
+                    var parameters = animator.parameters!
+                    var initialStyle = FluidInitialFrameStyle(alpha: 1,
+                                                             cornerRadius: 6,
+                                                             shadowColor: UIColor.blue.cgColor,
+                                                             shadowOpacity: 0.25,
+                                                             shadowRadius: 3,
+                                                             shadowOffset: CGSize(width: -1, height: 2))
+                    var finalStyle = FluidFinalFrameStyle(alpha: 1,
+                                                          cornerRadius: 18,
+                                                          cornerStyle: .bottom,
+                                                          shadowColor: UIColor.red.cgColor,
+                                                          shadowOpacity: 0.75,
+                                                          shadowRadius: 9,
+                                                          shadowOffset: CGSize(width: 3, height: 4))
+                    initialStyle.isTransparentBackground = true
+                    finalStyle.isTransparentBackground = true
+                    parameters.layoutContainerView = layoutContainerView
+                    parameters.shadowView = shadowView
+                    parameters.shouldCastShadow = true
+                    parameters.shouldMaskCorner = true
+                    parameters.initialStyle = initialStyle
+                    parameters.finalStyle = finalStyle
+                    animator.parameters = parameters
+
+                    let expectedShadowFrame = animator.toShadowFrame(false, 0)
+                    let shadowAnimators = animator.createShadowCoreAnimation(false)
+                    let cornerAnimators = animator.createCornerRadiusCoreAnimation(false)
+
+                    expect(shadowAnimators.count).to(equal(2))
+                    expect((shadowAnimators.first as? FluidCoreAnimator)?.animationCount).to(equal(8))
+                    expect((shadowAnimators.last as? FluidCoreAnimator)?.animationCount).to(equal(1))
+                    expect(cornerAnimators.count).to(equal(1))
+                    expect((cornerAnimators.first as? FluidCoreAnimator)?.animationCount).to(equal(1))
+                    expect(shadowView.layer.frame).to(equal(expectedShadowFrame))
+                    expect(shadowView.layer.cornerRadius).to(beCloseTo(18))
+                    expect(CGFloat(shadowView.layer.shadowOpacity)).to(beCloseTo(0.75, within: 0.001))
+                    expect(shadowView.layer.shadowRadius).to(beCloseTo(9))
+                    expect(shadowView.layer.shadowOffset).to(equal(CGSize(width: 3, height: 4)))
+                    expect(shadowView.layer.shadowPath).notTo(beNil())
+                    expect(shadowView.layer.mask as? CAShapeLayer).notTo(beNil())
+                    expect(animator.layoutContainerView.layer.mask as? FluidCornerMaskLayer).notTo(beNil())
+                }
+
                 it("invalidates animator state and removes transient views") {
                     let fixture = makeCoreTestTransitionFixture()
                     let animator = fixture.presentAnimator
@@ -735,6 +792,43 @@ final class UIKitSpec: QuickSpec {
                     expect(layer.mask as? CAShapeLayer).notTo(beNil())
                     expect(FluidShadowLayer.needsDisplay(forKey: "shadowCornerRadius")).to(beTrue())
                     expect(FluidShadowLayer.needsDisplay(forKey: "isTransparentBackground")).to(beTrue())
+                }
+            }
+            describe("FluidCornerMaskLayer") {
+                it("updates mask paths and preserves copied mask state") {
+                    let initialBounds = CGRect(x: 0, y: 0, width: 100, height: 80)
+                    let updatedBounds = CGRect(x: 0, y: 0, width: 120, height: 90)
+                    let layer = FluidCornerMaskLayer(bounds: initialBounds,
+                                                     cornerRadius: 8,
+                                                     roundingCorners: [.topLeft, .topRight])
+
+                    expect(layer.frame).to(equal(initialBounds))
+                    expect(layer.fluidCornerRadius).to(beCloseTo(8))
+                    expect(layer.fluidRoundingCorners).to(equal([.topLeft, .topRight]))
+                    expect(layer.path).notTo(beNil())
+
+                    layer.updateMaskPath(bounds: updatedBounds,
+                                         cornerRadius: 14,
+                                         roundingCorners: [.bottomLeft, .bottomRight])
+
+                    expect(layer.fluidCornerRadius).to(beCloseTo(14))
+                    expect(layer.fluidRoundingCorners).to(equal([.bottomLeft, .bottomRight]))
+                    expect(layer.path?.boundingBoxOfPath).to(equal(updatedBounds))
+
+                    layer.bounds = CGRect(x: 0, y: 0, width: 60, height: 40)
+
+                    expect(layer.path?.boundingBoxOfPath).to(equal(CGRect(x: 0, y: 0, width: 60, height: 40)))
+
+                    let copied = FluidCornerMaskLayer(layer: layer)
+
+                    expect(copied.frame).to(equal(layer.frame))
+                    expect(copied.fluidCornerRadius).to(beCloseTo(layer.fluidCornerRadius))
+                    expect(copied.fluidRoundingCorners).to(equal(layer.fluidRoundingCorners))
+                    expect(copied.path).notTo(beNil())
+                    expect(FluidCornerMaskLayer.createMaskPath(bounds: initialBounds,
+                                                               cornerRadius: 8,
+                                                               roundingCorners: .topLeft).boundingBoxOfPath)
+                        .to(equal(initialBounds))
                 }
             }
             describe("Navigation interactive animator") {
