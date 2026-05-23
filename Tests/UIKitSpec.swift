@@ -525,6 +525,116 @@ final class UIKitSpec: QuickSpec {
                     expect(FluidShadowLayer.needsDisplay(forKey: "isTransparentBackground")).to(beTrue())
                 }
             }
+            describe("Navigation interactive animator") {
+                it("interpolates dismiss frames and shadow properties") {
+                    let fixture = makeCoreTestNavigationFixture(style: .slide(direction: .fromBottom))
+                    let animator = fixture.dismissAnimator
+                    let shadowView = FluidShadowView(shadowCornerRadius: 0,
+                                                     shadowRoundingCorners: nil,
+                                                     shadowOpacity: 0,
+                                                     shadowColor: UIColor.black.cgColor,
+                                                     shadowRadius: 0,
+                                                     shadowOffset: .zero,
+                                                     isTransparentBackground: false)
+
+                    fixture.container.addSubview(shadowView)
+                    animator.parameters.shadowView = shadowView
+                    shadowView.layer.mask = CAShapeLayer()
+
+                    animator.interactionDidStart(progress: 0, position: 0, info: FluidGestureInfo())
+                    defer {
+                        animator.animationTimer?.stop()
+                        animator.animationTimer = nil
+                    }
+
+                    let fromFrame = animator.finalDimension.frame()
+                    let toFrame = animator.initialDimension.frame()
+                    var fromStyle = FluidFinalFrameStyle(cornerRadius: 24,
+                                                         cornerStyle: .top,
+                                                         shadowColor: UIColor.red.cgColor,
+                                                         shadowOpacity: 0.8,
+                                                         shadowRadius: 10,
+                                                         shadowOffset: CGSize(width: 4, height: 2))
+                    fromStyle.isTransparentBackground = true
+                    let toStyle = FluidInitialFrameStyle(cornerRadius: 4,
+                                                         shadowColor: UIColor.blue.cgColor,
+                                                         shadowOpacity: 0.2,
+                                                         shadowRadius: 2,
+                                                         shadowOffset: CGSize(width: -2, height: 6))
+
+                    animator.storedFromStyle = fromStyle
+                    animator.storedToStyle = toStyle
+                    animator.interactionProgress = 0.5
+                    animator.animationTimerDidUpdate()
+
+                    let expectedFrame = fromFrame - (fromFrame - toFrame) * 0.5
+
+                    expect(animator.layoutContainerView.frame).to(equal(expectedFrame))
+                    expect(animator.layoutContainerView.layer.cornerRadius).to(beCloseTo(14))
+                    expect(animator.backgroundView?.visibility).to(beCloseTo(0.5))
+                    expect(shadowView.layer.frame).to(equal(expectedFrame))
+                    expect(shadowView.layer.cornerRadius).to(beCloseTo(14))
+                    expect(CGFloat(shadowView.layer.shadowOpacity)).to(beCloseTo(0.5, within: 0.001))
+                    expect(shadowView.layer.shadowRadius).to(beCloseTo(6))
+                    expect(shadowView.layer.shadowOffset).to(equal(CGSize(width: 1, height: 4)))
+                    expect(shadowView.layer.shadowPath).notTo(beNil())
+                    expect((shadowView.layer.mask as? CAShapeLayer)?.path).notTo(beNil())
+                }
+            }
+            describe("Navigation scroll observer") {
+                it("observes, locks, and restores scroll state") {
+                    let fixture = makeCoreTestNavigationFixture(style: .slide(direction: .fromBottom))
+                    let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: 120, height: 80))
+                    let observer = FluidNavigationScrollObserver(view: scrollView)
+
+                    scrollView.contentSize = CGSize(width: 120, height: 240)
+                    scrollView.contentOffset = CGPoint(x: 0, y: 12)
+                    scrollView.showsVerticalScrollIndicator = true
+                    scrollView.showsHorizontalScrollIndicator = true
+                    observer.registerParameters(parameters: fixture.dismissDriver.parameters)
+
+                    observer.startObserving()
+
+                    expect(observer.panGestureRecognizer).notTo(beNil())
+                    expect(observer.offsetObservation).notTo(beNil())
+                    expect(observer.gestureRecognizerShouldBegin(observer.panGestureRecognizer)).to(beTrue())
+                    expect(observer.gestureRecognizer(observer.panGestureRecognizer,
+                                                      shouldRecognizeSimultaneouslyWith: UIPanGestureRecognizer()))
+                        .to(beTrue())
+                    expect(observer.description).to(contain("FluidScrollObservable"))
+
+                    observer.updateScroll(progress: 0.4, position: 0, state: .dismissing)
+
+                    expect(observer.isTransitioning).to(beTrue())
+                    expect(observer.lockedContentOffset).to(equal(CGPoint(x: 0, y: 12)))
+                    expect(scrollView.showsVerticalScrollIndicator).to(beFalse())
+                    expect(scrollView.showsHorizontalScrollIndicator).to(beFalse())
+
+                    scrollView.contentOffset = CGPoint(x: 0, y: -20)
+                    observer.contentOffsetDidChange(oldValue: CGPoint(x: 0, y: -20))
+
+                    expect(scrollView.contentOffset).to(equal(CGPoint(x: 0, y: 12)))
+
+                    observer.updateScroll(progress: 0, position: 0, state: .none)
+
+                    expect(observer.isTransitioning).to(beFalse())
+                    expect(observer.lockedContentOffset).to(beNil())
+                    expect(scrollView.showsVerticalScrollIndicator).to(beTrue())
+                    expect(scrollView.showsHorizontalScrollIndicator).to(beTrue())
+
+                    observer.disableInteraction()
+                    expect(scrollView.isUserInteractionEnabled).to(beFalse())
+                    expect(scrollView.isScrollEnabled).to(beFalse())
+                    observer.enableInteraction()
+                    expect(scrollView.isUserInteractionEnabled).to(beTrue())
+                    expect(scrollView.isScrollEnabled).to(beTrue())
+
+                    observer.stopObserving()
+
+                    expect(observer.panGestureRecognizer).to(beNil())
+                    expect(observer.offsetObservation).to(beNil())
+                }
+            }
             describe("FluidLayoutEdgeConstant") {
                 it("calculates edge constants from container size and frame") {
                     let constants = FluidLayoutEdgeConstant(
@@ -921,9 +1031,95 @@ private final class CoreTestNavigationRootDelegate: NSObject, FluidNavigationRoo
     func navigationDismissInteractionDidProgress(from destination: FluidDestinationViewController, to source: FluidSourceViewController, with navigation: FluidNavigationController?, on container: UIView?, navigationStyle: FluidNavigationStyle, duration: TimeInterval, easing: FluidAnimatorEasing, state: FluidProgressState, progress: CGFloat, info: FluidGestureInfo) {}
 }
 
-private final class CoreTestNavigationSourceDelegate: NSObject, FluidNavigationSourceViewControllerDelegate {}
+private final class CoreTestNavigationSourceDelegate: NSObject, FluidNavigationSourceViewControllerDelegate {
+    var navigationStyle: FluidNavigationStyle
+
+    init(navigationStyle: FluidNavigationStyle = .slide(direction: .fromRight)) {
+        self.navigationStyle = navigationStyle
+    }
+
+    func navigationPresentationStyle(from source: FluidSourceViewController,
+                                     to destination: FluidDestinationViewController,
+                                     with navigation: FluidNavigationController?) -> FluidNavigationStyle {
+        return self.navigationStyle
+    }
+
+    func navigationBackgroundStyle(from source: FluidSourceViewController,
+                                   to destination: FluidDestinationViewController,
+                                   with navigation: FluidNavigationController?) -> FluidBackgroundStyle {
+        return .dim(color: UIColor.black.withAlphaComponent(0.4))
+    }
+}
 
 private final class CoreTestNavigationDestinationDelegate: NSObject, FluidNavigationDestinationViewControllerDelegate {}
+
+private struct CoreTestNavigationFixture {
+    let container: UIView
+    let navigationController: CoreTestFluidNavigationController
+    let sourceViewController: CoreTestFluidViewController
+    let destinationViewController: CoreTestFluidViewController
+    let rootDelegate: CoreTestNavigationRootDelegate
+    let sourceDelegate: CoreTestNavigationSourceDelegate
+    let destinationDelegate: CoreTestNavigationDestinationDelegate
+    let presentAnimator: FluidNavigationViewAnimator
+    let dismissAnimator: FluidNavigationViewAnimator
+    let presentDriver: FluidNavigationPresentDriver
+    let dismissDriver: FluidNavigationDismissDriver
+}
+
+private func makeCoreTestNavigationFixture(style: FluidNavigationStyle = .slide(direction: .fromRight)) -> CoreTestNavigationFixture {
+    let container = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 480))
+    let sourceViewController = CoreTestFluidViewController()
+    let destinationViewController = CoreTestFluidViewController()
+    let navigationController = CoreTestFluidNavigationController(rootViewController: sourceViewController)
+    let rootDelegate = CoreTestNavigationRootDelegate()
+    let sourceDelegate = CoreTestNavigationSourceDelegate(navigationStyle: style)
+    let destinationDelegate = CoreTestNavigationDestinationDelegate()
+    let presentAnimator = FluidNavigationViewAnimator()
+    let dismissAnimator = FluidNavigationViewAnimator()
+    let presentDriver = FluidNavigationPresentDriver(presentAnimator)
+    let dismissDriver = FluidNavigationDismissDriver(dismissAnimator)
+
+    navigationController.view.frame = container.bounds
+    sourceViewController.view.frame = container.bounds
+    destinationViewController.view.frame = container.bounds
+    navigationController.fluidDelegate = rootDelegate
+    sourceViewController.fluidDelegate = sourceDelegate
+    destinationViewController.fluidDelegate = destinationDelegate
+    container.addSubview(navigationController.view)
+    container.addSubview(destinationViewController.view)
+
+    try! presentDriver.configureParameters(driverType: .present,
+                                           animationType: .present,
+                                           context: nil,
+                                           container: container,
+                                           source: sourceViewController,
+                                           destination: destinationViewController,
+                                           initialContainerSize: container.bounds.size,
+                                           finalContainerSize: container.bounds.size,
+                                           shouldInsertSubview: true)
+    try! dismissDriver.configureParameters(driverType: .dismiss,
+                                           animationType: .dismiss,
+                                           context: nil,
+                                           container: container,
+                                           source: sourceViewController,
+                                           destination: destinationViewController,
+                                           initialContainerSize: container.bounds.size,
+                                           finalContainerSize: container.bounds.size,
+                                           shouldInsertSubview: true)
+
+    return CoreTestNavigationFixture(container: container,
+                                     navigationController: navigationController,
+                                     sourceViewController: sourceViewController,
+                                     destinationViewController: destinationViewController,
+                                     rootDelegate: rootDelegate,
+                                     sourceDelegate: sourceDelegate,
+                                     destinationDelegate: destinationDelegate,
+                                     presentAnimator: presentAnimator,
+                                     dismissAnimator: dismissAnimator,
+                                     presentDriver: presentDriver,
+                                     dismissDriver: dismissDriver)
+}
 
 private final class CoreTestTransitionRootDelegate: NSObject, FluidTransitionRootNavigationControllerDelegate {
     func transitionPresentAnimationDidProgress(from source: FluidSourceViewController, to destination: FluidDestinationViewController, with navigation: FluidNavigationController?, on container: UIView?, transitionStyle: FluidTransitionStyle, duration: TimeInterval, easing: FluidAnimatorEasing, state: FluidProgressState, progress: CGFloat) {}
