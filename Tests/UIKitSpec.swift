@@ -25,6 +25,33 @@ final class UIKitSpec: QuickSpec {
 
     class TestInteractiveView: UIView, FluidInteractiveView {}
 
+    class TestBlurredBackgroundView: FluidBlurredBackgroundView {
+        var blurRadiusValues: [CGFloat] = []
+        var colorTintValues: [UIColor?] = []
+        var colorTintAlphaValues: [CGFloat] = []
+        var scaleValues: [CGFloat] = []
+
+        override var blurRadius: CGFloat {
+            get { return blurRadiusValues.last ?? 0 }
+            set { blurRadiusValues.append(newValue) }
+        }
+
+        override var colorTint: UIColor? {
+            get { return colorTintValues.last ?? nil }
+            set { colorTintValues.append(newValue) }
+        }
+
+        override var colorTintAlpha: CGFloat {
+            get { return colorTintAlphaValues.last ?? 0 }
+            set { colorTintAlphaValues.append(newValue) }
+        }
+
+        override var scale: CGFloat {
+            get { return scaleValues.last ?? 0 }
+            set { scaleValues.append(newValue) }
+        }
+    }
+
     class TestNavigationController: UINavigationController {
         var name: String?
         init(rootViewController: UIViewController, name: String) {
@@ -525,6 +552,62 @@ final class UIKitSpec: QuickSpec {
                                                     animatorDelay: 0.5)).to(beCloseTo(1))
                 }
 
+                it("pauses, updates, and finishes core animation groups") {
+                    let fixture = makeCoreTestTransitionFixture()
+                    let animator = fixture.presentAnimator
+                    let info = FluidGestureInfo(direction: .leftMiddle)
+                    let progressView = UIView(frame: fixture.container.bounds)
+                    let frameView = UIView(frame: fixture.container.bounds)
+                    let extraView = UIView(frame: fixture.container.bounds)
+                    let progressAnimator = FluidCoreAnimator(for: progressView,
+                                                             id: "test.progress",
+                                                             duration: 2)!
+                    let frameAnimator = FluidCoreAnimator(for: frameView,
+                                                          id: "test.frame",
+                                                          duration: 1,
+                                                          beginTime: 0.5)!
+                    let extraAnimator = FluidCoreAnimator(for: extraView,
+                                                          id: "test.extra",
+                                                          duration: 2,
+                                                          beginTime: 0.25)!
+
+                    fixture.container.addSubview(progressView)
+                    fixture.container.addSubview(frameView)
+                    fixture.container.addSubview(extraView)
+                    progressAnimator._animatorState = .running
+                    frameAnimator._animatorState = .running
+                    extraAnimator._animatorState = .running
+
+                    var parameters = animator.parameters!
+                    parameters.activeDuration = 2
+                    parameters.progressAnimator = progressAnimator
+                    parameters.frameCoreAnimators = [frameAnimator]
+                    parameters.extraCoreAnimators = [extraAnimator]
+                    animator.parameters = parameters
+
+                    animator.pauseAnimation(progress: 0.25, position: 0.1, info: info)
+
+                    expect(animator.pausedAnimationProgress).to(beCloseTo(0.25))
+                    expect(String(describing: progressAnimator.animatorState)).to(equal("paused"))
+                    expect(String(describing: frameAnimator.animatorState)).to(equal("paused"))
+                    expect(String(describing: extraAnimator.animatorState)).to(equal("paused"))
+
+                    animator.updateAnimation(progress: 0.75, position: 0.4, info: info)
+
+                    expect(frameAnimator.layer?.timeOffset).to(beCloseTo(1, within: 0.001))
+                    expect(extraAnimator.layer?.timeOffset).to(beCloseTo(1.25, within: 0.001))
+                    expect(progressAnimator.layer?.timeOffset).to(beCloseTo(1.5, within: 0.001))
+
+                    animator.finishAnimation(isReversed: false, progress: 0.75, position: 0.6, info: info)
+
+                    expect(String(describing: progressAnimator.animatorState)).to(equal("running"))
+                    expect(String(describing: frameAnimator.animatorState)).to(equal("running"))
+                    expect(String(describing: extraAnimator.animatorState)).to(equal("running"))
+                    expect(frameAnimator.layer?.speed).to(beCloseTo(1))
+                    expect(extraAnimator.layer?.speed).to(beCloseTo(1))
+                    expect(progressAnimator.layer?.speed).to(beCloseTo(1))
+                }
+
                 it("applies shadow layer properties and transparent masks") {
                     let fixture = makeCoreTestTransitionFixture()
                     let shadowView = FluidShadowView(shadowCornerRadius: 0,
@@ -867,6 +950,68 @@ final class UIKitSpec: QuickSpec {
                     expect(decoded?.shadowCornerRadius).to(beCloseTo(layer.shadowCornerRadius))
                     expect(decoded?.isTransparentBackground).to(equal(layer.isTransparentBackground))
                     expect(FluidShadowLayer.needsDisplay(forKey: "shadowOpacity")).to(beFalse())
+                }
+            }
+            describe("FluidBackgroundView") {
+                it("fits dimmed backgrounds and clamps visibility") {
+                    let container = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 120))
+                    let backgroundView = FluidDimmedBackgroundView(color: .red)
+
+                    container.addSubview(backgroundView)
+
+                    expect(backgroundView.backgroundColor).to(equal(.red))
+                    expect(backgroundView.alpha).to(beCloseTo(0))
+                    expect(backgroundView.isUserInteractionEnabled).to(beFalse())
+                    expect(backgroundView.tag).to(equal(FluidConst.backgroundViewTag))
+
+                    backgroundView.visibility = 0.5
+                    expect(backgroundView.alpha).to(beCloseTo(0.5))
+                    backgroundView.visibility = -1
+                    expect(backgroundView.alpha).to(beCloseTo(0))
+                    backgroundView.visibility = 2
+                    expect(backgroundView.alpha).to(beCloseTo(1))
+
+                    backgroundView.updateConstraints()
+
+                    let attachedConstraints = container.constraints.filter { constraint in
+                        return (constraint.firstItem as? UIView) === backgroundView ||
+                               (constraint.secondItem as? UIView) === backgroundView
+                    }
+                    expect(backgroundView.translatesAutoresizingMaskIntoConstraints).to(beFalse())
+                    expect(attachedConstraints.count).to(equal(4))
+                }
+
+                it("fits blurred backgrounds and maps visibility to blur radius") {
+                    let container = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 120))
+                    let backgroundView = TestBlurredBackgroundView(radius: 20, color: .blue, alpha: 0.35)
+
+                    container.addSubview(backgroundView)
+
+                    expect(backgroundView.baseBlurRadius).to(beCloseTo(20))
+                    expect(backgroundView.blurRadius).to(beCloseTo(0))
+                    expect(backgroundView.colorTint).to(equal(.blue))
+                    expect(backgroundView.colorTintAlpha).to(beCloseTo(0.35, within: 0.001))
+                    expect(backgroundView.isUserInteractionEnabled).to(beFalse())
+                    expect(backgroundView.tag).to(equal(FluidConst.backgroundViewTag))
+
+                    backgroundView.visibility = 0.25
+                    expect(backgroundView.blurRadius).to(beCloseTo(5))
+                    backgroundView.visibility = -1
+                    expect(backgroundView.blurRadius).to(beCloseTo(0))
+                    backgroundView.visibility = 2
+                    expect(backgroundView.blurRadius).to(beCloseTo(20))
+
+                    backgroundView.scale = 2
+                    expect(backgroundView.scale).to(beCloseTo(2))
+
+                    backgroundView.updateConstraints()
+
+                    let attachedConstraints = container.constraints.filter { constraint in
+                        return (constraint.firstItem as? UIView) === backgroundView ||
+                               (constraint.secondItem as? UIView) === backgroundView
+                    }
+                    expect(backgroundView.translatesAutoresizingMaskIntoConstraints).to(beFalse())
+                    expect(attachedConstraints.count).to(equal(4))
                 }
             }
             describe("FluidInteractiveView") {
