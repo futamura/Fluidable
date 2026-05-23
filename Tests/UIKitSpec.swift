@@ -1455,6 +1455,105 @@ final class UIKitSpec: QuickSpec {
                     expect(shadowView.layer.shadowPath).notTo(beNil())
                     expect((shadowView.layer.mask as? CAShapeLayer)?.path).notTo(beNil())
                 }
+
+                it("updates fluid dismiss transform and shadow feedback") {
+                    let fixture = makeCoreTestTransitionFixture(style: .fluid(behavior: .all),
+                                                                easing: .linear)
+                    let animator = fixture.dismissAnimator
+                    let backgroundView = FluidDimmedBackgroundView(color: .black)
+                    let shadowView = FluidShadowView(shadowCornerRadius: 0,
+                                                     shadowRoundingCorners: nil,
+                                                     shadowOpacity: 0,
+                                                     shadowColor: UIColor.black.cgColor,
+                                                     shadowRadius: 0,
+                                                     shadowOffset: .zero,
+                                                     isTransparentBackground: false)
+
+                    fixture.container.insertSubview(backgroundView, belowSubview: animator.layoutContainerView)
+                    fixture.container.addSubview(shadowView)
+                    animator.parameters.backgroundView = backgroundView
+                    animator.parameters.shadowView = shadowView
+                    shadowView.layer.mask = CAShapeLayer()
+
+                    animator.beginInteraction(progress: 0, position: 0, info: FluidGestureInfo(translation: .zero))
+                    defer {
+                        animator.animationTimer?.stop()
+                        animator.animationTimer = nil
+                    }
+
+                    var fromStyle = FluidFinalFrameStyle(cornerRadius: 20,
+                                                         cornerStyle: .all,
+                                                         shadowColor: UIColor.red.cgColor,
+                                                         shadowOpacity: 0.8,
+                                                         shadowRadius: 12,
+                                                         shadowOffset: CGSize(width: 4, height: 2))
+                    fromStyle.isTransparentBackground = true
+                    let toStyle = FluidInitialFrameStyle(cornerRadius: 4,
+                                                         shadowColor: UIColor.blue.cgColor,
+                                                         shadowOpacity: 0.2,
+                                                         shadowRadius: 2,
+                                                         shadowOffset: CGSize(width: -2, height: 6))
+
+                    animator.storedFromStyle = fromStyle
+                    animator.storedToStyle = toStyle
+                    animator.updateInteraction(progress: 0.5,
+                                               position: 0,
+                                               info: FluidGestureInfo(translation: CGPoint(x: 80, y: 40)))
+                    animator.animationTimerDidUpdate()
+
+                    expect(animator.layoutContainerView.transform.a).to(beLessThan(1))
+                    expect(animator.layoutContainerView.transform.d).to(beLessThan(1))
+                    expect(animator.layoutContainerView.transform.tx).to(beGreaterThan(0))
+                    expect(animator.layoutContainerView.transform.ty).to(beGreaterThan(0))
+                    expect(animator.layoutContainerView.layer.cornerRadius).to(beCloseTo(13.6, within: 0.001))
+                    expect(animator.backgroundView?.visibility).to(beCloseTo(0.75, within: 0.001))
+                    expect(shadowView.layer.frame).to(equal(animator.layoutContainerView.layer.frame))
+                    expect(CGFloat(shadowView.layer.shadowOpacity)).to(beCloseTo(0.65, within: 0.001))
+                    expect(shadowView.layer.shadowRadius).to(beCloseTo(9.5, within: 0.001))
+                    expect(shadowView.layer.shadowPath).notTo(beNil())
+                    expect((shadowView.layer.mask as? CAShapeLayer)?.path).notTo(beNil())
+                }
+
+                it("resizes drawer frames from interaction position") {
+                    let resizeDelegate = CoreTestResizableDelegate()
+                    let finalDimension = FluidFinalFrameDimension(for: FluidTransitionStyle.drawer(position: .bottom),
+                                                                  portraitContainerSize: CGSize(width: 320, height: 480),
+                                                                  landscapeContainerSize: CGSize(width: 480, height: 320),
+                                                                  portraitContentSize: CGSize(width: 320, height: 240),
+                                                                  landscapeContentSize: CGSize(width: 480, height: 160),
+                                                                  portraitContentTransform: CGAffineTransform.identity,
+                                                                  landscapeContentTransform: CGAffineTransform.identity)
+                    let fixture = makeCoreTestTransitionFixture(style: .drawer(position: .bottom),
+                                                                resizableDelegate: resizeDelegate,
+                                                                finalDimension: finalDimension)
+                    let animator = fixture.dismissAnimator
+                    let shadowView = FluidShadowView(shadowCornerRadius: 8,
+                                                     shadowRoundingCorners: nil,
+                                                     shadowOpacity: 0.7,
+                                                     shadowColor: UIColor.black.cgColor,
+                                                     shadowRadius: 6,
+                                                     shadowOffset: CGSize(width: 0, height: 4),
+                                                     isTransparentBackground: false)
+
+                    fixture.container.addSubview(shadowView)
+                    animator.parameters.shadowView = shadowView
+
+                    animator.interactionDidStart(progress: 0, position: 0, info: FluidGestureInfo())
+                    defer {
+                        animator.animationTimer?.stop()
+                        animator.animationTimer = nil
+                    }
+
+                    animator.resizePosition = 0.5
+                    animator.animationTimerDidUpdate()
+
+                    let expectedTop = animator.baseConstantForResizing - animator.constantRangeForResizing * 0.5
+
+                    expect(animator.shouldPerformResizing).to(beTrue())
+                    expect(animator.layout.top.constant).to(beCloseTo(expectedTop, within: 0.001))
+                    expect(animator.layoutContainerView.layer.cornerRadius).to(beCloseTo(animator.storedFromStyle.cornerRadius, within: 0.001))
+                    expect(shadowView.layer.shadowPath).notTo(beNil())
+                }
             }
             describe("Transition scroll observer") {
                 it("observes, locks, and restores scroll state") {
@@ -2204,6 +2303,7 @@ private final class CoreTestTransitionSourceDelegate: NSObject, FluidTransitionS
     var transitionStyle: FluidTransitionStyle
     var allowInteractivePresent: Bool
     var finalDimension: FluidFinalFrameDimension?
+    var easing: FluidAnimatorEasing?
     var presentAnimationStates: [FluidProgressState] = []
     var dismissAnimationStates: [FluidProgressState] = []
     var presentInteractionStates: [FluidProgressState] = []
@@ -2211,10 +2311,12 @@ private final class CoreTestTransitionSourceDelegate: NSObject, FluidTransitionS
 
     init(transitionStyle: FluidTransitionStyle = .slide(direction: .fromRight),
          allowInteractivePresent: Bool = true,
-         finalDimension: FluidFinalFrameDimension? = nil) {
+         finalDimension: FluidFinalFrameDimension? = nil,
+         easing: FluidAnimatorEasing? = nil) {
         self.transitionStyle = transitionStyle
         self.allowInteractivePresent = allowInteractivePresent
         self.finalDimension = finalDimension
+        self.easing = easing
     }
 
     func transitionAllowsInteractivePresent(from source: FluidSourceViewController,
@@ -2233,6 +2335,18 @@ private final class CoreTestTransitionSourceDelegate: NSObject, FluidTransitionS
                                                   to destination: FluidDestinationViewController,
                                                   with navigation: FluidNavigationController?) -> FluidFinalFrameDimension? {
         return self.finalDimension
+    }
+
+    func transitionPresentEasing(from source: FluidSourceViewController,
+                                 to destination: FluidDestinationViewController,
+                                 with navigation: FluidNavigationController?) -> FluidAnimatorEasing? {
+        return self.easing
+    }
+
+    func transitionDismissEasing(from destination: FluidDestinationViewController,
+                                 to source: FluidSourceViewController,
+                                 with navigation: FluidNavigationController?) -> FluidAnimatorEasing? {
+        return self.easing
     }
 
     func transitionPresentAnimationDidProgress(from source: FluidSourceViewController,
@@ -2401,13 +2515,15 @@ private func makeCoreTestTransitionFixture(style: FluidTransitionStyle = .slide(
                                            allowInteractiveDismiss: Bool = true,
                                            observedScrollViews: [UIScrollView]? = nil,
                                            resizableDelegate: FluidResizableTransitionDelegate? = nil,
-                                           finalDimension: FluidFinalFrameDimension? = nil) -> CoreTestTransitionFixture {
+                                           finalDimension: FluidFinalFrameDimension? = nil,
+                                           easing: FluidAnimatorEasing? = nil) -> CoreTestTransitionFixture {
     let container = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 480))
     let sourceViewController = CoreTestFluidViewController()
     let destinationViewController = CoreTestFluidViewController()
     let sourceDelegate = CoreTestTransitionSourceDelegate(transitionStyle: style,
                                                           allowInteractivePresent: allowInteractivePresent,
-                                                          finalDimension: finalDimension)
+                                                          finalDimension: finalDimension,
+                                                          easing: easing)
     let destinationDelegate = CoreTestTransitionDestinationDelegate(allowInteractiveDismiss: allowInteractiveDismiss,
                                                                     observedScrollViews: observedScrollViews)
     let presentAnimator = FluidTransitionViewAnimator()
@@ -2430,6 +2546,7 @@ private func makeCoreTestTransitionFixture(style: FluidTransitionStyle = .slide(
                                            destination: destinationViewController,
                                            initialContainerSize: container.bounds.size,
                                            finalContainerSize: container.bounds.size,
+                                           easing: easing,
                                            shouldInsertSubview: true)
     try! dismissDriver.configureParameters(driverType: .dismiss,
                                            animationType: .dismiss,
@@ -2439,6 +2556,7 @@ private func makeCoreTestTransitionFixture(style: FluidTransitionStyle = .slide(
                                            destination: destinationViewController,
                                            initialContainerSize: container.bounds.size,
                                            finalContainerSize: container.bounds.size,
+                                           easing: easing,
                                            shouldInsertSubview: true)
 
     return CoreTestTransitionFixture(container: container,
