@@ -635,6 +635,124 @@ final class UIKitSpec: QuickSpec {
                     expect(observer.offsetObservation).to(beNil())
                 }
             }
+            describe("Transition interactive animator") {
+                it("interpolates dismiss frames and shadow properties") {
+                    let fixture = makeCoreTestTransitionFixture(style: .slide(direction: .fromBottom))
+                    let animator = fixture.dismissAnimator
+                    let backgroundView = FluidDimmedBackgroundView(color: .black)
+                    let shadowView = FluidShadowView(shadowCornerRadius: 0,
+                                                     shadowRoundingCorners: nil,
+                                                     shadowOpacity: 0,
+                                                     shadowColor: UIColor.black.cgColor,
+                                                     shadowRadius: 0,
+                                                     shadowOffset: .zero,
+                                                     isTransparentBackground: false)
+
+                    fixture.container.insertSubview(backgroundView, belowSubview: animator.layoutContainerView)
+                    fixture.container.addSubview(shadowView)
+                    animator.parameters.backgroundView = backgroundView
+                    animator.parameters.shadowView = shadowView
+                    shadowView.layer.mask = CAShapeLayer()
+
+                    animator.interactionDidStart(progress: 0, position: 0, info: FluidGestureInfo())
+                    defer {
+                        animator.animationTimer?.stop()
+                        animator.animationTimer = nil
+                    }
+
+                    let fromFrame = animator.finalDimension.frame()
+                    let toFrame = animator.initialDimension.frame()
+                    var fromStyle = FluidFinalFrameStyle(cornerRadius: 24,
+                                                         cornerStyle: .top,
+                                                         shadowColor: UIColor.red.cgColor,
+                                                         shadowOpacity: 0.8,
+                                                         shadowRadius: 10,
+                                                         shadowOffset: CGSize(width: 4, height: 2))
+                    fromStyle.isTransparentBackground = true
+                    let toStyle = FluidInitialFrameStyle(cornerRadius: 4,
+                                                         shadowColor: UIColor.blue.cgColor,
+                                                         shadowOpacity: 0.2,
+                                                         shadowRadius: 2,
+                                                         shadowOffset: CGSize(width: -2, height: 6))
+
+                    animator.storedFromStyle = fromStyle
+                    animator.storedToStyle = toStyle
+                    animator.interactionProgress = 0.5
+                    animator.animationTimerDidUpdate()
+
+                    let expectedFrame = fromFrame - (fromFrame - toFrame) * 0.5
+                    let expectedEdges = FluidLayoutEdgeConstant(size: animator.initialContainerSize,
+                                                                frame: expectedFrame)
+
+                    expect(animator.layout.top.constant).to(beCloseTo(expectedEdges.top))
+                    expect(animator.layout.bottom.constant).to(beCloseTo(expectedEdges.bottom))
+                    expect(animator.layout.left.constant).to(beCloseTo(expectedEdges.left))
+                    expect(animator.layout.right.constant).to(beCloseTo(expectedEdges.right))
+                    expect(animator.layoutContainerView.layer.cornerRadius).to(beCloseTo(14))
+                    expect(animator.backgroundView?.visibility).to(beCloseTo(0.5))
+                    expect(shadowView.layer.frame).to(equal(expectedFrame))
+                    expect(shadowView.layer.cornerRadius).to(beCloseTo(14))
+                    expect(CGFloat(shadowView.layer.shadowOpacity)).to(beCloseTo(0.5, within: 0.001))
+                    expect(shadowView.layer.shadowRadius).to(beCloseTo(6))
+                    expect(shadowView.layer.shadowOffset).to(equal(CGSize(width: 1, height: 4)))
+                    expect(shadowView.layer.shadowPath).notTo(beNil())
+                    expect((shadowView.layer.mask as? CAShapeLayer)?.path).notTo(beNil())
+                }
+            }
+            describe("Transition scroll observer") {
+                it("observes, locks, and restores scroll state") {
+                    let fixture = makeCoreTestTransitionFixture(style: .slide(direction: .fromBottom))
+                    let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: 120, height: 80))
+                    let observer = FluidTransitionScrollObserver(view: scrollView)
+
+                    scrollView.contentSize = CGSize(width: 120, height: 240)
+                    scrollView.contentOffset = CGPoint(x: 0, y: 12)
+                    scrollView.showsVerticalScrollIndicator = true
+                    scrollView.showsHorizontalScrollIndicator = true
+                    observer.registerParameters(parameters: fixture.dismissDriver.parameters)
+
+                    observer.startObserving()
+
+                    expect(observer.panGestureRecognizer).notTo(beNil())
+                    expect(observer.offsetObservation).notTo(beNil())
+                    expect(observer.gestureRecognizerShouldBegin(observer.panGestureRecognizer)).to(beTrue())
+                    expect(observer.gestureRecognizer(observer.panGestureRecognizer,
+                                                      shouldRecognizeSimultaneouslyWith: UIPanGestureRecognizer()))
+                        .to(beTrue())
+                    expect(observer.description).to(contain("FluidScrollObservable"))
+
+                    observer.updateScroll(progress: 0.4, position: 0, state: .dismissing)
+
+                    expect(observer.isTransitioning).to(beTrue())
+                    expect(observer.lockedContentOffset).to(equal(CGPoint(x: 0, y: 12)))
+                    expect(scrollView.showsVerticalScrollIndicator).to(beFalse())
+                    expect(scrollView.showsHorizontalScrollIndicator).to(beFalse())
+
+                    scrollView.contentOffset = CGPoint(x: 0, y: -20)
+                    observer.contentOffsetDidChange(oldValue: CGPoint(x: 0, y: -20))
+
+                    expect(scrollView.contentOffset).to(equal(CGPoint(x: 0, y: 12)))
+
+                    observer.updateScroll(progress: 0, position: 0, state: .none)
+
+                    expect(observer.isTransitioning).to(beFalse())
+                    expect(observer.lockedContentOffset).to(beNil())
+                    expect(scrollView.showsVerticalScrollIndicator).to(beTrue())
+                    expect(scrollView.showsHorizontalScrollIndicator).to(beTrue())
+
+                    observer.disableInteraction()
+                    expect(scrollView.isUserInteractionEnabled).to(beFalse())
+                    expect(scrollView.isScrollEnabled).to(beFalse())
+                    observer.enableInteraction()
+                    expect(scrollView.isUserInteractionEnabled).to(beTrue())
+                    expect(scrollView.isScrollEnabled).to(beTrue())
+
+                    observer.stopObserving()
+
+                    expect(observer.panGestureRecognizer).to(beNil())
+                    expect(observer.offsetObservation).to(beNil())
+                }
+            }
             describe("FluidLayoutEdgeConstant") {
                 it("calculates edge constants from container size and frame") {
                     let constants = FluidLayoutEdgeConstant(
