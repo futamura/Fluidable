@@ -528,6 +528,88 @@ final class UIKitSpec: QuickSpec {
                                 velocity: CGVector(dx: 2_000, dy: 0))
                     expect(blockedFixture.dismissDriver.canBeginDismissInteraction(isEdgePan: false)).to(beFalse())
                 }
+
+                it("propagates dismiss interaction lifecycle and starts completion paths") {
+                    let cancelledFixture = makeCoreTestTransitionFixture(style: .slide(direction: .fromRight))
+                    let info = FluidGestureInfo(locationLocal: CGPoint(x: 24, y: 32),
+                                                locationGlobal: CGPoint(x: 24, y: 32),
+                                                translation: CGPoint(x: 80, y: 0),
+                                                velocity: CGVector(dx: 2_000, dy: 0),
+                                                direction: .rightMiddle)
+                    cancelledFixture.dismissDriver.currentInteractionProgress = 0.25
+                    cancelledFixture.dismissDriver.currentResizePosition = 0
+
+                    cancelledFixture.dismissDriver.beginInteractiveTransition(progress: 0.25, position: 0, info: info)
+
+                    expect(cancelledFixture.dismissAnimator.interactionProgress).to(beCloseTo(0.25))
+                    expect(cancelledFixture.dismissAnimator.pausedInteractionProgress).to(beCloseTo(0.25))
+                    expect(cancelledFixture.dismissAnimator.resizePosition).to(beCloseTo(0))
+                    expect(cancelledFixture.sourceDelegate.dismissInteractionStates.map { String(describing: $0) }).to(equal(["begin"]))
+                    expect(cancelledFixture.destinationDelegate.dismissInteractionStates.map { String(describing: $0) }).to(equal(["begin"]))
+
+                    cancelledFixture.dismissDriver.previousInteractionProgress = 0.25
+                    cancelledFixture.dismissDriver.currentInteractionProgress = 0.6
+                    cancelledFixture.dismissDriver.currentResizePosition = 0
+                    cancelledFixture.dismissDriver.updateInteractiveTransition(progress: 0.6, position: 0, info: info)
+
+                    expect(cancelledFixture.dismissAnimator.interactionProgress).to(beCloseTo(0.6))
+                    expect(cancelledFixture.dismissAnimator.currentGestureInfo?.direction.description).to(equal("rightMiddle"))
+                    expect(cancelledFixture.sourceDelegate.dismissInteractionStates.map { String(describing: $0) }).to(equal(["begin", "update"]))
+
+                    cancelledFixture.dismissDriver.finishInteractiveTransition(isCancelled: true, progress: 0.6, position: 0, info: info)
+
+                    expect(cancelledFixture.dismissAnimator.animationTimer).to(beNil())
+                    expect(cancelledFixture.dismissAnimator.progressAnimator).notTo(beNil())
+                    expect(cancelledFixture.sourceDelegate.dismissInteractionStates.map { String(describing: $0) }).to(equal(["begin", "update", "cancel"]))
+                    expect(cancelledFixture.destinationDelegate.dismissInteractionStates.map { String(describing: $0) }).to(equal(["begin", "update", "cancel"]))
+
+                    let completedFixture = makeCoreTestTransitionFixture(style: .slide(direction: .fromRight))
+                    completedFixture.dismissDriver.currentInteractionProgress = 0.2
+                    completedFixture.dismissDriver.currentResizePosition = 0
+
+                    completedFixture.dismissDriver.beginInteractiveTransition(progress: 0.2, position: 0, info: info)
+                    completedFixture.dismissDriver.finishInteractiveTransition(isCancelled: false, progress: 0.8, position: 0, info: info)
+
+                    expect(completedFixture.dismissAnimator.animationTimer).to(beNil())
+                    expect(completedFixture.sourceDelegate.dismissInteractionStates.map { String(describing: $0) }).to(equal(["begin", "end"]))
+                    expect(completedFixture.destinationDelegate.dismissInteractionStates.map { String(describing: $0) }).to(equal(["begin", "end"]))
+                }
+
+                it("evaluates drawer resize conditions and delegates resize progress") {
+                    let resizeDelegate = CoreTestResizableDelegate()
+                    let finalDimension = FluidFinalFrameDimension(for: FluidTransitionStyle.drawer(position: .bottom),
+                                                                  portraitContainerSize: CGSize(width: 320, height: 480),
+                                                                  landscapeContainerSize: CGSize(width: 480, height: 320),
+                                                                  portraitContentSize: CGSize(width: 320, height: 240),
+                                                                  landscapeContentSize: CGSize(width: 480, height: 160),
+                                                                  portraitContentTransform: CGAffineTransform.identity,
+                                                                  landscapeContentTransform: CGAffineTransform.identity)
+                    let fixture = makeCoreTestTransitionFixture(style: .drawer(position: .bottom),
+                                                                resizableDelegate: resizeDelegate,
+                                                                finalDimension: finalDimension)
+                    let gesture = fixture.dismissDriver.observingGesture!
+
+                    fixture.dismissDriver.currentInteractionProgress = 0.5
+                    expect(fixture.dismissDriver.calculateResizePosition()).to(beLessThan(0))
+
+                    seedGesture(gesture,
+                                averageVector: CGPoint(x: 0, y: -40),
+                                velocity: CGVector(dx: 0, dy: -2_000))
+                    gesture.previousTranslation = .zero
+                    gesture.currentTranslation = CGPoint(x: 0, y: -40)
+                    fixture.dismissDriver.layout.top.constant = fixture.dismissDriver.baseConstantForResizing
+
+                    expect(fixture.dismissDriver.canBeginResizeInteraction()).to(beTrue())
+
+                    fixture.dismissDriver.currentResizePosition = 0.4
+                    fixture.dismissDriver.previousResizePosition = 0.2
+                    fixture.dismissDriver.beginInteractiveTransition(progress: 0.1, position: 0.4, info: .init())
+                    fixture.dismissDriver.updateInteractiveTransition(progress: 0.2, position: 0.6, info: .init())
+                    fixture.dismissDriver.finishInteractiveTransition(isCancelled: false, progress: 0.8, position: 1.2, info: .init())
+
+                    expect(resizeDelegate.resizeStates.map { String(describing: $0) }).to(equal(["begin", "update", "end"]))
+                    expect(resizeDelegate.resizePositions).to(equal([0.4, 0.6, 1.0]))
+                }
             }
             describe("Core animated drivers") {
                 it("configures present animators and completes a successful transition") {
@@ -1928,7 +2010,7 @@ final class UIKitSpec: QuickSpec {
     }
 }
 
-private final class CoreTestFluidViewController: UIViewController, Fluidable {}
+private final class CoreTestFluidViewController: UIViewController, Fluidable, FluidResizable {}
 
 private final class CoreTestFluidNavigationController: UINavigationController, Fluidable {}
 
@@ -2121,14 +2203,18 @@ private final class CoreTestTransitionRootDelegate: NSObject, FluidTransitionRoo
 private final class CoreTestTransitionSourceDelegate: NSObject, FluidTransitionSourceViewControllerDelegate {
     var transitionStyle: FluidTransitionStyle
     var allowInteractivePresent: Bool
+    var finalDimension: FluidFinalFrameDimension?
     var presentAnimationStates: [FluidProgressState] = []
     var dismissAnimationStates: [FluidProgressState] = []
     var presentInteractionStates: [FluidProgressState] = []
+    var dismissInteractionStates: [FluidProgressState] = []
 
     init(transitionStyle: FluidTransitionStyle = .slide(direction: .fromRight),
-         allowInteractivePresent: Bool = true) {
+         allowInteractivePresent: Bool = true,
+         finalDimension: FluidFinalFrameDimension? = nil) {
         self.transitionStyle = transitionStyle
         self.allowInteractivePresent = allowInteractivePresent
+        self.finalDimension = finalDimension
     }
 
     func transitionAllowsInteractivePresent(from source: FluidSourceViewController,
@@ -2141,6 +2227,12 @@ private final class CoreTestTransitionSourceDelegate: NSObject, FluidTransitionS
                                      to destination: FluidDestinationViewController,
                                      with navigation: FluidNavigationController?) -> FluidTransitionStyle {
         return self.transitionStyle
+    }
+
+    func transitionFinalDestinationFrameDimension(from source: FluidSourceViewController,
+                                                  to destination: FluidDestinationViewController,
+                                                  with navigation: FluidNavigationController?) -> FluidFinalFrameDimension? {
+        return self.finalDimension
     }
 
     func transitionPresentAnimationDidProgress(from source: FluidSourceViewController,
@@ -2179,6 +2271,19 @@ private final class CoreTestTransitionSourceDelegate: NSObject, FluidTransitionS
                                                  info: FluidGestureInfo) {
         self.presentInteractionStates.append(state)
     }
+
+    func transitionDismissInteractionDidProgress(from destination: FluidDestinationViewController,
+                                                 to source: FluidSourceViewController,
+                                                 with navigation: FluidNavigationController?,
+                                                 on container: UIView?,
+                                                 transitionStyle: FluidTransitionStyle,
+                                                 duration: TimeInterval,
+                                                 easing: FluidAnimatorEasing,
+                                                 state: FluidProgressState,
+                                                 progress: CGFloat,
+                                                 info: FluidGestureInfo) {
+        self.dismissInteractionStates.append(state)
+    }
 }
 
 private final class CoreTestTransitionDestinationDelegate: NSObject, FluidTransitionDestinationViewControllerDelegate {
@@ -2187,6 +2292,7 @@ private final class CoreTestTransitionDestinationDelegate: NSObject, FluidTransi
     var presentAnimationStates: [FluidProgressState] = []
     var dismissAnimationStates: [FluidProgressState] = []
     var presentInteractionStates: [FluidProgressState] = []
+    var dismissInteractionStates: [FluidProgressState] = []
 
     init(allowInteractiveDismiss: Bool = true, observedScrollViews: [UIScrollView]? = nil) {
         self.allowInteractiveDismiss = allowInteractiveDismiss
@@ -2241,6 +2347,41 @@ private final class CoreTestTransitionDestinationDelegate: NSObject, FluidTransi
                                                  info: FluidGestureInfo) {
         self.presentInteractionStates.append(state)
     }
+
+    func transitionDismissInteractionDidProgress(from destination: FluidDestinationViewController,
+                                                 to source: FluidSourceViewController,
+                                                 with navigation: FluidNavigationController?,
+                                                 on container: UIView?,
+                                                 transitionStyle: FluidTransitionStyle,
+                                                 duration: TimeInterval,
+                                                 easing: FluidAnimatorEasing,
+                                                 state: FluidProgressState,
+                                                 progress: CGFloat,
+                                                 info: FluidGestureInfo) {
+        self.dismissInteractionStates.append(state)
+    }
+}
+
+private final class CoreTestResizableDelegate: NSObject, FluidResizableTransitionDelegate {
+    var resizeStates: [FluidProgressState] = []
+    var resizePositions: [CGFloat] = []
+
+    func transitionShouldPerformResizing() -> Bool {
+        return true
+    }
+
+    func transitionMinimumMarginForResizing() -> CGFloat {
+        return 64
+    }
+
+    func transitionSnapPositionsForResizing() -> [CGFloat]? {
+        return [0, 0.5, 1]
+    }
+
+    func transitionInteractiveResizeDidProgress(state: FluidProgressState, position: CGFloat, info: FluidGestureInfo) {
+        self.resizeStates.append(state)
+        self.resizePositions.append(position)
+    }
 }
 
 private struct CoreTestTransitionFixture {
@@ -2258,12 +2399,15 @@ private struct CoreTestTransitionFixture {
 private func makeCoreTestTransitionFixture(style: FluidTransitionStyle = .slide(direction: .fromRight),
                                            allowInteractivePresent: Bool = true,
                                            allowInteractiveDismiss: Bool = true,
-                                           observedScrollViews: [UIScrollView]? = nil) -> CoreTestTransitionFixture {
+                                           observedScrollViews: [UIScrollView]? = nil,
+                                           resizableDelegate: FluidResizableTransitionDelegate? = nil,
+                                           finalDimension: FluidFinalFrameDimension? = nil) -> CoreTestTransitionFixture {
     let container = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 480))
     let sourceViewController = CoreTestFluidViewController()
     let destinationViewController = CoreTestFluidViewController()
     let sourceDelegate = CoreTestTransitionSourceDelegate(transitionStyle: style,
-                                                          allowInteractivePresent: allowInteractivePresent)
+                                                          allowInteractivePresent: allowInteractivePresent,
+                                                          finalDimension: finalDimension)
     let destinationDelegate = CoreTestTransitionDestinationDelegate(allowInteractiveDismiss: allowInteractiveDismiss,
                                                                     observedScrollViews: observedScrollViews)
     let presentAnimator = FluidTransitionViewAnimator()
@@ -2275,6 +2419,7 @@ private func makeCoreTestTransitionFixture(style: FluidTransitionStyle = .slide(
     destinationViewController.view.frame = container.bounds
     sourceViewController.fluidDelegate = sourceDelegate
     destinationViewController.fluidDelegate = destinationDelegate
+    destinationViewController.fluidResizableDelegate = resizableDelegate
     container.addSubview(sourceViewController.view)
 
     try! presentDriver.configureParameters(driverType: .present,
