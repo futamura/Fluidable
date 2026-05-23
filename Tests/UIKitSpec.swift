@@ -470,6 +470,123 @@ final class UIKitSpec: QuickSpec {
                     expect(shadowView.layer.shadowPath).notTo(beNil())
                     expect((shadowView.layer.mask as? CAShapeLayer)?.path).notTo(beNil())
                 }
+
+                it("configures transition and interruptible animator state") {
+                    let fixture = makeCoreTestTransitionFixture(style: .slide(direction: .fromBottom))
+                    let animator = fixture.presentAnimator
+                    let layoutContainerView = animator.layoutContainerView!
+                    let backgroundView = FluidDimmedBackgroundView(color: .black)
+                    let shadowView = FluidShadowView(shadowCornerRadius: 0,
+                                                     shadowRoundingCorners: nil,
+                                                     shadowOpacity: 0,
+                                                     shadowColor: UIColor.black.cgColor,
+                                                     shadowRadius: 0,
+                                                     shadowOffset: .zero,
+                                                     isTransparentBackground: false)
+                    var progressValues = [CGFloat]()
+                    var stateValues = [String]()
+                    var completionWasStored = false
+
+                    fixture.container.insertSubview(backgroundView, belowSubview: layoutContainerView)
+                    fixture.container.addSubview(shadowView)
+                    var parameters = animator.parameters!
+                    parameters.layoutContainerView = layoutContainerView
+                    parameters.backgroundView = backgroundView
+                    parameters.shadowView = shadowView
+                    parameters.shouldCastShadow = true
+                    parameters.shouldMaskCorner = true
+                    parameters.initialStyle = FluidInitialFrameStyle(alpha: 1,
+                                                                     cornerRadius: 6,
+                                                                     shadowColor: UIColor.blue.cgColor,
+                                                                     shadowOpacity: 0.25,
+                                                                     shadowRadius: 3,
+                                                                     shadowOffset: CGSize(width: -1, height: 2))
+                    parameters.finalStyle = FluidFinalFrameStyle(alpha: 1,
+                                                                 cornerRadius: 18,
+                                                                 cornerStyle: .top,
+                                                                 shadowColor: UIColor.red.cgColor,
+                                                                 shadowOpacity: 0.75,
+                                                                 shadowRadius: 9,
+                                                                 shadowOffset: CGSize(width: 3, height: 4))
+                    animator.parameters = parameters
+
+                    animator.configureTransitionAnimators(isReversed: false,
+                                                          from: 0,
+                                                          to: 1,
+                                                          progress: { progressValues.append($0) },
+                                                          state: { state, progress in
+                                                              stateValues.append("\(state):\(progress)")
+                                                          })
+                    animator.configureInterruptibleAnimator { _, _ in
+                        completionWasStored = true
+                    }
+
+                    expect(animator.framePropertyAnimators?.count).to(equal(2))
+                    expect(animator.frameCoreAnimators?.count).to(equal(1))
+                    expect(animator.backgroundAnimator).notTo(beNil())
+                    expect(animator.progressView).to(beIdenticalTo(fixture.container.viewWithTag(FluidConst.progressViewTag)))
+                    expect(animator.progressAnimator).notTo(beNil())
+                    expect(animator.interruptibleView).to(beIdenticalTo(fixture.container.viewWithTag(FluidConst.interruptibleViewTag)))
+                    expect(animator.interruptibleView?.alpha).to(beCloseTo(0))
+                    expect(animator.interruptibleAnimator?.completionBlock).notTo(beNil())
+                    expect(completionWasStored).to(beFalse())
+
+                    animator.progressAnimatorDidUpdate(progress: 0.42)
+                    animator.progressAnimatorStateDidChange(state: .finished, progress: 1)
+
+                    expect(progressValues).to(equal([0.42]))
+                    expect(stateValues).to(equal(["finished:1.0"]))
+                }
+
+                it("creates shadow and corner animators from configured styles") {
+                    let fixture = makeCoreTestTransitionFixture(style: .slide(direction: .fromBottom))
+                    let animator = fixture.presentAnimator
+                    let layoutContainerView = animator.layoutContainerView!
+                    let shadowView = FluidShadowView(shadowCornerRadius: 0,
+                                                     shadowRoundingCorners: nil,
+                                                     shadowOpacity: 0,
+                                                     shadowColor: UIColor.black.cgColor,
+                                                     shadowRadius: 0,
+                                                     shadowOffset: .zero,
+                                                     isTransparentBackground: false)
+
+                    fixture.container.addSubview(shadowView)
+                    var parameters = animator.parameters!
+                    parameters.layoutContainerView = layoutContainerView
+                    parameters.shadowView = shadowView
+                    parameters.shouldCastShadow = true
+                    parameters.shouldMaskCorner = true
+                    parameters.initialStyle = FluidInitialFrameStyle(alpha: 1,
+                                                                     cornerRadius: 4,
+                                                                     shadowColor: UIColor.blue.cgColor,
+                                                                     shadowOpacity: 0.2,
+                                                                     shadowRadius: 2,
+                                                                     shadowOffset: CGSize(width: -2, height: 1))
+                    parameters.finalStyle = FluidFinalFrameStyle(alpha: 1,
+                                                                 cornerRadius: 16,
+                                                                 cornerStyle: .bottom,
+                                                                 shadowColor: UIColor.red.cgColor,
+                                                                 shadowOpacity: 0.6,
+                                                                 shadowRadius: 8,
+                                                                 shadowOffset: CGSize(width: 3, height: 5))
+                    animator.parameters = parameters
+
+                    let expectedShadowFrame = animator.toShadowFrame(false, 0)
+                    let shadowAnimators = animator.createShadowPropertyAnimation(false)
+                    let cornerAnimators = animator.createCornerRadiusPropertyAnimation(false)
+
+                    expect(shadowAnimators.count).to(equal(1))
+                    expect(cornerAnimators.count).to(equal(1))
+                    expect(shadowView.layer.frame).to(equal(expectedShadowFrame))
+                    expect(shadowView.layer.cornerRadius).to(beCloseTo(16))
+                    expect(CGFloat(shadowView.layer.shadowOpacity)).to(beCloseTo(0.6, within: 0.001))
+                    expect(shadowView.layer.shadowRadius).to(beCloseTo(8))
+                    expect(shadowView.layer.shadowOffset).to(equal(CGSize(width: 3, height: 5)))
+                    expect(shadowView.layer.shadowPath).notTo(beNil())
+                    expect(animator.layoutContainerView.layer.masksToBounds).to(beTrue())
+                    expect(animator.layoutContainerView.layer.cornerRadius).to(beCloseTo(4))
+                    expect(animator.layoutContainerView.layer.maskedCorners).to(equal(animator.initialStyle.maskedCorners))
+                }
             }
             describe("FluidShadowLayer") {
                 it("creates expanded shadow frames and optional masks") {
