@@ -414,6 +414,117 @@ final class UIKitSpec: QuickSpec {
                     expect(blockedFixture.dismissDriver.canBeginDismissInteraction(isEdgePan: false)).to(beFalse())
                 }
             }
+            describe("Core animator helpers") {
+                it("converts delayed transition progress into animator progress") {
+                    let fixture = makeCoreTestTransitionFixture()
+                    let animator = fixture.presentAnimator
+
+                    expect(animator.convertProgress(transitionProgress: 0.2,
+                                                    transitionDuration: 2,
+                                                    animatorDuration: 1,
+                                                    animatorDelay: 0.5)).to(beCloseTo(0))
+                    expect(animator.convertProgress(transitionProgress: 0.25,
+                                                    transitionDuration: 2,
+                                                    animatorDuration: 1,
+                                                    animatorDelay: 0.5)).to(beCloseTo(0))
+                    expect(animator.convertProgress(transitionProgress: 0.625,
+                                                    transitionDuration: 2,
+                                                    animatorDuration: 1,
+                                                    animatorDelay: 0.5)).to(beCloseTo(0.75, within: 0.001))
+                    expect(animator.convertProgress(transitionProgress: 1,
+                                                    transitionDuration: 2,
+                                                    animatorDuration: 1,
+                                                    animatorDelay: 0.5)).to(beCloseTo(1))
+                }
+
+                it("applies shadow layer properties and transparent masks") {
+                    let fixture = makeCoreTestTransitionFixture()
+                    let shadowView = FluidShadowView(shadowCornerRadius: 0,
+                                                     shadowRoundingCorners: nil,
+                                                     shadowOpacity: 0,
+                                                     shadowColor: UIColor.black.cgColor,
+                                                     shadowRadius: 0,
+                                                     shadowOffset: .zero,
+                                                     isTransparentBackground: false)
+                    let frame = CGRect(x: 12, y: 20, width: 120, height: 80)
+                    let shadowOffset = CGSize(width: 3, height: -2)
+
+                    fixture.container.addSubview(shadowView)
+                    fixture.presentAnimator.parameters.shadowView = shadowView
+                    shadowView.layer.mask = CAShapeLayer()
+
+                    fixture.presentAnimator.applyShadowProperties(frame: frame,
+                                                                  cornerRadius: 10,
+                                                                  cornerStyle: .top,
+                                                                  shadowColor: UIColor.red.cgColor,
+                                                                  shadowOpacity: 0.65,
+                                                                  shadowRadius: 6,
+                                                                  shadowOffset: shadowOffset,
+                                                                  isTransparentBackground: true)
+
+                    expect(shadowView.layer.frame).to(equal(frame))
+                    expect(shadowView.layer.cornerRadius).to(beCloseTo(10))
+                    expect(CGFloat(shadowView.layer.shadowOpacity)).to(beCloseTo(0.65, within: 0.001))
+                    expect(shadowView.layer.shadowRadius).to(beCloseTo(6))
+                    expect(shadowView.layer.shadowOffset).to(equal(shadowOffset))
+                    expect(shadowView.layer.shadowPath).notTo(beNil())
+                    expect((shadowView.layer.mask as? CAShapeLayer)?.path).notTo(beNil())
+                }
+            }
+            describe("FluidShadowLayer") {
+                it("creates expanded shadow frames and optional masks") {
+                    let frame = CGRect(x: 10, y: 20, width: 100, height: 80)
+                    let shadowOffset = CGSize(width: 2, height: -3)
+
+                    let shadowFrame = FluidShadowLayer.createShadowFrame(frame: frame,
+                                                                         shadowRadius: 4,
+                                                                         shadowOffset: shadowOffset)
+
+                    expect(shadowFrame).to(equal(CGRect(x: 4, y: 9, width: 116, height: 96)))
+                    expect(FluidShadowLayer.createShadowMask(bounds: frame.bounds,
+                                                             cornerRadius: 8,
+                                                             roundingCorners: [.topLeft, .topRight],
+                                                             shadowRadius: 4,
+                                                             shadowOffset: shadowOffset,
+                                                             isTransparentBackground: false)).to(beNil())
+
+                    let mask = FluidShadowLayer.createShadowMask(bounds: frame.bounds,
+                                                                 cornerRadius: 8,
+                                                                 roundingCorners: [.topLeft, .topRight],
+                                                                 shadowRadius: 4,
+                                                                 shadowOffset: shadowOffset,
+                                                                 isTransparentBackground: true)
+
+                    expect(mask?.frame).to(equal(CGRect(x: 0, y: 0, width: 116, height: 96)))
+                    expect(mask?.path).notTo(beNil())
+                }
+
+                it("casts shadow and marks animatable keys for display") {
+                    let layer = FluidShadowLayer(frame: .zero)
+                    let frame = CGRect(x: 0, y: 0, width: 90, height: 70)
+                    let shadowOffset = CGSize(width: -2, height: 5)
+
+                    layer.castShadow(frame: frame,
+                                     shadowCornerRadius: 12,
+                                     shadowRoundingCorners: .bottomRight,
+                                     shadowColor: UIColor.blue.cgColor,
+                                     shadowOpacity: 0.55,
+                                     shadowRadius: 5,
+                                     shadowOffset: shadowOffset,
+                                     isTransparentBackground: true)
+
+                    expect(layer.shadowCornerRadius).to(beCloseTo(12))
+                    expect(layer.shadowRoundingCorners).to(equal(.bottomRight))
+                    expect(CGFloat(layer.shadowOpacity)).to(beCloseTo(0.55, within: 0.001))
+                    expect(layer.shadowRadius).to(beCloseTo(5))
+                    expect(layer.shadowOffset).to(equal(shadowOffset))
+                    expect(layer.isTransparentBackground).to(beTrue())
+                    expect(layer.shadowPath).notTo(beNil())
+                    expect(layer.mask as? CAShapeLayer).notTo(beNil())
+                    expect(FluidShadowLayer.needsDisplay(forKey: "shadowCornerRadius")).to(beTrue())
+                    expect(FluidShadowLayer.needsDisplay(forKey: "isTransparentBackground")).to(beTrue())
+                }
+            }
             describe("FluidLayoutEdgeConstant") {
                 it("calculates edge constants from container size and frame") {
                     let constants = FluidLayoutEdgeConstant(
