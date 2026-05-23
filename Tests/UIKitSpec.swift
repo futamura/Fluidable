@@ -283,6 +283,35 @@ final class UIKitSpec: QuickSpec {
                     expect(controller.fluid.transitionDismissDriver).to(beIdenticalTo(transitionDelegate.dismissDriver))
                 }
             }
+            describe("FluidViewControllerTransitioningDelegate") {
+                it("selects transition drivers for valid source and destination roles") {
+                    let delegate = FluidViewControllerTransitioningDelegate()
+                    let source = CoreTestFluidViewController()
+                    let destination = CoreTestFluidViewController()
+                    let plainDestination = CoreTestFluidViewController()
+                    let sourceDelegate = CoreTestTransitionSourceDelegate()
+                    let destinationDelegate = CoreTestTransitionDestinationDelegate()
+
+                    source.fluidDelegate = sourceDelegate
+                    destination.fluidDelegate = destinationDelegate
+
+                    expect(delegate.animationController(forPresented: destination,
+                                                        presenting: source,
+                                                        source: source) as? FluidTransitionPresentDriver)
+                        .to(beIdenticalTo(delegate.presentDriver))
+                    expect(delegate.animationController(forPresented: plainDestination,
+                                                        presenting: source,
+                                                        source: source)).to(beNil())
+                    expect(delegate.animationController(forDismissed: destination) as? FluidTransitionDismissDriver)
+                        .to(beIdenticalTo(delegate.dismissDriver))
+                    expect(delegate.interactionControllerForPresentation(using: delegate.presentDriver) as? FluidTransitionPresentDriver)
+                        .to(beIdenticalTo(delegate.presentDriver))
+                    expect(delegate.interactionControllerForDismissal(using: delegate.dismissDriver)).to(beNil())
+                    delegate.dismissDriver.isInteracting = true
+                    expect(delegate.interactionControllerForDismissal(using: delegate.dismissDriver) as? FluidTransitionDismissDriver)
+                        .to(beIdenticalTo(delegate.dismissDriver))
+                }
+            }
             describe("Core interactive drivers") {
                 it("propagates present interaction lifecycle and stores animator gesture info") {
                     let fixture = makeCoreTestTransitionFixture()
@@ -313,6 +342,25 @@ final class UIKitSpec: QuickSpec {
                     expect(fixture.presentAnimator.currentGestureInfo?.direction.description).to(equal("leftMiddle"))
                     expect(fixture.sourceDelegate.presentInteractionStates.map { String(describing: $0) }).to(equal(["begin", "update", "cancel"]))
                     expect(fixture.destinationDelegate.presentInteractionStates.map { String(describing: $0) }).to(equal(["begin", "update", "cancel"]))
+                    expect(fixture.presentDriver.observingGesture).to(beNil())
+                    expect(fixture.presentDriver.observingScrolls).to(beNil())
+                }
+
+                it("finishes present interaction without reversing") {
+                    let fixture = makeCoreTestTransitionFixture()
+                    let info = FluidGestureInfo(locationLocal: CGPoint(x: 8, y: 16),
+                                                locationGlobal: CGPoint(x: 8, y: 16),
+                                                translation: CGPoint(x: -60, y: 0),
+                                                velocity: CGVector(dx: -2_400, dy: 0),
+                                                direction: .leftMiddle)
+
+                    fixture.presentDriver.beginInteractiveTransition(progress: 0.2, info: info)
+                    fixture.presentDriver.finishInteractiveTransition(isCancelled: false, progress: 0.8, info: info)
+
+                    expect(fixture.presentAnimator.interactionProgress).to(beCloseTo(0.8))
+                    expect(fixture.presentAnimator.currentGestureInfo?.direction.description).to(equal("leftMiddle"))
+                    expect(fixture.sourceDelegate.presentInteractionStates.map { String(describing: $0) }).to(equal(["begin", "end"]))
+                    expect(fixture.destinationDelegate.presentInteractionStates.map { String(describing: $0) }).to(equal(["begin", "end"]))
                     expect(fixture.presentDriver.observingGesture).to(beNil())
                     expect(fixture.presentDriver.observingScrolls).to(beNil())
                 }
@@ -586,6 +634,53 @@ final class UIKitSpec: QuickSpec {
                     expect(animator.layoutContainerView.layer.masksToBounds).to(beTrue())
                     expect(animator.layoutContainerView.layer.cornerRadius).to(beCloseTo(4))
                     expect(animator.layoutContainerView.layer.maskedCorners).to(equal(animator.initialStyle.maskedCorners))
+                }
+
+                it("invalidates animator state and removes transient views") {
+                    let fixture = makeCoreTestTransitionFixture()
+                    let animator = fixture.presentAnimator
+                    let backgroundView = FluidDimmedBackgroundView(color: .black)
+                    let shadowView = FluidShadowView(shadowCornerRadius: 0,
+                                                     shadowRoundingCorners: nil,
+                                                     shadowOpacity: 0,
+                                                     shadowColor: UIColor.black.cgColor,
+                                                     shadowRadius: 0,
+                                                     shadowOffset: .zero,
+                                                     isTransparentBackground: false)
+                    let progressView = FluidProgressView()
+                    let interruptibleView = FluidInterruptibleView()
+
+                    fixture.container.addSubview(backgroundView)
+                    fixture.container.addSubview(shadowView)
+                    fixture.container.addSubview(progressView)
+                    fixture.container.addSubview(interruptibleView)
+
+                    var parameters = animator.parameters!
+                    parameters.backgroundView = backgroundView
+                    parameters.shadowView = shadowView
+                    parameters.progressView = progressView
+                    parameters.interruptibleView = interruptibleView
+                    animator.parameters = parameters
+                    animator.pausedGestureInfo = FluidGestureInfo(direction: .leftMiddle)
+                    animator.currentGestureInfo = FluidGestureInfo(direction: .rightMiddle)
+                    animator.storedFromFrame = CGRect(x: 1, y: 2, width: 3, height: 4)
+                    animator.storedToFrame = CGRect(x: 4, y: 3, width: 2, height: 1)
+                    animator.storedFromStyle = FluidInitialFrameStyle(alpha: 1)
+                    animator.storedToStyle = FluidFinalFrameStyle(alpha: 1)
+
+                    animator.invalidate(willRemoveContainer: true)
+
+                    expect(interruptibleView.superview).to(beNil())
+                    expect(progressView.superview).to(beNil())
+                    expect(backgroundView.superview).to(beNil())
+                    expect(shadowView.superview).to(beNil())
+                    expect(animator.pausedGestureInfo).to(beNil())
+                    expect(animator.currentGestureInfo).to(beNil())
+                    expect(animator.storedFromFrame).to(beNil())
+                    expect(animator.storedToFrame).to(beNil())
+                    expect(animator.storedFromStyle).to(beNil())
+                    expect(animator.storedToStyle).to(beNil())
+                    expect(animator.parameters).to(beNil())
                 }
             }
             describe("FluidShadowLayer") {
