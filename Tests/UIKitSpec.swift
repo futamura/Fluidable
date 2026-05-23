@@ -603,6 +603,57 @@ final class UIKitSpec: QuickSpec {
                     expect(rotateFixture.dismissDriver.parameters.animationType).to(equal(.dismiss))
                     expect(rotateFixture.dismissDriver.observingGesture).notTo(beNil())
                 }
+
+                it("cleans up present animation completion and cancellation") {
+                    let completedFixture = makeCoreTestTransitionFixture()
+                    completedFixture.presentDriver.interruptibleAnimator = UIViewPropertyAnimator(duration: 0, curve: .linear)
+
+                    completedFixture.presentDriver.animationDidEnd(true)
+
+                    expect(completedFixture.sourceDelegate.presentAnimationStates.map { String(describing: $0) }).to(equal(["end"]))
+                    expect(completedFixture.destinationDelegate.presentAnimationStates.map { String(describing: $0) }).to(equal(["end"]))
+                    expect(completedFixture.presentDriver.interruptibleAnimator).to(beNil())
+                    expect(completedFixture.presentDriver.observingGesture).to(beNil())
+                    expect(completedFixture.presentAnimator.parameters).to(beNil())
+
+                    let cancelledFixture = makeCoreTestTransitionFixture()
+                    cancelledFixture.presentDriver.interruptibleAnimator = UIViewPropertyAnimator(duration: 0, curve: .linear)
+
+                    cancelledFixture.presentDriver.animationDidEnd(false)
+
+                    expect(cancelledFixture.sourceDelegate.presentAnimationStates.map { String(describing: $0) }).to(equal(["cancel"]))
+                    expect(cancelledFixture.destinationDelegate.presentAnimationStates.map { String(describing: $0) }).to(equal(["cancel"]))
+                    expect(cancelledFixture.presentDriver.interruptibleAnimator).to(beNil())
+                    expect(cancelledFixture.presentDriver.observingGesture).to(beNil())
+                    expect(cancelledFixture.presentAnimator.parameters).to(beNil())
+                    expect(cancelledFixture.destinationViewController.view.superview).to(beNil())
+                }
+
+                it("cleans up dismiss animation completion and restores cancellation parameters") {
+                    let completedFixture = makeCoreTestTransitionFixture()
+                    completedFixture.dismissDriver.interruptibleAnimator = UIViewPropertyAnimator(duration: 0, curve: .linear)
+
+                    completedFixture.dismissDriver.animationDidEnd(true)
+
+                    expect(completedFixture.sourceDelegate.dismissAnimationStates.map { String(describing: $0) }).to(equal(["end"]))
+                    expect(completedFixture.destinationDelegate.dismissAnimationStates.map { String(describing: $0) }).to(equal(["end"]))
+                    expect(completedFixture.dismissDriver.interruptibleAnimator).to(beNil())
+                    expect(completedFixture.dismissDriver.observingGesture).to(beNil())
+                    expect(completedFixture.dismissAnimator.parameters).to(beNil())
+                    expect(completedFixture.destinationViewController.view.superview).to(beNil())
+
+                    let cancelledFixture = makeCoreTestTransitionFixture()
+                    cancelledFixture.dismissDriver.interruptibleAnimator = UIViewPropertyAnimator(duration: 0, curve: .linear)
+
+                    cancelledFixture.dismissDriver.animationDidEnd(false)
+
+                    expect(cancelledFixture.sourceDelegate.dismissAnimationStates.map { String(describing: $0) }).to(equal(["cancel"]))
+                    expect(cancelledFixture.destinationDelegate.dismissAnimationStates.map { String(describing: $0) }).to(equal(["cancel"]))
+                    expect(cancelledFixture.dismissDriver.interruptibleAnimator).to(beNil())
+                    expect(cancelledFixture.dismissDriver.parameters.animationType).to(equal(.dismiss))
+                    expect(cancelledFixture.dismissAnimator.parameters).notTo(beNil())
+                    expect(cancelledFixture.destinationViewController.view.superview).notTo(beNil())
+                }
             }
             describe("Core animator helpers") {
                 it("converts delayed transition progress into animator progress") {
