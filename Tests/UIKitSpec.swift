@@ -1230,6 +1230,121 @@ final class UIKitSpec: QuickSpec {
                         .to(equal(CGRect(x: 0, y: 0, width: 228, height: 480)))
                 }
 
+                it("activates, applies, and deactivates transition edge constraints") {
+                    let container = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 480))
+                    let content = UIView(frame: .zero)
+                    content.translatesAutoresizingMaskIntoConstraints = false
+                    container.addSubview(content)
+                    var layout = FluidLayout(for: .slide(direction: .fromBottom),
+                                             presentationType: .transition,
+                                             container: container,
+                                             content: content,
+                                             containerSize: CGSize(width: 320, height: 480),
+                                             contentSize: CGSize(width: 240, height: 300))
+
+                    expect(String(describing: FluidLayout.FluidPresentationType.navigation)).to(equal("navigation"))
+                    expect(String(describing: FluidLayout.FluidPresentationType.transition)).to(equal("transition"))
+                    expect(layout.isFullScreen).to(beFalse())
+                    expect(layout.top.isActive).to(beFalse())
+                    expect(layout.bottom.isActive).to(beFalse())
+                    expect(layout.left.isActive).to(beFalse())
+                    expect(layout.right.isActive).to(beFalse())
+
+                    layout.activate(type: .transition)
+
+                    expect(layout.top.isActive).to(beTrue())
+                    expect(layout.bottom.isActive).to(beTrue())
+                    expect(layout.left.isActive).to(beTrue())
+                    expect(layout.right.isActive).to(beTrue())
+
+                    layout.apply(top: 0, bottom: 0, left: 0, right: 0)
+
+                    expect(layout.isFullScreen).to(beTrue())
+
+                    layout.apply(top: 12, right: 24)
+
+                    expect(layout.top.constant).to(beCloseTo(12))
+                    expect(layout.bottom.constant).to(beCloseTo(0))
+                    expect(layout.left.constant).to(beCloseTo(0))
+                    expect(layout.right.constant).to(beCloseTo(24))
+
+                    layout.deactivate(type: .transition)
+
+                    expect(layout.top.isActive).to(beFalse())
+                    expect(layout.bottom.isActive).to(beFalse())
+                    expect(layout.left.isActive).to(beFalse())
+                    expect(layout.right.isActive).to(beFalse())
+
+                    let navigationLayout = FluidLayout(for: .scale,
+                                                       presentationType: .navigation,
+                                                       container: container,
+                                                       content: content,
+                                                       containerSize: CGSize(width: 320, height: 480),
+                                                       contentSize: nil)
+
+                    expect(navigationLayout.isFullScreen).to(beTrue())
+                    navigationLayout.deactivate(type: .navigation)
+                }
+
+                it("creates drawer edge anchors for each exposed side") {
+                    let container = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 480))
+                    let content = UIView(frame: .zero)
+                    container.addSubview(content)
+                    let containerSize = CGSize(width: 320, height: 480)
+                    let contentSize = CGSize(width: 200, height: 160)
+
+                    let top = FluidLayout.topEdgeDrawerAnchors(container, content, containerSize, contentSize)
+                    let bottom = FluidLayout.bottomEdgeDrawerAnchors(container, content, containerSize, contentSize)
+                    let left = FluidLayout.leftEdgeDrawerAnchors(container, content, containerSize, contentSize)
+                    let right = FluidLayout.rightEdgeDrawerAnchors(container, content, containerSize, contentSize)
+
+                    expect(top.top.constant).to(beCloseTo(0))
+                    expect(top.bottom.constant).to(beCloseTo(320))
+                    expect(top.left.constant).to(beCloseTo(60))
+                    expect(top.right.constant).to(beCloseTo(60))
+
+                    expect(bottom.top.constant).to(beCloseTo(320))
+                    expect(bottom.bottom.constant).to(beCloseTo(0))
+                    expect(bottom.left.constant).to(beCloseTo(60))
+                    expect(bottom.right.constant).to(beCloseTo(60))
+
+                    expect(left.top.constant).to(beCloseTo(160))
+                    expect(left.bottom.constant).to(beCloseTo(160))
+                    expect(left.left.constant).to(beCloseTo(0))
+                    expect(left.right.constant).to(beCloseTo(120))
+
+                    expect(right.top.constant).to(beCloseTo(160))
+                    expect(right.bottom.constant).to(beCloseTo(160))
+                    expect(right.left.constant).to(beCloseTo(120))
+                    expect(right.right.constant).to(beCloseTo(0))
+                }
+
+                it("creates fluid size constants for idiom and transition state") {
+                    let portrait = CGSize(width: 320, height: 480)
+                    let landscape = CGSize(width: 600, height: 400)
+
+                    expect(FluidLayout.sizeConstant(for: .fluid(behavior: .scale),
+                                                    containerSize: portrait,
+                                                    idiom: .phone,
+                                                    isInitial: true))
+                        .to(equal(CGSize(width: 173, height: 346)))
+                    expect(FluidLayout.sizeConstant(for: .fluid(behavior: .scale),
+                                                    containerSize: portrait,
+                                                    idiom: .phone,
+                                                    isInitial: false))
+                        .to(equal(portrait))
+                    expect(FluidLayout.sizeConstant(for: .fluid(behavior: .scale),
+                                                    containerSize: landscape,
+                                                    idiom: .pad,
+                                                    isInitial: true))
+                        .to(equal(CGSize(width: 324, height: 288)))
+                    expect(FluidLayout.sizeConstant(for: .fluid(behavior: .scale),
+                                                    containerSize: landscape,
+                                                    idiom: .pad,
+                                                    isInitial: false))
+                        .to(equal(landscape))
+                }
+
                 it("creates center and size constraints for full screen content") {
                     let container = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 480))
                     let content = UIView(frame: .zero)
