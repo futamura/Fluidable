@@ -529,6 +529,81 @@ final class UIKitSpec: QuickSpec {
                     expect(blockedFixture.dismissDriver.canBeginDismissInteraction(isEdgePan: false)).to(beFalse())
                 }
             }
+            describe("Core animated drivers") {
+                it("configures present animators and completes a successful transition") {
+                    let fixture = makeCoreTestTransitionFixture(style: .slide(direction: .fromBottom))
+                    let context = CoreTestTransitionContext(container: fixture.container,
+                                                            from: fixture.sourceViewController,
+                                                            to: fixture.destinationViewController)
+
+                    let firstAnimator = fixture.presentDriver.configureInterruptibleAnimator(using: context)
+                    let secondAnimator = fixture.presentDriver.configureInterruptibleAnimator(using: context)
+
+                    expect((firstAnimator as AnyObject) === (secondAnimator as AnyObject)).to(beTrue())
+                    expect(fixture.presentDriver.interruptibleAnimator).notTo(beNil())
+                    expect(fixture.presentAnimator.interruptibleAnimator).notTo(beNil())
+                    expect(fixture.presentAnimator.progressAnimator).notTo(beNil())
+                    expect(fixture.presentAnimator.activeDuration).to(beCloseTo(fixture.presentDriver.presentDuration, within: 0.001))
+                    expect(fixture.sourceDelegate.presentAnimationStates.map { String(describing: $0) }).to(equal(["begin"]))
+                    expect(fixture.destinationDelegate.presentAnimationStates.map { String(describing: $0) }).to(equal(["begin"]))
+
+                    fixture.presentAnimator.progressAnimatorDidUpdate(progress: 0.4)
+                    fixture.presentAnimator.progressAnimator?._animatorState = .finished
+
+                    expect(fixture.sourceDelegate.presentAnimationStates.map { String(describing: $0) }).to(equal(["begin", "update"]))
+                    expect(fixture.destinationDelegate.presentAnimationStates.map { String(describing: $0) }).to(equal(["begin", "update"]))
+                    expect(context.completedTransitions).to(equal([true]))
+                }
+
+                it("configures dismiss animators from interaction progress and completes cancellation") {
+                    let fixture = makeCoreTestTransitionFixture(style: .slide(direction: .fromRight))
+                    let context = CoreTestTransitionContext(container: fixture.container,
+                                                            from: fixture.destinationViewController,
+                                                            to: fixture.sourceViewController,
+                                                            transitionWasCancelled: true)
+                    fixture.dismissDriver.currentInteractionProgress = 0.4
+                    fixture.dismissDriver.isInteractionCancelled = true
+
+                    _ = fixture.dismissDriver.configureInterruptibleAnimator(using: context)
+
+                    expect(fixture.dismissDriver.interruptibleAnimator).notTo(beNil())
+                    expect(fixture.dismissAnimator.progressAnimator).notTo(beNil())
+                    expect(fixture.dismissAnimator.activeDuration).to(beCloseTo(fixture.dismissDriver.dismissDuration * 0.6, within: 0.001))
+                    expect(fixture.dismissAnimator.activeEasing).to(equal(FluidAnimatorEasing.linear))
+                    expect(fixture.sourceDelegate.dismissAnimationStates.map { String(describing: $0) }).to(equal(["begin"]))
+                    expect(fixture.destinationDelegate.dismissAnimationStates.map { String(describing: $0) }).to(equal(["begin"]))
+
+                    fixture.dismissAnimator.progressAnimatorDidUpdate(progress: 0.25)
+                    fixture.dismissAnimator.progressAnimator?._animatorState = .finished
+
+                    expect(fixture.sourceDelegate.dismissAnimationStates.map { String(describing: $0) }).to(equal(["begin", "update"]))
+                    expect(fixture.destinationDelegate.dismissAnimationStates.map { String(describing: $0) }).to(equal(["begin", "update"]))
+                    expect(context.completedTransitions).to(equal([false]))
+                }
+
+                it("configures reverse and rotate animations from current driver parameters") {
+                    let reverseFixture = makeCoreTestTransitionFixture(style: .slide(direction: .fromBottom))
+                    reverseFixture.presentDriver.currentInteractionProgress = 0.35
+
+                    reverseFixture.presentDriver.configureAndRunReverseTransitionAnimation()
+
+                    expect(reverseFixture.presentAnimator.progressAnimator).notTo(beNil())
+                    expect(reverseFixture.presentAnimator.progressAnimator?.duration).to(beCloseTo(FluidConst.fluidInteractionReverseDuration, within: 0.001))
+
+                    let rotateFixture = makeCoreTestTransitionFixture(style: .slide(direction: .fromBottom))
+                    rotateFixture.dismissDriver.configureAndRunRotateAnimation(from: CGSize(width: 320, height: 480),
+                                                                               to: CGSize(width: 480, height: 320),
+                                                                               duration: 0.12)
+
+                    expect(rotateFixture.dismissDriver.parameters.animationType).to(equal(.rotate))
+                    expect(rotateFixture.dismissAnimator.progressAnimator?.duration).to(beCloseTo(0.12, within: 0.001))
+
+                    rotateFixture.dismissAnimator.progressAnimator?._animatorState = .finished
+
+                    expect(rotateFixture.dismissDriver.parameters.animationType).to(equal(.dismiss))
+                    expect(rotateFixture.dismissDriver.observingGesture).notTo(beNil())
+                }
+            }
             describe("Core animator helpers") {
                 it("converts delayed transition progress into animator progress") {
                     let fixture = makeCoreTestTransitionFixture()
@@ -1806,6 +1881,88 @@ private final class CoreTestFluidViewController: UIViewController, Fluidable {}
 
 private final class CoreTestFluidNavigationController: UINavigationController, Fluidable {}
 
+private final class CoreTestTransitionContext: NSObject, UIViewControllerContextTransitioning {
+    let containerView: UIView
+    var isAnimated: Bool
+    var isInteractive: Bool
+    var transitionWasCancelled: Bool
+    var presentationStyle: UIModalPresentationStyle
+    var completedTransitions: [Bool] = []
+    var updatedPercentCompletes: [CGFloat] = []
+    var didFinishInteractiveTransition = false
+    var didCancelInteractiveTransition = false
+    var didPauseInteractiveTransition = false
+
+    private let fromViewController: UIViewController
+    private let toViewController: UIViewController
+
+    init(container: UIView,
+         from fromViewController: UIViewController,
+         to toViewController: UIViewController,
+         transitionWasCancelled: Bool = false,
+         isAnimated: Bool = true,
+         isInteractive: Bool = false,
+         presentationStyle: UIModalPresentationStyle = .custom) {
+        self.containerView = container
+        self.fromViewController = fromViewController
+        self.toViewController = toViewController
+        self.transitionWasCancelled = transitionWasCancelled
+        self.isAnimated = isAnimated
+        self.isInteractive = isInteractive
+        self.presentationStyle = presentationStyle
+        super.init()
+    }
+
+    func updateInteractiveTransition(_ percentComplete: CGFloat) {
+        self.updatedPercentCompletes.append(percentComplete)
+    }
+
+    func finishInteractiveTransition() {
+        self.didFinishInteractiveTransition = true
+    }
+
+    func cancelInteractiveTransition() {
+        self.didCancelInteractiveTransition = true
+        self.transitionWasCancelled = true
+    }
+
+    func pauseInteractiveTransition() {
+        self.didPauseInteractiveTransition = true
+    }
+
+    func completeTransition(_ didComplete: Bool) {
+        self.completedTransitions.append(didComplete)
+    }
+
+    func viewController(forKey key: UITransitionContextViewControllerKey) -> UIViewController? {
+        switch key {
+        case .from: return self.fromViewController
+        case .to:   return self.toViewController
+        default:    return nil
+        }
+    }
+
+    func view(forKey key: UITransitionContextViewKey) -> UIView? {
+        switch key {
+        case .from: return self.fromViewController.view
+        case .to:   return self.toViewController.view
+        default:    return nil
+        }
+    }
+
+    var targetTransform: CGAffineTransform {
+        return .identity
+    }
+
+    func initialFrame(for viewController: UIViewController) -> CGRect {
+        return viewController === self.fromViewController ? self.containerView.bounds : .zero
+    }
+
+    func finalFrame(for viewController: UIViewController) -> CGRect {
+        return viewController === self.toViewController ? self.containerView.bounds : .zero
+    }
+}
+
 private final class CoreTestNavigationRootDelegate: NSObject, FluidNavigationRootNavigationControllerDelegate {
     func navigationPresentAnimationDidProgress(from source: FluidSourceViewController, to destination: FluidDestinationViewController, with navigation: FluidNavigationController?, on container: UIView?, navigationStyle: FluidNavigationStyle, duration: TimeInterval, easing: FluidAnimatorEasing, state: FluidProgressState, progress: CGFloat) {}
     func navigationDismissAnimationDidProgress(from destination: FluidDestinationViewController, to source: FluidSourceViewController, with navigation: FluidNavigationController?, on container: UIView?, navigationStyle: FluidNavigationStyle, duration: TimeInterval, easing: FluidAnimatorEasing, state: FluidProgressState, progress: CGFloat) {}
@@ -1913,6 +2070,8 @@ private final class CoreTestTransitionRootDelegate: NSObject, FluidTransitionRoo
 private final class CoreTestTransitionSourceDelegate: NSObject, FluidTransitionSourceViewControllerDelegate {
     var transitionStyle: FluidTransitionStyle
     var allowInteractivePresent: Bool
+    var presentAnimationStates: [FluidProgressState] = []
+    var dismissAnimationStates: [FluidProgressState] = []
     var presentInteractionStates: [FluidProgressState] = []
 
     init(transitionStyle: FluidTransitionStyle = .slide(direction: .fromRight),
@@ -1933,6 +2092,30 @@ private final class CoreTestTransitionSourceDelegate: NSObject, FluidTransitionS
         return self.transitionStyle
     }
 
+    func transitionPresentAnimationDidProgress(from source: FluidSourceViewController,
+                                               to destination: FluidDestinationViewController,
+                                               with navigation: FluidNavigationController?,
+                                               on container: UIView?,
+                                               transitionStyle: FluidTransitionStyle,
+                                               duration: TimeInterval,
+                                               easing: FluidAnimatorEasing,
+                                               state: FluidProgressState,
+                                               progress: CGFloat) {
+        self.presentAnimationStates.append(state)
+    }
+
+    func transitionDismissAnimationDidProgress(from destination: FluidDestinationViewController,
+                                               to source: FluidSourceViewController,
+                                               with navigation: FluidNavigationController?,
+                                               on container: UIView?,
+                                               transitionStyle: FluidTransitionStyle,
+                                               duration: TimeInterval,
+                                               easing: FluidAnimatorEasing,
+                                               state: FluidProgressState,
+                                               progress: CGFloat) {
+        self.dismissAnimationStates.append(state)
+    }
+
     func transitionPresentInteractionDidProgress(from source: FluidSourceViewController,
                                                  to destination: FluidDestinationViewController,
                                                  with navigation: FluidNavigationController?,
@@ -1950,6 +2133,8 @@ private final class CoreTestTransitionSourceDelegate: NSObject, FluidTransitionS
 private final class CoreTestTransitionDestinationDelegate: NSObject, FluidTransitionDestinationViewControllerDelegate {
     var allowInteractiveDismiss: Bool
     var observedScrollViews: [UIScrollView]?
+    var presentAnimationStates: [FluidProgressState] = []
+    var dismissAnimationStates: [FluidProgressState] = []
     var presentInteractionStates: [FluidProgressState] = []
 
     init(allowInteractiveDismiss: Bool = true, observedScrollViews: [UIScrollView]? = nil) {
@@ -1967,6 +2152,30 @@ private final class CoreTestTransitionDestinationDelegate: NSObject, FluidTransi
                                        to source: FluidSourceViewController,
                                        with navigation: FluidNavigationController?) -> [UIScrollView]? {
         return self.observedScrollViews
+    }
+
+    func transitionPresentAnimationDidProgress(from source: FluidSourceViewController,
+                                               to destination: FluidDestinationViewController,
+                                               with navigation: FluidNavigationController?,
+                                               on container: UIView?,
+                                               transitionStyle: FluidTransitionStyle,
+                                               duration: TimeInterval,
+                                               easing: FluidAnimatorEasing,
+                                               state: FluidProgressState,
+                                               progress: CGFloat) {
+        self.presentAnimationStates.append(state)
+    }
+
+    func transitionDismissAnimationDidProgress(from destination: FluidDestinationViewController,
+                                               to source: FluidSourceViewController,
+                                               with navigation: FluidNavigationController?,
+                                               on container: UIView?,
+                                               transitionStyle: FluidTransitionStyle,
+                                               duration: TimeInterval,
+                                               easing: FluidAnimatorEasing,
+                                               state: FluidProgressState,
+                                               progress: CGFloat) {
+        self.dismissAnimationStates.append(state)
     }
 
     func transitionPresentInteractionDidProgress(from source: FluidSourceViewController,
