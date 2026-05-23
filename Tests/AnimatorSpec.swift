@@ -386,6 +386,93 @@ final class AnimatorSpec: QuickSpec {
                     expect(String(describing: FluidAnimatorState.finished)).to(beginWith("finished"))
                 }
             }
+            describe("FluidPropertyAnimator") {
+                it("runs, pauses, updates, resumes, stops, and invalidates queued animations") {
+                    let view = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+                    var progressValues: [CGFloat] = []
+                    var stateValues: [FluidAnimatorState] = []
+                    let animator = FluidPropertyAnimator(duration: 1, easing: .linear, id: "property-core")
+
+                    animator
+                        .add({ view.alpha = 0.5 }, lazy: true)
+                        .add({ view.frame.origin.x = 12 }, delayFactor: 0.2, lazy: true)
+                        .on { progress in
+                            progressValues.append(progress)
+                        }
+                        .on { state, progress in
+                            stateValues.append(state)
+                            progressValues.append(progress)
+                        }
+                        .fractionComplete(0.25)
+                        .isReversed(true)
+                        .isInterruptible(false)
+                        .isUserInteractionEnabled(false)
+                        .isManualHitTestingEnabled(false)
+
+                    if #available(iOS 11.0, *) {
+                        animator.scrubsLinearly(true).pausesOnCompletion(true)
+                        expect(animator.scrubsLinearly).to(beTrue())
+                        expect(animator.pausesOnCompletion).to(beTrue())
+                        animator.configure(scrubsLinearly: false, pausesOnCompletion: false)
+                        expect(animator.scrubsLinearly).to(beFalse())
+                        expect(animator.pausesOnCompletion).to(beFalse())
+                    }
+
+                    animator.configure(isInterruptible: true,
+                                       isUserInteractionEnabled: true,
+                                       isManualHitTestingEnabled: true)
+
+                    expect(animator.identifier).to(equal("property-core"))
+                    expect(animator.animations?.count).to(equal(2))
+                    expect(animator.isInterruptible).to(beTrue())
+                    expect(animator.isUserInteractionEnabled).to(beTrue())
+                    expect(animator.isManualHitTestingEnabled).to(beTrue())
+                    expect(progressValues).notTo(beEmpty())
+
+                    animator.run()
+                    animator.add({ view.alpha = 0.25 }, lazy: true)
+                    expect(animator.animatorState).to(equal(.running))
+                    expect(animator.displayLink).notTo(beNil())
+
+                    animator.pause()
+                    expect(animator.animatorState).to(equal(.paused))
+                    expect(animator.displayLink).to(beNil())
+
+                    animator.update(fractionComplete: 0.4)
+                    expect(animator.fractionComplete).to(beCloseTo(0.4, within: 0.001))
+                    expect(animator.animatorProgress).to(beCloseTo(0.4, within: 0.001))
+
+                    animator.resume(easing: .easeOutQuad, durationFactor: 0.5)
+                    expect(animator.animatorState).to(equal(.running))
+                    expect(animator.displayLink).notTo(beNil())
+
+                    animator.stop(true)
+                    expect(animator.animatorState).to(equal(.cancelled))
+                    expect(animator.displayLink).to(beNil())
+
+                    animator.invalidate()
+                    expect(animator.animations).to(beNil())
+                    let stateDescriptions = stateValues.map { String(describing: $0) }
+                    expect(stateDescriptions).to(contain("running"))
+                    expect(stateDescriptions).to(contain("paused"))
+                    expect(stateDescriptions).to(contain("cancelled"))
+                }
+
+                it("finishes active animations and clears timers") {
+                    let animator = FluidPropertyAnimator(duration: 1, easing: .linear, id: "property-finish")
+
+                    animator.add({}, lazy: true)
+                    animator.run()
+
+                    expect(animator.animatorState).to(equal(.running))
+                    expect(animator.displayLink).notTo(beNil())
+
+                    animator.finish(at: .current)
+
+                    expect(animator.animatorState).to(equal(.finished))
+                    expect(animator.displayLink).to(beNil())
+                }
+            }
         }
 
         func calculate(easing: PennerEasing, step: CGFloat = 0.01, duration: CGFloat = 1.0, begin: CGFloat = 0.0, end: CGFloat = 100.0) -> CGFloat {
