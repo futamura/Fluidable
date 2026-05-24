@@ -386,6 +386,535 @@ final class AnimatorSpec: QuickSpec {
                     expect(String(describing: FluidAnimatorState.finished)).to(beginWith("finished"))
                 }
             }
+            describe("FluidCoreAnimatorKey") {
+                it("maps layer keys to Core Animation key paths") {
+                    let keyPaths: [(actual: String, expected: String)] = [
+                        (FluidCoreAnimatorKey.anchorPoint.rawValue, #keyPath(CALayer.anchorPoint)),
+                        (FluidCoreAnimatorKey.backgroundColor.rawValue, #keyPath(CALayer.backgroundColor)),
+                        (FluidCoreAnimatorKey.borderColor.rawValue, #keyPath(CALayer.borderColor)),
+                        (FluidCoreAnimatorKey.borderWidth.rawValue, #keyPath(CALayer.borderWidth)),
+                        (FluidCoreAnimatorKey.bounds.rawValue, #keyPath(CALayer.bounds)),
+                        (FluidCoreAnimatorKey.contents.rawValue, #keyPath(CALayer.contents)),
+                        (FluidCoreAnimatorKey.contentsRect.rawValue, #keyPath(CALayer.contentsRect)),
+                        (FluidCoreAnimatorKey.cornerRadius.rawValue, #keyPath(CALayer.cornerRadius)),
+                        (FluidCoreAnimatorKey.filters.rawValue, #keyPath(CALayer.filters)),
+                        (FluidCoreAnimatorKey.frame.rawValue, #keyPath(CALayer.frame)),
+                        (FluidCoreAnimatorKey.hidden.rawValue, #keyPath(CALayer.isHidden)),
+                        (FluidCoreAnimatorKey.mask.rawValue, #keyPath(CALayer.mask)),
+                        (FluidCoreAnimatorKey.masksToBounds.rawValue, #keyPath(CALayer.masksToBounds)),
+                        (FluidCoreAnimatorKey.opacity.rawValue, #keyPath(CALayer.opacity)),
+                        (FluidCoreAnimatorKey.path.rawValue, #keyPath(CAShapeLayer.path)),
+                        (FluidCoreAnimatorKey.position.rawValue, #keyPath(CALayer.position)),
+                        (FluidCoreAnimatorKey.shadowColor.rawValue, #keyPath(CALayer.shadowColor)),
+                        (FluidCoreAnimatorKey.shadowOffset.rawValue, #keyPath(CALayer.shadowOffset)),
+                        (FluidCoreAnimatorKey.shadowOpacity.rawValue, #keyPath(CALayer.shadowOpacity)),
+                        (FluidCoreAnimatorKey.shadowPath.rawValue, #keyPath(CALayer.shadowPath)),
+                        (FluidCoreAnimatorKey.shadowRadius.rawValue, #keyPath(CALayer.shadowRadius)),
+                        (FluidCoreAnimatorKey.sublayers.rawValue, #keyPath(CALayer.sublayers)),
+                        (FluidCoreAnimatorKey.sublayerTransform.rawValue, #keyPath(CALayer.sublayerTransform)),
+                        (FluidCoreAnimatorKey.transform.rawValue, #keyPath(CALayer.transform)),
+                        (FluidCoreAnimatorKey.zPosition.rawValue, #keyPath(CALayer.zPosition)),
+                        (FluidCoreAnimatorKey.anchorPointX.rawValue, "\(#keyPath(CALayer.anchorPoint)).x"),
+                        (FluidCoreAnimatorKey.anchorPointy.rawValue, "\(#keyPath(CALayer.anchorPoint)).y"),
+                        (FluidCoreAnimatorKey.boundsOrigin.rawValue, "\(#keyPath(CALayer.bounds)).origin"),
+                        (FluidCoreAnimatorKey.boundsOriginX.rawValue, "\(#keyPath(CALayer.bounds)).origin.x"),
+                        (FluidCoreAnimatorKey.boundsOriginY.rawValue, "\(#keyPath(CALayer.bounds)).origin.y"),
+                        (FluidCoreAnimatorKey.boundsSize.rawValue, "\(#keyPath(CALayer.bounds)).size"),
+                        (FluidCoreAnimatorKey.boundsSizeWidth.rawValue, "\(#keyPath(CALayer.bounds)).size.width"),
+                        (FluidCoreAnimatorKey.boundsSizeHeight.rawValue, "\(#keyPath(CALayer.bounds)).size.height"),
+                        (FluidCoreAnimatorKey.contentsRectOrigin.rawValue, "\(#keyPath(CALayer.contentsRect)).origin"),
+                        (FluidCoreAnimatorKey.contentsRectOriginX.rawValue, "\(#keyPath(CALayer.contentsRect)).origin.x"),
+                        (FluidCoreAnimatorKey.contentsRectOriginY.rawValue, "\(#keyPath(CALayer.contentsRect)).origin.y"),
+                        (FluidCoreAnimatorKey.contentsRectSize.rawValue, "\(#keyPath(CALayer.contentsRect)).size"),
+                        (FluidCoreAnimatorKey.contentsRectSizeWidth.rawValue, "\(#keyPath(CALayer.contentsRect)).size.width"),
+                        (FluidCoreAnimatorKey.contentsRectSizeHeight.rawValue, "\(#keyPath(CALayer.contentsRect)).size.height"),
+                        (FluidCoreAnimatorKey.frameOrigin.rawValue, "\(#keyPath(CALayer.frame)).origin"),
+                        (FluidCoreAnimatorKey.frameOriginX.rawValue, "\(#keyPath(CALayer.frame)).origin.x"),
+                        (FluidCoreAnimatorKey.frameOriginY.rawValue, "\(#keyPath(CALayer.frame)).origin.y"),
+                        (FluidCoreAnimatorKey.frameSize.rawValue, "\(#keyPath(CALayer.frame)).size"),
+                        (FluidCoreAnimatorKey.frameSizeWidth.rawValue, "\(#keyPath(CALayer.frame)).size.width"),
+                        (FluidCoreAnimatorKey.frameSizeHeight.rawValue, "\(#keyPath(CALayer.frame)).size.height"),
+                        (FluidCoreAnimatorKey.positionX.rawValue, "\(#keyPath(CALayer.position)).x"),
+                        (FluidCoreAnimatorKey.positionY.rawValue, "\(#keyPath(CALayer.position)).y"),
+                        (FluidCoreAnimatorKey.shadowOffsetWidth.rawValue, "\(#keyPath(CALayer.shadowOffset)).width"),
+                        (FluidCoreAnimatorKey.shadowOffsetHeight.rawValue, "\(#keyPath(CALayer.shadowOffset)).height"),
+                        (FluidCoreAnimatorKey.sublayerTransformRotationX.rawValue, "\(#keyPath(CALayer.sublayerTransform)).rotation.x"),
+                        (FluidCoreAnimatorKey.sublayerTransformRotationY.rawValue, "\(#keyPath(CALayer.sublayerTransform)).rotation.y"),
+                        (FluidCoreAnimatorKey.sublayerTransformRotationZ.rawValue, "\(#keyPath(CALayer.sublayerTransform)).rotation.z"),
+                        (FluidCoreAnimatorKey.sublayerTransformScaleX.rawValue, "\(#keyPath(CALayer.sublayerTransform)).scale.x"),
+                        (FluidCoreAnimatorKey.sublayerTransformScaleY.rawValue, "\(#keyPath(CALayer.sublayerTransform)).scale.y"),
+                        (FluidCoreAnimatorKey.sublayerTransformScaleZ.rawValue, "\(#keyPath(CALayer.sublayerTransform)).scale.z"),
+                        (FluidCoreAnimatorKey.sublayerTransformTranslationX.rawValue, "\(#keyPath(CALayer.sublayerTransform)).translation.x"),
+                        (FluidCoreAnimatorKey.sublayerTransformTranslationY.rawValue, "\(#keyPath(CALayer.sublayerTransform)).translation.y"),
+                        (FluidCoreAnimatorKey.sublayerTransformTranslationZ.rawValue, "\(#keyPath(CALayer.sublayerTransform)).translation.z"),
+                        (FluidCoreAnimatorKey.transformRotationX.rawValue, "\(#keyPath(CALayer.transform)).rotation.x"),
+                        (FluidCoreAnimatorKey.transformRotationY.rawValue, "\(#keyPath(CALayer.transform)).rotation.y"),
+                        (FluidCoreAnimatorKey.transformRotationZ.rawValue, "\(#keyPath(CALayer.transform)).rotation.z"),
+                        (FluidCoreAnimatorKey.transformScaleX.rawValue, "\(#keyPath(CALayer.transform)).scale.x"),
+                        (FluidCoreAnimatorKey.transformScaleY.rawValue, "\(#keyPath(CALayer.transform)).scale.y"),
+                        (FluidCoreAnimatorKey.transformScaleZ.rawValue, "\(#keyPath(CALayer.transform)).scale.z"),
+                        (FluidCoreAnimatorKey.transformTranslationX.rawValue, "\(#keyPath(CALayer.transform)).translation.x"),
+                        (FluidCoreAnimatorKey.transformTranslationY.rawValue, "\(#keyPath(CALayer.transform)).translation.y"),
+                        (FluidCoreAnimatorKey.transformTranslationZ.rawValue, "\(#keyPath(CALayer.transform)).translation.z"),
+                    ]
+
+                    keyPaths.forEach { keyPath in
+                        expect(keyPath.actual).to(equal(keyPath.expected))
+                    }
+                }
+            }
+            describe("FluidCoreAnimatorValidator") {
+                it("validates layers, animation counts, completion state, and typed animation values") {
+                    FluidCoreAnimatorLogger.suppress = true
+                    defer { FluidCoreAnimatorLogger.suppress = false }
+
+                    let layer = CALayer()
+                    layer.bounds = CGRect(x: 2, y: 4, width: 30, height: 40)
+                    let targetBounds = CGRect(x: 10, y: 12, width: 50, height: 60)
+                    var validatedLayer: CALayer?
+
+                    expect {
+                        validatedLayer = try FluidCoreAnimatorValidator.validate(layer: layer, id: "valid-layer")
+                    }.notTo(throwError())
+                    expect(validatedLayer === layer).to(beTrue())
+                    expect(try? FluidCoreAnimatorValidator.validate(isCompleted: true,
+                                                                    state: .finished,
+                                                                    id: "complete")).to(beTrue())
+                    expect(try? FluidCoreAnimatorValidator.validate(count: 1, id: "has-animation")).to(beTrue())
+
+                    let validatedBounds = try? FluidCoreAnimatorValidator.validate(layer: layer,
+                                                                                   keyPath: FluidCoreAnimatorKey.bounds,
+                                                                                   from: nil,
+                                                                                   to: targetBounds,
+                                                                                   id: "bounds")
+                    expect(validatedBounds?.from).to(equal(layer.bounds))
+                    expect(validatedBounds?.to).to(equal(targetBounds))
+
+                    expect {
+                        try FluidCoreAnimatorValidator.validate(layer: nil, id: "nil-layer")
+                    }.to(throwError { error in
+                        guard case FluidCoreAnimatorError.layerIsNil(let id) = error else {
+                            fail("Expected layerIsNil error")
+                            return
+                        }
+                        expect(id).to(equal("nil-layer"))
+                    })
+                    expect {
+                        try FluidCoreAnimatorValidator.validate(isCompleted: false,
+                                                               state: .running,
+                                                               id: "running")
+                    }.to(throwError { error in
+                        guard case FluidCoreAnimatorError.alreadyCompleted(let id, let state) = error else {
+                            fail("Expected alreadyCompleted error")
+                            return
+                        }
+                        expect(id).to(equal("running"))
+                        expect(state).to(equal(.running))
+                    })
+                    expect {
+                        try FluidCoreAnimatorValidator.validate(count: 0, id: "empty")
+                    }.to(throwError { error in
+                        guard case FluidCoreAnimatorError.animationsIsEmpty(let id) = error else {
+                            fail("Expected animationsIsEmpty error")
+                            return
+                        }
+                        expect(id).to(equal("empty"))
+                    })
+                    expect {
+                        try FluidCoreAnimatorValidator.validate(layer: nil,
+                                                               keyPath: FluidCoreAnimatorKey.bounds,
+                                                               from: layer.bounds,
+                                                               to: targetBounds,
+                                                               id: "nil-generic-layer")
+                    }.to(throwError { error in
+                        guard case FluidCoreAnimatorError.layerIsNil(let id) = error else {
+                            fail("Expected layerIsNil error")
+                            return
+                        }
+                        expect(id).to(equal("nil-generic-layer"))
+                    })
+                    expect {
+                        try FluidCoreAnimatorValidator.validate(layer: layer,
+                                                               keyPath: FluidCoreAnimatorKey.bounds,
+                                                               from: layer.bounds,
+                                                               to: nil,
+                                                               id: "invalid-bounds")
+                    }.to(throwError { error in
+                        guard case FluidCoreAnimatorError.invalidArgument(let id, let key, _, _) = error else {
+                            fail("Expected invalidArgument error")
+                            return
+                        }
+                        expect(id).to(equal("invalid-bounds"))
+                        expect(key).to(equal(FluidCoreAnimatorKey.bounds.rawValue))
+                    })
+                }
+            }
+            describe("FluidCoreAnimator") {
+                it("creates configured spring, transition, and progress animations") {
+                    let layer = CALayer()
+                    let animator = FluidCoreAnimator(for: layer, id: "core-helper", duration: 2)!
+
+                    let springAnimation = animator.createAnimation(layer: layer,
+                                                                    keyPath: FluidCoreAnimatorKey.position,
+                                                                    from: CGPoint(x: 0, y: 0),
+                                                                    to: CGPoint(x: 12, y: 24),
+                                                                    duration: 1.25,
+                                                                    beginTime: 0.2,
+                                                                    timeOffset: 0.1,
+                                                                    easing: .spring(mass: 2,
+                                                                                    stiffness: 120,
+                                                                                    damping: 14,
+                                                                                    velocity: CGVector(dx: 3, dy: 4)),
+                                                                    isRemovedOnCompletion: false,
+                                                                    fillMode: .both,
+                                                                    repeatCount: 2,
+                                                                    repeatDuration: 3,
+                                                                    autoreverses: true) as? CASpringAnimation
+                    let transition = animator.createTransition(startProgress: 0.25,
+                                                               endProgress: 0.75,
+                                                               type: .push,
+                                                               subtype: .left,
+                                                               duration: 1.5,
+                                                               beginTime: 0.3,
+                                                               timeOffset: 0.2,
+                                                               easing: .easeOut,
+                                                               isRemovedOnCompletion: false,
+                                                               fillMode: .forwards,
+                                                               repeatCount: 3,
+                                                               repeatDuration: 4,
+                                                               autoreverses: true)
+                    let progress = animator.createProgressAnimation(duration: 1.75,
+                                                                    beginTime: 0.4,
+                                                                    timeOffset: 0.3,
+                                                                    easing: .easeIn,
+                                                                    isRemovedOnCompletion: false,
+                                                                    fillMode: .both,
+                                                                    repeatCount: 4,
+                                                                    repeatDuration: 5,
+                                                                    autoreverses: true)
+
+                    expect(springAnimation).notTo(beNil())
+                    expect(springAnimation?.keyPath).to(equal(FluidCoreAnimatorKey.position.rawValue))
+                    expect(springAnimation?.mass).to(beCloseTo(2))
+                    expect(springAnimation?.stiffness).to(beCloseTo(120))
+                    expect(springAnimation?.damping).to(beCloseTo(14))
+                    expect(springAnimation?.initialVelocity).to(beCloseTo(5))
+                    expect(springAnimation?.duration).to(beCloseTo(1.25))
+                    expect(springAnimation?.beginTime).to(beCloseTo(0.2))
+                    expect(springAnimation?.timeOffset).to(beCloseTo(0.1))
+                    expect(springAnimation?.isRemovedOnCompletion).to(beFalse())
+                    expect(springAnimation?.fillMode).to(equal(.both))
+                    expect(springAnimation?.repeatCount).to(beCloseTo(2))
+                    expect(springAnimation?.repeatDuration).to(beCloseTo(3))
+                    expect(springAnimation?.autoreverses).to(beTrue())
+
+                    expect(transition.startProgress).to(beCloseTo(0.25))
+                    expect(transition.endProgress).to(beCloseTo(0.75))
+                    expect(transition.type).to(equal(.push))
+                    expect(transition.subtype).to(equal(.fromLeft))
+                    expect(transition.duration).to(beCloseTo(1.5))
+                    expect(transition.beginTime).to(beCloseTo(0.3))
+                    expect(transition.timeOffset).to(beCloseTo(0.2))
+                    expect(transition.isRemovedOnCompletion).to(beFalse())
+                    expect(transition.fillMode).to(equal(.forwards))
+                    expect(transition.repeatCount).to(beCloseTo(3))
+                    expect(transition.repeatDuration).to(beCloseTo(4))
+                    expect(transition.autoreverses).to(beTrue())
+                    expect(transition.timingFunction).notTo(beNil())
+
+                    expect(progress.keyPath).to(equal("progress"))
+                    expect(progress.fromValue as? CGFloat).to(equal(0))
+                    expect(progress.toValue as? CGFloat).to(equal(1))
+                    expect(progress.duration).to(beCloseTo(1.75))
+                    expect(progress.beginTime).to(beCloseTo(0.4))
+                    expect(progress.timeOffset).to(beCloseTo(0.3))
+                    expect(progress.isRemovedOnCompletion).to(beFalse())
+                    expect(progress.fillMode).to(equal(.both))
+                    expect(progress.repeatCount).to(beCloseTo(4))
+                    expect(progress.repeatDuration).to(beCloseTo(5))
+                    expect(progress.autoreverses).to(beTrue())
+                }
+
+                it("runs, pauses, resumes, cancels, and invalidates animation groups") {
+                    let layer = CALayer()
+                    let animator = FluidCoreAnimator(for: layer, id: "core-lifecycle", duration: 1)!
+                    var progressValues = [CGFloat]()
+                    var stateValues = [FluidAnimatorState]()
+
+                    animator
+                        .on { progress in
+                            progressValues.append(progress)
+                        }
+                        .on { state, _ in
+                            stateValues.append(state)
+                        }
+                        .add(key: FluidCoreAnimatorKey.opacity, from: CGFloat(0), to: CGFloat(1))
+                        .add(startProgress: 0, endProgress: 1, type: .fade, subtype: nil)
+
+                    expect(animator.animationCount).to(equal(2))
+
+                    animator.run()
+                    animator.animationDidStart(animator.group)
+
+                    expect(layer.animation(forKey: animator.groupAnimationId)).notTo(beNil())
+                    expect(animator.progressLayer).notTo(beNil())
+                    expect(animator.animatorState).to(equal(.running))
+
+                    animator.progressDidChange(to: 0.4)
+                    expect(animator.animatorProgress).to(beCloseTo(0.4, within: 0.001))
+                    expect(progressValues).to(equal([0.4]))
+
+                    animator.pause()
+                    expect(animator.animatorState).to(equal(.paused))
+                    expect(layer.speed).to(beCloseTo(0))
+
+                    animator.update(progress: 0.5)
+                    expect(layer.timeOffset).to(beCloseTo(animator.startTime + 0.5, within: 0.001))
+
+                    animator.resume(reverse: false, progress: nil)
+                    expect(animator.animatorState).to(equal(.running))
+                    expect(layer.speed).to(beCloseTo(1))
+                    expect(layer.timeOffset).to(beCloseTo(0))
+
+                    animator.pause()
+                    animator.resume(reverse: true, progress: 0.25, resetSpeedAfterFinish: false)
+                    expect(animator.animatorState).to(equal(.running))
+                    expect(layer.speed).to(beCloseTo(-1))
+
+                    animator.cancel()
+                    expect(animator.animatorState).to(equal(.cancelled))
+                    expect(layer.animation(forKey: animator.groupAnimationId)).to(beNil())
+
+                    animator.invalidate()
+                    expect(animator.layer).to(beNil())
+                    expect(animator.group).to(beNil())
+                    expect(animator.animations).to(beNil())
+                    expect(animator.progressLayer).to(beNil())
+                    expect(animator.progressAnimation).to(beNil())
+                    expect(stateValues).to(contain(.running, .paused, .cancelled))
+                }
+
+                it("snaps near-edge progress when core animations stop") {
+                    let animator = FluidCoreAnimator(for: CALayer(), id: "core-stop", duration: 1)!
+
+                    animator._animatorProgress = 0.01
+                    animator.animationDidStop(CAAnimation(), finished: true)
+
+                    expect(animator.animatorProgress).to(equal(0))
+                    expect(animator.animatorState).to(equal(.finished))
+
+                    animator._animatorState = .running
+                    animator._animatorProgress = 0.99
+                    animator.animationDidStop(CAAnimation(), finished: true)
+
+                    expect(animator.animatorProgress).to(equal(1))
+                    expect(animator.animatorState).to(equal(.finished))
+                }
+            }
+            describe("FluidPropertyAnimator") {
+                it("runs, pauses, updates, resumes, stops, and invalidates queued animations") {
+                    let view = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+                    var progressValues: [CGFloat] = []
+                    var stateValues: [FluidAnimatorState] = []
+                    let animator = FluidPropertyAnimator(duration: 1, easing: .linear, id: "property-core")
+
+                    animator
+                        .add({ view.alpha = 0.5 }, lazy: true)
+                        .add({ view.frame.origin.x = 12 }, delayFactor: 0.2, lazy: true)
+                        .on { progress in
+                            progressValues.append(progress)
+                        }
+                        .on { state, progress in
+                            stateValues.append(state)
+                            progressValues.append(progress)
+                        }
+                        .fractionComplete(0.25)
+                        .isReversed(true)
+                        .isInterruptible(false)
+                        .isUserInteractionEnabled(false)
+                        .isManualHitTestingEnabled(false)
+
+                    if #available(iOS 11.0, *) {
+                        animator.scrubsLinearly(true).pausesOnCompletion(true)
+                        expect(animator.scrubsLinearly).to(beTrue())
+                        expect(animator.pausesOnCompletion).to(beTrue())
+                        animator.configure(scrubsLinearly: false, pausesOnCompletion: false)
+                        expect(animator.scrubsLinearly).to(beFalse())
+                        expect(animator.pausesOnCompletion).to(beFalse())
+                    }
+
+                    animator.configure(isInterruptible: true,
+                                       isUserInteractionEnabled: true,
+                                       isManualHitTestingEnabled: true)
+
+                    expect(animator.identifier).to(equal("property-core"))
+                    expect(animator.animations?.count).to(equal(2))
+                    expect(animator.isInterruptible).to(beTrue())
+                    expect(animator.isUserInteractionEnabled).to(beTrue())
+                    expect(animator.isManualHitTestingEnabled).to(beTrue())
+                    expect(progressValues).notTo(beEmpty())
+
+                    animator.run()
+                    animator.add({ view.alpha = 0.25 }, lazy: true)
+                    expect(animator.animatorState).to(equal(.running))
+                    expect(animator.displayLink).notTo(beNil())
+
+                    animator.pause()
+                    expect(animator.animatorState).to(equal(.paused))
+                    expect(animator.displayLink).to(beNil())
+
+                    animator.update(fractionComplete: 0.4)
+                    expect(animator.fractionComplete).to(beCloseTo(0.4, within: 0.001))
+                    expect(animator.animatorProgress).to(beCloseTo(0.4, within: 0.001))
+
+                    animator.resume(easing: .easeOutQuad, durationFactor: 0.5)
+                    expect(animator.animatorState).to(equal(.running))
+                    expect(animator.displayLink).notTo(beNil())
+
+                    animator.stop(true)
+                    expect(animator.animatorState).to(equal(.cancelled))
+                    expect(animator.displayLink).to(beNil())
+
+                    animator.invalidate()
+                    expect(animator.animations).to(beNil())
+                    let stateDescriptions = stateValues.map { String(describing: $0) }
+                    expect(stateDescriptions).to(contain("running"))
+                    expect(stateDescriptions).to(contain("paused"))
+                    expect(stateDescriptions).to(contain("cancelled"))
+                }
+
+                it("finishes active animations and clears timers") {
+                    let animator = FluidPropertyAnimator(duration: 1, easing: .linear, id: "property-finish")
+
+                    animator.add({}, lazy: true)
+                    animator.run()
+
+                    expect(animator.animatorState).to(equal(.running))
+                    expect(animator.displayLink).notTo(beNil())
+
+                    animator.finish(at: .current)
+
+                    expect(animator.animatorState).to(equal(.finished))
+                    expect(animator.displayLink).to(beNil())
+                }
+
+                it("initializes timing variants and queued animations") {
+                    var invokedCount = 0
+                    let curveAnimator = FluidPropertyAnimator(duration: 1, curve: .easeInOut, id: "property-curve") {
+                        invokedCount += 1
+                    }
+                    let pointAnimator = FluidPropertyAnimator(duration: 1,
+                                                             controlPoint1: CGPoint(x: 0.2, y: 0.1),
+                                                             controlPoint2: CGPoint(x: 0.8, y: 0.9),
+                                                             id: "property-point") {
+                        invokedCount += 1
+                    }
+                    let scalarAnimator = FluidPropertyAnimator(duration: 1,
+                                                              c1x: 0.1,
+                                                              c1y: 0.2,
+                                                              c2x: 0.8,
+                                                              c2y: 0.9)
+                    let dampingAnimator = FluidPropertyAnimator(duration: 1, dampingRatio: 0.6, id: "property-damping") {
+                        invokedCount += 1
+                    }
+
+                    expect(curveAnimator.identifier).to(equal("property-curve"))
+                    expect(pointAnimator.identifier).to(equal("property-point"))
+                    expect(dampingAnimator.identifier).to(equal("property-damping"))
+                    expect(scalarAnimator.duration).to(equal(1))
+                    expect(curveAnimator.animations?.count).to(equal(1))
+                    expect(pointAnimator.animations?.count).to(equal(1))
+                    expect(dampingAnimator.animations?.count).to(equal(1))
+
+                    [curveAnimator, pointAnimator, scalarAnimator, dampingAnimator].forEach {
+                        $0.add({}, lazy: true)
+                        $0.run()
+                        $0.finish(at: .current)
+                        expect($0.animatorState).to(equal(.finished))
+                    }
+                    expect(invokedCount).to(equal(3))
+                }
+
+                it("converts and merges queued property animations") {
+                    let first = FluidPropertyAnimator(duration: 1, easing: .linear, id: "property-first")
+                    let second = FluidPropertyAnimator(duration: 1, easing: .easeOut, id: "property-second")
+                    let empty = FluidPropertyAnimator(duration: 1, easing: .easeIn, id: "property-empty")
+
+                    first.add({}, lazy: true)
+                    second.add({}, delayFactor: 0.2, lazy: true)
+
+                    let converted = FluidPropertyAnimator.convert([first, second, empty],
+                                                                 duration: 1,
+                                                                 easing: .linear,
+                                                                 id: "converted-property")
+                    let emptyConverted = FluidPropertyAnimator.convert(nil,
+                                                                      duration: 1,
+                                                                      easing: .linear,
+                                                                      id: "empty-converted-property")
+                    let merged = FluidPropertyAnimator.merge([first, second, empty],
+                                                            duration: 1,
+                                                            easing: .linear)
+                    let emptyMerged = FluidPropertyAnimator.merge(nil,
+                                                                 duration: 1,
+                                                                 easing: .linear)
+
+                    expect(converted.identifier).to(equal("converted-property"))
+                    expect(emptyConverted.identifier).to(equal("empty-converted-property"))
+                    expect(merged.identifier).to(equal("interruptible"))
+                    expect(emptyMerged.identifier).to(equal("interruptible"))
+                    expect(merged.animations).notTo(beNil())
+                    expect(emptyMerged.animations).notTo(beNil())
+                }
+            }
+            describe("FluidInterruptibleAnimator") {
+                it("controls animation state and clears completion callbacks") {
+                    let view = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+                    let animator = FluidInterruptibleAnimator(duration: 1,
+                                                             timingParameters: FluidAnimatorEasing.linear.timingParameters,
+                                                             id: "interruptible-core")
+                    var completionPositions: [UIViewAnimatingPosition] = []
+                    var completionStates: [UIViewAnimatingStateEx] = []
+
+                    animator.addAnimations { view.alpha = 0.2 }
+                    animator.addCompletion { position, state in
+                        completionPositions.append(position)
+                        completionStates.append(state)
+                    }
+
+                    expect(animator.identifier).to(equal("interruptible-core"))
+                    expect(animator.completionBlock).notTo(beNil())
+
+                    animator.startAnimation()
+                    animator.pauseAnimation()
+                    animator.continueAnimation(withTimingParameters: FluidAnimatorEasing.easeOut.timingParameters,
+                                               durationFactor: 0.5)
+                    animator.stopAnimation(false)
+                    animator.finishAnimation(at: .end)
+
+                    expect(view.alpha).to(beCloseTo(0.2, within: 0.001))
+                    expect(completionPositions).to(contain(.end))
+                    expect(completionStates).notTo(beEmpty())
+
+                    animator.positionDidChange(position: .current)
+                    expect(completionPositions.last).to(equal(.current))
+
+                    animator.invalidate()
+                    expect(animator.completionBlock).to(beNil())
+                }
+
+                it("starts delayed animations") {
+                    let animator = FluidInterruptibleAnimator(duration: 1,
+                                                             timingParameters: FluidAnimatorEasing.linear.timingParameters,
+                                                             id: "interruptible-delayed")
+
+                    animator.addAnimations {}
+                    animator.startAnimation(afterDelay: 0)
+                    animator.stopAnimation(true)
+
+                    expect(animator.identifier).to(equal("interruptible-delayed"))
+                    animator.invalidate()
+                }
+            }
         }
 
         func calculate(easing: PennerEasing, step: CGFloat = 0.01, duration: CGFloat = 1.0, begin: CGFloat = 0.0, end: CGFloat = 100.0) -> CGFloat {
