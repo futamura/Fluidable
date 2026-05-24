@@ -386,6 +386,169 @@ final class AnimatorSpec: QuickSpec {
                     expect(String(describing: FluidAnimatorState.finished)).to(beginWith("finished"))
                 }
             }
+            describe("FluidCoreAnimatorKey") {
+                it("maps layer keys to Core Animation key paths") {
+                    let keyPaths: [(actual: String, expected: String)] = [
+                        (FluidCoreAnimatorKey.anchorPoint.rawValue, #keyPath(CALayer.anchorPoint)),
+                        (FluidCoreAnimatorKey.backgroundColor.rawValue, #keyPath(CALayer.backgroundColor)),
+                        (FluidCoreAnimatorKey.borderColor.rawValue, #keyPath(CALayer.borderColor)),
+                        (FluidCoreAnimatorKey.borderWidth.rawValue, #keyPath(CALayer.borderWidth)),
+                        (FluidCoreAnimatorKey.bounds.rawValue, #keyPath(CALayer.bounds)),
+                        (FluidCoreAnimatorKey.contents.rawValue, #keyPath(CALayer.contents)),
+                        (FluidCoreAnimatorKey.contentsRect.rawValue, #keyPath(CALayer.contentsRect)),
+                        (FluidCoreAnimatorKey.cornerRadius.rawValue, #keyPath(CALayer.cornerRadius)),
+                        (FluidCoreAnimatorKey.filters.rawValue, #keyPath(CALayer.filters)),
+                        (FluidCoreAnimatorKey.frame.rawValue, #keyPath(CALayer.frame)),
+                        (FluidCoreAnimatorKey.hidden.rawValue, #keyPath(CALayer.isHidden)),
+                        (FluidCoreAnimatorKey.mask.rawValue, #keyPath(CALayer.mask)),
+                        (FluidCoreAnimatorKey.masksToBounds.rawValue, #keyPath(CALayer.masksToBounds)),
+                        (FluidCoreAnimatorKey.opacity.rawValue, #keyPath(CALayer.opacity)),
+                        (FluidCoreAnimatorKey.path.rawValue, #keyPath(CAShapeLayer.path)),
+                        (FluidCoreAnimatorKey.position.rawValue, #keyPath(CALayer.position)),
+                        (FluidCoreAnimatorKey.shadowColor.rawValue, #keyPath(CALayer.shadowColor)),
+                        (FluidCoreAnimatorKey.shadowOffset.rawValue, #keyPath(CALayer.shadowOffset)),
+                        (FluidCoreAnimatorKey.shadowOpacity.rawValue, #keyPath(CALayer.shadowOpacity)),
+                        (FluidCoreAnimatorKey.shadowPath.rawValue, #keyPath(CALayer.shadowPath)),
+                        (FluidCoreAnimatorKey.shadowRadius.rawValue, #keyPath(CALayer.shadowRadius)),
+                        (FluidCoreAnimatorKey.sublayers.rawValue, #keyPath(CALayer.sublayers)),
+                        (FluidCoreAnimatorKey.sublayerTransform.rawValue, #keyPath(CALayer.sublayerTransform)),
+                        (FluidCoreAnimatorKey.transform.rawValue, #keyPath(CALayer.transform)),
+                        (FluidCoreAnimatorKey.zPosition.rawValue, #keyPath(CALayer.zPosition)),
+                        (FluidCoreAnimatorKey.anchorPointX.rawValue, "\(#keyPath(CALayer.anchorPoint)).x"),
+                        (FluidCoreAnimatorKey.anchorPointy.rawValue, "\(#keyPath(CALayer.anchorPoint)).y"),
+                        (FluidCoreAnimatorKey.boundsOrigin.rawValue, "\(#keyPath(CALayer.bounds)).origin"),
+                        (FluidCoreAnimatorKey.boundsOriginX.rawValue, "\(#keyPath(CALayer.bounds)).origin.x"),
+                        (FluidCoreAnimatorKey.boundsOriginY.rawValue, "\(#keyPath(CALayer.bounds)).origin.y"),
+                        (FluidCoreAnimatorKey.boundsSize.rawValue, "\(#keyPath(CALayer.bounds)).size"),
+                        (FluidCoreAnimatorKey.boundsSizeWidth.rawValue, "\(#keyPath(CALayer.bounds)).size.width"),
+                        (FluidCoreAnimatorKey.boundsSizeHeight.rawValue, "\(#keyPath(CALayer.bounds)).size.height"),
+                        (FluidCoreAnimatorKey.contentsRectOrigin.rawValue, "\(#keyPath(CALayer.contentsRect)).origin"),
+                        (FluidCoreAnimatorKey.contentsRectOriginX.rawValue, "\(#keyPath(CALayer.contentsRect)).origin.x"),
+                        (FluidCoreAnimatorKey.contentsRectOriginY.rawValue, "\(#keyPath(CALayer.contentsRect)).origin.y"),
+                        (FluidCoreAnimatorKey.contentsRectSize.rawValue, "\(#keyPath(CALayer.contentsRect)).size"),
+                        (FluidCoreAnimatorKey.contentsRectSizeWidth.rawValue, "\(#keyPath(CALayer.contentsRect)).size.width"),
+                        (FluidCoreAnimatorKey.contentsRectSizeHeight.rawValue, "\(#keyPath(CALayer.contentsRect)).size.height"),
+                        (FluidCoreAnimatorKey.frameOrigin.rawValue, "\(#keyPath(CALayer.frame)).origin"),
+                        (FluidCoreAnimatorKey.frameOriginX.rawValue, "\(#keyPath(CALayer.frame)).origin.x"),
+                        (FluidCoreAnimatorKey.frameOriginY.rawValue, "\(#keyPath(CALayer.frame)).origin.y"),
+                        (FluidCoreAnimatorKey.frameSize.rawValue, "\(#keyPath(CALayer.frame)).size"),
+                        (FluidCoreAnimatorKey.frameSizeWidth.rawValue, "\(#keyPath(CALayer.frame)).size.width"),
+                        (FluidCoreAnimatorKey.frameSizeHeight.rawValue, "\(#keyPath(CALayer.frame)).size.height"),
+                        (FluidCoreAnimatorKey.positionX.rawValue, "\(#keyPath(CALayer.position)).x"),
+                        (FluidCoreAnimatorKey.positionY.rawValue, "\(#keyPath(CALayer.position)).y"),
+                        (FluidCoreAnimatorKey.shadowOffsetWidth.rawValue, "\(#keyPath(CALayer.shadowOffset)).width"),
+                        (FluidCoreAnimatorKey.shadowOffsetHeight.rawValue, "\(#keyPath(CALayer.shadowOffset)).height"),
+                        (FluidCoreAnimatorKey.sublayerTransformRotationX.rawValue, "\(#keyPath(CALayer.sublayerTransform)).rotation.x"),
+                        (FluidCoreAnimatorKey.sublayerTransformRotationY.rawValue, "\(#keyPath(CALayer.sublayerTransform)).rotation.y"),
+                        (FluidCoreAnimatorKey.sublayerTransformRotationZ.rawValue, "\(#keyPath(CALayer.sublayerTransform)).rotation.z"),
+                        (FluidCoreAnimatorKey.sublayerTransformScaleX.rawValue, "\(#keyPath(CALayer.sublayerTransform)).scale.x"),
+                        (FluidCoreAnimatorKey.sublayerTransformScaleY.rawValue, "\(#keyPath(CALayer.sublayerTransform)).scale.y"),
+                        (FluidCoreAnimatorKey.sublayerTransformScaleZ.rawValue, "\(#keyPath(CALayer.sublayerTransform)).scale.z"),
+                        (FluidCoreAnimatorKey.sublayerTransformTranslationX.rawValue, "\(#keyPath(CALayer.sublayerTransform)).translation.x"),
+                        (FluidCoreAnimatorKey.sublayerTransformTranslationY.rawValue, "\(#keyPath(CALayer.sublayerTransform)).translation.y"),
+                        (FluidCoreAnimatorKey.sublayerTransformTranslationZ.rawValue, "\(#keyPath(CALayer.sublayerTransform)).translation.z"),
+                        (FluidCoreAnimatorKey.transformRotationX.rawValue, "\(#keyPath(CALayer.transform)).rotation.x"),
+                        (FluidCoreAnimatorKey.transformRotationY.rawValue, "\(#keyPath(CALayer.transform)).rotation.y"),
+                        (FluidCoreAnimatorKey.transformRotationZ.rawValue, "\(#keyPath(CALayer.transform)).rotation.z"),
+                        (FluidCoreAnimatorKey.transformScaleX.rawValue, "\(#keyPath(CALayer.transform)).scale.x"),
+                        (FluidCoreAnimatorKey.transformScaleY.rawValue, "\(#keyPath(CALayer.transform)).scale.y"),
+                        (FluidCoreAnimatorKey.transformScaleZ.rawValue, "\(#keyPath(CALayer.transform)).scale.z"),
+                        (FluidCoreAnimatorKey.transformTranslationX.rawValue, "\(#keyPath(CALayer.transform)).translation.x"),
+                        (FluidCoreAnimatorKey.transformTranslationY.rawValue, "\(#keyPath(CALayer.transform)).translation.y"),
+                        (FluidCoreAnimatorKey.transformTranslationZ.rawValue, "\(#keyPath(CALayer.transform)).translation.z"),
+                    ]
+
+                    keyPaths.forEach { keyPath in
+                        expect(keyPath.actual).to(equal(keyPath.expected))
+                    }
+                }
+            }
+            describe("FluidCoreAnimatorValidator") {
+                it("validates layers, animation counts, completion state, and typed animation values") {
+                    FluidCoreAnimatorLogger.suppress = true
+                    defer { FluidCoreAnimatorLogger.suppress = false }
+
+                    let layer = CALayer()
+                    layer.bounds = CGRect(x: 2, y: 4, width: 30, height: 40)
+                    let targetBounds = CGRect(x: 10, y: 12, width: 50, height: 60)
+                    var validatedLayer: CALayer?
+
+                    expect {
+                        validatedLayer = try FluidCoreAnimatorValidator.validate(layer: layer, id: "valid-layer")
+                    }.notTo(throwError())
+                    expect(validatedLayer === layer).to(beTrue())
+                    expect(try? FluidCoreAnimatorValidator.validate(isCompleted: true,
+                                                                    state: .finished,
+                                                                    id: "complete")).to(beTrue())
+                    expect(try? FluidCoreAnimatorValidator.validate(count: 1, id: "has-animation")).to(beTrue())
+
+                    let validatedBounds = try? FluidCoreAnimatorValidator.validate(layer: layer,
+                                                                                   keyPath: FluidCoreAnimatorKey.bounds,
+                                                                                   from: nil,
+                                                                                   to: targetBounds,
+                                                                                   id: "bounds")
+                    expect(validatedBounds?.from).to(equal(layer.bounds))
+                    expect(validatedBounds?.to).to(equal(targetBounds))
+
+                    expect {
+                        try FluidCoreAnimatorValidator.validate(layer: nil, id: "nil-layer")
+                    }.to(throwError { error in
+                        guard case FluidCoreAnimatorError.layerIsNil(let id) = error else {
+                            fail("Expected layerIsNil error")
+                            return
+                        }
+                        expect(id).to(equal("nil-layer"))
+                    })
+                    expect {
+                        try FluidCoreAnimatorValidator.validate(isCompleted: false,
+                                                               state: .running,
+                                                               id: "running")
+                    }.to(throwError { error in
+                        guard case FluidCoreAnimatorError.alreadyCompleted(let id, let state) = error else {
+                            fail("Expected alreadyCompleted error")
+                            return
+                        }
+                        expect(id).to(equal("running"))
+                        expect(state).to(equal(.running))
+                    })
+                    expect {
+                        try FluidCoreAnimatorValidator.validate(count: 0, id: "empty")
+                    }.to(throwError { error in
+                        guard case FluidCoreAnimatorError.animationsIsEmpty(let id) = error else {
+                            fail("Expected animationsIsEmpty error")
+                            return
+                        }
+                        expect(id).to(equal("empty"))
+                    })
+                    expect {
+                        try FluidCoreAnimatorValidator.validate(layer: nil,
+                                                               keyPath: FluidCoreAnimatorKey.bounds,
+                                                               from: layer.bounds,
+                                                               to: targetBounds,
+                                                               id: "nil-generic-layer")
+                    }.to(throwError { error in
+                        guard case FluidCoreAnimatorError.layerIsNil(let id) = error else {
+                            fail("Expected layerIsNil error")
+                            return
+                        }
+                        expect(id).to(equal("nil-generic-layer"))
+                    })
+                    expect {
+                        try FluidCoreAnimatorValidator.validate(layer: layer,
+                                                               keyPath: FluidCoreAnimatorKey.bounds,
+                                                               from: layer.bounds,
+                                                               to: nil,
+                                                               id: "invalid-bounds")
+                    }.to(throwError { error in
+                        guard case FluidCoreAnimatorError.invalidArgument(let id, let key, _, _) = error else {
+                            fail("Expected invalidArgument error")
+                            return
+                        }
+                        expect(id).to(equal("invalid-bounds"))
+                        expect(key).to(equal(FluidCoreAnimatorKey.bounds.rawValue))
+                    })
+                }
+            }
             describe("FluidPropertyAnimator") {
                 it("runs, pauses, updates, resumes, stops, and invalidates queued animations") {
                     let view = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
