@@ -211,8 +211,10 @@ extension MainSpec {
         self.assertEventually(interactView.exists)
         self.assertEventually(targetView.exists)
         /* NOTE: Scroll until scroll view reaches to bottom */
-        let deadline = Date().addingTimeInterval(30)
-        while Date() < deadline {
+        var previousTargetFrame: CGRect?
+        var stableVisibleScrollAttempts = 0
+        var reachedDismissiblePosition = false
+        for _ in 0..<10 {
             option = self.getInteractiveDismissOption(app: app, orientation: orientation, model: model)
             guard let interactView: XCUIElement = option.interact,
                   let targetView: XCUIElement = option.target,
@@ -221,19 +223,37 @@ extension MainSpec {
                 RunLoop.current.run(until: Date().addingTimeInterval(0.2))
                 continue
             }
+            let isAtDismissiblePosition = self.isAtDismissiblePosition(app: app, orientation: orientation, model: model)
+            let targetFrame = targetView.frame
+            let isStableVisibleTarget = targetView.isVisible
+                && previousTargetFrame.map { self.isFrameStable(targetFrame, comparedWith: $0) } == true
             Logger()?.log("🧪", [
                 "interactView.isVisible".lpad(64) + String(describing: interactView.isVisible),
                 "targetView.isVisible".lpad(64) + String(describing: targetView.isVisible),
-                "isAtDismissiblePosition".lpad(64) + String(describing: self.isAtDismissiblePosition(app: app, orientation: orientation, model: model)),
+                "isAtDismissiblePosition".lpad(64) + String(describing: isAtDismissiblePosition),
+                "isStableVisibleTarget".lpad(64) + String(describing: isStableVisibleTarget)
             ])
-            if targetView.isVisible && self.isAtDismissiblePosition(app: app, orientation: orientation, model: model) { break }
+            if targetView.isVisible && isAtDismissiblePosition {
+                reachedDismissiblePosition = true
+                break
+            }
+            if isStableVisibleTarget {
+                stableVisibleScrollAttempts += 1
+                if stableVisibleScrollAttempts >= 2 {
+                    reachedDismissiblePosition = true
+                    break
+                }
+            } else {
+                stableVisibleScrollAttempts = 0
+            }
+            previousTargetFrame = targetFrame
             let vectors: InteractiveDismissVector = self.getReducedInteractiveDismissVector(app: app, orientation: orientation, model: model)
             let start: XCUICoordinate = interactView.coordinate(withNormalizedOffset: vectors.start)
             let finish: XCUICoordinate = interactView.coordinate(withNormalizedOffset: vectors.finish)
             start.press(forDuration: 0.2, thenDragTo: finish)
 //            interactView.swipe(from: vectors.start, to: vectors.finish)
         }
-        XCTAssertTrue(self.isAtDismissiblePosition(app: app, orientation: orientation, model: model))
+        XCTAssertTrue(reachedDismissiblePosition)
         usleep(sec: 1.0)
     }
 
@@ -494,6 +514,15 @@ extension MainSpec {
             RunLoop.current.run(until: Date().addingTimeInterval(0.1))
         }
         XCTAssertTrue(condition(), file: file, line: line)
+    }
+
+    private static func isFrameStable(_ frame: CGRect,
+                                      comparedWith previousFrame: CGRect,
+                                      tolerance: CGFloat = 1.0) -> Bool {
+        return abs(frame.minX - previousFrame.minX) <= tolerance
+            && abs(frame.minY - previousFrame.minY) <= tolerance
+            && abs(frame.width - previousFrame.width) <= tolerance
+            && abs(frame.height - previousFrame.height) <= tolerance
     }
 
     private static func waitForPresentedController(app: XCUIApplication,
