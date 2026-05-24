@@ -541,6 +541,55 @@ final class AnimatorSpec: QuickSpec {
                     expect(emptyMerged.animations).notTo(beNil())
                 }
             }
+            describe("FluidInterruptibleAnimator") {
+                it("controls animation state and clears completion callbacks") {
+                    let view = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+                    let animator = FluidInterruptibleAnimator(duration: 1,
+                                                             timingParameters: FluidAnimatorEasing.linear.timingParameters,
+                                                             id: "interruptible-core")
+                    var completionPositions: [UIViewAnimatingPosition] = []
+                    var completionStates: [UIViewAnimatingStateEx] = []
+
+                    animator.addAnimations { view.alpha = 0.2 }
+                    animator.addCompletion { position, state in
+                        completionPositions.append(position)
+                        completionStates.append(state)
+                    }
+
+                    expect(animator.identifier).to(equal("interruptible-core"))
+                    expect(animator.completionBlock).notTo(beNil())
+
+                    animator.startAnimation()
+                    animator.pauseAnimation()
+                    animator.continueAnimation(withTimingParameters: FluidAnimatorEasing.easeOut.timingParameters,
+                                               durationFactor: 0.5)
+                    animator.stopAnimation(false)
+                    animator.finishAnimation(at: .end)
+
+                    expect(view.alpha).to(beCloseTo(0.2, within: 0.001))
+                    expect(completionPositions).to(contain(.end))
+                    expect(completionStates).notTo(beEmpty())
+
+                    animator.positionDidChange(position: .current)
+                    expect(completionPositions.last).to(equal(.current))
+
+                    animator.invalidate()
+                    expect(animator.completionBlock).to(beNil())
+                }
+
+                it("starts delayed animations") {
+                    let animator = FluidInterruptibleAnimator(duration: 1,
+                                                             timingParameters: FluidAnimatorEasing.linear.timingParameters,
+                                                             id: "interruptible-delayed")
+
+                    animator.addAnimations {}
+                    animator.startAnimation(afterDelay: 0)
+                    animator.stopAnimation(true)
+
+                    expect(animator.identifier).to(equal("interruptible-delayed"))
+                    animator.invalidate()
+                }
+            }
         }
 
         func calculate(easing: PennerEasing, step: CGFloat = 0.01, duration: CGFloat = 1.0, begin: CGFloat = 0.0, end: CGFloat = 100.0) -> CGFloat {
