@@ -17,20 +17,7 @@ extension MainSpec {
         let collectionView: XCUIElement = app.collectionViews.element(matching: .collectionView, identifier: "rootCollectionView")
         self.assertEventually(collectionView.exists)
         /* NOTE: Scroll until the collection targetView is found */
-        if model == .transitionFluidModal {
-            self.tapRootCollectionCell(collectionView, app: app, model: model)
-        } else {
-            var collectionCell: XCUIElement!
-            while (true) {
-                collectionCell = collectionView.cells.element(matching: .cell, identifier: model.rootCellAccessibilityIdentifier)
-                if collectionCell.isVisible {
-                    collectionCell.tapVisibleCenter()
-                    break
-                } else {
-                    collectionView.swipeUp()
-                }
-            }
-        }
+        self.tapRootCollectionCell(collectionView, app: app, model: model)
         self.waitForPresentedController(app: app, model: model)
     }
 
@@ -41,11 +28,12 @@ extension MainSpec {
                 let windowFrame = app.windows.element(boundBy: 0).frame
                 let visibleCollectionFrame = collectionView.frame.intersection(windowFrame)
                 let centerY = collectionCell.frame.midY
-                let topInset = visibleCollectionFrame.minY + min(24, visibleCollectionFrame.height * 0.1)
-                let bottomInset = visibleCollectionFrame.maxY - min(24, visibleCollectionFrame.height * 0.1)
+                let safeInset = min(72, visibleCollectionFrame.height * 0.2)
+                let topInset = visibleCollectionFrame.minY + safeInset
+                let bottomInset = visibleCollectionFrame.maxY - safeInset
 
                 if centerY >= topInset && centerY <= bottomInset {
-                    collectionCell.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+                    collectionCell.tapVisibleCenter()
                     return
                 }
 

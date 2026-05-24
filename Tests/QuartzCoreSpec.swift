@@ -71,6 +71,61 @@ final class QuartzCoreSpec: QuickSpec {
                     expect(layer.sublayer(with: "sublayer0")).to(beNil())
                 }
             }
+            describe("CAProgressLayer") {
+                it("initializes, copies, and encodes progress") {
+                    let defaultLayer = CAProgressLayer()
+                    expect(defaultLayer.frame).to(equal(.zero))
+                    expect(defaultLayer.progress).to(equal(0))
+
+                    let layer = CAProgressLayer(frame: CGRect(x: 1, y: 2, width: 30, height: 40))
+                    expect(layer.frame).to(equal(CGRect(x: 1, y: 2, width: 30, height: 40)))
+                    expect(layer.progress).to(equal(0))
+
+                    layer.preferredInvocationFramePerSeconds = 120
+                    expect(layer.preferredInvocationFramePerSeconds).to(equal(120))
+
+                    layer.progress = 0.35
+                    let copiedLayer = CAProgressLayer(layer: layer)
+                    expect(copiedLayer.progress).to(equal(0.35))
+
+                    let layerCopiedFromCALayer = CAProgressLayer(layer: CALayer())
+                    expect(layerCopiedFromCALayer.progress).to(equal(0))
+
+                    let archiver = NSKeyedArchiver(requiringSecureCoding: false)
+                    layer.encode(with: archiver)
+                    archiver.finishEncoding()
+
+                    let unarchiver = try! NSKeyedUnarchiver(forReadingFrom: archiver.encodedData)
+                    let decodedLayer = CAProgressLayer(coder: unarchiver)
+                    unarchiver.finishDecoding()
+                    expect(decodedLayer?.progress).to(beCloseTo(0.35, within: 0.000001))
+                }
+
+                it("marks progress changes as displayable") {
+                    expect(CAProgressLayer.needsDisplay(forKey: "progress")).to(beTrue())
+                    expect(CAProgressLayer.needsDisplay(forKey: "bounds")).to(beFalse())
+                }
+
+                it("keeps progress unchanged when displayed without a presentation layer") {
+                    let layer = CAProgressLayer()
+                    layer.progress = 0.5
+
+                    layer.display()
+
+                    expect(layer.progress).to(equal(0.5))
+                }
+
+                it("backs UIProgressLayerView progress with its layer") {
+                    let view = UIProgressLayerView(frame: CGRect(x: 0, y: 0, width: 12, height: 24))
+                    expect(view.layer).to(beAnInstanceOf(CAProgressLayer.self))
+                    expect(view.layer.frame.size).to(equal(CGSize(width: 12, height: 24)))
+
+                    view.progress = 0.75
+                    expect(view.layer.progress).to(equal(0.75))
+                    view.layer.progress = 0.25
+                    expect(view.progress).to(equal(0.25))
+                }
+            }
             describe("CATransform3D") {
                 it("Initialization") {
                     let trans0: CATransform3D = CATransform3D(with: CGAffineTransform(tx: 2, ty: 2))

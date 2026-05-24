@@ -9,11 +9,97 @@
 import Quick
 import Nimble
 import UIKit
+import Darwin
 @testable import Fluidable
 
 final class EnumSpec: QuickSpec {
     override class func spec() {
+        func captureStandardOutput(_ body: () -> Void) -> String {
+            let pipe = Pipe()
+            let originalStandardOutput = dup(STDOUT_FILENO)
+
+            fflush(stdout)
+            dup2(pipe.fileHandleForWriting.fileDescriptor, STDOUT_FILENO)
+            body()
+            fflush(stdout)
+            dup2(originalStandardOutput, STDOUT_FILENO)
+            close(originalStandardOutput)
+
+            pipe.fileHandleForWriting.closeFile()
+            let data = pipe.fileHandleForReading.readDataToEndOfFile()
+            return String(data: data, encoding: .utf8) ?? ""
+        }
+
         describe("Enumeration") {
+            describe("FluidError") {
+                let invalidReference: FluidError = .invalidReference
+                let unsupportedPresentationEasing: FluidError = .unsupportedPresentationEasing(easing: .easeInBack)
+                let unsupportedDismissalEasing: FluidError = .unsupportedDismissalEasing(easing: .easeOutBack)
+                let ignoredPresentationDuration: FluidError = .ignoredPresentationDuration(easing: .spring, defaultDuration: 0.4, userDefinedDuration: 1.2)
+                let ignoredDismissalDuration: FluidError = .ignoredDismissalDuration(easing: .spring, defaultDuration: 0.5, userDefinedDuration: 1.3)
+                let invalidInitialFrameDimension: FluidError = .invalidInitialFrameDimension
+                let invalidFinalFrameDimension: FluidError = .invalidFinalFrameDimension
+                let invalidResizeConfiguration: FluidError = .invalidResizeConfiguration
+
+                it("Description") {
+                    expect(String(describing: FluidErrorLevel.error)).to(equal("error"))
+                    expect(String(describing: FluidErrorLevel.warn)).to(equal("warn"))
+                    expect(String(describing: FluidErrorLevel.info)).to(equal("info"))
+
+                    expect(String(describing: invalidReference.level)).to(equal("error"))
+                    expect(String(describing: unsupportedPresentationEasing.level)).to(equal("error"))
+                    expect(String(describing: unsupportedDismissalEasing.level)).to(equal("error"))
+                    expect(String(describing: ignoredPresentationDuration.level)).to(equal("warn"))
+                    expect(String(describing: ignoredDismissalDuration.level)).to(equal("warn"))
+                    expect(String(describing: invalidInitialFrameDimension.level)).to(equal("warn"))
+                    expect(String(describing: invalidFinalFrameDimension.level)).to(equal("warn"))
+                    expect(String(describing: invalidResizeConfiguration.level)).to(equal("error"))
+
+                    expect(invalidReference.description).to(contain("already disposed"))
+                    expect(unsupportedPresentationEasing.description).to(contain("easeInBack"))
+                    expect(unsupportedDismissalEasing.description).to(contain("easeOutBack"))
+                    expect(ignoredPresentationDuration.description).to(contain("present duration (1.2)"))
+                    expect(ignoredPresentationDuration.description).to(contain("default duration (0.4)"))
+                    expect(ignoredDismissalDuration.description).to(contain("dismiss duration (1.3)"))
+                    expect(ignoredDismissalDuration.description).to(contain("default duration (0.5)"))
+                    expect(invalidInitialFrameDimension.description).to(contain("will be ignored"))
+                    expect(invalidFinalFrameDimension.description).to(contain("needs to set"))
+                    expect(invalidResizeConfiguration.description).to(contain("bottom drawer"))
+                }
+
+                it("PrintMessage") {
+                    let output = captureStandardOutput {
+                        invalidReference.printMessage()
+                        unsupportedPresentationEasing.printMessage()
+                        unsupportedDismissalEasing.printMessage()
+                        ignoredPresentationDuration.printMessage()
+                        ignoredDismissalDuration.printMessage()
+                        invalidInitialFrameDimension.printMessage()
+                        invalidFinalFrameDimension.printMessage()
+                        invalidResizeConfiguration.printMessage()
+                    }
+
+                    expect(output).to(contain("The transition is cancelled"))
+                    expect(output).to(contain("Available easing types for iOS 10"))
+                    expect(output).to(contain("present duration (1.2)"))
+                    expect(output).to(contain("dismiss duration (1.3)"))
+                    expect(output).to(contain("will be ignored"))
+                    expect(output).to(contain("needs to set"))
+                    expect(output).to(contain("bottom drawer"))
+                }
+            }
+            describe("FluidCoreAnimatorError") {
+                it("Description") {
+                    expect(FluidCoreAnimatorError.layerIsNil(id: "layer").description).to(contain("[layer]"))
+                    expect(FluidCoreAnimatorError.layerIsNil(id: "layer").description).to(contain("already invalidated"))
+                    expect(FluidCoreAnimatorError.animationsIsEmpty(id: "animation").description).to(contain("[animation]"))
+                    expect(FluidCoreAnimatorError.animationsIsEmpty(id: "animation").description).to(contain("could not be created"))
+                    expect(FluidCoreAnimatorError.alreadyCompleted(id: "completed", state: .finished).description).to(contain("[completed]"))
+                    expect(FluidCoreAnimatorError.alreadyCompleted(id: "completed", state: .finished).description).to(contain("finished"))
+                    expect(FluidCoreAnimatorError.invalidArgument(id: "argument", key: "opacity", from: nil, to: 1.0).description).to(contain("[argument]"))
+                    expect(FluidCoreAnimatorError.invalidArgument(id: "argument", key: "opacity", from: nil, to: 1.0).description).to(contain("opacity"))
+                }
+            }
             describe("FluidAnimationType") {
                 let present: FluidAnimationType = FluidAnimationType.present
                 let dismiss: FluidAnimationType = FluidAnimationType.dismiss
