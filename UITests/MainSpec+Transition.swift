@@ -231,7 +231,7 @@ extension MainSpec {
                 "interactView.isVisible".lpad(64) + String(describing: interactView.isVisible),
                 "targetView.isVisible".lpad(64) + String(describing: targetView.isVisible),
                 "isAtDismissiblePosition".lpad(64) + String(describing: isAtDismissiblePosition),
-                "isStableVisibleTarget".lpad(64) + String(describing: isStableVisibleTarget),
+                "isStableVisibleTarget".lpad(64) + String(describing: isStableVisibleTarget)
             ])
             if targetView.isVisible && isAtDismissiblePosition {
                 reachedDismissiblePosition = true
@@ -516,7 +516,9 @@ extension MainSpec {
         XCTAssertTrue(condition(), file: file, line: line)
     }
 
-    private static func isFrameStable(_ frame: CGRect, comparedWith previousFrame: CGRect, tolerance: CGFloat = 1.0) -> Bool {
+    private static func isFrameStable(_ frame: CGRect,
+                                      comparedWith previousFrame: CGRect,
+                                      tolerance: CGFloat = 1.0) -> Bool {
         return abs(frame.minX - previousFrame.minX) <= tolerance
             && abs(frame.minY - previousFrame.minY) <= tolerance
             && abs(frame.width - previousFrame.width) <= tolerance
