@@ -87,6 +87,12 @@ final class MainSpec: QuickSpec {
                             self.popViewControllerByTappingBackButton(app: app, orientation: orientation, model: model)
                             self.finishAnimatedDismissByTappingContainer(app: app, orientation: orientation, model: model)
                         }
+                        if orientation == .portrait && model == .navigationFluidModal {
+                            it("KeepRootNavigationVisibleAndAlignFluidModalContent") {
+                                self.finishAnimatedPresent(app: app, orientation: orientation, model: model)
+                                self.assertRootNavigationVisibleAndFluidModalContentAligned(app: app, model: model)
+                            }
+                        }
                         /* FIXME: No way to perform interruptible transition */
 //                        it("FinishAnimatedPresent_CancelInteractiveDismiss") {
 //                            self.finishAnimatedPresent(app: app, orientation: orientation, model: model)

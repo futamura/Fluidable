@@ -179,8 +179,10 @@ extension RootViewController: FluidTransitionSourceActionDelegate {
                       let navBar: UINavigationBar = self.navigationController?.navigationBar else { return }
                 self.selectedCell?.isHidden = true
                 /* NOTE: If the navigation bar overlaps the cell, hide the navigation bar to avoid that the dismissal animation jumps */
-                let cellFrame: CGRect = cell.convert(cell.frame, to: navBar)
-                if navBar.frame.intersects(cellFrame) { self.navigationController?.setNavigationBarHidden(true, animated: true) }
+                let referenceView: UIView? = navBar.superview ?? self.view
+                let cellFrame: CGRect = cell.convert(cell.bounds, to: referenceView)
+                let navBarFrame: CGRect = navBar.convert(navBar.bounds, to: referenceView)
+                if navBarFrame.intersects(cellFrame) { self.navigationController?.setNavigationBarHidden(true, animated: true) }
             case .cancel:
                 self.selectedCell?.isHidden = false
             case .update, .end:
@@ -234,4 +236,3 @@ extension RootViewController: FluidTransitionSourceActionDelegate {
                                                  state: FluidProgressState, progress: CGFloat, info: FluidGestureInfo) {
     }
 }
-
