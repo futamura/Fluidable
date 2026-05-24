@@ -587,6 +587,42 @@ final class UIKitSpec: QuickSpec {
                     expect(fromLeft.presentDriver.calculateInteractionProgress()).to(beCloseTo(0.6, within: 0.001))
                 }
 
+                it("drives present pan gesture interaction paths") {
+                    let fixture = makeCoreTestTransitionFixture(style: .slide(direction: .fromRight))
+                    let gesture = StubPanGestureRecognizer()
+                    let observer = fixture.presentDriver.observingGesture!
+
+                    fixture.presentDriver.interruptibleAnimator = UIViewPropertyAnimator(duration: 1, curve: .linear)
+                    observer.baseFrame = fixture.destinationViewController.view.frame
+                    observer.panGestureView = fixture.destinationViewController.view
+                    observer.currentLocation = CGPoint(x: 220, y: 0)
+                    observer.currentTranslation = CGPoint(x: -40, y: 0)
+                    observer.currentVelocity = CGVector(dx: -2_000, dy: 0)
+                    observer.translationHistory = [CGPoint(x: -40, y: 0), .zero]
+
+                    fixture.presentDriver.beginPanGesture(gesture: gesture, isEdgePan: false)
+
+                    expect(fixture.presentDriver.isInteracting).to(beTrue())
+                    expect(fixture.presentDriver.pausedInterruptibleFractionComplete).to(beCloseTo(0))
+                    expect(fixture.sourceDelegate.presentInteractionStates.map { String(describing: $0) }).to(equal(["begin"]))
+
+                    observer.currentLocation = CGPoint(x: 80, y: 0)
+                    observer.currentTranslation = CGPoint(x: -140, y: 0)
+                    observer.translationHistory = [CGPoint(x: -140, y: 0), .zero]
+                    fixture.presentDriver.updatePanGesture(gesture: gesture, isEdgePan: false)
+
+                    expect(fixture.presentAnimator.interactionProgress).to(beCloseTo(0.4375, within: 0.001))
+                    expect(fixture.sourceDelegate.presentInteractionStates.map { String(describing: $0) }).to(equal(["begin", "update"]))
+
+                    fixture.presentDriver.finishPanGesture(gesture: gesture, isEdgePan: false)
+
+                    expect(fixture.presentDriver.isInteracting).to(beFalse())
+                    expect(fixture.presentDriver.isInteractionCancelled).to(beFalse())
+                    expect(fixture.sourceDelegate.presentInteractionStates.map { String(describing: $0) }).to(equal(["begin", "update", "end"]))
+                    expect(fixture.destinationDelegate.presentInteractionStates.map { String(describing: $0) }).to(equal(["begin", "update", "end"]))
+                    expect(fixture.presentDriver.observingGesture).to(beNil())
+                }
+
                 it("evaluates dismiss interaction progress and finish conditions") {
                     let fixture = makeCoreTestTransitionFixture(style: .slide(direction: .fromRight))
                     seedGesture(fixture.dismissDriver.observingGesture,
@@ -616,6 +652,67 @@ final class UIKitSpec: QuickSpec {
                                 averageVector: CGPoint(x: 30, y: 0),
                                 velocity: CGVector(dx: 2_000, dy: 0))
                     expect(blockedFixture.dismissDriver.canBeginDismissInteraction(isEdgePan: false)).to(beFalse())
+                }
+
+                it("drives dismiss pan gesture interaction paths") {
+                    let fixture = makeCoreTestTransitionFixture(style: .slide(direction: .fromRight))
+                    let gesture = StubPanGestureRecognizer()
+                    let observer = fixture.dismissDriver.observingGesture!
+
+                    observer.baseFrame = fixture.destinationViewController.view.frame
+                    observer.panGestureView = fixture.destinationViewController.view
+                    observer.currentLocation = CGPoint(x: 20, y: 0)
+                    observer.currentTranslation = CGPoint(x: 40, y: 0)
+                    observer.currentVelocity = CGVector(dx: 2_000, dy: 0)
+                    observer.translationHistory = [CGPoint(x: 40, y: 0), .zero]
+
+                    fixture.dismissDriver.beginPanGesture(gesture: gesture, isEdgePan: false)
+
+                    expect(fixture.dismissDriver.isInteracting).to(beTrue())
+                    expect(fixture.sourceDelegate.dismissInteractionStates.map { String(describing: $0) }).to(equal(["begin"]))
+
+                    observer.currentLocation = CGPoint(x: 180, y: 0)
+                    observer.currentTranslation = CGPoint(x: 160, y: 0)
+                    observer.translationHistory = [CGPoint(x: 160, y: 0), .zero]
+                    fixture.dismissDriver.updatePanGesture(gesture: gesture, isEdgePan: false)
+
+                    expect(fixture.dismissDriver.interactionState).to(equal(.dismissing))
+                    expect(fixture.dismissAnimator.interactionProgress).to(beCloseTo(0.5, within: 0.001))
+                    expect(fixture.sourceDelegate.dismissInteractionStates.map { String(describing: $0) }).to(equal(["begin", "update"]))
+
+                    observer.currentLocation = CGPoint(x: 260, y: 0)
+                    observer.currentTranslation = CGPoint(x: 240, y: 0)
+                    observer.translationHistory = [CGPoint(x: 240, y: 0), .zero]
+                    fixture.dismissDriver.finishPanGesture(gesture: gesture, isEdgePan: false)
+
+                    expect(fixture.dismissDriver.isInteracting).to(beFalse())
+                    expect(fixture.dismissDriver.isInteractionCancelled).to(beFalse())
+                    expect(fixture.sourceDelegate.dismissInteractionStates.map { String(describing: $0) }).to(equal(["begin", "update", "end"]))
+                    expect(fixture.destinationDelegate.dismissInteractionStates.map { String(describing: $0) }).to(equal(["begin", "update", "end"]))
+                }
+
+                it("begins dismiss interaction from a valid edge pan") {
+                    let fixture = makeCoreTestTransitionFixture(style: .slide(direction: .fromRight))
+                    let gesture = StubScreenEdgePanGestureRecognizer()
+                    let observer = fixture.dismissDriver.observingGesture!
+
+                    observer.baseFrame = fixture.destinationViewController.view.frame
+                    observer.panGestureView = fixture.destinationViewController.view
+                    observer.currentLocation = CGPoint(x: 0, y: 0)
+                    observer.currentTranslation = CGPoint(x: 24, y: 0)
+                    observer.currentVelocity = .zero
+                    observer.translationHistory = [CGPoint(x: 24, y: 0), .zero]
+
+                    fixture.dismissDriver.beginPanGesture(gesture: gesture, isEdgePan: true)
+
+                    expect(fixture.dismissDriver.isInteracting).to(beTrue())
+                    expect(fixture.dismissDriver.currentInteractionProgress).to(beCloseTo(0))
+
+                    observer.currentLocation = CGPoint(x: 128, y: 0)
+                    observer.currentTranslation = CGPoint(x: 128, y: 0)
+                    observer.translationHistory = [CGPoint(x: 128, y: 0), .zero]
+
+                    expect(fixture.dismissDriver.calculateTransitionProgress(isEdgePan: true)).to(beCloseTo(0.4, within: 0.001))
                 }
 
                 it("propagates dismiss interaction lifecycle and starts completion paths") {
