@@ -549,6 +549,168 @@ final class AnimatorSpec: QuickSpec {
                     })
                 }
             }
+            describe("FluidCoreAnimator") {
+                it("creates configured spring, transition, and progress animations") {
+                    let layer = CALayer()
+                    let animator = FluidCoreAnimator(for: layer, id: "core-helper", duration: 2)!
+
+                    let springAnimation = animator.createAnimation(layer: layer,
+                                                                    keyPath: FluidCoreAnimatorKey.position,
+                                                                    from: CGPoint(x: 0, y: 0),
+                                                                    to: CGPoint(x: 12, y: 24),
+                                                                    duration: 1.25,
+                                                                    beginTime: 0.2,
+                                                                    timeOffset: 0.1,
+                                                                    easing: .spring(mass: 2,
+                                                                                    stiffness: 120,
+                                                                                    damping: 14,
+                                                                                    velocity: CGVector(dx: 3, dy: 4)),
+                                                                    isRemovedOnCompletion: false,
+                                                                    fillMode: .both,
+                                                                    repeatCount: 2,
+                                                                    repeatDuration: 3,
+                                                                    autoreverses: true) as? CASpringAnimation
+                    let transition = animator.createTransition(startProgress: 0.25,
+                                                               endProgress: 0.75,
+                                                               type: .push,
+                                                               subtype: .left,
+                                                               duration: 1.5,
+                                                               beginTime: 0.3,
+                                                               timeOffset: 0.2,
+                                                               easing: .easeOut,
+                                                               isRemovedOnCompletion: false,
+                                                               fillMode: .forwards,
+                                                               repeatCount: 3,
+                                                               repeatDuration: 4,
+                                                               autoreverses: true)
+                    let progress = animator.createProgressAnimation(duration: 1.75,
+                                                                    beginTime: 0.4,
+                                                                    timeOffset: 0.3,
+                                                                    easing: .easeIn,
+                                                                    isRemovedOnCompletion: false,
+                                                                    fillMode: .both,
+                                                                    repeatCount: 4,
+                                                                    repeatDuration: 5,
+                                                                    autoreverses: true)
+
+                    expect(springAnimation).notTo(beNil())
+                    expect(springAnimation?.keyPath).to(equal(FluidCoreAnimatorKey.position.rawValue))
+                    expect(springAnimation?.mass).to(beCloseTo(2))
+                    expect(springAnimation?.stiffness).to(beCloseTo(120))
+                    expect(springAnimation?.damping).to(beCloseTo(14))
+                    expect(springAnimation?.initialVelocity).to(beCloseTo(5))
+                    expect(springAnimation?.duration).to(beCloseTo(1.25))
+                    expect(springAnimation?.beginTime).to(beCloseTo(0.2))
+                    expect(springAnimation?.timeOffset).to(beCloseTo(0.1))
+                    expect(springAnimation?.isRemovedOnCompletion).to(beFalse())
+                    expect(springAnimation?.fillMode).to(equal(.both))
+                    expect(springAnimation?.repeatCount).to(beCloseTo(2))
+                    expect(springAnimation?.repeatDuration).to(beCloseTo(3))
+                    expect(springAnimation?.autoreverses).to(beTrue())
+
+                    expect(transition.startProgress).to(beCloseTo(0.25))
+                    expect(transition.endProgress).to(beCloseTo(0.75))
+                    expect(transition.type).to(equal(.push))
+                    expect(transition.subtype).to(equal(.fromLeft))
+                    expect(transition.duration).to(beCloseTo(1.5))
+                    expect(transition.beginTime).to(beCloseTo(0.3))
+                    expect(transition.timeOffset).to(beCloseTo(0.2))
+                    expect(transition.isRemovedOnCompletion).to(beFalse())
+                    expect(transition.fillMode).to(equal(.forwards))
+                    expect(transition.repeatCount).to(beCloseTo(3))
+                    expect(transition.repeatDuration).to(beCloseTo(4))
+                    expect(transition.autoreverses).to(beTrue())
+                    expect(transition.timingFunction).notTo(beNil())
+
+                    expect(progress.keyPath).to(equal("progress"))
+                    expect(progress.fromValue as? CGFloat).to(equal(0))
+                    expect(progress.toValue as? CGFloat).to(equal(1))
+                    expect(progress.duration).to(beCloseTo(1.75))
+                    expect(progress.beginTime).to(beCloseTo(0.4))
+                    expect(progress.timeOffset).to(beCloseTo(0.3))
+                    expect(progress.isRemovedOnCompletion).to(beFalse())
+                    expect(progress.fillMode).to(equal(.both))
+                    expect(progress.repeatCount).to(beCloseTo(4))
+                    expect(progress.repeatDuration).to(beCloseTo(5))
+                    expect(progress.autoreverses).to(beTrue())
+                }
+
+                it("runs, pauses, resumes, cancels, and invalidates animation groups") {
+                    let layer = CALayer()
+                    let animator = FluidCoreAnimator(for: layer, id: "core-lifecycle", duration: 1)!
+                    var progressValues = [CGFloat]()
+                    var stateValues = [FluidAnimatorState]()
+
+                    animator
+                        .on { progress in
+                            progressValues.append(progress)
+                        }
+                        .on { state, _ in
+                            stateValues.append(state)
+                        }
+                        .add(key: FluidCoreAnimatorKey.opacity, from: CGFloat(0), to: CGFloat(1))
+                        .add(startProgress: 0, endProgress: 1, type: .fade, subtype: nil)
+
+                    expect(animator.animationCount).to(equal(2))
+
+                    animator.run()
+                    animator.animationDidStart(animator.group)
+
+                    expect(layer.animation(forKey: animator.groupAnimationId)).notTo(beNil())
+                    expect(animator.progressLayer).notTo(beNil())
+                    expect(animator.animatorState).to(equal(.running))
+
+                    animator.progressDidChange(to: 0.4)
+                    expect(animator.animatorProgress).to(beCloseTo(0.4, within: 0.001))
+                    expect(progressValues).to(equal([0.4]))
+
+                    animator.pause()
+                    expect(animator.animatorState).to(equal(.paused))
+                    expect(layer.speed).to(beCloseTo(0))
+
+                    animator.update(progress: 0.5)
+                    expect(layer.timeOffset).to(beCloseTo(animator.startTime + 0.5, within: 0.001))
+
+                    animator.resume(reverse: false, progress: nil)
+                    expect(animator.animatorState).to(equal(.running))
+                    expect(layer.speed).to(beCloseTo(1))
+                    expect(layer.timeOffset).to(beCloseTo(0))
+
+                    animator.pause()
+                    animator.resume(reverse: true, progress: 0.25, resetSpeedAfterFinish: false)
+                    expect(animator.animatorState).to(equal(.running))
+                    expect(layer.speed).to(beCloseTo(-1))
+
+                    animator.cancel()
+                    expect(animator.animatorState).to(equal(.cancelled))
+                    expect(layer.animation(forKey: animator.groupAnimationId)).to(beNil())
+
+                    animator.invalidate()
+                    expect(animator.layer).to(beNil())
+                    expect(animator.group).to(beNil())
+                    expect(animator.animations).to(beNil())
+                    expect(animator.progressLayer).to(beNil())
+                    expect(animator.progressAnimation).to(beNil())
+                    expect(stateValues).to(contain(.running, .paused, .cancelled))
+                }
+
+                it("snaps near-edge progress when core animations stop") {
+                    let animator = FluidCoreAnimator(for: CALayer(), id: "core-stop", duration: 1)!
+
+                    animator._animatorProgress = 0.01
+                    animator.animationDidStop(CAAnimation(), finished: true)
+
+                    expect(animator.animatorProgress).to(equal(0))
+                    expect(animator.animatorState).to(equal(.finished))
+
+                    animator._animatorState = .running
+                    animator._animatorProgress = 0.99
+                    animator.animationDidStop(CAAnimation(), finished: true)
+
+                    expect(animator.animatorProgress).to(equal(1))
+                    expect(animator.animatorState).to(equal(.finished))
+                }
+            }
             describe("FluidPropertyAnimator") {
                 it("runs, pauses, updates, resumes, stops, and invalidates queued animations") {
                     let view = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
