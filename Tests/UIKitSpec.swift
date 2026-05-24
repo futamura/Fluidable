@@ -95,6 +95,25 @@ final class UIKitSpec: QuickSpec {
         }
     }
 
+    class TestAdaptiveInterface: AdaptiveInterface {
+        var traitCollection: UITraitCollection = UITraitCollection()
+        var adaptiveElements: [AdaptiveElement] = []
+    }
+
+    class AdaptiveUpdateRecorder {
+        var labels: [String] = []
+    }
+
+    struct RecordingAdaptiveElement: AdaptiveElement {
+        let traitCollection: UITraitCollection
+        let label: String
+        let recorder: AdaptiveUpdateRecorder
+
+        func update(for incomingTraitCollection: UITraitCollection) {
+            self.recorder.labels.append(self.label)
+        }
+    }
+
     class TestBlurredBackgroundView: FluidBlurredBackgroundView {
         var blurRadiusValues: [CGFloat] = []
         var colorTintValues: [UIColor?] = []
@@ -2405,6 +2424,174 @@ final class UIKitSpec: QuickSpec {
                 expect(scrollView.maxScrollableY).to(equal(-1000))
                 expect(scrollView.normalizedContentOffset).to(equal(CGPoint(x: 0, y: 100)))
                 expect(scrollView.effectiveContentInset).to(equal(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)))
+            }
+        }
+        describe("AdaptiveLayout") {
+            it("generates trait collections from adaptive attributes") {
+                expect(Idiom.phone.generateTraitCollection().userInterfaceIdiom).to(equal(.phone))
+                expect(Idiom.pad.generateTraitCollection().userInterfaceIdiom).to(equal(.pad))
+                expect(Idiom.tv.generateTraitCollection().userInterfaceIdiom).to(equal(.tv))
+                expect(Idiom.carPlay.generateTraitCollection().userInterfaceIdiom).to(equal(.carPlay))
+
+                expect(Scale.oneX.generateTraitCollection().displayScale).to(equal(1))
+                expect(Scale.twoX.generateTraitCollection().displayScale).to(equal(2))
+                expect(Scale.threeX.generateTraitCollection().displayScale).to(equal(3))
+                expect(Scale.fourX.generateTraitCollection().displayScale).to(equal(4))
+
+                expect(SizeClass.horizontalCompact.generateTraitCollection().horizontalSizeClass).to(equal(.compact))
+                expect(SizeClass.horizontalRegular.generateTraitCollection().horizontalSizeClass).to(equal(.regular))
+                expect(SizeClass.verticalCompact.generateTraitCollection().verticalSizeClass).to(equal(.compact))
+                expect(SizeClass.verticalRegular.generateTraitCollection().verticalSizeClass).to(equal(.regular))
+
+                expect(ForceTouch.available.generateTraitCollection().forceTouchCapability).to(equal(.available))
+                expect(ForceTouch.unavailable.generateTraitCollection().forceTouchCapability).to(equal(.unavailable))
+
+                if #available(iOS 10.0, *) {
+                    expect(LayoutDirection.leftToRight.generateTraitCollection().layoutDirection).to(equal(.leftToRight))
+                    expect(LayoutDirection.rightToLeft.generateTraitCollection().layoutDirection).to(equal(.rightToLeft))
+                    expect(DisplayGamut.SRGB.generateTraitCollection().displayGamut).to(equal(.SRGB))
+                    expect(DisplayGamut.P3.generateTraitCollection().displayGamut).to(equal(.P3))
+
+                    let sizeCategories: [(SizeCategory, UIContentSizeCategory)] = [
+                        (.extraSmall, .extraSmall),
+                        (.small, .small),
+                        (.medium, .medium),
+                        (.large, .large),
+                        (.extraLarge, .extraLarge),
+                        (.extraExtraLarge, .extraExtraLarge),
+                        (.extraExtraExtraLarge, .extraExtraExtraLarge),
+                        (.accessibilityMedium, .accessibilityMedium),
+                        (.accessibilityLarge, .accessibilityLarge),
+                        (.accessibilityExtraLarge, .accessibilityExtraLarge),
+                        (.accessibilityExtraExtraLarge, .accessibilityExtraExtraLarge),
+                        (.accessibilityExtraExtraExtraLarge, .accessibilityExtraExtraExtraLarge),
+                    ]
+
+                    sizeCategories.forEach { (attribute, expectedCategory) in
+                        expect(attribute.generateTraitCollection().preferredContentSizeCategory).to(equal(expectedCategory))
+                    }
+                }
+            }
+
+            it("maps trait collections back to adaptive attributes") {
+                let attributes: [AdaptiveAttribute] = [
+                    Idiom.pad,
+                    Scale.twoX,
+                    SizeClass.horizontalCompact,
+                    SizeClass.verticalRegular,
+                    ForceTouch.available,
+                    LayoutDirection.rightToLeft,
+                    SizeCategory.accessibilityLarge,
+                    DisplayGamut.P3,
+                ]
+                let traits = UITraitCollection(attributes: attributes)
+
+                expect(traits.contains(Idiom.pad)).to(beTrue())
+                expect(traits.contains(Idiom.phone)).to(beFalse())
+                expect(traits.contains(Scale.twoX)).to(beTrue())
+                expect(traits.contains(SizeClass.horizontalCompact)).to(beTrue())
+                expect(traits.contains(SizeClass.verticalRegular)).to(beTrue())
+                expect(traits.contains(ForceTouch.available)).to(beTrue())
+                expect(traits.contains(LayoutDirection.rightToLeft)).to(beTrue())
+                expect(traits.contains(SizeCategory.accessibilityLarge)).to(beTrue())
+                expect(traits.contains(DisplayGamut.P3)).to(beTrue())
+
+                let adaptiveAttributes = traits.adaptiveAttributes
+
+                expect(adaptiveAttributes.contains { ($0 as? Idiom) == .pad }).to(beTrue())
+                expect(adaptiveAttributes.contains { ($0 as? Scale) == .twoX }).to(beTrue())
+                expect(adaptiveAttributes.contains { ($0 as? SizeClass) == .horizontalCompact }).to(beTrue())
+                expect(adaptiveAttributes.contains { ($0 as? SizeClass) == .verticalRegular }).to(beTrue())
+                expect(adaptiveAttributes.contains { ($0 as? ForceTouch) == .available }).to(beTrue())
+                expect(adaptiveAttributes.contains { ($0 as? LayoutDirection) == .rightToLeft }).to(beTrue())
+                expect(adaptiveAttributes.contains { ($0 as? SizeCategory) == .accessibilityLarge }).to(beTrue())
+                expect(adaptiveAttributes.contains { ($0 as? DisplayGamut) == .P3 }).to(beTrue())
+            }
+
+            it("updates behaviors, constraints, and views through an adaptive interface") {
+                let adaptiveInterface = TestAdaptiveInterface()
+                let parent = UIView()
+                let directChild = UIView()
+                let attributesChild = UIView()
+                let attributeChild = UIView()
+                let directWidth = directChild.widthAnchor.constraint(equalToConstant: 44)
+                let attributesWidth = attributesChild.widthAnchor.constraint(equalToConstant: 45)
+                let attributeWidth = attributeChild.widthAnchor.constraint(equalToConstant: 46)
+                var behaviorCount = 0
+                var counterBehaviorCount = 0
+
+                adaptiveInterface.addBehavior(for: UITraitCollection(attributes: [Idiom.pad]),
+                                              behavior: { behaviorCount += 1 },
+                                              counterBehavior: { counterBehaviorCount += 1 })
+                adaptiveInterface.addBehavior(for: [Scale.twoX],
+                                              behavior: { behaviorCount += 1 },
+                                              counterBehavior: { counterBehaviorCount += 1 })
+                adaptiveInterface.addBehavior(for: SizeClass.horizontalRegular,
+                                              behavior: { behaviorCount += 1 },
+                                              counterBehavior: { counterBehaviorCount += 1 })
+
+                adaptiveInterface.addConstraints(for: UITraitCollection(attributes: [Idiom.pad]),
+                                                 constraints: [directWidth])
+                adaptiveInterface.addConstraints(for: [Scale.twoX],
+                                                 constraints: attributesWidth)
+                adaptiveInterface.addConstraints(for: SizeClass.horizontalRegular,
+                                                 constraints: attributeWidth)
+
+                adaptiveInterface.addView(for: UITraitCollection(attributes: [Idiom.pad]),
+                                          view: directChild,
+                                          parent: parent,
+                                          constraints: [])
+                adaptiveInterface.addView(for: [Scale.twoX],
+                                          view: attributesChild,
+                                          parent: parent,
+                                          constraints: [])
+                adaptiveInterface.addView(for: SizeClass.horizontalRegular,
+                                          view: attributeChild,
+                                          parent: parent,
+                                          constraints: [])
+
+                let nonMatchingTraits = UITraitCollection(attributes: [Idiom.phone, Scale.threeX, SizeClass.horizontalCompact])
+                adaptiveInterface.update(for: nonMatchingTraits)
+
+                expect(behaviorCount).to(equal(0))
+                expect(counterBehaviorCount).to(equal(3))
+                expect(directWidth.isActive).to(beFalse())
+                expect(attributesWidth.isActive).to(beFalse())
+                expect(attributeWidth.isActive).to(beFalse())
+                expect(directChild.superview).to(beNil())
+                expect(attributesChild.superview).to(beNil())
+                expect(attributeChild.superview).to(beNil())
+
+                let matchingTraits = UITraitCollection(attributes: [Idiom.pad, Scale.twoX, SizeClass.horizontalRegular])
+                adaptiveInterface.update(for: matchingTraits)
+
+                expect(behaviorCount).to(equal(3))
+                expect(counterBehaviorCount).to(equal(3))
+                expect(directWidth.isActive).to(beTrue())
+                expect(attributesWidth.isActive).to(beTrue())
+                expect(attributeWidth.isActive).to(beTrue())
+                expect(directChild.superview).to(beIdenticalTo(parent))
+                expect(attributesChild.superview).to(beIdenticalTo(parent))
+                expect(attributeChild.superview).to(beIdenticalTo(parent))
+            }
+
+            it("updates nonmatching adaptive elements before matching elements") {
+                let adaptiveInterface = TestAdaptiveInterface()
+                let recorder = AdaptiveUpdateRecorder()
+                let matchingTraits = UITraitCollection(attributes: [Idiom.pad])
+
+                adaptiveInterface.adaptiveElements = [
+                    RecordingAdaptiveElement(traitCollection: matchingTraits,
+                                             label: "matching",
+                                             recorder: recorder),
+                    RecordingAdaptiveElement(traitCollection: UITraitCollection(attributes: [Idiom.phone]),
+                                             label: "nonmatching",
+                                             recorder: recorder),
+                ]
+
+                adaptiveInterface.update(for: matchingTraits)
+
+                expect(recorder.labels).to(equal(["nonmatching", "matching"]))
             }
         }
         describe("UIBezierPath") {
