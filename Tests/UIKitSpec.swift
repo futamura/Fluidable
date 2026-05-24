@@ -946,6 +946,23 @@ final class UIKitSpec: QuickSpec {
                                                     animatorDelay: 0.5)).to(beCloseTo(1))
                 }
 
+                it("uses active duration and zero delay when converting progress without overrides") {
+                    let fixture = makeCoreTestTransitionFixture()
+                    let animator = fixture.presentAnimator
+                    var parameters = animator.parameters!
+                    parameters.activeDuration = 2
+                    animator.parameters = parameters
+
+                    expect(animator.convertProgress(transitionProgress: 0.25,
+                                                    transitionDuration: 4,
+                                                    animatorDuration: nil,
+                                                    animatorDelay: nil)).to(beCloseTo(0.5, within: 0.001))
+                    expect(animator.convertProgress(transitionProgress: 0.75,
+                                                    transitionDuration: 4,
+                                                    animatorDuration: nil,
+                                                    animatorDelay: nil)).to(beCloseTo(1))
+                }
+
                 it("pauses, updates, and finishes core animation groups") {
                     let fixture = makeCoreTestTransitionFixture()
                     let animator = fixture.presentAnimator
