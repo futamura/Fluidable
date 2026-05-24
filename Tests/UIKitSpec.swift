@@ -25,6 +25,76 @@ final class UIKitSpec: QuickSpec {
 
     class TestInteractiveView: UIView, FluidInteractiveView {}
 
+    class TrackingScrollView: UIScrollView {
+        var isTrackingOverride: Bool = false
+
+        override var isTracking: Bool {
+            return self.isTrackingOverride
+        }
+    }
+
+    class StubTapGestureRecognizer: UITapGestureRecognizer {
+        var locationValue: CGPoint = .zero
+
+        override func location(in view: UIView?) -> CGPoint {
+            return self.locationValue
+        }
+    }
+
+    class StubPanGestureRecognizer: UIPanGestureRecognizer {
+        var locationValue: CGPoint = .zero
+        var translationValue: CGPoint = .zero
+        var velocityValue: CGPoint = .zero
+
+        override func location(in view: UIView?) -> CGPoint {
+            return self.locationValue
+        }
+
+        override func translation(in view: UIView?) -> CGPoint {
+            return self.translationValue
+        }
+
+        override func velocity(in view: UIView?) -> CGPoint {
+            return self.velocityValue
+        }
+    }
+
+    class StubScreenEdgePanGestureRecognizer: UIScreenEdgePanGestureRecognizer {
+        var locationValue: CGPoint = .zero
+        var translationValue: CGPoint = .zero
+        var velocityValue: CGPoint = .zero
+
+        override func location(in view: UIView?) -> CGPoint {
+            return self.locationValue
+        }
+
+        override func translation(in view: UIView?) -> CGPoint {
+            return self.translationValue
+        }
+
+        override func velocity(in view: UIView?) -> CGPoint {
+            return self.velocityValue
+        }
+    }
+
+    class TestGestureDelegate: NSObject, FluidGestureDelegate {
+        var tapUpdateCount: Int = 0
+        var panUpdateCount: Int = 0
+        var edgePanUpdateCount: Int = 0
+
+        func tapGestureDidUpdate(gesture: UITapGestureRecognizer) {
+            self.tapUpdateCount += 1
+        }
+
+        func panGestureDidUpdate(gesture: UIPanGestureRecognizer) {
+            self.panUpdateCount += 1
+        }
+
+        func edgePanGestureDidUpdate(gesture: UIScreenEdgePanGestureRecognizer) {
+            self.edgePanUpdateCount += 1
+        }
+    }
+
     class TestBlurredBackgroundView: FluidBlurredBackgroundView {
         var blurRadiusValues: [CGFloat] = []
         var colorTintValues: [UIColor?] = []
@@ -1607,6 +1677,245 @@ final class UIKitSpec: QuickSpec {
 
                     expect(observer.panGestureRecognizer).to(beNil())
                     expect(observer.offsetObservation).to(beNil())
+                }
+
+                it("evaluates dismiss and resize boundaries while scroll view is tracking") {
+                    let scrollView = TrackingScrollView(frame: CGRect(x: 0, y: 0, width: 120, height: 120))
+                    scrollView.contentSize = CGSize(width: 360, height: 360)
+                    scrollView.isTrackingOverride = true
+
+                    func makeObserver(style: FluidTransitionStyle) -> FluidTransitionScrollObserver {
+                        let fixture = makeCoreTestTransitionFixture(style: style, easing: .linear)
+                        let observer = FluidTransitionScrollObserver(view: scrollView)
+                        observer.registerParameters(parameters: fixture.dismissDriver.parameters)
+                        return observer
+                    }
+
+                    let bottomSlide = makeObserver(style: .slide(direction: .fromBottom))
+                    bottomSlide.gestureDirection = .bottomCenter
+                    scrollView.contentOffset = .zero
+                    expect(bottomSlide.isDismissAllowed()).to(beTrue())
+                    scrollView.contentOffset = CGPoint(x: 0, y: 24)
+                    expect(bottomSlide.isDismissAllowed()).to(beFalse())
+                    bottomSlide.gestureDirection = .topCenter
+                    scrollView.contentOffset = .zero
+                    expect(bottomSlide.isDismissAllowed()).to(beFalse())
+
+                    let topSlide = makeObserver(style: .slide(direction: .fromTop))
+                    topSlide.gestureDirection = .topCenter
+                    scrollView.contentOffset = CGPoint(x: 0, y: scrollView.maxScrollableY)
+                    expect(topSlide.isDismissAllowed()).to(beTrue())
+
+                    let leftSlide = makeObserver(style: .slide(direction: .fromLeft))
+                    leftSlide.gestureDirection = .leftMiddle
+                    scrollView.contentOffset = CGPoint(x: scrollView.maxScrollableX, y: 0)
+                    expect(leftSlide.isDismissAllowed()).to(beTrue())
+
+                    let rightSlide = makeObserver(style: .slide(direction: .fromRight))
+                    rightSlide.gestureDirection = .rightMiddle
+                    scrollView.contentOffset = .zero
+                    expect(rightSlide.isDismissAllowed()).to(beTrue())
+
+                    let fluid = makeObserver(style: .fluid(behavior: .all))
+                    fluid.gestureDirection = .bottomCenter
+                    scrollView.contentOffset = .zero
+                    expect(fluid.isDismissAllowed()).to(beTrue())
+                    fluid.gestureDirection = .leftMiddle
+                    expect(fluid.isDismissAllowed()).to(beTrue())
+
+                    let scale = makeObserver(style: .scale)
+                    scale.gestureDirection = .bottomCenter
+                    expect(scale.isDismissAllowed()).to(beTrue())
+                    scale.gestureDirection = .none
+                    expect(scale.isDismissAllowed()).to(beFalse())
+
+                    let drawer = makeObserver(style: .drawer(position: .bottom))
+                    drawer.gestureDirection = .bottomCenter
+                    scrollView.contentOffset = .zero
+                    expect(drawer.isDismissAllowed()).to(beTrue())
+                    expect(drawer.isResizeAllowed()).to(beTrue())
+                    scrollView.contentOffset = CGPoint(x: 0, y: 24)
+                    expect(drawer.isResizeAllowed()).to(beFalse())
+                    scrollView.contentSize = CGSize(width: 120, height: 80)
+                    expect(drawer.isResizeAllowed()).to(beTrue())
+
+                    scrollView.contentSize = CGSize(width: 360, height: 360)
+                    scrollView.isTrackingOverride = false
+                    expect(bottomSlide.isDismissAllowed()).to(beTrue())
+                    expect(drawer.isResizeAllowed()).to(beTrue())
+                    scrollView.isTrackingOverride = true
+                    scrollView.isScrollEnabled = false
+                    expect(bottomSlide.isDismissAllowed()).to(beTrue())
+                    expect(drawer.isResizeAllowed()).to(beTrue())
+                }
+
+                it("locks offsets for fluid and drawer styles without changing drawer interaction") {
+                    let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: 120, height: 120))
+                    scrollView.contentSize = CGSize(width: 360, height: 360)
+                    scrollView.contentOffset = CGPoint(x: 8, y: 12)
+
+                    let fluidFixture = makeCoreTestTransitionFixture(style: .fluid(behavior: .all), easing: .linear)
+                    let fluid = FluidTransitionScrollObserver(view: scrollView)
+                    fluid.registerParameters(parameters: fluidFixture.dismissDriver.parameters)
+                    fluid.lockScroll()
+                    scrollView.contentOffset = CGPoint(x: 80, y: 80)
+                    fluid.contentOffsetDidChange(oldValue: CGPoint(x: 0, y: -10))
+
+                    expect(scrollView.contentOffset).to(equal(CGPoint(x: 8, y: scrollView.minScrollableY)))
+
+                    fluid.unlockScroll()
+                    scrollView.contentOffset = CGPoint(x: 8, y: 12)
+
+                    let drawerFixture = makeCoreTestTransitionFixture(style: .drawer(position: .right), easing: .linear)
+                    let drawer = FluidTransitionScrollObserver(view: scrollView)
+                    drawer.registerParameters(parameters: drawerFixture.dismissDriver.parameters)
+                    drawer.lockScroll()
+                    scrollView.contentOffset = CGPoint(x: 80, y: 80)
+                    drawer.contentOffsetDidChange(oldValue: CGPoint(x: -10, y: 0))
+
+                    expect(scrollView.isUserInteractionEnabled).to(beTrue())
+                    expect(scrollView.contentOffset).to(equal(CGPoint(x: 8, y: 12)))
+
+                    drawer.unlockScroll()
+                    drawer.abortScroll()
+
+                    expect(scrollView.isScrollEnabled).to(beTrue())
+                }
+            }
+            describe("Transition gesture observer") {
+                it("updates gesture parameters, trims history, and delegates callbacks") {
+                    let delegate = TestGestureDelegate()
+                    let fixture = makeCoreTestTransitionFixture(style: .slide(direction: .fromBottom))
+                    let observer = FluidTransitionGestureObserver(delegate: delegate)
+                    let pan = StubPanGestureRecognizer()
+                    let tap = StubTapGestureRecognizer()
+                    let edgePan = StubScreenEdgePanGestureRecognizer()
+
+                    observer.registerParameters(parameters: fixture.dismissDriver.parameters)
+
+                    pan.locationValue = CGPoint(x: 10, y: 12)
+                    pan.translationValue = CGPoint(x: 0, y: 20)
+                    pan.velocityValue = CGPoint(x: 0, y: 200)
+                    observer.updateCurrentParameters(gesture: pan)
+
+                    expect(observer.initialLocation).to(equal(CGPoint(x: 10, y: 12)))
+                    expect(observer.currentTranslation).to(equal(CGPoint(x: 0, y: 20)))
+                    expect(observer.currentVelocity).to(equal(CGVector(dx: 0, dy: 200)))
+                    expect(observer.currentTranslationDirection).to(equal(.bottomCenter))
+                    expect(observer.initialGestureDirection).to(equal(.bottomCenter))
+
+                    pan.locationValue = CGPoint(x: 11, y: 13)
+                    pan.translationValue = CGPoint(x: 0, y: 24)
+                    observer.updateCurrentParameters(gesture: pan)
+                    pan.locationValue = CGPoint(x: 12, y: 14)
+                    pan.translationValue = CGPoint(x: 0, y: 28)
+                    observer.updateCurrentParameters(gesture: pan)
+                    pan.locationValue = CGPoint(x: 13, y: 15)
+                    pan.translationValue = CGPoint(x: 0, y: 32)
+                    observer.updateCurrentParameters(gesture: pan)
+
+                    expect(observer.locationHistory).to(haveCount(3))
+                    expect(observer.translationHistory).to(haveCount(3))
+                    expect(observer.averageLocation).to(equal(CGPoint(x: 12, y: 14)))
+                    expect(observer.averageTranslation).to(equal(CGPoint(x: 0, y: 28)))
+                    expect(observer.averageGestureDirection).to(equal(.bottomCenter))
+
+                    observer.updatePreviousParameters()
+
+                    expect(observer.previousLocation).to(equal(CGPoint(x: 13, y: 15)))
+                    expect(observer.previousTranslation).to(equal(CGPoint(x: 0, y: 32)))
+                    expect(observer.currentGestureDirection).to(equal(FluidGestureDirection.none))
+
+                    observer.currentVelocity = nil
+                    expect(observer.currentGestureInfo().locationLocal).to(equal(.zero))
+
+                    tap.locationValue = CGPoint(x: 20, y: 24)
+                    observer.handleTapGesture(gesture: tap)
+
+                    expect(delegate.tapUpdateCount).to(equal(1))
+                    expect(observer.currentLocation).to(equal(CGPoint(x: 20, y: 24)))
+
+                    pan.locationValue = CGPoint(x: 30, y: 32)
+                    pan.translationValue = CGPoint(x: 4, y: 0)
+                    observer.handlePanGesture(gesture: pan)
+
+                    expect(delegate.panUpdateCount).to(equal(1))
+                    expect(observer.gestureState).to(beNil())
+
+                    edgePan.locationValue = CGPoint(x: 40, y: 42)
+                    edgePan.translationValue = CGPoint(x: -6, y: 0)
+                    observer.handleEdgePanGesture(gesture: edgePan)
+
+                    expect(delegate.edgePanUpdateCount).to(equal(1))
+                    expect(observer.gestureState).to(beNil())
+                }
+
+                it("snapshots base locations and evaluates gesture routing") {
+                    let delegate = TestGestureDelegate()
+                    var retainedPanViews: [UIView] = []
+
+                    func makeObserver(style: FluidTransitionStyle) -> FluidTransitionGestureObserver {
+                        let fixture = makeCoreTestTransitionFixture(style: style, easing: .linear)
+                        let observer = FluidTransitionGestureObserver(delegate: delegate)
+                        let panGestureView = UIView(frame: CGRect(x: 10, y: 20, width: 100, height: 80))
+                        retainedPanViews.append(panGestureView)
+                        observer.registerParameters(parameters: fixture.dismissDriver.parameters)
+                        observer.baseFrame = CGRect(x: 0, y: 0, width: 120, height: 100)
+                        observer.panGestureView = panGestureView
+                        observer.currentLocation = CGPoint(x: 30, y: 40)
+                        return observer
+                    }
+
+                    let bottom = makeObserver(style: .drawer(position: .bottom))
+                    bottom.snapshotBaseParameters()
+                    expect(bottom.initialLocation).to(equal(CGPoint(x: 20, y: 20)))
+
+                    let top = makeObserver(style: .drawer(position: .top))
+                    top.snapshotBaseParameters()
+                    expect(top.initialLocation).to(equal(CGPoint(x: 30, y: 20)))
+
+                    let left = makeObserver(style: .drawer(position: .left))
+                    left.snapshotBaseParameters()
+                    expect(left.initialLocation).to(equal(CGPoint(x: 10, y: 40)))
+
+                    let right = makeObserver(style: .drawer(position: .right))
+                    right.snapshotBaseParameters()
+                    expect(right.initialLocation).to(equal(CGPoint(x: 20, y: 20)))
+
+                    let slide = makeObserver(style: .slide(direction: .fromBottom))
+                    slide.snapshotBaseParameters()
+                    expect(slide.initialLocation).to(equal(CGPoint(x: 20, y: 20)))
+                    slide.panGestureView = nil
+                    slide.snapshotBaseParameters()
+                    expect(slide.initialLocation).to(beNil())
+
+                    slide.panGestureRecognizer = StubPanGestureRecognizer()
+                    slide.edgePanGestureRecognizer = StubScreenEdgePanGestureRecognizer()
+                    slide.abortGesture()
+                    expect(slide.panGestureRecognizer.isEnabled).to(beTrue())
+                    expect(slide.edgePanGestureRecognizer?.isEnabled).to(beTrue())
+
+                    let insidePan = StubPanGestureRecognizer()
+                    insidePan.locationValue = CGPoint(x: 20, y: 20)
+                    let outsideTap = StubTapGestureRecognizer()
+                    outsideTap.locationValue = CGPoint(x: 400, y: 500)
+                    let insideTap = StubTapGestureRecognizer()
+                    insideTap.locationValue = CGPoint(x: 20, y: 20)
+                    let insideEdgePan = StubScreenEdgePanGestureRecognizer()
+                    insideEdgePan.locationValue = CGPoint(x: 20, y: 20)
+
+                    expect(slide.handleGestureRecognizerShouldBegin(outsideTap)).to(beTrue())
+                    expect(slide.handleGestureRecognizerShouldBegin(insideTap)).to(beFalse())
+                    expect(slide.handleGestureRecognizerShouldBegin(insidePan)).to(beTrue())
+                    expect(slide.handleGestureRecognizerShouldBegin(insideEdgePan)).to(beTrue())
+                    expect(slide.handleGestureRecognizer(insidePan,
+                                                         shouldRequireFailureOf: insideEdgePan)).to(beTrue())
+                    expect(slide.handleGestureRecognizer(insideEdgePan,
+                                                         shouldBeRequiredToFailBy: insidePan)).to(beTrue())
+                    expect(slide.handleGestureRecognizer(insideEdgePan,
+                                                         shouldRecognizeSimultaneouslyWith: insidePan)).to(beFalse())
+                    expect(slide.handleGestureRecognizer(insidePan,
+                                                         shouldRecognizeSimultaneouslyWith: insideTap)).to(beTrue())
                 }
             }
             describe("FluidLayoutEdgeConstant") {
