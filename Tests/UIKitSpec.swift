@@ -1389,7 +1389,7 @@ final class UIKitSpec: QuickSpec {
                     backgroundView.visibility = 0.25
                     expect(backgroundView.blurRadius).to(beCloseTo(5))
                     expect(blurView?.alpha).to(beCloseTo(0.25))
-                    expect(blurView?.image).notTo(beNil())
+                    expect(waitForBlurredImage(in: backgroundView)).notTo(beNil())
                     backgroundView.visibility = -1
                     expect(backgroundView.blurRadius).to(beCloseTo(0))
                     expect(blurView?.alpha).to(beCloseTo(0))
@@ -1432,8 +1432,7 @@ final class UIKitSpec: QuickSpec {
 
                     backgroundView.visibility = 1
 
-                    let blurView = backgroundView.subviews.compactMap { $0 as? UIImageView }.first
-                    let image = blurView?.image
+                    let image = waitForBlurredImage(in: backgroundView)
                     let boundaryColor = image?.pixelColor(at: CGPoint(x: 100, y: 60))
 
                     expect(image).notTo(beNil())
@@ -1458,7 +1457,7 @@ final class UIKitSpec: QuickSpec {
                     backgroundView.visibility = 1
 
                     expect(backgroundView.frame).to(equal(container.bounds))
-                    expect(backgroundView.subviews.compactMap { $0 as? UIImageView }.first?.image).notTo(beNil())
+                    expect(waitForBlurredImage(in: backgroundView)).notTo(beNil())
                 }
 
                 it("captures background behind transition containers") {
@@ -1478,11 +1477,31 @@ final class UIKitSpec: QuickSpec {
 
                     backgroundView.visibility = 1
 
-                    let blurView = backgroundView.subviews.compactMap { $0 as? UIImageView }.first
-                    let centerColor = blurView?.image?.pixelColor(at: CGPoint(x: 100, y: 60))
+                    let centerColor = waitForBlurredImage(in: backgroundView)?.pixelColor(at: CGPoint(x: 100, y: 60))
 
                     expect(centerColor?.red).to(beGreaterThan(0.5))
                     expect(centerColor?.alpha).to(beGreaterThan(0.5))
+                }
+
+                it("renders full screen blur snapshots asynchronously") {
+                    let bounds = CGRect(x: 0, y: 0, width: 402, height: 874)
+                    let window = UIWindow(frame: bounds)
+                    let sourceView = UIView(frame: bounds)
+                    let transitionContainerView = UIView(frame: bounds)
+                    let backgroundView = FluidBlurredBackgroundView(radius: 12, color: .clear, alpha: 1)
+
+                    sourceView.backgroundColor = .red
+                    window.addSubview(sourceView)
+                    window.addSubview(transitionContainerView)
+                    window.isHidden = false
+                    defer { window.isHidden = true }
+                    transitionContainerView.addSubview(backgroundView)
+                    transitionContainerView.updateConstraintsAndLayoutImmediately()
+
+                    backgroundView.visibility = 1
+
+                    expect(blurredImage(in: backgroundView)).to(beNil())
+                    expect(waitForBlurredImage(in: backgroundView)).notTo(beNil())
                 }
             }
             describe("FluidInteractiveView") {
@@ -3249,6 +3268,18 @@ private func seedGesture(_ observer: FluidTransitionGestureObserver,
     observer.currentLocation = currentLocation
     observer.currentVelocity = velocity
     observer.translationHistory = [averageVector, .zero]
+}
+
+private func blurredImage(in backgroundView: FluidBlurredBackgroundView) -> UIImage? {
+    return backgroundView.subviews.compactMap { $0 as? UIImageView }.first?.image
+}
+
+private func waitForBlurredImage(in backgroundView: FluidBlurredBackgroundView, timeout: TimeInterval = 3) -> UIImage? {
+    let deadline = CACurrentMediaTime() + timeout
+    while blurredImage(in: backgroundView) == nil, CACurrentMediaTime() < deadline {
+        RunLoop.main.run(until: Date(timeIntervalSinceNow: 0.01))
+    }
+    return blurredImage(in: backgroundView)
 }
 
 private struct TestPixelColor {

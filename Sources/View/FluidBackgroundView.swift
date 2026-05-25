@@ -28,10 +28,13 @@ extension FluidBackgroundCompatible where Self: UIView {
 
 internal class FluidBlurredBackgroundView: UIView, FluidBackgroundCompatible {
     private static let ciContext = CIContext(options: nil)
+    private static let blurQueue = DispatchQueue(label: "Fluidable.FluidBlurredBackgroundView.blur", qos: .userInitiated)
 
     private let blurView = UIImageView()
     private let tintView = UIView()
     private var snapshotSize: CGSize = .zero
+    private var snapshotGeneration: Int = 0
+    private var isSnapshotUpdatePending: Bool = false
 
     var baseBlurRadius: CGFloat = 0
 
@@ -112,13 +115,32 @@ internal class FluidBlurredBackgroundView: UIView, FluidBackgroundCompatible {
     }
 
     private func updateSnapshot() {
+        guard !self.isSnapshotUpdatePending else { return }
         guard self.bounds.width > 0, self.bounds.height > 0 else { return }
         guard let snapshot = self.makeBackgroundSnapshot() else { return }
-        self.blurView.image = self.makeBlurredImage(from: snapshot, radius: self.baseBlurRadius)
-        self.snapshotSize = self.bounds.size
+
+        self.snapshotGeneration += 1
+        let generation = self.snapshotGeneration
+        let snapshotSize = self.bounds.size
+        let blurRadius = self.baseBlurRadius
+        self.isSnapshotUpdatePending = true
+
+        Self.blurQueue.async { [weak self] in
+            let blurredImage = Self.makeBlurredImage(from: snapshot, radius: blurRadius)
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                guard self.snapshotGeneration == generation else { return }
+                self.isSnapshotUpdatePending = false
+                guard self.bounds.size == snapshotSize else { return }
+                self.blurView.image = blurredImage
+                self.snapshotSize = snapshotSize
+            }
+        }
     }
 
     private func invalidateSnapshot() {
+        self.snapshotGeneration += 1
+        self.isSnapshotUpdatePending = false
         self.blurView.image = nil
         self.snapshotSize = .zero
     }
@@ -160,7 +182,7 @@ internal class FluidBlurredBackgroundView: UIView, FluidBackgroundCompatible {
         }
     }
 
-    private func makeBlurredImage(from image: UIImage, radius: CGFloat) -> UIImage {
+    private static func makeBlurredImage(from image: UIImage, radius: CGFloat) -> UIImage {
         guard radius > 0,
               let inputImage = CIImage(image: image) else { return image }
 
@@ -170,7 +192,7 @@ internal class FluidBlurredBackgroundView: UIView, FluidBackgroundCompatible {
         filter?.setValue(radius * image.scale, forKey: kCIInputRadiusKey)
 
         guard let outputImage = filter?.outputImage?.cropped(to: inputImage.extent),
-              let cgImage = Self.ciContext.createCGImage(outputImage, from: inputImage.extent) else {
+              let cgImage = ciContext.createCGImage(outputImage, from: inputImage.extent) else {
             return image
         }
         return UIImage(cgImage: cgImage, scale: image.scale, orientation: image.imageOrientation)
