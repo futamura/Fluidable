@@ -107,7 +107,7 @@ internal class FluidBlurredBackgroundView: UIView, FluidBackgroundCompatible {
     private func applyVisibility() {
         let clampedVisibility = self.visibility.clamped(0, 1)
         self.blurRadius = self.baseBlurRadius * clampedVisibility
-        if clampedVisibility > 0, self.blurView.image == nil {
+        if self.blurView.image == nil {
             self.updateSnapshot()
         }
         self.blurView.alpha = clampedVisibility
