@@ -63,7 +63,7 @@ extension UINib {
 extension UITableView {
     func register<T: UITableViewCell>(cellType: T.Type) {
         let className: String = cellType.className
-        let nib = UINib(nibName: className, bundle: nil)
+        let nib = UINib(nibName: className, bundle: Bundle(for: cellType))
         register(nib, forCellReuseIdentifier: className)
     }
 
