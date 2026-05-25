@@ -38,6 +38,20 @@ extension TableView {
         /* NOTE: Reload */
         self.reloadData()
     }
+
+    func layoutVisibleCellsImmediately(constrainingTextTo contentWidth: CGFloat? = nil) {
+        self.setNeedsLayout()
+        self.layoutIfNeeded()
+        self.visibleCells.forEach {
+            $0.setNeedsLayout()
+            $0.contentView.setNeedsLayout()
+            $0.contentView.layoutIfNeeded()
+            $0.layoutIfNeeded()
+            guard let contentWidth: CGFloat = contentWidth,
+                  let cell: TableCell = $0 as? TableCell else { return }
+            cell.layoutTextLabels(forContentWidth: contentWidth)
+        }
+    }
 }
 
 extension TableView: UITableViewDataSource {
