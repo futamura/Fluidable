@@ -1460,6 +1460,27 @@ final class UIKitSpec: QuickSpec {
                     expect(waitForBlurredImage(in: backgroundView)).notTo(beNil())
                 }
 
+                it("prepares blurred snapshots before becoming visible") {
+                    let container = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 120))
+                    let window = UIWindow(frame: container.bounds)
+                    let sourceView = UIView(frame: container.bounds)
+                    let backgroundView = FluidBlurredBackgroundView(radius: 20, color: .clear, alpha: 0)
+                    let blurView = backgroundView.subviews.compactMap { $0 as? UIImageView }.first
+
+                    sourceView.backgroundColor = .red
+                    window.addSubview(container)
+                    window.isHidden = false
+                    defer { window.isHidden = true }
+                    container.addSubview(sourceView)
+                    container.addSubview(backgroundView)
+
+                    container.updateConstraintsAndLayoutImmediately()
+
+                    expect(backgroundView.visibility).to(beCloseTo(0))
+                    expect(blurView?.alpha).to(beCloseTo(0))
+                    expect(waitForBlurredImage(in: backgroundView, timeout: 0.5)).notTo(beNil())
+                }
+
                 it("captures background behind transition containers") {
                     let bounds = CGRect(x: 0, y: 0, width: 200, height: 120)
                     let window = UIWindow(frame: bounds)
