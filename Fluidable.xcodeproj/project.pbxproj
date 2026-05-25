@@ -16,6 +16,8 @@
 		A70E1246224F550700AD8008 /* NavigationTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFABE692442A34025E1F0F44 /* NavigationTableViewController.xib */; };
 		A712402F21CE177D00883E13 /* Fluidable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71F674521C50EA8007CADA0 /* Fluidable.framework */; };
 		A712404021CE426600883E13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71F67EB21C66248007CADA0 /* AppDelegate.swift */; };
+		A7F26C012F0C000100000001 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F26C002F0C000100000001 /* SceneDelegate.swift */; };
+		A7F26C022F0C000100000001 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F26C002F0C000100000001 /* SceneDelegate.swift */; };
 		A71F674F21C50EA8007CADA0 /* Fluidable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71F674521C50EA8007CADA0 /* Fluidable.framework */; };
 		A71F675421C50EA8007CADA0 /* EnumSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71F675321C50EA8007CADA0 /* EnumSpec.swift */; };
 		A71F67EC21C66248007CADA0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71F67EB21C66248007CADA0 /* AppDelegate.swift */; };
@@ -353,6 +355,7 @@
 		A71F676721C52451007CADA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A71F67E921C66248007CADA0 /* FluidableExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FluidableExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A71F67EB21C66248007CADA0 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A7F26C002F0C000100000001 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A71F67F721C6624A007CADA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A71F680721C6624A007CADA0 /* FluidableUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FluidableUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A725FB1F21ED670900178F1F /* Buttons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
@@ -1198,6 +1201,7 @@
 			isa = PBXGroup;
 			children = (
 				A71F67EB21C66248007CADA0 /* AppDelegate.swift */,
+				A7F26C002F0C000100000001 /* SceneDelegate.swift */,
 				A7C7A95421EC93C2000687C9 /* Control */,
 				A7C7A95E21EC93C2000687C9 /* View */,
 				A7C7A94E21EC93C2000687C9 /* Model */,
@@ -1599,6 +1603,7 @@
 				DFABE3D588D52DA0D98549E4 /* AlignedCollectionLayout.swift in Sources */,
 				A725FB2921ED6FBD00178F1F /* AlignedCollectionView.swift in Sources */,
 				A71F67EC21C66248007CADA0 /* AppDelegate.swift in Sources */,
+				A7F26C012F0C000100000001 /* SceneDelegate.swift in Sources */,
 				A725FB2121ED674500178F1F /* Buttons.swift in Sources */,
 				A7C7A98821EC93C2000687C9 /* CollectionCell.swift in Sources */,
 				A7C7A96821EC93C2000687C9 /* Config.swift in Sources */,
@@ -1648,6 +1653,7 @@
 				DFABE996DD1A19EC135F1B78 /* AlignedCollectionLayout.swift in Sources */,
 				A725FB2A21ED6FBD00178F1F /* AlignedCollectionView.swift in Sources */,
 				A712404021CE426600883E13 /* AppDelegate.swift in Sources */,
+				A7F26C022F0C000100000001 /* SceneDelegate.swift in Sources */,
 				A725FB2221ED674700178F1F /* Buttons.swift in Sources */,
 				A7C7A98921EC93C2000687C9 /* CollectionCell.swift in Sources */,
 				A7C7A96921EC93C2000687C9 /* Config.swift in Sources */,
