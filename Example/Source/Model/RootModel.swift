@@ -164,7 +164,7 @@ extension RootModel {
     var backgroundStyle: FluidBackgroundStyle {
         switch self {
         case .navigationFluidModal, .transitionFluidModal:
-            return .blur(radius: 12, color: .clear, alpha: 1.0)
+            return .blur(radius: 8, color: .clear, alpha: 1.0)
         case .navigationFluidFullScreen, .transitionFluidFullScreen:
             return .dim(color: UIColor.black.withAlphaComponent(0.5))
         case .navigationDrawerTop, .navigationDrawerBottom, .navigationDrawerLeft, .navigationDrawerRight,

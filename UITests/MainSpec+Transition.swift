@@ -145,6 +145,21 @@ extension MainSpec {
         self.assertEventually(!visibleView.exists)
     }
 
+    static func assertRootNavigationVisibleAndFluidModalContentAligned(app: XCUIApplication, model: RootModel) {
+        let optionButton = app.buttons["Option"]
+        self.assertEventually(optionButton.exists)
+
+        let visibleView: XCUIElement = app.otherElements.element(matching: .other, identifier: model.visibleControllerViewAccessibilityIdentifier)
+        let scrollView: XCUIElement = app.scrollViews.element(matching: .scrollView, identifier: model.parentScrollViewAccessibilityIdentifier)
+        let scrollTopView: XCUIElement = app.otherElements.element(matching: .other, identifier: model.parentScrollTopViewAccessibilityIdentifier)
+        self.assertEventually(visibleView.exists)
+        self.assertEventually(scrollView.exists)
+        self.assertEventually(scrollTopView.exists)
+
+        XCTAssertEqual(scrollView.frame.minY, visibleView.frame.minY, accuracy: 2)
+        XCTAssertEqual(scrollTopView.frame.minY, scrollView.frame.minY, accuracy: 2)
+    }
+
     static func pushViewController(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {
         switch model.className {
         case "NavigationCollectionViewController":

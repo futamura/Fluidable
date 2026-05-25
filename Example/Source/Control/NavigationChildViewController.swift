@@ -180,7 +180,7 @@ extension NavigationChildViewController: FluidTransitionDestinationActionDelegat
         ])
         guard transitionStyle.isFluid else { return }
         switch state {
-        case .begin:  self.navigationController?.setNavigationBarHidden(true, animated: true)
+        case .begin:  break
         case .update: break
         case .cancel: break
         case .end:    break

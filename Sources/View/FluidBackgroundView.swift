@@ -6,6 +6,7 @@
 //  Copyright © 2019 Gumob. All rights reserved.
 //
 
+import CoreImage
 import Foundation
 import UIKit
 
@@ -25,24 +26,56 @@ extension FluidBackgroundCompatible where Self: UIView {
     }
 }
 
-internal class FluidBlurredBackgroundView: BlurView, FluidBackgroundCompatible {
+internal class FluidBlurredBackgroundView: UIView, FluidBackgroundCompatible {
+    private static let ciContext = CIContext(options: nil)
+    private static let blurQueue = DispatchQueue(label: "Fluidable.FluidBlurredBackgroundView.blur", qos: .userInitiated)
+
+    private let blurView = UIImageView()
+    private let tintView = UIView()
+    private var snapshotSize: CGSize = .zero
+    private var snapshotGeneration: Int = 0
+    private var isSnapshotUpdatePending: Bool = false
+
     var baseBlurRadius: CGFloat = 0
 
     /** A percentage of visibility. */
     @objc internal dynamic var visibility: CGFloat = -1 {
         didSet {
             guard self.visibility != oldValue else { return }
-            self.blurRadius = self.baseBlurRadius * self.visibility.clamped(0, 1)
+            self.applyVisibility()
         }
     }
+
+    /** Tint color. The default value is nil. */
+    @objc dynamic internal var colorTint: UIColor? {
+        didSet { self.tintView.backgroundColor = self.colorTint }
+    }
+
+    /** Tint color alpha. The default value is 0.0. */
+    @objc dynamic open var colorTintAlpha: CGFloat = 0 {
+        didSet { self.tintView.alpha = self.colorTintAlpha * self.visibility.clamped(0, 1) }
+    }
+
+    /** Blur radius. The default value is 0.0. */
+    @objc dynamic open var blurRadius: CGFloat = 0
+
+    /** Scale factor. */
+    @objc dynamic open var scale: CGFloat = 1
 
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
     init(radius: CGFloat, color: UIColor, alpha: CGFloat) {
-        super.init(effect: nil)
+        super.init(frame: .zero)
+        self.clipsToBounds = true
+        self.blurView.alpha = 0
+        self.blurView.contentMode = .scaleToFill
+        self.addSubview(self.blurView)
+        self.tintView.alpha = 0
+        self.addSubview(self.tintView)
         self.baseBlurRadius = radius
         self.blurRadius = 0
         self.colorTint = color
+        self.tintView.backgroundColor = color
         self.colorTintAlpha = alpha
         self.visibility = 0
         self.isUserInteractionEnabled = false
@@ -51,9 +84,118 @@ internal class FluidBlurredBackgroundView: BlurView, FluidBackgroundCompatible {
 
     deinit { Logger()?.log("🥶🧹🧹🧹️", []) }
 
+    override func didMoveToWindow() {
+        super.didMoveToWindow()
+        self.applyVisibility()
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.blurView.frame = self.bounds
+        self.tintView.frame = self.bounds
+        if self.snapshotSize != self.bounds.size {
+            self.invalidateSnapshot()
+            self.applyVisibility()
+        }
+    }
+
     override func updateConstraints() {
         self.fitToSuperview()
         super.updateConstraints()
+    }
+
+    private func applyVisibility() {
+        let clampedVisibility = self.visibility.clamped(0, 1)
+        self.blurRadius = self.baseBlurRadius * clampedVisibility
+        if clampedVisibility > 0, self.blurView.image == nil {
+            self.updateSnapshot()
+        }
+        self.blurView.alpha = clampedVisibility
+        self.tintView.alpha = self.colorTintAlpha * clampedVisibility
+    }
+
+    private func updateSnapshot() {
+        guard !self.isSnapshotUpdatePending else { return }
+        guard self.bounds.width > 0, self.bounds.height > 0 else { return }
+        guard let snapshot = self.makeBackgroundSnapshot() else { return }
+
+        self.snapshotGeneration += 1
+        let generation = self.snapshotGeneration
+        let snapshotSize = self.bounds.size
+        let blurRadius = self.baseBlurRadius
+        self.isSnapshotUpdatePending = true
+
+        Self.blurQueue.async { [weak self] in
+            let blurredImage = Self.makeBlurredImage(from: snapshot, radius: blurRadius)
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                guard self.snapshotGeneration == generation else { return }
+                self.isSnapshotUpdatePending = false
+                guard self.bounds.size == snapshotSize else { return }
+                self.blurView.image = blurredImage
+                self.snapshotSize = snapshotSize
+            }
+        }
+    }
+
+    private func invalidateSnapshot() {
+        self.snapshotGeneration += 1
+        self.isSnapshotUpdatePending = false
+        self.blurView.image = nil
+        self.snapshotSize = .zero
+    }
+
+    private func makeBackgroundSnapshot() -> UIImage? {
+        guard let superview = self.superview,
+              let backgroundIndex = superview.subviews.firstIndex(of: self) else { return nil }
+
+        let previousSubviews = superview.subviews[..<backgroundIndex]
+        let hasBackgroundContent = previousSubviews.contains { view in
+            return !view.isHidden && view.alpha > 0 && view.bounds.width > 1 && view.bounds.height > 1
+        }
+        if hasBackgroundContent {
+            return self.renderSnapshot(of: superview, hiding: Array(superview.subviews[backgroundIndex...]))
+        }
+        if let window = self.window, window !== superview {
+            return self.renderSnapshot(of: window, hiding: [superview])
+        }
+        return self.renderSnapshot(of: superview, hiding: Array(superview.subviews[backgroundIndex...]))
+    }
+
+    private func renderSnapshot(of view: UIView, hiding hiddenSubviews: [UIView]) -> UIImage {
+        let origin = self.convert(CGPoint.zero, to: view)
+        let hiddenStates = hiddenSubviews.map { $0.isHidden }
+        hiddenSubviews.forEach { $0.isHidden = true }
+        defer {
+            zip(hiddenSubviews, hiddenStates).forEach { view, isHidden in
+                view.isHidden = isHidden
+            }
+        }
+
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = UIScreen.main.scale
+        format.opaque = false
+        let renderer = UIGraphicsImageRenderer(size: self.bounds.size, format: format)
+        return renderer.image { context in
+            context.cgContext.translateBy(x: -origin.x, y: -origin.y)
+            view.layer.render(in: context.cgContext)
+        }
+    }
+
+    private static func makeBlurredImage(from image: UIImage, radius: CGFloat) -> UIImage {
+        guard radius > 0,
+              let inputImage = CIImage(image: image) else { return image }
+
+        let clampedImage = inputImage.clampedToExtent()
+        let filter = CIFilter(name: "CIGaussianBlur")
+        filter?.setValue(clampedImage, forKey: kCIInputImageKey)
+        filter?.setValue(radius * image.scale, forKey: kCIInputRadiusKey)
+
+        guard let outputImage = filter?.outputImage?.cropped(to: inputImage.extent),
+              let cgImage = ciContext.createCGImage(outputImage, from: inputImage.extent) else {
+            return image
+        }
+        return UIImage(cgImage: cgImage, scale: image.scale, orientation: image.imageOrientation)
     }
 }
 
@@ -81,63 +223,5 @@ internal class FluidDimmedBackgroundView: UIView, FluidBackgroundCompatible {
     override func updateConstraints() {
         self.fitToSuperview()
         super.updateConstraints()
-    }
-}
-
-/**
- https://github.com/efremidze/VisualEffectView/blob/master/Sources/VisualEffectView.swift
- */
-internal class BlurView: UIVisualEffectView {
-    /** Returns the instance of UIBlurEffect. */
-    private let blurEffect: UIBlurEffect = (NSClassFromString("_UICustomBlurEffect") as! UIBlurEffect.Type).init()
-
-    /** Tint color. The default value is nil. */
-    @objc dynamic internal var colorTint: UIColor? {
-        get { return _value(forKey: "colorTint") as? UIColor }
-        set { _setValue(newValue, forKey: "colorTint") }
-    }
-
-    /** Tint color alpha. The default value is 0.0. */
-    @objc dynamic open var colorTintAlpha: CGFloat {
-        get { return _value(forKey: "colorTintAlpha") as! CGFloat }
-        set { _setValue(newValue, forKey: "colorTintAlpha") }
-    }
-
-    /** Blur radius. The default value is 0.0. */
-    @objc dynamic open var blurRadius: CGFloat {
-        get { return _value(forKey: "blurRadius") as! CGFloat }
-        set { _setValue(newValue, forKey: "blurRadius") }
-    }
-
-    /** Scale factor. The scale factor determines how content in the view is mapped from the logical coordinate space (measured in points) to the device coordinate space (measured in pixels). The default value is 1.0. */
-    @objc dynamic open var scale: CGFloat {
-        get { return _value(forKey: "scale") as! CGFloat }
-        set { _setValue(newValue, forKey: "scale") }
-    }
-
-    /** Initialization */
-    internal override init(effect: UIVisualEffect?) {
-        super.init(effect: effect)
-        configure()
-    }
-
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        configure()
-    }
-
-    private func configure() {
-        self.scale = 1
-    }
-
-    /** Returns the value for the key on the blurEffect. */
-    private func _value(forKey key: String) -> Any? {
-        return blurEffect.value(forKeyPath: key)
-    }
-
-    /** Sets the value for the key on the blurEffect. */
-    private func _setValue(_ value: Any?, forKey key: String) {
-        blurEffect.setValue(value, forKeyPath: key)
-        self.effect = blurEffect
     }
 }

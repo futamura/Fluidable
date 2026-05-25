@@ -63,7 +63,14 @@ extension TransitionBaseViewController {
         ])
         /* TODO: Support iOS 10 */
         /* FIXME: Fix subview's constraints using fluid transition on iOS 10 */
-        if #available(iOS 11.0, *) { return }
+        if #available(iOS 11.0, *) {
+            switch self.model! {
+            case .navigationFluidModal, .transitionFluidModal:
+                break
+            default:
+                return
+            }
+        }
         self.subviewTopConstraint.deactivate()
         self.subviewBottomConstraint.deactivate()
         self.subviewLeadingConstraint.deactivate()
