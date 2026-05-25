@@ -114,33 +114,6 @@ final class UIKitSpec: QuickSpec {
         }
     }
 
-    class TestBlurredBackgroundView: FluidBlurredBackgroundView {
-        var blurRadiusValues: [CGFloat] = []
-        var colorTintValues: [UIColor?] = []
-        var colorTintAlphaValues: [CGFloat] = []
-        var scaleValues: [CGFloat] = []
-
-        override var blurRadius: CGFloat {
-            get { return blurRadiusValues.last ?? 0 }
-            set { blurRadiusValues.append(newValue) }
-        }
-
-        override var colorTint: UIColor? {
-            get { return colorTintValues.last ?? nil }
-            set { colorTintValues.append(newValue) }
-        }
-
-        override var colorTintAlpha: CGFloat {
-            get { return colorTintAlphaValues.last ?? 0 }
-            set { colorTintAlphaValues.append(newValue) }
-        }
-
-        override var scale: CGFloat {
-            get { return scaleValues.last ?? 0 }
-            set { scaleValues.append(newValue) }
-        }
-    }
-
     class TestNavigationController: UINavigationController {
         var name: String?
         init(rootViewController: UIViewController, name: String) {
@@ -1394,12 +1367,20 @@ final class UIKitSpec: QuickSpec {
 
                 it("fits blurred backgrounds and maps visibility to blur radius") {
                     let container = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 120))
-                    let backgroundView = TestBlurredBackgroundView(radius: 20, color: .blue, alpha: 0.35)
+                    let window = UIWindow(frame: container.bounds)
+                    let backgroundView = FluidBlurredBackgroundView(radius: 20, color: .blue, alpha: 0.35)
 
+                    backgroundView.frame = container.bounds
+                    window.addSubview(container)
+                    window.isHidden = false
+                    defer { window.isHidden = true }
                     container.addSubview(backgroundView)
+                    let blurView = backgroundView.subviews.compactMap { $0 as? UIImageView }.first
 
                     expect(backgroundView.baseBlurRadius).to(beCloseTo(20))
                     expect(backgroundView.blurRadius).to(beCloseTo(0))
+                    expect(blurView?.alpha).to(beCloseTo(0))
+                    expect(blurView?.image).to(beNil())
                     expect(backgroundView.colorTint).to(equal(.blue))
                     expect(backgroundView.colorTintAlpha).to(beCloseTo(0.35, within: 0.001))
                     expect(backgroundView.isUserInteractionEnabled).to(beFalse())
@@ -1407,10 +1388,14 @@ final class UIKitSpec: QuickSpec {
 
                     backgroundView.visibility = 0.25
                     expect(backgroundView.blurRadius).to(beCloseTo(5))
+                    expect(blurView?.alpha).to(beCloseTo(0.25))
+                    expect(blurView?.image).notTo(beNil())
                     backgroundView.visibility = -1
                     expect(backgroundView.blurRadius).to(beCloseTo(0))
+                    expect(blurView?.alpha).to(beCloseTo(0))
                     backgroundView.visibility = 2
                     expect(backgroundView.blurRadius).to(beCloseTo(20))
+                    expect(blurView?.alpha).to(beCloseTo(1))
 
                     backgroundView.scale = 2
                     expect(backgroundView.scale).to(beCloseTo(2))
@@ -1423,6 +1408,81 @@ final class UIKitSpec: QuickSpec {
                     }
                     expect(backgroundView.translatesAutoresizingMaskIntoConstraints).to(beFalse())
                     expect(attachedConstraints.count).to(equal(4))
+                }
+
+                it("applies blur to captured background pixels") {
+                    let container = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 120))
+                    let window = UIWindow(frame: container.bounds)
+                    let redView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 120))
+                    let blueView = UIView(frame: CGRect(x: 100, y: 0, width: 100, height: 120))
+                    let backgroundView = FluidBlurredBackgroundView(radius: 20, color: .clear, alpha: 0)
+                    let foregroundView = UIView(frame: container.bounds)
+
+                    redView.backgroundColor = .red
+                    blueView.backgroundColor = .blue
+                    foregroundView.backgroundColor = .green
+                    backgroundView.frame = container.bounds
+                    window.addSubview(container)
+                    window.isHidden = false
+                    defer { window.isHidden = true }
+                    container.addSubview(redView)
+                    container.addSubview(blueView)
+                    container.addSubview(backgroundView)
+                    container.addSubview(foregroundView)
+
+                    backgroundView.visibility = 1
+
+                    let blurView = backgroundView.subviews.compactMap { $0 as? UIImageView }.first
+                    let image = blurView?.image
+                    let boundaryColor = image?.pixelColor(at: CGPoint(x: 100, y: 60))
+
+                    expect(image).notTo(beNil())
+                    expect(boundaryColor?.red).to(beGreaterThan(0.05))
+                    expect(boundaryColor?.blue).to(beGreaterThan(0.05))
+                }
+
+                it("automatically fits blurred backgrounds after insertion") {
+                    let container = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 120))
+                    let window = UIWindow(frame: container.bounds)
+                    let sourceView = UIView(frame: container.bounds)
+                    let backgroundView = FluidBlurredBackgroundView(radius: 20, color: .clear, alpha: 0)
+
+                    sourceView.backgroundColor = .red
+                    window.addSubview(container)
+                    window.isHidden = false
+                    defer { window.isHidden = true }
+                    container.addSubview(sourceView)
+                    container.addSubview(backgroundView)
+
+                    container.updateConstraintsAndLayoutImmediately()
+                    backgroundView.visibility = 1
+
+                    expect(backgroundView.frame).to(equal(container.bounds))
+                    expect(backgroundView.subviews.compactMap { $0 as? UIImageView }.first?.image).notTo(beNil())
+                }
+
+                it("captures background behind transition containers") {
+                    let bounds = CGRect(x: 0, y: 0, width: 200, height: 120)
+                    let window = UIWindow(frame: bounds)
+                    let sourceView = UIView(frame: bounds)
+                    let transitionContainerView = UIView(frame: bounds)
+                    let backgroundView = FluidBlurredBackgroundView(radius: 20, color: .clear, alpha: 0)
+
+                    sourceView.backgroundColor = .red
+                    window.addSubview(sourceView)
+                    window.addSubview(transitionContainerView)
+                    window.isHidden = false
+                    defer { window.isHidden = true }
+                    transitionContainerView.addSubview(backgroundView)
+                    transitionContainerView.updateConstraintsAndLayoutImmediately()
+
+                    backgroundView.visibility = 1
+
+                    let blurView = backgroundView.subviews.compactMap { $0 as? UIImageView }.first
+                    let centerColor = blurView?.image?.pixelColor(at: CGPoint(x: 100, y: 60))
+
+                    expect(centerColor?.red).to(beGreaterThan(0.5))
+                    expect(centerColor?.alpha).to(beGreaterThan(0.5))
                 }
             }
             describe("FluidInteractiveView") {
@@ -3189,4 +3249,41 @@ private func seedGesture(_ observer: FluidTransitionGestureObserver,
     observer.currentLocation = currentLocation
     observer.currentVelocity = velocity
     observer.translationHistory = [averageVector, .zero]
+}
+
+private struct TestPixelColor {
+    let red: CGFloat
+    let green: CGFloat
+    let blue: CGFloat
+    let alpha: CGFloat
+}
+
+private extension UIImage {
+    func pixelColor(at point: CGPoint) -> TestPixelColor? {
+        guard let cgImage = self.cgImage else { return nil }
+        let pixelX = Int(point.x * CGFloat(cgImage.width) / self.size.width)
+        let pixelY = Int(point.y * CGFloat(cgImage.height) / self.size.height)
+        guard 0 <= pixelX, pixelX < cgImage.width,
+              0 <= pixelY, pixelY < cgImage.height,
+              let croppedImage = cgImage.cropping(to: CGRect(x: pixelX, y: pixelY, width: 1, height: 1)) else {
+            return nil
+        }
+
+        var pixel = [UInt8](repeating: 0, count: 4)
+        let bitmapInfo = CGImageAlphaInfo.premultipliedLast.rawValue
+        guard let context = CGContext(data: &pixel,
+                                      width: 1,
+                                      height: 1,
+                                      bitsPerComponent: 8,
+                                      bytesPerRow: 4,
+                                      space: CGColorSpaceCreateDeviceRGB(),
+                                      bitmapInfo: bitmapInfo) else {
+            return nil
+        }
+        context.draw(croppedImage, in: CGRect(x: 0, y: 0, width: 1, height: 1))
+        return TestPixelColor(red: CGFloat(pixel[0]) / 255,
+                              green: CGFloat(pixel[1]) / 255,
+                              blue: CGFloat(pixel[2]) / 255,
+                              alpha: CGFloat(pixel[3]) / 255)
+    }
 }
