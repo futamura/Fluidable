@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Case 00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NwF-zb-J5l">
-                        <rect key="frame" x="20" y="26" width="472" height="14"/>
+                        <rect key="frame" x="20" y="20" width="472" height="14"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="14" id="Bko-Yw-InU"/>
                         </constraints>
@@ -28,7 +28,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rxz-lG-NRa">
-                        <rect key="frame" x="20" y="43" width="472" height="27"/>
+                        <rect key="frame" x="20" y="37" width="472" height="27"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="27" id="PEM-lC-aQA"/>
                         </constraints>
@@ -37,7 +37,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="caption" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Gi-LM-YR0">
-                        <rect key="frame" x="20" y="74" width="472" height="14"/>
+                        <rect key="frame" x="20" y="68" width="472" height="14"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="14" id="z1O-t5-VgI"/>
                         </constraints>
@@ -47,7 +47,7 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="NwF-zb-J5l" firstAttribute="top" secondItem="EDe-Hj-43Q" secondAttribute="top" constant="26" id="3L0-jG-Tpa"/>
+                    <constraint firstItem="NwF-zb-J5l" firstAttribute="top" secondItem="EDe-Hj-43Q" secondAttribute="top" constant="20" id="3L0-jG-Tpa"/>
                     <constraint firstItem="NwF-zb-J5l" firstAttribute="leading" secondItem="EDe-Hj-43Q" secondAttribute="leading" constant="20" id="FIY-by-EZC"/>
                     <constraint firstItem="Rxz-lG-NRa" firstAttribute="trailing" secondItem="EDe-Hj-43Q" secondAttribute="trailing" constant="-20" id="gC8-76-xut"/>
                     <constraint firstItem="Rxz-lG-NRa" firstAttribute="leading" secondItem="EDe-Hj-43Q" secondAttribute="leading" constant="20" id="lAX-Jl-sX3"/>

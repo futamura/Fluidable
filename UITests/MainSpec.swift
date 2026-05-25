@@ -233,3 +233,73 @@ final class NavigationFluidFullScreenDismissUITests: XCTestCase {
         MainSpec.finishAnimatedDismissByTappingContainer(app: app, orientation: orientation, model: model)
     }
 }
+
+final class RootThumbnailHeaderMarginUITests: XCTestCase {
+    func testTableThumbnailHeaderTopMarginMatchesImageThumbnailHeader() {
+        let app: XCUIApplication = XCUIApplication()
+        addTeardownBlock {
+            app.terminate()
+            XCUIDevice.shared.orientation = .portrait
+        }
+
+        XCUIDevice.shared.orientation = .portrait
+        app.setEnv(MainSpec.env)
+        app.launch()
+
+        let collectionView: XCUIElement = app.collectionViews.element(matching: .collectionView, identifier: "rootCollectionView")
+        MainSpec.assertEventually(collectionView.exists)
+
+        let baseline = headerTopMargin(in: collectionView, app: app, model: .navigationFluidModal)
+        let targetModels: [RootModel] = [
+            .navigationFluidFullScreen,
+            .navigationDrawerBottom,
+            .navigationSlideBottom,
+            .transitionFluidFullScreen,
+            .transitionDrawerBottom,
+            .transitionSlideBottom
+        ]
+
+        for model in targetModels {
+            let margin = headerTopMargin(in: collectionView, app: app, model: model)
+            XCTAssertEqual(
+                margin,
+                baseline,
+                accuracy: 2,
+                "\(model.description) header top margin should match image thumbnail header"
+            )
+        }
+    }
+
+    private func headerTopMargin(in collectionView: XCUIElement, app: XCUIApplication, model: RootModel) -> CGFloat {
+        let cell = bringCellIntoView(in: collectionView, app: app, model: model)
+        let label = cell.staticTexts["Case \(String(format: "%02d", model.rawValue + 1))"]
+        MainSpec.assertEventually(label.exists)
+
+        return label.frame.minY - cell.frame.minY
+    }
+
+    private func bringCellIntoView(in collectionView: XCUIElement, app: XCUIApplication, model: RootModel) -> XCUIElement {
+        let cell = collectionView.cells.element(matching: .cell, identifier: model.rootCellAccessibilityIdentifier)
+        let label = cell.staticTexts["Case \(String(format: "%02d", model.rawValue + 1))"]
+        for _ in 0..<60 {
+            if cell.exists && cell.isVisible && label.exists {
+                return cell
+            }
+
+            if cell.exists && cell.isVisible {
+                let windowFrame = app.windows.element(boundBy: 0).frame
+                let visibleCollectionFrame = collectionView.frame.intersection(windowFrame)
+                if cell.frame.midY < visibleCollectionFrame.midY {
+                    collectionView.swipeDown()
+                } else {
+                    collectionView.swipeUp()
+                }
+            } else {
+                collectionView.swipeUp()
+            }
+        }
+
+        XCTFail("Failed to bring \(model.rootCellAccessibilityIdentifier) into view")
+        return cell
+    }
+}

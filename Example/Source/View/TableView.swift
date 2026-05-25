@@ -29,6 +29,7 @@ extension TableView {
         self.selectionHandler = handler
         self.delegate = self
         self.dataSource = self
+        self.sectionHeaderTopPadding = 0
         /* NOTE: Views */
         self.headerView = headerPosition == .none ? nil : HeaderCell.instantiate(model: model)
         self.headerHeight = self.headerView?.estimatedHeight ?? 0
