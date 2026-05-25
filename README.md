@@ -2,15 +2,14 @@
 [![codecov](https://codecov.io/gh/gumob/Fluidable/branch/main/graph/badge.svg)](https://codecov.io/gh/gumob/Fluidable)
 [![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)
 ![Language](https://img.shields.io/badge/Language-Swift%205-orange.svg)
-![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg)
 
 # Fluidable
 A Swift library that allows you to create a custom transition conforming to Fluid Interfaces.
 
 ## Features & To-Do
 - [x] Support `UINavigationControllerDelegate` and `UIViewControllerTransitioningDelegate`
-- [x] Interactive and intrruptible transition with `UIScrollView`, `UITableView`, and `UICollectionView`
-- [x] Additional animations for view controllers that can be defined in the delegate method (supports both `UIViewPropertyAnimator` and` Core Animation`)
+- [x] Interactive and interruptible transition with `UIScrollView`, `UITableView`, and `UICollectionView`
+- [x] Additional animations for view controllers that can be defined in the delegate method (supports both `UIViewPropertyAnimator` and `Core Animation`)
 - [x] Monitor transition states and progress with delegate methods
 - [x] Customizable presentation style (Fluid, Drawer, and Slide)
 - [x] Resizable drawer
@@ -36,12 +35,12 @@ Fluidable is distributed with Swift Package Manager.
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/gumob/Fluidable.git", from: "1.0.0"),
+    .package(url: "https://github.com/gumob/Fluidable.git", from: "2.0.0"),
 ]
 ```
 
 ## Example application
-Repository contains example sources under [Example](https://github.com/gumob/Fluidable/tree/main/Example) directory. Structure of the application is simple, but the project contains mutiple case of UI petterns to showcase capabilities of the library.
+Repository contains example sources under [Example](https://github.com/gumob/Fluidable/tree/main/Example) directory. Structure of the application is simple, but the project contains multiple UI patterns to showcase capabilities of the library.
 You can build an example app by choosing `FluidableExample` from the Xcode schemes.
 
 ## Usage
@@ -58,7 +57,7 @@ import UIKit
 import Fluidable
 ```
 
-2) Initialze [`Fluidable`](https://gumob.github.io/Fluidable/documentation/fluidable/fluidable) framework in `AppDelegate`:
+2) Initialize [`Fluidable`](https://gumob.github.io/Fluidable/documentation/fluidable/fluidable) framework in `AppDelegate`:
 ```swift
 class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -119,7 +118,7 @@ import UIKit
 import Fluidable
 ```
 
-2) Initialze `Fluidable` framework in `AppDelegate`:
+2) Initialize `Fluidable` framework in `AppDelegate`:
 ```swift
 class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -129,9 +128,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 ```
 
-3) Conform to [`Fluidable`](https://gumob.github.io/Fluidable/documentation/fluidable/fluidable) protocol in the <span style="color:magenta">source</span> view controller:
+3) Keep a [`FluidNavigationControllerDelegate`](https://gumob.github.io/Fluidable/documentation/fluidable/fluidnavigationcontrollerdelegate) instance alive in the navigation controller, assign it to `delegate`, and conform the navigation controller to [`Fluidable`](https://gumob.github.io/Fluidable/documentation/fluidable/fluidable):
 ```swift
-class RootViewController: UICollectionViewController, Fluidable {
+class NavigationRootNavigationController: UINavigationController, Fluidable {
+  let fluidNavigationDelegate = FluidNavigationControllerDelegate()
+
+  required init?(coder aDecoder: NSCoder) {
+      super.init(coder: aDecoder)
+      self.delegate = self.fluidNavigationDelegate
+      self.fluidDelegate = self
+  }
+}
+```
+
+4) Conform to [`Fluidable`](https://gumob.github.io/Fluidable/documentation/fluidable/fluidable) protocol in the <span style="color:magenta">source</span> view controller:
+```swift
+class NavigationScrollViewController: UIViewController, Fluidable {
   required init?(coder aDecoder: NSCoder) {
       super.init(coder: aDecoder)
       self.fluidDelegate = self
@@ -139,41 +151,39 @@ class RootViewController: UICollectionViewController, Fluidable {
 }
 ```
 
-4) Conform to [`FluidTransitionSourceConfigurationDelegate`](https://gumob.github.io/Fluidable/documentation/fluidable/fluidtransitionsourceconfigurationdelegate) and [`FluidTransitionSourceActionDelegate`](https://gumob.github.io/Fluidable/documentation/fluidable/fluidtransitionsourceactiondelegate) protocols in the <span style="color:magenta">source</span> view controller:
+5) Conform to [`FluidNavigationSourceConfigurationDelegate`](https://gumob.github.io/Fluidable/documentation/fluidable/fluidnavigationsourceconfigurationdelegate) and [`FluidNavigationSourceActionDelegate`](https://gumob.github.io/Fluidable/documentation/fluidable/fluidnavigationsourceactiondelegate) protocols in the <span style="color:magenta">source</span> view controller:
 ```swift
-extension RootViewController: FluidTransitionSourceConfigurationDelegate {
+extension NavigationScrollViewController: FluidNavigationSourceConfigurationDelegate {
   /* Implement delegate methods */
 }
-extension RootViewController: FluidTransitionSourceActionDelegate {
+extension NavigationScrollViewController: FluidNavigationSourceActionDelegate {
   /* Implement delegate methods */
 }
 ```
 
-5) Conform to [`Fluidable`](https://gumob.github.io/Fluidable/documentation/fluidable/fluidable) protocol in the <span style="color:magenta">destination</span> view controller:
+6) Conform to [`Fluidable`](https://gumob.github.io/Fluidable/documentation/fluidable/fluidable) protocol in the <span style="color:magenta">destination</span> view controller:
 ```swift
-class TransitionScrollViewController: TransitionBaseViewController, Fluidable {
-  var fluidableTransitionDelegate: FluidViewControllerTransitioningDelegate = FluidViewControllerTransitioningDelegate()
+class NavigationChildViewController: UIViewController, Fluidable {
   required init?(coder aDecoder: NSCoder) {
       super.init(coder: aDecoder)
-        self.transitioningDelegate = self.fluidableTransitionDelegate
-        self.fluidDelegate = self
+      self.fluidDelegate = self
   }
 }
 ```
 
-6) Conform to [`FluidTransitionDestinationConfigurationDelegate`](https://gumob.github.io/Fluidable/documentation/fluidable/fluidtransitiondestinationconfigurationdelegate) and [`FluidTransitionDestinationActionDelegate`](https://gumob.github.io/Fluidable/documentation/fluidable/fluidtransitiondestinationactiondelegate) protocols in the <span style="color:magenta">destination</span> view controller:
+7) Conform to [`FluidNavigationDestinationConfigurationDelegate`](https://gumob.github.io/Fluidable/documentation/fluidable/fluidnavigationdestinationconfigurationdelegate) and [`FluidNavigationDestinationActionDelegate`](https://gumob.github.io/Fluidable/documentation/fluidable/fluidnavigationdestinationactiondelegate) protocols in the <span style="color:magenta">destination</span> view controller:
 ```swift
-extension TransitionScrollViewController: FluidTransitionDestinationConfigurationDelegate {
+extension NavigationChildViewController: FluidNavigationDestinationConfigurationDelegate {
   /* Implement delegate methods */
 }
-extension TransitionScrollViewController: FluidTransitionDestinationActionDelegate {
+extension NavigationChildViewController: FluidNavigationDestinationActionDelegate {
   /* Implement delegate methods */
 }
 ```
 
 ### Resizable drawer
 
-The [`FluidResizableTransitionDelegate`](https://gumob.github.io/Fluidable/documentation/fluidable/fluidresizabletransitiondelegate) is available for only bottom drawer.
+The [`FluidResizableTransitionDelegate`](https://gumob.github.io/Fluidable/documentation/fluidable/fluidresizabletransitiondelegate) is available only for bottom drawer presentations.
 
 1) Conform to [`FluidResizableTransitionDelegate`](https://gumob.github.io/Fluidable/documentation/fluidable/fluidresizabletransitiondelegate) protocol in the <span style="color:magenta">destination</span> view controller:
 ```swift
