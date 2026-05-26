@@ -19,7 +19,7 @@ class HeaderCell: UITableViewCell {
     required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
 
     static func instantiate(model: RootModel) -> HeaderCell {
-        let view: HeaderCell = UINib.instantiate(nibName: className)
+        let view: HeaderCell = UINib.instantiate(nibName: className, bundle: Bundle(for: HeaderCell.self))
         view.configure(model: model)
         return view
     }

@@ -53,6 +53,14 @@ class TransitionScrollViewController: TransitionBaseViewController, Fluidable {
         self.headerView.rightAnchor.constraint(equalTo: self.imageContainerView.rightAnchor).activate()
         self.headerView.heightAnchor.constraint(equalToConstant: self.headerView.estimatedHeight).activate()
         self.imageView.image = UIImage(row: self.modelIndex, size: .medium)
+        if #available(iOS 11.0, *) {
+            switch self.model! {
+            case .navigationFluidModal, .transitionFluidModal:
+                self.scrollView.contentInsetAdjustmentBehavior = .never
+            default:
+                break
+            }
+        }
         self.scrollView.contentInset.bottom = 40
         self.configureConstraints(for: self.scrollView)
     }

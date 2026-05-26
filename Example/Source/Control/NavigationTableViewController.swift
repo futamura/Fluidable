@@ -14,6 +14,7 @@ import Fluidable
 class NavigationTableViewController: NavigationBaseViewController, Fluidable {
     /** Dummy value to prevent UIViewPropertyAnimator from finishing immediately. */
     @objc dynamic var transitionProgress: CGFloat = 0
+    private var dismissCellContentWidth: CGFloat?
 
     @IBOutlet weak var tableView: TableView!
     @IBOutlet weak var footerOverlayView: UIView!
@@ -124,6 +125,7 @@ extension NavigationTableViewController: FluidTransitionDestinationConfiguration
             "navigation: " + String(describing: navigation),
         ])
         guard transitionStyle.isFluid else { return nil }
+        self.dismissCellContentWidth = initialDimension.frame().width
         var animators: [FluidAnimatorCompatible] = [FluidAnimatorCompatible]()
         /* NOTE: Hide button in 30% of duration without delay (UIViewPropertyAnimator) */
         let buttonAnimator: FluidPropertyAnimator = .init(duration: duration * 0.3, /* NOTE: 30% of transition duration */
@@ -172,6 +174,14 @@ extension NavigationTableViewController: FluidTransitionDestinationConfiguration
             self.view.layoutIfNeeded()
         })
         animators.append(constraintAnimator)
+        /* NOTE: Table cell layout (UIViewPropertyAnimator) */
+        let cellLayoutAnimator: FluidPropertyAnimator = .init(duration: duration, easing: easing, id: "cellLayoutAnimator (Dismiss)")
+        cellLayoutAnimator.add({ [weak self] in
+            guard let `self`: NavigationTableViewController = self else { return }
+            self.layoutVisibleCellsForDismiss()
+        })
+        animators.append(cellLayoutAnimator)
+        self.layoutVisibleCellsForDismiss()
         return animators
     }
 }
@@ -186,6 +196,16 @@ extension NavigationTableViewController: FluidTransitionDestinationActionDelegat
             "state:".lpad() + String(describing: state),
             "progress:".lpad() + String(describing: progress),
         ])
+        switch state {
+        case .begin, .update:
+            if transitionStyle.isFluid {
+                self.layoutVisibleCellsForDismiss()
+            }
+        case .cancel:
+            self.resetVisibleCellsAfterDismissCancel()
+        case .end:
+            self.dismissCellContentWidth = nil
+        }
     }
 
     func transitionDismissAnimationDidProgress(from destination: FluidDestinationViewController, to source: FluidSourceViewController,
@@ -222,17 +242,33 @@ extension NavigationTableViewController: FluidTransitionDestinationActionDelegat
         case .update:
             if transitionStyle.isFluid {
                 self.closeButton.alpha = 1 - progress
+                self.layoutVisibleCellsForDismiss()
             } else {
                 self.closeButton.alpha = (1 - progress * 3).clamped(0, 1)
             }
         case .cancel:
+            self.resetVisibleCellsAfterDismissCancel()
             let animator: UIViewPropertyAnimator = UIViewPropertyAnimator(duration: 0.1, easing: .linear)
             animator.addAnimations({ [weak self] in
                 self?.closeButton.alpha = 1
             })
             animator.startAnimation()
         case .end:
-            break
+            self.dismissCellContentWidth = nil
         }
+    }
+}
+
+private extension NavigationTableViewController {
+    func layoutVisibleCellsForDismiss() {
+        guard self.tableView.window != nil else { return }
+        self.view.layoutIfNeeded()
+        self.tableView.layoutVisibleCellsImmediately(constrainingTextTo: self.dismissCellContentWidth)
+    }
+
+    func resetVisibleCellsAfterDismissCancel() {
+        self.dismissCellContentWidth = nil
+        guard self.tableView.window != nil else { return }
+        self.tableView.layoutVisibleCellsImmediately()
     }
 }

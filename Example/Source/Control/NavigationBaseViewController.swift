@@ -68,7 +68,20 @@ extension NavigationBaseViewController {
         ])
         /* TODO: Support iOS 10 */
         /* FIXME: Fix subview's constraints using fluid transition on iOS 10 */
-        if #available(iOS 11.0, *) { return }
+        if #available(iOS 11.0, *) {
+            switch self.model! {
+            case .navigationFluidModal, .transitionFluidModal:
+                break
+            default:
+                return
+            }
+        }
+        self.subviewTopConstraint.deactivate()
+        self.subviewBottomConstraint.deactivate()
+        self.subviewLeadingConstraint.deactivate()
+        self.subviewTrailingConstraint.deactivate()
+        self.closeButtonTopConstraint.deactivate()
+        self.closeButtonTrailingConstraint.deactivate()
         switch self.model! {
         case .navigationFluidModal, .transitionFluidModal:
             self.subviewTopConstraint = subview.topAnchor.constraint(equalTo: self.view.topAnchor).activate()
@@ -77,12 +90,6 @@ extension NavigationBaseViewController {
             self.subviewTrailingConstraint = subview.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).activate()
             self.closeButtonTopConstraint = self.closeButton?.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 16).activate()
             self.closeButtonTrailingConstraint = self.closeButton?.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16).activate()
-            subview.removeConstraints([self.subviewTopConstraint,
-                                       self.subviewBottomConstraint,
-                                       self.subviewLeadingConstraint,
-                                       self.subviewTrailingConstraint])
-            self.closeButton?.removeConstraints([self.closeButtonTopConstraint,
-                                                 self.closeButtonTrailingConstraint])
         default:
             subview.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).activate()
             subview.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).activate()

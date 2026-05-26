@@ -29,6 +29,7 @@ extension TableView {
         self.selectionHandler = handler
         self.delegate = self
         self.dataSource = self
+        self.sectionHeaderTopPadding = 0
         /* NOTE: Views */
         self.headerView = headerPosition == .none ? nil : HeaderCell.instantiate(model: model)
         self.headerHeight = self.headerView?.estimatedHeight ?? 0
@@ -37,6 +38,20 @@ extension TableView {
         self.register(cellType: HeaderCell.self)
         /* NOTE: Reload */
         self.reloadData()
+    }
+
+    func layoutVisibleCellsImmediately(constrainingTextTo contentWidth: CGFloat? = nil) {
+        self.setNeedsLayout()
+        self.layoutIfNeeded()
+        self.visibleCells.forEach {
+            $0.setNeedsLayout()
+            $0.contentView.setNeedsLayout()
+            $0.contentView.layoutIfNeeded()
+            $0.layoutIfNeeded()
+            guard let contentWidth: CGFloat = contentWidth,
+                  let cell: TableCell = $0 as? TableCell else { return }
+            cell.layoutTextLabels(forContentWidth: contentWidth)
+        }
     }
 }
 

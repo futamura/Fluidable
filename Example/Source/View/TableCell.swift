@@ -10,6 +10,10 @@ import Foundation
 import UIKit
 
 class TableCell: UITableViewCell {
+    private struct Const {
+        static let titleTrailingMargin: CGFloat = 20
+    }
+
     @IBOutlet weak var thumbView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var captionLabel: UILabel!
@@ -29,5 +33,16 @@ class TableCell: UITableViewCell {
         }()
 
         self.clipsToBounds = true
+    }
+
+    func layoutTextLabels(forContentWidth contentWidth: CGFloat) {
+        self.contentView.layoutIfNeeded()
+        self.titleLabel.lineBreakMode = .byTruncatingTail
+        self.captionLabel.lineBreakMode = .byTruncatingTail
+
+        let titleWidth: CGFloat = contentWidth - self.titleLabel.frame.minX - Const.titleTrailingMargin
+        let captionWidth: CGFloat = contentWidth - self.captionLabel.frame.minX - self.contentView.layoutMargins.right
+        self.titleLabel.frame.size.width = max(0, titleWidth)
+        self.captionLabel.frame.size.width = max(0, captionWidth)
     }
 }
