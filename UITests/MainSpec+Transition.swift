@@ -24,20 +24,29 @@ extension MainSpec {
     private static func tapRootCollectionCell(_ collectionView: XCUIElement, app: XCUIApplication, model: RootModel) {
         for _ in 0..<40 {
             let collectionCell = collectionView.cells.element(matching: .cell, identifier: model.rootCellAccessibilityIdentifier)
-            if collectionCell.isVisible {
+            if collectionCell.exists && collectionCell.isVisible {
                 let windowFrame = app.windows.element(boundBy: 0).frame
                 let visibleCollectionFrame = collectionView.frame.intersection(windowFrame)
-                let centerY = collectionCell.frame.midY
-                let safeInset = min(72, visibleCollectionFrame.height * 0.2)
-                let topInset = visibleCollectionFrame.minY + safeInset
-                let bottomInset = visibleCollectionFrame.maxY - safeInset
+                let visibleCellFrame = collectionCell.frame.intersection(visibleCollectionFrame)
 
-                if centerY >= topInset && centerY <= bottomInset {
-                    collectionCell.tapVisibleCenter()
+                if !visibleCellFrame.isNull && visibleCellFrame.width >= 12 && visibleCellFrame.height >= 12 {
+                    let offset = CGVector(
+                        dx: (visibleCellFrame.midX - collectionCell.frame.minX) / collectionCell.frame.width,
+                        dy: (visibleCellFrame.midY - collectionCell.frame.minY) / collectionCell.frame.height
+                    )
+                    if offset.dy < 0.25 {
+                        self.nudgeRootCollection(collectionView, downward: false)
+                        continue
+                    }
+                    if offset.dy > 0.75 {
+                        self.nudgeRootCollection(collectionView, downward: true)
+                        continue
+                    }
+                    collectionCell.coordinate(withNormalizedOffset: offset).tap()
                     return
                 }
 
-                self.nudgeRootCollection(collectionView, downward: centerY < topInset)
+                self.nudgeRootCollection(collectionView, downward: collectionCell.frame.midY < visibleCollectionFrame.midY)
             } else {
                 collectionView.swipeUp()
             }

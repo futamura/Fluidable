@@ -3295,7 +3295,7 @@ private func blurredImage(in backgroundView: FluidBlurredBackgroundView) -> UIIm
     return backgroundView.subviews.compactMap { $0 as? UIImageView }.first?.image
 }
 
-private func waitForBlurredImage(in backgroundView: FluidBlurredBackgroundView, timeout: TimeInterval = 3) -> UIImage? {
+private func waitForBlurredImage(in backgroundView: FluidBlurredBackgroundView, timeout: TimeInterval = 10) -> UIImage? {
     let deadline = CACurrentMediaTime() + timeout
     while blurredImage(in: backgroundView) == nil, CACurrentMediaTime() < deadline {
         RunLoop.main.run(until: Date(timeIntervalSinceNow: 0.01))

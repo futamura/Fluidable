@@ -71,18 +71,21 @@ extension TransitionBaseViewController {
                 return
             }
         }
-        self.subviewTopConstraint.deactivate()
-        self.subviewBottomConstraint.deactivate()
-        self.subviewLeadingConstraint.deactivate()
-        self.subviewTrailingConstraint.deactivate()
-        self.closeButtonTopConstraint.deactivate()
-        self.closeButtonTrailingConstraint.deactivate()
-        subview.removeConstraints([self.subviewTopConstraint,
-                                   self.subviewBottomConstraint,
-                                   self.subviewLeadingConstraint,
-                                   self.subviewTrailingConstraint])
-        self.closeButton?.removeConstraints([self.closeButtonTopConstraint,
-                                             self.closeButtonTrailingConstraint])
+        let subviewConstraints: [NSLayoutConstraint] = [
+            self.subviewTopConstraint as NSLayoutConstraint?,
+            self.subviewBottomConstraint as NSLayoutConstraint?,
+            self.subviewLeadingConstraint as NSLayoutConstraint?,
+            self.subviewTrailingConstraint as NSLayoutConstraint?
+        ].compactMap { $0 }
+        let closeButtonConstraints: [NSLayoutConstraint] = [
+            self.closeButtonTopConstraint as NSLayoutConstraint?,
+            self.closeButtonTrailingConstraint as NSLayoutConstraint?
+        ].compactMap { $0 }
+
+        subviewConstraints.forEach { $0.deactivate() }
+        closeButtonConstraints.forEach { $0.deactivate() }
+        subview.removeConstraints(subviewConstraints)
+        self.closeButton?.removeConstraints(closeButtonConstraints)
         switch self.model! {
         case .navigationFluidModal, .transitionFluidModal:
             self.subviewTopConstraint = subview.topAnchor.constraint(equalTo: self.view.topAnchor).activate()
