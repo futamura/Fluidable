@@ -1,5 +1,5 @@
 [![CI](https://github.com/futamura/Fluidable/actions/workflows/ci.yml/badge.svg)](https://github.com/futamura/Fluidable/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/gumob/Fluidable/branch/main/graph/badge.svg)](https://codecov.io/gh/gumob/Fluidable)
+[![codecov](https://codecov.io/gh/futamura/Fluidable/branch/main/graph/badge.svg)](https://codecov.io/gh/futamura/Fluidable)
 [![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)
 ![Language](https://img.shields.io/badge/Language-Swift%205-orange.svg)
 
@@ -21,8 +21,8 @@ A Swift library that allows you to create a custom transition conforming to Flui
 
 Fluid                      |  Drawer                   | Slide
 :-------------------------:|:-------------------------:|:-------------------------:
-![](https://media.githubusercontent.com/media/gumob/Fluidable-Metadata/master/Movies/Exports/case-01.gif)  |  ![](https://media.githubusercontent.com/media/gumob/Fluidable-Metadata/master/Movies/Exports/case-04.gif)  |  ![](https://media.githubusercontent.com/media/gumob/Fluidable-Metadata/master/Movies/Exports/case-08.gif)
-![](https://media.githubusercontent.com/media/gumob/Fluidable-Metadata/master/Movies/Exports/case-02.gif)  |  ![](https://media.githubusercontent.com/media/gumob/Fluidable-Metadata/master/Movies/Exports/case-06.gif)  |  ![](https://media.githubusercontent.com/media/gumob/Fluidable-Metadata/master/Movies/Exports/case-09.gif)
+![](https://media.githubusercontent.com/media/futamura/Fluidable-Metadata/master/Movies/Exports/case-01.gif)  |  ![](https://media.githubusercontent.com/media/futamura/Fluidable-Metadata/master/Movies/Exports/case-04.gif)  |  ![](https://media.githubusercontent.com/media/futamura/Fluidable-Metadata/master/Movies/Exports/case-08.gif)
+![](https://media.githubusercontent.com/media/futamura/Fluidable-Metadata/master/Movies/Exports/case-02.gif)  |  ![](https://media.githubusercontent.com/media/futamura/Fluidable-Metadata/master/Movies/Exports/case-06.gif)  |  ![](https://media.githubusercontent.com/media/futamura/Fluidable-Metadata/master/Movies/Exports/case-09.gif)
 
 ## Requirements
 
