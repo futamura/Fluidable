@@ -3,13 +3,13 @@
 
 ### Custom transition using [`UIViewControllerTransitioningDelegate`](https://developer.apple.com/documentation/uikit/uiviewcontrollertransitioningdelegate)
 
-1) Import [`Fluidable`](https://gumob.github.io/Fluidable/documentation/fluidable/fluidable) framework to your project files:
+1) Import [`Fluidable`](https://futamura.github.io/Fluidable/documentation/fluidable/fluidable) framework to your project files:
 ```swift
 import UIKit
 import Fluidable
 ```
 
-2) Initialize [`Fluidable`](https://gumob.github.io/Fluidable/documentation/fluidable/fluidable) framework in `AppDelegate`:
+2) Initialize [`Fluidable`](https://futamura.github.io/Fluidable/documentation/fluidable/fluidable) framework in `AppDelegate`:
 ```swift
 class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 ```
 
-3) Conform to [`Fluidable`](https://gumob.github.io/Fluidable/documentation/fluidable/fluidable) protocol in the <span style="color:magenta">source</span> view controller:
+3) Conform to [`Fluidable`](https://futamura.github.io/Fluidable/documentation/fluidable/fluidable) protocol in the <span style="color:magenta">source</span> view controller:
 ```swift
 class RootViewController: UICollectionViewController, Fluidable {
   required init?(coder aDecoder: NSCoder) {
@@ -29,7 +29,7 @@ class RootViewController: UICollectionViewController, Fluidable {
 }
 ```
 
-4) Conform to [`FluidTransitionSourceConfigurationDelegate`](https://gumob.github.io/Fluidable/documentation/fluidable/fluidtransitionsourceconfigurationdelegate) and [`FluidTransitionSourceActionDelegate`](https://gumob.github.io/Fluidable/documentation/fluidable/fluidtransitionsourceactiondelegate) protocols in the <span style="color:magenta">source</span> view controller:
+4) Conform to [`FluidTransitionSourceConfigurationDelegate`](https://futamura.github.io/Fluidable/documentation/fluidable/fluidtransitionsourceconfigurationdelegate) and [`FluidTransitionSourceActionDelegate`](https://futamura.github.io/Fluidable/documentation/fluidable/fluidtransitionsourceactiondelegate) protocols in the <span style="color:magenta">source</span> view controller:
 ```swift
 extension RootViewController: FluidTransitionSourceConfigurationDelegate {
   /* Implement delegate methods */
@@ -39,7 +39,7 @@ extension RootViewController: FluidTransitionSourceActionDelegate {
 }
 ```
 
-5) Conform to [`Fluidable`](https://gumob.github.io/Fluidable/documentation/fluidable/fluidable) protocol in the <span style="color:magenta">destination</span> view controller:
+5) Conform to [`Fluidable`](https://futamura.github.io/Fluidable/documentation/fluidable/fluidable) protocol in the <span style="color:magenta">destination</span> view controller:
 ```swift
 class TransitionScrollViewController: TransitionBaseViewController, Fluidable {
   var fluidableTransitionDelegate: FluidViewControllerTransitioningDelegate = FluidViewControllerTransitioningDelegate()
@@ -51,7 +51,7 @@ class TransitionScrollViewController: TransitionBaseViewController, Fluidable {
 }
 ```
 
-6) Conform to [`FluidTransitionDestinationConfigurationDelegate`](https://gumob.github.io/Fluidable/documentation/fluidable/fluidtransitiondestinationconfigurationdelegate) and [`FluidTransitionDestinationActionDelegate`](https://gumob.github.io/Fluidable/documentation/fluidable/fluidtransitiondestinationactiondelegate) protocols in the <span style="color:magenta">destination</span> view controller:
+6) Conform to [`FluidTransitionDestinationConfigurationDelegate`](https://futamura.github.io/Fluidable/documentation/fluidable/fluidtransitiondestinationconfigurationdelegate) and [`FluidTransitionDestinationActionDelegate`](https://futamura.github.io/Fluidable/documentation/fluidable/fluidtransitiondestinationactiondelegate) protocols in the <span style="color:magenta">destination</span> view controller:
 ```swift
 extension TransitionScrollViewController: FluidTransitionDestinationConfigurationDelegate {
   /* Implement delegate methods */
@@ -80,7 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 ```
 
-3) Keep a [`FluidNavigationControllerDelegate`](https://gumob.github.io/Fluidable/documentation/fluidable/fluidnavigationcontrollerdelegate) instance alive in the navigation controller, assign it to `delegate`, and conform the navigation controller to [`Fluidable`](https://gumob.github.io/Fluidable/documentation/fluidable/fluidable):
+3) Keep a [`FluidNavigationControllerDelegate`](https://futamura.github.io/Fluidable/documentation/fluidable/fluidnavigationcontrollerdelegate) instance alive in the navigation controller, assign it to `delegate`, and conform the navigation controller to [`Fluidable`](https://futamura.github.io/Fluidable/documentation/fluidable/fluidable):
 ```swift
 class NavigationRootNavigationController: UINavigationController, Fluidable {
   let fluidNavigationDelegate = FluidNavigationControllerDelegate()
@@ -93,7 +93,7 @@ class NavigationRootNavigationController: UINavigationController, Fluidable {
 }
 ```
 
-4) Conform to [`Fluidable`](https://gumob.github.io/Fluidable/documentation/fluidable/fluidable) protocol in the <span style="color:magenta">source</span> view controller:
+4) Conform to [`Fluidable`](https://futamura.github.io/Fluidable/documentation/fluidable/fluidable) protocol in the <span style="color:magenta">source</span> view controller:
 ```swift
 class NavigationScrollViewController: UIViewController, Fluidable {
   required init?(coder aDecoder: NSCoder) {
@@ -103,7 +103,7 @@ class NavigationScrollViewController: UIViewController, Fluidable {
 }
 ```
 
-5) Conform to [`FluidNavigationSourceConfigurationDelegate`](https://gumob.github.io/Fluidable/documentation/fluidable/fluidnavigationsourceconfigurationdelegate) and [`FluidNavigationSourceActionDelegate`](https://gumob.github.io/Fluidable/documentation/fluidable/fluidnavigationsourceactiondelegate) protocols in the <span style="color:magenta">source</span> view controller:
+5) Conform to [`FluidNavigationSourceConfigurationDelegate`](https://futamura.github.io/Fluidable/documentation/fluidable/fluidnavigationsourceconfigurationdelegate) and [`FluidNavigationSourceActionDelegate`](https://futamura.github.io/Fluidable/documentation/fluidable/fluidnavigationsourceactiondelegate) protocols in the <span style="color:magenta">source</span> view controller:
 ```swift
 extension NavigationScrollViewController: FluidNavigationSourceConfigurationDelegate {
   /* Implement delegate methods */
@@ -113,7 +113,7 @@ extension NavigationScrollViewController: FluidNavigationSourceActionDelegate {
 }
 ```
 
-6) Conform to [`Fluidable`](https://gumob.github.io/Fluidable/documentation/fluidable/fluidable) protocol in the <span style="color:magenta">destination</span> view controller:
+6) Conform to [`Fluidable`](https://futamura.github.io/Fluidable/documentation/fluidable/fluidable) protocol in the <span style="color:magenta">destination</span> view controller:
 ```swift
 class NavigationChildViewController: UIViewController, Fluidable {
   required init?(coder aDecoder: NSCoder) {
@@ -123,7 +123,7 @@ class NavigationChildViewController: UIViewController, Fluidable {
 }
 ```
 
-7) Conform to [`FluidNavigationDestinationConfigurationDelegate`](https://gumob.github.io/Fluidable/documentation/fluidable/fluidnavigationdestinationconfigurationdelegate) and [`FluidNavigationDestinationActionDelegate`](https://gumob.github.io/Fluidable/documentation/fluidable/fluidnavigationdestinationactiondelegate) protocols in the <span style="color:magenta">destination</span> view controller:
+7) Conform to [`FluidNavigationDestinationConfigurationDelegate`](https://futamura.github.io/Fluidable/documentation/fluidable/fluidnavigationdestinationconfigurationdelegate) and [`FluidNavigationDestinationActionDelegate`](https://futamura.github.io/Fluidable/documentation/fluidable/fluidnavigationdestinationactiondelegate) protocols in the <span style="color:magenta">destination</span> view controller:
 ```swift
 extension NavigationChildViewController: FluidNavigationDestinationConfigurationDelegate {
   /* Implement delegate methods */
@@ -135,9 +135,9 @@ extension NavigationChildViewController: FluidNavigationDestinationActionDelegat
 
 ### Resizable drawer
 
-The [`FluidResizableTransitionDelegate`](https://gumob.github.io/Fluidable/documentation/fluidable/fluidresizabletransitiondelegate) is available only for bottom drawer presentations.
+The [`FluidResizableTransitionDelegate`](https://futamura.github.io/Fluidable/documentation/fluidable/fluidresizabletransitiondelegate) is available only for bottom drawer presentations.
 
-1) Conform to [`FluidResizableTransitionDelegate`](https://gumob.github.io/Fluidable/documentation/fluidable/fluidresizabletransitiondelegate) protocol in the <span style="color:magenta">destination</span> view controller:
+1) Conform to [`FluidResizableTransitionDelegate`](https://futamura.github.io/Fluidable/documentation/fluidable/fluidresizabletransitiondelegate) protocol in the <span style="color:magenta">destination</span> view controller:
 ```swift
 class TransitionScrollViewController: TransitionBaseViewController, Fluidable, FluidResizable {
   required init?(coder aDecoder: NSCoder) {
