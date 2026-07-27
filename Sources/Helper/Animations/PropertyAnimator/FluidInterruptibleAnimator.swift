@@ -1,6 +1,6 @@
 //
 // Created by Kojiro Futamura on 2019-03-06.
-// Copyright (c) 2019 Gumob. All rights reserved.
+// Copyright (c) 2019 Kojiro Futamura. All rights reserved.
 //
 
 import Foundation

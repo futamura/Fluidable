@@ -3,7 +3,7 @@
 //  Example
 //
 //  Created by Kojiro Futamura on 2026/05/25.
-//  Copyright (c) 2026 Gumob. All rights reserved.
+//  Copyright (c) 2026 Kojiro Futamura. All rights reserved.
 //
 
 import UIKit
