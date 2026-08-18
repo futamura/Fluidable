@@ -44,7 +44,7 @@ internal class FluidCoreAnimatorValidator {
             throw error
         }
         guard let fromValue: T = from ?? layer.value(forKeyPath: keyPath.rawValue) as? T, let toValue: T = to else {
-            let error: FluidCoreAnimatorError = FluidCoreAnimatorError.invalidArgument(id: id, key: keyPath.rawValue, from: from, to: to)
+            let error: FluidCoreAnimatorError = FluidCoreAnimatorError.invalidArgument(id: id, key: keyPath.rawValue, from: String(describing: from), to: String(describing: to))
             FluidCoreAnimatorLogger.log(error.description, .warn)
             throw error
         }

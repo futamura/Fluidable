@@ -96,8 +96,8 @@ final class EnumSpec: QuickSpec {
                     expect(FluidCoreAnimatorError.animationsIsEmpty(id: "animation").description).to(contain("could not be created"))
                     expect(FluidCoreAnimatorError.alreadyCompleted(id: "completed", state: .finished).description).to(contain("[completed]"))
                     expect(FluidCoreAnimatorError.alreadyCompleted(id: "completed", state: .finished).description).to(contain("finished"))
-                    expect(FluidCoreAnimatorError.invalidArgument(id: "argument", key: "opacity", from: nil, to: 1.0).description).to(contain("[argument]"))
-                    expect(FluidCoreAnimatorError.invalidArgument(id: "argument", key: "opacity", from: nil, to: 1.0).description).to(contain("opacity"))
+                    expect(FluidCoreAnimatorError.invalidArgument(id: "argument", key: "opacity", from: "nil", to: "1.0").description).to(contain("[argument]"))
+                    expect(FluidCoreAnimatorError.invalidArgument(id: "argument", key: "opacity", from: "nil", to: "1.0").description).to(contain("opacity"))
                 }
             }
             describe("FluidAnimationType") {
