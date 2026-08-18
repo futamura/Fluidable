@@ -30,7 +30,7 @@ import UIKit
  - parameter s: The default overshoot is 10% (1.70158)
  - returns: The eased value
 */
-internal typealias NormalEasing = (_ t: CGFloat, _ b: CGFloat, _ c: CGFloat, _ d: CGFloat) -> CGFloat
+internal typealias NormalEasing = @Sendable (_ t: CGFloat, _ b: CGFloat, _ c: CGFloat, _ d: CGFloat) -> CGFloat
 
 /**
  Advanced back easing function
@@ -41,7 +41,7 @@ internal typealias NormalEasing = (_ t: CGFloat, _ b: CGFloat, _ c: CGFloat, _ d
  - parameter s: The default overshoot is 10% (1.70158)
  - returns: The eased value
  */
-internal typealias AdvancedBackEasing = (_ t: CGFloat, _ b: CGFloat, _ c: CGFloat, _ d: CGFloat, _ s: CGFloat) -> CGFloat
+internal typealias AdvancedBackEasing = @Sendable (_ t: CGFloat, _ b: CGFloat, _ c: CGFloat, _ d: CGFloat, _ s: CGFloat) -> CGFloat
 
 /**
  Advanced elastic easing function
@@ -52,7 +52,7 @@ internal typealias AdvancedBackEasing = (_ t: CGFloat, _ b: CGFloat, _ c: CGFloa
  - parameter s: The default overshoot is 10% (1.70158)
  - returns: The eased value
  */
-internal typealias AdvancedElasticEasing = (_ t: CGFloat, _ b: CGFloat, _ c: CGFloat, _ d: CGFloat, _ a: CGFloat, _ p: CGFloat) -> CGFloat
+internal typealias AdvancedElasticEasing = @Sendable (_ t: CGFloat, _ b: CGFloat, _ c: CGFloat, _ d: CGFloat, _ a: CGFloat, _ p: CGFloat) -> CGFloat
 
 /**
  Easing equation
@@ -61,19 +61,19 @@ internal struct PennerEasingFunction {
 }
 
 extension PennerEasingFunction {
-    static var easeInBack: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
+    static let easeInBack: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
         let s: CGFloat = 1.70158
         let t: CGFloat = t / d
         return c * t * t * ((s + 1) * t - s) + b
     }
 
-    static var easeOutBack: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
+    static let easeOutBack: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
         let s: CGFloat = 1.70158
         let t = t / d - 1
         return c * (t * t * ((s + 1) * t + s) + 1) + b
     }
 
-    static var easeInOutBack: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
+    static let easeInOutBack: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
         var s: CGFloat = 1.70158
         var t: CGFloat = t / (d / 2)
         if t < 1 {
@@ -85,17 +85,17 @@ extension PennerEasingFunction {
         return c / 2 * (t * t * ((s + 1) * t + s) + 2) + b
     }
 
-    static var easeInBackAdvanced: AdvancedBackEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat, s: CGFloat) -> CGFloat in
+    static let easeInBackAdvanced: AdvancedBackEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat, s: CGFloat) -> CGFloat in
         let t = t / d
         return c * t * t * ((s + 1) * t - s) + b
     }
 
-    static var easeOutBackAdvanced: AdvancedBackEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat, s: CGFloat) -> CGFloat in
+    static let easeOutBackAdvanced: AdvancedBackEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat, s: CGFloat) -> CGFloat in
         let t = t / d - 1
         return c * (t * t * ((s + 1) * t + s) + 1) + b
     }
 
-    static var easeInOutBackAdvanced: AdvancedBackEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat, s: CGFloat) -> CGFloat in
+    static let easeInOutBackAdvanced: AdvancedBackEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat, s: CGFloat) -> CGFloat in
         var t: CGFloat = t / (d / 2)
         var s: CGFloat = s
         if t < 1 {
@@ -109,11 +109,11 @@ extension PennerEasingFunction {
 }
 
 extension PennerEasingFunction {
-    static var easeInBounce: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
+    static let easeInBounce: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
         return c - easeOutBounce(d - t, b, c, d) + b
     }
 
-    static var easeOutBounce: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
+    static let easeOutBounce: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
         var t: CGFloat = t / d
         if t < (1 / 2.75) {
             return c * (7.5625 * t * t) + b
@@ -129,7 +129,7 @@ extension PennerEasingFunction {
         }
     }
 
-    static var easeInOutBounce: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
+    static let easeInOutBounce: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
         let t: CGFloat = t
         if t < d / 2 {
             return easeInBounce(t * 2, 0, c, d) * 0.5 + b
@@ -139,17 +139,17 @@ extension PennerEasingFunction {
 }
 
 extension PennerEasingFunction {
-    static var easeInCirc: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
+    static let easeInCirc: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
         let t: CGFloat = t / d
         return -c * (sqrt(1 - t * t) - 1) + b
     }
 
-    static var easeOutCirc: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
+    static let easeOutCirc: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
         let t = t / d - 1
         return c * sqrt(1 - t * t) + b
     }
 
-    static var easeInOutCirc: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
+    static let easeInOutCirc: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
         var t: CGFloat = t / (d / 2)
         if t < 1 {
             return -c / 2 * (sqrt(1 - t * t) - 1) + b
@@ -160,17 +160,17 @@ extension PennerEasingFunction {
 }
 
 extension PennerEasingFunction {
-    static var easeInCubic: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
+    static let easeInCubic: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
         let t: CGFloat = t / d
         return c * t * t * t + b
     }
 
-    static var easeOutCubic: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
+    static let easeOutCubic: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
         let t = t / d - 1
         return c * (t * t * t + 1) + b
     }
 
-    static var easeInOutCubic: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
+    static let easeInOutCubic: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
         var t: CGFloat = t / (d / 2)
         if t < 1 {
             return c / 2 * t * t * t + b
@@ -181,7 +181,7 @@ extension PennerEasingFunction {
 }
 
 extension PennerEasingFunction {
-    static var easeInElastic: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
+    static let easeInElastic: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
         var t: CGFloat = t
 
         if t == 0 { return b }
@@ -196,7 +196,7 @@ extension PennerEasingFunction {
         return -(a * pow(2, 10 * t) * sin((t * d - s) * (2 * CGFloat.pi) / p)) + b
     }
 
-    static var easeOutElastic: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
+    static let easeOutElastic: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
         var t: CGFloat = t
 
         if t == 0 { return b }
@@ -210,7 +210,7 @@ extension PennerEasingFunction {
         return (a * pow(2, -10 * t) * sin((t * d - s) * (2 * CGFloat.pi) / p) + c + b)
     }
 
-    static var easeInOutElastic: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
+    static let easeInOutElastic: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
         var t: CGFloat = t
         if t == 0 { return b }
 
@@ -229,7 +229,7 @@ extension PennerEasingFunction {
         return a * pow(2, -10 * t) * sin((t * d - s) * (2 * CGFloat.pi) / p) * 0.5 + c + b
     }
 
-    static var easeInElasticAdvanced: AdvancedElasticEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat, a: CGFloat, p: CGFloat) -> CGFloat in
+    static let easeInElasticAdvanced: AdvancedElasticEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat, a: CGFloat, p: CGFloat) -> CGFloat in
         var t: CGFloat = t
         var a: CGFloat = a
         var p: CGFloat = p
@@ -251,7 +251,7 @@ extension PennerEasingFunction {
         return -(a * pow(2, 10 * t) * sin((t * d - s) * (2 * CGFloat.pi) / p)) + b
     }
 
-    static var easeOutElasticAdvanced: AdvancedElasticEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat, a: CGFloat, p: CGFloat) -> CGFloat in
+    static let easeOutElasticAdvanced: AdvancedElasticEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat, a: CGFloat, p: CGFloat) -> CGFloat in
         var s: CGFloat = 0.0
         var t: CGFloat = t
         var a: CGFloat = a
@@ -271,7 +271,7 @@ extension PennerEasingFunction {
         return (a * pow(2, -10 * t) * sin((t * d - s) * (2 * CGFloat.pi) / p) + c + b)
     }
 
-    static var easeInOutElasticAdvanced: AdvancedElasticEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat, a: CGFloat, p: CGFloat) -> CGFloat in
+    static let easeInOutElasticAdvanced: AdvancedElasticEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat, a: CGFloat, p: CGFloat) -> CGFloat in
         var s: CGFloat = 0.0
         var t: CGFloat = t
         var a: CGFloat = a
@@ -300,15 +300,15 @@ extension PennerEasingFunction {
 }
 
 extension PennerEasingFunction {
-    static var easeInExpo: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
+    static let easeInExpo: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
         return (t == 0) ? b : c * pow(2, 10 * (t / d - 1)) + b
     }
 
-    static var easeOutExpo: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
+    static let easeOutExpo: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
         return (t == d) ? b + c : c * (-pow(2, -10 * t / d) + 1) + b
     }
 
-    static var easeInOutExpo: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
+    static let easeInOutExpo: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
         if t == 0 { return b }
         if t == d { return b + c }
 
@@ -323,23 +323,23 @@ extension PennerEasingFunction {
 }
 
 extension PennerEasingFunction {
-    static var linear: NormalEasing = { (t, b, c, d) -> CGFloat in
+    static let linear: NormalEasing = { (t, b, c, d) -> CGFloat in
         return c * (t / d) + b
     }
 }
 
 extension PennerEasingFunction {
-    static var easeInQuad: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
+    static let easeInQuad: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
         let t: CGFloat = t / d
         return c * t * t + b
     }
 
-    static var easeOutQuad: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
+    static let easeOutQuad: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
         let t: CGFloat = t / d
         return -c * t * (t - 2) + b
     }
 
-    static var easeInOutQuad: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
+    static let easeInOutQuad: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
         var t: CGFloat = t / (d / 2)
         if t < 1 {
             return c / 2 * t * t + b
@@ -351,17 +351,17 @@ extension PennerEasingFunction {
 }
 
 extension PennerEasingFunction {
-    static var easeInQuart: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
+    static let easeInQuart: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
         let t: CGFloat = t / d
         return c * t * t * t * t + b
     }
 
-    static var easeOutQuart: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
+    static let easeOutQuart: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
         let t = t / d - 1
         return -c * (t * t * t * t - 1) + b
     }
 
-    static var easeInOutQuart: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
+    static let easeInOutQuart: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
         var t: CGFloat = t / (d / 2)
         if t < 1 {
             return c / 2 * t * t * t * t + b
@@ -372,17 +372,17 @@ extension PennerEasingFunction {
 }
 
 extension PennerEasingFunction {
-    static var easeInQuint: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
+    static let easeInQuint: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
         let t: CGFloat = t / d
         return c * t * t * t * t * t + b
     }
 
-    static var easeOutQuint: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
+    static let easeOutQuint: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
         let t = t / d - 1
         return c * (t * t * t * t * t + 1) + b
     }
 
-    static var easeInOutQuint: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
+    static let easeInOutQuint: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
         var t: CGFloat = t / (d / 2)
         if t < 1 {
             return c / 2 * t * t * t * t * t + b
@@ -393,15 +393,15 @@ extension PennerEasingFunction {
 }
 
 extension PennerEasingFunction {
-    static var easeInSine: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
+    static let easeInSine: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
         return -c * cos(t / d * (CGFloat.pi / 2)) + c + b
     }
 
-    static var easeOutSine: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
+    static let easeOutSine: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
         return c * sin(t / d * (CGFloat.pi / 2)) + b
     }
 
-    static var easeInOutSine: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
+    static let easeInOutSine: NormalEasing = { (t: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat) -> CGFloat in
         return -c / 2 * (cos(CGFloat.pi * t / d) - 1) + b
     }
 }
