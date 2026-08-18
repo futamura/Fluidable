@@ -10,7 +10,7 @@ import CoreImage
 import Foundation
 import UIKit
 
-public protocol FluidBackgroundCompatible: NSObjectProtocol {
+@MainActor public protocol FluidBackgroundCompatible: NSObjectProtocol {
     var visibility: CGFloat { get set }
 }
 

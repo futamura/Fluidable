@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-protocol FluidGestureObservable: FluidParametersAccessible, UIGestureRecognizerDelegate {
+@MainActor protocol FluidGestureObservable: FluidParametersAccessible, UIGestureRecognizerDelegate {
     var maxTranslationCount: Int { get }
 
     /** The `FluidGestureDelegate` object. */

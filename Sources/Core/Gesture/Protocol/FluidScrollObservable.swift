@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-protocol FluidScrollObservable: FluidParametersAccessible, UIGestureRecognizerDelegate {
+@MainActor protocol FluidScrollObservable: FluidParametersAccessible, UIGestureRecognizerDelegate {
     /** The reference to `UIScrollView` to be observed its content offset. */
     var scrollView: UIScrollView? { get set }
 

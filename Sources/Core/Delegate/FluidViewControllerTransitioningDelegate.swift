@@ -12,7 +12,7 @@ import UIKit
 /**
   A class that conforms to `UIViewControllerTransitioningDelegate` protocol.
  */
-public class FluidViewControllerTransitioningDelegate: NSObject, FluidControllerDelegateCompatible {
+@MainActor public class FluidViewControllerTransitioningDelegate: NSObject, FluidControllerDelegateCompatible {
     internal typealias ViewAnimator = FluidTransitionViewAnimator
     internal typealias PresentDriver = FluidTransitionPresentDriver
     internal typealias DismissDriver = FluidTransitionDismissDriver

@@ -13,7 +13,7 @@ import UIKit
 
  `AdaptiveElement` represents the receiving child in an inheritance hierarchy of parent-child relationships passing trait  information.
  */
-public protocol AdaptiveElement {
+@MainActor public protocol AdaptiveElement {
 
     /**
      Internal `UITraitCollection`
