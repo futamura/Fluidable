@@ -57,7 +57,7 @@ internal class FluidCoreAnimatorLogger {
         case info, warn, error
     }
 
-    static var suppress: Bool = false
+    nonisolated(unsafe) static var suppress: Bool = false
 
     static func log(_ message: String, _ level: Level = .warn) {
         guard !self.suppress else { return }

@@ -11,7 +11,7 @@ import UIKit
 
 /** Obj-C association key */
 private struct AssociationKey {
-    static let fluidResizableDelegate: UnsafeMutablePointer<UInt> = UnsafeMutablePointer<UInt>.allocate(capacity: 1)
+    nonisolated(unsafe) static let fluidResizableDelegate: UnsafeMutablePointer<UInt> = UnsafeMutablePointer<UInt>.allocate(capacity: 1)
 }
 
 /**
