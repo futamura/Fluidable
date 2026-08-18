@@ -12,7 +12,7 @@ import UIKit
 /**
  The protocol that compatible to `FluidCoreAnimator` and `FluidPropertyAnimator`.
  */
-public protocol FluidAnimatorCompatible: NSObjectProtocol {
+@MainActor public protocol FluidAnimatorCompatible: NSObjectProtocol {
     /** The typealias of a progression block. */
     typealias ProgressBlock = ((CGFloat) -> Void)
 

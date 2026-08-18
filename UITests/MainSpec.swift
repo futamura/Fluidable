@@ -151,7 +151,7 @@ final class MainSpec: QuickSpec {
 
 }
 
-final class FluidModalTableDismissalLayoutTests: XCTestCase {
+@MainActor final class FluidModalTableDismissalLayoutTests: XCTestCase {
     class TestFluidSourceViewController: UIViewController, Fluidable {}
 
     func testConstrainsTableCellLabelsToDismissTargetWidth() {

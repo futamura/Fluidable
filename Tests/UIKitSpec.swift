@@ -1917,7 +1917,7 @@ final class UIKitSpec: QuickSpec {
                     scrollView.contentSize = CGSize(width: 360, height: 360)
                     scrollView.isTrackingOverride = true
 
-                    func makeObserver(style: FluidTransitionStyle) -> FluidTransitionScrollObserver {
+                    @MainActor func makeObserver(style: FluidTransitionStyle) -> FluidTransitionScrollObserver {
                         let fixture = makeCoreTestTransitionFixture(style: style, easing: .linear)
                         let observer = FluidTransitionScrollObserver(view: scrollView)
                         observer.registerParameters(parameters: fixture.dismissDriver.parameters)
@@ -2087,7 +2087,7 @@ final class UIKitSpec: QuickSpec {
                     let delegate = TestGestureDelegate()
                     var retainedPanViews: [UIView] = []
 
-                    func makeObserver(style: FluidTransitionStyle) -> FluidTransitionGestureObserver {
+                    @MainActor func makeObserver(style: FluidTransitionStyle) -> FluidTransitionGestureObserver {
                         let fixture = makeCoreTestTransitionFixture(style: style, easing: .linear)
                         let observer = FluidTransitionGestureObserver(delegate: delegate)
                         let panGestureView = UIView(frame: CGRect(x: 10, y: 20, width: 100, height: 80))
@@ -2948,7 +2948,7 @@ private struct CoreTestNavigationFixture {
     let dismissDriver: FluidNavigationDismissDriver
 }
 
-private func makeCoreTestNavigationFixture(style: FluidNavigationStyle = .slide(direction: .fromRight)) -> CoreTestNavigationFixture {
+@MainActor private func makeCoreTestNavigationFixture(style: FluidNavigationStyle = .slide(direction: .fromRight)) -> CoreTestNavigationFixture {
     let container = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 480))
     let sourceViewController = CoreTestFluidViewController()
     let destinationViewController = CoreTestFluidViewController()
@@ -3220,7 +3220,7 @@ private struct CoreTestTransitionFixture {
     let dismissDriver: FluidTransitionDismissDriver
 }
 
-private func makeCoreTestTransitionFixture(style: FluidTransitionStyle = .slide(direction: .fromRight),
+@MainActor private func makeCoreTestTransitionFixture(style: FluidTransitionStyle = .slide(direction: .fromRight),
                                            allowInteractivePresent: Bool = true,
                                            allowInteractiveDismiss: Bool = true,
                                            observedScrollViews: [UIScrollView]? = nil,
@@ -3280,7 +3280,7 @@ private func makeCoreTestTransitionFixture(style: FluidTransitionStyle = .slide(
                                      dismissDriver: dismissDriver)
 }
 
-private func seedGesture(_ observer: FluidTransitionGestureObserver,
+@MainActor private func seedGesture(_ observer: FluidTransitionGestureObserver,
                          averageVector: CGPoint,
                          velocity: CGVector = .zero,
                          initialLocation: CGPoint = .zero,

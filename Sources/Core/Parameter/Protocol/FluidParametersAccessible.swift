@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-internal protocol FluidParametersAccessible: NSObjectProtocol {
+@MainActor internal protocol FluidParametersAccessible: NSObjectProtocol {
     associatedtype ControllerDelegate: FluidControllerDelegateCompatible
     associatedtype Parameters: FluidParametersCompatible
 

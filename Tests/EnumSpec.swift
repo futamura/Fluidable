@@ -35,8 +35,8 @@ final class EnumSpec: QuickSpec {
                 let invalidReference: FluidError = .invalidReference
                 let unsupportedPresentationEasing: FluidError = .unsupportedPresentationEasing(easing: .easeInBack)
                 let unsupportedDismissalEasing: FluidError = .unsupportedDismissalEasing(easing: .easeOutBack)
-                let ignoredPresentationDuration: FluidError = .ignoredPresentationDuration(easing: .spring, defaultDuration: 0.4, userDefinedDuration: 1.2)
-                let ignoredDismissalDuration: FluidError = .ignoredDismissalDuration(easing: .spring, defaultDuration: 0.5, userDefinedDuration: 1.3)
+                let ignoredPresentationDuration: FluidError = .ignoredPresentationDuration(easing: MainActor.assumeIsolated { .spring }, defaultDuration: 0.4, userDefinedDuration: 1.2)
+                let ignoredDismissalDuration: FluidError = .ignoredDismissalDuration(easing: MainActor.assumeIsolated { .spring }, defaultDuration: 0.5, userDefinedDuration: 1.3)
                 let invalidInitialFrameDimension: FluidError = .invalidInitialFrameDimension
                 let invalidFinalFrameDimension: FluidError = .invalidFinalFrameDimension
                 let invalidResizeConfiguration: FluidError = .invalidResizeConfiguration
@@ -96,8 +96,8 @@ final class EnumSpec: QuickSpec {
                     expect(FluidCoreAnimatorError.animationsIsEmpty(id: "animation").description).to(contain("could not be created"))
                     expect(FluidCoreAnimatorError.alreadyCompleted(id: "completed", state: .finished).description).to(contain("[completed]"))
                     expect(FluidCoreAnimatorError.alreadyCompleted(id: "completed", state: .finished).description).to(contain("finished"))
-                    expect(FluidCoreAnimatorError.invalidArgument(id: "argument", key: "opacity", from: nil, to: 1.0).description).to(contain("[argument]"))
-                    expect(FluidCoreAnimatorError.invalidArgument(id: "argument", key: "opacity", from: nil, to: 1.0).description).to(contain("opacity"))
+                    expect(FluidCoreAnimatorError.invalidArgument(id: "argument", key: "opacity", from: "nil", to: "1.0").description).to(contain("[argument]"))
+                    expect(FluidCoreAnimatorError.invalidArgument(id: "argument", key: "opacity", from: "nil", to: "1.0").description).to(contain("opacity"))
                 }
             }
             describe("FluidAnimationType") {

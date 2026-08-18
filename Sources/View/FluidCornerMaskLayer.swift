@@ -16,8 +16,8 @@ internal class FluidCornerMaskLayer: CAShapeLayer {
             self.updateMaskPath(bounds: self.bounds)
         }
     }
-    var fluidRoundingCorners: UIRectCorner?
-    var fluidCornerRadius: CGFloat = 0
+    nonisolated(unsafe) var fluidRoundingCorners: UIRectCorner?
+    nonisolated(unsafe) var fluidCornerRadius: CGFloat = 0
 
     init(bounds: CGRect, cornerRadius: CGFloat, roundingCorners: UIRectCorner?) {
         super.init()
@@ -33,7 +33,7 @@ internal class FluidCornerMaskLayer: CAShapeLayer {
         self.fluidCornerRadius = layer.fluidCornerRadius
         self.fluidRoundingCorners = layer.fluidRoundingCorners
         self.frame = layer.frame
-        self.path = layer.path
+        self.setValue(layer.value(forKeyPath: "path"), forKeyPath: "path")
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -44,12 +44,13 @@ internal class FluidCornerMaskLayer: CAShapeLayer {
 }
 
 extension FluidCornerMaskLayer {
-    func updateMaskPath(bounds: CGRect, cornerRadius: CGFloat? = nil, roundingCorners: UIRectCorner? = nil) {
+    nonisolated func updateMaskPath(bounds: CGRect, cornerRadius: CGFloat? = nil, roundingCorners: UIRectCorner? = nil) {
         self.fluidCornerRadius = cornerRadius ?? self.fluidCornerRadius
         self.fluidRoundingCorners = roundingCorners ?? self.fluidRoundingCorners
-        self.path = UIBezierPath(bounds: bounds,
-                                 cornerRadius: self.fluidCornerRadius,
-                                 roundingCorners: self.fluidRoundingCorners).cgPath
+        let path = UIBezierPath(bounds: bounds,
+                                cornerRadius: self.fluidCornerRadius,
+                                roundingCorners: self.fluidRoundingCorners).cgPath
+        self.setValue(path, forKeyPath: "path")
     }
 }
 

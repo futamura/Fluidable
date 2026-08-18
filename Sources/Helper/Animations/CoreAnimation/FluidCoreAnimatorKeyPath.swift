@@ -61,7 +61,7 @@ extension FluidCoreAnimatorKey {
     public static var mask: FluidCoreAnimatorPath<CALayer> { return FluidCoreAnimatorPath<CALayer>(keyPath: #keyPath(CALayer.mask)) }
     public static var masksToBounds: FluidCoreAnimatorPath<Bool> { return FluidCoreAnimatorPath<Bool>(keyPath: #keyPath(CALayer.masksToBounds)) }
     public static var opacity: FluidCoreAnimatorPath<CGFloat> { return FluidCoreAnimatorPath<CGFloat>(keyPath: #keyPath(CALayer.opacity)) }
-    public static var path: FluidCoreAnimatorPath<CGPath> { return FluidCoreAnimatorPath<CGPath>(keyPath: #keyPath(CAShapeLayer.path)) }
+    public static var path: FluidCoreAnimatorPath<CGPath> { return FluidCoreAnimatorPath<CGPath>(keyPath: "path") }
     public static var position: FluidCoreAnimatorPath<CGPoint> { return FluidCoreAnimatorPath<CGPoint>(keyPath: #keyPath(CALayer.position)) }
     public static var shadowColor: FluidCoreAnimatorPath<CGColor> { return FluidCoreAnimatorPath<CGColor>(keyPath: #keyPath(CALayer.shadowColor)) }
     public static var shadowOffset: FluidCoreAnimatorPath<CGSize> { return FluidCoreAnimatorPath<CGSize>(keyPath: #keyPath(CALayer.shadowOffset)) }

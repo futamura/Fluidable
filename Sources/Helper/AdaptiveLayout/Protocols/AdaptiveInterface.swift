@@ -25,7 +25,7 @@ import UIKit
 
  `AdaptiveInterface` is a class-only protocol to allow for mutating extension methods.
  */
-public protocol AdaptiveInterface: AnyObject, AdaptiveElement {
+@MainActor public protocol AdaptiveInterface: AnyObject, AdaptiveElement {
 
     /**
      `adaptiveElements` represent `self`'s children. Each element will be forwarded calls to `update(for incomingTraitCollection:)` that `self` recieves.

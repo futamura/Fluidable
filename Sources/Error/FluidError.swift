@@ -62,7 +62,7 @@ public enum FluidError: Swift.Error {
     }
 
     /** The description for debugging. */
-    var description: String {
+    @MainActor var description: String {
         switch self {
         case .invalidReference:
             return "The source controller or the destination controller is already disposed."
@@ -84,7 +84,7 @@ public enum FluidError: Swift.Error {
     }
 
     /** The function that print the error message. */
-    func printMessage() {
+    @MainActor func printMessage() {
         switch self {
         case .invalidReference, .invalidResizeConfiguration:
             print("❌️ [Fluidable]", self.description, "The transition is cancelled.", "\n")

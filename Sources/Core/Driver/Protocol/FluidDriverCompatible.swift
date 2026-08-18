@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-internal protocol FluidDriverCompatible: FluidParametersAccessible, FluidGestureDelegate {
+@MainActor internal protocol FluidDriverCompatible: FluidParametersAccessible, FluidGestureDelegate {
     associatedtype ViewAnimator: FluidViewAnimatorCompatible
     associatedtype GestureObserver: FluidGestureObservable
     associatedtype ScrollObserver: FluidScrollObservable

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-protocol FluidControllerDelegateCompatible: NSObjectProtocol {
+@MainActor protocol FluidControllerDelegateCompatible: NSObjectProtocol {
     associatedtype ViewAnimator: FluidViewAnimatorCompatible
     associatedtype PresentDriver: FluidPresentDriverCompatible
     associatedtype DismissDriver: FluidDismissDriverCompatible

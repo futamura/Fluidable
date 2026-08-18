@@ -10,7 +10,7 @@ import CoreImage
 import Foundation
 import UIKit
 
-public protocol FluidBackgroundCompatible: NSObjectProtocol {
+@MainActor public protocol FluidBackgroundCompatible: NSObjectProtocol {
     var visibility: CGFloat { get set }
 }
 
@@ -27,7 +27,7 @@ extension FluidBackgroundCompatible where Self: UIView {
 }
 
 internal class FluidBlurredBackgroundView: UIView, FluidBackgroundCompatible {
-    private static let ciContext = CIContext(options: nil)
+    nonisolated private static let ciContext = CIContext(options: nil)
     private static let blurQueue = DispatchQueue(label: "Fluidable.FluidBlurredBackgroundView.blur", qos: .userInitiated)
 
     private let blurView = UIImageView()
@@ -127,13 +127,16 @@ internal class FluidBlurredBackgroundView: UIView, FluidBackgroundCompatible {
 
         Self.blurQueue.async { [weak self] in
             let blurredImage = Self.makeBlurredImage(from: snapshot, radius: blurRadius)
+            let target = self
             DispatchQueue.main.async {
-                guard let self = self else { return }
-                guard self.snapshotGeneration == generation else { return }
-                self.isSnapshotUpdatePending = false
-                guard self.bounds.size == snapshotSize else { return }
-                self.blurView.image = blurredImage
-                self.snapshotSize = snapshotSize
+                MainActor.assumeIsolated {
+                    guard let self = target else { return }
+                    guard self.snapshotGeneration == generation else { return }
+                    self.isSnapshotUpdatePending = false
+                    guard self.bounds.size == snapshotSize else { return }
+                    self.blurView.image = blurredImage
+                    self.snapshotSize = snapshotSize
+                }
             }
         }
     }
@@ -182,7 +185,7 @@ internal class FluidBlurredBackgroundView: UIView, FluidBackgroundCompatible {
         }
     }
 
-    private static func makeBlurredImage(from image: UIImage, radius: CGFloat) -> UIImage {
+    nonisolated private static func makeBlurredImage(from image: UIImage, radius: CGFloat) -> UIImage {
         guard radius > 0,
               let inputImage = CIImage(image: image) else { return image }
 

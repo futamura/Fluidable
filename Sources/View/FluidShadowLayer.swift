@@ -10,15 +10,24 @@ import Foundation
 import UIKit
 
 public class FluidShadowLayer: CAShapeLayer {
-    @NSManaged var shadowCornerRadius: CGFloat
-    var shadowRoundingCorners: UIRectCorner? = .none
-    @NSManaged var isTransparentBackground: Bool
+    @NSManaged nonisolated var shadowCornerRadius: CGFloat
+    nonisolated(unsafe) var shadowRoundingCorners: UIRectCorner? = .none
+    @NSManaged nonisolated var isTransparentBackground: Bool
 
-    override convenience init() {
-        self.init(frame: .zero)
+    override init() {
+        super.init()
+        self.frame = .zero
+        self.shadowCornerRadius = 0
+        self.shadowRoundingCorners = .none
+        self.isTransparentBackground = false
+        self.masksToBounds = true
+        if Thread.isMainThread {
+            self.rasterizationScale = MainActor.assumeIsolated { UIScreen.main.scale }
+        }
+        self.shouldRasterize = true
     }
 
-    init(frame: CGRect) {
+    @MainActor init(frame: CGRect) {
         super.init()
         self.frame = frame
         self.shadowCornerRadius = 0

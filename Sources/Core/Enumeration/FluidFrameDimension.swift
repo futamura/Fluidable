@@ -28,7 +28,7 @@ extension CGAffineTransform: FluidTransformConvertible {
 /**
  The protocol that compatibles to `FluidInitialFrameDimension` amd `FluidFinalFrameDimension`.
  */
-public protocol FluidFrameDimensionCompatible {
+@MainActor public protocol FluidFrameDimensionCompatible {
     func frame(for containerSize: CGSize?) -> CGRect
     func transform(for containerSize: CGSize?) -> CATransform3D
 }

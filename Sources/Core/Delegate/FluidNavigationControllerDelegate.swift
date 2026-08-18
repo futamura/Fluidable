@@ -11,7 +11,7 @@ import UIKit
 /**
   A class that conforms to `UINavigationControllerDelegate` protocol.
  */
-open class FluidNavigationControllerDelegate: NSObject, FluidControllerDelegateCompatible {
+@MainActor open class FluidNavigationControllerDelegate: NSObject, FluidControllerDelegateCompatible {
     internal typealias ViewAnimator = FluidNavigationViewAnimator
     internal typealias PresentDriver = FluidNavigationPresentDriver
     internal typealias DismissDriver = FluidNavigationDismissDriver

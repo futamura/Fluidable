@@ -181,7 +181,7 @@ extension FluidPresentationStyle {
 }
 
 extension FluidPresentationStyle {
-    var defaultPresentEasing: FluidAnimatorEasing {
+    @MainActor var defaultPresentEasing: FluidAnimatorEasing {
         switch self {
         case .fluid:  if FluidConst.isNewerSystemVersion { return .spring } else { return .easeInOutQuad }
         case .scale:  if FluidConst.isNewerSystemVersion { return .spring } else { return .easeInOutQuad }
@@ -192,7 +192,7 @@ extension FluidPresentationStyle {
 }
 
 extension FluidPresentationStyle {
-    var defaultDismissEasing: FluidAnimatorEasing {
+    @MainActor var defaultDismissEasing: FluidAnimatorEasing {
         switch self {
         case .fluid:  if FluidConst.isNewerSystemVersion { return .spring } else { return .easeInOutQuad }
         case .scale:  if FluidConst.isNewerSystemVersion { return .spring } else { return .easeInOutQuad }
@@ -249,7 +249,7 @@ extension FluidPresentationStyle {
 /**
  A struct determining how behave while interactive dismissal transition. This option is available for only `FluidPresentationStyle.fluid`.
  */
-public struct FluidInteractionBehavior: OptionSet {
+public struct FluidInteractionBehavior: OptionSet, Sendable {
     /** The raw value. */
     public let rawValue: Int
 

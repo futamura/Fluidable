@@ -44,7 +44,7 @@ final class AnimatorSpec: QuickSpec {
                 let easeOutBack: FluidAnimatorEasing = FluidAnimatorEasing.easeOutBack
                 let easeInOutBack: FluidAnimatorEasing = FluidAnimatorEasing.easeInOutBack
                 let cubicBezier: FluidAnimatorEasing = FluidAnimatorEasing.cubicBezier(c1x: 0.47, c1y: 0, c2x: 0.745, c2y: 0.715)
-                let spring: FluidAnimatorEasing = FluidAnimatorEasing.spring
+                let spring: FluidAnimatorEasing = MainActor.assumeIsolated { FluidAnimatorEasing.spring }
                 it("Conversion") {
                     expect(linear.timingParameters).to(beAnInstanceOf(UICubicTimingParameters.self))
                     expect(easeIn.timingParameters).to(beAnInstanceOf(UICubicTimingParameters.self))
