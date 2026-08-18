@@ -27,7 +27,7 @@ let package = Package(
                 "Info.plist",
             ],
             swiftSettings: [
-                .swiftLanguageMode(.v5),
+                .swiftLanguageMode(.v6),
             ]
         ),
         .testTarget(
