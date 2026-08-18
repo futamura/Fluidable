@@ -17,7 +17,7 @@ import UIKit
  <p>⚠️ The following types are NOT available for the transition animation on iOS 10.</p>
  `easeInCubic`, `easeOutCubic`, `easeInOutCubic`, `easeInQuart`, `easeOutQuart`, `easeInOutQuart`, `easeInQuint`, `easeOutQuint`, `easeInOutQuint`, `easeInExpo`, `easeOutExpo`, `easeInOutExpo`, `easeInCirc`, `easeOutCirc`, `easeInOutCirc`, `easeInBack`, `easeOutBack`, `easeInOutBack`, `spring(dampingRatio:,frequencyResponse:)`.
  */
-public enum FluidAnimatorEasing {
+public enum FluidAnimatorEasing: Sendable {
     case linear,
          easeIn, easeOut, easeInOut,
          easeInSine, easeOutSine, easeInOutSine,

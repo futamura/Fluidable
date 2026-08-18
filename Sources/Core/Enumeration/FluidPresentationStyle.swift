@@ -249,7 +249,7 @@ extension FluidPresentationStyle {
 /**
  A struct determining how behave while interactive dismissal transition. This option is available for only `FluidPresentationStyle.fluid`.
  */
-public struct FluidInteractionBehavior: OptionSet {
+public struct FluidInteractionBehavior: OptionSet, Sendable {
     /** The raw value. */
     public let rawValue: Int
 

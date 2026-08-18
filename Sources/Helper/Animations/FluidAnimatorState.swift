@@ -12,7 +12,7 @@ import UIKit
 /**
  The enumerations for `FluidAnimatorState`.
  */
-public enum FluidAnimatorState {
+public enum FluidAnimatorState: Sendable {
     /** The animation is ready and wait for running. */
     case ready
     /** The animation is running. */

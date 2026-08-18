@@ -12,7 +12,7 @@ import UIKit
 /**
  A struct determining which corners should be rounded.
  */
-public struct FluidRoundCornerStyle: OptionSet {
+public struct FluidRoundCornerStyle: OptionSet, Sendable {
     /** The raw value. */
     public let rawValue: Int
 
