@@ -77,8 +77,9 @@ extension FluidNavigationScrollObserver {
         }
         if self.offsetObservation == nil {
             self.offsetObservation = sv.observe(\.contentOffset, options: [.old]) { [weak self] (_, change) in
-                guard let oldValue: CGPoint = change.oldValue else { return }
-                self?.contentOffsetDidChange(oldValue: oldValue)
+                guard let self, let oldValue: CGPoint = change.oldValue else { return }
+                guard Thread.isMainThread else { return }
+                MainActor.assumeIsolated { self.contentOffsetDidChange(oldValue: oldValue) }
             }
         }
     }
@@ -107,6 +108,11 @@ extension FluidNavigationScrollObserver {
  */
 extension FluidNavigationScrollObserver {
     override public var description: String {
+        guard Thread.isMainThread else { return super.description }
+        return MainActor.assumeIsolated { self.mainThreadDescription }
+    }
+
+    @MainActor private var mainThreadDescription: String {
         guard let sv: UIScrollView = self.scrollView else { return super.description }
         return """
                FluidScrollObservable(

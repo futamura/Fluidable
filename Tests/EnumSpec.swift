@@ -35,8 +35,8 @@ final class EnumSpec: QuickSpec {
                 let invalidReference: FluidError = .invalidReference
                 let unsupportedPresentationEasing: FluidError = .unsupportedPresentationEasing(easing: .easeInBack)
                 let unsupportedDismissalEasing: FluidError = .unsupportedDismissalEasing(easing: .easeOutBack)
-                let ignoredPresentationDuration: FluidError = .ignoredPresentationDuration(easing: .spring, defaultDuration: 0.4, userDefinedDuration: 1.2)
-                let ignoredDismissalDuration: FluidError = .ignoredDismissalDuration(easing: .spring, defaultDuration: 0.5, userDefinedDuration: 1.3)
+                let ignoredPresentationDuration: FluidError = .ignoredPresentationDuration(easing: MainActor.assumeIsolated { .spring }, defaultDuration: 0.4, userDefinedDuration: 1.2)
+                let ignoredDismissalDuration: FluidError = .ignoredDismissalDuration(easing: MainActor.assumeIsolated { .spring }, defaultDuration: 0.5, userDefinedDuration: 1.3)
                 let invalidInitialFrameDimension: FluidError = .invalidInitialFrameDimension
                 let invalidFinalFrameDimension: FluidError = .invalidFinalFrameDimension
                 let invalidResizeConfiguration: FluidError = .invalidResizeConfiguration

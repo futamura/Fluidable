@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-@MainActor internal protocol FluidParametersCompatible: CustomStringConvertible {
+@MainActor internal protocol FluidParametersCompatible {
     associatedtype ControllerDelegate: FluidControllerDelegateCompatible
 
     associatedtype RootNavigationControllerDelegate

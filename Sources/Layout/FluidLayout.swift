@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public struct FluidLayout {
+@MainActor public struct FluidLayout {
     enum FluidPresentationType: CustomStringConvertible {
         case navigation, transition
         var description: String {

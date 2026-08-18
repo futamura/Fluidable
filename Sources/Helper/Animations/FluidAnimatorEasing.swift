@@ -38,18 +38,18 @@ public enum FluidAnimatorEasing: Sendable {
      - parameter dampingRatio: The ratio of the actual damping coefficient to the critical damping coefficient.
      - parameter frequencyResponse: The duration of one period in the undamped system, measured in seconds.
      */
-    public static func spring(dampingRatio: CGFloat, frequencyResponse: CGFloat) -> FluidAnimatorEasing {
+    @MainActor public static func spring(dampingRatio: CGFloat, frequencyResponse: CGFloat) -> FluidAnimatorEasing {
         let params: UISpringTimingParameters.SpringParameters = UISpringTimingParameters.parameters(dampingRatio: dampingRatio,
                                                                                                     frequencyResponse: frequencyResponse)
         return FluidAnimatorEasing.spring(mass: params.mass, stiffness: params.stiffness, damping: params.damping, velocity: params.velocity)
     }
     /** The default spring easing. (dampingRatio: 0.7, frequencyResponse: 0.5) */
-    public static var spring: FluidAnimatorEasing {
+    @MainActor public static var spring: FluidAnimatorEasing {
         return .spring(dampingRatio: FluidConst.springDampingRatio, frequencyResponse: FluidConst.springFrequencyResponse)
     }
 }
 
-extension FluidAnimatorEasing {
+@MainActor extension FluidAnimatorEasing {
     /** The `UITimingCurveProvider` value for `UIViewPropertyAnimator`. */
     public var timingParameters: UITimingCurveProvider {
         switch self {
@@ -126,7 +126,7 @@ extension FluidAnimatorEasing {
     }
 }
 
-extension FluidAnimatorEasing {
+@MainActor extension FluidAnimatorEasing {
     internal func defaultDuration(_ fromFrame: CGRect, _ toFrame: CGRect, isPresenting: Bool) -> TimeInterval {
         let distance: CGFloat = fromFrame.origin.distance(to: toFrame.origin)
         let length: CGFloat = UIScreen.main.bounds.size.isPortrait ? UIScreen.main.bounds.size.height : UIScreen.main.bounds.size.width

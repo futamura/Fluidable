@@ -12,7 +12,7 @@ import UIKit
 /**
  The delegate for receiving gesture actions.
  */
-internal protocol FluidGestureDelegate: NSObjectProtocol {
+@MainActor internal protocol FluidGestureDelegate: NSObjectProtocol {
     func tapGestureDidUpdate(gesture: UITapGestureRecognizer)
     func panGestureDidUpdate(gesture: UIPanGestureRecognizer)
     func edgePanGestureDidUpdate(gesture: UIScreenEdgePanGestureRecognizer)

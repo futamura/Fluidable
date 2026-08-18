@@ -115,7 +115,7 @@ internal extension CALayer {
         return image
     }
 
-    func setShadow(color: UIColor, offset: CGSize, radius: CGFloat) {
+    @MainActor func setShadow(color: UIColor, offset: CGSize, radius: CGFloat) {
         shadowColor = color.cgColor
         shadowOffset = offset
         shadowRadius = radius
