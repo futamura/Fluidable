@@ -112,6 +112,7 @@ import UIKit
     }
 }
 
+@MainActor
 public protocol FluidNavigationBarCompatible: NSObjectProtocol {
     var preferredSize: CGSize { get }
 }
