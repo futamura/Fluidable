@@ -14,7 +14,7 @@ import UIKit
  <h4>Available easting types</h4>
  `linear`, `easeInCirc`, `easeOutCirc`, `easeInOutCirc`, `easeInCubic`, `easeOutCubic`, `easeInOutCubic`, `easeInExpo`, `easeOutExpo`, `easeInOutExpo`, `easeInQuad`, `easeOutQuad`, `easeInOutQuad`, `easeInQuart`, `easeOutQuart`, `easeInOutQuart`, `easeInQuint`, `easeOutQuint`, `easeInOutQuint`, `easeInSine`, `easeOutSine`, `easeInOutSine`, `easeInBack`, `easeOutBack`, `easeInOutBack`, `easeInBackAdvanced(CGFloat)`, `easeOutBackAdvanced(CGFloat)`, `easeInOutBackAdvanced(CGFloat)`, `easeInBounce`, `easeOutBounce`, `easeInOutBounce`, `easeInElastic`, `easeOutElastic`, `easeInOutElastic`, `easeInElasticAdvanced(CGFloat, CGFloat)`, `easeOutElasticAdvanced(CGFloat, CGFloat)`, `easeInOutElasticAdvanced(CGFloat, CGFloat)`
  */
-public enum PennerEasing {
+public enum PennerEasing: Sendable {
     case linear
     case easeInCirc, easeOutCirc, easeInOutCirc
     case easeInCubic, easeOutCubic, easeInOutCubic

@@ -9,7 +9,7 @@ import UIKit
 /**
  The enumerations that indicates the transition mode of `FluidTransitionAnimator`.
  */
-public enum FluidAnimationType {
+public enum FluidAnimationType: Sendable {
     /** The view is presenting. */
     case present
     /** The view is dismissing. */
