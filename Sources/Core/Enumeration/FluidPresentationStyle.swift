@@ -12,7 +12,7 @@ import UIKit
  Enumerations to determine an animated navigation style.
  */
 
-public enum FluidPresentationStyle {
+public enum FluidPresentationStyle: Sendable {
     /* The fade transition with modal view */
 //    case fade
     /** The fluid transition with modal view */
@@ -294,7 +294,7 @@ extension FluidInteractionBehavior: CustomStringConvertible {
 /**
  Enumerations to determine a direction of a slide transition.
  */
-public enum FluidSlideDirection: Int {
+public enum FluidSlideDirection: Int, Sendable {
     /** From top */
     case fromTop
     /** From bottom */
@@ -328,7 +328,7 @@ extension FluidSlideDirection: CustomStringConvertible {
 /**
  Enumerations indicating a drawer position.
  */
-public enum FluidDrawerPosition {
+public enum FluidDrawerPosition: Sendable {
     /** Top */
     case top
     /** Right */

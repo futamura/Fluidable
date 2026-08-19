@@ -13,7 +13,7 @@ import UIKit
  Enumerations to determine an animated navigation style.
  */
 
-public enum FluidNavigationStyle {
+public enum FluidNavigationStyle: Sendable {
     /**
      The slide transition
      - parameter direction: A `FluidSlideDirection` value indicating which direction to slide from.
