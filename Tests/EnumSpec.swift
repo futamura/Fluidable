@@ -1504,11 +1504,25 @@ final class EnumSpec: QuickSpec {
                 let left: FluidRoundCornerStyle = FluidRoundCornerStyle.left
                 let all: FluidRoundCornerStyle = FluidRoundCornerStyle.all
                 let none: FluidRoundCornerStyle = FluidRoundCornerStyle.none
+                let fourSides: FluidRoundCornerStyle = [.top, .right, .bottom, .left]
+                let topRightLeft: FluidRoundCornerStyle = [.top, .right, .left]
+                let topBottom: FluidRoundCornerStyle = [.top, .bottom]
+                let topRight: FluidRoundCornerStyle = [.top, .right]
+                let bottomLeft: FluidRoundCornerStyle = [.bottom, .left]
                 it("Initialization") {
                     expect(FluidRoundCornerStyle(rawValue: 1 << 0)).to(equal(top))
                     expect(FluidRoundCornerStyle(rawValue: 1 << 1)).to(equal(right))
                     expect(FluidRoundCornerStyle(rawValue: 1 << 2)).to(equal(bottom))
                     expect(FluidRoundCornerStyle(rawValue: 1 << 3)).to(equal(left))
+                    expect(none.rawValue).to(equal(0))
+                }
+                it("AllSides") {
+                    expect(all).to(equal(fourSides))
+                    expect(all.rawValue).to(equal(0b1111))
+                    expect(all.contains(.top)).to(beTrue())
+                    expect(all.contains(.right)).to(beTrue())
+                    expect(all.contains(.bottom)).to(beTrue())
+                    expect(all.contains(.left)).to(beTrue())
                 }
                 it("UIRectCorner") {
                     expect(top.roundingCorners).to(equal([.topLeft, .topRight]))
@@ -1517,6 +1531,13 @@ final class EnumSpec: QuickSpec {
                     expect(left.roundingCorners).to(equal([.topLeft, .bottomLeft]))
                     expect(all.roundingCorners).to(equal(UIRectCorner.allCorners))
                     expect(none.roundingCorners).to(beNil())
+                }
+                it("UIRectCornerCombination") {
+                    expect(fourSides.roundingCorners).to(equal(UIRectCorner.allCorners))
+                    expect(topRightLeft.roundingCorners).to(equal(UIRectCorner.allCorners))
+                    expect(topBottom.roundingCorners).to(equal(UIRectCorner.allCorners))
+                    expect(topRight.roundingCorners).to(equal([.topLeft, .topRight, .bottomRight]))
+                    expect(bottomLeft.roundingCorners).to(equal([.topLeft, .bottomLeft, .bottomRight]))
                 }
                 if #available(iOS 11.0, *) {
                     it("CACornerMask") {
@@ -1527,13 +1548,22 @@ final class EnumSpec: QuickSpec {
                         expect(all.maskedCorners).to(equal([.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner]))
                         expect(none.maskedCorners).to(equal([]))
                     }
+                    it("CACornerMaskCombination") {
+                        let allMask: CACornerMask = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+                        expect(fourSides.maskedCorners).to(equal(allMask))
+                        expect(topRightLeft.maskedCorners).to(equal(allMask))
+                        expect(topBottom.maskedCorners).to(equal(allMask))
+                        expect(topRight.maskedCorners).to(equal([.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner]))
+                        expect(bottomLeft.maskedCorners).to(equal([.layerMinXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]))
+                    }
                 }
                 it("Description") {
                     expect(String(describing: top)).to(beginWith("top"))
                     expect(String(describing: right)).to(beginWith("right"))
                     expect(String(describing: bottom)).to(beginWith("bottom"))
                     expect(String(describing: left)).to(beginWith("left"))
-                    expect(String(describing: all)).to(beginWith("top, right, left"))
+                    expect(String(describing: all)).to(beginWith("top, right, bottom, left"))
+                    expect(String(describing: topRight)).to(beginWith("top, right"))
                     expect(String(describing: none)).to(beginWith("none"))
                 }
             }
