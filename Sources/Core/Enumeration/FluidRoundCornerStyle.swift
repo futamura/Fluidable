@@ -25,7 +25,7 @@ public struct FluidRoundCornerStyle: OptionSet, Sendable {
     /** Top left corner and bottom left corner. */
     public static let left: FluidRoundCornerStyle = .init(rawValue: 1 << 3)
     /** All corners. */
-    public static let all: FluidRoundCornerStyle = [.top, .right, .left, .left]
+    public static let all: FluidRoundCornerStyle = [.top, .right, .bottom, .left]
     /** No corners. */
     public static let none: FluidRoundCornerStyle = []
 
@@ -39,27 +39,25 @@ public struct FluidRoundCornerStyle: OptionSet, Sendable {
 
     /** The `UIRectCorner` value. */
     public var roundingCorners: UIRectCorner? {
-        switch self {
-        case .all:    return .allCorners
-        case .top:    return [.topLeft, .topRight]
-        case .right:  return [.topRight, .bottomRight]
-        case .bottom: return [.bottomLeft, .bottomRight]
-        case .left:   return [.topLeft, .bottomLeft]
-        default: return nil
-        }
+        var corners: UIRectCorner = []
+        if self.contains(.top) { corners.formUnion([.topLeft, .topRight]) }
+        if self.contains(.right) { corners.formUnion([.topRight, .bottomRight]) }
+        if self.contains(.bottom) { corners.formUnion([.bottomLeft, .bottomRight]) }
+        if self.contains(.left) { corners.formUnion([.topLeft, .bottomLeft]) }
+        guard !corners.isEmpty else { return nil }
+        /* NOTE: `UIRectCorner.allCorners` has a raw value of `~0` and is not equal to the union of the four individual corners */
+        return corners == [.topLeft, .topRight, .bottomLeft, .bottomRight] ? .allCorners : corners
     }
 
     /** The `CACornerMask` value, available on iOS 11 or later. */
     @available(iOS 11.0, *)
     public var maskedCorners: CACornerMask {
-        switch self {
-        case .all:    return [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner]
-        case .top:    return [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        case .right:  return [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
-        case .bottom: return [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        case .left:   return [.layerMinXMinYCorner, .layerMinXMaxYCorner]
-        default:      return []
-        }
+        var corners: CACornerMask = []
+        if self.contains(.top) { corners.formUnion([.layerMinXMinYCorner, .layerMaxXMinYCorner]) }
+        if self.contains(.right) { corners.formUnion([.layerMaxXMinYCorner, .layerMaxXMaxYCorner]) }
+        if self.contains(.bottom) { corners.formUnion([.layerMinXMaxYCorner, .layerMaxXMaxYCorner]) }
+        if self.contains(.left) { corners.formUnion([.layerMinXMinYCorner, .layerMinXMaxYCorner]) }
+        return corners
     }
 }
 
