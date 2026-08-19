@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 /** The enumerations that indicates the transition type. */
-public enum FluidDriverType {
+public enum FluidDriverType: Sendable {
     /** The view is presenting. */
     case present
     /** The view is dismissing. */

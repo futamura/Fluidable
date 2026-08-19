@@ -12,7 +12,7 @@ import UIKit
  Enumerations to determine an animated navigation style.
  */
 
-public enum FluidPresentationStyle {
+public enum FluidPresentationStyle: Sendable {
     /* The fade transition with modal view */
 //    case fade
     /** The fluid transition with modal view */
