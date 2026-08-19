@@ -9,6 +9,7 @@
 import Foundation
 import Fluidable
 
+@MainActor
 class Config: CustomStringConvertible {
     var isShadowEnabled: Bool = true
     var transitionStyle: FluidTransitionStyle = .slide(direction: .fromRight)
@@ -16,7 +17,11 @@ class Config: CustomStringConvertible {
     static let shared = Config()
     private init() {}
 
-    var description: String {
-        return "isShadowEnabled: \(isShadowEnabled) transitionStyle: \(transitionStyle) backgroundStyle: \(backgroundStyle)"
+    /* `CustomStringConvertible` の要件は nonisolated なため、main thread のときだけ isolated な状態を読む */
+    nonisolated var description: String {
+        guard Thread.isMainThread else { return "Config" }
+        return MainActor.assumeIsolated {
+            "isShadowEnabled: \(isShadowEnabled) transitionStyle: \(transitionStyle) backgroundStyle: \(backgroundStyle)"
+        }
     }
 }
