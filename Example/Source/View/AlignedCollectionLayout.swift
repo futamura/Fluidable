@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+@MainActor
 protocol AlignedCollectionLayoutDelegate: AnyObject {
     var numberOfColumns: Int { get }
     var cellPadding: CGFloat { get }

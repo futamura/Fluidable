@@ -16,6 +16,7 @@ struct ExampleConst {
     static let collectionRightMargin: CGFloat = 16
     static let collectionBottomMargin: CGFloat = 16
     static let collectionCellPadding: CGFloat = 12
+    @MainActor
     static var collectionNumberOfColumns: Int {
         let size: CGSize = UIApplication.shared.exampleKeyWindow?.bounds.size ?? UIScreen.main.bounds.size
         let isLandscape: Bool = size.width > size.height

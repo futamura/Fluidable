@@ -12,6 +12,7 @@ import UIKit
 /**
  The `FluidResizableDelegate` protocol. The delegate methods are invoked only when the presentation style is `.drawer(position: .bottom)`.
  */
+@MainActor
 public protocol FluidResizableTransitionDelegate: NSObjectProtocol {
     /**
      The function that determines whether the view should perform resize interaction.
