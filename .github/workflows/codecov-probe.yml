@@ -98,3 +98,15 @@ jobs:
           flags: probe-tokenless
           name: probe-tokenless
           verbose: true
+
+      - name: Probe 6 - Repository upload token
+        continue-on-error: true
+        uses: codecov/codecov-action@v7
+        with:
+          disable_search: true
+          fail_ci_if_error: false
+          files: ./probe.lcov
+          flags: probe-token
+          name: probe-token
+          token: ${{ secrets.CODECOV_TOKEN }}
+          verbose: true
