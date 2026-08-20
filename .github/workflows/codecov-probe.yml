@@ -1,0 +1,72 @@
+name: Codecov Probe
+
+# Temporary diagnostic workflow for task #33.
+# Reproduces the Codecov `Repository not found` upload failure on a cheap
+# ubuntu runner instead of the 5-job macOS `coverage.yml` matrix.
+# Delete this file once the root cause is identified.
+
+on:
+  push:
+    branches:
+      - fix/codecov-oidc-upload
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Generate minimal lcov fixture
+        run: |
+          cat > probe.lcov <<'LCOV'
+          TN:
+          SF:Sources/Fluidable.swift
+          DA:1,1
+          DA:2,0
+          LF:2
+          LH:1
+          end_of_record
+          LCOV
+          cat probe.lcov
+
+      - name: Probe 1 - OIDC only
+        continue-on-error: true
+        uses: codecov/codecov-action@v7
+        with:
+          disable_search: true
+          fail_ci_if_error: false
+          files: ./probe.lcov
+          flags: probe-oidc
+          name: probe-oidc
+          verbose: true
+          use_oidc: true
+
+      - name: Probe 2 - OIDC with explicit slug
+        continue-on-error: true
+        uses: codecov/codecov-action@v7
+        with:
+          disable_search: true
+          fail_ci_if_error: false
+          files: ./probe.lcov
+          flags: probe-slug
+          name: probe-slug
+          slug: futamura/Fluidable
+          verbose: true
+          use_oidc: true
+
+      - name: Probe 3 - OIDC with legacy upload endpoint
+        continue-on-error: true
+        uses: codecov/codecov-action@v7
+        with:
+          disable_search: true
+          fail_ci_if_error: false
+          files: ./probe.lcov
+          flags: probe-legacy
+          name: probe-legacy
+          use_legacy_upload_endpoint: true
+          verbose: true
+          use_oidc: true
