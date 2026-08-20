@@ -1,7 +1,7 @@
 [![CI](https://github.com/futamura/Fluidable/actions/workflows/ci.yml/badge.svg)](https://github.com/futamura/Fluidable/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/gumob/Fluidable/branch/main/graph/badge.svg)](https://codecov.io/gh/gumob/Fluidable)
 [![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)
-![Language](https://img.shields.io/badge/Language-Swift%205-orange.svg)
+![Language](https://img.shields.io/badge/Language-Swift%206-orange.svg)
 
 # Fluidable
 A Swift library that allows you to create a custom transition conforming to Fluid Interfaces.
@@ -27,7 +27,7 @@ Fluid                      |  Drawer                   | Slide
 ## Requirements
 
 - iOS 15.0 or later
-- Xcode 26 / Swift 6.3 compiler, using Swift 5 language mode
+- Xcode 26 / Swift 6.3 compiler, using Swift 6 language mode
 
 ## Installation
 
@@ -35,7 +35,7 @@ Fluidable is distributed with Swift Package Manager.
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/futamura/Fluidable.git", from: "2.0.0"),
+    .package(url: "https://github.com/futamura/Fluidable.git", from: "3.0.0"),
 ]
 ```
 
