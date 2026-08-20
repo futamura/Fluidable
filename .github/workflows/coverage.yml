@@ -52,7 +52,7 @@ jobs:
         run: xcrun xccov view --report Reports/coverage/unit/Fluidable.xcresult > Reports/coverage/unit/xccov.txt
 
       - name: Upload unit coverage to Codecov
-        uses: codecov/codecov-action@v6
+        uses: codecov/codecov-action@v7
         with:
           fail_ci_if_error: true
           flags: unit
@@ -123,7 +123,7 @@ jobs:
         run: xcrun xccov view --report Reports/coverage/ui-shard-${{ matrix.shard }}/Fluidable.xcresult > Reports/coverage/ui-shard-${{ matrix.shard }}/xccov.txt
 
       - name: Upload UI coverage to Codecov
-        uses: codecov/codecov-action@v6
+        uses: codecov/codecov-action@v7
         with:
           fail_ci_if_error: true
           flags: ui
