@@ -70,3 +70,31 @@ jobs:
           use_legacy_upload_endpoint: true
           verbose: true
           use_oidc: true
+
+      - name: Probe 4 - Inspect OIDC claims
+        continue-on-error: true
+        run: |
+          curl -sS -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+            "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=https%3A%2F%2Fcodecov.io" \
+          | python3 -c '
+          import sys, json, base64
+          token = json.load(sys.stdin)["value"]
+          payload = token.split(".")[1]
+          payload += "=" * (-len(payload) % 4)
+          claims = json.loads(base64.urlsafe_b64decode(payload))
+          keys = ["iss", "aud", "sub", "repository", "repository_id",
+                  "repository_owner", "repository_owner_id",
+                  "repository_visibility", "ref", "workflow_ref"]
+          print(json.dumps({k: claims.get(k) for k in keys}, indent=2))
+          '
+
+      - name: Probe 5 - Tokenless (no OIDC, no token)
+        continue-on-error: true
+        uses: codecov/codecov-action@v7
+        with:
+          disable_search: true
+          fail_ci_if_error: false
+          files: ./probe.lcov
+          flags: probe-tokenless
+          name: probe-tokenless
+          verbose: true
