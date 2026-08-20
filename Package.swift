@@ -26,6 +26,9 @@ let package = Package(
                 "Fluidable.h",
                 "Info.plist",
             ],
+            resources: [
+                .copy("PrivacyInfo.xcprivacy"),
+            ],
             swiftSettings: [
                 .swiftLanguageMode(.v6),
             ]

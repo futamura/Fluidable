@@ -122,6 +122,7 @@
 		A77D9F9C22F0119E0071867E /* FluidNavigationParameters+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D9F0322F0119E0071867E /* FluidNavigationParameters+Configuration.swift */; };
 		A77D9F9D22F0119E0071867E /* FluidNavigationParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D9F0422F0119E0071867E /* FluidNavigationParameters.swift */; };
 		A77D9F9E22F0119E0071867E /* FluidTransitionParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D9F0522F0119E0071867E /* FluidTransitionParameters.swift */; };
+		A7C0FF0122F0119E0071867E /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A7C0FF0222F0119E0071867E /* PrivacyInfo.xcprivacy */; };
 		A77D9F9F22F0119E0071867E /* Fluidable.h in Headers */ = {isa = PBXBuildFile; fileRef = A77D9F0622F0119E0071867E /* Fluidable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A77D9FA022F0119E0071867E /* FluidLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D9F0822F0119E0071867E /* FluidLayout.swift */; };
 		A77D9FA122F0119E0071867E /* FluidLayout+Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D9F0922F0119E0071867E /* FluidLayout+Generator.swift */; };
@@ -443,6 +444,7 @@
 		A77D9F0322F0119E0071867E /* FluidNavigationParameters+Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidNavigationParameters+Configuration.swift"; sourceTree = "<group>"; };
 		A77D9F0422F0119E0071867E /* FluidNavigationParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidNavigationParameters.swift; sourceTree = "<group>"; };
 		A77D9F0522F0119E0071867E /* FluidTransitionParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidTransitionParameters.swift; sourceTree = "<group>"; };
+		A7C0FF0222F0119E0071867E /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		A77D9F0622F0119E0071867E /* Fluidable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fluidable.h; sourceTree = "<group>"; };
 		A77D9F0822F0119E0071867E /* FluidLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidLayout.swift; sourceTree = "<group>"; };
 		A77D9F0922F0119E0071867E /* FluidLayout+Generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FluidLayout+Generator.swift"; sourceTree = "<group>"; };
@@ -683,6 +685,7 @@
 			isa = PBXGroup;
 			children = (
 				A77D9F5322F0119E0071867E /* Info.plist */,
+				A7C0FF0222F0119E0071867E /* PrivacyInfo.xcprivacy */,
 				A77D9F0622F0119E0071867E /* Fluidable.h */,
 				A77D9F1122F0119E0071867E /* Fluidable.swift */,
 				A77D9F0F22F0119E0071867E /* Fluidable+SafeArea.swift */,
@@ -1364,6 +1367,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7C0FF0122F0119E0071867E /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
