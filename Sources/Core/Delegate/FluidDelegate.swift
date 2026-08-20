@@ -12,5 +12,6 @@ import UIKit
 /**
  The base protocol.
  */
+@MainActor
 public protocol FluidDelegate: NSObjectProtocol {
 }

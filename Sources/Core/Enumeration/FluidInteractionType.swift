@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public enum FluidDriverInteractionType {
+public enum FluidDriverInteractionType: Sendable {
     case normal(edges: UIRectEdge)
     case fluid(edges: UIRectEdge)
     case none

@@ -73,6 +73,7 @@ extension RootModel {
         return self.classType.className
     }
 
+    @MainActor
     func instantiate() -> UIViewController {
         switch self.presentationType {
         case .navigation:
@@ -197,6 +198,7 @@ extension RootModel {
         }
     }
 
+    @MainActor
     var finalFrameStyle: FluidFinalFrameStyle? {
         let mult: CGFloat = UIDevice.current.isPhone ? 1 : 2
         switch self {
@@ -330,6 +332,7 @@ extension RootModel {
         }
     }
 
+    @MainActor
     var caption: String {
         let presentationString: String = self.presentationType.description.capitalized
         let backgroundString: String = self.backgroundStyle.description.replacingOccurrences(of: "(\\w+)\\(.*", with: "$1", options: .regularExpression).capitalized
@@ -380,6 +383,7 @@ enum RootPresentationType: CustomStringConvertible {
 enum RootCellType {
     case image, imageText, table
 
+    @MainActor
     var size: CGSize {
         let numberOfColumns: CGFloat = CGFloat(ExampleConst.collectionNumberOfColumns)
         let width: CGFloat = {
@@ -405,6 +409,7 @@ enum RootHeaderPosition {
     case top, bottom, none
 }
 
+@MainActor
 protocol RootModelReceivable: AnyObject {
     var modelIndex: Int { set get }
     var model: RootModel! { get }

@@ -12,7 +12,7 @@ import UIKit
  Enumerations to determine an animated navigation style.
  */
 
-public enum FluidTransitionStyle {
+public enum FluidTransitionStyle: Sendable {
     /** The fluid transition with modal view */
     case fluid(behavior: FluidInteractionBehavior)
     /** The scale transition with fullscreen view */

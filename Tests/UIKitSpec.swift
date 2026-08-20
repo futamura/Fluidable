@@ -192,48 +192,49 @@ final class UIKitSpec: QuickSpec {
     override class func spec() {
         describe("UIKit") {
             describe("UIView") {
-                let rootView: TestView = .init(name: "rootView")
-                let childView0: TestView = .init(name: "childView0")
-                rootView.addSubview(childView0)
-                let childView0_0: TestView = .init(name: "childView0_0")
-                childView0.addSubview(childView0_0)
-                let childView0_0_0: TestView = .init(name: "childView0_0_0")
-                childView0_0.addSubview(childView0_0_0)
-                let childView0_0_1: TestView = .init(name: "childView0_0_1")
-                childView0_0.addSubview(childView0_0_1)
-                let childView0_0_2: TestView = .init(name: "childView0_0_2")
-                childView0_0.addSubview(childView0_0_2)
-                let childView0_1: TestView = .init(name: "childView0_1")
-                childView0.addSubview(childView0_1)
-                let childView0_2: TestView = .init(name: "childView0_2")
-                childView0.addSubview(childView0_2)
-                let childView0_3: TestView = .init(name: "childView0_3")
-                childView0.addSubview(childView0_3)
-                let childView0_4: TestView = .init(name: "childView0_4")
-                childView0.addSubview(childView0_4)
-                let childView1: TestView = .init(name: "childView1")
-                rootView.addSubview(childView1)
-                let childView1_0: TestView = .init(name: "childView1_0")
-                childView1.addSubview(childView1_0)
-                let childView1_0_0: TestView = .init(name: "childView1_0_0")
-                childView1_0.addSubview(childView1_0_0)
-                let childView1_1: TestView = .init(name: "childView1_1")
-                childView1.addSubview(childView1_1)
-                let childView1_2: TestView = .init(name: "childView1_2")
-                childView1.addSubview(childView1_2)
-                let childView1_3: TestView = .init(name: "childView1_3")
-                childView1.addSubview(childView1_3)
-                let childView2: TestView = .init(name: "childView2")
-                rootView.addSubview(childView2)
-                let childView2_0: TestView = .init(name: "childView2_0")
-                childView2.addSubview(childView2_0)
-                let childView2_1: TestView = .init(name: "childView2_1")
-                childView2.addSubview(childView2_1)
-                let childView2_2: TestView = .init(name: "childView2_2")
-                childView2.addSubview(childView2_2)
-                let childView2_3: TestView = .init(name: "childView2_3")
-                childView2.addSubview(childView2_3)
                 it("Hierarchy") {
+                    let rootView: TestView = .init(name: "rootView")
+                    let childView0: TestView = .init(name: "childView0")
+                    rootView.addSubview(childView0)
+                    let childView0_0: TestView = .init(name: "childView0_0")
+                    childView0.addSubview(childView0_0)
+                    let childView0_0_0: TestView = .init(name: "childView0_0_0")
+                    childView0_0.addSubview(childView0_0_0)
+                    let childView0_0_1: TestView = .init(name: "childView0_0_1")
+                    childView0_0.addSubview(childView0_0_1)
+                    let childView0_0_2: TestView = .init(name: "childView0_0_2")
+                    childView0_0.addSubview(childView0_0_2)
+                    let childView0_1: TestView = .init(name: "childView0_1")
+                    childView0.addSubview(childView0_1)
+                    let childView0_2: TestView = .init(name: "childView0_2")
+                    childView0.addSubview(childView0_2)
+                    let childView0_3: TestView = .init(name: "childView0_3")
+                    childView0.addSubview(childView0_3)
+                    let childView0_4: TestView = .init(name: "childView0_4")
+                    childView0.addSubview(childView0_4)
+                    let childView1: TestView = .init(name: "childView1")
+                    rootView.addSubview(childView1)
+                    let childView1_0: TestView = .init(name: "childView1_0")
+                    childView1.addSubview(childView1_0)
+                    let childView1_0_0: TestView = .init(name: "childView1_0_0")
+                    childView1_0.addSubview(childView1_0_0)
+                    let childView1_1: TestView = .init(name: "childView1_1")
+                    childView1.addSubview(childView1_1)
+                    let childView1_2: TestView = .init(name: "childView1_2")
+                    childView1.addSubview(childView1_2)
+                    let childView1_3: TestView = .init(name: "childView1_3")
+                    childView1.addSubview(childView1_3)
+                    let childView2: TestView = .init(name: "childView2")
+                    rootView.addSubview(childView2)
+                    let childView2_0: TestView = .init(name: "childView2_0")
+                    childView2.addSubview(childView2_0)
+                    let childView2_1: TestView = .init(name: "childView2_1")
+                    childView2.addSubview(childView2_1)
+                    let childView2_2: TestView = .init(name: "childView2_2")
+                    childView2.addSubview(childView2_2)
+                    let childView2_3: TestView = .init(name: "childView2_3")
+                    childView2.addSubview(childView2_3)
+
                     expect(rootView.numberOfSuperview).to(equal(0))
                     expect(childView0.numberOfSuperview).to(equal(1))
                     expect(childView0_0.numberOfSuperview).to(equal(2))
@@ -280,18 +281,18 @@ final class UIKitSpec: QuickSpec {
                 }
             }
             describe("UIViewController") {
-                let rootVC0: TestViewController = .init(name: "rootVC0")
-                let rootVC1: TestViewController = .init(name: "rootVC1")
-                let rootNC: TestNavigationController = .init(rootViewController: rootVC0, name: "rootNC")
-
-                let childVC0: TestViewController = .init(name: "childVC0")
-                let childVC1: TestViewController = .init(name: "childVC1")
-                let childVC2: TestViewController = .init(name: "childVC2")
-                let childNC: TestNavigationController = .init(rootViewController: childVC0, name: "childNC")
-
-                let emptyView: TestView = .init(name: "emptyView")
-
                 it("Hierarchy") {
+                    let rootVC0: TestViewController = .init(name: "rootVC0")
+                    let rootVC1: TestViewController = .init(name: "rootVC1")
+                    let rootNC: TestNavigationController = .init(rootViewController: rootVC0, name: "rootNC")
+
+                    let childVC0: TestViewController = .init(name: "childVC0")
+                    let childVC1: TestViewController = .init(name: "childVC1")
+                    let childVC2: TestViewController = .init(name: "childVC2")
+                    let childNC: TestNavigationController = .init(rootViewController: childVC0, name: "childNC")
+
+                    let emptyView: TestView = .init(name: "emptyView")
+
                     rootNC.pushViewController(rootVC1, animated: false)
                     rootNC.present(childNC, animated: false)
                     childNC.pushViewController(childVC1, animated: false)
@@ -1917,7 +1918,7 @@ final class UIKitSpec: QuickSpec {
                     scrollView.contentSize = CGSize(width: 360, height: 360)
                     scrollView.isTrackingOverride = true
 
-                    func makeObserver(style: FluidTransitionStyle) -> FluidTransitionScrollObserver {
+                    @MainActor func makeObserver(style: FluidTransitionStyle) -> FluidTransitionScrollObserver {
                         let fixture = makeCoreTestTransitionFixture(style: style, easing: .linear)
                         let observer = FluidTransitionScrollObserver(view: scrollView)
                         observer.registerParameters(parameters: fixture.dismissDriver.parameters)
@@ -2087,7 +2088,7 @@ final class UIKitSpec: QuickSpec {
                     let delegate = TestGestureDelegate()
                     var retainedPanViews: [UIView] = []
 
-                    func makeObserver(style: FluidTransitionStyle) -> FluidTransitionGestureObserver {
+                    @MainActor func makeObserver(style: FluidTransitionStyle) -> FluidTransitionGestureObserver {
                         let fixture = makeCoreTestTransitionFixture(style: style, easing: .linear)
                         let observer = FluidTransitionGestureObserver(delegate: delegate)
                         let panGestureView = UIView(frame: CGRect(x: 10, y: 20, width: 100, height: 80))
@@ -2458,16 +2459,16 @@ final class UIKitSpec: QuickSpec {
             }
         }
         describe("NSLayoutConstraint") {
-            let prefix: String = "test"
-            let parentView: UIView = .init(frame: CGRect(x: 0, y: 0, width: 1000, height: 1000))
-            let childView: UIView = .init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-            parentView.addSubview(childView)
-            let topAnchor: NSLayoutConstraint = childView.topAnchor.constraint(equalTo: parentView.topAnchor, constant: 0).named(for: .top, prefix: prefix)
-            let bottomAnchor: NSLayoutConstraint = childView.bottomAnchor.constraint(equalTo: parentView.bottomAnchor, constant: 0).named(for: .top, prefix: prefix)
-            let leftAnchor: NSLayoutConstraint = childView.leftAnchor.constraint(equalTo: parentView.leftAnchor, constant: 0).named(for: .left, prefix: prefix)
-            let rightAnchor: NSLayoutConstraint = childView.rightAnchor.constraint(equalTo: parentView.rightAnchor, constant: 0).named(for: .right, prefix: prefix)
-
             it("Property") {
+                let prefix: String = "test"
+                let parentView: UIView = .init(frame: CGRect(x: 0, y: 0, width: 1000, height: 1000))
+                let childView: UIView = .init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+                parentView.addSubview(childView)
+                let topAnchor: NSLayoutConstraint = childView.topAnchor.constraint(equalTo: parentView.topAnchor, constant: 0).named(for: .top, prefix: prefix)
+                let bottomAnchor: NSLayoutConstraint = childView.bottomAnchor.constraint(equalTo: parentView.bottomAnchor, constant: 0).named(for: .top, prefix: prefix)
+                let leftAnchor: NSLayoutConstraint = childView.leftAnchor.constraint(equalTo: parentView.leftAnchor, constant: 0).named(for: .left, prefix: prefix)
+                let rightAnchor: NSLayoutConstraint = childView.rightAnchor.constraint(equalTo: parentView.rightAnchor, constant: 0).named(for: .right, prefix: prefix)
+
                 expect(topAnchor.isActive).to(beFalse())
                 expect(bottomAnchor.isActive).to(beFalse())
                 expect(leftAnchor.isActive).to(beFalse())
@@ -2627,11 +2628,12 @@ final class UIKitSpec: QuickSpec {
             }
         }
         describe("UIScrollView") {
-            let scrollView: UIScrollView = .init(frame: CGRect(x: 0, y: 0, width: 1000, height: 1000))
-            let childView: UIView = .init(frame: CGRect(x: 0, y: 0, width: 1000, height: 1000))
-            scrollView.setContentOffset(CGPoint(x: 0, y: 100), animated: false)
-            scrollView.addSubview(childView)
             it("Property") {
+                let scrollView: UIScrollView = .init(frame: CGRect(x: 0, y: 0, width: 1000, height: 1000))
+                let childView: UIView = .init(frame: CGRect(x: 0, y: 0, width: 1000, height: 1000))
+                scrollView.setContentOffset(CGPoint(x: 0, y: 100), animated: false)
+                scrollView.addSubview(childView)
+
                 expect(scrollView.minScrollableX).to(equal(0))
                 expect(scrollView.maxScrollableX).to(equal(-1000))
                 expect(scrollView.minScrollableY).to(equal(0))
@@ -2948,7 +2950,7 @@ private struct CoreTestNavigationFixture {
     let dismissDriver: FluidNavigationDismissDriver
 }
 
-private func makeCoreTestNavigationFixture(style: FluidNavigationStyle = .slide(direction: .fromRight)) -> CoreTestNavigationFixture {
+@MainActor private func makeCoreTestNavigationFixture(style: FluidNavigationStyle = .slide(direction: .fromRight)) -> CoreTestNavigationFixture {
     let container = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 480))
     let sourceViewController = CoreTestFluidViewController()
     let destinationViewController = CoreTestFluidViewController()
@@ -3220,7 +3222,7 @@ private struct CoreTestTransitionFixture {
     let dismissDriver: FluidTransitionDismissDriver
 }
 
-private func makeCoreTestTransitionFixture(style: FluidTransitionStyle = .slide(direction: .fromRight),
+@MainActor private func makeCoreTestTransitionFixture(style: FluidTransitionStyle = .slide(direction: .fromRight),
                                            allowInteractivePresent: Bool = true,
                                            allowInteractiveDismiss: Bool = true,
                                            observedScrollViews: [UIScrollView]? = nil,
@@ -3280,7 +3282,7 @@ private func makeCoreTestTransitionFixture(style: FluidTransitionStyle = .slide(
                                      dismissDriver: dismissDriver)
 }
 
-private func seedGesture(_ observer: FluidTransitionGestureObserver,
+@MainActor private func seedGesture(_ observer: FluidTransitionGestureObserver,
                          averageVector: CGPoint,
                          velocity: CGVector = .zero,
                          initialLocation: CGPoint = .zero,
@@ -3291,10 +3293,12 @@ private func seedGesture(_ observer: FluidTransitionGestureObserver,
     observer.translationHistory = [averageVector, .zero]
 }
 
+@MainActor
 private func blurredImage(in backgroundView: FluidBlurredBackgroundView) -> UIImage? {
     return backgroundView.subviews.compactMap { $0 as? UIImageView }.first?.image
 }
 
+@MainActor
 private func waitForBlurredImage(in backgroundView: FluidBlurredBackgroundView, timeout: TimeInterval = 10) -> UIImage? {
     let deadline = CACurrentMediaTime() + timeout
     while blurredImage(in: backgroundView) == nil, CACurrentMediaTime() < deadline {

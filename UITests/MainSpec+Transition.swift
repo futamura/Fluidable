@@ -11,6 +11,7 @@ import XCTest
 
 @testable import Fluidable
 
+@MainActor
 extension MainSpec {
     static func finishAnimatedPresent(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) {
         /* NOTE: Wait until collection view is ready */
@@ -330,6 +331,7 @@ extension MainSpec {
     }
 }
 
+@MainActor
 extension MainSpec {
     typealias InteractiveDismissOption = (interact: XCUIElement?, target: XCUIElement?, direction: SwipeDirection)
     static func getInteractiveDismissOption(app: XCUIApplication, orientation: UIDeviceOrientation, model: RootModel) -> InteractiveDismissOption {

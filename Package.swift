@@ -26,8 +26,11 @@ let package = Package(
                 "Fluidable.h",
                 "Info.plist",
             ],
+            resources: [
+                .copy("PrivacyInfo.xcprivacy"),
+            ],
             swiftSettings: [
-                .swiftLanguageMode(.v5),
+                .swiftLanguageMode(.v6),
             ]
         ),
         .testTarget(
@@ -42,7 +45,7 @@ let package = Package(
                 "Info.plist",
             ],
             swiftSettings: [
-                .swiftLanguageMode(.v5),
+                .swiftLanguageMode(.v6),
             ]
         ),
     ]

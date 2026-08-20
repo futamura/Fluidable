@@ -272,8 +272,14 @@ extension FluidCoreAnimator {
  CAAnimationDelegate
  */
 extension FluidCoreAnimator: CAAnimationDelegate {
-    public func animationDidStart(_ anim: CAAnimation) {
-        guard anim !== self.progressAnimation else { return }
+    nonisolated public func animationDidStart(_ anim: CAAnimation) {
+        guard Thread.isMainThread else { return }
+        let animationId = ObjectIdentifier(anim)
+        MainActor.assumeIsolated { self.handleAnimationDidStart(animationId: animationId) }
+    }
+
+    @MainActor private func handleAnimationDidStart(animationId: ObjectIdentifier) {
+        guard self.progressAnimation.map(ObjectIdentifier.init) != animationId else { return }
         if self._animatorState == .ready, let layer: CALayer = self.layer {
             self.startTime = layer.convertTime(CACurrentMediaTime(), from: nil)
         }
@@ -285,8 +291,14 @@ extension FluidCoreAnimator: CAAnimationDelegate {
 //        ])
     }
 
-    public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        guard anim !== self.progressAnimation else { return }
+    nonisolated public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        guard Thread.isMainThread else { return }
+        let animationId = ObjectIdentifier(anim)
+        MainActor.assumeIsolated { self.handleAnimationDidStop(animationId: animationId, finished: flag) }
+    }
+
+    @MainActor private func handleAnimationDidStop(animationId: ObjectIdentifier, finished flag: Bool) {
+        guard self.progressAnimation.map(ObjectIdentifier.init) != animationId else { return }
         if 0 < self._animatorProgress && self._animatorProgress < 0.02 {
             self._animatorProgress = 0
         } else if 0.98 < self._animatorProgress && self._animatorProgress < 1 {
@@ -305,8 +317,9 @@ extension FluidCoreAnimator: CAAnimationDelegate {
  CAProgressLayerDelegate
  */
 extension FluidCoreAnimator: CAProgressLayerDelegate {
-    func progressDidChange(to progress: CGFloat) {
-        self._animatorProgress = progress
+    nonisolated func progressDidChange(to progress: CGFloat) {
+        guard Thread.isMainThread else { return }
+        MainActor.assumeIsolated { self._animatorProgress = progress }
 //        Logger()?.log("🐆💥", [
 //            "groupAnimationId:".lpad() + String(describing: self.groupAnimationId),
 //            "animatorState:".lpad() + String(describing: self.animatorState),

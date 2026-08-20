@@ -12,7 +12,7 @@ import UIKit
 /**
  The proxy methods for `Fluidable`.
  */
-extension FluidProxy where Base: UIViewController {
+@MainActor extension FluidProxy where Base: UIViewController {
     internal var isFluidNavigationSourceNavigationController: Bool {
         guard let fluidable: Fluidable = self.base as? Fluidable else { return false }
         return fluidable.fluidDelegate is FluidNavigationRootNavigationControllerDelegate
@@ -44,7 +44,7 @@ extension FluidProxy where Base: UIViewController {
     }
 }
 
-extension FluidProxy where Base: UIViewController {
+@MainActor extension FluidProxy where Base: UIViewController {
     internal var navigationControllerDelegate: FluidNavigationControllerDelegate? {
         if let nc: Fluidable & UINavigationController = self.base as? Fluidable & UINavigationController {
             return nc.delegate as? FluidNavigationControllerDelegate
@@ -139,7 +139,7 @@ extension FluidProxy where Base: UIViewController {
 //    }
 // }
 
-extension FluidProxy where Base: UIViewController {
+@MainActor extension FluidProxy where Base: UIViewController {
     /** The `FluidInitialFrameDimension` value that indicates the initial dimension. */
     public var navigationInitialDimension: FluidInitialFrameDimension? {
         if let driver: FluidNavigationPresentDriver = self.navigationPresentDriver {
@@ -169,7 +169,7 @@ extension FluidProxy where Base: UIViewController {
     }
 }
 
-extension FluidProxy where Base: UIViewController {
+@MainActor extension FluidProxy where Base: UIViewController {
     /** The `FluidInitialFrameDimension` value that indicates the initial dimension. */
     public var transitionInitialDimension: FluidInitialFrameDimension? {
         if let driver: FluidTransitionPresentDriver = self.transitionPresentDriver {

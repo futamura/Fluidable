@@ -136,6 +136,9 @@ public class FluidCoreAnimator: NSObject, FluidAnimatorCompatible {
 
 extension FluidCoreAnimator {
     override public var description: String {
-        return "FluidCoreAnimator(id: \(self.identifier), state: \(self.animatorState))"
+        guard Thread.isMainThread else { return super.description }
+        return MainActor.assumeIsolated {
+            "FluidCoreAnimator(id: \(self.identifier), state: \(self.animatorState))"
+        }
     }
 }

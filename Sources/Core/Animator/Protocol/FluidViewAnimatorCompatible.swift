@@ -11,13 +11,13 @@ import UIKit
 
 /** Obj-C association key */
 private struct AssociationKey {
-    static let parameters: UnsafeMutablePointer<UInt> = UnsafeMutablePointer<UInt>.allocate(capacity: 1)
+    nonisolated(unsafe) static let parameters: UnsafeMutablePointer<UInt> = UnsafeMutablePointer<UInt>.allocate(capacity: 1)
 }
 
 /**
  The protocol that compatibles to transition animator.
  */
-internal protocol FluidViewAnimatorCompatible: FluidParametersAccessible {
+@MainActor internal protocol FluidViewAnimatorCompatible: FluidParametersAccessible {
     /** The duration of the current animation. */
     var activeDuration: TimeInterval { get }
     /** The easing type of the current animation. */

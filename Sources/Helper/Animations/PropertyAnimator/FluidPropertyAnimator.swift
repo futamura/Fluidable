@@ -93,6 +93,9 @@ public class FluidPropertyAnimator: UIViewPropertyAnimator, FluidAnimatorCompati
 
 extension FluidPropertyAnimator {
     override public var description: String {
-        return "FluidPropertyAnimator(id: \(self.identifier), state: \(self.animatorState), stateEx: \(self.stateEx), isInterruptible: \(self.isInterruptible))"
+        guard Thread.isMainThread else { return super.description }
+        return MainActor.assumeIsolated {
+            "FluidPropertyAnimator(id: \(self.identifier), state: \(self.animatorState), stateEx: \(self.stateEx), isInterruptible: \(self.isInterruptible))"
+        }
     }
 }

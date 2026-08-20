@@ -19,17 +19,17 @@ extension CAProgressLayerDelegate {
 
 class CAProgressLayer: CALayer {
     /* FIXME: Custom properties is not animatable when using UIViewPropertyAnimator */
-    @NSManaged var progress: CGFloat
-    private var previousProgress: CGFloat?
-    private var progressDelegate: CAProgressLayerDelegate? { return self.delegate as? CAProgressLayerDelegate }
+    @NSManaged nonisolated var progress: CGFloat
+    nonisolated(unsafe) private var previousProgress: CGFloat?
+    nonisolated private var progressDelegate: CAProgressLayerDelegate? { return self.delegate as? CAProgressLayerDelegate }
 
     var preferredInvocationFramePerSeconds: CFTimeInterval = 60 {
         didSet {
             self.invocationInterval = 1 / self.preferredInvocationFramePerSeconds
         }
     }
-    private var invocationInterval: CFTimeInterval = 1 / 60
-    private var previousInvocationTime: CFTimeInterval = CACurrentMediaTime()
+    nonisolated(unsafe) private var invocationInterval: CFTimeInterval = 1 / 60
+    nonisolated(unsafe) private var previousInvocationTime: CFTimeInterval = CACurrentMediaTime()
 
     override init() {
         super.init()

@@ -44,7 +44,7 @@ internal class FluidCoreAnimatorValidator {
             throw error
         }
         guard let fromValue: T = from ?? layer.value(forKeyPath: keyPath.rawValue) as? T, let toValue: T = to else {
-            let error: FluidCoreAnimatorError = FluidCoreAnimatorError.invalidArgument(id: id, key: keyPath.rawValue, from: from, to: to)
+            let error: FluidCoreAnimatorError = FluidCoreAnimatorError.invalidArgument(id: id, key: keyPath.rawValue, from: String(describing: from), to: String(describing: to))
             FluidCoreAnimatorLogger.log(error.description, .warn)
             throw error
         }
@@ -57,7 +57,7 @@ internal class FluidCoreAnimatorLogger {
         case info, warn, error
     }
 
-    static var suppress: Bool = false
+    nonisolated(unsafe) static var suppress: Bool = false
 
     static func log(_ message: String, _ level: Level = .warn) {
         guard !self.suppress else { return }

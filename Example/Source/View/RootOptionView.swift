@@ -14,16 +14,19 @@ class RootOptionView: UIView {
     @IBOutlet weak var containerView: UIView!
 
     required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
+    /* `awakeFromNib` は NSObject 由来で nonisolated なため、main thread 前提の初期化を assumeIsolated で囲む */
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.alpha = 0.0
-        self.backgroundColor = .clear
-        self.isHidden = true
-        self.containerView.backgroundColor = .white
-        self.containerView.layer.cornerRadius = ExampleConst.cornerRadius
-        self.containerView.layer.shadowColor = UIColor.black.cgColor
-        self.containerView.layer.shadowOpacity = 0.2
-        self.containerView.layer.shadowRadius = ExampleConst.cornerRadius
+        MainActor.assumeIsolated {
+            self.alpha = 0.0
+            self.backgroundColor = .clear
+            self.isHidden = true
+            self.containerView.backgroundColor = .white
+            self.containerView.layer.cornerRadius = ExampleConst.cornerRadius
+            self.containerView.layer.shadowColor = UIColor.black.cgColor
+            self.containerView.layer.shadowOpacity = 0.2
+            self.containerView.layer.shadowRadius = ExampleConst.cornerRadius
+        }
     }
 
     override func layoutSubviews() {

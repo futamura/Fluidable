@@ -12,7 +12,7 @@ import UIKit
 /**
  Enumerations indicating a panning direction of `UIPanGestureRecognizer`.
  */
-public enum FluidGestureDirection: Int {
+public enum FluidGestureDirection: Int, Sendable {
     /** From 315 to 345 degree */
     case topLeft
     /** From 345 (-15) to 15 degree */

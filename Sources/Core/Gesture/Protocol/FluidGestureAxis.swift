@@ -12,7 +12,7 @@ import UIKit
 /**
  Enumerations indicating a panning direction of `UIPanGestureRecognizer`.
  */
-public struct FluidGestureAxis: OptionSet {
+public struct FluidGestureAxis: OptionSet, Sendable {
     public let rawValue: Int
 
     static let positiveX: FluidGestureAxis = .init(rawValue: 1 << 0) /* Right */

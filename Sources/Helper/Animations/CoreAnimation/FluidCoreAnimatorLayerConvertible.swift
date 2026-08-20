@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public protocol FluidCoreAnimatorLayerConvertible {
+@MainActor public protocol FluidCoreAnimatorLayerConvertible {
     func toLayer() -> CALayer?
 }
 

@@ -45,6 +45,7 @@ extension UIView {
 }
 
 extension UIImage {
+    @MainActor
     convenience init(view: UIView) {
         UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.isOpaque, 0.0)
         view.drawHierarchy(in: view.bounds, afterScreenUpdates: false)
@@ -82,6 +83,7 @@ extension UICollectionView {
         case footer
         case none
 
+        @MainActor
         func toString() -> String {
             switch self {
             case .header: return UICollectionView.elementKindSectionHeader
@@ -90,6 +92,7 @@ extension UICollectionView {
             }
         }
 
+        @MainActor
         init(from str: String) {
             switch str {
             case UICollectionView.elementKindSectionHeader: self = .header

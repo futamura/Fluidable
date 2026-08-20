@@ -109,7 +109,11 @@ class TransitionScrollViewController: TransitionBaseViewController, Fluidable {
 
     deinit {
         Logger()?.log("🚗🧹🧹🧹", [])
-        self.transitioningDelegate = nil
+        /* `deinit` は nonisolated かつ実行 thread が不定なため、main thread のときだけ isolated な状態に触る */
+        guard Thread.isMainThread else { return }
+        MainActor.assumeIsolated {
+            self.transitioningDelegate = nil
+        }
     }
 }
 

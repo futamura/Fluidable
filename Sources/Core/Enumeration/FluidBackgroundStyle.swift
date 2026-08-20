@@ -12,7 +12,7 @@ import UIKit
 /**
  Enumerations indicating a background style.
  */
-public enum FluidBackgroundStyle {
+public enum FluidBackgroundStyle: Sendable {
     /**
      Blurred background.
 

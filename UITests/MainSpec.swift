@@ -21,7 +21,8 @@ final class MainSpec: QuickSpec {
     }
 
     override class func spec() {
-        var app: XCUIApplication!
+        /* `spec()` は nonisolated だが、`app` の read/write は全て `@MainActor` な beforeEach / it / afterEach 内でのみ行われる */
+        nonisolated(unsafe) var app: XCUIApplication!
         afterEach { metadata in
             app?.terminate()
             XCUIDevice.shared.orientation = .portrait
@@ -42,7 +43,9 @@ final class MainSpec: QuickSpec {
                 return testCase.model
             }
             guard !models.isEmpty else { return }
-            describe(XCUIDevice.shared.testDescription(for: orientation)) {
+            /* `describe` closure は nonisolated だが、`spec()` は main thread で実行されるため title 生成のみ assumeIsolated で囲む */
+            let describeTitle: String = MainActor.assumeIsolated { XCUIDevice.shared.testDescription(for: orientation) }
+            describe(describeTitle) {
                 beforeEach {
                     XCUIDevice.shared.orientation = orientation
                     usleep(sec: 1.0)
@@ -151,7 +154,7 @@ final class MainSpec: QuickSpec {
 
 }
 
-final class FluidModalTableDismissalLayoutTests: XCTestCase {
+@MainActor final class FluidModalTableDismissalLayoutTests: XCTestCase {
     class TestFluidSourceViewController: UIViewController, Fluidable {}
 
     func testConstrainsTableCellLabelsToDismissTargetWidth() {
@@ -212,7 +215,7 @@ final class FluidModalTableDismissalLayoutTests: XCTestCase {
     }
 }
 
-final class NavigationFluidFullScreenDismissUITests: XCTestCase {
+@MainActor final class NavigationFluidFullScreenDismissUITests: XCTestCase {
     func testFinishAnimatedDismissWithTableContent() {
         let app: XCUIApplication = XCUIApplication()
         let orientation: UIDeviceOrientation = .portrait
@@ -234,7 +237,7 @@ final class NavigationFluidFullScreenDismissUITests: XCTestCase {
     }
 }
 
-final class RootThumbnailHeaderMarginUITests: XCTestCase {
+@MainActor final class RootThumbnailHeaderMarginUITests: XCTestCase {
     func testTableThumbnailHeaderTopMarginMatchesImageThumbnailHeader() {
         let app: XCUIApplication = XCUIApplication()
         addTeardownBlock {

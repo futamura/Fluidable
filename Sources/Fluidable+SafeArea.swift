@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-extension Fluidable where Self: UINavigationController {
+@MainActor extension Fluidable where Self: UINavigationController {
     @available(iOS 11, *)
     internal func updateSafeAreaForcibly() {
         guard !self.isBeingPresented && !self.isBeingDismissed,
@@ -60,7 +60,7 @@ extension Fluidable where Self: UINavigationController {
     }
 }
 
-extension Fluidable where Self: UIViewController {
+@MainActor extension Fluidable where Self: UIViewController {
     @available(iOS 11, *)
     internal func updateSafeAreaForcibly() {
         guard !self.isBeingPresented && !self.isBeingDismissed,
@@ -112,11 +112,12 @@ extension Fluidable where Self: UIViewController {
     }
 }
 
+@MainActor
 public protocol FluidNavigationBarCompatible: NSObjectProtocol {
     var preferredSize: CGSize { get }
 }
 
-public extension FluidNavigationBarCompatible where Self: UINavigationBar {
+@MainActor public extension FluidNavigationBarCompatible where Self: UINavigationBar {
     func updateNavigationBarFrame() {
         guard #available(iOS 11.0, *),
               let nc: FluidNavigationController = self.navigationController as? FluidNavigationController,

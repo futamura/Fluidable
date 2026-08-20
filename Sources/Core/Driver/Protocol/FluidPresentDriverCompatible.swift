@@ -9,5 +9,5 @@
 import Foundation
 import UIKit
 
-internal protocol FluidPresentDriverCompatible: FluidDriverCompatible {
+@MainActor internal protocol FluidPresentDriverCompatible: FluidDriverCompatible {
 }

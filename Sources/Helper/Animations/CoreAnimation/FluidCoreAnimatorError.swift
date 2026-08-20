@@ -20,7 +20,7 @@ public enum FluidCoreAnimatorError: Swift.Error {
     /** The error raised if the animation is already completed. */
     case alreadyCompleted(id: String, state: FluidAnimatorState)
     /** The error raised if the argument is invalid. */
-    case invalidArgument(id: String, key: String, from: Any?, to: Any?)
+    case invalidArgument(id: String, key: String, from: String, to: String)
 
     /** The description. */
     var description: String {
@@ -32,7 +32,7 @@ public enum FluidCoreAnimatorError: Swift.Error {
         case .alreadyCompleted(let id, let state):
             return "[\(id)] The animation (state: \(state)) is already completed."
         case .invalidArgument(let id, let key, let from, let to):
-            return "[\(id)] Invalid argument for `from: \(String(describing: from))` or `to: \(String(describing: to))`. The animation (\(key)) will never be executed."
+            return "[\(id)] Invalid argument for `from: \(from)` or `to: \(to)`. The animation (\(key)) will never be executed."
         }
     }
 }
