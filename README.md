@@ -1,7 +1,7 @@
 [![CI](https://github.com/futamura/Fluidable/actions/workflows/ci.yml/badge.svg)](https://github.com/futamura/Fluidable/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/futamura/Fluidable/branch/main/graph/badge.svg)](https://codecov.io/gh/futamura/Fluidable)
-[![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)
-![Language](https://img.shields.io/badge/Language-Swift%206-orange.svg)
+[![Swift](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Ffutamura%2FFluidable%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/futamura/Fluidable)
+[![Platforms](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Ffutamura%2FFluidable%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/futamura/Fluidable)
 
 # Fluidable
 A Swift library that allows you to create a custom transition conforming to Fluid Interfaces.

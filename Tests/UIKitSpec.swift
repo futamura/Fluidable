@@ -1479,7 +1479,9 @@ final class UIKitSpec: QuickSpec {
 
                     expect(backgroundView.visibility).to(beCloseTo(0))
                     expect(blurView?.alpha).to(beCloseTo(0))
-                    expect(waitForBlurredImage(in: backgroundView, timeout: 0.5)).notTo(beNil())
+                    expect(waitForBlurredImage(in: backgroundView)).notTo(beNil())
+                    expect(backgroundView.visibility).to(beCloseTo(0))
+                    expect(blurView?.alpha).to(beCloseTo(0))
                 }
 
                 it("captures background behind transition containers") {

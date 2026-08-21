@@ -8,13 +8,12 @@ on:
 
 permissions:
   contents: read
-  id-token: write
 
 jobs:
   unit-coverage:
     runs-on: macos-26
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Select Xcode
         run: sudo xcode-select -s /Applications/Xcode_26.4.1.app/Contents/Developer
@@ -52,13 +51,13 @@ jobs:
         run: xcrun xccov view --report Reports/coverage/unit/Fluidable.xcresult > Reports/coverage/unit/xccov.txt
 
       - name: Upload unit coverage to Codecov
-        uses: codecov/codecov-action@v6
+        uses: codecov/codecov-action@v7
         with:
           fail_ci_if_error: true
           flags: unit
           name: Fluidable unit coverage
           swift_project: Fluidable
-          use_oidc: true
+          token: ${{ secrets.CODECOV_TOKEN }}
 
   ui-coverage:
     runs-on: macos-26
@@ -70,7 +69,7 @@ jobs:
       FLUIDABLE_UI_TEST_SHARD_INDEX: ${{ matrix.shard }}
       FLUIDABLE_UI_TEST_SHARD_TOTAL: 4
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Select Xcode
         run: sudo xcode-select -s /Applications/Xcode_26.4.1.app/Contents/Developer
@@ -123,10 +122,10 @@ jobs:
         run: xcrun xccov view --report Reports/coverage/ui-shard-${{ matrix.shard }}/Fluidable.xcresult > Reports/coverage/ui-shard-${{ matrix.shard }}/xccov.txt
 
       - name: Upload UI coverage to Codecov
-        uses: codecov/codecov-action@v6
+        uses: codecov/codecov-action@v7
         with:
           fail_ci_if_error: true
           flags: ui
           name: Fluidable UI coverage shard ${{ matrix.shard }}
           swift_project: Fluidable
-          use_oidc: true
+          token: ${{ secrets.CODECOV_TOKEN }}
