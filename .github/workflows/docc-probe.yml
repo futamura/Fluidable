@@ -1,0 +1,46 @@
+name: DocC Probe
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  docc:
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ruby
+          bundler-cache: true
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_26.6.app/Contents/Developer
+
+      - name: Show versions
+        run: |
+          xcodebuild -version
+          swift --version
+
+      - name: Generate DocC site
+        run: DOCC_HOSTING_BASE_PATH=Fluidable bundle exec fastlane ios create_doc
+
+      - name: Verify DocC output
+        run: |
+          set -eu
+          test -f docs/index.html
+          test -f docs/.nojekyll
+          test -d docs/documentation
+          test -d docs/data
+          echo "files: $(find docs -type f | wc -l | tr -d ' ')"
+          echo "size: $(du -sh docs | cut -f1)"
+          echo "--- top level ---"
+          ls -1 docs
+          echo "--- documentation ---"
+          ls -1 docs/documentation
+          echo "--- hosting base path occurrences in index.html ---"
+          grep -o '/Fluidable/' docs/index.html | wc -l | tr -d ' '
