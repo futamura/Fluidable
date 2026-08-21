@@ -17,20 +17,20 @@ struct FluidNavigationParameters: FluidParametersCompatible {
     typealias DestinationViewControllerDelegate = FluidNavigationDestinationViewControllerDelegate
 
     /** References for `FluidViewControllerTransitioningDelegate` */
-    weak var controllerDelegate: ControllerDelegate? = nil
+    weak var controllerDelegate: ControllerDelegate?
 
     /** References for controllers */
-    weak var rootNavigationController: FluidNavigationController? = nil
+    weak var rootNavigationController: FluidNavigationController?
     weak var sourceViewController: FluidSourceViewController! = nil
     weak var destinationViewController: FluidDestinationViewController! = nil
 
     /** References for delegates */
-    weak var rootNavigationControllerDelegate: RootNavigationControllerDelegate? = nil
+    weak var rootNavigationControllerDelegate: RootNavigationControllerDelegate?
     weak var sourceViewControllerDelegate: SourceViewControllerDelegate! = nil
     weak var destinationViewControllerDelegate: DestinationViewControllerDelegate! = nil
 
     /** References for `FluidResizableTransitionDelegate` */
-    var destinationResizableDelegate: FluidResizableTransitionDelegate? = nil
+    var destinationResizableDelegate: FluidResizableTransitionDelegate?
 
     /** An `UIViewControllerContextTransitioning` object. */
     weak var context: UIViewControllerContextTransitioning?
@@ -111,19 +111,19 @@ struct FluidNavigationParameters: FluidParametersCompatible {
     var shouldMaskCorner: Bool
 
     /** The `UIView` object for the animators. */
-    weak var interruptibleView: FluidInterruptibleView? = nil
-    weak var progressView: FluidProgressView? = nil
-    weak var backgroundView: FluidBackgroundCompatible? = nil
-    weak var shadowView: FluidShadowView? = nil
+    weak var interruptibleView: FluidInterruptibleView?
+    weak var progressView: FluidProgressView?
+    weak var backgroundView: FluidBackgroundCompatible?
+    weak var shadowView: FluidShadowView?
 
     /** The animators */
-    var interruptibleAnimator: FluidInterruptibleAnimator? = nil
-    var progressAnimator: FluidCoreAnimator? = nil
-    var progressBlock: FluidAnimatorCompatible.ProgressBlock? = nil
-    var stateBlock: FluidAnimatorCompatible.StateBlock? = nil
-    var backgroundAnimator: FluidPropertyAnimator? = nil
-    var framePropertyAnimators: [FluidPropertyAnimator]? = nil
-    var frameCoreAnimators: [FluidCoreAnimator]? = nil
-    var extraPropertyAnimators: [FluidPropertyAnimator]? = nil
-    var extraCoreAnimators: [FluidCoreAnimator]? = nil
+    var interruptibleAnimator: FluidInterruptibleAnimator?
+    var progressAnimator: FluidCoreAnimator?
+    var progressBlock: FluidAnimatorCompatible.ProgressBlock?
+    var stateBlock: FluidAnimatorCompatible.StateBlock?
+    var backgroundAnimator: FluidPropertyAnimator?
+    var framePropertyAnimators: [FluidPropertyAnimator]?
+    var frameCoreAnimators: [FluidCoreAnimator]?
+    var extraPropertyAnimators: [FluidPropertyAnimator]?
+    var extraCoreAnimators: [FluidCoreAnimator]?
 }
