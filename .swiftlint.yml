@@ -23,11 +23,6 @@ cyclomatic_complexity:
 force_cast: warning
 force_try: warning
 
-identifier_name:
-  excluded:
-    - id
-    - ok
-
 excluded:
   - .build
   - .bundle

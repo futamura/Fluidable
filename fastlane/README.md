@@ -39,6 +39,14 @@ Run Xcode coverage and export an xccov text report
 
 Run SwiftLint
 
+### ios lint_baseline
+
+```sh
+[bundle exec] fastlane ios lint_baseline
+```
+
+Regenerate the SwiftLint baseline
+
 ### ios create_doc
 
 ```sh

@@ -10,6 +10,22 @@ permissions:
   contents: read
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up mise
+        uses: jdx/mise-action@v4
+        with:
+          install_args: swiftlint
+
+      - name: Show SwiftLint version
+        run: swiftlint version
+
+      - name: SwiftLint
+        run: swiftlint lint --config .swiftlint.yml --baseline .swiftlint-baseline.json --strict --reporter github-actions-logging Sources
+
   test:
     runs-on: macos-26
     steps:
