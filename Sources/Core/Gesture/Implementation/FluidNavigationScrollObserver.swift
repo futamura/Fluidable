@@ -44,7 +44,7 @@ internal class FluidNavigationScrollObserver: NSObject, FluidScrollObservable {
     var isTransitioning: Bool = false
 
     /** The `Boolean` value that stores a default `UIScrollView.contentOffset` value. */
-    var lockedContentOffset: CGPoint? = nil
+    var lockedContentOffset: CGPoint?
     /** The `Boolean` value that stores default interaction state. */
     var defaultIsUserInteractionEnabled: Bool = true
     /** The `Boolean` value that stores default isScrollEnabled value. */
