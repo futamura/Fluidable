@@ -12,6 +12,7 @@ ios_simulator_triple = "arm64-apple-ios15.0-simulator"
 coverage_dir = File.join(repo_root, "Reports", "coverage")
 coverage_report_path = File.join(repo_root, "Reports", "coverage", "xccov.txt")
 docc_output_path = File.join(repo_root, "docs")
+swiftlint_baseline = ".swiftlint-baseline.json"
 docc_hosting_base_path = ENV.fetch("DOCC_HOSTING_BASE_PATH", project_name)
 
 def escape_sh(value)
@@ -136,7 +137,14 @@ platform :ios do
   desc "Run SwiftLint"
   lane :lint do
     Dir.chdir(repo_root) do
-      sh("swiftlint lint --config .swiftlint.yml Sources")
+      sh("swiftlint lint --config .swiftlint.yml --baseline #{swiftlint_baseline} --strict Sources")
+    end
+  end
+
+  desc "Regenerate the SwiftLint baseline"
+  lane :lint_baseline do
+    Dir.chdir(repo_root) do
+      sh("swiftlint lint --config .swiftlint.yml --write-baseline #{swiftlint_baseline} Sources")
     end
   end
 
