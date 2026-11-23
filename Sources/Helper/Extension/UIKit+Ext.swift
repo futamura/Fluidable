@@ -424,7 +424,7 @@ internal extension UIScrollView {
 
     /** A UIEdgeInsets value indicating a effective content offset depending on the contentInsetAdjustmentBehavior value. */
     var effectiveContentInset: UIEdgeInsets {
-        if #available(iOS 11, *) { return self.adjustedContentInset } else { return self.contentInset }
+        return self.adjustedContentInset
     }
 }
 

@@ -843,13 +843,8 @@ final class EnumSpec: QuickSpec {
                     expect(drawerRight.interactionBehavior.isVertical).to(equal(false))
                     expect(drawerRight.interactionBehavior.isBidirectional).to(equal(false))
 
-                    if FluidConst.isNewerSystemVersion {
-                        expect(fluid.defaultPresentEasing).to(equal(FluidAnimatorEasing.spring(dampingRatio: FluidConst.springDampingRatio, frequencyResponse: FluidConst.springFrequencyResponse)))
-                        expect(scale.defaultPresentEasing).to(equal(FluidAnimatorEasing.spring(dampingRatio: FluidConst.springDampingRatio, frequencyResponse: FluidConst.springFrequencyResponse)))
-                    } else {
-                        expect(fluid.defaultPresentEasing).to(equal(FluidAnimatorEasing.easeInOutQuad))
-                        expect(scale.defaultPresentEasing).to(equal(FluidAnimatorEasing.easeInOutQuad))
-                    }
+                    expect(fluid.defaultPresentEasing).to(equal(FluidAnimatorEasing.spring(dampingRatio: FluidConst.springDampingRatio, frequencyResponse: FluidConst.springFrequencyResponse)))
+                    expect(scale.defaultPresentEasing).to(equal(FluidAnimatorEasing.spring(dampingRatio: FluidConst.springDampingRatio, frequencyResponse: FluidConst.springFrequencyResponse)))
                     expect(slideRight.defaultPresentEasing).to(equal(FluidAnimatorEasing.easeOutCubic))
                     expect(slideLeft.defaultPresentEasing).to(equal(FluidAnimatorEasing.easeOutCubic))
                     expect(slideTop.defaultPresentEasing).to(equal(FluidAnimatorEasing.easeOutCubic))
@@ -859,13 +854,8 @@ final class EnumSpec: QuickSpec {
                     expect(drawerTop.defaultPresentEasing).to(equal(FluidAnimatorEasing.easeOutCubic))
                     expect(drawerBottom.defaultPresentEasing).to(equal(FluidAnimatorEasing.easeOutCubic))
 
-                    if FluidConst.isNewerSystemVersion {
-                        expect(fluid.defaultDismissEasing).to(equal(FluidAnimatorEasing.spring(dampingRatio: FluidConst.springDampingRatio, frequencyResponse: FluidConst.springFrequencyResponse)))
-                        expect(scale.defaultDismissEasing).to(equal(FluidAnimatorEasing.spring(dampingRatio: FluidConst.springDampingRatio, frequencyResponse: FluidConst.springFrequencyResponse)))
-                    } else {
-                        expect(fluid.defaultDismissEasing).to(equal(FluidAnimatorEasing.easeInOutQuad))
-                        expect(scale.defaultDismissEasing).to(equal(FluidAnimatorEasing.easeInOutQuad))
-                    }
+                    expect(fluid.defaultDismissEasing).to(equal(FluidAnimatorEasing.spring(dampingRatio: FluidConst.springDampingRatio, frequencyResponse: FluidConst.springFrequencyResponse)))
+                    expect(scale.defaultDismissEasing).to(equal(FluidAnimatorEasing.spring(dampingRatio: FluidConst.springDampingRatio, frequencyResponse: FluidConst.springFrequencyResponse)))
                     expect(slideRight.defaultDismissEasing).to(equal(FluidAnimatorEasing.easeInOutSine))
                     expect(slideLeft.defaultDismissEasing).to(equal(FluidAnimatorEasing.easeInOutSine))
                     expect(slideTop.defaultDismissEasing).to(equal(FluidAnimatorEasing.easeInOutSine))

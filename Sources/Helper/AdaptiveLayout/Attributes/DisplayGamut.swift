@@ -11,7 +11,6 @@ import UIKit
 /**
  `AdaptiveAttribute` correlating to `init(displayGamut: UIDisplayGamut)`
  */
-@available(iOS 10.0, *)
 public enum DisplayGamut: AdaptiveAttribute {
 
     /** Correlates to `UITraitCollection(displayGamut: .SRGB)` */

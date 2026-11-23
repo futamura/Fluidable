@@ -72,13 +72,7 @@ extension FluidTransitionViewAnimator {
             self.layout.apply(edges: .init(size: containerSize, frame: targetFrame))
             self.layoutContainerView.updateLayoutImmediately()
             /* NOTE: Mask */
-            if #available(iOS 11.0, *) {
-                self.layoutContainerView.layer.cornerRadius = targetCornerRadius
-            } else {
-                self.layoutContainerView.layer.mask = FluidCornerMaskLayer(bounds: targetFrame.bounds,
-                                                                           cornerRadius: targetCornerRadius,
-                                                                           roundingCorners: self.storedFromStyle.roundingCorners)
-            }
+            self.layoutContainerView.layer.cornerRadius = targetCornerRadius
             /* NOTE: Shadow */
             if self.shadowView != nil {
                 /* NOTE: Shadow corner radius */
@@ -167,13 +161,7 @@ extension FluidTransitionViewAnimator {
             let rangeCornerRadius: CGFloat = (self.storedFromStyle.cornerRadius - self.storedToStyle.cornerRadius) * 0.8
             let targetCornerRadius: CGFloat = self.storedFromStyle.cornerRadius - rangeCornerRadius * self.interactionProgress
             /* NOTE: Mask */
-            if #available(iOS 11.0, *) {
-                self.layoutContainerView.layer.cornerRadius = targetCornerRadius
-            } else {
-                self.layoutContainerView.layer.mask = FluidCornerMaskLayer(bounds: self.storedFromFrame.bounds,
-                                                                           cornerRadius: targetCornerRadius,
-                                                                           roundingCorners: self.storedFromStyle.roundingCorners)
-            }
+            self.layoutContainerView.layer.cornerRadius = targetCornerRadius
             /* NOTE: Shadow */
             guard self.shadowView != nil else { return }
             /* NOTE: Shadow frame */
@@ -323,13 +311,7 @@ extension FluidTransitionViewAnimator {
             self.layout.apply(edges: self.baseConstants)
             self.layoutContainerView.updateLayoutImmediately()
             /* NOTE: Mask */
-            if #available(iOS 11.0, *) {
-                self.layoutContainerView.layer.cornerRadius = self.storedFromStyle.cornerRadius
-            } else {
-                self.layoutContainerView.layer.mask = FluidCornerMaskLayer(bounds: self.layoutContainerView.frame.bounds,
-                                                                           cornerRadius: self.storedFromStyle.cornerRadius,
-                                                                           roundingCorners: self.storedFromStyle.roundingCorners)
-            }
+            self.layoutContainerView.layer.cornerRadius = self.storedFromStyle.cornerRadius
             /* NOTE: Shadow */
             if let shadowView: FluidShadowView = self.shadowView {
                 self.applyShadowProperties(frame: self.layoutContainerView.frame,

@@ -183,8 +183,8 @@ extension FluidPresentationStyle {
 extension FluidPresentationStyle {
     @MainActor var defaultPresentEasing: FluidAnimatorEasing {
         switch self {
-        case .fluid:  if FluidConst.isNewerSystemVersion { return .spring } else { return .easeInOutQuad }
-        case .scale:  if FluidConst.isNewerSystemVersion { return .spring } else { return .easeInOutQuad }
+        case .fluid:  return .spring
+        case .scale:  return .spring
         case .slide:  return .easeOutCubic
         case .drawer: return .easeOutCubic
         }
@@ -194,8 +194,8 @@ extension FluidPresentationStyle {
 extension FluidPresentationStyle {
     @MainActor var defaultDismissEasing: FluidAnimatorEasing {
         switch self {
-        case .fluid:  if FluidConst.isNewerSystemVersion { return .spring } else { return .easeInOutQuad }
-        case .scale:  if FluidConst.isNewerSystemVersion { return .spring } else { return .easeInOutQuad }
+        case .fluid:  return .spring
+        case .scale:  return .spring
         case .slide:  return .easeInOutSine
         case .drawer: return .easeInOutSine
         }

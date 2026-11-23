@@ -11,7 +11,6 @@ import UIKit
 /**
  `AdaptiveAttribute` correlating to `init(preferredContentSizeCategory: UIContentSizeCategory)`
  */
-@available(iOS 10.0, *)
 public enum SizeCategory: AdaptiveAttribute {
 
     /** Correlates to `UITraitCollection(preferredContentSizeCategory: .extraSmall) */

@@ -170,16 +170,7 @@ public enum FluidAnimatorEasing: Sendable {
 }
 
 internal extension FluidAnimatorEasing {
-    var isAvailable: Bool {
-        if FluidConst.isNewerSystemVersion {
-            return true
-        } else {
-            switch self {
-            case .easeInBack, .easeOutBack, .easeInOutBack, .spring: return false
-            default: return true
-            }
-        }
-    }
+    var isAvailable: Bool { true }
 }
 
 internal extension FluidAnimatorEasing {

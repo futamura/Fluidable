@@ -18,7 +18,7 @@ internal class FluidInterruptibleAnimator: UIViewPropertyAnimator {
         super.init(duration: duration, timingParameters: parameters)
         /* FIXME: Convert progress with linear timing function */
         /* FIXME: The interactive transition glitches when the scrubsLinearly value set to true */
-        if #available(iOS 11.0, *) { self.scrubsLinearly = false }
+        self.scrubsLinearly = false
     }
 
     deinit { Logger()?.log("🚨🧹🧹🧹", ["id: " + String(describing: identifier)]) }
@@ -68,7 +68,6 @@ extension FluidInterruptibleAnimator {
         ])
     }
 
-    @available(iOS 10.0, *)
     override func finishAnimation(at finalPosition: UIViewAnimatingPosition) {
         super.finishAnimation(at: finalPosition)
         Logger()?.log("🚨⏩", [

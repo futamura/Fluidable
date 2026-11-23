@@ -142,26 +142,15 @@ extension FluidViewAnimatorCompatible {
         /* NOTE: Background */
         let backgroundAnimator: FluidPropertyAnimator? = {
             guard !self.animationType.isRotate, self.backgroundView != nil else { return nil }
-            if #available(iOS 11, *) {
-                let transitionDuration: TimeInterval = !isReversed ? self.activeDuration * 0.5 : FluidConst.fluidInteractionReverseDuration
-                let targetVisibility: CGFloat = !isReversed && self.animationType.isDismiss ? 0 : 1
-                let animator: FluidPropertyAnimator = .init(duration: transitionDuration, easing: .easeInOutQuad, id: "backgroundAnimator (\(String(describing: self.animationType).capitalized))")
-                animator.add({ [weak self] in
-                            self?.backgroundView?.visibility = targetVisibility
-                        })
-                        /* IMPORTANT: Keep the background animator active until the all animators are finished */
-                        .pausesOnCompletion(true)
-                return animator
-            } else {
-                let backgroundDuration: TimeInterval = self.activeDuration
-                /* FIXME: iOS 10 does not support the `pausesOnCompletion` property, so use illegal values as the workaround */
-                let targetVisibility: CGFloat = self.animationType.isDismiss ? -1 : 2
-                let animator: FluidPropertyAnimator = .init(duration: backgroundDuration, easing: .easeInOutQuad, id: "backgroundAnimator (\(String(describing: self.animationType).capitalized))")
-                animator.add({ [weak self] in
-                    self?.backgroundView?.visibility = targetVisibility
-                })
-                return animator
-            }
+            let transitionDuration: TimeInterval = !isReversed ? self.activeDuration * 0.5 : FluidConst.fluidInteractionReverseDuration
+            let targetVisibility: CGFloat = !isReversed && self.animationType.isDismiss ? 0 : 1
+            let animator: FluidPropertyAnimator = .init(duration: transitionDuration, easing: .easeInOutQuad, id: "backgroundAnimator (\(String(describing: self.animationType).capitalized))")
+            animator.add({ [weak self] in
+                        self?.backgroundView?.visibility = targetVisibility
+                    })
+                    /* IMPORTANT: Keep the background animator active until the all animators are finished */
+                    .pausesOnCompletion(true)
+            return animator
         }()
         /* NOTE: Configure animators */
         self.parameters.configureBackgroundAnimator(backgroundAnimator: backgroundAnimator)
@@ -173,7 +162,6 @@ extension FluidViewAnimatorCompatible {
     /**
      Configuring shadow animation
      */
-    @available(iOS 11.0, *)
     func createShadowPropertyAnimation(_ isReversed: Bool = false) -> [FluidAnimatorCompatible] {
         guard self.shouldCastShadow, let shadowView: FluidShadowView = self.shadowView else { return [] }
         var animators: [FluidAnimatorCompatible] = [FluidAnimatorCompatible]()
@@ -260,7 +248,6 @@ extension FluidViewAnimatorCompatible {
         return animators
     }
 
-    @available(iOS 10.0, *)
     func createShadowCoreAnimation(_ isReversed: Bool = false) -> [FluidAnimatorCompatible] {
         guard self.shouldCastShadow, let shadowView: FluidShadowView = self.shadowView else { return [] }
         var animators: [FluidAnimatorCompatible] = [FluidAnimatorCompatible]()
@@ -341,7 +328,6 @@ extension FluidViewAnimatorCompatible {
  Configuring corner radius animation
  */
 extension FluidViewAnimatorCompatible {
-    @available(iOS 11.0, *)
     func createCornerRadiusPropertyAnimation(_ isReversed: Bool = false) -> [FluidAnimatorCompatible] {
         guard self.shouldMaskCorner else { return [] }
         /* NOTE: 👌 Configure properties to animate */
@@ -365,7 +351,6 @@ extension FluidViewAnimatorCompatible {
         return [cornerRadiusAnimator]
     }
 
-    @available(iOS 10.0, *)
     func createCornerRadiusCoreAnimation(_ isReversed: Bool = false) -> [FluidAnimatorCompatible] {
         guard self.shouldMaskCorner else { return [] }
         /* NOTE: 👌 Configure properties to animate */

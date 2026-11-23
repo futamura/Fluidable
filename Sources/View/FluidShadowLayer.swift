@@ -116,20 +116,11 @@ extension FluidShadowLayer {
     static func createShadowPath(frame: CGRect,
                                  cornerRadius: CGFloat, roundingCorners: UIRectCorner?,
                                  shadowRadius: CGFloat, shadowOffset: CGSize) -> CGPath? {
-        if #available(iOS 11.0, *) {
-            let offset: CGSize = .zero
-            var rect: CGRect = frame
-            rect.origin.x = offset.width
-            rect.origin.y = offset.height
-            return UIBezierPath(bounds: rect, cornerRadius: cornerRadius, roundingCorners: roundingCorners).cgPath
-        } else {
-            let diameter: CGFloat = 0
-            let offset: CGSize = .zero
-            var rect: CGRect = frame
-            rect.origin.x = diameter - offset.width
-            rect.origin.y = diameter - offset.height
-            return UIBezierPath(bounds: rect, cornerRadius: cornerRadius, roundingCorners: roundingCorners).cgPath
-        }
+        let offset: CGSize = .zero
+        var rect: CGRect = frame
+        rect.origin.x = offset.width
+        rect.origin.y = offset.height
+        return UIBezierPath(bounds: rect, cornerRadius: cornerRadius, roundingCorners: roundingCorners).cgPath
     }
 
     static func createShadowMask(bounds: CGRect,
