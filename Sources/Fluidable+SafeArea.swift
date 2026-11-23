@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 @MainActor extension Fluidable where Self: UINavigationController {
-    @available(iOS 11, *)
     internal func updateSafeAreaForcibly() {
         guard !self.isBeingPresented && !self.isBeingDismissed,
               self.fluidDelegate is FluidTransitionRootNavigationControllerDelegate,
@@ -61,7 +60,6 @@ import UIKit
 }
 
 @MainActor extension Fluidable where Self: UIViewController {
-    @available(iOS 11, *)
     internal func updateSafeAreaForcibly() {
         guard !self.isBeingPresented && !self.isBeingDismissed,
               self is UINavigationController == false,
@@ -119,8 +117,7 @@ public protocol FluidNavigationBarCompatible: NSObjectProtocol {
 
 @MainActor public extension FluidNavigationBarCompatible where Self: UINavigationBar {
     func updateNavigationBarFrame() {
-        guard #available(iOS 11.0, *),
-              let nc: FluidNavigationController = self.navigationController as? FluidNavigationController,
+        guard let nc: FluidNavigationController = self.navigationController as? FluidNavigationController,
               !nc.isNavigationBarHidden,
               let delegate: FluidViewControllerTransitioningDelegate = nc.transitioningDelegate as? FluidViewControllerTransitioningDelegate,
               let param: FluidTransitionParameters = delegate.dismissDriver.parameters,

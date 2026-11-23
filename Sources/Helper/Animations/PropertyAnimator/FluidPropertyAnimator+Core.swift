@@ -340,7 +340,6 @@ public extension FluidPropertyAnimator {
      - parameter value: The `scrubsLinearly` value.
      - returns: The `FluidPropertyAnimator` object.
      */
-    @available(iOS 11.0, *)
     @discardableResult
     func scrubsLinearly(_ value: Bool) -> FluidPropertyAnimator {
         self.scrubsLinearly = value
@@ -353,7 +352,6 @@ public extension FluidPropertyAnimator {
      - parameter value: The `pausesOnCompletion` value.
      - returns: The `FluidPropertyAnimator` object.
      */
-    @available(iOS 11.0, *)
     @discardableResult
     func pausesOnCompletion(_ value: Bool) -> FluidPropertyAnimator {
         self.pausesOnCompletion = value
@@ -383,7 +381,6 @@ public extension FluidPropertyAnimator {
      - parameter pausesOnCompletion: The `pausesOnCompletion` value.
      - returns: The `FluidPropertyAnimator` object.
      */
-    @available(iOS 11.0, *)
     @discardableResult
     func configure(scrubsLinearly: Bool? = nil, pausesOnCompletion: Bool? = nil) -> FluidPropertyAnimator {
         self.scrubsLinearly = scrubsLinearly ?? self.scrubsLinearly

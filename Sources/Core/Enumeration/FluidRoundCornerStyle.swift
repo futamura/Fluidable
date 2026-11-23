@@ -50,7 +50,6 @@ public struct FluidRoundCornerStyle: OptionSet, Sendable {
     }
 
     /** The `CACornerMask` value, available on iOS 11 or later. */
-    @available(iOS 11.0, *)
     public var maskedCorners: CACornerMask {
         var corners: CACornerMask = []
         if self.contains(.top) { corners.formUnion([.layerMinXMinYCorner, .layerMaxXMinYCorner]) }

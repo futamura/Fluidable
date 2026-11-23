@@ -96,7 +96,7 @@ public struct FluidFinalFrameStyle: FluidFrameStyleCompatible {
         self.shadowOpacity = shadowOpacity
         self.shadowRadius = shadowRadius
         self.shadowOffset = shadowOffset
-        self.isTransparentBackground = !FluidConst.isNewerSystemVersion
+        self.isTransparentBackground = false
     }
 }
 

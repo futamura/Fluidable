@@ -843,13 +843,8 @@ final class EnumSpec: QuickSpec {
                     expect(drawerRight.interactionBehavior.isVertical).to(equal(false))
                     expect(drawerRight.interactionBehavior.isBidirectional).to(equal(false))
 
-                    if FluidConst.isNewerSystemVersion {
-                        expect(fluid.defaultPresentEasing).to(equal(FluidAnimatorEasing.spring(dampingRatio: FluidConst.springDampingRatio, frequencyResponse: FluidConst.springFrequencyResponse)))
-                        expect(scale.defaultPresentEasing).to(equal(FluidAnimatorEasing.spring(dampingRatio: FluidConst.springDampingRatio, frequencyResponse: FluidConst.springFrequencyResponse)))
-                    } else {
-                        expect(fluid.defaultPresentEasing).to(equal(FluidAnimatorEasing.easeInOutQuad))
-                        expect(scale.defaultPresentEasing).to(equal(FluidAnimatorEasing.easeInOutQuad))
-                    }
+                    expect(fluid.defaultPresentEasing).to(equal(FluidAnimatorEasing.spring(dampingRatio: FluidConst.springDampingRatio, frequencyResponse: FluidConst.springFrequencyResponse)))
+                    expect(scale.defaultPresentEasing).to(equal(FluidAnimatorEasing.spring(dampingRatio: FluidConst.springDampingRatio, frequencyResponse: FluidConst.springFrequencyResponse)))
                     expect(slideRight.defaultPresentEasing).to(equal(FluidAnimatorEasing.easeOutCubic))
                     expect(slideLeft.defaultPresentEasing).to(equal(FluidAnimatorEasing.easeOutCubic))
                     expect(slideTop.defaultPresentEasing).to(equal(FluidAnimatorEasing.easeOutCubic))
@@ -859,13 +854,8 @@ final class EnumSpec: QuickSpec {
                     expect(drawerTop.defaultPresentEasing).to(equal(FluidAnimatorEasing.easeOutCubic))
                     expect(drawerBottom.defaultPresentEasing).to(equal(FluidAnimatorEasing.easeOutCubic))
 
-                    if FluidConst.isNewerSystemVersion {
-                        expect(fluid.defaultDismissEasing).to(equal(FluidAnimatorEasing.spring(dampingRatio: FluidConst.springDampingRatio, frequencyResponse: FluidConst.springFrequencyResponse)))
-                        expect(scale.defaultDismissEasing).to(equal(FluidAnimatorEasing.spring(dampingRatio: FluidConst.springDampingRatio, frequencyResponse: FluidConst.springFrequencyResponse)))
-                    } else {
-                        expect(fluid.defaultDismissEasing).to(equal(FluidAnimatorEasing.easeInOutQuad))
-                        expect(scale.defaultDismissEasing).to(equal(FluidAnimatorEasing.easeInOutQuad))
-                    }
+                    expect(fluid.defaultDismissEasing).to(equal(FluidAnimatorEasing.spring(dampingRatio: FluidConst.springDampingRatio, frequencyResponse: FluidConst.springFrequencyResponse)))
+                    expect(scale.defaultDismissEasing).to(equal(FluidAnimatorEasing.spring(dampingRatio: FluidConst.springDampingRatio, frequencyResponse: FluidConst.springFrequencyResponse)))
                     expect(slideRight.defaultDismissEasing).to(equal(FluidAnimatorEasing.easeInOutSine))
                     expect(slideLeft.defaultDismissEasing).to(equal(FluidAnimatorEasing.easeInOutSine))
                     expect(slideTop.defaultDismissEasing).to(equal(FluidAnimatorEasing.easeInOutSine))
@@ -1539,23 +1529,21 @@ final class EnumSpec: QuickSpec {
                     expect(topRight.roundingCorners).to(equal([.topLeft, .topRight, .bottomRight]))
                     expect(bottomLeft.roundingCorners).to(equal([.topLeft, .bottomLeft, .bottomRight]))
                 }
-                if #available(iOS 11.0, *) {
-                    it("CACornerMask") {
-                        expect(top.maskedCorners).to(equal([.layerMinXMinYCorner, .layerMaxXMinYCorner]))
-                        expect(right.maskedCorners).to(equal([.layerMaxXMinYCorner, .layerMaxXMaxYCorner]))
-                        expect(bottom.maskedCorners).to(equal([.layerMinXMaxYCorner, .layerMaxXMaxYCorner]))
-                        expect(left.maskedCorners).to(equal([.layerMinXMinYCorner, .layerMinXMaxYCorner]))
-                        expect(all.maskedCorners).to(equal([.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner]))
-                        expect(none.maskedCorners).to(equal([]))
-                    }
-                    it("CACornerMaskCombination") {
-                        let allMask: CACornerMask = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-                        expect(fourSides.maskedCorners).to(equal(allMask))
-                        expect(topRightLeft.maskedCorners).to(equal(allMask))
-                        expect(topBottom.maskedCorners).to(equal(allMask))
-                        expect(topRight.maskedCorners).to(equal([.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner]))
-                        expect(bottomLeft.maskedCorners).to(equal([.layerMinXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]))
-                    }
+                it("CACornerMask") {
+                    expect(top.maskedCorners).to(equal([.layerMinXMinYCorner, .layerMaxXMinYCorner]))
+                    expect(right.maskedCorners).to(equal([.layerMaxXMinYCorner, .layerMaxXMaxYCorner]))
+                    expect(bottom.maskedCorners).to(equal([.layerMinXMaxYCorner, .layerMaxXMaxYCorner]))
+                    expect(left.maskedCorners).to(equal([.layerMinXMinYCorner, .layerMinXMaxYCorner]))
+                    expect(all.maskedCorners).to(equal([.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner]))
+                    expect(none.maskedCorners).to(equal([]))
+                }
+                it("CACornerMaskCombination") {
+                    let allMask: CACornerMask = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+                    expect(fourSides.maskedCorners).to(equal(allMask))
+                    expect(topRightLeft.maskedCorners).to(equal(allMask))
+                    expect(topBottom.maskedCorners).to(equal(allMask))
+                    expect(topRight.maskedCorners).to(equal([.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner]))
+                    expect(bottomLeft.maskedCorners).to(equal([.layerMinXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]))
                 }
                 it("Description") {
                     expect(String(describing: top)).to(beginWith("top"))

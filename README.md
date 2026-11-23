@@ -27,7 +27,7 @@ Fluid                      |  Drawer                   | Slide
 ## Requirements
 
 - iOS 15.0 or later
-- Xcode 26 / Swift 6.3 compiler, using Swift 6 language mode
+- Xcode 26 or later (Swift 6.3 compiler or later), using Swift 6 language mode. CI runs on Xcode 27
 
 ## Installation
 

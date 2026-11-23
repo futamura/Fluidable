@@ -150,10 +150,8 @@ extension NavigationTableViewController: FluidTransitionDestinationConfiguration
         scrollAnimator.add({ [weak self] in
             guard let `self`: NavigationTableViewController = self else { return }
             self.tableView.contentOffset.y = 0
-            if #available(iOS 11.0, *) {
-                self.tableView.contentInset.top -= self.view.safeAreaInsets.top
-            }
-            if #available(iOS 11.0, *), transitionStyle.isFluid {
+            self.tableView.contentInset.top -= self.view.safeAreaInsets.top
+            if transitionStyle.isFluid {
                 self.tableView.contentInset.left -= self.view.safeAreaInsets.left
                 self.tableView.contentInset.right = self.view.safeAreaInsets.right
             }
@@ -161,7 +159,7 @@ extension NavigationTableViewController: FluidTransitionDestinationConfiguration
         animators.append(scrollAnimator)
         /* NOTE: TableView (UIViewPropertyAnimator) */
         self.transitionProgress = 0
-        if #available(iOS 11.0, *), transitionStyle.isFluid {
+        if transitionStyle.isFluid {
             self.subviewLeadingConstraint.constant = -self.view.safeAreaInsets.left
             self.subviewTrailingConstraint.constant = self.view.safeAreaInsets.right
         }

@@ -78,40 +78,34 @@ public extension UITraitCollection {
         @unknown default: break
         }
 
-        if #available(iOS 10.0, *) {
-            switch layoutDirection {
-            case .leftToRight: attributes.append(LayoutDirection.leftToRight)
-            case .rightToLeft: attributes.append(LayoutDirection.rightToLeft)
-            case .unspecified: break
-            @unknown default: break
-            }
+        switch layoutDirection {
+        case .leftToRight: attributes.append(LayoutDirection.leftToRight)
+        case .rightToLeft: attributes.append(LayoutDirection.rightToLeft)
+        case .unspecified: break
+        @unknown default: break
         }
 
-        if #available(iOS 10.0, *) {
-            switch preferredContentSizeCategory {
-            case .extraSmall: attributes.append(SizeCategory.extraSmall)
-            case .small: attributes.append(SizeCategory.small)
-            case .medium: attributes.append(SizeCategory.medium)
-            case .large: attributes.append(SizeCategory.large)
-            case .extraLarge: attributes.append(SizeCategory.extraLarge)
-            case .extraExtraLarge: attributes.append(SizeCategory.extraExtraLarge)
-            case .extraExtraExtraLarge: attributes.append(SizeCategory.extraExtraExtraLarge)
-            case .accessibilityMedium: attributes.append(SizeCategory.accessibilityMedium)
-            case .accessibilityLarge: attributes.append(SizeCategory.accessibilityLarge)
-            case .accessibilityExtraLarge: attributes.append(SizeCategory.accessibilityExtraLarge)
-            case .accessibilityExtraExtraLarge: attributes.append(SizeCategory.accessibilityExtraExtraLarge)
-            case .accessibilityExtraExtraExtraLarge: attributes.append(SizeCategory.accessibilityExtraExtraExtraLarge)
-            default: break
-            }
+        switch preferredContentSizeCategory {
+        case .extraSmall: attributes.append(SizeCategory.extraSmall)
+        case .small: attributes.append(SizeCategory.small)
+        case .medium: attributes.append(SizeCategory.medium)
+        case .large: attributes.append(SizeCategory.large)
+        case .extraLarge: attributes.append(SizeCategory.extraLarge)
+        case .extraExtraLarge: attributes.append(SizeCategory.extraExtraLarge)
+        case .extraExtraExtraLarge: attributes.append(SizeCategory.extraExtraExtraLarge)
+        case .accessibilityMedium: attributes.append(SizeCategory.accessibilityMedium)
+        case .accessibilityLarge: attributes.append(SizeCategory.accessibilityLarge)
+        case .accessibilityExtraLarge: attributes.append(SizeCategory.accessibilityExtraLarge)
+        case .accessibilityExtraExtraLarge: attributes.append(SizeCategory.accessibilityExtraExtraLarge)
+        case .accessibilityExtraExtraExtraLarge: attributes.append(SizeCategory.accessibilityExtraExtraExtraLarge)
+        default: break
         }
 
-        if #available(iOS 10.0, *) {
-            switch displayGamut {
-            case .SRGB: attributes.append(DisplayGamut.SRGB)
-            case .P3: attributes.append(DisplayGamut.P3)
-            case .unspecified: break
-            @unknown default: break
-            }
+        switch displayGamut {
+        case .SRGB: attributes.append(DisplayGamut.SRGB)
+        case .P3: attributes.append(DisplayGamut.P3)
+        case .unspecified: break
+        @unknown default: break
         }
 
         return attributes
