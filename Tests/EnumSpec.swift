@@ -1529,23 +1529,21 @@ final class EnumSpec: QuickSpec {
                     expect(topRight.roundingCorners).to(equal([.topLeft, .topRight, .bottomRight]))
                     expect(bottomLeft.roundingCorners).to(equal([.topLeft, .bottomLeft, .bottomRight]))
                 }
-                if #available(iOS 11.0, *) {
-                    it("CACornerMask") {
-                        expect(top.maskedCorners).to(equal([.layerMinXMinYCorner, .layerMaxXMinYCorner]))
-                        expect(right.maskedCorners).to(equal([.layerMaxXMinYCorner, .layerMaxXMaxYCorner]))
-                        expect(bottom.maskedCorners).to(equal([.layerMinXMaxYCorner, .layerMaxXMaxYCorner]))
-                        expect(left.maskedCorners).to(equal([.layerMinXMinYCorner, .layerMinXMaxYCorner]))
-                        expect(all.maskedCorners).to(equal([.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner]))
-                        expect(none.maskedCorners).to(equal([]))
-                    }
-                    it("CACornerMaskCombination") {
-                        let allMask: CACornerMask = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-                        expect(fourSides.maskedCorners).to(equal(allMask))
-                        expect(topRightLeft.maskedCorners).to(equal(allMask))
-                        expect(topBottom.maskedCorners).to(equal(allMask))
-                        expect(topRight.maskedCorners).to(equal([.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner]))
-                        expect(bottomLeft.maskedCorners).to(equal([.layerMinXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]))
-                    }
+                it("CACornerMask") {
+                    expect(top.maskedCorners).to(equal([.layerMinXMinYCorner, .layerMaxXMinYCorner]))
+                    expect(right.maskedCorners).to(equal([.layerMaxXMinYCorner, .layerMaxXMaxYCorner]))
+                    expect(bottom.maskedCorners).to(equal([.layerMinXMaxYCorner, .layerMaxXMaxYCorner]))
+                    expect(left.maskedCorners).to(equal([.layerMinXMinYCorner, .layerMinXMaxYCorner]))
+                    expect(all.maskedCorners).to(equal([.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner]))
+                    expect(none.maskedCorners).to(equal([]))
+                }
+                it("CACornerMaskCombination") {
+                    let allMask: CACornerMask = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+                    expect(fourSides.maskedCorners).to(equal(allMask))
+                    expect(topRightLeft.maskedCorners).to(equal(allMask))
+                    expect(topBottom.maskedCorners).to(equal(allMask))
+                    expect(topRight.maskedCorners).to(equal([.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner]))
+                    expect(bottomLeft.maskedCorners).to(equal([.layerMinXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]))
                 }
                 it("Description") {
                     expect(String(describing: top)).to(beginWith("top"))

@@ -2664,30 +2664,28 @@ final class UIKitSpec: QuickSpec {
                 expect(ForceTouch.available.generateTraitCollection().forceTouchCapability).to(equal(.available))
                 expect(ForceTouch.unavailable.generateTraitCollection().forceTouchCapability).to(equal(.unavailable))
 
-                if #available(iOS 10.0, *) {
-                    expect(LayoutDirection.leftToRight.generateTraitCollection().layoutDirection).to(equal(.leftToRight))
-                    expect(LayoutDirection.rightToLeft.generateTraitCollection().layoutDirection).to(equal(.rightToLeft))
-                    expect(DisplayGamut.SRGB.generateTraitCollection().displayGamut).to(equal(.SRGB))
-                    expect(DisplayGamut.P3.generateTraitCollection().displayGamut).to(equal(.P3))
+                expect(LayoutDirection.leftToRight.generateTraitCollection().layoutDirection).to(equal(.leftToRight))
+                expect(LayoutDirection.rightToLeft.generateTraitCollection().layoutDirection).to(equal(.rightToLeft))
+                expect(DisplayGamut.SRGB.generateTraitCollection().displayGamut).to(equal(.SRGB))
+                expect(DisplayGamut.P3.generateTraitCollection().displayGamut).to(equal(.P3))
 
-                    let sizeCategories: [(SizeCategory, UIContentSizeCategory)] = [
-                        (.extraSmall, .extraSmall),
-                        (.small, .small),
-                        (.medium, .medium),
-                        (.large, .large),
-                        (.extraLarge, .extraLarge),
-                        (.extraExtraLarge, .extraExtraLarge),
-                        (.extraExtraExtraLarge, .extraExtraExtraLarge),
-                        (.accessibilityMedium, .accessibilityMedium),
-                        (.accessibilityLarge, .accessibilityLarge),
-                        (.accessibilityExtraLarge, .accessibilityExtraLarge),
-                        (.accessibilityExtraExtraLarge, .accessibilityExtraExtraLarge),
-                        (.accessibilityExtraExtraExtraLarge, .accessibilityExtraExtraExtraLarge),
-                    ]
+                let sizeCategories: [(SizeCategory, UIContentSizeCategory)] = [
+                    (.extraSmall, .extraSmall),
+                    (.small, .small),
+                    (.medium, .medium),
+                    (.large, .large),
+                    (.extraLarge, .extraLarge),
+                    (.extraExtraLarge, .extraExtraLarge),
+                    (.extraExtraExtraLarge, .extraExtraExtraLarge),
+                    (.accessibilityMedium, .accessibilityMedium),
+                    (.accessibilityLarge, .accessibilityLarge),
+                    (.accessibilityExtraLarge, .accessibilityExtraLarge),
+                    (.accessibilityExtraExtraLarge, .accessibilityExtraExtraLarge),
+                    (.accessibilityExtraExtraExtraLarge, .accessibilityExtraExtraExtraLarge),
+                ]
 
-                    sizeCategories.forEach { (attribute, expectedCategory) in
-                        expect(attribute.generateTraitCollection().preferredContentSizeCategory).to(equal(expectedCategory))
-                    }
+                sizeCategories.forEach { (attribute, expectedCategory) in
+                    expect(attribute.generateTraitCollection().preferredContentSizeCategory).to(equal(expectedCategory))
                 }
             }
 
