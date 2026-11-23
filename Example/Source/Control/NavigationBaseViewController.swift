@@ -66,15 +66,11 @@ extension NavigationBaseViewController {
             "model.transitionStyle: " + String(describing: self.model.transitionStyle),
             "view.superview: " + String(describing: self.view.superview),
         ])
-        /* TODO: Support iOS 10 */
-        /* FIXME: Fix subview's constraints using fluid transition on iOS 10 */
-        if #available(iOS 11.0, *) {
-            switch self.model! {
-            case .navigationFluidModal, .transitionFluidModal:
-                break
-            default:
-                return
-            }
+        switch self.model! {
+        case .navigationFluidModal, .transitionFluidModal:
+            break
+        default:
+            return
         }
         self.subviewTopConstraint.deactivate()
         self.subviewBottomConstraint.deactivate()

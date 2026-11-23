@@ -168,19 +168,11 @@ final class AnimatorSpec: QuickSpec {
                     expect(easeInCirc.isAvailable).to(beTrue())
                     expect(easeOutCirc.isAvailable).to(beTrue())
                     expect(easeInOutCirc.isAvailable).to(beTrue())
-                    if #available(iOS 11.0, *) {
-                        expect(easeInBack.isAvailable).to(beTrue())
-                        expect(easeOutBack.isAvailable).to(beTrue())
-                        expect(easeInOutBack.isAvailable).to(beTrue())
-                        expect(cubicBezier.isAvailable).to(beTrue())
-                        expect(spring.isAvailable).to(beTrue())
-                    } else {
-                        expect(easeInBack.isAvailable).to(beFalse())
-                        expect(easeOutBack.isAvailable).to(beFalse())
-                        expect(easeInOutBack.isAvailable).to(beFalse())
-                        expect(cubicBezier.isAvailable).to(beTrue())
-                        expect(spring.isAvailable).to(beFalse())
-                    }
+                    expect(easeInBack.isAvailable).to(beTrue())
+                    expect(easeOutBack.isAvailable).to(beTrue())
+                    expect(easeInOutBack.isAvailable).to(beTrue())
+                    expect(cubicBezier.isAvailable).to(beTrue())
+                    expect(spring.isAvailable).to(beTrue())
                 }
                 it("Description") {
                     expect(String(describing: linear)).to(beginWith("linear"))
@@ -734,14 +726,12 @@ final class AnimatorSpec: QuickSpec {
                         .isUserInteractionEnabled(false)
                         .isManualHitTestingEnabled(false)
 
-                    if #available(iOS 11.0, *) {
-                        animator.scrubsLinearly(true).pausesOnCompletion(true)
-                        expect(animator.scrubsLinearly).to(beTrue())
-                        expect(animator.pausesOnCompletion).to(beTrue())
-                        animator.configure(scrubsLinearly: false, pausesOnCompletion: false)
-                        expect(animator.scrubsLinearly).to(beFalse())
-                        expect(animator.pausesOnCompletion).to(beFalse())
-                    }
+                    animator.scrubsLinearly(true).pausesOnCompletion(true)
+                    expect(animator.scrubsLinearly).to(beTrue())
+                    expect(animator.pausesOnCompletion).to(beTrue())
+                    animator.configure(scrubsLinearly: false, pausesOnCompletion: false)
+                    expect(animator.scrubsLinearly).to(beFalse())
+                    expect(animator.pausesOnCompletion).to(beFalse())
 
                     animator.configure(isInterruptible: true,
                                        isUserInteractionEnabled: true,
