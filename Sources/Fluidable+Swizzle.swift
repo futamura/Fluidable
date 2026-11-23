@@ -22,11 +22,9 @@ extension UIApplicationDelegate {
         Swizzle.instanceMethod(UIViewController.self,
                                from: #selector(UIViewController.viewWillTransition(to:with:)),
                                to: #selector(UIViewController.swizzle_viewWillTransition(to:with:)))
-        if #available(iOS 11.0, *) {
-            Swizzle.instanceMethod(UIViewController.self,
-                                   from: #selector(UIViewController.viewSafeAreaInsetsDidChange),
-                                   to: #selector(UIViewController.swizzle_viewSafeAreaInsetsDidChange))
-        }
+        Swizzle.instanceMethod(UIViewController.self,
+                               from: #selector(UIViewController.viewSafeAreaInsetsDidChange),
+                               to: #selector(UIViewController.swizzle_viewSafeAreaInsetsDidChange))
         Swizzle.instanceMethod(UIViewController.self,
                                from: #selector(UIViewController.updateViewConstraints),
                                to: #selector(UIViewController.swizzle_updateViewConstraints))
@@ -49,11 +47,9 @@ extension UIApplicationDelegate {
         Swizzle.instanceMethod(UINavigationController.self,
                                from: #selector(UINavigationController.viewDidLayoutSubviews),
                                to: #selector(UINavigationController.swizzle_navigation_viewDidLayoutSubviews))
-        if #available(iOS 11.0, *) {
-            Swizzle.instanceMethod(UINavigationBar.self,
-                                   from: #selector(UINavigationBar.safeAreaInsetsDidChange),
-                                   to: #selector(UINavigationBar.swizzle_navBar_safeAreaInsetsDidChange))
-        }
+        Swizzle.instanceMethod(UINavigationBar.self,
+                               from: #selector(UINavigationBar.safeAreaInsetsDidChange),
+                               to: #selector(UINavigationBar.swizzle_navBar_safeAreaInsetsDidChange))
         Swizzle.instanceMethod(UINavigationBar.self,
                                from: #selector(UINavigationBar.sizeThatFits),
                                to: #selector(UINavigationBar.swizzle_navBar_sizeThatFits))
@@ -84,7 +80,6 @@ internal extension UIViewController {
 //        })
     }
 
-    @available(iOS 11.0, *)
     @objc func swizzle_viewSafeAreaInsetsDidChange() {
         swizzle_viewSafeAreaInsetsDidChange()
     }
@@ -99,7 +94,6 @@ internal extension UIViewController {
 
     @objc func swizzle_viewWillLayoutSubviews() {
         swizzle_viewWillLayoutSubviews()
-        guard #available(iOS 11, *) else { return }
         if let nc: FluidNavigationController = self as? FluidNavigationController {
             nc.updateSafeAreaForcibly()
         } else if let vc: FluidDestinationViewController = self as? FluidDestinationViewController {

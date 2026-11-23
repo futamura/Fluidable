@@ -12,11 +12,7 @@ import UIKit
 extension FluidTransitionViewAnimator {
     func animationWillStart(isReversed: Bool) -> [FluidAnimatorCompatible]? {
         Logger()?.log("🕊💥", [])
-        if #available(iOS 11.0, *) {
-            return self.createFrameAnimation(isReversed) + self.createCornerRadiusPropertyAnimation(isReversed) + self.createShadowPropertyAnimation(isReversed)
-        } else {
-            return self.createFrameAnimation(isReversed) + self.createCornerRadiusCoreAnimation(isReversed) + self.createShadowCoreAnimation(isReversed)
-        }
+        return self.createFrameAnimation(isReversed) + self.createCornerRadiusPropertyAnimation(isReversed) + self.createShadowPropertyAnimation(isReversed)
     }
 
     func animationDidStart() {

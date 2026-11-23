@@ -34,7 +34,7 @@ public extension FluidPropertyAnimator {
     convenience init(duration: TimeInterval, timingParameters: UITimingCurveProvider, id: String? = nil) {
         self.init(duration: duration, timingParameters: timingParameters)
         self.setIdentifier(id)
-        if #available(iOS 11.0, *) { self.scrubsLinearly(false) }
+        self.scrubsLinearly(false)
         super.addCompletion({ [weak self] (position: UIViewAnimatingPosition) in self?.positionDidChange(position: position) })
     }
 
@@ -49,7 +49,7 @@ public extension FluidPropertyAnimator {
     convenience init(duration: TimeInterval, curve: UIView.AnimationCurve, id: String? = nil, animations: AnimationBlock? = nil) {
         self.init(duration: duration, curve: curve)
         self.setIdentifier(id)
-        if #available(iOS 11.0, *) { self.scrubsLinearly(false) }
+        self.scrubsLinearly(false)
         if let animations: AnimationBlock = animations { self.animations?.append(AnimationData(animations)) }
         super.addCompletion({ [weak self] (position: UIViewAnimatingPosition) in self?.positionDidChange(position: position) })
     }
@@ -66,7 +66,7 @@ public extension FluidPropertyAnimator {
     convenience init(duration: TimeInterval, controlPoint1: CGPoint, controlPoint2: CGPoint, id: String? = nil, animations: AnimationBlock? = nil) {
         self.init(duration: duration, controlPoint1: controlPoint1, controlPoint2: controlPoint2)
         self.setIdentifier(id)
-        if #available(iOS 11.0, *) { self.scrubsLinearly(false) }
+        self.scrubsLinearly(false)
         if let animations: AnimationBlock = animations { self.animations?.append(AnimationData(animations)) }
         super.addCompletion({ [weak self] (position: UIViewAnimatingPosition) in self?.positionDidChange(position: position) })
     }
@@ -97,7 +97,7 @@ public extension FluidPropertyAnimator {
     convenience init(duration: TimeInterval, dampingRatio: CGFloat, id: String? = nil, animations: AnimationBlock? = nil) {
         self.init(duration: duration, dampingRatio: dampingRatio)
         self.setIdentifier(id)
-        if #available(iOS 11.0, *) { self.scrubsLinearly(false) }
+        self.scrubsLinearly(false)
         if let animations: AnimationBlock = animations { self.animations?.append(AnimationData(animations)) }
         super.addCompletion({ [weak self] (position: UIViewAnimatingPosition) in self?.positionDidChange(position: position) })
     }

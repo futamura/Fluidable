@@ -11,7 +11,6 @@ import UIKit
 /**
  `AdaptiveAttribute` correlating to `init(layoutDirection: UITraitEnvironmentLayoutDirection)`
  */
-@available(iOS 10.0, *)
 public enum LayoutDirection: AdaptiveAttribute {
 
     /** Correlates to `UITraitCollection(layoutDirection: .leftToRight)` */

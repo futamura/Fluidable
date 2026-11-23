@@ -10,9 +10,6 @@ import Foundation
 import UIKit
 
 internal struct FluidConst {
-    /* For debugging */
-    static var isNewerSystemVersion: Bool { if #available(iOS 11, *) { return true } else { return false } }
-
     /** Tag */
     static let interruptibleViewTag: Int = 77
     static let progressViewTag: Int = 78

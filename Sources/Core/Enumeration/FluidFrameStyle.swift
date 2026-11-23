@@ -21,7 +21,6 @@ public protocol FluidFrameStyleCompatible {
     /** A `UIRectCorner` value that determines which corners should be rounded. */
     var roundingCorners: UIRectCorner? { get }
     /** A `CACornerMask` value that determines which corners should be rounded. */
-    @available(iOS 11.0, *)
     var maskedCorners: CACornerMask { get }
     /** A `CGColor` value that determines a shadow color. */
     var shadowColor: CGColor { get }
@@ -38,7 +37,6 @@ public protocol FluidFrameStyleCompatible {
 extension FluidFrameStyleCompatible {
     /** A `UIRectCorner` value that determines which corners should be rounded. */
     public var roundingCorners: UIRectCorner? { return self.cornerStyle?.roundingCorners }
-    @available(iOS 11.0, *)
     /** A `CACornerMask` value that determines which corners should be rounded. */
     public var maskedCorners: CACornerMask { return self.cornerStyle?.maskedCorners ?? [] }
 }
