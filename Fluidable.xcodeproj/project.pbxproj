@@ -133,7 +133,6 @@
 		A77D9FA622F0119F0071867E /* Fluidable+SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D9F0F22F0119E0071867E /* Fluidable+SafeArea.swift */; };
 		A77D9FA722F0119F0071867E /* Fluidable+Swizzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D9F1022F0119E0071867E /* Fluidable+Swizzle.swift */; };
 		A77D9FA822F0119F0071867E /* Fluidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D9F1122F0119E0071867E /* Fluidable.swift */; };
-		A77D9FA922F0119F0071867E /* FluidCornerMaskLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D9F1322F0119E0071867E /* FluidCornerMaskLayer.swift */; };
 		A77D9FAA22F0119F0071867E /* FluidInteractiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D9F1422F0119E0071867E /* FluidInteractiveView.swift */; };
 		A77D9FAB22F0119F0071867E /* FluidShadowLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D9F1522F0119E0071867E /* FluidShadowLayer.swift */; };
 		A77D9FAC22F0119F0071867E /* FluidInterruptibleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D9F1622F0119E0071867E /* FluidInterruptibleView.swift */; };
@@ -455,7 +454,6 @@
 		A77D9F0F22F0119E0071867E /* Fluidable+SafeArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Fluidable+SafeArea.swift"; sourceTree = "<group>"; };
 		A77D9F1022F0119E0071867E /* Fluidable+Swizzle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Fluidable+Swizzle.swift"; sourceTree = "<group>"; };
 		A77D9F1122F0119E0071867E /* Fluidable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fluidable.swift; sourceTree = "<group>"; };
-		A77D9F1322F0119E0071867E /* FluidCornerMaskLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidCornerMaskLayer.swift; sourceTree = "<group>"; };
 		A77D9F1422F0119E0071867E /* FluidInteractiveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidInteractiveView.swift; sourceTree = "<group>"; };
 		A77D9F1522F0119E0071867E /* FluidShadowLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidShadowLayer.swift; sourceTree = "<group>"; };
 		A77D9F1622F0119E0071867E /* FluidInterruptibleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluidInterruptibleView.swift; sourceTree = "<group>"; };
@@ -926,7 +924,6 @@
 			isa = PBXGroup;
 			children = (
 				A77D9F1822F0119E0071867E /* FluidBackgroundView.swift */,
-				A77D9F1322F0119E0071867E /* FluidCornerMaskLayer.swift */,
 				A77D9F1422F0119E0071867E /* FluidInteractiveView.swift */,
 				A77D9F1622F0119E0071867E /* FluidInterruptibleView.swift */,
 				A77D9F1722F0119E0071867E /* FluidProgressView.swift */,
@@ -1549,7 +1546,6 @@
 				A77D9F8922F0119E0071867E /* FluidNavigationViewAnimator+Configuration.swift in Sources */,
 				A77D9FD422F0119F0071867E /* FluidCoreAnimatorKeyPath.swift in Sources */,
 				A77D9FA322F0119E0071867E /* UITestEnv.swift in Sources */,
-				A77D9FA922F0119F0071867E /* FluidCornerMaskLayer.swift in Sources */,
 				A77D9F8F22F0119E0071867E /* FluidScrollObservable.swift in Sources */,
 				A77D9F6E22F0119E0071867E /* FluidCoreAnimatorOption.swift in Sources */,
 				A77D9F7E22F0119E0071867E /* FluidResizableTransitionDelegate.swift in Sources */,
