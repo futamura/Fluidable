@@ -47,8 +47,18 @@ jobs:
       - name: Prepare coverage directory
         run: mkdir -p Reports/coverage/unit
 
+      - name: Boot iOS simulator
+        timeout-minutes: 10
+        run: |
+          SIMULATOR_UDID="${IOS_DESTINATION##*id=}"
+          echo "SIMULATOR_UDID=$SIMULATOR_UDID" >> "$GITHUB_ENV"
+          xcrun simctl bootstatus "$SIMULATOR_UDID" -b
+
       - name: Xcode unit coverage on iOS Simulator
-        run: xcodebuild test -project Fluidable.xcodeproj -scheme Fluidable -destination "$IOS_DESTINATION" -only-testing:FluidableTests -enableCodeCoverage YES -resultBundlePath Reports/coverage/unit/Fluidable.xcresult CODE_SIGNING_ALLOWED=NO
+        run: |
+          RESULT_BUNDLE="Reports/coverage/unit/Fluidable.xcresult"
+          .github/scripts/retry-if-no-tests-ran.sh "$RESULT_BUNDLE" \
+            xcodebuild test -project Fluidable.xcodeproj -scheme Fluidable -destination "$IOS_DESTINATION" -only-testing:FluidableTests -enableCodeCoverage YES -resultBundlePath "$RESULT_BUNDLE" CODE_SIGNING_ALLOWED=NO
 
       - name: Export unit coverage report
         run: xcrun xccov view --report Reports/coverage/unit/Fluidable.xcresult > Reports/coverage/unit/xccov.txt
