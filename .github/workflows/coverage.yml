@@ -125,10 +125,21 @@ jobs:
         timeout-minutes: 10
         run: |
           SIMULATOR_UDID="${IOS_DESTINATION##*id=}"
+          echo "SIMULATOR_UDID=$SIMULATOR_UDID" >> "$GITHUB_ENV"
           xcrun simctl bootstatus "$SIMULATOR_UDID" -b
 
+      - name: Show simulator pairs before UI tests
+        run: xcrun simctl list pairs
+
       - name: Xcode UI coverage shard on iOS Simulator
-        run: xcodebuild test-without-building -xctestrun "$XCTESTRUN_FILE" -destination "$IOS_DESTINATION" -derivedDataPath "$UI_DERIVED_DATA_PATH" -only-testing:FluidableUITests -resultBundlePath Reports/coverage/ui-shard-${{ matrix.shard }}/Fluidable.xcresult
+        run: |
+          RESULT_BUNDLE="Reports/coverage/ui-shard-${{ matrix.shard }}/Fluidable.xcresult"
+          .github/scripts/retry-if-no-tests-ran.sh "$RESULT_BUNDLE" \
+            xcodebuild test-without-building -xctestrun "$XCTESTRUN_FILE" -destination "$IOS_DESTINATION" -derivedDataPath "$UI_DERIVED_DATA_PATH" -only-testing:FluidableUITests -resultBundlePath "$RESULT_BUNDLE"
+
+      - name: Show simulator pairs after UI tests
+        if: always()
+        run: xcrun simctl list pairs
 
       - name: Export UI coverage report
         run: xcrun xccov view --report Reports/coverage/ui-shard-${{ matrix.shard }}/Fluidable.xcresult > Reports/coverage/ui-shard-${{ matrix.shard }}/xccov.txt
