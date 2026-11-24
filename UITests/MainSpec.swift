@@ -289,20 +289,38 @@ final class MainSpec: QuickSpec {
                 return cell
             }
 
-            if cell.exists && cell.isVisible {
-                let windowFrame = app.windows.element(boundBy: 0).frame
-                let visibleCollectionFrame = collectionView.frame.intersection(windowFrame)
-                if cell.frame.midY < visibleCollectionFrame.midY {
-                    collectionView.swipeDown()
-                } else {
-                    collectionView.swipeUp()
-                }
-            } else {
-                collectionView.swipeUp()
-            }
+            /* NOTE: Drag without momentum so a single scroll cannot overshoot the target cell,
+             *       and pick the direction from the loaded cells because an overshot cell is
+             *       recycled and no longer exists. */
+            dragRootCollection(collectionView, downward: shouldScrollDown(toward: model, in: collectionView, app: app))
         }
 
         XCTFail("Failed to bring \(model.rootCellAccessibilityIdentifier) into view")
         return cell
+    }
+
+    private func shouldScrollDown(toward model: RootModel, in collectionView: XCUIElement, app: XCUIApplication) -> Bool {
+        /* NOTE: Read every loaded cell from one snapshot; querying each cell separately is slow on CI runners. */
+        guard let snapshot = try? collectionView.snapshot() else { return false }
+        let cells = snapshot.children.filter { $0.elementType == .cell }
+
+        if let target = cells.first(where: { $0.identifier == model.rootCellAccessibilityIdentifier }) {
+            let visibleCollectionFrame = snapshot.frame.intersection(app.windows.element(boundBy: 0).frame)
+            return target.frame.midY < visibleCollectionFrame.midY
+        }
+
+        let loadedRawValues = cells.compactMap { cell in
+            RootModel.allCases.first { $0.rootCellAccessibilityIdentifier == cell.identifier }?.rawValue
+        }
+        guard let firstLoadedRawValue = loadedRawValues.min() else { return false }
+        return model.rawValue < firstLoadedRawValue
+    }
+
+    private func dragRootCollection(_ collectionView: XCUIElement, downward: Bool) {
+        let startY: CGFloat = downward ? 0.15 : 0.85
+        let finishY: CGFloat = downward ? 0.85 : 0.15
+        let start = collectionView.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: startY))
+        let finish = collectionView.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: finishY))
+        start.press(forDuration: 0.05, thenDragTo: finish, withVelocity: .slow, thenHoldForDuration: 0.1)
     }
 }

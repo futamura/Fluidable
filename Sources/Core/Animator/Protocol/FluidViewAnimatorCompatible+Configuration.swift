@@ -176,8 +176,6 @@ extension FluidViewAnimatorCompatible {
         let toStyle: FluidFrameStyleCompatible = self.toStyle(isReversed)
         guard let fromShadowPath: CGPath = self.fromShadowPath(isReversed) else { return [] }
         guard let toShadowPath: CGPath = self.toShadowPath(isReversed) else { return [] }
-//        guard let fromShadowMask: CAShapeLayer = self.fromShadowMask(isReversed) else { return [] }
-//        guard let toShadowMask: CAShapeLayer = self.toShadowMask(isReversed) else { return [] }
         let opt: FluidCoreAnimatorOption = .init(self.animationType, isReversed)
         Logger()?.log("🕊🛠", [
             "animationType:".lpad() + String(describing: self.animationType),
@@ -247,81 +245,6 @@ extension FluidViewAnimatorCompatible {
         /* NOTE: Return animators */
         return animators
     }
-
-    func createShadowCoreAnimation(_ isReversed: Bool = false) -> [FluidAnimatorCompatible] {
-        guard self.shouldCastShadow, let shadowView: FluidShadowView = self.shadowView else { return [] }
-        var animators: [FluidAnimatorCompatible] = [FluidAnimatorCompatible]()
-        /* NOTE: 👌 Configure properties to animate */
-        let transitionDuration: TimeInterval = !isReversed ? self.activeDuration : FluidConst.fluidInteractionReverseDuration
-        let transitionEasing: FluidAnimatorEasing = !isReversed ? self.activeEasing : .easeInOutQuad
-        let fromShadowFrame: CGRect = self.fromShadowFrame(isReversed, self.resizePosition)
-        let toShadowFrame: CGRect = self.toShadowFrame(isReversed, self.resizePosition)
-//        let fromShadowTransform: CATransform3D = self.fromShadowTransform(isReversed)
-//        let toShadowTransform: CATransform3D = self.toShadowTransform(isReversed)
-        let fromStyle: FluidFrameStyleCompatible = self.fromStyle(isReversed)
-        let toStyle: FluidFrameStyleCompatible = self.toStyle(isReversed)
-        guard let fromShadowPath: CGPath = self.fromShadowPath(isReversed) else { return [] }
-        guard let toShadowPath: CGPath = self.toShadowPath(isReversed) else { return [] }
-        guard let fromShadowMask: CAShapeLayer = self.fromShadowMask(isReversed) else { return [] }
-        guard let toShadowMask: CAShapeLayer = self.toShadowMask(isReversed) else { return [] }
-        let opt: FluidCoreAnimatorOption = .init(self.animationType, isReversed)
-        /* NOTE: 👍 Set properties before run animation */
-        shadowView.layer.frame = toShadowFrame
-//        shadowView.layer.transform = toTransform
-        shadowView.layer.cornerRadius = toStyle.cornerRadius
-//        shadowView.layer.maskedCorners = toStyle.maskedCorners
-        shadowView.layer.shadowColor = toStyle.shadowColor
-        shadowView.layer.shadowOpacity = Float(toStyle.shadowOpacity)
-        shadowView.layer.shadowRadius = toStyle.shadowRadius
-        shadowView.layer.shadowOffset = toStyle.shadowOffset
-        shadowView.layer.shadowPath = toShadowPath
-//        shadowView.layer.mask = toShadowMask
-//        shadowView.castShadow(frame: toViewFrame,
-//                              shadowCornerRadius: toStyle.cornerRadius,
-//                              shadowRoundingCorners: toStyle.roundingCorners,
-//                              shadowColor: toStyle.shadowColor,
-//                              shadowOpacity: toStyle.shadowOpacity,
-//                              shadowRadius: toStyle.shadowRadius,
-//                              shadowOffset: toStyle.shadowOffset,
-//                              isTransparentBackground: toStyle.isTransparentBackground)
-        /* NOTE: 🐅 Configure animator for shadow style */
-        if let shadowFrameAnimator: FluidCoreAnimator = FluidCoreAnimator(for: shadowView.layer, id: "shadowFrameAnimator (\(String(describing: self.animationType).capitalized))",
-                                                                          duration: transitionDuration, easing: .linear,
-                                                                          isRemovedOnCompletion: opt.isRemovedGroup, fillMode: opt.fillModeGroup) {
-            /* NOTE: Frame */
-            shadowFrameAnimator
-                    .add(key: .bounds, from: fromShadowFrame.bounds, to: toShadowFrame.bounds,
-                         easing: transitionEasing, isRemovedOnCompletion: opt.isRemovedChild, fillMode: opt.fillModeChild)
-                    .add(key: .position, from: fromShadowFrame.position, to: toShadowFrame.position,
-                         easing: transitionEasing, isRemovedOnCompletion: opt.isRemovedChild, fillMode: opt.fillModeChild)
-            /* NOTE: Style */
-            shadowFrameAnimator
-                    .add(key: .cornerRadius, from: fromStyle.cornerRadius, to: toStyle.cornerRadius,
-                         easing: transitionEasing, isRemovedOnCompletion: opt.isRemovedChild, fillMode: opt.fillModeChild)
-                    .add(key: .shadowColor, from: fromStyle.shadowColor, to: toStyle.shadowColor,
-                         easing: .easeOutSine, isRemovedOnCompletion: opt.isRemovedChild, fillMode: opt.fillModeChild)
-                    .add(key: .shadowOpacity, from: Float(fromStyle.shadowOpacity), to: Float(toStyle.shadowOpacity),
-                         easing: .easeOutSine, isRemovedOnCompletion: opt.isRemovedChild, fillMode: opt.fillModeChild)
-                    .add(key: .shadowRadius, from: fromStyle.shadowRadius, to: toStyle.shadowRadius,
-                         easing: transitionEasing, isRemovedOnCompletion: opt.isRemovedChild, fillMode: opt.fillModeChild)
-                    .add(key: .shadowOffset, from: fromStyle.shadowOffset, to: toStyle.shadowOffset,
-                         easing: transitionEasing, isRemovedOnCompletion: opt.isRemovedChild, fillMode: opt.fillModeChild)
-                    .add(key: .shadowPath, from: fromShadowPath, to: toShadowPath,
-                         easing: transitionEasing, isRemovedOnCompletion: opt.isRemovedChild, fillMode: opt.fillModeChild)
-            animators.append(shadowFrameAnimator)
-        }
-        /* NOTE: 🐅 Configure animator for shadow mask */
-        if let shadowMaskAnimator: FluidCoreAnimator = FluidCoreAnimator(for: shadowView.layer.mask, id: "shadowMaskAnimator (\(String(describing: self.animationType).capitalized))",
-                                                                         duration: transitionDuration, easing: .linear,
-                                                                         isRemovedOnCompletion: opt.isRemovedGroup, fillMode: opt.fillModeGroup) {
-            shadowMaskAnimator.add(key: .path, from: fromShadowMask.path, to: toShadowMask.path,
-                                   easing: transitionEasing,
-                                   isRemovedOnCompletion: opt.isRemovedChild, fillMode: opt.fillModeChild)
-            animators.append(shadowMaskAnimator)
-        }
-        /* NOTE: Return animators */
-        return animators
-    }
 }
 
 /**
@@ -349,32 +272,6 @@ extension FluidViewAnimatorCompatible {
         })
         /* NOTE: Return animators */
         return [cornerRadiusAnimator]
-    }
-
-    func createCornerRadiusCoreAnimation(_ isReversed: Bool = false) -> [FluidAnimatorCompatible] {
-        guard self.shouldMaskCorner else { return [] }
-        /* NOTE: 👌 Configure properties to animate */
-        let transitionDuration: TimeInterval = !isReversed ? self.activeDuration : FluidConst.fluidInteractionReverseDuration
-        let transitionEasing: FluidAnimatorEasing = !isReversed ? self.activeEasing : .easeInOutQuad
-        let fromMaskLayer: FluidCornerMaskLayer = self.fromCornerMaskLayer(isReversed)
-        let toMaskLayer: FluidCornerMaskLayer = self.toCornerMaskLayer(isReversed)
-        let opt: FluidCoreAnimatorOption = .init(self.animationType, isReversed)
-        /* NOTE: 👍 Set properties before run animation */
-        self.layoutContainerView.layer.masksToBounds = true
-        self.layoutContainerView.layer.mask = toMaskLayer
-        /* NOTE: 🐅 Configure animator */
-        let cornerRadiusAnimator: FluidCoreAnimator? = FluidCoreAnimator(for: self.layoutContainerView.layer.mask, id: "cornerRadiusAnimator (\(String(describing: self.animationType).capitalized))",
-                                                                         duration: transitionDuration, easing: .linear,
-                                                                         isRemovedOnCompletion: opt.isRemovedGroup, fillMode: opt.fillModeGroup)
-        cornerRadiusAnimator?.add(key: .path, from: fromMaskLayer.path, to: toMaskLayer.path,
-                                  easing: transitionEasing,
-                                  isRemovedOnCompletion: opt.isRemovedChild, fillMode: opt.fillModeChild)
-        /* NOTE: Return animators */
-        if let cornerRadiusAnimator: FluidCoreAnimator = cornerRadiusAnimator {
-            return [cornerRadiusAnimator]
-        } else {
-            return []
-        }
     }
 }
 
@@ -515,49 +412,5 @@ extension FluidViewAnimatorCompatible {
                                                  roundingCorners: toStyle.roundingCorners,
                                                  shadowRadius: toStyle.shadowRadius,
                                                  shadowOffset: toStyle.shadowOffset)
-    }
-
-    func fromShadowMask(_ isReversed: Bool = false) -> CAShapeLayer? {
-        let fromFrame: CGRect = self.fromViewFrame(isReversed, self.resizePosition)
-        let fromStyle: FluidFrameStyleCompatible = self.fromStyle(isReversed)
-        switch self.animationType {
-        case .dismiss where self.shadowView?.layer.mask is CAShapeLayer:
-            return self.shadowView?.layer.mask as? CAShapeLayer
-        case .present, .dismiss, .rotate:
-            return FluidShadowLayer.createShadowMask(bounds: fromFrame.bounds,
-                                                     cornerRadius: fromStyle.cornerRadius,
-                                                     roundingCorners: fromStyle.roundingCorners,
-                                                     shadowRadius: fromStyle.shadowRadius,
-                                                     shadowOffset: fromStyle.shadowOffset,
-                                                     isTransparentBackground: fromStyle.isTransparentBackground)
-        }
-    }
-
-    func toShadowMask(_ isReversed: Bool = false) -> CAShapeLayer? {
-        let toFrame: CGRect = self.toViewFrame(isReversed, self.resizePosition)
-        let toStyle: FluidFrameStyleCompatible = self.toStyle(isReversed)
-        return FluidShadowLayer.createShadowMask(bounds: toFrame.bounds,
-                                                 cornerRadius: toStyle.cornerRadius,
-                                                 roundingCorners: toStyle.roundingCorners,
-                                                 shadowRadius: toStyle.shadowRadius,
-                                                 shadowOffset: toStyle.shadowOffset,
-                                                 isTransparentBackground: toStyle.isTransparentBackground)
-    }
-
-    func fromCornerMaskLayer(_ isReversed: Bool = false) -> FluidCornerMaskLayer {
-        switch self.animationType {
-        case .dismiss where self.layoutContainerView.layer.mask is FluidCornerMaskLayer:
-            return self.layoutContainerView.layer.mask as! FluidCornerMaskLayer
-        case .present, .dismiss, .rotate:
-            let fromFrame: CGRect = self.fromViewFrame(isReversed, self.resizePosition)
-            let fromStyle: FluidFrameStyleCompatible = self.fromStyle(isReversed)
-            return .init(bounds: fromFrame.bounds, cornerRadius: fromStyle.cornerRadius, roundingCorners: fromStyle.roundingCorners)
-        }
-    }
-
-    func toCornerMaskLayer(_ isReversed: Bool = false) -> FluidCornerMaskLayer {
-        let toFrame: CGRect = self.toViewFrame(isReversed, self.resizePosition)
-        let toStyle: FluidFrameStyleCompatible = self.toStyle(isReversed)
-        return .init(bounds: toFrame.bounds, cornerRadius: toStyle.cornerRadius, roundingCorners: toStyle.roundingCorners)
     }
 }
