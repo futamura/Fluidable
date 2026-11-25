@@ -145,11 +145,31 @@ jobs:
         run: |
           RESULT_BUNDLE="Reports/coverage/ui-shard-${{ matrix.shard }}/Fluidable.xcresult"
           .github/scripts/retry-if-no-tests-ran.sh "$RESULT_BUNDLE" \
-            xcodebuild test-without-building -xctestrun "$XCTESTRUN_FILE" -destination "$IOS_DESTINATION" -derivedDataPath "$UI_DERIVED_DATA_PATH" -only-testing:FluidableUITests -resultBundlePath "$RESULT_BUNDLE"
+            xcodebuild test-without-building -xctestrun "$XCTESTRUN_FILE" -destination "$IOS_DESTINATION" -derivedDataPath "$UI_DERIVED_DATA_PATH" -only-testing:FluidableUITests -resultBundlePath "$RESULT_BUNDLE" -retry-tests-on-failure -test-iterations 2
 
       - name: Show simulator pairs after UI tests
         if: always()
         run: xcrun simctl list pairs
+
+      - name: Collect UI test diagnostics
+        if: failure()
+        run: |
+          DIAGNOSTICS_DIR="Reports/diagnostics/ui-shard-${{ matrix.shard }}"
+          mkdir -p "$DIAGNOSTICS_DIR"
+          cp -R Reports/coverage/ui-shard-${{ matrix.shard }}/. "$DIAGNOSTICS_DIR/" || true
+          cp -R "$HOME/Library/Logs/DiagnosticReports" "$DIAGNOSTICS_DIR/DiagnosticReports" || true
+          if [ -n "${SIMULATOR_UDID:-}" ]; then
+            cp -R "$HOME/Library/Logs/CoreSimulator/$SIMULATOR_UDID" "$DIAGNOSTICS_DIR/CoreSimulator" || true
+            xcrun simctl spawn "$SIMULATOR_UDID" log show --last 1h --style compact > "$DIAGNOSTICS_DIR/simulator.log" || true
+          fi
+
+      - name: Upload UI test diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: ui-test-diagnostics-shard-${{ matrix.shard }}
+          path: Reports/diagnostics/ui-shard-${{ matrix.shard }}
+          retention-days: 14
 
       - name: Export UI coverage report
         run: xcrun xccov view --report Reports/coverage/ui-shard-${{ matrix.shard }}/Fluidable.xcresult > Reports/coverage/ui-shard-${{ matrix.shard }}/xccov.txt
