@@ -5,6 +5,19 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.1] - 2026-11-25
+
+This release removes code that could no longer run. There are no public API
+changes, and minimum requirements are unchanged: iOS 15.0 or later, built with
+Xcode 26.
+
+### Changed
+
+- Removed the `@available` / `#available` checks for iOS 10 and 11 along with
+  the code paths that only ran below the iOS 15 deployment target, including
+  the iOS 10 Core Animation path for shadow and corner radius animations.
+  Behavior on iOS 15 and later is unchanged.
+
 ## [3.0.0] - 2026-08-20
 
 Fluidable now builds in the Swift 6 language mode. Adopting this release
@@ -170,4 +183,5 @@ the union of the four individual corners.
 Release notes for `2.0.0` and earlier are published on the
 [GitHub Releases](https://github.com/futamura/Fluidable/releases) page.
 
+[3.0.1]: https://github.com/futamura/Fluidable/compare/3.0.0...3.0.1
 [3.0.0]: https://github.com/futamura/Fluidable/compare/2.0.0...3.0.0
